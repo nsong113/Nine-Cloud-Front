@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
-  width: 600px;
+  width: 498px;
   height: 50px;
   background-color: #999;
   position: fixed;
