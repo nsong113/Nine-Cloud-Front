@@ -19,3 +19,9 @@ export interface ItileContent {
   date?: any;
   view?: any;
 }
+
+export interface IMatchingDay {
+  EmotionStatus: number;
+  date: string;
+  id: number;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Main.styles';
 import Calendar from 'react-calendar';
-import { IdateOptions, Value } from './Main.types';
+import { IMatchingDay, IdateOptions, Value } from './Main.types';
 import moment from 'moment';
 import 'react-calendar/dist/Calendar.css';
 import { useNavigate } from 'react-router-dom';
@@ -10,16 +10,9 @@ const Calender = () => {
   const navigate = useNavigate();
   //유저가 달력에 클릭하는 날짜
   const [date, setData] = useState<Value>(new Date());
+  // console.log('date', date); //Thu Dec 14 2023 00:00:00 GMT+0900 (일본 표준시) (선택한 날짜)
   //JSX.Element 타입은 리액트에서 사용하는 JSX 자료형을 명시
   const [clickedDate, setClickedDate] = useState<string>('');
-
-  // const dayList1 = [
-  //   '2023-03-10',
-  //   '2023-03-21',
-  //   '2023-04-02',
-  //   '2023-04-14',
-  //   '2023-04-27',
-  // ];
 
   const dayList = [
     {
@@ -62,25 +55,29 @@ const Calender = () => {
   const onChangeClickedDate = (date: any) => {
     setData(date);
 
-    const matchingDay = dayList.find(
+    const matchingDay: IMatchingDay | undefined = dayList.find(
       (day) => day.date === moment(date).format('YYYY-MM-DD')
     );
 
-    console.log(matchingDay);
-    // const navigateId = matchingDay.id:number;
-    const goToDetail = (navigateId: number) => {
-      navigate(`/post/${navigateId}`);
-    };
+    console.log('matchingDay', matchingDay);
 
-    // // 상태 업데이트
-    // setClickedDate(goToDetail);
+    if (matchingDay && typeof matchingDay !== 'undefined') {
+      const navigateId: number = matchingDay.id;
+      console.log(matchingDay);
+
+      const goToDetail = (navigateId: number) => {
+        navigate(`/post/${navigateId}`);
+      };
+
+      goToDetail(navigateId);
+    } else {
+      null;
+    }
+    // 상태 업데이트
   };
 
   //오늘 날짜 관리
   const todayDate = moment().format('YYYY-MM-DD');
-
-  //각 날짜별 emotion state에 따라 다르게 렌더링하기
-  // console.log(dayList.find((day) => day.EmotionStatus === 2));
 
   //오늘 날짜에 무언가 추가
   const addContent = ({ date }: any): any => {

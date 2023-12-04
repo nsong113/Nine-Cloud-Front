@@ -6,6 +6,6 @@ export const FooterContainer = styled.div`
   background-color: #999;
   position: fixed;
   left: 50%;
-  transform: translateX(-48.8%);
+  transform: translateX(-51.5%);
   bottom: 0;
 `;
