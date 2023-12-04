@@ -5,10 +5,12 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
+  overflow-y: auto;
+  overflow-x: auto;
 `;
 
 export const Wrapper = styled.div`
-  width: 600px;
+  width: 498px;
   height: 100%;
   overflow-y: auto;
   border: 1px solid gray;

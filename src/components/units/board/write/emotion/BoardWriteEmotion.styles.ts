@@ -72,7 +72,7 @@ export const LabelsDiv = styled.div`
 `;
 
 export const SliderBoxDiv = styled.div`
-  width: 600px;
+  width: 498px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -92,7 +92,7 @@ export const ButtonWrapperDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 600px;
+  width: 498px;
   margin-top: 50px;
 `;
 
@@ -125,7 +125,7 @@ export const ContentsBoxDiv = styled.div`
 `;
 
 export const ButtonBoxDiv = styled.div`
-  width: 600px;
+  width: 498px;
   height: 50px;
   display: flex;
   justify-content: center;

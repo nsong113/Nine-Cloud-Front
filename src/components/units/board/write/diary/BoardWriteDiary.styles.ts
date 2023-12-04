@@ -4,7 +4,7 @@ export const DiaryContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 600px;
+  width: 498px;
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -12,14 +12,14 @@ export const HeaderButtonBoxDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 600px;
+  width: 498px;
   margin-top: 50px;
 `;
 
 export const FooterButtonBoxDiv = styled.div`
   display: flex;
   flex-direction: row;
-  width: 600px;
+  width: 498px;
   align-items: center;
   justify-content: center;
   margin-top: 50px;
@@ -74,7 +74,7 @@ export const SubmitButton = styled.button`
 `;
 
 export const InputBoxDiv = styled.div`
-  width: 600px;
+  width: 498px;
   display: flex;
   flex-direction: column;
   justify-content: center;
