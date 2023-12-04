@@ -4,25 +4,14 @@ import Calendar from 'react-calendar';
 import { IdateOptions, Value } from './Main.types';
 import moment from 'moment';
 import 'react-calendar/dist/Calendar.css';
+import { useNavigate } from 'react-router-dom';
 
 const Calender = () => {
+  const navigate = useNavigate();
   //유저가 달력에 클릭하는 날짜
   const [date, setData] = useState<Value>(new Date());
   //JSX.Element 타입은 리액트에서 사용하는 JSX 자료형을 명시
-  const [clickedDate, setClickedDate] = useState<JSX.Element[]>([]);
-
-  const onChangeClickedDate = (date: any) => {
-    setData(date);
-
-    const newContents: JSX.Element = (
-      <div>
-        <S.ShowCloudDivRed />
-      </div>
-    );
-
-    // 상태 업데이트
-    setClickedDate(newContents);
-  };
+  const [clickedDate, setClickedDate] = useState<string>('');
 
   // const dayList1 = [
   //   '2023-03-10',
@@ -69,6 +58,23 @@ const Calender = () => {
       id: 6,
     },
   ];
+
+  const onChangeClickedDate = (date: any) => {
+    setData(date);
+
+    const matchingDay = dayList.find(
+      (day) => day.date === moment(date).format('YYYY-MM-DD')
+    );
+
+    console.log(matchingDay);
+    // const navigateId = matchingDay.id:number;
+    const goToDetail = (navigateId: number) => {
+      navigate(`/post/${navigateId}`);
+    };
+
+    // // 상태 업데이트
+    // setClickedDate(goToDetail);
+  };
 
   //오늘 날짜 관리
   const todayDate = moment().format('YYYY-MM-DD');
