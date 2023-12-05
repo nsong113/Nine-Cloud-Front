@@ -1,4 +1,4 @@
-interface IConfirmModal {
+interface IConfirmMod {
   onClose?: () => void;
   onOk?: () => void;
 }

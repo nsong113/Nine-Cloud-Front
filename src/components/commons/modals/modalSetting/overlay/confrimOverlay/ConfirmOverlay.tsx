@@ -1,7 +1,12 @@
 import React from 'react';
 import * as S from './ConfirmOverlay.styles';
 
-const ConfirmOverlay: React.FC<IConfirmModal> = ({ onOk, onClose }) => {
+interface IConfirmMod {
+  onClose?: () => void;
+  onOk?: () => void;
+}
+
+const ConfirmOverlay: React.FC<IConfirmMod> = ({ onOk, onClose }) => {
   return (
     <S.ContainerDiv className='modal'>
       <S.ModalContentDiv>

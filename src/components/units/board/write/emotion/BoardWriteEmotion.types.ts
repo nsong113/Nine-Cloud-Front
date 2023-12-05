@@ -4,6 +4,6 @@ interface PortalProps {
 }
 
 interface IProps {
-  isActive?: boolean;
-  setIsActive?: () => void;
+  onClose?:() => void;
+  onOk?: () => void;
 }
