@@ -7,7 +7,7 @@ export interface IProfile {
 
 export type ValuePiece = Date | null;
 
-export type Value = ValuePiece | [ValuePiece, ValuePiece];
+export type ValueI = ValuePiece | [ValuePiece, ValuePiece];
 
 export interface IdateOptions {
   year?: 'numeric' | '2-digit';
@@ -24,4 +24,9 @@ export interface IMatchingDay {
   EmotionStatus: number;
   date: string;
   id: number;
+}
+
+export interface IemotionSetting {
+  matchDDD: number;
+  matchEmotionStatus: number;
 }

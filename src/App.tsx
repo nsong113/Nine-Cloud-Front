@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from './Router';
-import '../src/components/units/main/calender.style.css';
+import '../src/reset.css';
 
 export default function App() {
   return <Router />;
