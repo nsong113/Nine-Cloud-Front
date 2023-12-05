@@ -82,43 +82,55 @@ const Calender = () => {
   // }
 
   //0없이 감정 값이 있는 로직
-  // const emotionSetting = useState<IemotionSetting[]>({
-  //   matchDDD: null,
-  //   matchEmotionStatus: null,
-  // });
+  const [emotionSetting, setEmotionalSetting] = useState<IemotionSetting[]>([
+    {
+      matchDDD: 0,
+      matchEmotionStatus: 0,
+    },
+  ]);
 
-  // useEffect(() => {
-  //   //DD 를 꺼내오는 정규 표현식
-  //   const dayRegex = /\b(\d{1,2})\.\s*$/;
-  //   //각 리스트에서 DD를 꺼낸다. : 매칭이 되는 '값'을 꺼내서 =>10이면 10의 자리와 이모션을 같이 객체로 묶어 배열로 묶는다.
-  //   for (let i = 0; i < dayList.length; i++) {
-  //     //각 list의 DD를 뽑아서 matchDD에 넣음
-  //     const matchDD = dayList[i].date.match(dayRegex);
-  //     if (matchDD) {
-  //       //각 list의 날짜를 뽑아서 matchDD에 넣음
-  //       const matchDDD = Number(matchDD[1]);
-  //       const matchDate = matchDD.input;
-  //       const matchEmotionStatus = dayList[i].EmotionStatus;
-  //       //감정 상태값 넣기 matchDate의 emotionStatus만 골라오기
+  useEffect(() => {
+    //DD 를 꺼내오는 정규 표현식
+    const dayRegex = /\b(\d{1,2})\.\s*$/;
+    //각 리스트에서 DD를 꺼낸다. : 매칭이 되는 '값'을 꺼내서 =>10이면 10의 자리와 이모션을 같이 객체로 묶어 배열로 묶는다.
+    for (let i = 0; i < dayList.length; i++) {
+      //각 list의 DD를 뽑아서 matchDD에 넣음
+      const matchDD = dayList[i].date.match(dayRegex);
+      if (matchDD) {
+        //각 list의 날짜를 뽑아서 matchDD에 넣음
+        const matchDDD = Number(matchDD[1]);
+        const matchDate = matchDD.input;
+        const matchEmotionStatus = dayList[i].EmotionStatus;
+        //감정 상태값 넣기 matchDate의 emotionStatus만 골라오기
 
-  //       // console.log('matchDD', matchDD);
-  //       // console.log('match1', matchDDD); // 22
-  //       // console.log('match2', matchDate); // "2023. 12. 22."
-  //       // console.log('matchEmotionStatus', matchEmotionStatus);
+        // console.log('matchDD', matchDD);
+        // console.log('match1', matchDDD); // 22
+        // console.log('match2', matchDate); // "2023. 12. 22."
+        // console.log('matchEmotionStatus', matchEmotionStatus);
 
-  //       emotionSetting.push({
-  //         matchDDD,
-  //         matchEmotionStatus,
-  //       });
-  //     }
-  //   }
-  // }, []);
+        setEmotionalSetting((prev: IemotionSetting[]) => [
+          ...prev,
+          { matchDDD, matchEmotionStatus },
+        ]);
+        // setEmotionalSetting(...emotionSetting, {
+        //   matchDDD,
+        //   matchEmotionStatus,
+        // });
+      }
+    }
+  }, []);
 
-  // console.log('emotionSetting', emotionSetting);
+  console.log('emotionSetting', emotionSetting);
 
-  // //emotionSetting의 matchDDD값이 weekCalendar의 값과 같으면 matchEmotionStatus를 반환한다.
-  // console.log('1', emotionSetting.matchDDD);
-  // console.log('2', emotionSetting.matchEmotionStatus);
+  //emotionSetting의 matchDDD값이 weekCalendar의 값과 같으면 matchEmotionStatus를 반환한다.
+
+  for (let i = 1; i < emotionSetting.length; i++) {
+    console.log('1', emotionSetting[i].matchDDD);
+    console.log('2', emotionSetting[i].matchEmotionStatus);
+  }
+
+  ///////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
 
   //클릭했을 때 디테일 페이지로 이동
   const onClickGoToDetailHandler = (
