@@ -9,7 +9,6 @@ const Layout = () => {
     <S.Container>
       <S.Wrapper>
         <Outlet />
-        <Footer />
       </S.Wrapper>
     </S.Container>
   );
