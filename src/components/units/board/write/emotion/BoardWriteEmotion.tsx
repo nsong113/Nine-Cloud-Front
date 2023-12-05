@@ -10,6 +10,7 @@ const BoardWriteEmotion = () => {
   const [gloomy, setGloomy] = useState('5');
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (happy === '') {
@@ -27,6 +28,7 @@ const BoardWriteEmotion = () => {
 
   const onClickMoveToMain = () => {
     navigate('/main');
+    setIsModalOpen(true);
   };
 
   const onChangeAngryCount = (event: ChangeEvent<HTMLInputElement>) => {
