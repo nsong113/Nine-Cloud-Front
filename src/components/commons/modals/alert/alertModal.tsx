@@ -1,18 +1,21 @@
 import React, { MouseEvent } from 'react';
 import * as S from './alertModal.styles';
-
-const alertModal = () => {
-  const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (e.currentTarget.classList.contains('modal')) {
-    }
-  };
+import ReactDOM from 'react-dom';
+import Backdrop from '../modalSetting/Back/ModalBack';
+import ModalOverlay from '../modalSetting/overlay/alertOverlay/ModalOverlay';
+const AlertModal: React.FC<Props> = ({ onClickSubmit, onClickMoveToMain }) => {
   return (
-    <>
-      <S.ContainerDiv className='modal' onClick={handleOverlayClick}>
-        <S.ModalContentDiv></S.ModalContentDiv>
-      </S.ContainerDiv>
-    </>
+    <div>
+      {ReactDOM.createPortal(
+        <Backdrop onClose={onClickMoveToMain} />,
+        document.getElementById('backdrop-root') as HTMLElement
+      )}
+      {ReactDOM.createPortal(
+        <ModalOverlay onOk={onClickSubmit} onClose={onClickMoveToMain} />,
+        document.getElementById('overlay-root') as HTMLElement
+      )}
+    </div>
   );
 };
 
-export default alertModal;
+export default AlertModal;

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
-import BoardWriteDiary from '../diary/BoardWriteDiary';
+import AlertModal from 'src/components/commons/modals/alert/alertModal';
 
 const BoardWriteEmotion = () => {
   const [happy, setHappy] = useState('5');
@@ -27,8 +27,7 @@ const BoardWriteEmotion = () => {
   };
 
   const onClickMoveToMain = () => {
-    navigate('/main');
-    setIsModalOpen(true);
+    setIsModalOpen((prev) => !prev);
   };
 
   const onChangeAngryCount = (event: ChangeEvent<HTMLInputElement>) => {
@@ -39,9 +38,18 @@ const BoardWriteEmotion = () => {
     setGloomy(event.target.value);
   };
 
+  const onClickSubmit = () => {
+    navigate('/main');
+  };
+
   const onClickSlider = (number: number) => {
     setHappy(number.toString());
   };
+
+  const countAverage =
+    (Number(happy) + Number(sad) + Number(gloomy) + Number(angry)) / 4;
+
+  console.log('카운트에버리지', countAverage);
 
   const labels = Array.from({ length: 9 }, (_, i) => i + 1).map((number) => (
     <S.Label key={number} onClick={() => onClickSlider(number)}>
@@ -55,9 +63,16 @@ const BoardWriteEmotion = () => {
 
   return (
     <S.ContainerDiv>
+      {isModalOpen && (
+        <AlertModal
+          onClickMoveToMain={onClickMoveToMain}
+          onClickSubmit={onClickSubmit}
+        />
+      )}
       <S.ButtonWrapperDiv>
-        <S.AddEmotionButton>감정 등록하기</S.AddEmotionButton>
-        <S.PlusDiaryButton>일기 작성하기</S.PlusDiaryButton>
+        <S.OneFilledSpan size={30} />
+        <S.TwoBlankSpan size={30} />
+        <S.ThreeBlackSpan size={30} />
       </S.ButtonWrapperDiv>
       <S.SliderWrapperDiv>
         <S.SliderBoxDiv>
@@ -132,7 +147,9 @@ const BoardWriteEmotion = () => {
             <S.CountP>{gloomy}</S.CountP>
           </S.CountBoxDiv>
         </S.SliderBoxDiv>
+        <span>{countAverage}</span>
       </S.SliderWrapperDiv>
+
       <S.ButtonBoxDiv>
         <S.NextButton onClick={onClickMoveToMain}>이전</S.NextButton>
         <S.NextButton onClick={onClickNextPage}>다음</S.NextButton>

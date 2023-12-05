@@ -37,8 +37,8 @@ const useCalendar = () => {
     weekCalendarList: weekCalendarList,
     currentDate: currentDate,
     setCurrentDate: setCurrentDate,
-    DAY_LIST : DAY_LIST,
-    DATE_MONTH_FIXER : DATE_MONTH_FIXER,
+    DAY_LIST: DAY_LIST,
+    DATE_MONTH_FIXER: DATE_MONTH_FIXER,
   };
 };
 export default useCalendar;

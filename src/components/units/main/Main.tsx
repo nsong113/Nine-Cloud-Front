@@ -64,7 +64,6 @@ const Main = () => {
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
     useCalendar();
 
-
   const handlePrevMonth = () => {
     const newDate = new Date(currentDate);
     newDate.setMonth(currentDate.getMonth() - 1);

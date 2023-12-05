@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import { TbSquareRoundedNumber1 } from 'react-icons/tb';
+import { TbSquareRoundedNumber1Filled } from 'react-icons/tb';
+import { TbSquareRoundedNumber2 } from 'react-icons/tb';
+import { TbSquareRoundedNumber2Filled } from 'react-icons/tb';
+import { TbSquareRoundedNumber3 } from 'react-icons/tb';
+import { TbSquareRoundedNumber3Filled } from 'react-icons/tb';
 
 // slider의 스타일 정의
 const colors = {
@@ -95,18 +101,6 @@ export const ButtonWrapperDiv = styled.div`
   width: 498px;
   margin-top: 50px;
 `;
-
-export const AddEmotionButton = styled.button`
-  width: 200px;
-  border: 2px solid blue;
-  background-color: green;
-  height: 50px;
-`;
-
-export const PlusDiaryButton = styled.button`
-  width: 200px;
-`;
-
 export const CountBoxDiv = styled.div`
   width: 50px;
   height: 50px;
@@ -125,15 +119,26 @@ export const ContentsBoxDiv = styled.div`
 `;
 
 export const ButtonBoxDiv = styled.div`
-  width: 498px;
-  height: 50px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
+  width: 498px;
+  margin-top: 50px;
 `;
 
 export const NextButton = styled.button`
-  margin-top: 150px;
   width: 100px;
   height: 50px;
 `;
+
+export const OneBlackSpan = styled(TbSquareRoundedNumber1)``;
+
+export const OneFilledSpan = styled(TbSquareRoundedNumber1Filled)``;
+export const TwoBlankSpan = styled(TbSquareRoundedNumber2)``;
+
+export const TwoFilledSpan = styled(TbSquareRoundedNumber2Filled)``;
+
+export const ThreeBlackSpan = styled(TbSquareRoundedNumber3)``;
+
+export const ThreeFilledSpan = styled(TbSquareRoundedNumber3Filled)``;

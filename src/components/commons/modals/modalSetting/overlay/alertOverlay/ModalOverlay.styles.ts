@@ -6,7 +6,7 @@ export const ContainerDiv = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 495px;
+  width: 498px;
   height: 923px;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.2);

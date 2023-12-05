@@ -8,6 +8,7 @@ import SignupPage from 'src/pages/signup';
 import Layout from './components/commons/layout/layout';
 import MainPage from './pages/boards/main';
 import BoardWriteDiary from './components/units/board/write/diary/BoardWriteDiary';
+import BoardWriteDraw from './components/units/board/write/draw/BoardWriteDraw';
 
 export default function Router() {
   return (
@@ -23,7 +24,8 @@ export default function Router() {
           <Route path='/post' element={<NewPostPage />} />
           {/* 상세 페이지 */}
           <Route path='/post/:id' element={<DetailedPage />} />
-          <Route path='/post2' element={<BoardWriteDiary />} />
+          <Route path='/post2' element={<BoardWriteDraw/>}/>
+          <Route path='/post3' element={<BoardWriteDiary />} />
         </Route>
       </Routes>
     </BrowserRouter>

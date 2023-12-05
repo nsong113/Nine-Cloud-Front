@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { TbSquareRoundedNumber1 } from 'react-icons/tb';
+import { TbSquareRoundedNumber2 } from 'react-icons/tb';
+import { TbSquareRoundedNumber3Filled } from 'react-icons/tb';
 
 export const DiaryContainerDiv = styled.div`
   display: flex;
@@ -19,9 +22,9 @@ export const HeaderButtonBoxDiv = styled.div`
 export const FooterButtonBoxDiv = styled.div`
   display: flex;
   flex-direction: row;
-  width: 498px;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
+  width: 498px;
   margin-top: 50px;
 `;
 
@@ -40,13 +43,13 @@ export const HiddenInput = styled.input`
 
 export const ImageBoxDiv = styled.div`
   width: 300px;
-  height: 400px;
+  height: 300px;
   border: 1px solid black;
 `;
 
 export const PicutureImg = styled.img`
   width: 300px;
-  height: 400px;
+  height: 300px;
 `;
 
 export const ImageButton = styled.button``;
@@ -104,3 +107,9 @@ export const InputFooterBoxDiv = styled.div`
 export const TextAreaCount = styled.p`
   margin: 0px;
 `;
+
+export const OneBlackSpan = styled(TbSquareRoundedNumber1)``;
+
+export const TwoBlankSpan = styled(TbSquareRoundedNumber2)``;
+
+export const ThreeFilledSpan = styled(TbSquareRoundedNumber3Filled)``;

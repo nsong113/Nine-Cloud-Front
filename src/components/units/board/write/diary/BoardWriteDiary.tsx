@@ -8,6 +8,7 @@ import React, {
 import * as S from './BoardWriteDiary.styles';
 import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
 import { useNavigate } from 'react-router-dom';
+import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
 
 const BoardWriteDiary = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -16,6 +17,7 @@ const BoardWriteDiary = () => {
   const buttonRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const navigate = useNavigate();
   const [contents, setContents] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // 2
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -39,10 +41,14 @@ const BoardWriteDiary = () => {
   };
 
   const onClickPrevPage = () => {
-    navigate('/post');
+    navigate('/post2');
   };
 
   const onClickSubmitBtn = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
+  const onClickMoveToMain = () => {
     navigate('/main');
   };
 
@@ -60,9 +66,16 @@ const BoardWriteDiary = () => {
   }, [imgFile]);
   return (
     <S.DiaryContainerDiv>
+      {isModalOpen && (
+        <ConfrimModal
+          onClickMoveToMain={onClickMoveToMain}
+          onClickSubmitBtn={onClickSubmitBtn}
+        />
+      )}
       <S.HeaderButtonBoxDiv>
-        <S.AddEmotionButton>감정 등록하기</S.AddEmotionButton>
-        <S.PlusDiaryButton>일기 작성하기</S.PlusDiaryButton>
+        <S.OneBlackSpan size={30} />
+        <S.TwoBlankSpan size={30} />
+        <S.ThreeFilledSpan size={30} />
       </S.HeaderButtonBoxDiv>
       <S.ContentsWrapperDiv>
         <h3>오늘을 대표하는 사진</h3>

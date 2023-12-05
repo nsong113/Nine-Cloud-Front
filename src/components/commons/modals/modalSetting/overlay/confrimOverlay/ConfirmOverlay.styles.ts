@@ -6,7 +6,7 @@ export const ContainerDiv = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 495px;
+  width: 498px;
   height: 923px;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.2);
@@ -18,7 +18,6 @@ export const ContainerDiv = styled.div`
 export const ModalContentDiv = styled.div`
   width: 20rem; /* 예시로 rem 단위 사용 */
   height: 7.5rem; /* 예시로 rem 단위 사용 */
-  background-color: #262528;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -34,7 +33,7 @@ export const Div = styled.div`
 export const TitleBoxDiv = styled.div`
   width: 20rem;
   height: 2.5rem;
-  background-color: wheat;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,10 +42,14 @@ export const TitleBoxDiv = styled.div`
 export const BoxButton = styled.div`
   width: 20rem;
   height: 5rem;
-  background-color: aqua;
+  background-color: gray;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const TextStyleSpan = styled.span`
+  color: white;
 `;
 
 export const StyleButton = styled.button`
