@@ -3,4 +3,9 @@ export interface IProfile {
   age: number | string;
   country: string;
   hobby: string;
+  email: string;
+}
+
+export interface ValidationMessageProps {
+  isError: boolean;
 }
