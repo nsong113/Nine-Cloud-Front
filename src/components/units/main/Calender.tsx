@@ -1,17 +1,16 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
-import { IemotionSetting, ValueI } from './Main.types';
 
-const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const allMonth = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const Calender = () => {
   const navigate = useNavigate();
   const [currentMonth, setCurrentMont] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [month, setMonth] = useState(12);
 
   //useCalender에서 내용 꺼내오기
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
@@ -21,12 +20,6 @@ const Calender = () => {
   const allDate = weekCalendarList.flat().map((day) => day);
   const selectedDayAndMonth = dayList.map((el: any) => el.date);
 
-  console.log('allDay', allDate);
-
-  console.log('weekCalendarList', weekCalendarList); //각 주에 며칠이 있는가
-  console.log('currentDate', currentDate); //Tue Dec 05 2023 16:56:49 GMT+0900 (일본 표준시)
-  console.log('DAY_LIST', DAY_LIST); //일월화수목금토일
-
   //currentDate를 내가 원하는 형식으로 변경
   const formattedTodayDate = new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
@@ -34,12 +27,14 @@ const Calender = () => {
     day: '2-digit',
   }).format(currentDate);
 
-  console.log('formattedTodayDate', formattedTodayDate); //2023. 12. 5.
+  // console.log('formattedTodayDate', formattedTodayDate); //2023. 12. 5.
 
   // const [date, setData] = useState<ValueI>(new Date());
   // console.log('date', date);
 
   // console.log('matchingDay', matchingDay);
+  const newDate = new Date(currentDate);
+  console.log('newDate', newDate);
 
   // 달 이동
   //현재날짜를 기반으로 Date객체 생성 -> SetMonth 메서드를 사용해서 1줄임
@@ -49,28 +44,40 @@ const Calender = () => {
     const newDate = new Date(currentDate);
     newDate.setMonth(currentDate.getMonth() - 1);
     setCurrentDate(newDate);
+    setMonth((prev) => prev - 1);
   };
 
   const handleNextMonth = () => {
     const newDate = new Date(currentDate);
     newDate.setMonth(currentDate.getMonth() + 1);
     setCurrentDate(newDate);
+    console.log('newDate', newDate);
+    setMonth((prev) => prev + 1);
   };
+
+  const emotionImages: { [key: string]: string | undefined } = {
+    1: '/happy.png',
+    2: '/angry.png',
+    3: '/gloomy.png',
+    4: '/sad.png',
+  };
+
+  const happyCount = dayList.filter(
+    (emotion) => emotion.EmotionStatus === 1
+  ).length;
+  const angryCount = dayList.filter(
+    (emotion) => emotion.EmotionStatus === 2
+  ).length;
+  const gloomyCount = dayList.filter(
+    (emotion) => emotion.EmotionStatus === 3
+  ).length;
+  const sadCount = dayList.filter(
+    (emotion) => emotion.EmotionStatus === 4
+  ).length;
 
   //감정 상태에 따라 다른 아이콘을 반환하기
   const getEmotion = (emotionStatus: any) => {
-    switch (emotionStatus) {
-      case 1:
-        return '🥰';
-      case 2:
-        return '🥲';
-      case 3:
-        return '😎';
-      case 4:
-        return '🥳';
-      default:
-        return '';
-    }
+    return emotionImages[emotionStatus] || '/silence.png';
   };
   const selectedDay = dayList.map((el: any) =>
     parseInt(el.date.split('.')[2], 10).toString()
@@ -81,7 +88,6 @@ const Calender = () => {
     const matchingDay = dayList.find(
       (el: any) => parseInt(el.date.split('.')[2], 10).toString() === date
     );
-    console.log('matchingDay', matchingDay);
 
     return matchingDay ? matchingDay.EmotionStatus : 0;
   };
@@ -97,11 +103,23 @@ const Calender = () => {
   const onClickGoToDetailHandler = (
     event: React.MouseEvent<HTMLTableCellElement>
   ) => {
-    //클릭한 날짜가 며칠인지 확인
-    const id = event.currentTarget.textContent;
-    navigate(`/post/${id}`);
-  };
+    // 클릭한 날짜가 며칠인지 확인
+    const clickedDate = event.currentTarget.textContent;
 
+    // dayList에서 클릭한 날짜와 매칭되는 요소 찾기
+    const matchingDay = dayList.find((el) => el.date === clickedDate);
+
+    // 매칭된 요소의 id 가져오기
+    const id = matchingDay ? matchingDay.id : null;
+
+    if (id !== null) {
+      // id가 존재하면 해당 id로 상세 페이지로 이동
+      navigate(`/post/${id}`);
+    } else {
+      // id가 존재하지 않으면 에러 처리 또는 다른 동작 수행
+      console.error('해당 날짜의 ID를 찾을 수 없습니다.');
+    }
+  };
   return (
     <S.CalendarContainerDiv>
       <S.CalenderHeaderDiv>
@@ -114,6 +132,20 @@ const Calender = () => {
           {'>'}
         </S.CalenderPrevBtnDiv>
       </S.CalenderHeaderDiv>
+      <S.ImageWrapperDiv>
+        <S.ImageBoxDiv>
+          <S.ExpressionImage src='/happy.png' alt='해피' />
+          <S.ExpressionImage src='/angry.png' alt='화남' />
+          <S.ExpressionImage src='/gloomy.png' alt='우울' />
+          <S.ExpressionImage src='/sad.png' alt='슬픔' />
+        </S.ImageBoxDiv>
+        <S.CountBoxDiv>
+          <S.CountSpan>{happyCount}</S.CountSpan>
+          <S.CountSpan>{angryCount}</S.CountSpan>
+          <S.CountSpan>{gloomyCount}</S.CountSpan>
+          <S.CountSpan>{sadCount}</S.CountSpan>
+        </S.CountBoxDiv>
+      </S.ImageWrapperDiv>
       <S.CalendarTable>
         <S.TableHead>
           <S.TableRow>
@@ -127,6 +159,7 @@ const Calender = () => {
             <S.DayRoow key={weekIndex}>
               {week.map((day, dayIndex) => {
                 //cellDate = 전체날짜
+                const selectedDay = dayList.map((el: any) => el.id);
                 const cellDate = String(allDate[weekIndex * 7 + dayIndex]);
                 const isMatchingDate = selectedDay.includes(cellDate);
                 const emotionStatus = getEmotionStatusForDate(cellDate);
@@ -134,18 +167,34 @@ const Calender = () => {
                 return (
                   <S.TableCell
                     key={dayIndex}
-                    onClick={onClickGoToDetailHandler}
+                    onClick={() => onClickGoToDetailHandler}
                     style={{
                       backgroundColor: isMatchingDate ? 'skyblue' : 'inherit',
                     }}
                   >
                     {day !== 0 ? (
                       <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <span>{day}</span> {/* 날짜 표시 */}
-                        <span style={{ fontSize: '30px' }}>
-                          {getEmotion(emotionStatus)}
-                        </span>{' '}
-                        {/* 이모지 표시 */}
+                        {month === 12 ? (
+                          <>
+                            <span>{day}</span> {/* 날짜 표시 */}
+                            <img
+                              src={getEmotion(emotionStatus)}
+                              alt={`Emotion ${emotionStatus}`}
+                              style={{ width: '30px' }}
+                            />
+                          </>
+                        ) : (
+                          <div
+                            style={{ display: 'flex', flexDirection: 'column' }}
+                          >
+                            <span>{day}</span>
+                            <img
+                              src='/silence.png'
+                              alt={`Emotion ${emotionStatus}`}
+                              style={{ width: '30px' }}
+                            />
+                          </div>
+                        )}
                       </div>
                     ) : (
                       ''

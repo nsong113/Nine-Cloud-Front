@@ -25,4 +25,5 @@ export const Wrapper = styled.div`
   overflow-y: auto;
   margin: 0;
   padding: 0;
+  border: 1px solid gray;
 `;

@@ -101,3 +101,26 @@ export const ThCell = styled.th`
   border: 1px solid #ddd;
   background-color: aliceblue;
 `;
+
+export const ImageWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ImageBoxDiv = styled.div`
+  width: 160px;
+`;
+
+export const ExpressionImage = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const CountBoxDiv = styled.div`
+  width: 160px;
+  display: flex;
+  justify-content: space-around;
+`;
+export const CountSpan = styled.span`
+  font-size: 20px;
+`;
