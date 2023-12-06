@@ -9,7 +9,7 @@ const LoginSignin = () => {
   const [emailValidationMessage, setEmailValidationMessage] = useState('');
   const [passwordValidationMessage, setPasswordValidationMessage] =
     useState('');
-  const navigate = useNavigate(); // 추가
+  const navigate = useNavigate();
 
   const onClickLoginHandler = async () => {
     try {

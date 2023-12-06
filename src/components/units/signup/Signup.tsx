@@ -1,8 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
 import axios from 'axios';
 import * as S from './Signup.styles';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -57,6 +59,7 @@ const Signup = () => {
       });
       console.log('회원가입 성공:', response);
       alert('회원가입이 성공적으로 완료되었습니다.');
+      navigate('/login');
     } catch (error) {
       console.error('로그인 실패', error);
       alert('로그인 실패');
