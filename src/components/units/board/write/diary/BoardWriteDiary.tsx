@@ -8,7 +8,10 @@ import React, {
 import * as S from './BoardWriteDiary.styles';
 import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
 import { useNavigate } from 'react-router-dom';
+import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
 import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
+import Toggle from 'react-toggle';
+import 'react-toggle/style.css';
 
 const BoardWriteDiary = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -18,6 +21,8 @@ const BoardWriteDiary = () => {
   const navigate = useNavigate();
   const [contents, setContents] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const [isChecked, setIsChecked] = useState(true);
   // 2
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -64,28 +69,41 @@ const BoardWriteDiary = () => {
       setPreview(null);
     }
   }, [imgFile]);
+
+  //토글버튼
+  setIsChecked;
+  const onChangeToggleHandler = () => {
+    setIsChecked(!isChecked);
+  };
   return (
-    <S.DiaryContainerDiv>
+    <>
       {isModalOpen && (
         <ConfrimModal
           onClickMoveToMain={onClickMoveToMain}
           onClickSubmitBtn={onClickSubmitBtn}
         />
       )}
-      <S.HeaderButtonBoxDiv>
-        <S.OneBlackSpan size={30} />
-        <S.TwoBlankSpan size={30} />
-        <S.ThreeFilledSpan size={30} />
-      </S.HeaderButtonBoxDiv>
-      <S.ContentsWrapperDiv>
-        <h3>오늘을 대표하는 사진</h3>
-        <S.ImageBoxDiv>
+      <S.DiaryContainerDiv>
+        <S.DiaryWrapperUPDiv>
+          <S.HeaderButtonBoxDiv>
+            <S.HeaderLine></S.HeaderLine>
+            <S.HeaderFlexBox>
+              <S.OneBlackSpan />
+              <S.TwoBlankSpan />
+              <S.ThreeFilledSpan>Text</S.ThreeFilledSpan>
+            </S.HeaderFlexBox>
+          </S.HeaderButtonBoxDiv>
+        </S.DiaryWrapperUPDiv>
+        <S.DiaryWrapperDOWNdiv>
+          <S.ContentsWrapperDiv>
+            {/* <h3>오늘을 대표하는 사진</h3> */}
+            {/* <S.ImageBoxDiv>
           <div>
             {!isActive && <S.PicutureImg src='/avatar.png' alt='엑박' />}
             {isActive && <S.PicutureImg src={preview as string} alt='엑박' />}
           </div>
-        </S.ImageBoxDiv>
-        <S.ImagePlustButtonBox>
+        </S.ImageBoxDiv> */}
+            {/* <S.ImagePlustButtonBox>
           <S.HiddenInput
             name='img'
             type='file'
@@ -95,23 +113,63 @@ const BoardWriteDiary = () => {
             ref={buttonRef}
           />
           <S.ImageButton onClick={onClickButton}>사진 추가</S.ImageButton>
-        </S.ImagePlustButtonBox>
-        <S.InputBoxDiv>
-          <h3>오늘의 일기</h3>
-          <S.InputDiv>
-            <S.ContentsTextarea onChange={onChangeContents} />
-            <S.InputFooterBoxDiv>
-              <S.TextAreaCount>{contents.length}/200</S.TextAreaCount>
-            </S.InputFooterBoxDiv>
-          </S.InputDiv>
-        </S.InputBoxDiv>
-      </S.ContentsWrapperDiv>
-      <S.FooterButtonBoxDiv>
-        <S.PrevButton onClick={onClickPrevPage}>이전</S.PrevButton>
-        <S.SubmitButton onClick={onClickSubmitBtn}>등록</S.SubmitButton>
-      </S.FooterButtonBoxDiv>
-    </S.DiaryContainerDiv>
+        </S.ImagePlustButtonBox> */}
+            <S.InputBoxDiv>
+              <S.DiaryTitleDiv>
+                <S.DiaryWriteTitleH3>
+                  오늘의 일기를 작성해보세요
+                </S.DiaryWriteTitleH3>
+                <S.TextAreaCount>{contents.length}/200</S.TextAreaCount>
+              </S.DiaryTitleDiv>
+              <S.InputDiv>
+                <S.ContentsTextarea onChange={onChangeContents} />
+                <S.InputFooterBoxDiv></S.InputFooterBoxDiv>
+              </S.InputDiv>
+            </S.InputBoxDiv>
+            <S.DiaryToggleTitleDiv>
+              <S.DiaryToggleP>오늘 하루 만족 하시나요?</S.DiaryToggleP>
+
+              <label>
+                <S.CustomToggle
+                  checked={isChecked}
+                  icons={{
+                    checked: <IoMdHeart />,
+                    unchecked: <IoIosHeartHalf />,
+                  }}
+                  onChange={onChangeToggleHandler}
+                />
+                {/* <Toggle
+                  checked={isChecked}
+                  icons={{
+                    checked: <IoMdHeart />,
+                    unchecked: <IoIosHeartHalf />,
+                  }}
+                  onChange={onChangeToggleHandler}
+                /> */}
+              </label>
+            </S.DiaryToggleTitleDiv>
+          </S.ContentsWrapperDiv>
+          <S.FooterButtonBoxDiv>
+            <S.PrevButton onClick={onClickPrevPage}>이전</S.PrevButton>
+            <S.SubmitButton onClick={onClickSubmitBtn}>등록하기</S.SubmitButton>
+            <div>
+              <S.DiaryPrivateCheckboxDiv></S.DiaryPrivateCheckboxDiv>
+              <p className='OpenPublicP'>전체공개 </p>
+            </div>
+          </S.FooterButtonBoxDiv>
+        </S.DiaryWrapperDOWNdiv>
+      </S.DiaryContainerDiv>
+    </>
   );
 };
 
 export default BoardWriteDiary;
+
+const ToggleStyle = {
+  track: {
+    backgroundColor: 'gray',
+  },
+  thumb: {
+    backgroundColor: 'blue',
+  },
+};
