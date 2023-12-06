@@ -110,6 +110,7 @@ const Signup = () => {
 
     const confirmPasswordRegex =
       /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{8,20}$/;
+
     if (newConfirmPassword.trim() === '') {
       // 비밀번호가 비어 있다면 메시지 초기화
       setConfirmPasswordValidationMessage('');
@@ -118,6 +119,9 @@ const Signup = () => {
       setConfirmPasswordValidationMessage(
         '8~20자의 소문자, 숫자, 특수문자를 포함해야 합니다.'
       );
+    } else if (newConfirmPassword !== password) {
+      // 비밀번호와 확인 비밀번호가 일치하지 않는 경우 메시지 표시
+      setConfirmPasswordValidationMessage('비밀번호가 일치하지 않습니다.');
     } else {
       // 유효한 비밀번호인 경우 완료 메시지 표시
       setConfirmPasswordValidationMessage('완료');
@@ -128,14 +132,14 @@ const Signup = () => {
     const newUsername = e.target.value;
     setUsername(newUsername);
 
-    const nicknameRegex = /^(?:[가-힣]{2,6}|[a-zA-Z]{2,12})$/;
+    const nicknameRegex = /^(?:[가-힣]{2,12}|[a-zA-Z]{2,24})$/;
     if (newUsername.trim() === '') {
       // 닉네임 비어 있다면 메시지 초기화
       setUsernameValidationMessage('');
     } else if (!nicknameRegex.test(newUsername)) {
       // 닉네임 유효성 검사 실패 시 메시지 표시
       setUsernameValidationMessage(
-        '한글 2~6글자, 영문 2~12글자까지 가능합니다.'
+        '한글 2~12글자, 영문 2~24글자까지 가능합니다.'
       );
     } else {
       // 유효한 넥네임인 경우 완료 메시지 표시

@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import axios from 'axios';
 import * as S from './LoginSignin.styles';
 import { useNavigate } from 'react-router-dom';
+import LoginKakao from '../social/LoginKakao';
 
 const LoginSignin = () => {
   const [email, setEmail] = useState('');
@@ -137,7 +138,7 @@ const LoginSignin = () => {
           <S.DividerText>sns 계정으로 로그인하기</S.DividerText>
         </S.Divider>
         <S.SocialButton>
-          <S.Circle style={{ backgroundImage: "url('/btn_kakao.svg')" }} />
+          <LoginKakao />
           <S.Circle style={{ backgroundImage: "url('/btn_google.svg')" }} />
           <S.Circle style={{ backgroundImage: "url('/btn_github.svg')" }} />
         </S.SocialButton>

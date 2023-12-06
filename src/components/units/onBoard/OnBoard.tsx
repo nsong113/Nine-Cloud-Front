@@ -18,7 +18,7 @@ const OnBoard: React.FC = () => {
     const currentSlideIndex = swiper.activeIndex;
     const titleList = [
       '하루하루 감정을 기록해요',
-      '감정에 맞는 이모티콘을 추천해줘요',
+      '감정에 맞는 이모티콘을 추천',
       '그림으로 기록해보세요',
       '당신의 감정을 공유해보세요!',
     ];
