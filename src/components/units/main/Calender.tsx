@@ -6,12 +6,23 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { IemotionSetting, ValueI } from './Main.types';
 
+const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
 const Calender = () => {
   const navigate = useNavigate();
+  const [currentMonth, setCurrentMont] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   //useCalender에서 내용 꺼내오기
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
     useCalendar();
+
+  //전체 데이터 분해
+  const allDate = weekCalendarList.flat().map((day) => day);
+  const selectedDayAndMonth = dayList.map((el) => el.date);
+
+  console.log('allDay', allDate);
+
   console.log('weekCalendarList', weekCalendarList); //각 주에 며칠이 있는가
   console.log('currentDate', currentDate); //Tue Dec 05 2023 16:56:49 GMT+0900 (일본 표준시)
   console.log('DAY_LIST', DAY_LIST); //일월화수목금토일
@@ -47,87 +58,35 @@ const Calender = () => {
   };
 
   //감정 상태에 따라 다른 아이콘을 반환하기
-  const getEmotion = (EmotionStatus: number) => {
-    switch (EmotionStatus) {
+  const getEmotion = (emotionStatus: number) => {
+    switch (emotionStatus) {
       case 1:
-        '🥰';
-        break;
+        return '🥰';
       case 2:
-        '🥲';
-        break;
+        return '🥲';
       case 3:
-        '😎';
-        break;
+        return '😎';
       case 4:
-        '🥳';
-        break;
+        return '🥳';
       default:
-        '';
-        break;
+        return '';
     }
   };
-  //0있이 감정 값이 있는 로직
-  // {
-  //   EmotionStatus: 0,
-  //   date: '2023. 12. 01.',
-  //   id: 1,
-  // },
+  const selectedDay = dayList.map((el) =>
+    parseInt(el.date.split('.')[2], 10).toString()
+  );
 
-  //0과 0이 아닌 것을 분리
-  //0이 아니라면 각 id값과 일치하는 칸에 emotionStatus를 렌더링
+  const getEmotionStatusForDate = (date: string) => {
+    //dayList에서 날짜만 추출한 것과 전체 날짜가 일치하는 것이 matchignDay에 담긴다
+    const matchingDay = dayList.find(
+      (el) => parseInt(el.date.split('.')[2], 10).toString() === date
+    );
+    console.log('matchingDay', matchingDay);
 
-  // if (dayList.EmotionStatus === 0) {
-  //   ('');
-  // } else {
-  // }
+    return matchingDay ? matchingDay.EmotionStatus : 0;
+  };
 
-  //0없이 감정 값이 있는 로직
-  const [emotionSetting, setEmotionalSetting] = useState<IemotionSetting[]>([
-    {
-      matchDDD: 0,
-      matchEmotionStatus: 0,
-    },
-  ]);
-
-  useEffect(() => {
-    //DD 를 꺼내오는 정규 표현식
-    const dayRegex = /\b(\d{1,2})\.\s*$/;
-    //각 리스트에서 DD를 꺼낸다. : 매칭이 되는 '값'을 꺼내서 =>10이면 10의 자리와 이모션을 같이 객체로 묶어 배열로 묶는다.
-    for (let i = 0; i < dayList.length; i++) {
-      //각 list의 DD를 뽑아서 matchDD에 넣음
-      const matchDD = dayList[i].date.match(dayRegex);
-      if (matchDD) {
-        //각 list의 날짜를 뽑아서 matchDD에 넣음
-        const matchDDD = Number(matchDD[1]);
-        const matchDate = matchDD.input;
-        const matchEmotionStatus = dayList[i].EmotionStatus;
-        //감정 상태값 넣기 matchDate의 emotionStatus만 골라오기
-
-        // console.log('matchDD', matchDD);
-        // console.log('match1', matchDDD); // 22
-        // console.log('match2', matchDate); // "2023. 12. 22."
-        // console.log('matchEmotionStatus', matchEmotionStatus);
-
-        setEmotionalSetting((prev: IemotionSetting[]) => [
-          ...prev,
-          { matchDDD, matchEmotionStatus },
-        ]);
-        // setEmotionalSetting(...emotionSetting, {
-        //   matchDDD,
-        //   matchEmotionStatus,
-        // });
-      }
-    }
-  }, []);
-
-  console.log('emotionSetting', emotionSetting);
-
-  //emotionSetting의 matchDDD값이 weekCalendar의 값과 같으면 matchEmotionStatus를 반환한다.
-
-  for (let i = 1; i < emotionSetting.length; i++) {
-    console.log('1', emotionSetting[i].matchDDD);
-    console.log('2', emotionSetting[i].matchEmotionStatus);
-  }
+  const selectedMonth = dayList.map((el) => parseInt(el.date.split('.')[1]));
 
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
@@ -164,11 +123,34 @@ const Calender = () => {
         <S.TableBody>
           {weekCalendarList.map((week, weekIndex) => (
             <S.DayRoow key={weekIndex}>
-              {week.map((day, dayIndex) => (
-                <S.TableCell key={dayIndex} onClick={onClickGoToDetailHandler}>
-                  {day !== 0 ? day : ''}
-                </S.TableCell>
-              ))}
+              {week.map((day, dayIndex) => {
+                //cellDate = 전체날짜
+                const cellDate = String(allDate[weekIndex * 7 + dayIndex]);
+                const isMatchingDate = selectedDay.includes(cellDate);
+                const emotionStatus = getEmotionStatusForDate(cellDate);
+
+                return (
+                  <S.TableCell
+                    key={dayIndex}
+                    onClick={onClickGoToDetailHandler}
+                    style={{
+                      backgroundColor: isMatchingDate ? 'red' : 'inherit',
+                    }}
+                  >
+                    {day !== 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <span>{day}</span> {/* 날짜 표시 */}
+                        <span style={{ fontSize: '30px' }}>
+                          {getEmotion(emotionStatus)}
+                        </span>{' '}
+                        {/* 이모지 표시 */}
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                  </S.TableCell>
+                );
+              })}
             </S.DayRoow>
           ))}
         </S.TableBody>
@@ -181,70 +163,34 @@ export default Calender;
 
 //////////////////////////////////
 const dayList = [
-  //2023. 12. 5.
-  // {
-  //   EmotionStatus: 0,
-  //   date: '2023. 12. 01.',
-  //   id: 1,
-  // },
-  // {
-  //   EmotionStatus: 0,
-  //   date: '2023. 12. 02.',
-  //   id: 2,
-  // },
-  {
-    EmotionStatus: 3,
-    date: '2023. 12. 03.',
-    id: 3,
-  },
-  {
-    EmotionStatus: 2,
-    date: '2023. 12. 04.',
-    id: 4,
-  },
   {
     EmotionStatus: 1,
     date: '2023. 12. 05.',
-    id: 5,
-  },
-  {
-    EmotionStatus: 1,
-    date: '2023. 12. 06.',
-    id: 6,
-  },
-  {
-    EmotionStatus: 3,
-    date: '2023. 12. 07.',
-    id: 7,
+    id: 1,
   },
   {
     EmotionStatus: 2,
-    date: '2023. 12. 08.',
-    id: 8,
+    date: '2023. 12. 06.',
+    id: 2,
   },
   {
     EmotionStatus: 3,
-    date: '2023. 12. 09.',
-    id: 9,
+    date: '2023. 12. 10.',
+    id: 3,
   },
   {
     EmotionStatus: 4,
-    date: '2023. 12. 10.',
-    id: 10,
-  },
-  {
-    EmotionStatus: 1,
-    date: '2023. 12. 11.',
-    id: 11,
-  },
-  {
-    EmotionStatus: 1,
-    date: '2023. 12. 12.',
-    id: 12,
-  },
-  {
-    EmotionStatus: 1,
     date: '2023. 12. 13.',
-    id: 13,
+    id: 2,
+  },
+  {
+    EmotionStatus: 3,
+    date: '2023. 12. 21.',
+    id: 3,
+  },
+  {
+    EmotionStatus: 3,
+    date: '2023. 12. 30.',
+    id: 4,
   },
 ];
