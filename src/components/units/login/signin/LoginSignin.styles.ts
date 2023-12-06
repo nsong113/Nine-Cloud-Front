@@ -5,13 +5,14 @@ export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 755px;
+  height: 785px;
   background-color: #f0f0f0;
   border-top-left-radius: 80px;
 `;
 
 export const LoginTitle = styled.h1`
   margin-top: 140px;
+  margin-bottom: 20px;
   margin-left: 44px;
   color: #c8c8c8;
   font-weight: 500;

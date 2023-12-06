@@ -44,3 +44,53 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+
+임시 카카오 로그인 로직 보관 -->
+
+<!-- import { useEffect } from "react";
+import axios from "axios"
+
+const KakaoCallback = () => {
+    useEffect(() => {
+        const params= new URL(document.location.toString()).searchParams;
+        const code = params.get('code');
+        const grantType = "authorization_code";
+        const REST_API_KEY = `${process.env.REACT_APP_REST_API_KEY}`;
+        const REDIRECT_URI = `${process.env.REACT_APP_REDIRECT_URL}`;
+
+        axios.post(
+            `https://kauth.kakao.com/oauth/token?grant_type=${grantType}&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${code}`,
+            {},
+            { headers: { "Content-type": "application/x-www-form-urlencoded;charset=utf-8" } }
+        )
+        .then((res: any) => {
+            console.log(res);
+            const { access_token } = res.data;
+            axios.post(
+                `https://kapi.kakao.com/v2/user/me`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+                    }
+                }
+            )
+            .then((res: any) => {
+                console.log('2번쨰', res);
+            })
+        })
+        .catch((Error: any) => {
+            console.log(Error)
+        })
+    }, [])
+    
+    return(
+        <>
+        </>
+    )
+}
+export default KakaoCallback;
