@@ -20,7 +20,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  width: 498px;
+  width: 443px;
   height: 99.8%;
   overflow-y: auto;
   margin: 0;

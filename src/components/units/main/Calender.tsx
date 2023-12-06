@@ -3,15 +3,19 @@ import React, { useState } from 'react';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
 import { useNavigate } from 'react-router-dom';
-
-const allMonth = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+import { addMonths, format, getYear, subMonths } from 'date-fns';
+import { Toggle } from 'src/components/commons/utills/Toggle';
 
 const Calender = () => {
   const navigate = useNavigate();
-  const [currentMonth, setCurrentMont] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const [month, setMonth] = useState(12);
+  const [selectedEmotionStatus, setSelectedEmotionStatus] = useState<
+    number | null
+  >(null);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const formattedMonth = format(currentMonth, 'MMMM');
 
+  console.log('formattedMonth', formattedMonth);
   //useCalender에서 내용 꺼내오기
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
     useCalendar();
@@ -27,31 +31,38 @@ const Calender = () => {
     day: '2-digit',
   }).format(currentDate);
 
-  // console.log('formattedTodayDate', formattedTodayDate); //2023. 12. 5.
-
-  // const [date, setData] = useState<ValueI>(new Date());
-  // console.log('date', date);
-
-  // console.log('matchingDay', matchingDay);
   const newDate = new Date(currentDate);
+  const year = getYear(newDate);
   console.log('newDate', newDate);
 
-  // 달 이동
-  //현재날짜를 기반으로 Date객체 생성 -> SetMonth 메서드를 사용해서 1줄임
   const handlePrevMonth = () => {
-    //cf) Date는 js 내장 객체임
-    //새로운 객체를 생성해서 currentDate와 별개의 객체를 생성,
-    const newDate = new Date(currentDate);
-    newDate.setMonth(currentDate.getMonth() - 1);
+    const newDate = subMonths(currentMonth, 1);
     setCurrentDate(newDate);
+    setCurrentMonth(newDate);
     setMonth((prev) => prev - 1);
   };
 
+  const onClickHappyImg = () => {
+    // 이미 선택된 감정 상태인 경우 선택을 해제하도록 처리
+    setSelectedEmotionStatus((prevStatus) => (prevStatus === 1 ? null : 1));
+  };
+
+  const onClickAngryImg = () => {
+    setSelectedEmotionStatus((prevStatus) => (prevStatus === 2 ? null : 2));
+  };
+
+  const onClickGloomyImg = () => {
+    setSelectedEmotionStatus((prevStatus) => (prevStatus === 3 ? null : 3));
+  };
+
+  const onClickSadImg = () => {
+    setSelectedEmotionStatus((prevStatus) => (prevStatus === 4 ? null : 4));
+  };
+
   const handleNextMonth = () => {
-    const newDate = new Date(currentDate);
-    newDate.setMonth(currentDate.getMonth() + 1);
+    const newDate = addMonths(currentMonth, 1);
     setCurrentDate(newDate);
-    console.log('newDate', newDate);
+    setCurrentMonth(newDate);
     setMonth((prev) => prev + 1);
   };
 
@@ -79,9 +90,6 @@ const Calender = () => {
   const getEmotion = (emotionStatus: any) => {
     return emotionImages[emotionStatus] || '/silence.png';
   };
-  const selectedDay = dayList.map((el: any) =>
-    parseInt(el.date.split('.')[2], 10).toString()
-  );
 
   const getEmotionStatusForDate = (date: string) => {
     //dayList에서 날짜만 추출한 것과 전체 날짜가 일치하는 것이 matchignDay에 담긴다
@@ -92,9 +100,20 @@ const Calender = () => {
     return matchingDay ? matchingDay.EmotionStatus : 0;
   };
 
-  const selectedMonth = dayList.map((el: any) =>
-    parseInt(el.date.split('.')[1])
-  );
+  const getBorderColor = (emotionStatus: any) => {
+    switch (emotionStatus) {
+      case 1:
+        return selectedEmotionStatus === 1 ? '#ffcc00' : 'white';
+      case 2:
+        return selectedEmotionStatus === 2 ? '#ff6666' : 'white';
+      case 3:
+        return selectedEmotionStatus === 3 ? '#6666ff' : 'white';
+      case 4:
+        return selectedEmotionStatus === 4 ? '#999999' : 'white';
+      default:
+        return 'wihte';
+    }
+  };
 
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
@@ -123,29 +142,15 @@ const Calender = () => {
   return (
     <S.CalendarContainerDiv>
       <S.CalenderHeaderDiv>
-        <S.CalenderPrevBtnDiv onClick={handlePrevMonth}>
-          {'<'}
-        </S.CalenderPrevBtnDiv>
-
-        <span>{currentDate.toLocaleDateString()}</span>
-        <S.CalenderPrevBtnDiv onClick={handleNextMonth}>
-          {'>'}
-        </S.CalenderPrevBtnDiv>
+        <S.DateBoxDiv>
+          <S.YearTextSpan>{year}</S.YearTextSpan>
+          <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+        </S.DateBoxDiv>
+        <div>{Toggle()}</div>
+        <div style={{ display: 'flex' }}>
+          <S.AvatarSizeImg src='/avatar.png' alt='기본' />
+        </div>
       </S.CalenderHeaderDiv>
-      <S.ImageWrapperDiv>
-        <S.ImageBoxDiv>
-          <S.ExpressionImage src='/happy.png' alt='해피' />
-          <S.ExpressionImage src='/angry.png' alt='화남' />
-          <S.ExpressionImage src='/gloomy.png' alt='우울' />
-          <S.ExpressionImage src='/sad.png' alt='슬픔' />
-        </S.ImageBoxDiv>
-        <S.CountBoxDiv>
-          <S.CountSpan>{happyCount}</S.CountSpan>
-          <S.CountSpan>{angryCount}</S.CountSpan>
-          <S.CountSpan>{gloomyCount}</S.CountSpan>
-          <S.CountSpan>{sadCount}</S.CountSpan>
-        </S.CountBoxDiv>
-      </S.ImageWrapperDiv>
       <S.CalendarTable>
         <S.TableHead>
           <S.TableRow>
@@ -158,7 +163,6 @@ const Calender = () => {
           {weekCalendarList.map((week, weekIndex) => (
             <S.DayRoow key={weekIndex}>
               {week.map((day, dayIndex) => {
-                //cellDate = 전체날짜
                 const selectedDay = dayList.map((el: any) => el.id);
                 const cellDate = String(allDate[weekIndex * 7 + dayIndex]);
                 const isMatchingDate = selectedDay.includes(cellDate);
@@ -169,7 +173,7 @@ const Calender = () => {
                     key={dayIndex}
                     onClick={() => onClickGoToDetailHandler}
                     style={{
-                      backgroundColor: isMatchingDate ? 'skyblue' : 'inherit',
+                      backgroundColor: `${getBorderColor(emotionStatus)}`,
                     }}
                   >
                     {day !== 0 ? (
@@ -206,6 +210,40 @@ const Calender = () => {
           ))}
         </S.TableBody>
       </S.CalendarTable>
+      <S.ImageWrapperDiv>
+        <S.ImageBoxDiv>
+          <S.ExpressionImage
+            onClick={onClickHappyImg}
+            src='/happy.png'
+            alt='해피'
+          />
+          <S.CountSpan>{happyCount}</S.CountSpan>
+          <S.ExpressionImage
+            onClick={onClickAngryImg}
+            src='/angry.png'
+            alt='화남'
+          />
+          <S.CountSpan>{angryCount}</S.CountSpan>
+          <S.ExpressionImage
+            onClick={onClickGloomyImg}
+            src='/gloomy.png'
+            alt='우울'
+          />
+          <S.CountSpan>{gloomyCount}</S.CountSpan>
+          <S.ExpressionImage
+            onClick={onClickSadImg}
+            src='/sad.png'
+            alt='슬픔'
+          />
+          <S.CountSpan>{sadCount}</S.CountSpan>
+        </S.ImageBoxDiv>
+      </S.ImageWrapperDiv>
+      <S.CalenderPrevBtnDiv onClick={handlePrevMonth}>
+        {'<'}
+      </S.CalenderPrevBtnDiv>
+      <S.CalenderPrevBtnDiv onClick={handleNextMonth}>
+        {'>'}
+      </S.CalenderPrevBtnDiv>
     </S.CalendarContainerDiv>
   );
 };

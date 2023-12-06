@@ -48,11 +48,10 @@ export const CalenderPrevBtnDiv = styled.div`
 `;
 
 export const CalenderHeaderDiv = styled.div`
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   margin-top: 10px;
+  justify-content: space-between;
 `;
 
 export const Button = styled.button`
@@ -73,9 +72,13 @@ export const TableHead = styled.thead`
 
 export const TableBody = styled.tbody`
   height: 100px;
+  border-radius: 20px;
+  border: 1px black;
 `;
 
-export const TableRow = styled.tr``;
+export const TableRow = styled.tr`
+  background-color: white;
+`;
 
 export const DayRoow = styled.tr`
   height: 100px;
@@ -84,6 +87,7 @@ export const DayRoow = styled.tr`
 export const TableCell = styled.td`
   padding: 10px;
   border: 1px solid #ddd;
+
   cursor: pointer;
   &:hover {
     background-color: gray;
@@ -98,29 +102,62 @@ export const TableCell = styled.td`
 
 export const ThCell = styled.th`
   padding: 10px;
-  border: 1px solid #ddd;
-  background-color: aliceblue;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
 `;
 
 export const ImageWrapperDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 export const ImageBoxDiv = styled.div`
-  width: 160px;
+  width: 200px;
+  display: flex;
 `;
 
 export const ExpressionImage = styled.img`
   width: 40px;
   height: 40px;
+  cursor: pointer;
 `;
 
 export const CountBoxDiv = styled.div`
   width: 160px;
   display: flex;
   justify-content: space-around;
+  margin-left: 20px;
 `;
 export const CountSpan = styled.span`
   font-size: 20px;
+  line-height: 70px;
+  margin-right: 20px;
+`;
+
+export const DateBoxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  align-items: start;
+  margin: 0px;
+`;
+
+export const YearTextSpan = styled.span`
+  color: gray;
+  font-weight: bolder;
+`;
+
+export const MonthTextSpan = styled.span`
+  font-weight: bolder;
+  font-size: 30px;
+`;
+
+export const AvatarSizeImg = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ProfileToggleBoxDiv = styled.div`
+  width: 200px;
+  display: flex;
 `;
