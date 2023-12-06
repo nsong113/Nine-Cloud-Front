@@ -17,21 +17,32 @@ const BoardWriteDraw = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   return (
-    <S.ContainerDiv>
-      <S.ProgressWrapperDiv>
-        <S.OneBlankSpan size={30} />
-        <S.TwoFilledSpan size={30} />
-        <S.ThreeBlankSpan size={30} />
-      </S.ProgressWrapperDiv>
-      <div>
-        <h3>오늘의 이슈를 그림으로 기록해보세요!</h3>
-      </div>
-      <BoardDrawPaper width={417} height={467} />
-      <S.ButtonWrapperDiv>
-        <S.PrevButton onClick={onClickPrevBtn}>이전</S.PrevButton>
-        <S.NextButton onClick={onClickNextBtn}>다음</S.NextButton>
-      </S.ButtonWrapperDiv>
-    </S.ContainerDiv>
+    <S.DrawContainerDiv>
+      <S.DrawWrapperUPDiv>
+        <S.HeaderButtonBoxDiv>
+          <S.HeaderLine></S.HeaderLine>
+          <S.HeaderFlexBox>
+            <S.OneBlackSpan />
+            <S.ThreeFilledSpan>Drawing</S.ThreeFilledSpan>
+            <S.TwoBlankSpan />
+          </S.HeaderFlexBox>
+        </S.HeaderButtonBoxDiv>
+      </S.DrawWrapperUPDiv>
+      <S.DrawWrapperDOWNdiv>
+        <S.ContainerDiv>
+          <S.DrawTitleBox>
+            <S.DrawWriteTitleH3>
+              오늘의 이슈를 그림으로 기록해보세요!
+            </S.DrawWriteTitleH3>
+          </S.DrawTitleBox>
+          <BoardDrawPaper width={400} height={380} />
+          <S.ButtonWrapperDiv>
+            <S.PrevButton onClick={onClickPrevBtn}>이전</S.PrevButton>
+            <S.NextButton onClick={onClickNextBtn}>다음</S.NextButton>
+          </S.ButtonWrapperDiv>
+        </S.ContainerDiv>
+      </S.DrawWrapperDOWNdiv>
+    </S.DrawContainerDiv>
   );
 };
 

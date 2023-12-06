@@ -4,8 +4,6 @@ import * as S from './BoardWriteDraw.styles';
 
 const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   const canvasStyle = {
-    width,
-    height,
     border: '1px solid #C4C4C4',
     borderRadius: '25px',
     margin: '17px auto',
@@ -18,8 +16,11 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
+  console.log('mousePosition', mousePosition);
+
   //isPainting 상태관리
   const [isPainting, setIsPainting] = useState(false);
+  console.log('isPainting', isPainting);
 
   //좌표 얻는 함수 (MouseEvent로 부터 좌표를 얻음)
   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
@@ -29,12 +30,15 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     }
     //캔버스 엘리먼트 추출
     const canvas: HTMLCanvasElement = canvasRef.current;
-
+    console.log('offsetLeft', canvas.offsetLeft);
+    console.log('offsetTop', canvas.offsetTop);
     //좌표 계산 및 반환
     return {
       //이벤트가 발생했을 때 좌표 구하는 프로퍼티
-      x: event.pageX - canvas.offsetLeft,
-      y: event.pageY - canvas.offsetTop,
+      // x: event.pageX - canvas.offsetLeft,
+      // y: event.pageY - canvas.offsetTop,
+      x: event.clientX - canvas.getBoundingClientRect().left,
+      y: event.clientY - canvas.getBoundingClientRect().top,
     };
   };
 
@@ -163,6 +167,15 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
 
     //존재하는 경우 canvas에 할당
     const canvas: HTMLCanvasElement = canvasRef.current;
+
+    // canvas.width = canvas.offsetWidth;
+    // canvas.height = canvas.offsetHeight;
+
+    // const context = canvas.getContext('2d');
+
+    // if (context) {
+    //   context.clearRect(0, 0, canvas.width, canvas.height);
+    // }
 
     //canvas엘리먼트에 대해 mousedown, move,up,leave에 대응하는 함수 지정
     canvas.addEventListener('mousedown', startPaint);
