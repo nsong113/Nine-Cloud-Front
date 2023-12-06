@@ -1,10 +1,8 @@
-import React from 'react'
+import React from 'react';
+import * as S from './layoutFooter.styles';
 
 const Header = () => {
-  return (
-    <div>index</div>
-  )
-}
+  return <S.HeaderContainerDiv></S.HeaderContainerDiv>;
+};
 
-export default Header
-
+export default Header;

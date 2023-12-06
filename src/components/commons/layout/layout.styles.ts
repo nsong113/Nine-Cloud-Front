@@ -12,6 +12,9 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: auto;
   margin: 0;
   padding: 0;
 `;
@@ -20,7 +23,6 @@ export const Wrapper = styled.div`
   width: 498px;
   height: 99.8%;
   overflow-y: auto;
-  border: 1px solid gray;
   margin: 0;
   padding: 0;
 `;
