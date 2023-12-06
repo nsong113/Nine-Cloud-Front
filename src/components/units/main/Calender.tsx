@@ -19,7 +19,7 @@ const Calender = () => {
 
   //전체 데이터 분해
   const allDate = weekCalendarList.flat().map((day) => day);
-  const selectedDayAndMonth = dayList.map((el) => el.date);
+  const selectedDayAndMonth = dayList.map((el: any) => el.date);
 
   console.log('allDay', allDate);
 
@@ -58,7 +58,7 @@ const Calender = () => {
   };
 
   //감정 상태에 따라 다른 아이콘을 반환하기
-  const getEmotion = (emotionStatus: number) => {
+  const getEmotion = (emotionStatus: any) => {
     switch (emotionStatus) {
       case 1:
         return '🥰';
@@ -72,21 +72,23 @@ const Calender = () => {
         return '';
     }
   };
-  const selectedDay = dayList.map((el) =>
+  const selectedDay = dayList.map((el: any) =>
     parseInt(el.date.split('.')[2], 10).toString()
   );
 
   const getEmotionStatusForDate = (date: string) => {
     //dayList에서 날짜만 추출한 것과 전체 날짜가 일치하는 것이 matchignDay에 담긴다
     const matchingDay = dayList.find(
-      (el) => parseInt(el.date.split('.')[2], 10).toString() === date
+      (el: any) => parseInt(el.date.split('.')[2], 10).toString() === date
     );
     console.log('matchingDay', matchingDay);
 
     return matchingDay ? matchingDay.EmotionStatus : 0;
   };
 
-  const selectedMonth = dayList.map((el) => parseInt(el.date.split('.')[1]));
+  const selectedMonth = dayList.map((el: any) =>
+    parseInt(el.date.split('.')[1])
+  );
 
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
@@ -134,7 +136,7 @@ const Calender = () => {
                     key={dayIndex}
                     onClick={onClickGoToDetailHandler}
                     style={{
-                      backgroundColor: isMatchingDate ? 'red' : 'inherit',
+                      backgroundColor: isMatchingDate ? 'skyblue' : 'inherit',
                     }}
                   >
                     {day !== 0 ? (
