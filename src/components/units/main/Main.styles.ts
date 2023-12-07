@@ -175,7 +175,6 @@ export const ProfileToggleBoxDiv = styled.div`
   display: flex;
 `;
 
-
 export const FooterBoxDiv = styled.div`
   width: 100%;
   height: 98px;
@@ -188,7 +187,7 @@ export const LogoImg = styled.div`
   width: 177px;
   height: 60px;
   background-color: gray;
-=======
+`;
 ////////////////////
 ////View All
 export const ViewAllWrapperDiv = styled.div`
@@ -256,5 +255,4 @@ export const ViewAllContentP = styled.p`
   /* white-space: nowrap; */
   text-align: left;
   font-size: 13px;
-
 `;
