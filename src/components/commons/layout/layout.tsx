@@ -6,11 +6,14 @@ import Footer from './footer/layoutFooter';
 
 const Layout = () => {
   return (
-    <S.Container>
-      <S.Wrapper>
-        <Outlet />
-      </S.Wrapper>
-    </S.Container>
+    <div>
+      <S.Container>
+        <S.Wrapper>
+          {/* <Header /> */}
+          <Outlet />
+        </S.Wrapper>
+      </S.Container>
+    </div>
   );
 };
 

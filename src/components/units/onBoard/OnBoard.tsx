@@ -5,8 +5,9 @@ import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
 import { EffectCube, Pagination } from 'swiper/modules';
 import * as S from './OnBoard.styles';
-import { CustomSwiperProps } from './OnBoard.types';
+
 import { useNavigate } from 'react-router-dom';
+import { CustomSwiperProps } from './OnBoard.types';
 
 const OnBoard: React.FC = () => {
   const navigate = useNavigate();
