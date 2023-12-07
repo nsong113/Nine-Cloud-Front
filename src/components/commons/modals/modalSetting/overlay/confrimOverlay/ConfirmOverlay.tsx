@@ -1,10 +1,7 @@
 import React from 'react';
 import * as S from './ConfirmOverlay.styles';
+import { IConfirmMod } from './ConfirmOverlay.types';
 
-interface IConfirmMod {
-  onClose?: () => void;
-  onOk?: () => void;
-}
 
 const ConfirmOverlay: React.FC<IConfirmMod> = ({ onOk, onClose }) => {
   return (

@@ -37,7 +37,6 @@ export const ShowCloudDivBlack = styled.div`
 
 export const CalenderBackDiv = styled.div``;
 
-//////////////////////////////////
 export const CalendarContainerDiv = styled.div`
   font-family: 'Arial', sans-serif;
   text-align: center;
@@ -55,6 +54,7 @@ export const CalenderPrevBtnDiv = styled.div`
 export const CalenderHeaderDiv = styled.div`
   width: 90%;
   display: flex;
+  flex-direction: row;
   margin-top: 10px;
   justify-content: space-between;
   margin: 0 auto;
@@ -175,7 +175,6 @@ export const ProfileToggleBoxDiv = styled.div`
   display: flex;
 `;
 
-
 export const FooterBoxDiv = styled.div`
   width: 100%;
   height: 98px;
@@ -188,12 +187,12 @@ export const LogoImg = styled.div`
   width: 177px;
   height: 60px;
   background-color: gray;
-=======
+`;
 ////////////////////
 ////View All
 export const ViewAllWrapperDiv = styled.div`
   width: 90%;
-  height: 770px;
+  height: 607px;
   margin: 5px auto;
   background-color: aliceblue;
 `;
@@ -256,5 +255,4 @@ export const ViewAllContentP = styled.p`
   /* white-space: nowrap; */
   text-align: left;
   font-size: 13px;
-
 `;
