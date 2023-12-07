@@ -14,7 +14,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   overflow-y: auto;
-  overflow-x: auto;
   margin: 0;
   padding: 0;
 `;

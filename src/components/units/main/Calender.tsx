@@ -3,7 +3,7 @@ import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
 import { useNavigate } from 'react-router-dom';
 import { addMonths, format, getYear, subMonths } from 'date-fns';
-import { Toggle } from 'src/components/commons/utills/Toggle';
+import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 
 const Calender = () => {
@@ -147,22 +147,7 @@ const Calender = () => {
   };
   return (
     <S.CalendarContainerDiv>
-      <S.LogoImg></S.LogoImg>
       {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
-      <S.CalenderHeaderDiv>
-        <S.DateBoxDiv>
-          <S.YearTextSpan>{year}</S.YearTextSpan>
-          <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
-        </S.DateBoxDiv>
-        <div>{Toggle()}</div>
-        <div style={{ display: 'flex' }}>
-          <S.AvatarSizeImg
-            onClick={onClickMyProfile}
-            src='/avatar.png'
-            alt='기본'
-          />
-        </div>
-      </S.CalenderHeaderDiv>
       <S.CalendarTable>
         <S.TableHead>
           <S.TableRow>
