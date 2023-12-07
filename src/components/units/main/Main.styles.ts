@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
+export const MainContainerDiv = styled.div`
+  width: 443px;
+  height: 100%;
+`;
+
 export const CalenContainerDiv = styled.div`
   width: 80%;
-  height: 500px;
+  height: 300px;
   margin: 60px auto;
 `;
 
@@ -63,7 +68,7 @@ export const Button = styled.button`
 
 export const CalendarTable = styled.table`
   width: 100%;
-  height: 100%;
+  height: 400px;
   border-collapse: collapse;
 `;
 
@@ -170,6 +175,20 @@ export const ProfileToggleBoxDiv = styled.div`
   display: flex;
 `;
 
+
+export const FooterBoxDiv = styled.div`
+  width: 100%;
+  height: 98px;
+  border-radius: 30px 30px 0 0;
+  background-color: #d9d9d9;
+  margin-top: 60px;
+`;
+
+export const LogoImg = styled.div`
+  width: 177px;
+  height: 60px;
+  background-color: gray;
+=======
 ////////////////////
 ////View All
 export const ViewAllWrapperDiv = styled.div`
@@ -237,4 +256,5 @@ export const ViewAllContentP = styled.p`
   /* white-space: nowrap; */
   text-align: left;
   font-size: 13px;
+
 `;

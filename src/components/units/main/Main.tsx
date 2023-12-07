@@ -10,13 +10,11 @@ const Main = () => {
     setToggle(!toggle);
   };
   return (
-    <>
-      <S.ShowCloudDivRed
-        onClick={onClickChangeToggleHandler}
-      ></S.ShowCloudDivRed>
+    <S.MainContainerDiv>
       {toggle && <Calender />}
       {!toggle && <ViewAll />}
-    </>
+      <S.FooterBoxDiv></S.FooterBoxDiv>
+    </S.MainContainerDiv>
   );
 };
 export default Main;

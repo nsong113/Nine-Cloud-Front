@@ -13,6 +13,7 @@ const Calender = () => {
     number | null
   >(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [isActiveModal, setIsActiveModal] = useState(false);
   const formattedMonth = format(currentMonth, 'MMMM');
 
   console.log('formattedMonth', formattedMonth);
@@ -115,6 +116,10 @@ const Calender = () => {
     }
   };
 
+  const onClickMyProfile = () => {
+    setIsActiveModal((prev) => !prev);
+  };
+
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
 
@@ -130,17 +135,20 @@ const Calender = () => {
 
     // 매칭된 요소의 id 가져오기
     const id = matchingDay ? matchingDay.id : null;
+    navigate(`/post/${clickedDate}`);
 
-    if (id !== null) {
-      // id가 존재하면 해당 id로 상세 페이지로 이동
-      navigate(`/post/${id}`);
-    } else {
-      // id가 존재하지 않으면 에러 처리 또는 다른 동작 수행
-      console.error('해당 날짜의 ID를 찾을 수 없습니다.');
-    }
+    // if (id !== null) {
+    //   // id가 존재하면 해당 id로 상세 페이지로 이동
+    //   navigate(`/post/${id}`);
+    // } else {
+    //   // id가 존재하지 않으면 에러 처리 또는 다른 동작 수행
+    //   console.error('해당 날짜의 ID를 찾을 수 없습니다.');
+    // }
   };
   return (
     <S.CalendarContainerDiv>
+      <S.LogoImg></S.LogoImg>
+      {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
       <S.CalenderHeaderDiv>
         <S.DateBoxDiv>
           <S.YearTextSpan>{year}</S.YearTextSpan>
@@ -148,7 +156,11 @@ const Calender = () => {
         </S.DateBoxDiv>
         <div>{Toggle()}</div>
         <div style={{ display: 'flex' }}>
-          <S.AvatarSizeImg src='/avatar.png' alt='기본' />
+          <S.AvatarSizeImg
+            onClick={onClickMyProfile}
+            src='/avatar.png'
+            alt='기본'
+          />
         </div>
       </S.CalenderHeaderDiv>
       <S.CalendarTable>
@@ -238,12 +250,12 @@ const Calender = () => {
           <S.CountSpan>{sadCount}</S.CountSpan>
         </S.ImageBoxDiv>
       </S.ImageWrapperDiv>
-      <S.CalenderPrevBtnDiv onClick={handlePrevMonth}>
+      {/* <S.CalenderPrevBtnDiv onClick={handlePrevMonth}>
         {'<'}
       </S.CalenderPrevBtnDiv>
       <S.CalenderPrevBtnDiv onClick={handleNextMonth}>
         {'>'}
-      </S.CalenderPrevBtnDiv>
+      </S.CalenderPrevBtnDiv> */}
     </S.CalendarContainerDiv>
   );
 };
