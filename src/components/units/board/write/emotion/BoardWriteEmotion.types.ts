@@ -15,7 +15,7 @@ export interface ISliderInputProps
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  inputNumber: number;
+  // inputNumber: number;
   // type?: 'range';
   min: number;
   max: number;
