@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const ToggleContainer = styled.div`
   position: fixed;
-  left: 52%;
+  left: 53.7%;
   cursor: pointer;
   top: 11%;
 

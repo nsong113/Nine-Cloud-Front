@@ -29,7 +29,7 @@ export const RightProfile = styled.div`
 export const AvatarSizeImg = styled.img`
   width: 40px;
   height: 40px;
-  margin-left: 30px;
+  margin-left: 60px;
   cursor: pointer;
 `;
 
