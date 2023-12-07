@@ -129,7 +129,7 @@ const BoardWriteEmotion = () => {
                   </S.ContentInputDescDiv>
                   <S.SliderInput
                     type='range'
-                    inputNumber={Number(happy)}
+                    // inputNumber={Number(happy)}
                     min={1}
                     max={3}
                     value={parseInt(happy) || 1}
