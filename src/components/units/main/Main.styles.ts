@@ -48,10 +48,11 @@ export const CalenderPrevBtnDiv = styled.div`
 `;
 
 export const CalenderHeaderDiv = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   margin-top: 10px;
   justify-content: space-between;
+  margin: 0 auto;
 `;
 
 export const Button = styled.button`
@@ -142,6 +143,13 @@ export const DateBoxDiv = styled.div`
   margin: 0px;
 `;
 
+export const RightProfile = styled.div`
+  width: 130px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+`;
+
 export const YearTextSpan = styled.span`
   color: gray;
   font-weight: bolder;
@@ -160,4 +168,73 @@ export const AvatarSizeImg = styled.img`
 export const ProfileToggleBoxDiv = styled.div`
   width: 200px;
   display: flex;
+`;
+
+////////////////////
+////View All
+export const ViewAllWrapperDiv = styled.div`
+  width: 90%;
+  height: 770px;
+  margin: 5px auto;
+  background-color: aliceblue;
+`;
+
+export const ViewAllEachBoxDiv = styled.div`
+  width: 100%;
+  height: 130px;
+  margin-top: 20px;
+  border: 1px solid #d9d9d9;
+  border-radius: 30px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.4);
+`;
+
+export const ViewAllEachFlex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  gap: 10px;
+`;
+
+export const ViewAllIMGbox = styled.div`
+  width: 106px;
+  height: 106px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ViewAllRightContentDiv = styled.div`
+  width: 250;
+  height: 105px;
+`;
+export const ViewAllRightFlexDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ViewAllDateDiv = styled.div`
+  font-weight: 700;
+`;
+
+export const ViewAllPublicIMGDiv = styled.div``;
+
+export const ViewAllEmojiIMGDiv = styled.div`
+  text-align: left;
+`;
+
+export const ViewAllContentP = styled.p`
+  margin-top: 10px;
+  color: #9a9a9a;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  text-align: left;
+  font-size: 13px;
 `;
