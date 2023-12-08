@@ -11,7 +11,9 @@ import BoardWriteDiary from './components/units/board/write/diary/BoardWriteDiar
 import BoardWriteDraw from './components/units/board/write/draw/BoardWriteDraw';
 import LoginKakao from './components/units/login/social/LoginKakao';
 import KakaoLoginHandler from './components/units/login/social/auth/KakaoLoginHandler';
+import ViewAll from './components/units/main/ViewAll';
 import GithubLoginHandler from './components/units/login/social/auth/GithubLoginHandler';
+
 
 export default function Router() {
   return (

@@ -33,7 +33,7 @@ export const ContainerDiv = styled.div`
 
 export const ModalContentDiv = styled.div`
   width: 443px;
-  height: 80%;
+  height: 30%;
   display: flex;
   flex-direction: column;
   background-color: white;

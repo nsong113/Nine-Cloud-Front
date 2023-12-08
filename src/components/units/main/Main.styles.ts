@@ -98,12 +98,6 @@ export const TableCell = styled.td`
   &:hover {
     background-color: gray;
   }
-  ${(props) =>
-    props.children === 3
-      ? 'background-color: red;'
-      : props.children === 5
-      ? 'background-color: green;'
-      : ''}
 `;
 
 export const ThCell = styled.th`
