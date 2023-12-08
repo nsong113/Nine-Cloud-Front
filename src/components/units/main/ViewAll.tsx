@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
-import { Toggle } from 'src/components/commons/utills/Toggle';
+import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
 
 const ViewAll = () => {
@@ -31,18 +31,6 @@ const ViewAll = () => {
     <>
       <div>
         <S.CalendarContainerDiv>
-          <S.CalenderHeaderDiv>
-            <S.DateBoxDiv>
-              <S.YearTextSpan>{year}</S.YearTextSpan>
-              <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
-            </S.DateBoxDiv>
-            <S.RightProfile>
-              <div>{Toggle()}</div>
-              <div style={{ display: 'flex' }}>
-                <S.AvatarSizeImg src='/avatar.png' alt='기본' />
-              </div>
-            </S.RightProfile>
-          </S.CalenderHeaderDiv>
           <S.ViewAllWrapperDiv>
             <S.ViewAllEachBoxDiv>
               {/* 이거를 Null이 아닌 것을 최신순으로 돌려줘야함 */}
