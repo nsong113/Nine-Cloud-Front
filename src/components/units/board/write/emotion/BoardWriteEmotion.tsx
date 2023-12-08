@@ -2,6 +2,8 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
+// import { useDispatch } from 'react-redux';
+// import { setEmotionStatus } from 'src/redux/modules/diaryPost';
 
 const BoardWriteEmotion = () => {
   const [happy, setHappy] = useState('3');
@@ -50,7 +52,7 @@ const BoardWriteEmotion = () => {
   const countAverage =
     (Number(happy) + Number(sad) + Number(gloomy) + Number(angry)) / 4;
 
-  console.log('카운트에버리지', countAverage);
+  // console.log('카운트에버리지', countAverage);
 
   // const labels = Array.from({ length: 2 }, (_, i) => i + 1).map((number) => (
   //   <S.Label key={number} onClick={() => onClickSlider(number)}>
@@ -90,9 +92,16 @@ const BoardWriteEmotion = () => {
   //   </S.Label>
   // ));
 
+  // const dispatch = useDispatch();
+
   const onClickNextPage = () => {
-    navigate('/post2');
+    navigate('/post3');
+    // dispatch(setEmotionStatus(countAverage));
+
+    //RTK에 저장
   };
+
+  localStorage.setItem('countAverage', countAverage.toString());
 
   return (
     <S.EmotionContainerDiv>

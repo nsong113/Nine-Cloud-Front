@@ -46,7 +46,7 @@ const BoardWriteDiary = () => {
   };
 
   const onClickPrevPage = () => {
-    navigate('/post2');
+    navigate('/post1');
   };
 
   const onClickSubmitBtn = () => {
@@ -75,14 +75,26 @@ const BoardWriteDiary = () => {
   const onChangeToggleHandler = () => {
     setIsChecked(!isChecked);
   };
+
+  //onClickNextBtn
+
+  const onClickNextBtn = () => {
+    navigate('/post2');
+    //이때 이미지 저장해야 해야 함
+  };
+
+  //로컬스토리지에 저장
+  //contents
+  localStorage.setItem('contents', contents);
+
   return (
     <>
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <ConfrimModal
           onClickMoveToMain={onClickMoveToMain}
           onClickSubmitBtn={onClickSubmitBtn}
         />
-      )}
+      )} */}
       <S.DiaryContainerDiv>
         <S.DiaryWrapperUPDiv>
           <S.HeaderButtonBoxDiv>
@@ -151,7 +163,7 @@ const BoardWriteDiary = () => {
           </S.ContentsWrapperDiv>
           <S.FooterButtonBoxDiv>
             <S.PrevButton onClick={onClickPrevPage}>이전</S.PrevButton>
-            <S.SubmitButton onClick={onClickSubmitBtn}>등록하기</S.SubmitButton>
+            <S.SubmitButton onClick={onClickNextBtn}>다음</S.SubmitButton>
             <div>
               <S.DiaryPrivateCheckboxDiv></S.DiaryPrivateCheckboxDiv>
               <p className='OpenPublicP'>전체공개 </p>

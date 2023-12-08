@@ -1,12 +1,12 @@
 import React from 'react';
 import * as S from './ConfirmOverlay.styles';
-
-interface IConfirmMod {
-  onClose?: () => void;
-  onOk?: () => void;
-}
+import { IConfirmMod } from './ConfirmOverlay.types';
 
 const ConfirmOverlay: React.FC<IConfirmMod> = ({ onOk, onClose }) => {
+  //정보 얻어오기
+
+  //post 요청
+
   return (
     <S.ContainerDiv className='modal'>
       <S.ModalContentDiv>
