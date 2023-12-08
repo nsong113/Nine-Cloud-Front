@@ -32,15 +32,10 @@ const LoginSignin = () => {
       }
 
       const response = await axios.post(
-        `/signin`,
+        `${process.env.REACT_APP_SERVER_URL}/signin`,
         {
           email: email,
           password: password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
         }
       );
       const token = response.data.accessToken;

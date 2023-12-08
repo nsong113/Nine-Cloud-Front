@@ -12,6 +12,11 @@ export const ImgBoxDiv = styled.div`
   position: fixed;
 `;
 
+export const MainImg = styled.img`
+  width: 430px;
+  height: 400px;
+`;
+
 export const ContentsWrapperDiv = styled.div`
   display: flex;
   flex-direction: column;

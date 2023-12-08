@@ -52,11 +52,14 @@ const Signup = () => {
         return;
       }
 
-      const response = await axios.post(`/signup`, {
-        email: email,
-        password: password,
-        nickname: username,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/signup`,
+        {
+          email: email,
+          password: password,
+          username: username,
+        }
+      );
       console.log('회원가입 성공:', response);
       alert('회원가입이 성공적으로 완료되었습니다.');
       navigate('/login');
