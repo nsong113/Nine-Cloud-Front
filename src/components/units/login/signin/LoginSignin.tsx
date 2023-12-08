@@ -3,6 +3,8 @@ import axios from 'axios';
 import * as S from './LoginSignin.styles';
 import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../social/LoginKakao';
+import LoginGoogle from '../social/LoginGoogle';
+import LoginGithub from '../social/LoginGithub';
 
 const LoginSignin = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +13,7 @@ const LoginSignin = () => {
   const [passwordValidationMessage, setPasswordValidationMessage] =
     useState('');
   const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
   const onClickLoginHandler = async () => {
     try {
@@ -31,19 +34,17 @@ const LoginSignin = () => {
         return;
       }
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/signin`,
-        {
-          email: email,
-          password: password,
-        }
-      );
-      const token = response.data.accessToken;
-      sessionStorage.setItem('accessToken', token);
-      console.log('response', response);
-      console.log('response.data.accessToken', response.data.accessToken);
+      const response = await axios.post(`${BASE_URL}/signin`, {
+        email: email,
+        password: password,
+      });
+      const token = response.data.data;
+      localStorage.setItem('Token', token);
+      // console.log('response', response);
+      console.log('response.data.accessToken', response.data);
       console.log('로그인 성공:', token);
-      alert('로그인이 성공적으로 완료되었습니다.');
+      alert(`${response.data.message}`);
+      navigate('/main');
     } catch (error) {
       console.error('로그인 실패', error);
       alert('로그인 실패');
@@ -134,8 +135,8 @@ const LoginSignin = () => {
         </S.Divider>
         <S.SocialButton>
           <LoginKakao />
-          <S.Circle style={{ backgroundImage: "url('/btn_google.svg')" }} />
-          <S.Circle style={{ backgroundImage: "url('/btn_github.svg')" }} />
+          <LoginGoogle />
+          <LoginGithub />
         </S.SocialButton>
         <S.SignupLink onClick={navigateToSignup}>
           아직 계정이 없으신가요?

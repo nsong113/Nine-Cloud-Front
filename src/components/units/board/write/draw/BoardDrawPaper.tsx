@@ -1,6 +1,15 @@
+/* global $ */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ICanvasProps, ICoordinate } from './BoardWriteDraw.types';
 import * as S from './BoardWriteDraw.styles';
+import { IpostDiaryItem } from 'src/apis/apiesType';
+import {
+  useMutation,
+  UseMutationResult,
+  MutationFunction,
+  useQuery,
+} from 'react-query';
+import { getDiary, postDiary } from 'src/apis/diary';
 
 const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   const canvasStyle = {
@@ -16,11 +25,11 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  console.log('mousePosition', mousePosition);
+  // console.log('mousePosition', mousePosition);
 
   //isPainting 상태관리
   const [isPainting, setIsPainting] = useState(false);
-  console.log('isPainting', isPainting);
+  // console.log('isPainting', isPainting);
 
   //좌표 얻는 함수 (MouseEvent로 부터 좌표를 얻음)
   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
@@ -30,8 +39,8 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     }
     //캔버스 엘리먼트 추출
     const canvas: HTMLCanvasElement = canvasRef.current;
-    console.log('offsetLeft', canvas.offsetLeft);
-    console.log('offsetTop', canvas.offsetTop);
+    // console.log('offsetLeft', canvas.offsetLeft);
+    // console.log('offsetTop', canvas.offsetTop);
     //좌표 계산 및 반환
     return {
       //이벤트가 발생했을 때 좌표 구하는 프로퍼티
@@ -215,6 +224,62 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
     }
+    saveImg();
+  };
+
+  ////데이터 post
+  // postDiaryMutation 함수 정의
+  // const { data } = useQuery('getDiary', getDiary);
+  const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
+    postDiary
+  );
+
+  const saveImg = () => {
+    const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
+
+    // const imageArray = [];
+    if (image) {
+      // const toBinaryIMG = Buffer.from(image, 'base64').toString('binary');
+      // for (let i = 0; i < toBinaryIMG.length; i += 1) {
+      //   imageArray.push(toBinaryIMG.charCodeAt(i));
+      // }
+      const byteCharacters = atob(image);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const u8arr = new Uint8Array(byteNumbers);
+      const file = new Blob([u8arr], { type: 'image/png' });
+
+      console.log('file', file);
+
+      const formData = new FormData();
+      formData.append('picture', file);
+      // localStorage.setItem('formData', formData);
+
+      const postDiaryItem: IpostDiaryItem = {
+        EmotionStatus: Number(localStorage.getItem('countAverage')),
+        content: localStorage.getItem('contents'),
+        image: formData,
+      };
+
+      postDiaryMutation.mutate(postDiaryItem);
+
+      // postDiary 함수 호출
+    } else {
+      console.log('이미지 불러오기 싪패');
+    }
+
+    // $.ajax({
+    //   type: 'post',
+    //   url: '/saveImage',
+    //   data: formData,
+    //   processData: false,
+    //   contentType: false,
+    //   success: function (data: any) {
+    //     console.log('이미지 post 성공');
+    //   },
+    // });
   };
 
   return (

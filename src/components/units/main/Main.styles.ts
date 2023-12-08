@@ -188,6 +188,7 @@ export const ViewAllWrapperDiv = styled.div`
   width: 90%;
   height: 607px;
   margin: 5px auto;
+  overflow: auto;
   background-color: aliceblue;
 `;
 
