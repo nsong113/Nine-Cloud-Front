@@ -30,3 +30,17 @@ export interface IemotionSetting {
   matchDDD: number;
   matchEmotionStatus: number;
 }
+
+export interface IViewAllProps {
+  item: {
+    diaryId: number;
+    UserId: number;
+    EmotionStatus: number;
+    image: string;
+    content: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: null;
+    isPrivate: boolean;
+  };
+}
