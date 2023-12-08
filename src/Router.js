@@ -12,6 +12,7 @@ import BoardWriteDraw from './components/units/board/write/draw/BoardWriteDraw';
 import LoginKakao from './components/units/login/social/LoginKakao';
 import KakaoLoginHandler from './components/units/login/social/auth/KakaoLoginHandler';
 import GithubLoginHandler from './components/units/login/social/auth/GithubLoginHandler';
+import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
 
 export default function Router() {
   return (
@@ -22,7 +23,14 @@ export default function Router() {
           <Route path='/login' element={<SigninPage />} />
           <Route path='/login/kakao' element={<LoginKakao />} />
           <Route path='/auth/kakao/callback' element={<KakaoLoginHandler />} />
-          <Route path='/auth/github/callback' element={<GithubLoginHandler />} />
+          <Route
+            path='/auth/google/callback'
+            element={<GoogleLoginHandler />}
+          />
+          <Route
+            path='/auth/github/callback'
+            element={<GithubLoginHandler />}
+          />
           <Route path='/signup' element={<SignupPage />} />
           {/* main 페이지 */}
           <Route path='/main' element={<MainPage />} />
