@@ -34,7 +34,7 @@ export const Input = styled.input`
   width: 100%;
   height: 10%;
   padding: 10px;
-  font-size: 22px;
+  font-size: 20px;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -55,8 +55,6 @@ export const Button = styled.button`
   background-color: #aaa;
   color: white;
   cursor: pointer;
-  margin-top: 120px;
-  margin-bottom: 60px;
   font-size: 25px;
 `;
 
@@ -65,7 +63,7 @@ export const Divider = styled.div`
   text-align: center;
   border-bottom: 1px solid #ccc;
   line-height: 0.1em;
-  margin: 20px 0 20px;
+  margin: 40px 0 20px;
 `;
 
 export const DividerText = styled.span`
@@ -109,4 +107,12 @@ export const ValidationMessage = styled.div<ValidationMessageProps>`
       : css`
           color: blue;
         `}
+`;
+
+export const ReturnLoginButton = styled.div`
+  margin-top: 42px;
+  font-size: 15px;
+  color: #777;
+  background-color: transparent; /* 배경색을 투명하게 설정 */
+  cursor: pointer; /* 마우스를 가져다 댔을 때 커서를 포인터로 변경 */
 `;

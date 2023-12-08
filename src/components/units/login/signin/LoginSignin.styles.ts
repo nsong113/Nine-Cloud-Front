@@ -21,17 +21,18 @@ export const LoginTitle = styled.h1`
 
 export const InputBox = styled.div`
   width: 80%;
+  margin-top: 40px;
 `;
 
 export const InputLabel = styled.div`
-  font-size: 20px;
-  margin-top: 85px;
+  font-size: 18px;
+  margin-top: 45px;
   color: black;
 `;
 
 export const Input = styled.input`
   width: 100%;
-  height: 10%;
+  height: 30%;
   padding: 10px;
   font-size: 22px;
   border-top: none;
