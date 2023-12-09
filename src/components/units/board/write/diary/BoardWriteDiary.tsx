@@ -6,69 +6,65 @@ import React, {
   MutableRefObject,
 } from 'react';
 import * as S from './BoardWriteDiary.styles';
-import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
+// import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
 import { useNavigate } from 'react-router-dom';
 import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
-import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
-import Toggle from 'react-toggle';
+// import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
 import 'react-toggle/style.css';
+import { IoIosCheckmark } from 'react-icons/io';
 
 const BoardWriteDiary = () => {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const [imgFile, setImgFile] = useState<File | null>();
-  const [preview, setPreview] = useState<string | null>('');
-  const buttonRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
-  const navigate = useNavigate();
-  const [contents, setContents] = useState<string>('');
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  // const [isActive, setIsActive] = useState<boolean>(false);
+  // const [imgFile, setImgFile] = useState<File | null>();
+  // const [preview, setPreview] = useState<string | null>('');
+  // const buttonRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const [isChecked, setIsChecked] = useState(true);
   // 2
-  const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files !== null) {
-      const file = event.target.files[0];
-      if (file && file.type.substring(0, 5) === 'image') {
-        setImgFile(file);
-        setIsActive(true);
-      } else {
-        setImgFile(null);
-        setIsActive(true);
-      }
-    }
-  };
+  // const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.files !== null) {
+  //     const file = event.target.files[0];
+  //     if (file && file.type.substring(0, 5) === 'image') {
+  //       setImgFile(file);
+  //       setIsActive(true);
+  //     } else {
+  //       setImgFile(null);
+  //       setIsActive(true);
+  //     }
+  //   }
+  // };
+
+  // const onClickButton = () => {
+  //   buttonRef.current.click();
+  // };
+
+  // const onClickSubmitBtn = () => {
+  //   setIsModalOpen((prev) => !prev);
+  // };
+
+  // const onClickMoveToMain = () => {
+  //   navigate('/main');
+  // };
+
+  // 3
+  // useEffect(() => {
+  //   if (imgFile) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setPreview(reader.result as string);
+  //     };
+  //     reader.readAsDataURL(imgFile);
+  //   } else {
+  //     setPreview(null);
+  //   }
+  // }, [imgFile]);
+  const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(true); //이걸로 나중에 점수 확 높히기
+  const [contents, setContents] = useState<string>('');
 
   const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
   };
-
-  const onClickButton = () => {
-    buttonRef.current.click();
-  };
-
-  const onClickPrevPage = () => {
-    navigate('/post1');
-  };
-
-  const onClickSubmitBtn = () => {
-    setIsModalOpen((prev) => !prev);
-  };
-
-  const onClickMoveToMain = () => {
-    navigate('/main');
-  };
-
-  // 3
-  useEffect(() => {
-    if (imgFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result as string);
-      };
-      reader.readAsDataURL(imgFile);
-    } else {
-      setPreview(null);
-    }
-  }, [imgFile]);
 
   //토글버튼
   setIsChecked;
@@ -77,14 +73,14 @@ const BoardWriteDiary = () => {
   };
 
   //onClickNextBtn
-
+  const onClickPrevPage = () => {
+    navigate('/post');
+  };
   const onClickNextBtn = () => {
     navigate('/post2');
-    //이때 이미지 저장해야 해야 함
   };
 
   //로컬스토리지에 저장
-  //contents
   localStorage.setItem('contents', contents);
 
   return (
@@ -100,9 +96,12 @@ const BoardWriteDiary = () => {
           <S.HeaderButtonBoxDiv>
             <S.HeaderLine></S.HeaderLine>
             <S.HeaderFlexBox>
-              <S.OneBlackSpan />
-              <S.TwoBlankSpan />
+              <S.DoneCheckBox>
+                <IoIosCheckmark style={{ fontSize: '21px' }} />
+                <S.OneBlackSpan />
+              </S.DoneCheckBox>
               <S.ThreeFilledSpan>Text</S.ThreeFilledSpan>
+              <S.TwoBlankSpan />
             </S.HeaderFlexBox>
           </S.HeaderButtonBoxDiv>
         </S.DiaryWrapperUPDiv>
@@ -161,13 +160,14 @@ const BoardWriteDiary = () => {
               </label>
             </S.DiaryToggleTitleDiv>
           </S.ContentsWrapperDiv>
+
           <S.FooterButtonBoxDiv>
             <S.PrevButton onClick={onClickPrevPage}>이전</S.PrevButton>
-            <S.SubmitButton onClick={onClickNextBtn}>다음</S.SubmitButton>
-            <div>
+            <S.NextButton onClick={onClickNextBtn}>다음</S.NextButton>
+            {/* <div>
               <S.DiaryPrivateCheckboxDiv></S.DiaryPrivateCheckboxDiv>
               <p className='OpenPublicP'>전체공개 </p>
-            </div>
+            </div> */}
           </S.FooterButtonBoxDiv>
         </S.DiaryWrapperDOWNdiv>
       </S.DiaryContainerDiv>

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './ConfirmOverlay.styles';
 import { IConfirmMod } from './ConfirmOverlay.types';
 
 const ConfirmOverlay: React.FC<IConfirmMod> = ({ onOk, onClose }) => {
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const modalClose = () => {
+  //   setIsModalOpen((prev) => !prev);
+  // };
+
   //정보 얻어오기
 
   //post 요청
 
   return (
-    <S.ContainerDiv className='modal'>
+    <S.ContainerDiv
+      className='modal'
+      onClick={onClose}
+      // $isModalOpen={isModalOpen}
+    >
       <S.ModalContentDiv>
         <S.TitleBoxDiv>
           <S.TextStyleSpan>글을 등록 하시겠습니까?</S.TextStyleSpan>
