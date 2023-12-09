@@ -98,12 +98,6 @@ export const TableCell = styled.td`
   &:hover {
     background-color: gray;
   }
-  ${(props) =>
-    props.children === 3
-      ? 'background-color: red;'
-      : props.children === 5
-      ? 'background-color: green;'
-      : ''}
 `;
 
 export const ThCell = styled.th`
@@ -194,6 +188,7 @@ export const ViewAllWrapperDiv = styled.div`
   width: 90%;
   height: 607px;
   margin: 5px auto;
+  overflow: auto;
   background-color: aliceblue;
 `;
 

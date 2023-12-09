@@ -56,7 +56,6 @@ const Signup = () => {
         setNicknameValidationMessage('한글 2~6, 영문 2~12');
         return;
       }
-
       const response = await axios.post(`${BASE_URL}/signup`, {
         email: email,
         password: password,

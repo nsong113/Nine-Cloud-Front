@@ -3,7 +3,7 @@ import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
 import { useNavigate } from 'react-router-dom';
 import { addMonths, format, getYear, subMonths } from 'date-fns';
-import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
+import { dayList } from './test';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 
 const Calender = () => {
@@ -12,6 +12,13 @@ const Calender = () => {
   const [selectedEmotionStatus, setSelectedEmotionStatus] = useState<
     number | null
   >(null);
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const [isHappyImg, setIsHappyImg] = useState(false);
+  const [isAngryImg, setIsAngryImg] = useState(false);
+  const [isSadImg, setIsSadImg] = useState(false);
+  const [isGloomyImg, setIsGloomyImg] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isActiveModal, setIsActiveModal] = useState(false);
   const formattedMonth = format(currentMonth, 'MMMM');
@@ -22,8 +29,13 @@ const Calender = () => {
     useCalendar();
 
   //전체 데이터 분해
-  const allDate = weekCalendarList.flat().map((day) => day);
-  const selectedDayAndMonth = dayList.map((el: any) => el.date);
+  const allDate = weekCalendarList
+    .flat()
+    .map((day) => day)
+    .filter((value) => value !== 0);
+
+  console.log('allDate', allDate);
+  const selectedDayAndMonth = dayList.map((el: any) => (el ? el.date : null));
 
   //currentDate를 내가 원하는 형식으로 변경
   const formattedTodayDate = new Intl.DateTimeFormat('ko-KR', {
@@ -45,19 +57,19 @@ const Calender = () => {
 
   const onClickHappyImg = () => {
     // 이미 선택된 감정 상태인 경우 선택을 해제하도록 처리
-    setSelectedEmotionStatus((prevStatus) => (prevStatus === 1 ? null : 1));
+    setIsHappyImg((prev) => !prev);
   };
 
   const onClickAngryImg = () => {
-    setSelectedEmotionStatus((prevStatus) => (prevStatus === 2 ? null : 2));
+    setIsAngryImg((prev) => !prev);
   };
 
   const onClickGloomyImg = () => {
-    setSelectedEmotionStatus((prevStatus) => (prevStatus === 3 ? null : 3));
+    setIsGloomyImg((prev) => !prev);
   };
 
   const onClickSadImg = () => {
-    setSelectedEmotionStatus((prevStatus) => (prevStatus === 4 ? null : 4));
+    setIsSadImg((prev) => !prev);
   };
 
   const handleNextMonth = () => {
@@ -67,6 +79,10 @@ const Calender = () => {
     setMonth((prev) => prev + 1);
   };
 
+  const filteredDayList = dayList.filter((el) => el !== null);
+
+  console.log('filteredDayList', filteredDayList);
+
   const emotionImages: { [key: string]: string | undefined } = {
     1: '/happy.png',
     2: '/angry.png',
@@ -75,16 +91,16 @@ const Calender = () => {
   };
 
   const happyCount = dayList.filter(
-    (emotion) => emotion.EmotionStatus === 1
+    (emotion) => emotion?.EmotionStatus === 1
   ).length;
   const angryCount = dayList.filter(
-    (emotion) => emotion.EmotionStatus === 2
+    (emotion) => emotion?.EmotionStatus === 2
   ).length;
   const gloomyCount = dayList.filter(
-    (emotion) => emotion.EmotionStatus === 3
+    (emotion) => emotion?.EmotionStatus === 3
   ).length;
   const sadCount = dayList.filter(
-    (emotion) => emotion.EmotionStatus === 4
+    (emotion) => emotion?.EmotionStatus === 4
   ).length;
 
   //감정 상태에 따라 다른 아이콘을 반환하기
@@ -94,25 +110,38 @@ const Calender = () => {
 
   const getEmotionStatusForDate = (date: string) => {
     //dayList에서 날짜만 추출한 것과 전체 날짜가 일치하는 것이 matchignDay에 담긴다
-    const matchingDay = dayList.find(
-      (el: any) => parseInt(el.date.split('.')[2], 10).toString() === date
+    const matchingDay = filteredDayList.find(
+      (el: any) =>
+        el?.date && parseInt(el.date.split('.')[2], 10).toString() === date
     );
 
+    console.log('matchingDay', matchingDay);
+
     return matchingDay ? matchingDay.EmotionStatus : 0;
+  };
+
+  const getId = (date: string) => {
+    //dayList에서 날짜만 추출한 것과 전체 날짜가 일치하는 것이 matchignDay에 담긴다
+    const matchingDay = dayList.find(
+      (el: any) =>
+        el?.date && parseInt(el.date.split('.')[2], 10).toString() === date
+    );
+
+    return matchingDay ? matchingDay.id : 0;
   };
 
   const getBorderColor = (emotionStatus: any) => {
     switch (emotionStatus) {
       case 1:
-        return selectedEmotionStatus === 1 ? '#ffcc00' : 'white';
+        return isHappyImg === true ? '#ffcc00' : 'white';
       case 2:
-        return selectedEmotionStatus === 2 ? '#ff6666' : 'white';
+        return isAngryImg === true ? '#ff6666' : 'white';
       case 3:
-        return selectedEmotionStatus === 3 ? '#6666ff' : 'white';
+        return isGloomyImg === true ? '#6666ff' : 'white';
       case 4:
-        return selectedEmotionStatus === 4 ? '#999999' : 'white';
+        return isSadImg === true ? '#999999' : 'white';
       default:
-        return 'wihte';
+        return 'white';
     }
   };
 
@@ -124,19 +153,13 @@ const Calender = () => {
   ///////////////////////////////////////////////////////////////////
 
   //클릭했을 때 디테일 페이지로 이동
-  const onClickGoToDetailHandler = (
-    event: React.MouseEvent<HTMLTableCellElement>
-  ) => {
-    // 클릭한 날짜가 며칠인지 확인
-    const clickedDate = event.currentTarget.textContent;
-
-    // dayList에서 클릭한 날짜와 매칭되는 요소 찾기
-    const matchingDay = dayList.find((el) => el.date === clickedDate);
-
+  const onClickGoToDetailHandler = (id: any) => {
     // 매칭된 요소의 id 가져오기
-    const id = matchingDay ? matchingDay.id : null;
-    navigate(`/post/${clickedDate}`);
-
+    if (id !== 0) {
+      navigate(`/post/${id}`);
+    } else {
+      alert('작성하신 글이 없습니다.');
+    }
     // if (id !== null) {
     //   // id가 존재하면 해당 id로 상세 페이지로 이동
     //   navigate(`/post/${id}`);
@@ -160,15 +183,23 @@ const Calender = () => {
           {weekCalendarList.map((week, weekIndex) => (
             <S.DayRoow key={weekIndex}>
               {week.map((day, dayIndex) => {
-                const selectedDay = dayList.map((el: any) => el.id);
+                const selectedDay = dayList
+                  .filter((el) => el !== null)
+                  .map((el) => String(el?.id));
+
                 const cellDate = String(allDate[weekIndex * 7 + dayIndex]);
+
+                console.log('cellDate', cellDate);
                 const isMatchingDate = selectedDay.includes(cellDate);
                 const emotionStatus = getEmotionStatusForDate(cellDate);
+                const id = getId(cellDate);
+
+                console.log('id', id);
 
                 return (
                   <S.TableCell
                     key={dayIndex}
-                    onClick={() => onClickGoToDetailHandler}
+                    onClick={() => onClickGoToDetailHandler(id)}
                     style={{
                       backgroundColor: `${getBorderColor(emotionStatus)}`,
                     }}
@@ -248,35 +279,3 @@ const Calender = () => {
 export default Calender;
 
 //////////////////////////////////
-const dayList = [
-  {
-    EmotionStatus: 1,
-    date: '2023. 12. 05.',
-    id: 1,
-  },
-  {
-    EmotionStatus: 2,
-    date: '2023. 12. 06.',
-    id: 2,
-  },
-  {
-    EmotionStatus: 3,
-    date: '2023. 12. 10.',
-    id: 3,
-  },
-  {
-    EmotionStatus: 4,
-    date: '2023. 12. 13.',
-    id: 2,
-  },
-  {
-    EmotionStatus: 3,
-    date: '2023. 12. 21.',
-    id: 3,
-  },
-  {
-    EmotionStatus: 3,
-    date: '2023. 12. 30.',
-    id: 4,
-  },
-];
