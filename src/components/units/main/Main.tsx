@@ -7,19 +7,9 @@ import Calender from './Calender';
 import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 
 const Main = () => {
-  const [toggle, setToggle] = useState(true);
 
-  const onClickChangeToggleHandler = () => {
-    setToggle(!toggle);
-  };
 
-  return (
-    <S.MainContainerDiv>
-      <Toggle checked={toggle} onChange={onClickChangeToggleHandler} />
-      {toggle && <Calender />}
-      {!toggle && <ViewAll />}
-    </S.MainContainerDiv>
-  );
+  return <Calender />;
 };
 
 export default Main;

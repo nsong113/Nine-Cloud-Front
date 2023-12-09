@@ -5,15 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { addMonths, format, getYear, subMonths } from 'date-fns';
 import { dayList } from './test';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
+import { useQuery } from 'react-query';
+import { getPosts } from 'src/apis/cheolmin-api/apis';
+import ViewAll from './ViewAll';
+import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
+import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 
 const Calender = () => {
   const navigate = useNavigate();
   const [month, setMonth] = useState(12);
-  const [selectedEmotionStatus, setSelectedEmotionStatus] = useState<
-    number | null
-  >(null);
-
   const [selectedImage, setSelectedImage] = useState(null);
+  const { data } = useQuery('posts', getPosts);
+
+  console.log('data', data);
 
   const [isHappyImg, setIsHappyImg] = useState(false);
   const [isAngryImg, setIsAngryImg] = useState(false);
@@ -22,6 +26,7 @@ const Calender = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isActiveModal, setIsActiveModal] = useState(false);
   const formattedMonth = format(currentMonth, 'MMMM');
+  const [isToggle, setIsToggle] = useState(false);
 
   console.log('formattedMonth', formattedMonth);
   //useCalender에서 내용 꺼내오기
@@ -30,22 +35,13 @@ const Calender = () => {
 
   //전체 데이터 분해
   const allDate = weekCalendarList
+    //2차원 배열을 1차원으로 합쳐줌.
     .flat()
-    .map((day) => day)
     .filter((value) => value !== 0);
 
   console.log('allDate', allDate);
-  const selectedDayAndMonth = dayList.map((el: any) => (el ? el.date : null));
-
-  //currentDate를 내가 원하는 형식으로 변경
-  const formattedTodayDate = new Intl.DateTimeFormat('ko-KR', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(currentDate);
 
   const newDate = new Date(currentDate);
-  const year = getYear(newDate);
   console.log('newDate', newDate);
 
   const handlePrevMonth = () => {
@@ -149,8 +145,16 @@ const Calender = () => {
     setIsActiveModal((prev) => !prev);
   };
 
+  const onClickChangeToggleHandler = () => {
+    setIsToggle((prev) => !prev);
+  };
+
   ///////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
+
+  const onClickListBtn = () => {
+    navigate('/list');
+  };
 
   //클릭했을 때 디테일 페이지로 이동
   const onClickGoToDetailHandler = (id: any) => {
@@ -160,122 +164,187 @@ const Calender = () => {
     } else {
       alert('작성하신 글이 없습니다.');
     }
-    // if (id !== null) {
-    //   // id가 존재하면 해당 id로 상세 페이지로 이동
-    //   navigate(`/post/${id}`);
-    // } else {
-    //   // id가 존재하지 않으면 에러 처리 또는 다른 동작 수행
-    //   console.error('해당 날짜의 ID를 찾을 수 없습니다.');
-    // }
   };
+  const profileImg = localStorage.getItem('image');
+  const year = getYear(newDate);
   return (
-    <S.CalendarContainerDiv>
-      {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
-      <S.CalendarTable>
-        <S.TableHead>
-          <S.TableRow>
-            {DAY_LIST.map((day, index) => (
-              <S.ThCell key={index}>{day}</S.ThCell>
+    <>
+      <S.CalendarContainerDiv>
+        <S.LogoImg></S.LogoImg>
+        {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
+        <S.CalenderHeaderDiv>
+          <S.HeaderLeftWrapperDiv>
+            <S.DateBoxDiv>
+              <S.YearTextSpan>{year}</S.YearTextSpan>
+              <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+            </S.DateBoxDiv>
+            <S.PrevMonth size={20} onClick={handlePrevMonth} />
+            <S.NextMonth size={20} onClick={handleNextMonth} />
+          </S.HeaderLeftWrapperDiv>
+          <S.RightProfile>
+            <S.ButtonWrapperDiv
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Tooltip message='리스트'>
+                <S.List size={40} onClick={onClickListBtn} />
+              </Tooltip>
+              <Tooltip message='마이페이지'>
+                {!profileImg && (
+                  <S.AvatarSizeImg
+                    onClick={onClickMyProfile}
+                    src='/avatar.png'
+                    alt='기본'
+                  />
+                )}
+                {profileImg && (
+                  <S.AvatarSizeImg
+                    onClick={onClickMyProfile}
+                    src={profileImg}
+                    alt='기본'
+                  />
+                )}
+              </Tooltip>
+            </S.ButtonWrapperDiv>
+          </S.RightProfile>
+        </S.CalenderHeaderDiv>
+        {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
+        <S.CalendarTable>
+          <S.TableHead>
+            <S.TableRow>
+              {DAY_LIST.map((day, index) => (
+                <S.ThCell key={index}>{day}</S.ThCell>
+              ))}
+            </S.TableRow>
+          </S.TableHead>
+          <S.TableBody>
+            {weekCalendarList.map((week, weekIndex) => (
+              <S.DayRoow key={weekIndex}>
+                {week.map((day, dayIndex) => {
+                  const selectedDay = dayList
+                    .filter((el) => el !== null)
+                    .map((el) => String(el?.id));
+
+                  const firstDayOfMonth = new Date(
+                    currentMonth.getFullYear(),
+                    currentMonth.getMonth(),
+                    1
+                  );
+                  const daysBeforeFirstDay = firstDayOfMonth.getDay();
+                  const cellDate =
+                    weekIndex * 7 + dayIndex - daysBeforeFirstDay + 1;
+
+                  // 현재 주의 시작 이전이거나 이후인 경우 빈 셀을 반환합니다.
+                  if (cellDate <= 0 || cellDate > allDate.length) {
+                    return <S.TableCell key={dayIndex}></S.TableCell>;
+                  }
+
+                  const isMatchingDate = selectedDay.includes(String(cellDate));
+                  const emotionStatus = getEmotionStatusForDate(
+                    String(cellDate)
+                  );
+                  const id = getId(String(cellDate));
+
+                  const isToday =
+                    cellDate === new Date().getDate() &&
+                    currentMonth.getMonth() === new Date().getMonth();
+
+                  return (
+                    <S.TableCell
+                      key={dayIndex}
+                      onClick={() => onClickGoToDetailHandler(id)}
+                      style={{
+                        border: isToday
+                          ? '5px solid #4CAF50'
+                          : '1px solid #ddd',
+                        backgroundColor: getBorderColor(emotionStatus),
+                      }}
+                    >
+                      {day !== 0 ? (
+                        <div
+                          style={{ display: 'flex', flexDirection: 'column' }}
+                        >
+                          {month === 12 ? (
+                            <>
+                              <span
+                                style={{
+                                  color: isToday ? '#4CAF50' : 'inherit',
+                                }}
+                              >
+                                {cellDate}
+                              </span>
+                              <img
+                                src={getEmotion(emotionStatus)}
+                                alt={`Emotion ${emotionStatus}`}
+                                style={{ width: '30px' }}
+                              />
+                            </>
+                          ) : (
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                              }}
+                            >
+                              <span
+                                style={{
+                                  color: isToday ? '#4CAF50' : 'inherit',
+                                }}
+                              >
+                                {cellDate}
+                              </span>
+                              <img
+                                src='/silence.png'
+                                alt={`Emotion ${emotionStatus}`}
+                                style={{ width: '30px' }}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </S.TableCell>
+                  );
+                })}
+              </S.DayRoow>
             ))}
-          </S.TableRow>
-        </S.TableHead>
-        <S.TableBody>
-          {weekCalendarList.map((week, weekIndex) => (
-            <S.DayRoow key={weekIndex}>
-              {week.map((day, dayIndex) => {
-                const selectedDay = dayList
-                  .filter((el) => el !== null)
-                  .map((el) => String(el?.id));
-
-                const cellDate = String(allDate[weekIndex * 7 + dayIndex]);
-
-                console.log('cellDate', cellDate);
-                const isMatchingDate = selectedDay.includes(cellDate);
-                const emotionStatus = getEmotionStatusForDate(cellDate);
-                const id = getId(cellDate);
-
-                console.log('id', id);
-
-                return (
-                  <S.TableCell
-                    key={dayIndex}
-                    onClick={() => onClickGoToDetailHandler(id)}
-                    style={{
-                      backgroundColor: `${getBorderColor(emotionStatus)}`,
-                    }}
-                  >
-                    {day !== 0 ? (
-                      <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        {month === 12 ? (
-                          <>
-                            <span>{day}</span> {/* 날짜 표시 */}
-                            <img
-                              src={getEmotion(emotionStatus)}
-                              alt={`Emotion ${emotionStatus}`}
-                              style={{ width: '30px' }}
-                            />
-                          </>
-                        ) : (
-                          <div
-                            style={{ display: 'flex', flexDirection: 'column' }}
-                          >
-                            <span>{day}</span>
-                            <img
-                              src='/silence.png'
-                              alt={`Emotion ${emotionStatus}`}
-                              style={{ width: '30px' }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      ''
-                    )}
-                  </S.TableCell>
-                );
-              })}
-            </S.DayRoow>
-          ))}
-        </S.TableBody>
-      </S.CalendarTable>
-      <S.ImageWrapperDiv>
-        <S.ImageBoxDiv>
-          <S.ExpressionImage
-            onClick={onClickHappyImg}
-            src='/happy.png'
-            alt='해피'
-          />
-          <S.CountSpan>{happyCount}</S.CountSpan>
-          <S.ExpressionImage
-            onClick={onClickAngryImg}
-            src='/angry.png'
-            alt='화남'
-          />
-          <S.CountSpan>{angryCount}</S.CountSpan>
-          <S.ExpressionImage
-            onClick={onClickGloomyImg}
-            src='/gloomy.png'
-            alt='우울'
-          />
-          <S.CountSpan>{gloomyCount}</S.CountSpan>
-          <S.ExpressionImage
-            onClick={onClickSadImg}
-            src='/sad.png'
-            alt='슬픔'
-          />
-          <S.CountSpan>{sadCount}</S.CountSpan>
-        </S.ImageBoxDiv>
-      </S.ImageWrapperDiv>
-      {/* <S.CalenderPrevBtnDiv onClick={handlePrevMonth}>
-        {'<'}
-      </S.CalenderPrevBtnDiv>
-      <S.CalenderPrevBtnDiv onClick={handleNextMonth}>
-        {'>'}
-      </S.CalenderPrevBtnDiv> */}
-    </S.CalendarContainerDiv>
+          </S.TableBody>
+        </S.CalendarTable>
+        <S.ImageWrapperDiv>
+          <S.ImageBoxDiv>
+            <S.ExpressionImage
+              onClick={onClickHappyImg}
+              src='/happy.png'
+              alt='해피'
+            />
+            <S.CountSpan>{happyCount}</S.CountSpan>
+            <S.ExpressionImage
+              onClick={onClickAngryImg}
+              src='/angry.png'
+              alt='화남'
+            />
+            <S.CountSpan>{angryCount}</S.CountSpan>
+            <S.ExpressionImage
+              onClick={onClickGloomyImg}
+              src='/gloomy.png'
+              alt='우울'
+            />
+            <S.CountSpan>{gloomyCount}</S.CountSpan>
+            <S.ExpressionImage
+              onClick={onClickSadImg}
+              src='/sad.png'
+              alt='슬픔'
+            />
+            <S.CountSpan>{sadCount}</S.CountSpan>
+          </S.ImageBoxDiv>
+        </S.ImageWrapperDiv>
+      </S.CalendarContainerDiv>
+    </>
   );
 };
 
 export default Calender;
-
-//////////////////////////////////

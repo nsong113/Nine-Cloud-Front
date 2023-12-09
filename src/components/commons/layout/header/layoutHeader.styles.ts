@@ -15,6 +15,14 @@ export const DateBoxDiv = styled.div`
   align-items: start;
   margin: 0px;
 `;
+
+export const CalenderPrevBtnDiv = styled.div`
+  width: 50px;
+  height: 50px;
+  display: center;
+  align-items: center;
+  justify-content: center;
+`;
 export const CalendarContainerDiv = styled.div`
   font-family: 'Arial', sans-serif;
   text-align: center;

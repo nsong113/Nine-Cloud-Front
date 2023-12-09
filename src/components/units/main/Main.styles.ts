@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import { IoCalendarNumberOutline } from 'react-icons/io5';
+import { IoList } from 'react-icons/io5';
+import { IoIosArrowDropleft } from 'react-icons/io';
+import { IoIosArrowDropright } from 'react-icons/io';
 
 export const MainContainerDiv = styled.div`
   width: 443px;
@@ -44,8 +48,8 @@ export const CalendarContainerDiv = styled.div`
 `;
 
 export const CalenderPrevBtnDiv = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
   display: center;
   align-items: center;
   justify-content: center;
@@ -137,9 +141,14 @@ export const CountSpan = styled.span`
 export const DateBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 100px;
   align-items: start;
   margin: 0px;
+`;
+
+export const HeaderLeftWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 export const RightProfile = styled.div`
@@ -162,6 +171,7 @@ export const MonthTextSpan = styled.span`
 export const AvatarSizeImg = styled.img`
   width: 40px;
   height: 40px;
+  cursor: pointer;
 `;
 
 export const ProfileToggleBoxDiv = styled.div`
@@ -250,4 +260,29 @@ export const ViewAllContentP = styled.p`
   /* white-space: nowrap; */
   text-align: left;
   font-size: 13px;
+`;
+
+export const Calendar = styled(IoCalendarNumberOutline)`
+  cursor: pointer;
+`;
+
+export const List = styled(IoList)`
+  cursor: pointer;
+`;
+
+export const ButtonWrapperDiv = styled.div`
+  margin-left: 50px;
+`;
+
+export const PrevMonth = styled(IoIosArrowDropleft)`
+  cursor: pointer;
+`;
+
+export const NextMonth = styled(IoIosArrowDropright)`
+  cursor: pointer;
+`;
+
+export const YearWrapperDIv = styled.div`
+  display: flex;
+  align-items: center;
 `;

@@ -15,7 +15,6 @@ import ViewAll from './components/units/main/ViewAll';
 import GithubLoginHandler from './components/units/login/social/auth/GithubLoginHandler';
 import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
 
-
 export default function Router() {
   return (
     <BrowserRouter>
@@ -42,6 +41,7 @@ export default function Router() {
           <Route path='/post/:id' element={<DetailedPage />} />
           <Route path='/post2' element={<BoardWriteDraw />} />
           <Route path='/post3' element={<BoardWriteDiary />} />
+          <Route path='/list' element={<ViewAll />} />
         </Route>
       </Routes>
     </BrowserRouter>
