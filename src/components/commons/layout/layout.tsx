@@ -8,15 +8,15 @@ const Layout = () => {
   const { pathname } = useLocation();
 
   const isMyPage = pathname === '/main';
+  const isListPage = pathname === '/list';
   return (
     <div>
       <S.Container>
         <S.Wrapper>
-          {isMyPage && <Header />}
           <div>
             <Outlet />
           </div>
-          {isMyPage && <Footer />}
+          {(isMyPage || isListPage) && <Footer />}
         </S.Wrapper>
       </S.Container>
     </div>

@@ -1,11 +1,7 @@
 export const dayList = [
-  null,
-  null,
-  null,
-  null,
   {
     EmotionStatus: 1,
-    date: '2023. 12. 05.',
+    date: '2023. 12. 9.',
     id: 1,
     image: '/pig.png',
     content: '피곤하다',

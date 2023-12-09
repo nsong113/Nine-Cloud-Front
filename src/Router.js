@@ -14,7 +14,6 @@ import KakaoLoginHandler from './components/units/login/social/auth/KakaoLoginHa
 import ViewAll from './components/units/main/ViewAll';
 import GithubLoginHandler from './components/units/login/social/auth/GithubLoginHandler';
 
-
 export default function Router() {
   return (
     <BrowserRouter>
@@ -24,7 +23,10 @@ export default function Router() {
           <Route path='/login' element={<SigninPage />} />
           <Route path='/login/kakao' element={<LoginKakao />} />
           <Route path='/auth/kakao/callback' element={<KakaoLoginHandler />} />
-          <Route path='/auth/github/callback' element={<GithubLoginHandler />} />
+          <Route
+            path='/auth/github/callback'
+            element={<GithubLoginHandler />}
+          />
           <Route path='/signup' element={<SignupPage />} />
           {/* main 페이지 */}
           <Route path='/main' element={<MainPage />} />
@@ -34,6 +36,7 @@ export default function Router() {
           <Route path='/post/:id' element={<DetailedPage />} />
           <Route path='/post2' element={<BoardWriteDraw />} />
           <Route path='/post3' element={<BoardWriteDiary />} />
+          <Route path='/list' element={<ViewAll />} />
         </Route>
       </Routes>
     </BrowserRouter>

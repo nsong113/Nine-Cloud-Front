@@ -1,16 +1,13 @@
 /* eslint-disable */
 import React, { MouseEvent, useState } from 'react';
 import * as S from './layoutHeader.styles';
-import { format, getYear } from 'date-fns';
+import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
 import useCalendar from '../../hooks/useCalender';
 import MyPageModal from '../../modals/myPage/myPageModal';
-import Calender from 'src/components/units/main/Calender';
-import ViewAll from 'src/components/units/main/ViewAll';
-import Main from 'src/components/units/main/Main';
-import { Toggle } from '../../utills/Toggle/Toggle';
 
 const Header = () => {
-  const { currentDate } = useCalendar();
+  const [month, setMonth] = useState(12);
+  const { currentDate, setCurrentDate } = useCalendar();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [toggle, setToggle] = useState(true);
@@ -24,10 +21,24 @@ const Header = () => {
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
+  const handlePrevMonth = () => {
+    const newDate = subMonths(currentMonth, 1);
+    setCurrentDate(newDate);
+    setCurrentMonth(newDate);
+    setMonth((prev) => prev - 1);
+  };
+  const handleNextMonth = () => {
+    const newDate = addMonths(currentMonth, 1);
+    setCurrentDate(newDate);
+    setCurrentMonth(newDate);
+    setMonth((prev) => prev + 1);
+  };
 
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
   };
+
+  const profileImg = localStorage.getItem('image');
 
   return (
     <S.CalendarContainerDiv>
@@ -37,6 +48,12 @@ const Header = () => {
         <S.DateBoxDiv>
           <S.YearTextSpan>{year}</S.YearTextSpan>
           <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+          <S.CalenderPrevBtnDiv onClick={handlePrevMonth}>
+            {'<'}
+          </S.CalenderPrevBtnDiv>
+          <S.CalenderPrevBtnDiv onClick={handleNextMonth}>
+            {'>'}
+          </S.CalenderPrevBtnDiv>
         </S.DateBoxDiv>
         <S.RightProfile>
           <div
@@ -46,11 +63,20 @@ const Header = () => {
               alignItems: 'center',
             }}
           >
-            <S.AvatarSizeImg
-              onClick={onClickMyProfile}
-              src='/avatar.png'
-              alt='기본'
-            />
+            {!profileImg && (
+              <S.AvatarSizeImg
+                onClick={onClickMyProfile}
+                src='/avatar.png'
+                alt='기본'
+              />
+            )}
+            {profileImg && (
+              <S.AvatarSizeImg
+                onClick={onClickMyProfile}
+                src={profileImg}
+                alt='기본'
+              />
+            )}
           </div>
         </S.RightProfile>
       </S.CalenderHeaderDiv>

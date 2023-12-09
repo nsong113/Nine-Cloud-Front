@@ -8,7 +8,7 @@ export const addPost = async (target: IAddPost) => {
     formData.append('content', target.content);
     // formData.append('EmotionStatus', target.EmotionStatus);
     const response = await axios.post(
-      `${process.env.REACT_APP_SURVER_URL}/diary/posting`,
+      `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
       formData,
       {
         headers: {
@@ -19,24 +19,36 @@ export const addPost = async (target: IAddPost) => {
     );
     console.log(response);
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    alert('다시 시도하세요');
+  }
 };
 
-export const getPost = async () => {
+export const getPosts = async () => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_SURVER_URL}/diary/calandar`
+      `${process.env.REACT_APP_SERVER_URL}/diary/calendar`,
+      {
+        headers: { Authorization: ` ${localStorage.getItem('Token')}` },
+      }
     );
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    console.log('다시 시도하세요');
+  }
 };
 
-export const getOnePostInfo = async (diaryId: number) => {
+export const getOnePostInfo = async (diaryId: string | undefined) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL_2}/diary/detail/${diaryId}`
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/${diaryId}`,
+      {
+        headers: { Authorization: `${localStorage.getItem('Token')}` },
+      }
     );
 
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    alert('다시 시도하세요');
+  }
 };

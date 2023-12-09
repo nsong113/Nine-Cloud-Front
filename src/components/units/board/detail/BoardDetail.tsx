@@ -6,8 +6,11 @@ import { MdPeopleOutline } from 'react-icons/md';
 import { CiHeart } from 'react-icons/ci';
 import { useParams } from 'react-router-dom';
 import { dayList } from '../../main/test';
+import { useQuery } from 'react-query';
+import { getOnePostInfo } from 'src/apis/cheolmin-api/apis';
 
 const BoardDetail = () => {
+  const { data } = useQuery('post', () => getOnePostInfo(params.id));
   const { currentDate } = useCalendar();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isActiveModal, setIsActiveModal] = useState(false);

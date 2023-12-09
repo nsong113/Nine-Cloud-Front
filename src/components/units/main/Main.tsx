@@ -13,13 +13,7 @@ const Main = () => {
     setToggle(!toggle);
   };
 
-  return (
-    <S.MainContainerDiv>
-      <Toggle checked={toggle} onChange={onClickChangeToggleHandler} />
-      {toggle && <Calender />}
-      {!toggle && <ViewAll />}
-    </S.MainContainerDiv>
-  );
+  return <Calender />;
 };
 
 export default Main;

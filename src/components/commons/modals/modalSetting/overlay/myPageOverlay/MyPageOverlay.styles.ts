@@ -6,6 +6,33 @@ export const MainContainerDiv = styled.div`
   height: 100%;
 `;
 
+export const ImageBoxDiv = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+`;
+
+export const PicutureImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+`;
+
+export const HiddenInput = styled.input`
+  display: none;
+`;
+
+export const ImageButton = styled.button``;
+
+export const ImagePlustButtonBox = styled.div``;
+
+export const ImgBoxDiv = styled.div`
+  height: 400px;
+  background-color: gray;
+  border-radius: 0 0 80px 0;
+  position: fixed;
+`;
+
 export const slideIn = keyframes`
   from {
     transform: translateY(100%) translate(-50%, -50%);
@@ -22,29 +49,33 @@ export const ContainerDiv = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 443px;
-  height: 923px;
+  height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
-  justify-content: center;
   align-items: end;
   animation: ${slideIn} 0.5s ease-in-out;
 `;
 
 export const ModalContentDiv = styled.div`
   width: 443px;
-  height: 30%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 50px 50px 0 0;
-  justify-content: space-around;
 `;
 
 export const ContentsBoxDiv = styled.div`
   display: flex;
-  margin-left: 40px;
   align-items: center;
+  flex-direction: column;
+`;
+
+export const HeaderWrapperDiv = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
 `;
 export const TtitleTextSpan = styled.span`
   color: #000;
@@ -57,8 +88,9 @@ export const TtitleTextSpan = styled.span`
 `;
 
 export const CatergoryImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
+  margin-right: 40px;
 `;
 
 export const Div = styled.div`
@@ -97,4 +129,28 @@ export const StyleButton = styled.button`
 export const MoveToPageImg = styled(IoIosArrowForward)`
   cursor: pointer;
   margin-left: 150px;
+`;
+
+export const ContentsWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonWrapperDiv = styled.div`
+  margin-top: 100px;
+`;
+
+export const ContentsBoxDIv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NicknameInput = styled.input`
+  border: 1px solid black;
+`;
+
+export const NameBoxDiv = styled.div`
+  margin-top: 20px;
 `;

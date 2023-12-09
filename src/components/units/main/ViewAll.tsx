@@ -4,11 +4,15 @@ import useCalendar from 'src/components/commons/hooks/useCalender';
 import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
 import ViewAllInfinite from './ViewAllInfinite';
+import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
+import { useNavigate } from 'react-router-dom';
 // import InfiniteScroll from 'react-infinite-scroller';
 
 const ViewAll = () => {
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
     useCalendar();
+
+  const navigate = useNavigate();
 
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
@@ -30,29 +34,63 @@ const ViewAll = () => {
     // setMonth((prev) => prev + 1);
   };
 
-  // const {data,fetchMore}=useQuery<Pick<IQuery,'dummyData'>IQueryFetchBoardArgs>(FETCH_BOARDS)
+  const onClickChangeToggleHandler = () => {
+    setIsToggle((prev) => !prev);
+  };
+  const profileImg = localStorage.getItem('image');
+  const [isActiveModal, setIsActiveModal] = useState(false);
+  const [isToggle, setIsToggle] = useState(false);
 
-  // const onLoadMoreNextHandler = async () => {
-  //   if (dummyData === undefined) return;
-  //   await fetchMore({
-  //     variables: { page: Math.ceil(dummyData?.length / 10) + 1 },
-  //     updateQuery: (prev, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult.dummyData) {
-  //         return {
-  //           dummyData: [...prev.dummyData],
-  //         };
-  //       }
-  //       return {
-  //         dummyData: [...prev.dummyData, ...fetchMoreResult.dummyData],
-  //       };
-  //     },
-  //   });
-  // };
+  const onClickMyProfile = () => {
+    setIsActiveModal((prev) => !prev);
+  };
+  const onClickListBtn = () => {
+    navigate('/main');
+  };
 
   return (
     <>
       <div>
         <S.CalendarContainerDiv>
+          <S.LogoImg></S.LogoImg>
+          {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
+          <S.CalenderHeaderDiv>
+            <S.HeaderLeftWrapperDiv>
+              <S.DateBoxDiv>
+                <S.YearTextSpan>{year}</S.YearTextSpan>
+                <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+              </S.DateBoxDiv>
+              <S.PrevMonth size={20} onClick={handlePrevMonth} />
+              <S.NextMonth size={20} onClick={handleNextMonth} />
+            </S.HeaderLeftWrapperDiv>
+            <S.RightProfile>
+              <S.ButtonWrapperDiv
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <S.Calendar size={40} onClick={onClickListBtn}>
+                  달력 보기
+                </S.Calendar>
+                {!profileImg && (
+                  <S.AvatarSizeImg
+                    onClick={onClickMyProfile}
+                    src='/avatar.png'
+                    alt='기본'
+                  />
+                )}
+                {profileImg && (
+                  <S.AvatarSizeImg
+                    onClick={onClickMyProfile}
+                    src={profileImg}
+                    alt='기본'
+                  />
+                )}
+              </S.ButtonWrapperDiv>
+            </S.RightProfile>
+          </S.CalenderHeaderDiv>
           <S.ViewAllWrapperDiv>
             {/* <InfiniteScroll
               pageStart={0}
