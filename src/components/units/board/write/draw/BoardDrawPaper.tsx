@@ -91,6 +91,23 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     setThickness(6);
   };
 
+  //지우개 굵기 관리
+  const onCLickEraserThicknessBoldHaneler = () => {
+    setThickness(50);
+  };
+  const onCLickThicknessBoldMediumHaneler = () => {
+    setThickness(40);
+  };
+  const onClickEraserThicknessMediumHandler = () => {
+    setThickness(30);
+  };
+  const onClickThicknessMediumThinHandler = () => {
+    setThickness(20);
+  };
+  const oonClickEraserThicknessThinHandler = () => {
+    setThickness(10);
+  };
+
   //drawLine(originPosition,newPosition) : 선을 그음
   const drawLine = (
     originalMousePosition: ICoordinate,
@@ -208,11 +225,33 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
 
   const onClickPenToggleHandler = () => {
     setPen(!pen);
+    setEraser(false);
   };
 
   const onClickEraserToggleHandler = () => {
-    setPen(!eraser);
+    setEraser(!eraser);
     setColor('white');
+    setPen(false);
+  };
+
+  const onClickSaveToggleHandler = () => {
+    //다운로드 링크
+    const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
+    if (image) {
+      const byteCharacters = atob(image);
+
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const u8arr = new Uint8Array(byteNumbers);
+      const file = new Blob([u8arr], { type: 'image/png' });
+
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(file);
+      downloadLink.download = 'drawing.png';
+      downloadLink.click();
+    }
   };
 
   const onClickInitToggleHandler = () => {
@@ -265,6 +304,7 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
       console.log('imageUrl', imageUrl);
 
       const formData = new FormData();
+      console.log('file', file);
       formData.append('picture', file);
       // formData.append('EmotionStatus',  Number(localStorage.getItem('countAverage')));
       // formData.append('content',  localStorage.getItem('contents'));
@@ -317,6 +357,9 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
           지우개
         </S.FirstToggle>
         <S.FirstToggle onClick={onClickInitToggleHandler}>초기화</S.FirstToggle>
+        <S.FirstToggle onClick={onClickSaveToggleHandler}>
+          저장하기
+        </S.FirstToggle>
       </S.ToggleBox>
       {pen && (
         <>
@@ -368,6 +411,30 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
                 onClick={onClickPinkPaletteHandler}
               ></S.Palette>
             </S.ColorPaletteFlexDiv>
+          </S.ColorSettingDiv>
+        </>
+      )}
+      {eraser && (
+        <>
+          <S.EraserArrowDiv></S.EraserArrowDiv>
+          <S.ColorSettingDiv>
+            <S.EraserThicknessDiv>
+              <S.EraserThicknessBold
+                onClick={onCLickEraserThicknessBoldHaneler}
+              ></S.EraserThicknessBold>
+              <S.ThicknessBoldMedium
+                onClick={onCLickThicknessBoldMediumHaneler}
+              ></S.ThicknessBoldMedium>
+              <S.EraserThicknessMedium
+                onClick={onClickEraserThicknessMediumHandler}
+              ></S.EraserThicknessMedium>
+              <S.ThicknessMediumThin
+                onClick={onClickThicknessMediumThinHandler}
+              ></S.ThicknessMediumThin>
+              <S.EraserThicknessThin
+                onClick={oonClickEraserThicknessThinHandler}
+              ></S.EraserThicknessThin>
+            </S.EraserThicknessDiv>
           </S.ColorSettingDiv>
         </>
       )}
