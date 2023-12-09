@@ -1,47 +1,41 @@
 import styled from 'styled-components';
-import { TbSquareRoundedNumber1 } from 'react-icons/tb';
-import { TbSquareRoundedNumber1Filled } from 'react-icons/tb';
-import { TbSquareRoundedNumber2 } from 'react-icons/tb';
-import { TbSquareRoundedNumber2Filled } from 'react-icons/tb';
-import { TbSquareRoundedNumber3 } from 'react-icons/tb';
-import { TbSquareRoundedNumber3Filled } from 'react-icons/tb';
 import { ISliderInputProps } from './BoardWriteEmotion.types';
 
-//전체 폼
 export const EmotionContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  /* overflow: hidden; */
+  height: 900px;
+  overflow: hidden;
 `;
 
 export const EmotionWrapperUPDiv = styled.div`
   width: 100%;
-  height: 164px;
+  min-height: 220px;
   background-color: #ededed;
   position: relative;
 `;
 
 export const EmotionWrapperDOWNdiv = styled.div`
   width: 100%;
-  height: auto;
+  min-height: 810px;
   background-color: white;
   border-radius: 50px 0 0 0;
   filter: drop-shadow(-2px -5px 12px rgba(0, 0, 0, 0.2));
   transform: translateY(-30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
   width: 100%;
-
   height: 32px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
-  margin-top: 50px;
   position: absolute;
   bottom: 50px;
 `;
@@ -88,19 +82,18 @@ export const ThreeFilledSpan = styled.div`
   z-index: 10;
 `;
 
-// slider의 스타일 정의
 const colors = {
-  mainColor: 'blue', // 메인 색상
+  mainColor: 'blue',
   grey: {
-    100: 'grey', // 회색 계열 중 100
+    100: 'grey',
     300: 'lightgrey', // 회색 계열 중 300
   },
-  white: 'white', // 흰색
+  white: 'white',
 };
 
 export const ContentInputBoxDiv = styled.div`
   width: 300px;
-  height: 75px;
+  height: 80px;
   background-color: #d9d9d9;
   margin-top: 3px;
   border-radius: 0 15px 0 15px;
@@ -109,60 +102,19 @@ export const ContentInputBoxDiv = styled.div`
 
 export const ContentInputDescDiv = styled.div`
   width: 100%;
-
   text-align: right;
   font-size: 12px;
   margin: 4px 0;
+  line-height: 1.2;
 `;
 
-//   -webkit-appearance: none;
-//   appearance: none;
-//   width: 300px;
-//   height: 8px;
-//   border-radius: 4px;
-//   background: ${(props) => {
-//     const percentage = ((Number(props.value) - 1) / 4) * 100;
-//     // return `linear-gradient(to right, ${colors.mainColor} 0%, ${colors.mainColor} ${percentage}%, ${colors.grey[100]} ${percentage}%, ${colors.grey[100]} 100%)`;
-
-//     return `linear-gradient(to right, red 0%, red ${props.inputNumber}%, blue ${props.inputNumber}%, blue 100%)`;
-
-//     // return `linear-gradient(to right, red 0%, ${
-//     //   props.inputNumber >= 50 ? 'blue' : 'red'
-//     // } 50%, blue 100%)`;
-//   }};
-
-//   background: gray;
-
-//   &:focus {
-//     outline: none;
-//   }
-
-//   &::-webkit-slider-thumb {
-//     -webkit-appearance: none;
-//     appearance: none;
-//     width: 28px;
-//     height: 28px;
-//     background-color: ${colors.white};
-//     border: 1px solid ${colors.grey[300]};
-//     border-radius: 50%;
-//     cursor: pointer;
-//   }
-
-//   &::-moz-range-thumb {
-//     width: 28px;
-//     height: 28px;
-//     background-color: ${colors.white};
-//     border: 1px solid ${colors.grey[300]};
-//     border-radius: 50%;
-//     cursor: pointer;
-//   }
-// `;
 export const SliderInput = styled.input<ISliderInputProps>`
   -webkit-appearance: none;
-  appearance: none;
-  width: 300px;
-  height: 8px;
+  /* appearance: none; */
+  width: 280px;
+  height: 6px;
   border-radius: 14px;
+  transform: translateX(3px);
   background: ${(props) => {
     const percentage =
       ((props.value - props.min) / (props.max - props.min)) * 100;
@@ -176,8 +128,8 @@ export const SliderInput = styled.input<ISliderInputProps>`
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     background-color: ${colors.white};
     border: 1px solid ${colors.grey[300]};
     border-radius: 50%;
@@ -194,8 +146,14 @@ export const SliderInput = styled.input<ISliderInputProps>`
   }
 `;
 
+export const LabelsDiv = styled.div`
+  width: 90%;
+  margin: 0 auto;
+`;
+
 // 각 label의 컨테이너 스타일 정의
 export const Labels = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
 `;
@@ -210,18 +168,12 @@ export const Label = styled.span`
   margin-top: 6px;
 `;
 
-export const LabelsDiv = styled.div`
-  width: 300px;
-`;
-
 export const SliderBoxDiv = styled.div`
-  width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
 `;
 
 export const ContainerDiv = styled.div`
@@ -236,22 +188,23 @@ export const ButtonWrapperDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 498px;
-  margin-top: 50px;
+  width: 500px;
 `;
 export const CountBoxDiv = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
-  margin-left: 50px;
+  width: 80px;
+  height: 30px;
+  background-color: #d9d9d9;
+  border-radius: 10px 0 10px 0;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
-export const CountP = styled.p`
-  text-align: center;
-`;
+export const CountP = styled.p``;
 export const ContentsBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
-  height: 150px;
+  height: 130px;
   justify-content: center;
   align-items: center;
 `;
@@ -270,12 +223,25 @@ export const ButtonBoxDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 50px;
 `;
 
-export const NextButton = styled.button`
-  width: 100px;
+export const PrevButton = styled.button`
+  width: 30%;
   height: 50px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
+
+export const NextButton = styled.button`
+  width: 60%;
+  height: 50px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 `;

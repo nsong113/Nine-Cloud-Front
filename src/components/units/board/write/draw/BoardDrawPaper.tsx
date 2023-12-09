@@ -216,15 +216,15 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   };
 
   const onClickInitToggleHandler = () => {
-    setPen(!init);
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    }
     saveImg();
+    // setPen(!init);
+    // const canvas = canvasRef.current;
+    // if (canvas) {
+    //   const ctx = canvas.getContext('2d');
+    //   if (ctx) {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //   }
+    // }
   };
 
   ////데이터 post
@@ -237,6 +237,7 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   const saveImg = () => {
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
 
+    // console.log('image', image);
     // const imageArray = [];
     if (image) {
       // const toBinaryIMG = Buffer.from(image, 'base64').toString('binary');
@@ -244,18 +245,31 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
       //   imageArray.push(toBinaryIMG.charCodeAt(i));
       // }
       const byteCharacters = atob(image);
+      // console.log('byteCharacters', byteCharacters);
+
       const byteNumbers = new Array(byteCharacters.length);
       for (let i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
+
+      // console.log('byteNumbers', byteNumbers);
+
       const u8arr = new Uint8Array(byteNumbers);
+
+      // console.log('u8arr', u8arr);
+
       const file = new Blob([u8arr], { type: 'image/png' });
 
-      console.log('file', file);
+      const imageUrl = URL.createObjectURL(file);
+
+      console.log('imageUrl', imageUrl);
 
       const formData = new FormData();
       formData.append('picture', file);
-      // localStorage.setItem('formData', formData);
+      // formData.append('EmotionStatus',  Number(localStorage.getItem('countAverage')));
+      // formData.append('content',  localStorage.getItem('contents'));
+
+      console.log('formData', formData);
 
       const postDiaryItem: IpostDiaryItem = {
         EmotionStatus: Number(localStorage.getItem('countAverage')),
@@ -263,11 +277,18 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
         image: formData,
       };
 
+      //블롭데이터를 어떻ㅇ게 전송할지/ 보여줄지
       postDiaryMutation.mutate(postDiaryItem);
+
+      //다운로드 링크
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(file);
+      downloadLink.download = 'drawing.png';
+      downloadLink.click();
 
       // postDiary 함수 호출
     } else {
-      console.log('이미지 불러오기 싪패');
+      console.log('이미지 불러오기 실패');
     }
 
     // $.ajax({
