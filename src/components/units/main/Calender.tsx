@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
 import ViewAll from './ViewAll';
 import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
+import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 
 const Calender = () => {
   const navigate = useNavigate();
@@ -188,23 +189,25 @@ const Calender = () => {
                 alignItems: 'center',
               }}
             >
-              <S.List size={40} onClick={onClickListBtn}>
-                캘린더 보기
-              </S.List>
-              {!profileImg && (
-                <S.AvatarSizeImg
-                  onClick={onClickMyProfile}
-                  src='/avatar.png'
-                  alt='기본'
-                />
-              )}
-              {profileImg && (
-                <S.AvatarSizeImg
-                  onClick={onClickMyProfile}
-                  src={profileImg}
-                  alt='기본'
-                />
-              )}
+              <Tooltip message='리스트'>
+                <S.List size={40} onClick={onClickListBtn} />
+              </Tooltip>
+              <Tooltip message='마이페이지'>
+                {!profileImg && (
+                  <S.AvatarSizeImg
+                    onClick={onClickMyProfile}
+                    src='/avatar.png'
+                    alt='기본'
+                  />
+                )}
+                {profileImg && (
+                  <S.AvatarSizeImg
+                    onClick={onClickMyProfile}
+                    src={profileImg}
+                    alt='기본'
+                  />
+                )}
+              </Tooltip>
             </S.ButtonWrapperDiv>
           </S.RightProfile>
         </S.CalenderHeaderDiv>

@@ -7,11 +7,7 @@ import Calender from './Calender';
 import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 
 const Main = () => {
-  const [toggle, setToggle] = useState(true);
 
-  const onClickChangeToggleHandler = () => {
-    setToggle(!toggle);
-  };
 
   return <Calender />;
 };

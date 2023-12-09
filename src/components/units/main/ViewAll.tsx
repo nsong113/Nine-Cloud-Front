@@ -6,6 +6,7 @@ import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
 import ViewAllInfinite from './ViewAllInfinite';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import { useNavigate } from 'react-router-dom';
+import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 // import InfiniteScroll from 'react-infinite-scroller';
 
 const ViewAll = () => {
@@ -71,23 +72,25 @@ const ViewAll = () => {
                   alignItems: 'center',
                 }}
               >
-                <S.Calendar size={40} onClick={onClickListBtn}>
-                  달력 보기
-                </S.Calendar>
-                {!profileImg && (
-                  <S.AvatarSizeImg
-                    onClick={onClickMyProfile}
-                    src='/avatar.png'
-                    alt='기본'
-                  />
-                )}
-                {profileImg && (
-                  <S.AvatarSizeImg
-                    onClick={onClickMyProfile}
-                    src={profileImg}
-                    alt='기본'
-                  />
-                )}
+                <Tooltip message='달력'>
+                  <S.Calendar size={40} onClick={onClickListBtn} />
+                </Tooltip>
+                <Tooltip message='마이페이지'>
+                  {!profileImg && (
+                    <S.AvatarSizeImg
+                      onClick={onClickMyProfile}
+                      src='/avatar.png'
+                      alt='기본'
+                    />
+                  )}
+                  {profileImg && (
+                    <S.AvatarSizeImg
+                      onClick={onClickMyProfile}
+                      src={profileImg}
+                      alt='기본'
+                    />
+                  )}
+                </Tooltip>
               </S.ButtonWrapperDiv>
             </S.RightProfile>
           </S.CalenderHeaderDiv>

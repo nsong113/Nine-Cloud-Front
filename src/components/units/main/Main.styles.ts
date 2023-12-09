@@ -171,6 +171,7 @@ export const MonthTextSpan = styled.span`
 export const AvatarSizeImg = styled.img`
   width: 40px;
   height: 40px;
+  cursor: pointer;
 `;
 
 export const ProfileToggleBoxDiv = styled.div`
