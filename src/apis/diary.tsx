@@ -5,15 +5,17 @@ import { IpostDiaryItem } from './apiesType';
 
 // create (post)
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
-  const accessToken = localStorage.getItem('token');
+  const accessToken = localStorage.getItem('Token');
+  console.log(accessToken);
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
       postDiaryItem,
       {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          // 'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
+          Authorization: `${accessToken}`,
         },
       }
     );
@@ -25,9 +27,16 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
 
 //read
 const getDiary = async () => {
+  const accessToken = localStorage.getItem('Token');
   try {
     const res = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/diary/calandar`
+      `${process.env.REACT_APP_SERVER_URL}/diary/calandar`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${accessToken}`,
+        },
+      }
     );
     console.log(res.data);
     return res.data;

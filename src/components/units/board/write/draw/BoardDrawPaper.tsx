@@ -91,6 +91,23 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     setThickness(6);
   };
 
+  //지우개 굵기 관리
+  const onCLickEraserThicknessBoldHaneler = () => {
+    setThickness(50);
+  };
+  const onCLickThicknessBoldMediumHaneler = () => {
+    setThickness(40);
+  };
+  const onClickEraserThicknessMediumHandler = () => {
+    setThickness(30);
+  };
+  const onClickThicknessMediumThinHandler = () => {
+    setThickness(20);
+  };
+  const oonClickEraserThicknessThinHandler = () => {
+    setThickness(10);
+  };
+
   //drawLine(originPosition,newPosition) : 선을 그음
   const drawLine = (
     originalMousePosition: ICoordinate,
@@ -208,23 +225,45 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
 
   const onClickPenToggleHandler = () => {
     setPen(!pen);
+    setEraser(false);
   };
 
   const onClickEraserToggleHandler = () => {
-    setPen(!eraser);
+    setEraser(!eraser);
     setColor('white');
+    setPen(false);
+  };
+
+  const onClickSaveToggleHandler = () => {
+    //다운로드 링크
+    const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
+    if (image) {
+      const byteCharacters = atob(image);
+
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const u8arr = new Uint8Array(byteNumbers);
+      const file = new Blob([u8arr], { type: 'image/png' });
+
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(file);
+      downloadLink.download = 'drawing.png';
+      downloadLink.click();
+    }
   };
 
   const onClickInitToggleHandler = () => {
-    setPen(!init);
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    }
     saveImg();
+    // setPen(!init);
+    // const canvas = canvasRef.current;
+    // if (canvas) {
+    //   const ctx = canvas.getContext('2d');
+    //   if (ctx) {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //   }
+    // }
   };
 
   ////데이터 post
@@ -237,6 +276,7 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   const saveImg = () => {
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
 
+    // console.log('image', image);
     // const imageArray = [];
     if (image) {
       // const toBinaryIMG = Buffer.from(image, 'base64').toString('binary');
@@ -244,18 +284,32 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
       //   imageArray.push(toBinaryIMG.charCodeAt(i));
       // }
       const byteCharacters = atob(image);
+      // console.log('byteCharacters', byteCharacters);
+
       const byteNumbers = new Array(byteCharacters.length);
       for (let i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
+
+      // console.log('byteNumbers', byteNumbers);
+
       const u8arr = new Uint8Array(byteNumbers);
+
+      // console.log('u8arr', u8arr);
+
       const file = new Blob([u8arr], { type: 'image/png' });
 
-      console.log('file', file);
+      const imageUrl = URL.createObjectURL(file);
+
+      console.log('imageUrl', imageUrl);
 
       const formData = new FormData();
+      console.log('file', file);
       formData.append('picture', file);
-      // localStorage.setItem('formData', formData);
+      // formData.append('EmotionStatus',  Number(localStorage.getItem('countAverage')));
+      // formData.append('content',  localStorage.getItem('contents'));
+
+      console.log('formData', formData);
 
       const postDiaryItem: IpostDiaryItem = {
         EmotionStatus: Number(localStorage.getItem('countAverage')),
@@ -263,11 +317,18 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
         image: formData,
       };
 
+      //블롭데이터를 어떻ㅇ게 전송할지/ 보여줄지
       postDiaryMutation.mutate(postDiaryItem);
+
+      //다운로드 링크
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(file);
+      downloadLink.download = 'drawing.png';
+      downloadLink.click();
 
       // postDiary 함수 호출
     } else {
-      console.log('이미지 불러오기 싪패');
+      console.log('이미지 불러오기 실패');
     }
 
     // $.ajax({
@@ -296,6 +357,9 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
           지우개
         </S.FirstToggle>
         <S.FirstToggle onClick={onClickInitToggleHandler}>초기화</S.FirstToggle>
+        <S.FirstToggle onClick={onClickSaveToggleHandler}>
+          저장하기
+        </S.FirstToggle>
       </S.ToggleBox>
       {pen && (
         <>
@@ -347,6 +411,30 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
                 onClick={onClickPinkPaletteHandler}
               ></S.Palette>
             </S.ColorPaletteFlexDiv>
+          </S.ColorSettingDiv>
+        </>
+      )}
+      {eraser && (
+        <>
+          <S.EraserArrowDiv></S.EraserArrowDiv>
+          <S.ColorSettingDiv>
+            <S.EraserThicknessDiv>
+              <S.EraserThicknessBold
+                onClick={onCLickEraserThicknessBoldHaneler}
+              ></S.EraserThicknessBold>
+              <S.ThicknessBoldMedium
+                onClick={onCLickThicknessBoldMediumHaneler}
+              ></S.ThicknessBoldMedium>
+              <S.EraserThicknessMedium
+                onClick={onClickEraserThicknessMediumHandler}
+              ></S.EraserThicknessMedium>
+              <S.ThicknessMediumThin
+                onClick={onClickThicknessMediumThinHandler}
+              ></S.ThicknessMediumThin>
+              <S.EraserThicknessThin
+                onClick={oonClickEraserThicknessThinHandler}
+              ></S.EraserThicknessThin>
+            </S.EraserThicknessDiv>
           </S.ColorSettingDiv>
         </>
       )}

@@ -1,4 +1,4 @@
 export interface IConfirm {
-  onClickMoveToMain: () => void;
+  onClickMoveToCancel: () => void;
   onClickSubmitBtn: () => void;
 }

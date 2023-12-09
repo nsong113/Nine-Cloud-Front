@@ -6,20 +6,22 @@ export const DiaryContainerDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  height: 900px;
+  overflow: hidden;
 `;
 
 export const DiaryWrapperUPDiv = styled.div`
   width: 100%;
-  height: 164px;
+  min-height: 220px;
   background-color: #ededed;
   position: relative;
 `;
 
 export const DiaryWrapperDOWNdiv = styled.div`
   width: 100%;
-  height: auto;
+  min-height: 810px;
   background-color: white;
-  border-radius: 0 50px 0 0;
+  border-radius: 0 0 0 0;
   filter: drop-shadow(-2px -5px 12px rgba(0, 0, 0, 0.2));
   transform: translateY(-30px);
 `;
@@ -53,6 +55,13 @@ export const HeaderFlexBox = styled.div`
   position: absolute;
 `;
 
+export const DoneCheckBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-10px);
+`;
+
 export const OneBlackSpan = styled.div`
   width: 18px;
   height: 18px;
@@ -63,7 +72,7 @@ export const OneBlackSpan = styled.div`
 export const TwoBlankSpan = styled.div`
   width: 18px;
   height: 18px;
-  background-color: #909090;
+  background-color: #d9d9d9;
   border-radius: 50%;
 `;
 
@@ -102,38 +111,41 @@ export const DiaryToggleTitleDiv = styled.div`
 
 export const CustomToggle = styled(Toggle)`
   .react-toggle-track {
+    //배경색 - 체크여부 확인하고 초기값은 gray
     background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
-    background-color: gray;
-    width: 182px;
-    height: 50px;
-    transform: translateY(-3px);
-  }
-
-  .react-toggle-thumb {
-    background-color: blue;
     width: 100px;
-    height: 40px;
-    border-radius: 20px;
-    transform: translateX(10px);
+    height: 30px;
+    /* transform: translateY(-3px); */
   }
 
+  //thumb의 스타일 지정
+  .react-toggle-thumb {
+    background-color: purple;
+    width: 55px;
+    height: 20px;
+    border-radius: 10px;
+    transform: translate(10px, 4px);
+  }
+
+  //토글이 켜진 상태
   &.react-toggle--checked {
     .react-toggle-track {
       background-color: yellow;
     }
     .react-toggle-thumb {
       background-color: red;
-      transform: translateX(45px);
+      /* transform: translateX(45px); */
     }
   }
 
   &:hover {
     .react-toggle-track {
-      background-color: ${(props) => (props.checked ? 'red' : 'gray')};
+      background-color: ${(props) =>
+        props.checked ? 'red' : 'gray'} !important;
     }
 
     .react-toggle-thumb {
-      background-color: ${(props) => (props.checked ? 'red' : 'gray')};
+      background-color: pink;
     }
   }
 `;
@@ -147,9 +159,9 @@ export const FooterButtonBoxDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 export const ContentsWrapperDiv = styled.div`
@@ -193,14 +205,21 @@ export const PlusDiaryButton = styled.button`
 `;
 
 export const PrevButton = styled.button`
+  width: 30%;
   height: 50px;
-  width: 100px;
-  margin-right: 50px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 `;
 
-export const SubmitButton = styled.button`
+export const NextButton = styled.button`
+  width: 60%;
   height: 50px;
-  width: 100px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
 `;
 
 export const InputBoxDiv = styled.div`
@@ -213,8 +232,8 @@ export const InputBoxDiv = styled.div`
 `;
 
 export const ContentsTextarea = styled.textarea`
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   outline: none;
   -webkit-appearance: none;
@@ -226,19 +245,17 @@ export const ContentsTextarea = styled.textarea`
   &&focus {
     outline: none;
   }
-  padding: 10px;
+  padding: 20px;
 `;
 
 export const InputDiv = styled.div`
   width: 100%;
   height: 350px;
-  /* border: 1px soInputDivlid black; */
 `;
 
 export const InputFooterBoxDiv = styled.div`
   width: 300px;
   height: 30px;
-  /* border-top: 1px solid black; */
   display: flex;
   justify-content: end;
 `;
