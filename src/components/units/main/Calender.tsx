@@ -80,10 +80,10 @@ const Calender = () => {
   console.log('filteredDayList', filteredDayList);
 
   const emotionImages: { [key: string]: string | undefined } = {
-    1: '/happy.png',
-    2: '/angry.png',
-    3: '/gloomy.png',
-    4: '/sad.png',
+    1: '/blue.png',
+    2: '/Pink.png',
+    3: '/Purple.png',
+    4: '/Lemon.png',
   };
 
   const happyCount = dayList.filter(
@@ -101,7 +101,7 @@ const Calender = () => {
 
   //감정 상태에 따라 다른 아이콘을 반환하기
   const getEmotion = (emotionStatus: any) => {
-    return emotionImages[emotionStatus] || '/silence.png';
+    return emotionImages[emotionStatus] || '/blank.png';
   };
 
   const getEmotionStatusForDate = (date: string) => {
@@ -251,7 +251,6 @@ const Calender = () => {
                   const isToday =
                     cellDate === new Date().getDate() &&
                     currentMonth.getMonth() === new Date().getMonth();
-
                   return (
                     <S.TableCell
                       key={dayIndex}
@@ -260,49 +259,31 @@ const Calender = () => {
                         border: isToday
                           ? '5px solid #4CAF50'
                           : '1px solid #ddd',
-                        backgroundColor: getBorderColor(emotionStatus),
                       }}
                     >
                       {day !== 0 ? (
                         <div
                           style={{ display: 'flex', flexDirection: 'column' }}
                         >
-                          {month === 12 ? (
-                            <>
-                              <span
-                                style={{
-                                  color: isToday ? '#4CAF50' : 'inherit',
-                                }}
-                              >
-                                {cellDate}
-                              </span>
+                          <S.DateWrapperDiv>
+                            <S.DateSpan
+                              style={{
+                                color: isToday ? 'black' : 'inherit',
+                                backgroundColor: isToday
+                                  ? '#FF4BB7'
+                                  : '#D9D9D9',
+                              }}
+                            >
+                              {cellDate}
+                            </S.DateSpan>
+                            {cellDate <= newDate.getDate() && (
                               <img
                                 src={getEmotion(emotionStatus)}
                                 alt={`Emotion ${emotionStatus}`}
-                                style={{ width: '30px' }}
+                                style={{ width: '46px', height: '46px' }}
                               />
-                            </>
-                          ) : (
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                              }}
-                            >
-                              <span
-                                style={{
-                                  color: isToday ? '#4CAF50' : 'inherit',
-                                }}
-                              >
-                                {cellDate}
-                              </span>
-                              <img
-                                src='/silence.png'
-                                alt={`Emotion ${emotionStatus}`}
-                                style={{ width: '30px' }}
-                              />
-                            </div>
-                          )}
+                            )}
+                          </S.DateWrapperDiv>
                         </div>
                       ) : (
                         ''
@@ -318,25 +299,25 @@ const Calender = () => {
           <S.ImageBoxDiv>
             <S.ExpressionImage
               onClick={onClickHappyImg}
-              src='/happy.png'
+              src='/blue.png'
               alt='해피'
             />
             <S.CountSpan>{happyCount}</S.CountSpan>
             <S.ExpressionImage
               onClick={onClickAngryImg}
-              src='/angry.png'
+              src='/Pink.png'
               alt='화남'
             />
             <S.CountSpan>{angryCount}</S.CountSpan>
             <S.ExpressionImage
               onClick={onClickGloomyImg}
-              src='/gloomy.png'
+              src='/Purple.png'
               alt='우울'
             />
             <S.CountSpan>{gloomyCount}</S.CountSpan>
             <S.ExpressionImage
               onClick={onClickSadImg}
-              src='/sad.png'
+              src='/Lemon.png'
               alt='슬픔'
             />
             <S.CountSpan>{sadCount}</S.CountSpan>

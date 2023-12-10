@@ -44,8 +44,22 @@ const useCalendar = () => {
   const currentDayList = Array.from({ length: totalMonthDays }).map(
     (_, i) => i + 1
   );
+
+  // 해당 월의 마지막 날을 계산합니다
+  const lastDayOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  );
+
+  const lastDayOfWeek = lastDayOfMonth.getDay();
+
+  // 토요일까지의 남은 날짜 수를 계산합니다
+  const remainingDaysInWeek = DAY_OF_WEEK - lastDayOfWeek - 1;
+
+  // nextDayList를 현재 월의 나머지 날짜로 채웁니다
   const nextDayList = Array.from({
-    length: CALENDER_LENGTH - currentDayList.length - prevDayList.length,
+    length: remainingDaysInWeek,
   }).fill(0);
 
   //concat은 배열을 합치는 용도.

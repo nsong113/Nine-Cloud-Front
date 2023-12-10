@@ -81,9 +81,11 @@ export const TableHead = styled.thead`
 `;
 
 export const TableBody = styled.tbody`
+  width: 403px;
   height: 100px;
-  border-radius: 20px;
-  border: 1px black;
+  border-radius: 20px 0 0 0;
+  background: #f5f5f5;
+  overflow: hidden; // 추가된 부분
 `;
 
 export const TableRow = styled.tr`
@@ -95,13 +97,14 @@ export const DayRoow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  padding: 10px;
-  border: 1px solid #ddd;
-
+  width: 56px;
+  height: 103px;
+  border: 0.5px solid #ddd;
   cursor: pointer;
   &:hover {
     background-color: gray;
   }
+  border-radius: 10px;
 `;
 
 export const ThCell = styled.th`
@@ -133,9 +136,13 @@ export const CountBoxDiv = styled.div`
   margin-left: 20px;
 `;
 export const CountSpan = styled.span`
-  font-size: 20px;
+  color: #000;
+  text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
   line-height: 70px;
-  margin-right: 20px;
+  margin-right: 15px;
 `;
 
 export const DateBoxDiv = styled.div`
@@ -285,4 +292,17 @@ export const NextMonth = styled(IoIosArrowDropright)`
 export const YearWrapperDIv = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const DateWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DateSpan = styled.span`
+  border-radius: 50px;
+  width: 20px;
+  margin: 10px 0px;
 `;
