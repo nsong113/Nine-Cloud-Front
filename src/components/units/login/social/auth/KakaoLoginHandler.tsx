@@ -3,19 +3,16 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const KakaoLoginHandler = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // try {
   //   const response = await axios.get(
-  //     `http://43.201.51.203:3000/auth/kakao/callback/as`,
+  //     `http://43.201.51.203:3000/auth/kakao/callback?code=${code}`,
   //     {
   //       headers: {
   //         'Content-Type': 'application/json',
   //       },
   //     }
   //   );
-  //   // const token =
-  //   //   response.headers['authorization'] || response.headers['Authorization'];
-
   //   console.log(response);
   //   console.log(response.data);
   //   console.log('나와봐');
@@ -26,7 +23,7 @@ const KakaoLoginHandler = () => {
   //   console.error('로그인 실패', error);
   //   alert('로그인 실패');
   // }
-  console.log('안녕');
+  // console.log('안녕');
   return <div>로그인 중입니다.</div>;
 };
 
