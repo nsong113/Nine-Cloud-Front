@@ -1,321 +1,321 @@
-import React, {
-  ChangeEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { ICanvasProps, ICoordinate } from './BoardWriteDraw.types';
-import * as S from './BoardWriteDraw.styles';
-import { IpostDiaryItem } from 'src/apis/apiesType';
-import { useMutation } from 'react-query';
-import { getDiary, postDiary } from 'src/apis/diary';
-import useSetColor from 'src/components/commons/hooks/useSetColor';
-import useThickness from 'src/components/commons/hooks/useThickness';
-import usePen from 'src/components/commons/hooks/usePen';
-import StaticDrawing from '../../../../commons/hooks/useStaticDrawing';
+// import React, {
+//   ChangeEventHandler,
+//   useCallback,
+//   useEffect,
+//   useRef,
+//   useState,
+// } from 'react';
+// import { ICanvasProps, ICoordinate } from './BoardWriteDraw.types';
+// import * as S from './BoardWriteDraw.styles';
+// import { IpostDiaryItem } from 'src/apis/apiesType';
+// import { useMutation } from 'react-query';
+// import { getDiary, postDiary } from 'src/apis/diary';
+// import useSetColor from 'src/components/commons/hooks/useSetColor';
+// import useThickness from 'src/components/commons/hooks/useThickness';
+// import usePen from 'src/components/commons/hooks/usePen';
+// import StaticDrawing from '../../../../commons/hooks/useStaticDrawing';
 
-const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const colorPickerRef = useRef<HTMLInputElement>(null);
-  const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
-    undefined
-  );
+// const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
+//   const canvasRef = useRef<HTMLCanvasElement>(null);
+//   const colorPickerRef = useRef<HTMLInputElement>(null);
+//   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
+//     undefined
+//   );
 
-  const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
-    if (!canvasRef.current) {
-      return;
-    }
-    const canvas: HTMLCanvasElement = canvasRef.current;
-    return {
-      x: event.offsetX,
-      y: event.offsetY,
-    };
-  };
+//   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
+//     if (!canvasRef.current) {
+//       return;
+//     }
+//     const canvas: HTMLCanvasElement = canvasRef.current;
+//     return {
+//       x: event.offsetX,
+//       y: event.offsetY,
+//     };
+//   };
 
-  const {
-    color,
-    setColor,
-    colorHandlerBlack,
-    colorHandlerRed,
-    colorHandlerBlue,
-    colorHandlerGreen,
-    colorHandlerOrange,
-    colorHandlerYellow,
-    colorHandlerPurple,
-    colorHandlerPink,
-    colorHandlerWhite,
-  } = useSetColor();
+//   const {
+//     color,
+//     setColor,
+//     colorHandlerBlack,
+//     colorHandlerRed,
+//     colorHandlerBlue,
+//     colorHandlerGreen,
+//     colorHandlerOrange,
+//     colorHandlerYellow,
+//     colorHandlerPurple,
+//     colorHandlerPink,
+//     colorHandlerWhite,
+//   } = useSetColor();
 
-  const {
-    thickness,
-    EraserBoldHaneler,
-    EraserBoldMediumHandler,
-    EraserMediumHandler,
-    EraserMediumThinHandler,
-    EraserThinHandler,
-  } = useThickness();
+//   const {
+//     thickness,
+//     EraserBoldHaneler,
+//     EraserBoldMediumHandler,
+//     EraserMediumHandler,
+//     EraserMediumThinHandler,
+//     EraserThinHandler,
+//   } = useThickness();
 
-  const { startPaint, paint, exitPaint, isPainting } = usePen(
-    canvasRef,
-    getCoordinates,
-    color,
-    thickness,
-    mousePosition,
-    setMousePosition
-  );
+//   const { startPaint, paint, exitPaint, isPainting } = usePen(
+//     canvasRef,
+//     getCoordinates,
+//     color,
+//     thickness,
+//     mousePosition,
+//     setMousePosition
+//   );
 
-  const [pen, setPen] = useState(true);
-  const [thicknessToggle, setThicknessToggle] = useState(false);
-  const [init, setInit] = useState(false);
+//   const [pen, setPen] = useState(true);
+//   const [thicknessToggle, setThicknessToggle] = useState(false);
+//   const [init, setInit] = useState(false);
 
-  const onClickPenToggleHandler = () => {
-    setPen(!pen);
-    setThicknessToggle(false);
-  };
+//   const onClickPenToggleHandler = () => {
+//     setPen(!pen);
+//     setThicknessToggle(false);
+//   };
 
-  const onClickEraserToggleHandler = () => {
-    colorHandlerWhite();
-  };
+//   const onClickEraserToggleHandler = () => {
+//     colorHandlerWhite();
+//   };
 
-  const onClickThicknessToggleHandler = () => {
-    setThicknessToggle(!thicknessToggle);
-    console.log(thicknessToggle);
-    setPen(false);
-  };
+//   const onClickThicknessToggleHandler = () => {
+//     setThicknessToggle(!thicknessToggle);
+//     console.log(thicknessToggle);
+//     setPen(false);
+//   };
 
-  const [colorPickerValue, setColorPickerValue] = useState<string>();
+//   const [colorPickerValue, setColorPickerValue] = useState<string>();
 
-  useEffect(() => {
-    setColorPickerValue(color);
-  }, [
-    colorHandlerBlack,
-    colorHandlerRed,
-    colorHandlerOrange,
-    colorHandlerYellow,
-    colorHandlerGreen,
-    colorHandlerBlue,
-    colorHandlerPurple,
-    colorHandlerPink,
-  ]);
+//   useEffect(() => {
+//     setColorPickerValue(color);
+//   }, [
+//     colorHandlerBlack,
+//     colorHandlerRed,
+//     colorHandlerOrange,
+//     colorHandlerYellow,
+//     colorHandlerGreen,
+//     colorHandlerBlue,
+//     colorHandlerPurple,
+//     colorHandlerPink,
+//   ]);
 
-  const onChangePickColorHandler: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    const colorPicker = colorPickerRef.current;
-    if (colorPicker) {
-      setColor(event.target.value);
-      setColorPickerValue(event.target.value);
-    }
-  };
-  // useEffect(() => {
-  //   if (!canvasRef.current) {
-  //     return;
-  //   }
-  //   const canvas: HTMLCanvasElement = canvasRef.current;
+//   const onChangePickColorHandler: ChangeEventHandler<HTMLInputElement> = (
+//     event
+//   ) => {
+//     const colorPicker = colorPickerRef.current;
+//     if (colorPicker) {
+//       setColor(event.target.value);
+//       setColorPickerValue(event.target.value);
+//     }
+//   };
+//   // useEffect(() => {
+//   //   if (!canvasRef.current) {
+//   //     return;
+//   //   }
+//   //   const canvas: HTMLCanvasElement = canvasRef.current;
 
-  //   canvas.addEventListener('mousedown', startStaticPaint);
-  //   canvas.addEventListener('mousemove', StaticPaint);
-  //   canvas.addEventListener('mouseup', exitStaticPaint);
-  //   canvas.addEventListener('mouseleave', exitStaticPaint);
+//   //   canvas.addEventListener('mousedown', startStaticPaint);
+//   //   canvas.addEventListener('mousemove', StaticPaint);
+//   //   canvas.addEventListener('mouseup', exitStaticPaint);
+//   //   canvas.addEventListener('mouseleave', exitStaticPaint);
 
-  //   return () => {
-  //     // Unmount 시 이벤트 리스너 제거
-  //     canvas.removeEventListener('mousedown', startStaticPaint);
-  //     canvas.removeEventListener('mousemove', StaticPaint);
-  //     canvas.removeEventListener('mouseup', exitStaticPaint);
-  //     canvas.removeEventListener('mouseleave', exitStaticPaint);
-  //   };
-  // }, [startStaticPaint, StaticPaint, exitStaticPaint]);
+//   //   return () => {
+//   //     // Unmount 시 이벤트 리스너 제거
+//   //     canvas.removeEventListener('mousedown', startStaticPaint);
+//   //     canvas.removeEventListener('mousemove', StaticPaint);
+//   //     canvas.removeEventListener('mouseup', exitStaticPaint);
+//   //     canvas.removeEventListener('mouseleave', exitStaticPaint);
+//   //   };
+//   // }, [startStaticPaint, StaticPaint, exitStaticPaint]);
 
-  useEffect(() => {
-    if (!canvasRef.current) {
-      return;
-    }
-    const canvas: HTMLCanvasElement = canvasRef.current;
+//   useEffect(() => {
+//     if (!canvasRef.current) {
+//       return;
+//     }
+//     const canvas: HTMLCanvasElement = canvasRef.current;
 
-    canvas.addEventListener('mousedown', startPaint);
-    canvas.addEventListener('mousemove', paint);
-    canvas.addEventListener('mouseup', exitPaint);
-    canvas.addEventListener('mouseleave', exitPaint);
+//     canvas.addEventListener('mousedown', startPaint);
+//     canvas.addEventListener('mousemove', paint);
+//     canvas.addEventListener('mouseup', exitPaint);
+//     canvas.addEventListener('mouseleave', exitPaint);
 
-    return () => {
-      // Unmount 시 이벤트 리스너 제거
-      canvas.removeEventListener('mousedown', startPaint);
-      canvas.removeEventListener('mousemove', paint);
-      canvas.removeEventListener('mouseup', exitPaint);
-      canvas.removeEventListener('mouseleave', exitPaint);
-    };
-  }, [startPaint, paint, exitPaint]);
+//     return () => {
+//       // Unmount 시 이벤트 리스너 제거
+//       canvas.removeEventListener('mousedown', startPaint);
+//       canvas.removeEventListener('mousemove', paint);
+//       canvas.removeEventListener('mouseup', exitPaint);
+//       canvas.removeEventListener('mouseleave', exitPaint);
+//     };
+//   }, [startPaint, paint, exitPaint]);
 
-  const onClickSaveToggleHandler = () => {
-    //다운로드 링크
-    const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
-    if (image) {
-      const byteCharacters = atob(image);
+//   const onClickSaveToggleHandler = () => {
+//     //다운로드 링크
+//     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
+//     if (image) {
+//       const byteCharacters = atob(image);
 
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const u8arr = new Uint8Array(byteNumbers);
-      const file = new Blob([u8arr], { type: 'image/png' });
+//       const byteNumbers = new Array(byteCharacters.length);
+//       for (let i = 0; i < byteCharacters.length; i++) {
+//         byteNumbers[i] = byteCharacters.charCodeAt(i);
+//       }
+//       const u8arr = new Uint8Array(byteNumbers);
+//       const file = new Blob([u8arr], { type: 'image/png' });
 
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(file);
-      downloadLink.download = 'drawing.png';
-      downloadLink.click();
-    }
-  };
+//       const downloadLink = document.createElement('a');
+//       downloadLink.href = URL.createObjectURL(file);
+//       downloadLink.download = 'drawing.png';
+//       downloadLink.click();
+//     }
+//   };
 
-  //////////////////////////////////////////////////////////////////
+//   //////////////////////////////////////////////////////////////////
 
-  const onClickInitToggleHandler = () => {
-    saveImg();
-    // setPen(!init);
-    // const canvas = canvasRef.current;
-    // if (canvas) {
-    //   const ctx = canvas.getContext('2d');
-    //   if (ctx) {
-    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //   }
-    // }
-  };
+//   const onClickInitToggleHandler = () => {
+//     saveImg();
+//     // setPen(!init);
+//     // const canvas = canvasRef.current;
+//     // if (canvas) {
+//     //   const ctx = canvas.getContext('2d');
+//     //   if (ctx) {
+//     //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     //   }
+//     // }
+//   };
 
-  ////데이터 post
-  // postDiaryMutation 함수 정의
-  // const { data } = useQuery('getDiary', getDiary);
+//   ////데이터 post
+//   // postDiaryMutation 함수 정의
+//   // const { data } = useQuery('getDiary', getDiary);
 
-  // const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
-  //   postDiary
-  // );
+//   // const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
+//   //   postDiary
+//   // );
 
-  const saveImg = () => {
-    const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
+//   const saveImg = () => {
+//     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
 
-    if (image) {
-      const byteCharacters = atob(image);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const u8arr = new Uint8Array(byteNumbers);
-      const file = new Blob([u8arr], { type: 'image/png' });
-      const imageUrl = URL.createObjectURL(file);
+//     if (image) {
+//       const byteCharacters = atob(image);
+//       const byteNumbers = new Array(byteCharacters.length);
+//       for (let i = 0; i < byteCharacters.length; i++) {
+//         byteNumbers[i] = byteCharacters.charCodeAt(i);
+//       }
+//       const u8arr = new Uint8Array(byteNumbers);
+//       const file = new Blob([u8arr], { type: 'image/png' });
+//       const imageUrl = URL.createObjectURL(file);
 
-      console.log('imageUrl', imageUrl);
+//       console.log('imageUrl', imageUrl);
 
-      const formData = new FormData();
-      console.log('file', file);
-      formData.append('picture', file);
+//       const formData = new FormData();
+//       console.log('file', file);
+//       formData.append('picture', file);
 
-      console.log('formData', formData);
-    } else {
-      console.log('이미지 불러오기 실패');
-    }
-  };
+//       console.log('formData', formData);
+//     } else {
+//       console.log('이미지 불러오기 실패');
+//     }
+//   };
 
-  return (
-    <div>
-      <canvas
-        ref={canvasRef}
-        height={height}
-        width={width}
-        style={canvasStyle}
-      />
-      <S.ToggleBox>
-        <S.FirstToggle onClick={onClickPenToggleHandler}>펜</S.FirstToggle>
-        <S.FirstToggle onClick={onClickThicknessToggleHandler}>
-          굵기
-        </S.FirstToggle>
-        <S.FirstToggle onClick={onClickEraserToggleHandler}>
-          지우개
-        </S.FirstToggle>
-        <S.FirstToggle onClick={onClickInitToggleHandler}>초기화</S.FirstToggle>
-        <S.FirstToggle onClick={onClickSaveToggleHandler}>
-          저장하기
-        </S.FirstToggle>
-      </S.ToggleBox>
-      {pen && (
-        <>
-          <S.ArrowDiv></S.ArrowDiv>
-          <S.ColorSettingDiv>
-            <S.ColorPaletteFlexDiv>
-              <S.Palette
-                color={'black'}
-                onClick={colorHandlerBlack}
-              ></S.Palette>
-              <S.Palette
-                color={'#FF2323'}
-                onClick={colorHandlerRed}
-              ></S.Palette>
-              <S.Palette
-                color={'#FFC225'}
-                onClick={colorHandlerOrange}
-              ></S.Palette>
-              <S.Palette
-                color={'#EDFF22'}
-                onClick={colorHandlerYellow}
-              ></S.Palette>
-              <S.Palette
-                color={'#16FF4A'}
-                onClick={colorHandlerGreen}
-              ></S.Palette>
-              <S.Palette
-                color={'#4BA9FF'}
-                onClick={colorHandlerBlue}
-              ></S.Palette>
-              <S.Palette
-                color={'#4E12F6'}
-                onClick={colorHandlerPurple}
-              ></S.Palette>
-              <S.Palette
-                color={'#DB00FF'}
-                onClick={colorHandlerPink}
-              ></S.Palette>
-              <input
-                type='color'
-                id='color'
-                ref={colorPickerRef}
-                onChange={onChangePickColorHandler}
-                value={colorPickerValue}
-              ></input>
-            </S.ColorPaletteFlexDiv>
-          </S.ColorSettingDiv>
-        </>
-      )}
-      {thicknessToggle && (
-        <>
-          <S.EraserArrowDiv></S.EraserArrowDiv>
-          <S.ColorSettingDiv>
-            <S.EraserThicknessDiv>
-              <S.EraserThicknessBold
-                onClick={EraserBoldHaneler}
-              ></S.EraserThicknessBold>
-              <S.ThicknessBoldMedium
-                onClick={EraserBoldMediumHandler}
-              ></S.ThicknessBoldMedium>
-              <S.EraserThicknessMedium
-                onClick={EraserMediumHandler}
-              ></S.EraserThicknessMedium>
-              <S.ThicknessMediumThin
-                onClick={EraserMediumThinHandler}
-              ></S.ThicknessMediumThin>
-              <S.EraserThicknessThin
-                onClick={EraserThinHandler}
-              ></S.EraserThicknessThin>
-            </S.EraserThicknessDiv>
-          </S.ColorSettingDiv>
-        </>
-      )}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <canvas
+//         ref={canvasRef}
+//         height={height}
+//         width={width}
+//         style={canvasStyle}
+//       />
+//       <S.ToggleBox>
+//         <S.FirstToggle onClick={onClickPenToggleHandler}>펜</S.FirstToggle>
+//         <S.FirstToggle onClick={onClickThicknessToggleHandler}>
+//           굵기
+//         </S.FirstToggle>
+//         <S.FirstToggle onClick={onClickEraserToggleHandler}>
+//           지우개
+//         </S.FirstToggle>
+//         <S.FirstToggle onClick={onClickInitToggleHandler}>초기화</S.FirstToggle>
+//         <S.FirstToggle onClick={onClickSaveToggleHandler}>
+//           저장하기
+//         </S.FirstToggle>
+//       </S.ToggleBox>
+//       {pen && (
+//         <>
+//           <S.ArrowDiv></S.ArrowDiv>
+//           <S.ColorSettingDiv>
+//             <S.ColorPaletteFlexDiv>
+//               <S.Palette
+//                 color={'black'}
+//                 onClick={colorHandlerBlack}
+//               ></S.Palette>
+//               <S.Palette
+//                 color={'#FF2323'}
+//                 onClick={colorHandlerRed}
+//               ></S.Palette>
+//               <S.Palette
+//                 color={'#FFC225'}
+//                 onClick={colorHandlerOrange}
+//               ></S.Palette>
+//               <S.Palette
+//                 color={'#EDFF22'}
+//                 onClick={colorHandlerYellow}
+//               ></S.Palette>
+//               <S.Palette
+//                 color={'#16FF4A'}
+//                 onClick={colorHandlerGreen}
+//               ></S.Palette>
+//               <S.Palette
+//                 color={'#4BA9FF'}
+//                 onClick={colorHandlerBlue}
+//               ></S.Palette>
+//               <S.Palette
+//                 color={'#4E12F6'}
+//                 onClick={colorHandlerPurple}
+//               ></S.Palette>
+//               <S.Palette
+//                 color={'#DB00FF'}
+//                 onClick={colorHandlerPink}
+//               ></S.Palette>
+//               <input
+//                 type='color'
+//                 id='color'
+//                 ref={colorPickerRef}
+//                 onChange={onChangePickColorHandler}
+//                 value={colorPickerValue}
+//               ></input>
+//             </S.ColorPaletteFlexDiv>
+//           </S.ColorSettingDiv>
+//         </>
+//       )}
+//       {thicknessToggle && (
+//         <>
+//           <S.EraserArrowDiv></S.EraserArrowDiv>
+//           <S.ColorSettingDiv>
+//             <S.EraserThicknessDiv>
+//               <S.EraserThicknessBold
+//                 onClick={EraserBoldHaneler}
+//               ></S.EraserThicknessBold>
+//               <S.ThicknessBoldMedium
+//                 onClick={EraserBoldMediumHandler}
+//               ></S.ThicknessBoldMedium>
+//               <S.EraserThicknessMedium
+//                 onClick={EraserMediumHandler}
+//               ></S.EraserThicknessMedium>
+//               <S.ThicknessMediumThin
+//                 onClick={EraserMediumThinHandler}
+//               ></S.ThicknessMediumThin>
+//               <S.EraserThicknessThin
+//                 onClick={EraserThinHandler}
+//               ></S.EraserThicknessThin>
+//             </S.EraserThicknessDiv>
+//           </S.ColorSettingDiv>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
 
-export default BoardDrawPaper;
+// export default BoardDrawPaper;
 
-const canvasStyle = {
-  border: '1px solid #C4C4C4',
-  borderRadius: '25px',
-  margin: '17px auto',
-};
+// const canvasStyle = {
+//   border: '1px solid #C4C4C4',
+//   borderRadius: '25px',
+//   margin: '17px auto',
+// };

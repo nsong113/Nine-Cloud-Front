@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import * as S from './BoardWriteDraw.styles';
 import { useNavigate } from 'react-router-dom';
-import BoardDrawPaper from './BoardDrawPaper';
+// import BoardDrawPaper from './BoardDrawPaper';
 import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
 import { IoIosCheckmark } from 'react-icons/io';
 import { IpostDiaryItem } from 'src/apis/apiesType';
@@ -325,6 +325,15 @@ const BoardWriteDraw = () => {
                 </>
               )}
             </div>
+            <S.ToggleDiv>
+              <S.ToggleFlexDiv>
+                <S.ToggleP>
+                  오늘의 일기를 전체공개로 등록해 <br />
+                  사람들과 공유해보세요!
+                </S.ToggleP>
+                <input type='checkbox' />
+              </S.ToggleFlexDiv>
+            </S.ToggleDiv>
             <S.ButtonWrapperDiv>
               <S.PrevButton onClick={onClickPrevBtn}>이전</S.PrevButton>
               <S.NextButton

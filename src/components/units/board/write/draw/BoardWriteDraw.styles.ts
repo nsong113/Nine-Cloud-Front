@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IPalette } from './BoardWriteDraw.types';
+import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 
 export const DrawContainerDiv = styled.div`
   display: flex;
@@ -301,4 +302,20 @@ export const EraserThicknessDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+`;
+
+export const ToggleDiv = styled.div`
+  width: 60%;
+  height: 50px;
+`;
+
+export const ToggleFlexDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ToggleP = styled.p`
+  font-size: 12px;
+  text-align: center;
 `;
