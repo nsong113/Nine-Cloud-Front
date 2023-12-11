@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IAddPost } from './apis.types';
+import { IAddComment, IAddPost } from './apis.types';
 
 export const addPost = async (target: IAddPost) => {
   try {
@@ -20,7 +20,7 @@ export const addPost = async (target: IAddPost) => {
     console.log(response);
     return response.data;
   } catch (error) {
-    alert('다시 시도하세요');
+    console.log('다시 시도하세요');
   }
 };
 
@@ -50,5 +50,34 @@ export const getOnePostInfo = async (diaryId: string | undefined) => {
     return response.data;
   } catch (error) {
     alert('다시 시도하세요');
+  }
+};
+
+export const getComments = async (diaryId: string | undefined) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${diaryId}`,
+      {
+        headers: { Authorization: `${localStorage.getItem('Token')}` },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log('테스트');
+  }
+};
+
+export const addComment = async (target: IAddComment) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.diaryId}`,
+      target.comment,
+      {
+        headers: { Authorization: `${localStorage.getItem('Token')}` },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log('테스트');
   }
 };

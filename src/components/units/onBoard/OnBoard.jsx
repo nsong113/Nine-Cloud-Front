@@ -26,13 +26,12 @@ export default function OnBoard() {
   ];
 
   const swiperRef = useRef(null);
-  const navigate = useNavigate(); // 추가된 부분
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Set initial title and content on component mount
     setTitle(titleList[0]);
     setContent(contentList[0]);
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -117,3 +116,6 @@ export default function OnBoard() {
     </div>
   );
 }
+
+// style 중복되는 값 묶기, S.Button 아래나 밖으로 빼기
+// jsx, tsx 혼용

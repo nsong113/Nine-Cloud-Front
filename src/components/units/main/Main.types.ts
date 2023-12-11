@@ -44,3 +44,12 @@ export interface IViewAllProps {
     isPrivate: boolean;
   };
 }
+
+export interface ITableCellProps {
+  isToday?:boolean;
+}
+
+
+export interface IDateSpanProps {
+  isToday?:boolean;
+}

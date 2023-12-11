@@ -56,11 +56,20 @@ const Signup = () => {
         setNicknameValidationMessage('한글 2~6, 영문 2~12');
         return;
       }
-      const response = await axios.post(`${BASE_URL}/signup`, {
-        email: email,
-        password: password,
-        username: nickname,
-      });
+
+      const response = await axios.post(
+        `${BASE_URL}/signup`,
+        {
+          email: email,
+          password: password,
+          username: nickname, // 수정 계획
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       console.log('회원가입 성공:', response);
       alert('회원가입이 성공적으로 완료되었습니다.');
       navigate('/login');
@@ -230,3 +239,5 @@ const Signup = () => {
 };
 
 export default Signup;
+
+// 유효성 검사 user api로 빼기

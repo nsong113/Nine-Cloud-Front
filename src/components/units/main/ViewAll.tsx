@@ -6,6 +6,8 @@ import ViewAllInfinite from './ViewAllInfinite';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import { useNavigate } from 'react-router-dom';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
+import Animation from 'src/components/commons/utills/Animation/Animation';
+import { motion } from 'framer-motion';
 import InfiniteScroll from 'react-infinite-scroller';
 // import InfiniteScroll from 'react-infinite-scroll-component';
 import { useInfiniteQuery, useQuery } from 'react-query';
@@ -14,9 +16,11 @@ import { getDiary, getInfiniteDiaries } from 'src/apis/diary';
 // import { useQuery } from '@apollo/client';
 
 const ViewAll = () => {
+  const animationDuration = 300; // 애니메이션 지속 시간(ms)
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
     useCalendar();
   const navigate = useNavigate();
+  const [animationClass, setAnimationClass] = useState('');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
   //렌더링 되자마자 보이는 것
@@ -27,18 +31,35 @@ const ViewAll = () => {
 
   const handlePrevMonth = () => {
     const newDate = subMonths(currentMonth, 1);
-    setCurrentDate(newDate);
     setCurrentMonth(newDate);
+    // 애니메이션을 위해 클래스 추가
+    setAnimationClass('slide-left');
+
+    // 일정 시간이 지난 후에 애니메이션 클래스 제거
+    setTimeout(() => {
+      setAnimationClass('');
+      setCurrentDate(newDate);
+    }, animationDuration);
     //전 달꺼 다시 get요청
   };
 
-  const handleNextMonth = () => {
+  const onClickPrevMonth = () => {
     const newDate = addMonths(currentMonth, 1);
-    setCurrentDate(newDate);
     setCurrentMonth(newDate);
-    //다음달꺼 다시 get요청
+    // 애니메이션을 위해 클래스 추가
+    setAnimationClass('slide-right');
+
+    // 일정 시간이 지난 후에 애니메이션 클래스 제거
+    setTimeout(() => {
+      setAnimationClass('');
+      setCurrentDate(newDate);
+    }, animationDuration);
   };
 
+  const [isToggle, setIsToggle] = useState(false);
+  const onClickNextMonth = () => {
+    setIsToggle((prev) => !prev);
+  };
   const profileImg = localStorage.getItem('image'); //나중에 db에서 get하기
   const [isActiveModal, setIsActiveModal] = useState(false);
 
@@ -121,75 +142,92 @@ const ViewAll = () => {
     <>
       <div>
         <S.CalendarContainerDiv>
-          <S.LogoImg onClick={onClickLogo}></S.LogoImg>
           {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
-          <S.CalenderHeaderDiv>
-            <S.HeaderLeftWrapperDiv>
-              <S.DateBoxDiv>
-                <S.YearTextSpan>{year}</S.YearTextSpan>
-                <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
-              </S.DateBoxDiv>
-              <S.PrevMonth size={20} onClick={handlePrevMonth} />
-              <S.NextMonth size={20} onClick={handleNextMonth} />
-            </S.HeaderLeftWrapperDiv>
-            <S.RightProfile>
-              <S.ButtonWrapperDiv
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
+          <S.HeaderContainerDiv>
+            <S.CalenderHeaderDiv>
+              {' '}
+              <S.LogoBoxDiv>
+                <S.LogoImg src='/logo.png' alt='로고' onClick={onClickLogo} />
+                <S.BrandTextBoxDiv>
+                  <span>NINE</span>
+                  <span>CLOUD</span>
+                </S.BrandTextBoxDiv>
+              </S.LogoBoxDiv>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <S.HeaderLeftWrapperDiv>
+                  <S.DateBoxDiv>
+                    <S.YearTextSpan>{year}</S.YearTextSpan>
+                    <S.PrevNextMonthBoxDiv>
+                      <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+                      <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+                      <S.NextMonth onClick={onClickNextMonth} size={30} />
+                    </S.PrevNextMonthBoxDiv>
+                  </S.DateBoxDiv>
+                </S.HeaderLeftWrapperDiv>
+                <S.RightProfile>
+                  <S.ButtonWrapperDiv>
+                    <Tooltip message='달력'>
+                      <S.StyledHoverTapButton
+                        whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
+                        whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
+                        onClick={onClickListBtn}
+                      >
+                        <S.Calendar />
+                      </S.StyledHoverTapButton>
+                    </Tooltip>
+                    <Tooltip message='마이페이지'>
+                      <S.StyledHoverTapButton
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={onClickMyProfile}
+                      >
+                        {!profileImg && (
+                          <S.ProfileBoxDiv>
+                            <S.AvatarSizeImg src='/avatar.png' alt='기본' />
+                          </S.ProfileBoxDiv>
+                        )}
+                        {profileImg && (
+                          <div>
+                            <S.AvatarSizeImg src={profileImg} alt='기본' />
+                          </div>
+                        )}
+                      </S.StyledHoverTapButton>
+                    </Tooltip>
+                  </S.ButtonWrapperDiv>
+                </S.RightProfile>
+              </div>
+            </S.CalenderHeaderDiv>
+          </S.HeaderContainerDiv>
+          <Animation>
+            <S.ViewAllWrapperDiv>
+              <InfiniteScroll
+                pageStart={0}
+                // dataLength={data?.pages.flat().length || 0}
+                loadMore={loadFunc}
+                // next={fetchNextPage}
+                hasMore={hasNextPage} //스크롤러에도 키기
+                useWindow={false}
+                loader={
+                  <div className='loader' key={0}>
+                    Loading ...
+                  </div>
+                }
               >
-                <Tooltip message='달력'>
-                  <S.Calendar size={40} onClick={onClickListBtn} />
-                </Tooltip>
-                <Tooltip message='마이페이지'>
-                  {!profileImg && (
-                    <S.AvatarSizeImg
-                      onClick={onClickMyProfile}
-                      src='/avatar.png'
-                      alt='기본'
+                {/* 이거를 Null이 아닌 것을 최신순으로 돌려줘야함 + 컴포넌트에 키값도 주기*/}
+                {dummyData.map((item, index) => {
+                  //통신 되면 isPrefetchData로 변경
+                  return (
+                    <ViewAllInfinite
+                      key={item.UserId}
+                      item={item}
+                      // onClick={fetchNextPage}
+                      // disabled={!hasNextPage}
                     />
-                  )}
-                  {profileImg && (
-                    <S.AvatarSizeImg
-                      onClick={onClickMyProfile}
-                      src={profileImg}
-                      alt='기본'
-                    />
-                  )}
-                </Tooltip>
-              </S.ButtonWrapperDiv>
-            </S.RightProfile>
-          </S.CalenderHeaderDiv>
-          <S.ViewAllWrapperDiv>
-            <InfiniteScroll
-              pageStart={0}
-              // dataLength={data?.pages.flat().length || 0}
-              loadMore={loadFunc}
-              // next={fetchNextPage}
-              hasMore={hasNextPage} //스크롤러에도 키기
-              useWindow={false}
-              loader={
-                <div className='loader' key={0}>
-                  Loading ...
-                </div>
-              }
-            >
-              {/* 이거를 Null이 아닌 것을 최신순으로 돌려줘야함 + 컴포넌트에 키값도 주기*/}
-              {dummyData.map((item, index) => {
-                //통신 되면 isPrefetchData로 변경
-                return (
-                  <ViewAllInfinite
-                    key={item.UserId}
-                    item={item}
-                    // onClick={fetchNextPage}
-                    // disabled={!hasNextPage}
-                  />
-                );
-              })}
-            </InfiniteScroll>
-          </S.ViewAllWrapperDiv>
+                  );
+                })}
+              </InfiniteScroll>
+            </S.ViewAllWrapperDiv>
+          </Animation>
         </S.CalendarContainerDiv>
       </div>
     </>
