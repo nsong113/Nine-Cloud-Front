@@ -5,7 +5,7 @@ import { IoIosArrowDropleft } from 'react-icons/io';
 import { IoIosArrowDropright } from 'react-icons/io';
 
 export const MainContainerDiv = styled.div`
-  width: 443px;
+  width: 100%;
   height: 100%;
 `;
 
@@ -199,11 +199,11 @@ export const ViewAllWrapperDiv = styled.div`
   height: 607px;
   margin: 5px auto;
   overflow: auto;
-  background-color: aliceblue;
 `;
 
 export const ViewAllEachBoxDiv = styled.div`
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
   height: 130px;
   margin-top: 20px;
   border: 1px solid #d9d9d9;

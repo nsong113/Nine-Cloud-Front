@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
-import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
 import ViewAllInfinite from './ViewAllInfinite';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import { useNavigate } from 'react-router-dom';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
-// import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller';
+// import InfiniteScroll from 'react-infinite-scroll-component';
+import { useInfiniteQuery, useQuery } from 'react-query';
+import { getDiary, getInfiniteDiaries } from 'src/apis/diary';
+// import useSearchProductQuery from 'src/components/commons/hooks/useIntersection';
+// import { useQuery } from '@apollo/client';
 
 const ViewAll = () => {
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
     useCalendar();
-
   const navigate = useNavigate();
-
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
+  //렌더링 되자마자 보이는 것
+  const [isPrefetchData, setIsPrefetchData] = useState([]);
 
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const formattedMonth = format(currentMonth, 'MMMM');
@@ -25,22 +29,18 @@ const ViewAll = () => {
     const newDate = subMonths(currentMonth, 1);
     setCurrentDate(newDate);
     setCurrentMonth(newDate);
-    // setMonth((prev) => prev - 1);
+    //전 달꺼 다시 get요청
   };
 
   const handleNextMonth = () => {
     const newDate = addMonths(currentMonth, 1);
     setCurrentDate(newDate);
     setCurrentMonth(newDate);
-    // setMonth((prev) => prev + 1);
+    //다음달꺼 다시 get요청
   };
 
-  const onClickChangeToggleHandler = () => {
-    setIsToggle((prev) => !prev);
-  };
-  const profileImg = localStorage.getItem('image');
+  const profileImg = localStorage.getItem('image'); //나중에 db에서 get하기
   const [isActiveModal, setIsActiveModal] = useState(false);
-  const [isToggle, setIsToggle] = useState(false);
 
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
@@ -48,12 +48,80 @@ const ViewAll = () => {
   const onClickListBtn = () => {
     navigate('/main');
   };
+  const onClickLogo = () => {
+    navigate('/main');
+  };
+
+  const { data: items } = useQuery('getDiary', getDiary);
+
+  useEffect(() => {
+    setIsPrefetchData(items);
+  }, [isPrefetchData]);
+
+  const {
+    data, //현재까지 로드된 데이터를 나타냅니다. 이 속성은 배열 형태로 각 페이지의 데이터를 가지고 있습니다.
+    isLoading, //데이터를 가져오는 중인지 여부를 나타냅니다. true이면 데이터를 아직 받아오는 중이라는 뜻입니다.
+    isFetching, //데이터를 다시 가져오는 중인지 여부를 나타냅니다. true이면 현재 데이터를 다시 가져오는 중이라는 뜻입니다.
+    hasNextPage, //더 많은 페이지가 있는지 여부를 나타냅니다. true이면 다음 페이지가 존재한다는 뜻이며, 이 값을 사용하여 무한 스크롤을 구현할 수 있습니다.
+    fetchNextPage, //다음 페이지를 가져오기 위해 호출할 함수입니다. 이 함수를 호출하면 다음 페이지의 데이터를 가져옵니다.
+    isFetchingNextPage, //다음 페이지를 가져오는 중인지 여부를 나타냅니다. true이면 다음 페이지를 가져오는 중이라는 뜻입니다.
+  } = useInfiniteQuery(
+    ['getDiary'],
+    //
+    ({ pageParam = 1 }) => getInfiniteDiaries(pageParam),
+    {
+      getNextPageParam: (_lastPage, pages) => {
+        if (pages.length < 100) {
+          return pages.length + 1;
+        } else return undefined;
+      },
+    }
+  );
+
+  useEffect(() => {
+    // 페이지 로딩 중이거나 다음 페이지를 가져오는 중이 아닐 때만 실행
+    if (!isLoading && !isFetchingNextPage) {
+      // 데이터를 누적해서 업데이트
+      setIsPrefetchData(
+        (prevItems: never[]) =>
+          [...(prevItems || []), ...(data?.pages || []).flat()] as never[]
+      );
+    }
+  }, [data, isLoading, isFetchingNextPage]);
+
+  useEffect(() => {
+    let fetching = false;
+    const handleScroll = async (e: any) => {
+      const { scrollHeight, scrollTop, clientHeight } =
+        e.target.scrollingElement;
+      if (!fetching && scrollHeight - scrollTop <= clientHeight * 1.2) {
+        fetching = true;
+        if (hasNextPage) await fetchNextPage();
+        fetching = false;
+      }
+    };
+    document.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, [fetchNextPage, hasNextPage]);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  /////////////////////////////////////////////
+
+  const loadFunc = async () => {
+    await fetchNextPage();
+    // setIsPrefetchData((prevItems: any[]) => {
+    //   [...prevItems, ...newData];
+    // });
+  };
 
   return (
     <>
       <div>
         <S.CalendarContainerDiv>
-          <S.LogoImg></S.LogoImg>
+          <S.LogoImg onClick={onClickLogo}></S.LogoImg>
           {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
           <S.CalenderHeaderDiv>
             <S.HeaderLeftWrapperDiv>
@@ -95,22 +163,32 @@ const ViewAll = () => {
             </S.RightProfile>
           </S.CalenderHeaderDiv>
           <S.ViewAllWrapperDiv>
-            {/* <InfiniteScroll
+            <InfiniteScroll
               pageStart={0}
-              loadMore={onLoadMoreNextHandler}
-              hasMore={true || false}
+              // dataLength={data?.pages.flat().length || 0}
+              loadMore={loadFunc}
+              // next={fetchNextPage}
+              hasMore={hasNextPage} //스크롤러에도 키기
               useWindow={false}
               loader={
                 <div className='loader' key={0}>
                   Loading ...
                 </div>
               }
-            > */}
-            {/* 이거를 Null이 아닌 것을 최신순으로 돌려줘야함 + 컴포넌트에 키값도 주기*/}
-            {dummyData.map((item, index) => {
-              return <ViewAllInfinite key={item.UserId} item={item} />;
-            })}
-            {/* </InfiniteScroll> */}
+            >
+              {/* 이거를 Null이 아닌 것을 최신순으로 돌려줘야함 + 컴포넌트에 키값도 주기*/}
+              {dummyData.map((item, index) => {
+                //통신 되면 isPrefetchData로 변경
+                return (
+                  <ViewAllInfinite
+                    key={item.UserId}
+                    item={item}
+                    // onClick={fetchNextPage}
+                    // disabled={!hasNextPage}
+                  />
+                );
+              })}
+            </InfiniteScroll>
           </S.ViewAllWrapperDiv>
         </S.CalendarContainerDiv>
       </div>
