@@ -5,6 +5,7 @@ import { Circle } from './LoginSocial.styles';
 const LoginGithub = () => {
   const CLIENT_ID = process.env.REACT_APP_GITHUB_CLIENT_ID;
   const REDIRECT_URL = process.env.REACT_APP_GITHUB_REDIRECT_URL;
+  // 리포지토리 후크를 읽어 사용자 이메일에 대한 권한을 요청
   const link = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=repo:status read:repo_hook user:email&redirect_uri=${REDIRECT_URL}`;
 
   const loginHandler = () => {
