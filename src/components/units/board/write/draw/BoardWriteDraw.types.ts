@@ -11,3 +11,8 @@ export interface ICoordinate {
 export interface IPalette {
   color: string;
 }
+
+export interface ILine {
+  start: ICoordinate;
+  end: ICoordinate;
+}

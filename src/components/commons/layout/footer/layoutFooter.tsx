@@ -4,21 +4,34 @@ import './layoutFooter.css';
 import { FaHouseChimney } from 'react-icons/fa6';
 import { FaUserAlt } from 'react-icons/fa';
 import { IoIosSettings } from 'react-icons/io';
+import { IoAddCircle } from 'react-icons/io5';
+import { MdPeopleAlt } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const goToMainHandler = () => {
+    navigate('/main');
+  };
+
+  const goToPostHandler = () => {
+    navigate('/post');
+  };
+
   return (
     <S.FooterContainer>
       <div className='navbar'>
         <li className='list-item'>
-          <FaHouseChimney style={iconStyle} />
+          <FaHouseChimney style={iconStyle} onClick={goToMainHandler} />
           <span className='list-item-name'>Main</span>
         </li>
         <li className='list-item'>
-          <FaUserAlt style={iconStyle} />
+          <IoAddCircle style={iconStyle} onClick={goToPostHandler} />
           <span className='list-item-name'>Post</span>
         </li>
         <li className='list-item'>
-          <IoIosSettings style={iconStyle} />
+          <MdPeopleAlt style={iconStyle} />
           <span className='list-item-name'>Community</span>
         </li>
       </div>

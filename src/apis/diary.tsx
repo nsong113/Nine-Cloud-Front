@@ -45,4 +45,16 @@ const getDiary = async () => {
   }
 };
 
-export { getDiary, postDiary };
+//get- 무한스크롤  `${apiUrl}?page=${pageNumber}
+const getInfiniteDiaries = async ({ pageParam = 1 }) => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/feed?page=${pageParam}`
+    );
+    return res.data;
+  } catch (error) {
+    console.log('getInfiniteDiaries error', error);
+  }
+};
+
+export { getDiary, postDiary, getInfiniteDiaries };

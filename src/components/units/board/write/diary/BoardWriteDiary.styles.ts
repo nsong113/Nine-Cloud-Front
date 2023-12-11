@@ -103,7 +103,7 @@ export const DiaryWriteTitleH3 = styled.h3`
 `;
 
 export const DiaryToggleTitleDiv = styled.div`
-  width: 100%;
+  width: 40%;
   height: 93px;
   margin: 50px 100px;
   text-align: center;
