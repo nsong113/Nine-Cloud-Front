@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import * as S from './ConfirmOverlay.styles';
 import { IConfirmMod } from './ConfirmOverlay.types';
+import { useMutation } from 'react-query';
+import { IpostDiaryItem } from 'src/apis/apiesType';
+import { postDiary } from 'src/apis/diary';
 
-const ConfirmOverlay: React.FC<IConfirmMod> = ({ onOk, onClose }) => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+const ConfirmOverlay: React.FC<IConfirmMod> = ({
+  onOk,
+  onClose,
+  postDiaryItem,
+}) => {
+  const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
+    postDiary
+  );
 
-  // const modalClose = () => {
-  //   setIsModalOpen((prev) => !prev);
-  // };
-
-  //정보 얻어오기
-
-  //post 요청
+  const onClickPostHandler = () => {
+    if (postDiaryItem) {
+      postDiaryMutation.mutate(postDiaryItem);
+    }
+  };
 
   return (
     <S.ContainerDiv
@@ -25,7 +32,14 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({ onOk, onClose }) => {
         </S.TitleBoxDiv>
         <S.BoxButton>
           <button onClick={onClose}>취소</button>
-          <S.StyleButton onClick={onOk}>확인</S.StyleButton>
+          <S.StyleButton
+            onClick={() => {
+              // onOk?.();
+              onClickPostHandler();
+            }}
+          >
+            확인
+          </S.StyleButton>
         </S.BoxButton>
       </S.ModalContentDiv>
     </S.ContainerDiv>

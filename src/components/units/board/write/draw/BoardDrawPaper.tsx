@@ -22,7 +22,6 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     undefined
   );
 
-  //좌표 얻는 함수 (MouseEvent로 부터 좌표를 얻음)
   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
     if (!canvasRef.current) {
       return;
@@ -66,22 +65,6 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     setMousePosition
   );
 
-  //줄그림
-  const {
-    startStaticPaint,
-    StaticPaint,
-    exitStaticPaint,
-    setIsStaticPainting,
-  } = StaticDrawing(
-    canvasRef,
-    getCoordinates,
-    color,
-    thickness
-    // mousePosition,
-    // setMousePosition
-  );
-
-  //팬, 지우개, 초기화 상태 토글
   const [pen, setPen] = useState(true);
   const [thicknessToggle, setThicknessToggle] = useState(false);
   const [init, setInit] = useState(false);
@@ -165,7 +148,6 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     };
   }, [startPaint, paint, exitPaint]);
 
-  ////////////////////////////////////////////
   const onClickSaveToggleHandler = () => {
     //다운로드 링크
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
@@ -186,6 +168,8 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     }
   };
 
+  //////////////////////////////////////////////////////////////////
+
   const onClickInitToggleHandler = () => {
     saveImg();
     // setPen(!init);
@@ -201,36 +185,22 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   ////데이터 post
   // postDiaryMutation 함수 정의
   // const { data } = useQuery('getDiary', getDiary);
-  const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
-    postDiary
-  );
+
+  // const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
+  //   postDiary
+  // );
 
   const saveImg = () => {
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
 
-    // console.log('image', image);
-    // const imageArray = [];
     if (image) {
-      // const toBinaryIMG = Buffer.from(image, 'base64').toString('binary');
-      // for (let i = 0; i < toBinaryIMG.length; i += 1) {
-      //   imageArray.push(toBinaryIMG.charCodeAt(i));
-      // }
       const byteCharacters = atob(image);
-      // console.log('byteCharacters', byteCharacters);
-
       const byteNumbers = new Array(byteCharacters.length);
       for (let i = 0; i < byteCharacters.length; i++) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
       }
-
-      // console.log('byteNumbers', byteNumbers);
-
       const u8arr = new Uint8Array(byteNumbers);
-
-      // console.log('u8arr', u8arr);
-
       const file = new Blob([u8arr], { type: 'image/png' });
-
       const imageUrl = URL.createObjectURL(file);
 
       console.log('imageUrl', imageUrl);
@@ -238,45 +208,15 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
       const formData = new FormData();
       console.log('file', file);
       formData.append('picture', file);
-      // formData.append('EmotionStatus',  Number(localStorage.getItem('countAverage')));
-      // formData.append('content',  localStorage.getItem('contents'));
 
       console.log('formData', formData);
-
-      const postDiaryItem: IpostDiaryItem = {
-        EmotionStatus: Number(localStorage.getItem('countAverage')),
-        content: localStorage.getItem('contents'),
-        image: formData,
-      };
-
-      //블롭데이터를 어떻ㅇ게 전송할지/ 보여줄지
-      postDiaryMutation.mutate(postDiaryItem);
-
-      // postDiary 함수 호출
     } else {
       console.log('이미지 불러오기 실패');
     }
-
-    // $.ajax({
-    //   type: 'post',
-    //   url: '/saveImage',
-    //   data: formData,
-    //   processData: false,
-    //   contentType: false,
-    //   success: function (data: any) {
-    //     console.log('이미지 post 성공');
-    //   },
-    // });
   };
 
   return (
     <div>
-      {/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-      <div onClick={() => setIsStaticPainting(true)}>줄</div>
-      {/* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-      <div>네모</div>
-      <div>세모</div>
-      <div>원</div>
       <canvas
         ref={canvasRef}
         height={height}

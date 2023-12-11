@@ -6,6 +6,7 @@ import { IConfirm } from './confirmModal.types';
 const ConfrimModal: React.FC<IConfirm> = ({
   onClickSubmitBtn,
   onClickMoveToCancel,
+  postDiaryItem,
 }) => {
   return (
     <div>
@@ -13,6 +14,7 @@ const ConfrimModal: React.FC<IConfirm> = ({
         <ConfirmOverlay
           onOk={onClickSubmitBtn}
           onClose={onClickMoveToCancel}
+          postDiaryItem={postDiaryItem}
         />,
         document.getElementById('overlay-root') as HTMLElement
       )}
