@@ -10,6 +10,8 @@ import {
   useQuery,
 } from 'react-query';
 import { getDiary, postDiary } from 'src/apis/diary';
+import Animation from 'src/components/commons/utills/Animation/Animation';
+import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 
 const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   const canvasStyle = {
@@ -344,6 +346,7 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
   };
 
   return (
+    <Animation2>
     <div>
       <canvas
         ref={canvasRef}
@@ -439,6 +442,7 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
         </>
       )}
     </div>
+    </Animation2>
   );
 };
 

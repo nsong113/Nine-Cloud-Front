@@ -3,3 +3,9 @@ export interface IAddPost {
   content: string;
   EmotionStatus: number;
 }
+
+
+export interface IAddComment {
+  diaryId : string | undefined,
+  comment : string | undefined,
+}
