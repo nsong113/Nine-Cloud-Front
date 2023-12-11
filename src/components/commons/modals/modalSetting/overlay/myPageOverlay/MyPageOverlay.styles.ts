@@ -35,10 +35,10 @@ export const ImgBoxDiv = styled.div`
 
 export const slideIn = keyframes`
   from {
-    transform: translateY(100%) translate(-50%, -50%);
+    transform: translateY(100%)
   }
   to {
-    transform: translateY(0) translate(-50%, -50%);
+    transform: translateY(0) 
   }
 `;
 
@@ -54,7 +54,6 @@ export const ContainerDiv = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: end;
-  animation: ${slideIn} 0.5s ease-in-out;
 `;
 
 export const ModalContentDiv = styled.div`
@@ -64,6 +63,7 @@ export const ModalContentDiv = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 50px 50px 0 0;
+  animation: ${slideIn} 0.3s ease-in-out;
 `;
 
 export const ContentsBoxDiv = styled.div`

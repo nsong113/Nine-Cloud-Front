@@ -14,6 +14,7 @@ import KakaoLoginHandler from './components/units/login/social/auth/KakaoLoginHa
 import ViewAll from './components/units/main/ViewAll';
 import GithubLoginHandler from './components/units/login/social/auth/GithubLoginHandler';
 import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Router() {
   return (

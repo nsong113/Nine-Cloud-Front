@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardDetail.styles';
 import { format, getYear } from 'date-fns';
 import useCalendar from 'src/components/commons/hooks/useCalender';
@@ -8,9 +8,11 @@ import { useParams } from 'react-router-dom';
 import { dayList } from '../../main/test';
 import { useQuery } from 'react-query';
 import { getOnePostInfo } from 'src/apis/cheolmin-api/apis';
+import BoardDetailComment from './comment/BoardDetailComment';
 
 const BoardDetail = () => {
   const { data } = useQuery('post', () => getOnePostInfo(params.id));
+
   const { currentDate } = useCalendar();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isActiveModal, setIsActiveModal] = useState(false);
@@ -31,6 +33,18 @@ const BoardDetail = () => {
     sentence?: string;
     id?: number;
   } | null)[] = dayList.filter((data) => data?.id == params.id);
+
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      console.log('현재 위치', lat, lon);
+    });
+  };
+
+  useEffect(() => {
+    getCurrentLocation();
+  }, []);
 
   return (
     <S.ContainerDiv>
@@ -74,23 +88,7 @@ const BoardDetail = () => {
                   <S.HeartCommentTextSpan>댓글 2</S.HeartCommentTextSpan>
                 </div>
               </S.CategoryBoxDiv>
-              <S.CommentsWrapperDiv>
-                <S.CommentBox>
-                  <S.CommentHeaderDiv>
-                    <S.DeepCircleImg src='/deepCircle.png' alt='타원' />
-                    <S.CommentBoxDiv>
-                      <S.CommentWriterSpan>한덕용</S.CommentWriterSpan>
-                      <S.CommentContent>
-                        평소에 그림을 자주 그리시나요 ?
-                      </S.CommentContent>
-                    </S.CommentBoxDiv>
-                  </S.CommentHeaderDiv>
-                  <S.CommentFooterWrapDiv>
-                    <S.InputBoxDiv />
-                    <S.SubmitButton>등록</S.SubmitButton>
-                  </S.CommentFooterWrapDiv>
-                </S.CommentBox>
-              </S.CommentsWrapperDiv>
+              <BoardDetailComment />
             </div>
           </S.ContentsWrapperDiv>
         </div>
