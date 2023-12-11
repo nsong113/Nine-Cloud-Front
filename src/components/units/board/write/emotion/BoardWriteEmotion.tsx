@@ -37,7 +37,7 @@ const BoardWriteEmotion = () => {
     <S.EmotionContainerDiv>
       <S.EmotionWrapperUPDiv>
         <S.HeaderButtonBoxDiv>
-          <S.HeaderLine></S.HeaderLine>
+          <S.HeaderLine />
           <S.HeaderFlexBox>
             <S.ThreeFilledSpan>Emotion</S.ThreeFilledSpan>
             <S.OneBlackSpan />

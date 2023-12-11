@@ -1,209 +1,156 @@
-/* global $ */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { ICanvasProps, ICoordinate } from './BoardWriteDraw.types';
 import * as S from './BoardWriteDraw.styles';
 import { IpostDiaryItem } from 'src/apis/apiesType';
-import {
-  useMutation,
-  UseMutationResult,
-  MutationFunction,
-  useQuery,
-} from 'react-query';
+import { useMutation } from 'react-query';
 import { getDiary, postDiary } from 'src/apis/diary';
+import useSetColor from 'src/components/commons/hooks/useSetColor';
+import useThickness from 'src/components/commons/hooks/useThickness';
+import usePen from 'src/components/commons/hooks/usePen';
+import StaticDrawing from '../../../../commons/hooks/useStaticDrawing';
 
 const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
-  const canvasStyle = {
-    border: '1px solid #C4C4C4',
-    borderRadius: '25px',
-    margin: '17px auto',
-  };
-
-  //useRef로 canvas (태그) 선택
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  //mouse down시, 마우스포인터 (x,y)상태관리
+  const colorPickerRef = useRef<HTMLInputElement>(null);
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  // console.log('mousePosition', mousePosition);
-
-  //isPainting 상태관리
-  const [isPainting, setIsPainting] = useState(false);
-  // console.log('isPainting', isPainting);
 
   //좌표 얻는 함수 (MouseEvent로 부터 좌표를 얻음)
   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
-    //canvasRef에 대한 참조가 안되어 null인 경우 함수 종료
     if (!canvasRef.current) {
       return;
     }
-    //캔버스 엘리먼트 추출
     const canvas: HTMLCanvasElement = canvasRef.current;
-    // console.log('offsetLeft', canvas.offsetLeft);
-    // console.log('offsetTop', canvas.offsetTop);
-    //좌표 계산 및 반환
     return {
-      //이벤트가 발생했을 때 좌표 구하는 프로퍼티
-      // x: event.pageX - canvas.offsetLeft,
-      // y: event.pageY - canvas.offsetTop,
-      x: event.clientX - canvas.getBoundingClientRect().left,
-      y: event.clientY - canvas.getBoundingClientRect().top,
+      x: event.offsetX,
+      y: event.offsetY,
     };
   };
 
-  //색 상태 관리
-  const [color, setColor] = useState('red');
-  //컬러파레트 마우스 클릭 이벤트
-  const onClickBlackPaletteHandler = () => {
-    setColor('#000000');
-  };
-  const onClickRedPaletteHandler = () => {
-    setColor('#FF2323');
-  };
-  const onClickBluePaletteHandler = () => {
-    setColor('#4BA9FF');
-  };
-  const onClickGreenPaletteHandler = () => {
-    setColor('#16FF4A');
-  };
-  const onClickOrangePaletteHandler = () => {
-    setColor('#FFC225');
-  };
-  const onClickYellowPaletteHandler = () => {
-    setColor('#EDFF22');
-  };
-  const onClickPurplePaletteHandler = () => {
-    setColor('#4E12F6');
-  };
-  const onClickPinkPaletteHandler = () => {
-    setColor('#DB00FF');
-  };
+  const {
+    color,
+    setColor,
+    colorHandlerBlack,
+    colorHandlerRed,
+    colorHandlerBlue,
+    colorHandlerGreen,
+    colorHandlerOrange,
+    colorHandlerYellow,
+    colorHandlerPurple,
+    colorHandlerPink,
+    colorHandlerWhite,
+  } = useSetColor();
 
-  //선 굵기 관리
-  const [thickness, setThickness] = useState<number>(5);
-  const onCLickThicknessBoldHaneler = () => {
-    setThickness(16);
-  };
-  const onClickThicknessMediumHandler = () => {
-    setThickness(10);
-  };
-  const oonClickThicknessThinHandler = () => {
-    setThickness(6);
-  };
+  const {
+    thickness,
+    EraserBoldHaneler,
+    EraserBoldMediumHandler,
+    EraserMediumHandler,
+    EraserMediumThinHandler,
+    EraserThinHandler,
+  } = useThickness();
 
-  //지우개 굵기 관리
-  const onCLickEraserThicknessBoldHaneler = () => {
-    setThickness(50);
-  };
-  const onCLickThicknessBoldMediumHaneler = () => {
-    setThickness(40);
-  };
-  const onClickEraserThicknessMediumHandler = () => {
-    setThickness(30);
-  };
-  const onClickThicknessMediumThinHandler = () => {
-    setThickness(20);
-  };
-  const oonClickEraserThicknessThinHandler = () => {
-    setThickness(10);
-  };
-
-  //drawLine(originPosition,newPosition) : 선을 그음
-  const drawLine = (
-    originalMousePosition: ICoordinate,
-    newMousePosition: ICoordinate
-  ) => {
-    if (!canvasRef.current) {
-      return;
-    }
-
-    //2D context 획득
-    const canvas: HTMLCanvasElement = canvasRef.current;
-    //getContext: HTML Canvas요소의 2D그래픽 컨텍스트를 얻는 메서드
-    const context = canvas.getContext('2d');
-
-    if (context) {
-      //선 스타일 설정
-      context.strokeStyle = color; // 선 색깔
-      context.lineJoin = 'round'; // 선 끄트머리(?)
-      context.lineWidth = thickness; // 선 굵기
-
-      //선 그리기
-      //새로운 경로 시작
-      context.beginPath();
-      //moveTo로 선 시작점을 이동
-      context.moveTo(originalMousePosition.x, originalMousePosition.y);
-      //line로 선 그리기
-      context.lineTo(newMousePosition.x, newMousePosition.y);
-      //경로를 닫고
-      context.closePath();
-      //실제 선 그리기
-      context.stroke();
-    }
-  };
-
-  //startPaint, paint,exitPaint : MouseEventListner에 사용될 콜백함수
-  //렌더링 중에 생성되면 매 렌더링 때마다 새로운 함수가 생성될 수 있어서 useCallback사용.
-  const startPaint = useCallback((event: MouseEvent) => {
-    //getCoordinates 함수를 사용하여 마우스 이벤트의 좌표 가져오기
-    const coordinates = getCoordinates(event);
-
-    //만약 좌표가 유효하다면
-    if (coordinates) {
-      //setIsPaintinga을 사용해 그림그리기 상태를 true로 변경
-      setIsPainting(true);
-
-      //setMousePosition을 이용해 현재 마우스의 좌표를 설정
-      setMousePosition(coordinates);
-    }
-  }, []);
-
-  const paint = useCallback(
-    (event: MouseEvent) => {
-      //이벤트 전파 중단
-      event.preventDefault(); // drag 방지
-      event.stopPropagation(); // drag 방지
-
-      //그림 그리는 중이면..
-      if (isPainting) {
-        //함수를 사용하여 현재 마우스 이벤트가 발생한 좌표를 가져와
-        const newMousePosition = getCoordinates(event);
-
-        //만약 mousePosition이랑 new랑 둘 다 있으면 drawLine함수 실행, mousePosition을 new로 바꿔
-        if (mousePosition && newMousePosition) {
-          drawLine(mousePosition, newMousePosition);
-          setMousePosition(newMousePosition);
-        }
-      }
-    },
-    [isPainting, mousePosition]
+  const { startPaint, paint, exitPaint, isPainting } = usePen(
+    canvasRef,
+    getCoordinates,
+    color,
+    thickness,
+    mousePosition,
+    setMousePosition
   );
 
-  const exitPaint = useCallback(() => {
-    setIsPainting(false);
-  }, []);
+  //줄그림
+  const {
+    startStaticPaint,
+    StaticPaint,
+    exitStaticPaint,
+    setIsStaticPainting,
+  } = StaticDrawing(
+    canvasRef,
+    getCoordinates,
+    color,
+    thickness
+    // mousePosition,
+    // setMousePosition
+  );
 
-  //EventListner등록, 컴포넌트가 마운트 되면 마우스 이벤트 리스너 등록
+  //팬, 지우개, 초기화 상태 토글
+  const [pen, setPen] = useState(true);
+  const [thicknessToggle, setThicknessToggle] = useState(false);
+  const [init, setInit] = useState(false);
+
+  const onClickPenToggleHandler = () => {
+    setPen(!pen);
+    setThicknessToggle(false);
+  };
+
+  const onClickEraserToggleHandler = () => {
+    colorHandlerWhite();
+  };
+
+  const onClickThicknessToggleHandler = () => {
+    setThicknessToggle(!thicknessToggle);
+    console.log(thicknessToggle);
+    setPen(false);
+  };
+
+  const [colorPickerValue, setColorPickerValue] = useState<string>();
 
   useEffect(() => {
-    //캔버스 엘리먼트가 존재하는지 확인하고 없다면 함수 종료
+    setColorPickerValue(color);
+  }, [
+    colorHandlerBlack,
+    colorHandlerRed,
+    colorHandlerOrange,
+    colorHandlerYellow,
+    colorHandlerGreen,
+    colorHandlerBlue,
+    colorHandlerPurple,
+    colorHandlerPink,
+  ]);
+
+  const onChangePickColorHandler: ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    const colorPicker = colorPickerRef.current;
+    if (colorPicker) {
+      setColor(event.target.value);
+      setColorPickerValue(event.target.value);
+    }
+  };
+  // useEffect(() => {
+  //   if (!canvasRef.current) {
+  //     return;
+  //   }
+  //   const canvas: HTMLCanvasElement = canvasRef.current;
+
+  //   canvas.addEventListener('mousedown', startStaticPaint);
+  //   canvas.addEventListener('mousemove', StaticPaint);
+  //   canvas.addEventListener('mouseup', exitStaticPaint);
+  //   canvas.addEventListener('mouseleave', exitStaticPaint);
+
+  //   return () => {
+  //     // Unmount 시 이벤트 리스너 제거
+  //     canvas.removeEventListener('mousedown', startStaticPaint);
+  //     canvas.removeEventListener('mousemove', StaticPaint);
+  //     canvas.removeEventListener('mouseup', exitStaticPaint);
+  //     canvas.removeEventListener('mouseleave', exitStaticPaint);
+  //   };
+  // }, [startStaticPaint, StaticPaint, exitStaticPaint]);
+
+  useEffect(() => {
     if (!canvasRef.current) {
       return;
     }
-
-    //존재하는 경우 canvas에 할당
     const canvas: HTMLCanvasElement = canvasRef.current;
 
-    // canvas.width = canvas.offsetWidth;
-    // canvas.height = canvas.offsetHeight;
-
-    // const context = canvas.getContext('2d');
-
-    // if (context) {
-    //   context.clearRect(0, 0, canvas.width, canvas.height);
-    // }
-
-    //canvas엘리먼트에 대해 mousedown, move,up,leave에 대응하는 함수 지정
     canvas.addEventListener('mousedown', startPaint);
     canvas.addEventListener('mousemove', paint);
     canvas.addEventListener('mouseup', exitPaint);
@@ -218,22 +165,7 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
     };
   }, [startPaint, paint, exitPaint]);
 
-  //팬, 지우개, 초기화 상태 토글
-  const [pen, setPen] = useState(true);
-  const [eraser, setEraser] = useState(false);
-  const [init, setInit] = useState(false);
-
-  const onClickPenToggleHandler = () => {
-    setPen(!pen);
-    setEraser(false);
-  };
-
-  const onClickEraserToggleHandler = () => {
-    setEraser(!eraser);
-    setColor('white');
-    setPen(false);
-  };
-
+  ////////////////////////////////////////////
   const onClickSaveToggleHandler = () => {
     //다운로드 링크
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
@@ -320,12 +252,6 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
       //블롭데이터를 어떻ㅇ게 전송할지/ 보여줄지
       postDiaryMutation.mutate(postDiaryItem);
 
-      //다운로드 링크
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(file);
-      downloadLink.download = 'drawing.png';
-      downloadLink.click();
-
       // postDiary 함수 호출
     } else {
       console.log('이미지 불러오기 실패');
@@ -345,6 +271,12 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
 
   return (
     <div>
+      {/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+      <div onClick={() => setIsStaticPainting(true)}>줄</div>
+      {/* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
+      <div>네모</div>
+      <div>세모</div>
+      <div>원</div>
       <canvas
         ref={canvasRef}
         height={height}
@@ -353,6 +285,9 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
       />
       <S.ToggleBox>
         <S.FirstToggle onClick={onClickPenToggleHandler}>펜</S.FirstToggle>
+        <S.FirstToggle onClick={onClickThicknessToggleHandler}>
+          굵기
+        </S.FirstToggle>
         <S.FirstToggle onClick={onClickEraserToggleHandler}>
           지우개
         </S.FirstToggle>
@@ -365,74 +300,69 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
         <>
           <S.ArrowDiv></S.ArrowDiv>
           <S.ColorSettingDiv>
-            <S.ThicknessDiv>
-              <S.ThicknessBold
-                onClick={onCLickThicknessBoldHaneler}
-              ></S.ThicknessBold>
-              <S.ThicknessMedium
-                onClick={onClickThicknessMediumHandler}
-              ></S.ThicknessMedium>
-              <S.ThicknessThin
-                onClick={oonClickThicknessThinHandler}
-              ></S.ThicknessThin>
-            </S.ThicknessDiv>
-
             <S.ColorPaletteFlexDiv>
               <S.Palette
                 color={'black'}
-                onClick={onClickBlackPaletteHandler}
+                onClick={colorHandlerBlack}
               ></S.Palette>
               <S.Palette
                 color={'#FF2323'}
-                onClick={onClickRedPaletteHandler}
+                onClick={colorHandlerRed}
               ></S.Palette>
               <S.Palette
                 color={'#FFC225'}
-                onClick={onClickOrangePaletteHandler}
+                onClick={colorHandlerOrange}
               ></S.Palette>
               <S.Palette
                 color={'#EDFF22'}
-                onClick={onClickYellowPaletteHandler}
+                onClick={colorHandlerYellow}
               ></S.Palette>
               <S.Palette
                 color={'#16FF4A'}
-                onClick={onClickGreenPaletteHandler}
+                onClick={colorHandlerGreen}
               ></S.Palette>
               <S.Palette
                 color={'#4BA9FF'}
-                onClick={onClickBluePaletteHandler}
+                onClick={colorHandlerBlue}
               ></S.Palette>
               <S.Palette
                 color={'#4E12F6'}
-                onClick={onClickPurplePaletteHandler}
+                onClick={colorHandlerPurple}
               ></S.Palette>
               <S.Palette
                 color={'#DB00FF'}
-                onClick={onClickPinkPaletteHandler}
+                onClick={colorHandlerPink}
               ></S.Palette>
+              <input
+                type='color'
+                id='color'
+                ref={colorPickerRef}
+                onChange={onChangePickColorHandler}
+                value={colorPickerValue}
+              ></input>
             </S.ColorPaletteFlexDiv>
           </S.ColorSettingDiv>
         </>
       )}
-      {eraser && (
+      {thicknessToggle && (
         <>
           <S.EraserArrowDiv></S.EraserArrowDiv>
           <S.ColorSettingDiv>
             <S.EraserThicknessDiv>
               <S.EraserThicknessBold
-                onClick={onCLickEraserThicknessBoldHaneler}
+                onClick={EraserBoldHaneler}
               ></S.EraserThicknessBold>
               <S.ThicknessBoldMedium
-                onClick={onCLickThicknessBoldMediumHaneler}
+                onClick={EraserBoldMediumHandler}
               ></S.ThicknessBoldMedium>
               <S.EraserThicknessMedium
-                onClick={onClickEraserThicknessMediumHandler}
+                onClick={EraserMediumHandler}
               ></S.EraserThicknessMedium>
               <S.ThicknessMediumThin
-                onClick={onClickThicknessMediumThinHandler}
+                onClick={EraserMediumThinHandler}
               ></S.ThicknessMediumThin>
               <S.EraserThicknessThin
-                onClick={oonClickEraserThicknessThinHandler}
+                onClick={EraserThinHandler}
               ></S.EraserThicknessThin>
             </S.EraserThicknessDiv>
           </S.ColorSettingDiv>
@@ -443,3 +373,9 @@ const BoardDrawPaper = ({ width, height }: ICanvasProps) => {
 };
 
 export default BoardDrawPaper;
+
+const canvasStyle = {
+  border: '1px solid #C4C4C4',
+  borderRadius: '25px',
+  margin: '17px auto',
+};

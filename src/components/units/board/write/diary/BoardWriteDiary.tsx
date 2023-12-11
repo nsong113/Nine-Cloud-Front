@@ -177,11 +177,11 @@ const BoardWriteDiary = () => {
 
 export default BoardWriteDiary;
 
-const ToggleStyle = {
-  track: {
-    backgroundColor: 'gray',
-  },
-  thumb: {
-    backgroundColor: 'blue',
-  },
-};
+// const ToggleStyle = {
+//   track: {
+//     backgroundColor: 'gray',
+//   },
+//   thumb: {
+//     backgroundColor: 'blue',
+//   },
+// };

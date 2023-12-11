@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',
-  ],
+  // ],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
