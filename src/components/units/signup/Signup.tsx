@@ -73,9 +73,17 @@ const Signup = () => {
       console.log('회원가입 성공:', response);
       alert('회원가입이 성공적으로 완료되었습니다.');
       navigate('/login');
-    } catch (error) {
-      console.error('회원가입 실패', error);
-      alert('회원가입 실패');
+    } catch (error: any) {
+      if (error.response) {
+        // 서버 응답이 있는 경우
+        const errorMsg = error.response.data.msg;
+        console.error('로그인 실패', errorMsg);
+        alert(errorMsg);
+      } else {
+        // 서버 응답이 없는 경우
+        console.error('네트워크 오류', error.message);
+        alert('네트워크 오류');
+      }
     }
   };
 
