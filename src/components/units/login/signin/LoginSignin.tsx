@@ -46,9 +46,10 @@ const LoginSignin = () => {
           },
         }
       );
-
-      // 서버 응답에서 Authorization과 Refresh-Token 헤더 가져오기
-      const accessToken = response.headers['authorization'];
+      const authorizationHeader = response.headers['authorization'];
+      const accessToken = authorizationHeader
+        ? authorizationHeader.split('Bearer ')[1]
+        : null;
       const refreshToken = response.headers['refreshtoken'];
       console.log(accessToken);
       console.log(refreshToken);
