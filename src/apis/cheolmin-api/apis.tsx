@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { IAddComment, IAddPost } from './apis.types';
 
+const accessToken = localStorage.getItem('accessToken');
+const refreshToken = localStorage.getItem('refreshToken');
+
 export const addPost = async (target: IAddPost) => {
   try {
     const formData = new FormData();
@@ -29,7 +32,11 @@ export const getPosts = async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/diary/calendar`,
       {
-        headers: { Authorization: ` ${localStorage.getItem('Token')}` },
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
       }
     );
     return response.data;
@@ -43,13 +50,18 @@ export const getOnePostInfo = async (diaryId: string | undefined) => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/diary/detail/${diaryId}`,
       {
-        headers: { Authorization: `${localStorage.getItem('Token')}` },
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
       }
     );
+    console.log('게시글 상세조회에 성공하셨습니다.');
 
     return response.data;
   } catch (error) {
-    alert('다시 시도하세요');
+    console.log('테스트');
   }
 };
 
@@ -58,7 +70,11 @@ export const getComments = async (diaryId: string | undefined) => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${diaryId}`,
       {
-        headers: { Authorization: `${localStorage.getItem('Token')}` },
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
       }
     );
     return response.data;
@@ -73,7 +89,7 @@ export const addComment = async (target: IAddComment) => {
       `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.diaryId}`,
       target.comment,
       {
-        headers: { Authorization: `${localStorage.getItem('Token')}` },
+        headers: { Authorization: `${localStorage.getItem('accessToken')}` },
       }
     );
     return response.data;
