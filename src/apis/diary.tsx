@@ -5,20 +5,23 @@ import { IpostDiaryItem } from './apiesType';
 
 // create (post)
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
-  const accessToken = localStorage.getItem('Token');
-  console.log(accessToken);
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
       postDiaryItem,
       {
+        withCredentials: true,
         headers: {
           // 'Content-Type': 'application/json',
           'Content-Type': 'multipart/form-data',
+          Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
         },
       }
     );
+
     return res.data;
   } catch (error) {
     console.log('postDiary error', error);
@@ -27,7 +30,7 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
 
 //read
 const getDiary = async () => {
-  const accessToken = localStorage.getItem('Token');
+  const accessToken = localStorage.getItem('accessToken');
   try {
     const res = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/diary/calandar`,
