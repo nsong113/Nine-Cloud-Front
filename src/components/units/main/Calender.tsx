@@ -42,6 +42,7 @@ const Calender = () => {
     setAnimationDirection('leftToRight');
   };
 
+
   const filteredDayList = dayList.filter((el) => el !== null);
 
   const getEmotionStatusForDate = (date: string) => {
@@ -209,12 +210,12 @@ const Calender = () => {
                                 <S.DateSpan isToday={isToday}>
                                   {cellDate}
                                 </S.DateSpan>
-                                {cellDate <= currentDate.getDate() && (
-                                  <S.DateImg
-                                    src={getEmotion(emotionStatus)}
-                                    alt={`Emotion ${emotionStatus}`}
-                                  />
-                                )}
+                                {/* {cellDate <= currentDate.getDate() && ( */}
+                                <S.DateImg
+                                  src={getEmotion(emotionStatus)}
+                                  alt={`Emotion ${emotionStatus}`}
+                                />
+                                {/* )} */}
                               </S.DateWrapperDiv>
                             </S.DayWrapperDiv>
                           ) : (

@@ -12,9 +12,20 @@ import BoardDetailComment from './comment/BoardDetailComment';
 
 const BoardDetail = () => {
   const { data } = useQuery('post', () => getOnePostInfo(params.id));
+  const { currentDate, currentMonth } = useCalendar();
 
-  const { currentDate } = useCalendar();
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  // const date = new Date(
+  //   //2023
+  //   currentDate.getFullYear(),
+  //   //11 (getMonth() 메서드의 반환 값은 0부터 시작해서 11까지의 숫자 => 0이 1월)
+  //   currentDate.getMonth(),
+  //   //1
+  //   1
+  // );
+
+  const date = new Date(currentDate);
+  console.log('date', date);
+
   const [isActiveModal, setIsActiveModal] = useState(false);
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
@@ -66,11 +77,13 @@ const BoardDetail = () => {
                 <S.TitleTextSpan>{data?.date}</S.TitleTextSpan>
                 <S.WriterImageDiv>
                   <S.WriterSpan>{data?.writer}</S.WriterSpan>
-                  <img src='/avatar.png' alt='돼지' />
+                  <S.WeatherImg src='/avatar.png' alt='돼지' />
                 </S.WriterImageDiv>
               </S.ContentBoxHeaderDiv>
               <S.ContentsBoxDiv>
-                <span>{data?.content}</span>
+                <S.ContentBoxDiv>
+                  <span>{data?.content}</span>
+                </S.ContentBoxDiv>
               </S.ContentsBoxDiv>
               <S.ContentsFooterDiv>
                 <img src='/circle.png' alt='circle' />

@@ -6,15 +6,16 @@ export const ContainerDiv = styled.div`
 `;
 
 export const ImgBoxDiv = styled.div`
-  height: 400px;
-  background-color: gray;
+  height: 396px;
+  width: 443px;
+  background-color: #ebebeb;
   border-radius: 0 0 80px 0;
   position: fixed;
 `;
 
 export const MainImg = styled.img`
-  width: 430px;
-  height: 400px;
+  width: 443px;
+  height: 396px;
 `;
 
 export const ContentsWrapperDiv = styled.div`
@@ -31,10 +32,11 @@ export const ContentsHeaderDiv = styled.div`
 
 export const TitleTextSpan = styled.span`
   color: #000;
-  font-size: 25px;
+  font-family: Pretendard;
+  font-size: 28.466px;
   font-style: normal;
   font-weight: 400;
-  margin-top: 20px;
+  line-height: normal;
 `;
 
 export const ContentBoxHeaderDiv = styled.div`
@@ -43,14 +45,21 @@ export const ContentBoxHeaderDiv = styled.div`
 `;
 
 export const WriterSpan = styled.span`
-  font-size: 20px;
+  color: #000;
+
+  font-family: Pretendard;
+  font-size: 21.349px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const ContentsBoxDiv = styled.div`
-  width: 360px;
-  height: 294px;
-  border-radius: 11px;
-  background-color: #d9d9d9;
+  width: 371.835px;
+  height: 261.53px;
+  flex-shrink: 0;
+  border-radius: 9.785px;
+  background: #d9d9d9;
 `;
 
 export const WriterImageDiv = styled.div`
@@ -60,7 +69,10 @@ export const WriterImageDiv = styled.div`
 `;
 
 export const CloudImg = styled.img`
-  margin-top: 20px;
+  margin-top: 50px;
+  width: 126.186px;
+  height: 77.125px;
+  flex-shrink: 0;
 `;
 export const DrawingImg = styled.img`
   height: 4dvh;
@@ -173,4 +185,22 @@ export const SubmitButton = styled.button`
   flex-shrink: 0;
   margin-left: 20px;
   border: 0;
+`;
+
+export const WeatherImg = styled.img`
+  width: 39.141px;
+  height: 39.141px;
+  flex-shrink: 0;
+`;
+
+export const ContentBoxDiv = styled.div`
+  width: 338.032px;
+  color: #000;
+  font-family: Inter;
+  font-size: 16.012px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 19px;
+  height: 300px;
 `;

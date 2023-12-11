@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { IAddComment, IAddPost } from './apis.types';
 
-const accessToken = localStorage.getItem('accessToken');
-const refreshToken = localStorage.getItem('refreshToken');
-
 export const addPost = async (target: IAddPost) => {
   try {
     const formData = new FormData();
@@ -27,8 +24,13 @@ export const addPost = async (target: IAddPost) => {
   }
 };
 
+const accessToken = localStorage.getItem('accessToken');
+const refreshToken = localStorage.getItem('refreshToken');
+
 export const getPosts = async () => {
   try {
+    console.log(accessToken);
+    console.log(refreshToken);
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/diary/calendar`,
       {
@@ -39,12 +41,12 @@ export const getPosts = async () => {
         },
       }
     );
+
     return response.data;
   } catch (error) {
     console.log('다시 시도하세요');
   }
 };
-
 export const getOnePostInfo = async (diaryId: string | undefined) => {
   try {
     const response = await axios.get(
@@ -95,5 +97,23 @@ export const addComment = async (target: IAddComment) => {
     return response.data;
   } catch (error) {
     console.log('테스트');
+  }
+};
+
+export const getMyInfo = async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/myInfo}`,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log('error');
   }
 };
