@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import * as S from './LoginSignin.styles';
 import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../social/LoginKakao';
@@ -14,7 +14,6 @@ const LoginSignin = () => {
     useState('');
   const navigate = useNavigate();
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
-  
 
   const onClickLoginHandler = async () => {
     try {
@@ -61,9 +60,15 @@ const LoginSignin = () => {
       // console.log('로그인 성공:', token);
       alert(`${response.data.msg}`);
       navigate('/main');
-    } catch (error) {
-      console.error('로그인 실패', error);
-      alert('로그인 실패');
+    } catch (error: any) {
+      if (error.response) {
+        const errorMsg = error.response.data.msg;
+        console.error('로그인 실패', errorMsg);
+        alert(errorMsg);
+      } else {
+        console.error('네트워크 오류', error.message);
+        alert('네트워크 오류');
+      }
     }
   };
 
