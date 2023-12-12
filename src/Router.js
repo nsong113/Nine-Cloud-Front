@@ -17,6 +17,8 @@ import GoogleLoginHandler from './components/units/login/social/auth/GoogleLogin
 import { AnimatePresence } from 'framer-motion';
 import Loading from './components/units/login/social/auth/Loading';
 import TestPage from './components/units/login/TestPage';
+import Chatting from './components/units/community/chatting/chatting';
+
 
 export default function Router() {
   return (
@@ -47,6 +49,7 @@ export default function Router() {
           <Route path='/post/:id' element={<DetailedPage />} />
           <Route path='/list' element={<ViewAll />} />
           <Route path='/test' element={<TestPage />} />
+          <Route path='/community/chat' element={<Chatting />} />
         </Route>
       </Routes>
     </BrowserRouter>
