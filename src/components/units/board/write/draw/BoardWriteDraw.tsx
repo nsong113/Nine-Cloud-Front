@@ -199,7 +199,7 @@ const BoardWriteDraw = () => {
   };
 
   const onClickGotoPost2 = () => {
-    navigate('/post2');
+    setIsModalOpen(!isModalOpen);
   };
 
   const onClickGotoMain = () => {
