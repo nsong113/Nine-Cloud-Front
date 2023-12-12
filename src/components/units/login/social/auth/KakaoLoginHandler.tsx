@@ -6,43 +6,44 @@ const KakaoLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
   // const code = window.location.href;
   const navigate = useNavigate();
-
-  const asd = async () => {
-    console.log(code);
-    try {
-      await axios.post(
-        `https://astraiosissda.shop/kakao/code`,
-        {
-          code: code,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
+  console.log(code);
+  useEffect(() => {
+    const KakaoLogin = async () => {
+      try {
+        const response = await axios.post(
+          `https://astraiosissda.shop/callback`,
+          {
+            code: code,
           },
-          withCredentials: true,
-        }
-      );
-      console.log(code);
-      // const accessToken = response.headers['authorization'];
-      // const refreshToken = response.headers['refreshtoken'];
-      // const expiredTime = response.headers['expiredtime'];
-      // console.log(response);
-      // console.log('at: ', accessToken);
-      // console.log('rt: ', refreshToken);
-      // console.log('et: ', expiredTime);
-      // localStorage.setItem('accessToken', accessToken);
-      // localStorage.setItem('refreshToken', refreshToken);
-      // localStorage.setItem('expiredTime', expiredTime);
-      // navigate('/loadingpage');
-    } catch (error) {
-      console.error('로그인 실패');
-    }
-  };
-
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log(response);
+        const accessToken = response.headers['authorization'];
+        const refreshToken = response.headers['refreshtoken'];
+        const expiredTime = response.headers['expiredtime'];
+        console.log(response);
+        console.log('at: ', accessToken);
+        console.log('rt: ', refreshToken);
+        console.log('et: ', expiredTime);
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        localStorage.setItem('expiredTime', expiredTime);
+        navigate('/loadingpage');
+      } catch (error) {
+        console.error('로그인 실패', error);
+      }
+    };
+    KakaoLogin();
+  }, [code]);
   return (
     <>
-      <div>로그인 중입니다. 제발 돼라</div>;
-      <button onClick={asd}>보내기</button>
+      <div>
+        제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발
+      </div>
     </>
   );
 };
