@@ -15,6 +15,7 @@ import ViewAll from './components/units/main/ViewAll';
 import GithubLoginHandler from './components/units/login/social/auth/GithubLoginHandler';
 import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
 import { AnimatePresence } from 'framer-motion';
+import Loading from './components/units/login/social/auth/Loading';
 
 export default function Router() {
   return (
@@ -33,6 +34,7 @@ export default function Router() {
             path='/auth/github/callback'
             element={<GithubLoginHandler />}
           />
+          <Route path='/loadingpage' element={<Loading />} />
           <Route path='/signup' element={<SignupPage />} />
           {/* main 페이지 */}
           <Route path='/main' element={<MainPage />} />
