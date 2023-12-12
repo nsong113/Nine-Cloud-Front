@@ -46,7 +46,6 @@ export const getPosts = async () => {
         },
       }
     );
-
     return response.data;
   } catch (error) {
     console.log('다시 시도하세요');

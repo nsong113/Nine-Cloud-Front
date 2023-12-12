@@ -16,6 +16,7 @@ import GithubLoginHandler from './components/units/login/social/auth/GithubLogin
 import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
 import { AnimatePresence } from 'framer-motion';
 import Loading from './components/units/login/social/auth/Loading';
+import TestPage from './components/units/login/TestPage';
 
 export default function Router() {
   return (
@@ -45,6 +46,7 @@ export default function Router() {
           {/* 상세 페이지 */}
           <Route path='/post/:id' element={<DetailedPage />} />
           <Route path='/list' element={<ViewAll />} />
+          <Route path='/test' element={<TestPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
