@@ -8,6 +8,7 @@ import { postDiary } from 'src/apis/diary';
 const ConfirmOverlay: React.FC<IConfirmMod> = ({
   onOk,
   onClose,
+  // modalClose,
   postDiaryItem,
 }) => {
   const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
@@ -17,15 +18,12 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   const onClickPostHandler = () => {
     if (postDiaryItem) {
       postDiaryMutation.mutate(postDiaryItem);
+      console.log(postDiaryItem);
     }
   };
 
   return (
-    <S.ContainerDiv
-      className='modal'
-      onClick={onClose}
-      // $isModalOpen={isModalOpen}
-    >
+    <S.ContainerDiv className='modal' onClick={onClose}>
       <S.ModalContentDiv>
         <S.TitleBoxDiv>
           <S.TextStyleSpan>글을 등록 하시겠습니까?</S.TextStyleSpan>
@@ -34,7 +32,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
           <button onClick={onClose}>취소</button>
           <S.StyleButton
             onClick={() => {
-              // onOk?.();
+              onOk?.();
               onClickPostHandler();
             }}
           >
