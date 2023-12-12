@@ -9,8 +9,11 @@ import styled, { keyframes } from 'styled-components';
 import { IMyPage } from './MyPageOverlay.types';
 import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getMyInfo } from 'src/apis/cheolmin-api/apis';
 
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
+  const { data } = useQuery('myInfo', getMyInfo);
   const navigate = useNavigate();
   const [imgFile, setImgFile] = useState<File | null>();
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -103,8 +106,12 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
             <S.ContentsBoxDIv>
               <S.NameBoxDiv>
                 <div>
-                  <span>닉네임 : </span>
-                  {!isEdit && <span>주철민 </span>}
+                  {!isEdit && (
+                    <S.MyinfoBoxDiv>
+                      <span>닉네임 : {data?.data.username} </span>
+                      <span>이메일 : {data?.data.email}</span>
+                    </S.MyinfoBoxDiv>
+                  )}
                 </div>
                 {isEdit && <S.NicknameInput type='text' />}
               </S.NameBoxDiv>

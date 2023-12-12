@@ -140,7 +140,6 @@ export const TableCell = styled.td<ITableCellProps>`
   &:hover {
     background-color: gray;
   }
-  border-radius: 10px;
 `;
 
 export const DayWrapperDiv = styled.div`

@@ -154,3 +154,9 @@ export const NicknameInput = styled.input`
 export const NameBoxDiv = styled.div`
   margin-top: 20px;
 `;
+
+export const MyinfoBoxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+
+`

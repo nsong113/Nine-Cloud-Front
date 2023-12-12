@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { IAddComment, IAddPost } from './apis.types';
+import {
+  IAddComment,
+  IAddPost,
+  IDeleteComment,
+  IEditComment,
+} from './apis.types';
 
 const accessToken = localStorage.getItem('accessToken');
 const refreshToken = localStorage.getItem('refreshToken');
@@ -29,6 +34,8 @@ export const addPost = async (target: IAddPost) => {
 
 export const getPosts = async () => {
   try {
+    console.log(accessToken);
+    console.log(refreshToken);
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/diary/calendar`,
       {
@@ -39,12 +46,12 @@ export const getPosts = async () => {
         },
       }
     );
+
     return response.data;
   } catch (error) {
     console.log('다시 시도하세요');
   }
 };
-
 export const getOnePostInfo = async (diaryId: string | undefined) => {
   try {
     const response = await axios.get(
@@ -65,10 +72,32 @@ export const getOnePostInfo = async (diaryId: string | undefined) => {
   }
 };
 
-export const getComments = async (diaryId: string | undefined) => {
+export const getComments = async (diaryId: string | undefined | number) => {
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${diaryId}`,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log('테스트');
+  }
+};
+
+export const addComment = async (target: IAddComment) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.diaryId}`,
+      {
+        content: target.content,
+      },
       {
         withCredentials: true,
         headers: {
@@ -83,17 +112,56 @@ export const getComments = async (diaryId: string | undefined) => {
   }
 };
 
-export const addComment = async (target: IAddComment) => {
+export const editComment = async (target: IEditComment) => {
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.diaryId}`,
-      target.comment,
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.commentId}`,
+      target.editComment,
       {
-        headers: { Authorization: `${localStorage.getItem('accessToken')}` },
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
       }
     );
     return response.data;
   } catch (error) {
-    console.log('테스트');
+    console.log('잘못된 접근입니다.');
+  }
+};
+
+export const deleteComment = async (target: IDeleteComment) => {
+  try {
+    const response = await axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.commentId}`,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+  } catch (error) {
+    console.log('이상한 접근입니다.');
+  }
+};
+
+export const getMyInfo = async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/myInfo`,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log('error');
   }
 };
