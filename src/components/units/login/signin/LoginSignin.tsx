@@ -46,9 +46,9 @@ const LoginSignin = () => {
           },
         }
       );
-
-      // 서버 응답에서 Authorization과 Refresh-Token 헤더 가져오기
-      const accessToken = response.headers['authorization'];
+      const authorizationHeader = response.headers['authorization'];
+      // const accessToken = authorizationHeader.split('Bearer ')[1];
+      const accessToken = authorizationHeader
       const refreshToken = response.headers['refreshtoken'];
       console.log(accessToken);
       console.log(refreshToken);
@@ -59,7 +59,7 @@ const LoginSignin = () => {
       // console.log('response.data.accessToken', response.data);
       // console.log('로그인 성공:', token);
       alert(`${response.data.msg}`);
-      navigate('/main');
+      navigate('/loadingpage');
     } catch (error: any) {
       if (error.response) {
         const errorMsg = error.response.data.msg;
