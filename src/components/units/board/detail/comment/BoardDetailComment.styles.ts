@@ -14,9 +14,8 @@ export const CommentBox = styled.div`
 
 export const CommentBoxDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 10px;
-  justify-content: center;
 `;
 
 export const CommentWriterSpan = styled.span`
@@ -38,6 +37,7 @@ export const CommentContent = styled.span`
 export const CommentHeaderDiv = styled.div`
   height: 40px;
   display: flex;
+  flex-direction: column;
 `;
 
 export const DeepCircleImg = styled.img`
@@ -50,7 +50,6 @@ export const CommentFooterWrapDiv = styled.div`
   display: flex;
   margin-bottom: 10px;
 `;
-
 
 export const InputBoxDiv = styled.input`
   background-color: white;
@@ -70,3 +69,10 @@ export const SubmitButton = styled.button`
   margin-left: 20px;
   border: 0;
 `;
+
+export const CommentWriterBoxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const CommentWrapperDiv = styled.div``;

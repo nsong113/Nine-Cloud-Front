@@ -4,8 +4,16 @@ export interface IAddPost {
   EmotionStatus: number;
 }
 
-
 export interface IAddComment {
-  diaryId : string | undefined,
-  comment : string | undefined,
+  diaryId: string | undefined;
+  content: string | undefined;
+}
+
+export interface IEditComment {
+  commentId: string | undefined;
+  editComment: string | undefined;
+}
+
+export interface IDeleteComment {
+  commentId: string | undefined;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
 import { useNavigate } from 'react-router-dom';
@@ -10,10 +10,11 @@ import { getPosts } from 'src/apis/cheolmin-api/apis';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Image from './Image';
+import Loading from 'src/components/commons/utills/loading/Loading';
 
 const Calender = () => {
   const navigate = useNavigate();
-  const { data } = useQuery('posts', getPosts);
+  const { data, isLoading } = useQuery('posts', getPosts);
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [animationDirection, setAnimationDirection] = useState('');
   const {
@@ -24,6 +25,10 @@ const Calender = () => {
     setCurrentMonth,
     DAY_LIST,
   } = useCalendar();
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const formattedMonth = format(currentMonth, 'MMMM');
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);
@@ -41,7 +46,6 @@ const Calender = () => {
     setCurrentMonth(newDate);
     setAnimationDirection('leftToRight');
   };
-
 
   const filteredDayList = dayList.filter((el) => el !== null);
 

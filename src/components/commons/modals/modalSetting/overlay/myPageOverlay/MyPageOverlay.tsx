@@ -106,8 +106,12 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
             <S.ContentsBoxDIv>
               <S.NameBoxDiv>
                 <div>
-                  <span>닉네임 : </span>
-                  {!isEdit && <span>주철민 </span>}
+                  {!isEdit && (
+                    <S.MyinfoBoxDiv>
+                      <span>닉네임 : {data?.data.username} </span>
+                      <span>이메일 : {data?.data.email}</span>
+                    </S.MyinfoBoxDiv>
+                  )}
                 </div>
                 {isEdit && <S.NicknameInput type='text' />}
               </S.NameBoxDiv>
