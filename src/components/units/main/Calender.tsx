@@ -15,6 +15,7 @@ import Loading from 'src/components/commons/utills/loading/Loading';
 const Calender = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useQuery('posts', getPosts);
+
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [animationDirection, setAnimationDirection] = useState('');
   const {
@@ -25,10 +26,6 @@ const Calender = () => {
     setCurrentMonth,
     DAY_LIST,
   } = useCalendar();
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   const formattedMonth = format(currentMonth, 'MMMM');
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);

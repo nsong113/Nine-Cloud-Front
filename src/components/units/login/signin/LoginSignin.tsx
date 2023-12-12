@@ -46,14 +46,15 @@ const LoginSignin = () => {
           },
         }
       );
-      const authorizationHeader = response.headers['authorization'];
-      // const accessToken = authorizationHeader.split('Bearer ')[1];
-      const accessToken = authorizationHeader
+      const accessToken = response.headers['authorization'];
       const refreshToken = response.headers['refreshtoken'];
-      console.log(accessToken);
-      console.log(refreshToken);
+      const expiredTime = response.headers['expiredtime'];
+      console.log('at: ', accessToken);
+      console.log('rt: ', refreshToken);
+      console.log('et: ', expiredTime);
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('expiredTime', expiredTime);
       // const token = response.headers.authorization;
       // console.log('response', response);
       // console.log('response.data.accessToken', response.data);
