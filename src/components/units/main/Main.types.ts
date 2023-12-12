@@ -31,25 +31,27 @@ export interface IemotionSetting {
   matchEmotionStatus: number;
 }
 
+export interface ViewAllInfiniteProps {
+  // 다른 필요한 props들도 여기에 추가하세요
+  item: IViewAllProps;
+}
+
 export interface IViewAllProps {
-  item: {
-    diaryId: number;
-    UserId: number;
-    EmotionStatus: number;
-    image: string;
-    content: string;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: null;
-    isPrivate: boolean;
-  };
+  diaryId: number;
+  UserId: number;
+  EmotionalStatus: number;
+  image: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: null | string;
+  isPrivate: boolean;
 }
 
 export interface ITableCellProps {
-  isToday?:boolean;
+  isToday?: boolean;
 }
 
-
 export interface IDateSpanProps {
-  isToday?:boolean;
+  isToday?: boolean;
 }

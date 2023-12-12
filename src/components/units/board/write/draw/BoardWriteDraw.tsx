@@ -18,6 +18,7 @@ const BoardWriteDraw = () => {
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
+  const [isPublic, setIsPublic] = useState<boolean>(true);
 
   const onClickPrevBtn = () => {
     navigate('/post3');
@@ -156,24 +157,22 @@ const BoardWriteDraw = () => {
       }
       const u8arr = new Uint8Array(byteNumbers);
       const file = new Blob([u8arr], { type: 'image/png' });
-      const imageUrl = URL.createObjectURL(file);
 
-      console.log('imageUrl', imageUrl);
+      console.log('file', file);
 
       const formData = new FormData();
 
-      formData.append('picture', file);
+      formData.append('image', file);
 
       setPostDiaryItem({
-        EmotionStatus: Number(localStorage.getItem('countAverage')),
+        EmotionalStatus: Number(localStorage.getItem('countAverage')),
         content: localStorage.getItem('contents'),
-        image: formData,
+        image: file,
       });
     } else {
       console.log('이미지 불러오기 실패');
     }
   };
-  console.log('postDiaryItem2', postDiaryItem);
 
   useEffect(() => {
     if (!canvasRef.current) {
@@ -195,12 +194,24 @@ const BoardWriteDraw = () => {
     };
   }, [startPaint, paint, exitPaint]);
 
+  const onChangeIsPublicHandler = () => {
+    setIsPublic(!isPublic);
+  };
+
+  const onClickGotoPost2 = () => {
+    navigate('/post2');
+  };
+
+  const onClickGotoMain = () => {
+    navigate('/main');
+  };
+
   return (
     <>
       {isModalOpen && (
         <ConfrimModal
-          onClickSubmitBtn={onClickSubmitBtn}
-          onClickMoveToCancel={onClickMoveToCancel}
+          onClickGotoMain={onClickGotoMain}
+          onClickGotoPost2={onClickGotoPost2}
           postDiaryItem={postDiaryItem}
         />
       )}
@@ -331,7 +342,11 @@ const BoardWriteDraw = () => {
                   오늘의 일기를 전체공개로 등록해 <br />
                   사람들과 공유해보세요!
                 </S.ToggleP>
-                <input type='checkbox' />
+                <input
+                  type='checkbox'
+                  checked={isPublic} // 현재 상태에 따라 체크 여부 결정
+                  onChange={onChangeIsPublicHandler}
+                />
               </S.ToggleFlexDiv>
             </S.ToggleDiv>
             <S.ButtonWrapperDiv>

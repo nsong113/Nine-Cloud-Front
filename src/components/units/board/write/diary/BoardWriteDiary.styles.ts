@@ -6,7 +6,7 @@ export const DiaryContainerDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 900px;
+  height: 960px;
   overflow: hidden;
 `;
 
@@ -102,10 +102,45 @@ export const DiaryWriteTitleH3 = styled.h3`
   text-align: left;
 `;
 
+export const FortuneContainer = styled.div`
+  width: 90%;
+  height: 200px;
+  background-color: #d9d9d9;
+  border-radius: 22px;
+  /* padding: 10px; */
+  margin-top: 15px;
+`;
+
+export const FortuneFlexWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: 30px; */
+`;
+
+export const FortuneBox = styled.div`
+  text-align: center;
+`;
+
+export const FortuneP = styled.p`
+  font-size: 13px;
+`;
+
+export const FortuneGoDiv = styled.div`
+  width: 130px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid black;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const DiaryToggleTitleDiv = styled.div`
   width: 40%;
-  height: 93px;
-  margin: 50px 100px;
+  height: 70px;
+  margin: 20px 100px;
   text-align: center;
 `;
 
@@ -250,7 +285,7 @@ export const ContentsTextarea = styled.textarea`
 
 export const InputDiv = styled.div`
   width: 100%;
-  height: 350px;
+  height: 200px;
 `;
 
 export const InputFooterBoxDiv = styled.div`

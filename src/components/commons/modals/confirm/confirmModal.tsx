@@ -4,16 +4,16 @@ import ConfirmOverlay from '../modalSetting/overlay/confrimOverlay/ConfirmOverla
 import { IConfirm } from './confirmModal.types';
 
 const ConfrimModal: React.FC<IConfirm> = ({
-  onClickSubmitBtn,
-  onClickMoveToCancel,
+  onClickGotoMain,
+  onClickGotoPost2,
   postDiaryItem,
 }) => {
   return (
     <div>
       {ReactDOM.createPortal(
         <ConfirmOverlay
-          onOk={onClickSubmitBtn}
-          onClose={onClickMoveToCancel}
+          onOk={onClickGotoMain}
+          onClose={onClickGotoPost2}
           postDiaryItem={postDiaryItem}
         />,
         document.getElementById('overlay-root') as HTMLElement

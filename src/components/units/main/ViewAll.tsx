@@ -12,6 +12,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 // import InfiniteScroll from 'react-infinite-scroll-component';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { getDiary, getInfiniteDiaries } from 'src/apis/diary';
+import { IViewAllProps } from './Main.types';
 // import useSearchProductQuery from 'src/components/commons/hooks/useIntersection';
 // import { useQuery } from '@apollo/client';
 
@@ -23,13 +24,15 @@ const ViewAll = () => {
   const [animationClass, setAnimationClass] = useState('');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
-  //렌더링 되자마자 보이는 것
-  const [isPrefetchData, setIsPrefetchData] = useState([]);
 
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const formattedMonth = format(currentMonth, 'MMMM');
 
+  //렌더링 되자마자 보이는 것
+  const [isPrefetchData, setIsPrefetchData] = useState<IViewAllProps[]>([]);
+
   const handlePrevMonth = () => {
+    //여기 지금 선언만 되고 사용이 안됨
     const newDate = subMonths(currentMonth, 1);
     setCurrentMonth(newDate);
     // 애니메이션을 위해 클래스 추가
@@ -73,11 +76,12 @@ const ViewAll = () => {
     navigate('/main');
   };
 
-  const { data: items } = useQuery('getDiary', getDiary);
+  //초기데이터를 이렇게 가져올 필요 없이 useInfiniteQuery가 해결해줌
+  // const { data: items } = useQuery('getDiary', getDiary);
 
-  useEffect(() => {
-    setIsPrefetchData(items);
-  }, [isPrefetchData]);
+  // useEffect(() => {
+  //   setIsPrefetchData(items);
+  // }, [isPrefetchData]);
 
   const {
     data, //현재까지 로드된 데이터를 나타냅니다. 이 속성은 배열 형태로 각 페이지의 데이터를 가지고 있습니다.
@@ -87,8 +91,8 @@ const ViewAll = () => {
     fetchNextPage, //다음 페이지를 가져오기 위해 호출할 함수입니다. 이 함수를 호출하면 다음 페이지의 데이터를 가져옵니다.
     isFetchingNextPage, //다음 페이지를 가져오는 중인지 여부를 나타냅니다. true이면 다음 페이지를 가져오는 중이라는 뜻입니다.
   } = useInfiniteQuery(
-    ['getDiary'],
-    //
+    ['getInfiniteDiary'],
+
     ({ pageParam = 1 }) => getInfiniteDiaries(pageParam),
     {
       getNextPageParam: (_lastPage, pages) => {
@@ -99,13 +103,19 @@ const ViewAll = () => {
     }
   );
 
+  console.log('data', data);
+
   useEffect(() => {
     // 페이지 로딩 중이거나 다음 페이지를 가져오는 중이 아닐 때만 실행
     if (!isLoading && !isFetchingNextPage) {
       // 데이터를 누적해서 업데이트
+
       setIsPrefetchData(
-        (prevItems: never[]) =>
-          [...(prevItems || []), ...(data?.pages || []).flat()] as never[]
+        (prevItems: IViewAllProps[]) =>
+          [
+            ...(prevItems || []),
+            ...(data?.pages || []).flat(),
+          ] as IViewAllProps[]
       );
     }
   }, [data, isLoading, isFetchingNextPage]);
@@ -214,7 +224,7 @@ const ViewAll = () => {
                 }
               >
                 {/* 이거를 Null이 아닌 것을 최신순으로 돌려줘야함 + 컴포넌트에 키값도 주기*/}
-                {dummyData.map((item, index) => {
+                {isPrefetchData?.map((item, index) => {
                   //통신 되면 isPrefetchData로 변경
                   return (
                     <ViewAllInfinite

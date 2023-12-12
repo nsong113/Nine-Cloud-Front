@@ -38,10 +38,10 @@ export default function Router() {
           <Route path='/main' element={<MainPage />} />
           {/* 추가 페이지 */}
           <Route path='/post' element={<NewPostPage />} />
-          {/* 상세 페이지 */}
-          <Route path='/post/:id' element={<DetailedPage />} />
           <Route path='/post2' element={<BoardWriteDraw />} />
           <Route path='/post3' element={<BoardWriteDiary />} />
+          {/* 상세 페이지 */}
+          <Route path='/post/:id' element={<DetailedPage />} />
           <Route path='/list' element={<ViewAll />} />
         </Route>
       </Routes>
