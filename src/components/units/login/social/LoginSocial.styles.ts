@@ -16,3 +16,17 @@ export const Circle = styled.button`
     transform: scale(0.95);
   }
 `;
+
+export const DivCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+`;
+
+export const Title = styled.div`
+  margin-bottom: 20px;
+  margin-left: 10px;
+  font-size: 20px;
+  
+`;

@@ -1,17 +1,24 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import BarLoader from 'react-spinners/BarLoader';
 import axios from 'axios';
+import * as S from '../LoginSocial.styles';
 
 const KakaoLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
   // const code = window.location.href;
   const navigate = useNavigate();
+  const [dots, setDots] = useState('.');
+
   console.log(code);
   useEffect(() => {
+    const intervalId = setInterval(() => {
+      setDots((prevDots) => (prevDots.length === 3 ? '.' : prevDots + '.'));
+    }, 500);
     const KakaoLogin = async () => {
       try {
         const response = await axios.post(
-          `https://astraiosissda.shop/callback`,
+          `${process.env.REACT_APP_SERVER_URL}/kakao/callback`,
           {
             code: code,
           },
@@ -38,12 +45,17 @@ const KakaoLoginHandler = () => {
       }
     };
     KakaoLogin();
-  }, [code]);
+    return () => clearInterval(intervalId);
+  }, [code, navigate]);
+
   return (
     <>
-      <div>
-        제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발제발
-      </div>
+      <S.DivCenter>
+        <div>
+          <S.Title>잠시만 기다려주세요{dots}</S.Title>
+          <BarLoader color='#36d7b7' height={14} width={380} />
+        </div>
+      </S.DivCenter>
     </>
   );
 };

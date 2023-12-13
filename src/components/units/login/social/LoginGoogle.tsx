@@ -9,7 +9,7 @@ const LoginGoogle = () => {
 		&response_type=code
 		&scope=email profile`;
   };
-// response_type=code : Google 서버에게 인증 코드를 반환하도록 요청하는 매개변수, scope=email profile :  OAuth 인증을 통해 얻고자 하는 권한 범위 - email, profile
+  // response_type=code : Google 서버에게 인증 코드를 반환하도록 요청하는 매개변수, scope=email profile :  OAuth 인증을 통해 얻고자 하는 권한 범위 - email, profile
   return (
     <>
       <Circle

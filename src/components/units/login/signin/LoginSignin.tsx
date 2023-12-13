@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import * as S from './LoginSignin.styles';
 import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../social/LoginKakao';
 import LoginGoogle from '../social/LoginGoogle';
-import LoginGithub from '../social/LoginGithub';
+import LoginNaver from '../social/LoginNaver';
 
 const LoginSignin = () => {
   const [email, setEmail] = useState('');
@@ -14,6 +14,12 @@ const LoginSignin = () => {
     useState('');
   const navigate = useNavigate();
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
+
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onClickLoginHandler();
+    }
+  };
 
   const onClickLoginHandler = async () => {
     try {
@@ -128,7 +134,12 @@ const LoginSignin = () => {
       <S.LoginContainer>
         <S.InputBox>
           <S.InputLabel>E- mail</S.InputLabel>
-          <S.Input type='text' value={email} onChange={handleEmailChange} />
+          <S.Input
+            type='text'
+            value={email}
+            onChange={handleEmailChange}
+            onKeyDown={handleKeyPress}
+          />
           <S.ValidationMessage isError={emailValidationMessage !== '완료'}>
             {emailValidationMessage}
           </S.ValidationMessage>
@@ -139,6 +150,7 @@ const LoginSignin = () => {
             type='password'
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={handleKeyPress}
           />
           <S.ValidationMessage isError={passwordValidationMessage !== '완료'}>
             {passwordValidationMessage}
@@ -159,7 +171,7 @@ const LoginSignin = () => {
         <S.SocialButton>
           <LoginKakao />
           <LoginGoogle />
-          <LoginGithub />
+          <LoginNaver />
         </S.SocialButton>
         <S.SignupLink onClick={navigateToSignup}>
           아직 계정이 없으신가요?

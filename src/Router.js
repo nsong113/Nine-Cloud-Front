@@ -12,13 +12,12 @@ import BoardWriteDraw from './components/units/board/write/draw/BoardWriteDraw';
 import LoginKakao from './components/units/login/social/LoginKakao';
 import KakaoLoginHandler from './components/units/login/social/auth/KakaoLoginHandler';
 import ViewAll from './components/units/main/ViewAll';
-import GithubLoginHandler from './components/units/login/social/auth/GithubLoginHandler';
 import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
 import { AnimatePresence } from 'framer-motion';
 import Loading from './components/units/login/social/auth/Loading';
 import TestPage from './components/units/login/TestPage';
 import Chatting from './components/units/community/chatting/chatting';
-
+import NaverLoginHandler from './components/units/login/social/auth/NaverLoginHandler';
 
 export default function Router() {
   return (
@@ -33,10 +32,7 @@ export default function Router() {
             path='/auth/google/callback'
             element={<GoogleLoginHandler />}
           />
-          <Route
-            path='/auth/github/callback'
-            element={<GithubLoginHandler />}
-          />
+          <Route path='/auth/naver/callback' element={<NaverLoginHandler />} />
           <Route path='/loadingpage' element={<Loading />} />
           <Route path='/signup' element={<SignupPage />} />
           {/* main 페이지 */}
