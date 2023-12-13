@@ -3,8 +3,8 @@ import axios from 'axios';
 import * as S from './Signup.styles';
 import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../login/social/LoginKakao';
-import LoginGithub from '../login/social/LoginGithub';
 import LoginGoogle from '../login/social/LoginGoogle';
+import LoginNaver from '../login/social/LoginNaver';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -21,6 +21,9 @@ const Signup = () => {
   ] = useState('');
   const [nicknameValidationMessage, setNicknameValidationMessage] =
     useState('');
+  const [state, setState] = useState<number>(
+    Math.floor(Math.random() * (99999999 - 10000 + 1)) + 10000
+  );
 
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -236,7 +239,7 @@ const Signup = () => {
         <S.SocialButton>
           <LoginKakao />
           <LoginGoogle />
-          <LoginGithub />
+          <LoginNaver />
         </S.SocialButton>
         <S.ReturnLoginButton onClick={returnLoginHandler}>
           로그인 화면으로 돌아가기

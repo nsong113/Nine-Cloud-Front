@@ -1,26 +1,27 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BarLoader from 'react-spinners/BarLoader';
 import axios from 'axios';
 import * as S from '../LoginSocial.styles';
 
-const GoogleLoginHandler = () => {
+const NaverLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
-  // const code = window.location.href;
   const navigate = useNavigate();
   const [dots, setDots] = useState('.');
-
+  const state = '99999';
   console.log(code);
+  console.log(state);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setDots((prevDots) => (prevDots.length === 3 ? '.' : prevDots + '.'));
     }, 500);
-    const GoogleLogin = async () => {
+    const KakaoLogin = async () => {
       try {
         const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/google/callback`,
+          `${process.env.REACT_APP_SERVER_URL}/naver/callback`,
           {
             code: code,
+            state: state,
           },
           {
             headers: {
@@ -44,7 +45,7 @@ const GoogleLoginHandler = () => {
         console.error('로그인 실패', error);
       }
     };
-    GoogleLogin();
+    KakaoLogin();
     return () => clearInterval(intervalId);
   }, [code, navigate]);
 
@@ -60,4 +61,4 @@ const GoogleLoginHandler = () => {
   );
 };
 
-export default GoogleLoginHandler;
+export default NaverLoginHandler;
