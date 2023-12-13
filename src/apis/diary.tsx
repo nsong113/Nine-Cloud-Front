@@ -68,7 +68,7 @@ const getDiary = async () => {
 };
 
 //get- 무한스크롤  `${apiUrl}?page=${pageNumber}
-const getInfiniteDiaries = async ({ pageParam = 1 }) => {
+const getInfiniteDiaries = async (pageParam: number) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   try {

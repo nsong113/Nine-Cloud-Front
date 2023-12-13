@@ -2,8 +2,6 @@ import React from 'react';
 import * as S from './layoutFooter.styles';
 import './layoutFooter.css';
 import { FaHouseChimney } from 'react-icons/fa6';
-import { FaUserAlt } from 'react-icons/fa';
-import { IoIosSettings } from 'react-icons/io';
 import { IoAddCircle } from 'react-icons/io5';
 import { MdPeopleAlt } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
