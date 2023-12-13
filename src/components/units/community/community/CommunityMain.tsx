@@ -137,17 +137,13 @@ const CommunityMain = () => {
         <S.MainSlideBox>
           {/* 스타일드 컴포넌트를 사용하여 UI를 정의하고, 슬라이더의 위치를 offset에 따라 변화시킴 */}
           <S.MainSlideFlex
-            // ref={sliderRef}
-            // onMouseDown={handleMouseDown}
-            // $offset={offset}
-            // $isDragging={isDragging}
             onMouseDown={onDragStart}
             onMouseMove={onMouseMove}
             onMouseUp={onDragEnd}
             onMouseLeave={onDragEnd}
             ref={scrollRef}
-            $currentIndex={currentIndex}
-            $transX={transX}
+            // $currentIndex={currentIndex}
+            // $transX={transX}
           >
             <S.MainEachSlideBox>
               <p>전체</p>
@@ -189,7 +185,7 @@ const CommunityMain = () => {
               <p>감정9</p>
             </S.MainEachSlideBox>
           </S.MainSlideFlex>
-          <div>{/* map */}</div>
+          <S.MainMapContainer>{/* map */}</S.MainMapContainer>
         </S.MainSlideBox>
       </S.MainSectionContainer>
     </S.MainContainer>

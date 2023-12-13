@@ -32,20 +32,53 @@ export interface IemotionSetting {
 }
 
 export interface ViewAllInfiniteProps {
-  // 다른 필요한 props들도 여기에 추가하세요
   item: IViewAllProps;
 }
 
 export interface IViewAllProps {
+  data: [
+    {
+      diaryId: number;
+      UserId: number;
+      EmotionStatus: number;
+      image: string;
+      content: string;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt: null | string;
+      isPublic: boolean;
+    }
+  ];
+}
+
+export interface IViewAllPropsPure {
+  item: {
+    data: [
+      {
+        diaryId: number;
+        UserId: number;
+        EmotionStatus: number;
+        image: string;
+        content: string;
+        createdAt: string;
+        updatedAt: string;
+        deletedAt: null | string;
+        isPublic: boolean;
+      }
+    ];
+  };
+}
+
+export interface IViewAllPropsEach {
   diaryId: number;
   UserId: number;
-  EmotionalStatus: number;
+  EmotionStatus: number;
   image: string;
   content: string;
   createdAt: string;
   updatedAt: string;
   deletedAt: null | string;
-  isPrivate: boolean;
+  isPublic: boolean;
 }
 
 export interface ITableCellProps {

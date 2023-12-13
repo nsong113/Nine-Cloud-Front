@@ -1,11 +1,11 @@
 import { styled, css } from 'styled-components';
 
-interface MainSlideFlexProps {
-  $offset?: number;
-  $isDragging?: boolean;
-  $currentIndex: number;
-  $transX: number;
-}
+// interface MainSlideFlexProps {
+//   $offset?: number;
+//   $isDragging?: boolean;
+//   $currentIndex: number;
+//   $transX: number;
+// }
 
 export const MainContainer = styled.div`
   width: 100%;
@@ -35,7 +35,7 @@ export const MainSectionHeaderWrapper = styled.div`
 
 export const MainFlexBox = styled.div`
   display: flex;
-  /* align-items: center; */
+  align-items: center;
   justify-content: space-between;
 `;
 
@@ -69,19 +69,19 @@ export const MainSlideBox = styled.div`
   padding: 10px;
   overflow: hidden;
 `;
-export const MainSlideFlex = styled.div<MainSlideFlexProps>`
+// export const MainSlideFlex = styled.div<MainSlideFlexProps>`
+export const MainSlideFlex = styled.div`
   width: 1000px;
   height: 50px;
   background-color: aqua;
   display: flex;
-
+  justify-content: space-between;
+  align-items: center;
   overflow-x: scroll;
-  transform: translateX(
-    -${(props) => props.$currentIndex}*1000+${(props) => props.$transX}px
-  );
-
-  //${(props) => props.$buttonSty.height};
 `;
+/* transform: translateX(
+    -${(props) => props.$currentIndex}*1000+${(props) => props.$transX}px
+  ); */
 
 export const MainEachSlideBox = styled.div`
   width: 90px;
@@ -92,4 +92,10 @@ export const MainEachSlideBox = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+`;
+
+export const MainMapContainer = styled.div`
+  width: 100%;
+  height: 80%;
+  background-color: beige;
 `;
