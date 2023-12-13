@@ -1,10 +1,8 @@
 import { IpostDiaryItem } from 'src/apis/apiesType';
 
 export interface IConfirmMod {
-  onClose?: () => void;
-  onOk?: () => void;
-  modalClose?: () => void;
-  // $isModalOpen?: boolean;
+  onClickGotoPost2: () => void;
+  onClickGotoMain: () => void;
   postDiaryItem: IpostDiaryItem | null;
 }
 

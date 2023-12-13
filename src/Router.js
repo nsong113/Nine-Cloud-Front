@@ -7,6 +7,7 @@ import OnBoardPage from 'src/pages/onBoard';
 import SignupPage from 'src/pages/signup';
 import Layout from './components/commons/layout/layout';
 import MainPage from './pages/boards/main';
+import Community from './pages/boards/community';
 import BoardWriteDiary from './components/units/board/write/diary/BoardWriteDiary';
 import BoardWriteDraw from './components/units/board/write/draw/BoardWriteDraw';
 import LoginKakao from './components/units/login/social/LoginKakao';
@@ -18,6 +19,8 @@ import Loading from './components/units/login/social/auth/Loading';
 import TestPage from './components/units/login/TestPage';
 import Chatting from './components/units/community/chatting/chatting';
 import NaverLoginHandler from './components/units/login/social/auth/NaverLoginHandler';
+import Chatting from './components/units/community/chatting/Chatting';
+
 
 export default function Router() {
   return (
@@ -45,6 +48,8 @@ export default function Router() {
           <Route path='/post/:id' element={<DetailedPage />} />
           <Route path='/list' element={<ViewAll />} />
           <Route path='/test' element={<TestPage />} />
+          {/* community 페이지 */}
+          <Route path='/community' element={<Community />} />
           <Route path='/community/chat' element={<Chatting />} />
         </Route>
       </Routes>

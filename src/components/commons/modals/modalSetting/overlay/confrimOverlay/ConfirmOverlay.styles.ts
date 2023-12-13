@@ -19,11 +19,20 @@ export const ContainerDiv = styled.div`
 `;
 
 export const ModalContentDiv = styled.div`
-  width: 20rem;
-  height: 7.5rem;
+  width: 400px;
+  height: 360px;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 50px;
+  background: #fff;
+
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
 `;
 
 export const Div = styled.div`
@@ -35,19 +44,40 @@ export const Div = styled.div`
 
 export const TitleBoxDiv = styled.div`
   width: 20rem;
-  height: 2.5rem;
-  background-color: black;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
+export const TextStyleSpanH5 = styled.h5`
+  font-size: 16px;
+  color: black;
+`;
+
+export const TextStyleSpanP = styled.p`
+  font-size: 10px;
+  color: black;
+  margin-bottom: 20px;
+`;
+
+export const CancelButton = styled.div`
+  width: 130px;
+  height: 65px;
+  border: 2px solid #5035a6;
+  color: #5035a6;
+  border-radius: 0 55px 0 55px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const BoxButton = styled.div`
-  width: 20rem;
-  height: 5rem;
-  background-color: gray;
+  width: 100%;
+  height: 65px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -55,6 +85,13 @@ export const TextStyleSpan = styled.span`
   color: white;
 `;
 
-export const StyleButton = styled.button`
-  margin-left: 20px;
+export const StyleButton = styled.div`
+  width: 230px;
+  height: 65px;
+  background-color: #5035a6;
+  color: white;
+  border-radius: 55px 0 55px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

@@ -19,9 +19,10 @@ export const addPost = async (target: IAddPost) => {
       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
       formData,
       {
+        withCredentials: true,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-          'Content-Type': 'multipart/form-data',
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
         },
       }
     );
