@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import * as S from './chatting.styles';
+import * as S from './Chatting.styles';
 
 const Chatting = () => {
   const [count, setCount] = useState(0);
@@ -19,23 +19,25 @@ const Chatting = () => {
   return (
     <S.ContainerDiv>
       <S.HeaderContainerDiv>
-        <div>
+        <S.HeaderWrapperDiv>
           <S.MoveToPrevImg />
-          <img src='/circle.png' alt='원' />
-          <span>분노감정의 방</span>
-        </div>
+          <img src='/pinkcircle.png' alt='원' />
+          <S.RommNameSpan>분노감정의 방</S.RommNameSpan>
+        </S.HeaderWrapperDiv>
         <S.HeaderRightDiv>
-          <img src='/people.png' alt='사람들' />
+          <S.PeopleImg src='/person.png' alt='사람들' />
           <span>참여자</span>
         </S.HeaderRightDiv>
       </S.HeaderContainerDiv>
-      <div>
-        <img src='/circle.png' alt='원' />
-        <div>
-          <span>김토끼</span>
-          <div>sd</div>
-        </div>
-      </div>
+      <S.ContentsBodyWrapperDiv>
+        <S.WriterWrapperDiv>
+          <S.CircleImg src='/deepcircle.png' alt='원' />
+          <S.WriterBoxDiv>
+            <span>김토끼</span>
+            <div>sd</div>
+          </S.WriterBoxDiv>
+        </S.WriterWrapperDiv>
+      </S.ContentsBodyWrapperDiv>
       <S.FooterDiv>
         <S.InputBoxDiv>
           <S.CommentInput

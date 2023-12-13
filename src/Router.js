@@ -17,7 +17,7 @@ import GoogleLoginHandler from './components/units/login/social/auth/GoogleLogin
 import { AnimatePresence } from 'framer-motion';
 import Loading from './components/units/login/social/auth/Loading';
 import TestPage from './components/units/login/TestPage';
-import Chatting from './components/units/community/chatting/chatting';
+import Chatting from './components/units/community/chatting/Chatting';
 
 
 export default function Router() {

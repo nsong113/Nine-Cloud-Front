@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import MyPageOverlay from '../modalSetting/overlay/myPageOverlay/MyPageOverlay';
 import { IConfirm } from './myPageModal.types';
 
-
 const MyPageModal: React.FC<IConfirm> = ({ onClick }) => {
   return (
     <>
@@ -15,4 +14,4 @@ const MyPageModal: React.FC<IConfirm> = ({ onClick }) => {
   );
 };
 
-export default MyPageModal;
+export default React.memo(MyPageModal);
