@@ -28,7 +28,7 @@ export const ShowCloudDivRed = styled.div`
 export const HeaderContainerDiv = styled.div`
   height: 170px;
   border-radius: 0px 0px 50px 50px;
-  background: rgba(239, 170, 173, 0.2);
+  background: #5035a6;
   /* box-shadow: 0px 20px 10px 0px rgba(80, 53, 166, 0.25); */
 `;
 
@@ -40,7 +40,7 @@ export const LogoBoxDiv = styled.div`
 export const BrandTextBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
-  color: #5035a6;
+  color: #a294cd;
   font-family: Spoqa Han Sans Neo;
   font-size: 16.394px;
   font-style: normal;
@@ -101,29 +101,42 @@ export const CalendarTable = styled.table`
   margin-left: 20px;
 `;
 
+export const Test = styled.div`
+  background: linear-gradient(
+    192deg,
+    #ece9f5 -0.99%,
+    #e8f5f3 51.07%,
+    #fcf5f5 99.97%
+  );
+
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+`;
+
 export const TableHead = styled.thead`
-  background-color: blueviolet;
+  background-color: transparent;
 `;
 
 export const TableBody = styled.tbody`
-  width: 403px;
-  height: 563px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  border: 0px;
-  background: linear-gradient(
-    192deg,
-    rgba(80, 53, 166, 0.1) 0%,
-    rgba(239, 170, 173, 0.1) 83.3%
-  );
+  background: rgba(255, 255, 255, 0.5);
 
-  box-shadow: 0px 4px 15px 0px rgba(80, 53, 166, 0.25);
-  backdrop-filter: blur(2px);
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+  opacity: 0.8;
 `;
 
 export const TableRow = styled.tr`
-  background-color: white;
-  margin-top: 19px;
+  background-color: transparent; /* 배경색 없애기 */
+  margin-top: 20px;
   margin-bottom: 10px;
 `;
 
@@ -134,13 +147,19 @@ export const DayRoow = styled.tr`
 export const TableCell = styled.td<ITableCellProps>`
   width: 56px;
   height: 103px;
-  border: ${({ isToday }) =>
-    isToday ? '5px solid #4CAF50' : '0.5px solid #ddd'};
+
   cursor: pointer;
   &:hover {
     background-color: gray;
   }
   /* opacity: 0.3; */
+
+  background: rgba(255, 255, 255, 0.5);
+
+  /* box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2); */
+  backdrop-filter: blur(15px);
 `;
 
 export const DayWrapperDiv = styled.div`
@@ -156,7 +175,8 @@ export const ThCell = styled.th`
   font-weight: 700;
   line-height: 40px;
   margin: 20px 0px 20px 0px;
-  height: 40px;
+  height: 50px;
+  background-color: transparent;
 `;
 
 export const ImageWrapperDiv = styled.div`
@@ -214,20 +234,22 @@ export const RightProfile = styled.div`
 `;
 
 export const YearTextSpan = styled.span`
-  color: #5035a6;
-  font-size: 22px;
+  color: #a294cd;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 20px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   line-height: normal;
   margin-left: 45px;
 `;
 
 export const MonthTextSpan = styled.span`
-  color: #5035a6;
+  color: #fff;
+  font-family: Spoqa Han Sans Neo;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 30px;
 `;
 
 export const AvatarSizeImg = styled.img`
@@ -339,11 +361,12 @@ export const List = styled(IoList)`
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+  color: #a294cd;
 `;
 
 export const ButtonWrapperDiv = styled.div`
   margin-top: 32px;
-  margin-left: 50px;
+  margin-left: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -351,12 +374,12 @@ export const ButtonWrapperDiv = styled.div`
 
 export const PrevMonth = styled(IoIosArrowBack)`
   cursor: pointer;
-  color: #5035a6;
+  color: #a294cd;
 `;
 
 export const NextMonth = styled(MdOutlineArrowForwardIos)`
   cursor: pointer;
-  color: #5035a6;
+  color: #a294cd;
 `;
 
 export const YearWrapperDIv = styled.div`
@@ -400,8 +423,8 @@ export const LeftRightAnimeButton = styled(motion.div)`
 
 export const PrevNextMonthBoxDiv = styled.div`
   display: flex;
-  align-items: center;
   margin-left: 14px;
+  align-items: start;
 `;
 
 export const ProfileBoxDiv = styled.div`
@@ -418,4 +441,8 @@ export const ProfileBoxDiv = styled.div`
 export const dayWrapperDiv = styled.div`
   display: flex;
   width: 443px;
+`;
+
+export const NextMonthBoxDiv = styled.div`
+  width: 100px;
 `;

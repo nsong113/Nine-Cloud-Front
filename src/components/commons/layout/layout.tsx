@@ -13,6 +13,7 @@ const Layout = () => {
     <div>
       <S.Container>
         <S.Wrapper>
+          {/* {isMyPage && <Header />} */}
           <div>
             <Outlet />
           </div>

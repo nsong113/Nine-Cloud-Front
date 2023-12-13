@@ -1,79 +1,36 @@
 import { useEffect, useState } from 'react';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
-import { useNavigate } from 'react-router-dom';
-import { addMonths, format, getYear, subMonths } from 'date-fns';
-import { dayList } from './test';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
-import { useQuery } from 'react-query';
-import { getPosts } from 'src/apis/cheolmin-api/apis';
-import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Image from './Image';
 import Loading from 'src/components/commons/utills/loading/Loading';
+import CalendarBody from './CalendarBody';
+import { useNavigate } from 'react-router-dom';
+import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
+import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
+import { useQuery } from 'react-query';
+import { getPosts } from 'src/apis/cheolmin-api/apis';
 
 const Calender = () => {
   const navigate = useNavigate();
-  const { data, isLoading } = useQuery('posts', getPosts);
-
-  const [isActiveModal, setIsActiveModal] = useState(false);
-  const [animationDirection, setAnimationDirection] = useState('');
   const {
-    weekCalendarList,
     currentDate,
     setCurrentDate,
     currentMonth,
     setCurrentMonth,
     DAY_LIST,
   } = useCalendar();
-
+  const [isActiveModal, setIsActiveModal] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState('');
   const formattedMonth = format(currentMonth, 'MMMM');
-  const allDate = weekCalendarList.flat().filter((value) => value !== 0);
+  const newDate = new Date(currentDate);
+  const year = getYear(newDate);
+  const { data, isLoading } = useQuery('posts', getPosts);
 
-  const onClickPrevMonth = () => {
-    const newDate = subMonths(currentMonth, 1);
-    setCurrentDate(newDate);
-    setCurrentMonth(newDate);
-    setAnimationDirection('rightToLeft');
-  };
-
-  const onClickNextMonth = () => {
-    const newDate = addMonths(currentMonth, 1);
-    setCurrentDate(newDate);
-    setCurrentMonth(newDate);
-    setAnimationDirection('leftToRight');
-  };
-
-  const filteredDayList = dayList.filter((el) => el !== null);
-
-  const getEmotionStatusForDate = (date: string) => {
-    const matchingDay = filteredDayList.find(
-      (el: any) =>
-        //day 일치여부 조회 로직
-        el?.date && parseInt(el.date.split('.')[2]).toString() === date
-    );
-
-    return matchingDay ? matchingDay.EmotionStatus : 0;
-  };
-
-  const emotionImages: { [key: string]: string | undefined } = {
-    1: '/blue.png',
-    2: '/Pink.png',
-    3: '/Purple.png',
-    4: '/Lemon.png',
-  };
-
-  const getEmotion = (emotionStatus: any) => {
-    return emotionImages[emotionStatus] || '/blank.png';
-  };
-
-  const getId = (date: string) => {
-    const matchingDay = dayList.find(
-      (el: any) =>
-        el?.date && parseInt(el.date.split('.')[2], 10).toString() === date
-    );
-    return matchingDay ? matchingDay.id : 0;
-  };
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
@@ -83,15 +40,21 @@ const Calender = () => {
     navigate('/list');
   };
 
-  const onClickGoToDetailHandler = (id: any) => () => {
-    if (id !== 0) {
-      navigate(`/post/${id}`);
-    } else {
-      alert('작성하신 글이 없습니다.');
-    }
-  };
   const profileImg = localStorage.getItem('image');
-  const year = getYear(currentDate);
+
+  const onClickNextMonth = () => {
+    const newDate = addMonths(currentMonth, 1);
+    setCurrentDate(newDate);
+    setCurrentMonth(newDate);
+    setAnimationDirection('leftToRight');
+  };
+  const onClickPrevMonth = () => {
+    const newDate = subMonths(currentMonth, 1);
+    setCurrentDate(newDate);
+    setCurrentMonth(newDate);
+    setAnimationDirection('rightToLeft');
+  };
+
   return (
     <>
       <S.CalendarContainerDiv>
@@ -99,7 +62,7 @@ const Calender = () => {
           {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
           <S.CalenderHeaderDiv>
             <S.LogoBoxDiv>
-              <S.LogoImg src='/logo.png' alt='로고' />
+              <S.LogoImg src='/ninecloud.png' alt='로고' />
               <S.BrandTextBoxDiv>
                 <span>NINE</span>
                 <span>CLOUD</span>
@@ -111,7 +74,9 @@ const Calender = () => {
                   <S.YearTextSpan>{year}</S.YearTextSpan>
                   <S.PrevNextMonthBoxDiv>
                     <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+
                     <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+
                     <S.NextMonth onClick={onClickNextMonth} size={30} />
                   </S.PrevNextMonthBoxDiv>
                 </S.DateBoxDiv>
@@ -150,88 +115,37 @@ const Calender = () => {
             </div>
           </S.CalenderHeaderDiv>
         </S.HeaderContainerDiv>
-        <Animation>
-          {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
-          <S.LeftRightAnimeButton
-            key={currentMonth.toString()}
-            initial={{
-              opacity: 0,
-              x: animationDirection === 'leftToRight' ? '-75%' : '75%',
-            }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{
-              opacity: 0,
-              x: animationDirection === 'leftToRight' ? '75%' : '-75%',
-            }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-          >
-            <S.CalendarTable>
-              <S.TableHead>
-                <S.TableRow>
-                  {DAY_LIST.map((day, index) => (
-                    <S.ThCell key={index}>{day}</S.ThCell>
-                  ))}
-                </S.TableRow>
-              </S.TableHead>
-              <S.TableBody>
-                {weekCalendarList.map((week, weekIndex) => (
-                  <S.DayRoow key={weekIndex}>
-                    {week.map((day, dayIndex) => {
-                      const firstDayOfMonth = new Date(
-                        currentMonth.getFullYear(),
-                        currentMonth.getMonth(),
-                        1
-                      );
-                      const daysBeforeFirstDay = firstDayOfMonth.getDay();
-
-                      const cellDate =
-                        weekIndex * 7 + dayIndex - daysBeforeFirstDay + 1;
-                      if (cellDate <= 0 || cellDate > allDate.length) {
-                        return <S.TableCell key={dayIndex}></S.TableCell>;
-                      }
-
-                      const emotionStatus = getEmotionStatusForDate(
-                        String(cellDate)
-                      );
-                      const id = getId(String(cellDate));
-
-                      const isToday =
-                        cellDate === new Date().getDate() &&
-                        currentMonth.getMonth() === new Date().getMonth();
-
-                      return (
-                        <S.TableCell
-                          key={dayIndex}
-                          onClick={onClickGoToDetailHandler(id)}
-                          isToday={isToday}
-                        >
-                          {day !== 0 ? (
-                            <S.DayWrapperDiv>
-                              <S.DateWrapperDiv>
-                                <S.DateSpan isToday={isToday}>
-                                  {cellDate}
-                                </S.DateSpan>
-                                {/* {cellDate <= currentDate.getDate() && ( */}
-                                <S.DateImg
-                                  src={getEmotion(emotionStatus)}
-                                  alt={`Emotion ${emotionStatus}`}
-                                />
-                                {/* )} */}
-                              </S.DateWrapperDiv>
-                            </S.DayWrapperDiv>
-                          ) : (
-                            ''
-                          )}
-                        </S.TableCell>
-                      );
-                    })}
-                  </S.DayRoow>
-                ))}
-              </S.TableBody>
-            </S.CalendarTable>
-          </S.LeftRightAnimeButton>
-        </Animation>
-        <Image />
+        <S.Test>
+          <Animation>
+            {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
+            <S.LeftRightAnimeButton
+              key={currentMonth.toString()}
+              initial={{
+                opacity: 0,
+                x: animationDirection === 'leftToRight' ? '-75%' : '75%',
+              }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{
+                opacity: 0,
+                x: animationDirection === 'leftToRight' ? '75%' : '-75%',
+              }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+            >
+              <S.CalendarTable>
+                <S.TableHead>
+                  <S.TableRow>
+                    {DAY_LIST.map((day, index) => (
+                      <S.ThCell key={index}>{day}</S.ThCell>
+                    ))}
+                  </S.TableRow>
+                </S.TableHead>
+                {/* 캘린더 바디 컴포넌트 */}
+                <CalendarBody />
+              </S.CalendarTable>
+            </S.LeftRightAnimeButton>
+          </Animation>
+          <Image />
+        </S.Test>
       </S.CalendarContainerDiv>
     </>
   );
