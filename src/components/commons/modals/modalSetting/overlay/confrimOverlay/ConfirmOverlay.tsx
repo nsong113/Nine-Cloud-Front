@@ -6,9 +6,8 @@ import { IpostDiaryItem } from 'src/apis/apiesType';
 import { postDiary } from 'src/apis/diary';
 
 const ConfirmOverlay: React.FC<IConfirmMod> = ({
-  onOk,
-  onClose,
-  // modalClose,
+  onClickGotoMain,
+  onClickGotoPost2,
   postDiaryItem,
 }) => {
   const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
@@ -23,16 +22,24 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   };
 
   return (
-    <S.ContainerDiv className='modal' onClick={onClose}>
+    <S.ContainerDiv className='modal' onClick={onClickGotoPost2}>
       <S.ModalContentDiv>
+        <img src='/angry.png' alt='최종 감정이모티콘' />
         <S.TitleBoxDiv>
-          <S.TextStyleSpan>글을 등록 하시겠습니까?</S.TextStyleSpan>
+          <S.TextStyleSpan>
+            <S.TextStyleSpanH5>
+              오늘의 감정일기를 등록하시겠어요?
+            </S.TextStyleSpanH5>
+            <S.TextStyleSpanP>
+              등록 후에도 수정할 수 있으니 <br /> 자유롭게 등록해보세요!
+            </S.TextStyleSpanP>
+          </S.TextStyleSpan>
         </S.TitleBoxDiv>
         <S.BoxButton>
-          <button onClick={onClose}>취소</button>
+          <S.CancelButton onClick={onClickGotoPost2}>돌아가기</S.CancelButton>
           <S.StyleButton
             onClick={() => {
-              onOk?.();
+              onClickGotoMain?.();
               onClickPostHandler();
             }}
           >

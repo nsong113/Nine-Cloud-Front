@@ -12,8 +12,8 @@ const ConfrimModal: React.FC<IConfirm> = ({
     <div>
       {ReactDOM.createPortal(
         <ConfirmOverlay
-          onOk={onClickGotoMain}
-          onClose={onClickGotoPost2}
+          onClickGotoMain={onClickGotoMain}
+          onClickGotoPost2={onClickGotoPost2}
           postDiaryItem={postDiaryItem}
         />,
         document.getElementById('overlay-root') as HTMLElement

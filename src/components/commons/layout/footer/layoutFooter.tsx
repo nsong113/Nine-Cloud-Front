@@ -19,6 +19,10 @@ const Footer = () => {
     navigate('/post');
   };
 
+  const goToCOmmunityHandler = () => {
+    navigate('/community');
+  };
+
   return (
     <S.FooterContainer>
       <div className='navbar'>
@@ -31,7 +35,7 @@ const Footer = () => {
           <span className='list-item-name'>Post</span>
         </li>
         <li className='list-item'>
-          <MdPeopleAlt style={iconStyle} />
+          <MdPeopleAlt style={iconStyle} onClick={goToCOmmunityHandler} />
           <span className='list-item-name'>Community</span>
         </li>
       </div>

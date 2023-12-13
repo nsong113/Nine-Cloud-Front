@@ -2,7 +2,7 @@ export interface IpostDiaryItem {
   EmotionalStatus: number | null;
   content: string | null;
   isPublic?: boolean;
-  image: FormData | null | File | Blob;
+  image: File | Blob;
 }
 
 // export interface IpostDiaryItem {

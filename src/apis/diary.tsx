@@ -7,16 +7,25 @@ import { IpostDiaryItem } from './apiesType';
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
+
   console.log('POSTpostDiaryItem', postDiaryItem);
   try {
+    const formData = new FormData();
+
+    formData.append(
+      'EmotionStatus',
+      postDiaryItem.EmotionalStatus?.toString() || ''
+    );
+    formData.append('content', postDiaryItem.content || '');
+    formData.append('isPublic', postDiaryItem.isPublic ? 'true' : 'false');
+    formData.append('image', postDiaryItem.image || '');
+
+    console.log(typeof postDiaryItem.image);
+    console.log('formData', formData);
+
     const res = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
-      {
-        EmotionalStatus: postDiaryItem.EmotionalStatus,
-        content: postDiaryItem.content,
-        image: postDiaryItem.image,
-        isPublic: postDiaryItem.isPublic,
-      },
+      formData,
       {
         withCredentials: true,
         headers: {
@@ -69,7 +78,6 @@ const getInfiniteDiaries = async ({ pageParam = 1 }) => {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json',
-          // 'Content-Type': 'multipart/form-data',
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
         },
