@@ -1,4 +1,11 @@
-import { styled } from 'styled-components';
+import { styled, css } from 'styled-components';
+
+interface MainSlideFlexProps {
+  $offset?: number;
+  $isDragging?: boolean;
+  $currentIndex: number;
+  $transX: number;
+}
 
 export const MainContainer = styled.div`
   width: 100%;
@@ -28,7 +35,7 @@ export const MainSectionHeaderWrapper = styled.div`
 
 export const MainFlexBox = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
 `;
 
@@ -50,6 +57,7 @@ export const MainProfileDiv = styled.div`
 export const MainHeaderContent = styled.div`
   font-size: 13px;
   text-align: right;
+  cursor: pointer;
 `;
 
 export const MainSlideBox = styled.div`
@@ -59,4 +67,29 @@ export const MainSlideBox = styled.div`
   background-color: white;
   transform: translateY(75px);
   padding: 10px;
+  overflow: hidden;
+`;
+export const MainSlideFlex = styled.div<MainSlideFlexProps>`
+  width: 1000px;
+  height: 50px;
+  background-color: aqua;
+  display: flex;
+
+  overflow-x: scroll;
+  transform: translateX(
+    -${(props) => props.$currentIndex}*1000+${(props) => props.$transX}px
+  );
+
+  //${(props) => props.$buttonSty.height};
+`;
+
+export const MainEachSlideBox = styled.div`
+  width: 90px;
+  height: 30px;
+  border-radius: 22px;
+  background: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;

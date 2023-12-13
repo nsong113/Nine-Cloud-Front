@@ -157,17 +157,19 @@ const BoardWriteDraw = () => {
       }
       const u8arr = new Uint8Array(byteNumbers);
       const file = new Blob([u8arr], { type: 'image/png' });
+      const imageUrl = URL.createObjectURL(file);
 
       console.log('file', file);
 
-      const formData = new FormData();
+      // const formData = new FormData();
 
-      formData.append('image', file);
+      // formData.append('image', file);
 
       setPostDiaryItem({
         EmotionalStatus: Number(localStorage.getItem('countAverage')),
         content: localStorage.getItem('contents'),
         image: file,
+        isPublic: isPublic,
       });
     } else {
       console.log('이미지 불러오기 실패');
