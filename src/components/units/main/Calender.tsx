@@ -28,6 +28,7 @@ const Calender = () => {
   const year = getYear(newDate);
   const { data, isLoading } = useQuery('posts', getPosts);
 
+  console.log(data);
   if (isLoading) {
     return <Loading />;
   }
@@ -140,11 +141,11 @@ const Calender = () => {
                   </S.TableRow>
                 </S.TableHead>
                 {/* 캘린더 바디 컴포넌트 */}
-                <CalendarBody />
+                <CalendarBody data={data} />
               </S.CalendarTable>
             </S.LeftRightAnimeButton>
           </Animation>
-          <Image />
+          <Image data={data} />
         </S.Test>
       </S.CalendarContainerDiv>
     </>

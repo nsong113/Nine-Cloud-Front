@@ -9,6 +9,7 @@ const useCalendar = () => {
   //현재 날짜 상태관리
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [currentYear, setCurrentYear] = useState(new Date());
   //currentDate Sat Dec 09 2023 13:34:18 GMT+0900 (한국 표준시)
   console.log('currentDate', currentDate);
 
@@ -104,6 +105,9 @@ const useCalendar = () => {
     setCurrentDate: setCurrentDate,
     currentMonth: currentMonth,
     setCurrentMonth: setCurrentMonth,
+    currentYear: currentYear,
+    setCurrentYear: setCurrentYear,
+
     DAY_LIST: DAY_LIST,
     DATE_MONTH_FIXER: DATE_MONTH_FIXER,
   };

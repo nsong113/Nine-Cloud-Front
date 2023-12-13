@@ -33,6 +33,24 @@ export const addPost = async (target: IAddPost) => {
   }
 };
 
+export const deletePost = async (id: any) => {
+  try {
+    const response = await axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/${id}`,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log('다시 시도하세요');
+  }
+};
+
 export const getPosts = async () => {
   try {
     console.log(accessToken);
@@ -131,10 +149,10 @@ export const editComment = async (target: IEditComment) => {
   }
 };
 
-export const deleteComment = async (target: IDeleteComment) => {
+export const deleteComment = async (commentId: IDeleteComment) => {
   try {
     const response = await axios.delete(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.commentId}`,
+      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${commentId}`,
       {
         withCredentials: true,
         headers: {
@@ -165,3 +183,20 @@ export const getMyInfo = async () => {
     console.log('error');
   }
 };
+
+// export const getPrevMonthPosts = async (target: any) => {
+//   try {
+//     const response = await axios.get(
+//       `${process.env.REACT_APP_SERVER_URL}/diary/calendar/previousMonth/${target.year}/${target.month}/${target.data}`,
+//       {
+//         withCredentials: true,
+//         headers: {
+//           Refreshtoken: `${refreshToken}`,
+//           Authorization: `${accessToken}`,
+//         },
+//       }
+//     );
+//   } catch (error) {
+//     console.log('error');
+//   }
+// };

@@ -4,22 +4,30 @@ import useCalendar from 'src/components/commons/hooks/useCalender';
 import useEmotion from 'src/components/commons/hooks/useEmotion';
 import { dayList } from './test';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getPosts } from 'src/apis/cheolmin-api/apis';
+import Loading from 'src/components/commons/utills/loading/Loading';
 
-const CalendarBody = () => {
+const CalendarBody = (props: any) => {
+  const { data, isLoading } = useQuery('posts', getPosts);
   const navigate = useNavigate();
-
-  const { weekCalendarList, currentMonth, DAY_LIST } = useCalendar();
-
-  const { getEmotion, getEmotionStatusForDate } = useEmotion();
-
+  const { weekCalendarList, currentDate, currentMonth, DAY_LIST } =
+    useCalendar();
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const allData = props?.data?.data;
 
   const getId = (date: string) => {
-    const matchingDay = dayList.find(
+    const matchingDay = allData.find(
       (el: any) =>
-        el?.date && parseInt(el.date.split('.')[2], 10).toString() === date
+        el?.createdAt &&
+        parseInt(el.createdAt.split('.')[2], 10).toString() === date
     );
-    return matchingDay ? matchingDay.id : 0;
+    console.log('matchingDay', matchingDay);
+    return matchingDay ? matchingDay.diaryId : 0;
   };
 
   const onClickGoToDetailHandler = (id: any) => () => {
@@ -28,6 +36,28 @@ const CalendarBody = () => {
     } else {
       alert('작성하신 글이 없습니다.');
     }
+  };
+
+  const emotionImages: { [key: string]: string | undefined } = {
+    1: '/blue.png',
+    2: '/Pink.png',
+    3: '/Purple.png',
+    4: '/Lemon.png',
+  };
+  const filteredDayList = allData.filter((el: any) => el !== null);
+  const getEmotion = (emotionStatus: any) => {
+    return emotionImages[emotionStatus] || '/blank.png';
+  };
+
+  const getEmotionStatusForDate = (date: string) => {
+    const matchingDay = filteredDayList.find(
+      (el: any) =>
+        //day 일치여부 조회 로직
+        el?.createdAt &&
+        parseInt(el.createdAt.split('.')[2]).toString() === date
+    );
+
+    return matchingDay ? matchingDay.EmotionStatus : 0;
   };
 
   return (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { dayList } from './test';
 import * as S from './Main.styles';
 
-const Image = () => {
+const Image = (props: any) => {
   const [isHappyImg, setIsHappyImg] = useState(false);
   const [isAngryImg, setIsAngryImg] = useState(false);
   const [isSadImg, setIsSadImg] = useState(false);
@@ -13,7 +13,9 @@ const Image = () => {
     3: '/Purple.png',
     4: '/Lemon.png',
   };
+  const allData = props?.data?.data;
 
+  console.log('allData', allData);
   const onClickHappyImg = () => {
     setIsHappyImg((prev) => !prev);
   };
@@ -30,17 +32,17 @@ const Image = () => {
     setIsSadImg((prev) => !prev);
   };
 
-  const happyCount = dayList.filter(
-    (emotion) => emotion?.EmotionStatus === 1
+  const happyCount = allData.filter(
+    (emotion: any) => emotion?.EmotionStatus === 1
   ).length;
-  const angryCount = dayList.filter(
-    (emotion) => emotion?.EmotionStatus === 2
+  const angryCount = allData.filter(
+    (emotion: any) => emotion?.EmotionStatus === 2
   ).length;
-  const gloomyCount = dayList.filter(
-    (emotion) => emotion?.EmotionStatus === 3
+  const gloomyCount = allData.filter(
+    (emotion: any) => emotion?.EmotionStatus === 3
   ).length;
-  const sadCount = dayList.filter(
-    (emotion) => emotion?.EmotionStatus === 4
+  const sadCount = allData.filter(
+    (emotion: any) => emotion?.EmotionStatus === 4
   ).length;
   return (
     <S.ImageWrapperDiv>
