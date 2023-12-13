@@ -4,8 +4,13 @@ import { format, getYear } from 'date-fns';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate, useParams } from 'react-router-dom';
 import { dayList } from '../../main/test';
-import { useQuery } from 'react-query';
-import { getOnePostInfo } from 'src/apis/cheolmin-api/apis';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import {
+  deletePost,
+  getComments,
+  getMyInfo,
+  getOnePostInfo,
+} from 'src/apis/cheolmin-api/apis';
 import BoardDetailComment from './comment/BoardDetailComment';
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
@@ -13,6 +18,7 @@ import Loading from 'src/components/commons/utills/loading/Loading';
 import { CommentData } from './comment/test';
 
 const BoardDetail = () => {
+  const queryClient = useQueryClient();
   const { data, isLoading } = useQuery('post', () => getOnePostInfo(params.id));
   const { currentDate, currentMonth } = useCalendar();
   const [isActive, setIsActive] = useState(false);
@@ -24,6 +30,19 @@ const BoardDetail = () => {
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
   };
+
+  const deleteMutation = useMutation(deletePost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('post');
+    },
+  });
+
+  const { data: comment } = useQuery('comment', () => getComments(params.id));
+  const { data: profile } = useQuery('profile', getMyInfo);
+
+  console.log('상세페이지', data?.data);
+
+  const detailedContent = data?.data;
 
   const params = useParams();
   if (isLoading) {
@@ -44,6 +63,12 @@ const BoardDetail = () => {
     (comment) => comment.DiaryId === Number(params.id)
   );
 
+  const onClickDeleteBtn = () => {
+    deleteMutation.mutate(params.id);
+    alert('글이 정상적으로 삭제 됐습니다');
+    navigate('/main');
+  };
+
   const destructuringArray: ({
     image?: string;
     writer?: string;
@@ -60,7 +85,7 @@ const BoardDetail = () => {
           <Animation3>
             <S.ImgBoxDiv>
               <S.BackImg onClick={onClickMoveToMain} />
-              <S.MainImg src={data?.image} alt='엑박' />
+              <S.MainImg src={detailedContent?.image} alt='엑박' />
             </S.ImgBoxDiv>
           </Animation3>
           <Animation2>
@@ -69,7 +94,7 @@ const BoardDetail = () => {
                 <S.CloudImg src='/cloud.png' alt='구름' />
                 <S.ConentsHeaderRightDiv>
                   <S.heartBoxDiv>
-                    <S.PeopleImg src='/people.png' alt='사람들' />
+                    <S.PeopleImg src={'/people.png'} alt='사람들' />
                   </S.heartBoxDiv>
                 </S.ConentsHeaderRightDiv>
               </S.ContentsHeaderDiv>
@@ -84,7 +109,7 @@ const BoardDetail = () => {
                     <S.PencilImg />
                   </S.PencilBoxDiv>
                   <S.ContentBoxDiv>
-                    <S.ContentSpan>{data?.content}</S.ContentSpan>
+                    <S.ContentSpan>{detailedContent?.content}</S.ContentSpan>
                   </S.ContentBoxDiv>
                 </S.ContentsBoxDiv>
                 <S.ContentsFooterDiv>
@@ -100,7 +125,7 @@ const BoardDetail = () => {
                     <S.CommentsBoxDiv onClick={onClickToggle}>
                       <S.CommentImg />
                       <S.HeartCommentTextSpan>
-                        댓글 {commentList.length}
+                        댓글 {comment.length}
                       </S.HeartCommentTextSpan>
                     </S.CommentsBoxDiv>
                     <S.HeartBoxDiv>
@@ -108,11 +133,17 @@ const BoardDetail = () => {
                       <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
                     </S.HeartBoxDiv>
                   </S.FooterBoxDiv>
-                  <S.DeletePostSpan>일기 삭제하기</S.DeletePostSpan>
+                  <S.DeletePostSpan onClick={onClickDeleteBtn}>
+                    일기 삭제하기
+                  </S.DeletePostSpan>
                 </S.CategoryBoxDiv>
                 {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
                 {commentList.length >= 1 && (
-                  <Animation3>{isActive && <BoardDetailComment />}</Animation3>
+                  <Animation3>
+                    {isActive && (
+                      <BoardDetailComment comment={comment} profile={profile} />
+                    )}
+                  </Animation3>
                 )}
                 {commentList.length === 0 && (
                   <div>

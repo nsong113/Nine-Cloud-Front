@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { useQuery } from 'react-query';
+import { getPosts } from 'src/apis/cheolmin-api/apis';
 import { dayList } from 'src/components/units/main/test';
 
 const useEmotion = () => {
-
-  const filteredDayList = dayList.filter((el) => el !== null);
+  const { data, isLoading } = useQuery('posts', getPosts);
+  const allData = data.data;
+  const filteredDayList = allData.filter((el: any) => el !== null);
 
   const emotionImages: { [key: string]: string | undefined } = {
     1: '/blue.png',
@@ -20,19 +23,17 @@ const useEmotion = () => {
     const matchingDay = filteredDayList.find(
       (el: any) =>
         //day 일치여부 조회 로직
-        el?.date && parseInt(el.date.split('.')[2]).toString() === date
+        el?.createdAt &&
+        parseInt(el.createdAt.split('.')[2]).toString() === date
     );
 
     return matchingDay ? matchingDay.EmotionStatus : 0;
   };
 
-
-
   return {
     getEmotion,
-    getEmotionStatusForDate
-  }
-  
-}
+    getEmotionStatusForDate,
+  };
+};
 
-export default useEmotion
+export default useEmotion;

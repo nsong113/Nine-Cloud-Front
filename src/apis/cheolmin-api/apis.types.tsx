@@ -15,5 +15,5 @@ export interface IEditComment {
 }
 
 export interface IDeleteComment {
-  commentId: string | undefined;
+  commentId: number | undefined;
 }

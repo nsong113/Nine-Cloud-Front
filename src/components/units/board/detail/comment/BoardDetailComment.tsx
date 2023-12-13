@@ -1,11 +1,17 @@
 import React, { ChangeEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { addComment, getComments } from 'src/apis/cheolmin-api/apis';
+import {
+  addComment,
+  deleteComment,
+  getComments,
+  getMyInfo,
+} from 'src/apis/cheolmin-api/apis';
 import { useParams } from 'react-router-dom';
 import { CommentData } from './test';
+import { IComment } from './BoardDetailComment.types';
 
-const BoardDetailComment = () => {
+const BoardDetailComment : React.FC<IComment> = ({profile,comment}) => {
   const [content, setContent] = useState('');
   const queryClient = useQueryClient();
   const params = useParams();
@@ -14,11 +20,18 @@ const BoardDetailComment = () => {
 
   const diaryId = params.id;
 
-  const { data } = useQuery('comment', () => getComments(params.id));
 
+  const comments = comment?.data;
+  console.log('data', comment);
   const commentMutation = useMutation(addComment, {
     onSuccess: () => {
-      queryClient.invalidateQueries('posts');
+      queryClient.invalidateQueries('comment');
+    },
+  });
+
+  const deleteMutation = useMutation(deleteComment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('comment');
     },
   });
 
@@ -34,6 +47,10 @@ const BoardDetailComment = () => {
     (comment) => comment.DiaryId === Number(params.id)
   );
 
+  const onClickDeleteBtn = (commentId: any) => () => {
+    deleteMutation.mutate(commentId);
+  };
+
   console.log('commentList', commentList);
 
   return (
@@ -41,7 +58,7 @@ const BoardDetailComment = () => {
       <S.CommentsWrapperDiv>
         <S.CommentBox>
           <S.CommentHeaderDiv>
-            {commentList.map((el) => (
+            {comments?.map((el: any) => (
               <S.CommentWrapperDiv key={el.commentId}>
                 <S.CommentBoxDiv>
                   <S.DeepCircleImg src='/deepCircle.png' alt='타원' />
@@ -49,6 +66,9 @@ const BoardDetailComment = () => {
                     <S.CommentWriterSpan>{el.UserId}</S.CommentWriterSpan>
                     <S.CommentContent>{el.content}</S.CommentContent>
                   </S.CommentWriterBoxDiv>
+                  <button onClick={onClickDeleteBtn(el.commentId)}>
+                    삭제하기
+                  </button>
                 </S.CommentBoxDiv>
               </S.CommentWrapperDiv>
             ))}

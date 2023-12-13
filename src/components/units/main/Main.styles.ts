@@ -132,6 +132,7 @@ export const TableBody = styled.tbody`
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(15px);
   opacity: 0.8;
+  border: 5px solid rgba(80, 53, 166, 0.77);
 `;
 
 export const TableRow = styled.tr`
@@ -261,6 +262,10 @@ export const AvatarSizeImg = styled.img`
   border: 1px solid #fff;
 
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+
+  &:hover {
+    border: 3px solid red;
+  }
 `;
 
 export const ProfileToggleBoxDiv = styled.div`
@@ -362,6 +367,9 @@ export const List = styled(IoList)`
   height: 40px;
   flex-shrink: 0;
   color: #a294cd;
+  &:hover {
+    color: white;
+  }
 `;
 
 export const ButtonWrapperDiv = styled.div`

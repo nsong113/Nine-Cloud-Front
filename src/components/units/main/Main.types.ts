@@ -55,3 +55,14 @@ export interface ITableCellProps {
 export interface IDateSpanProps {
   isToday?: boolean;
 }
+
+
+export interface IProps {
+  EmotionStatus : number;
+  UserId : number;
+  createdAt : string;
+  deletedAt : string | null;
+  image : string;
+  isPublic : boolean;
+  updatedAt : string;
+}
