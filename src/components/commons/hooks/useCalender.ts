@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const DATE_MONTH_FIXER = 1;
 const DAY_OF_WEEK = 7;
-const DAY_LIST = ['Sun', 'Mon', 'Thu', 'Wed', 'Thr', 'Fri', 'Sat'];
+const DAY_LIST = ['SUN', 'MON', 'THU', 'WED', 'THR', 'FRI', 'SAT'];
 
 const useCalendar = () => {
   //현재 날짜 상태관리

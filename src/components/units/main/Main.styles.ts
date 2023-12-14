@@ -102,22 +102,7 @@ export const CalendarTable = styled.table`
 `;
 
 export const Test = styled.div`
-  background: linear-gradient(
-    192deg,
-    #ece9f5 -0.99%,
-    #e8f5f3 51.07%,
-    #fcf5f5 99.97%
-  );
-
-  background-image: url('/background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px);
+  background-color: white;
 `;
 
 export const TableHead = styled.thead`
@@ -127,9 +112,10 @@ export const TableHead = styled.thead`
 export const TableBody = styled.tbody`
   background: rgba(255, 255, 255, 0.5);
 
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  box-shadow: 0px 4px 10px 0px rgba(80, 53, 166, 0) inset,
+    0px 4px 20px 0px rgba(83, 51, 186, 0.28),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.3),
+    0px 4px 20px 0px rgba(87, 48, 209, 0.31);
   backdrop-filter: blur(15px);
   opacity: 0.8;
   border: 5px solid rgba(80, 53, 166, 0.77);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './BoardDetail.styles';
-import { format, getYear } from 'date-fns';
+import { format, getYear, parseISO } from 'date-fns';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate, useParams } from 'react-router-dom';
 import { dayList } from '../../main/test';
@@ -26,7 +26,6 @@ const BoardDetail = () => {
   const [isActiveModal, setIsActiveModal] = useState(false);
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
-  const year = getYear(newDate);
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
   };
@@ -69,101 +68,99 @@ const BoardDetail = () => {
     navigate('/main');
   };
 
-  const destructuringArray: ({
-    image?: string;
-    writer?: string;
-    date?: string;
-    content?: string;
-    sentence?: string;
-    id?: number;
-  } | null)[] = dayList.filter((data) => data?.id == params.id);
+  const createdAtDate = detailedContent?.createdAt
+    ? parseISO(detailedContent.createdAt)
+    : null;
+  const formattedDate = createdAtDate
+    ? format(createdAtDate, 'yyyy년 MM월 dd일')
+    : null;
+
+  // const formattedData = format(detailedContent?.createdAt, 'yyyy년 mm월 dd일');
 
   return (
     <S.ContainerDiv>
-      {destructuringArray.map((data) => (
-        <div key={data?.id}>
-          <Animation3>
-            <S.ImgBoxDiv>
-              <S.BackImg onClick={onClickMoveToMain} />
-              <S.MainImg src={detailedContent?.image} alt='엑박' />
-            </S.ImgBoxDiv>
-          </Animation3>
-          <Animation2>
-            <S.ContentsWrapperDiv>
-              <S.ContentsHeaderDiv>
-                <S.CloudImg src='/cloud.png' alt='구름' />
-                <S.ConentsHeaderRightDiv>
-                  <S.heartBoxDiv>
+      <div key={data?.id}>
+        <Animation3>
+          <S.ImgBoxDiv>
+            <S.BackImg onClick={onClickMoveToMain} />
+            <S.MainImg src={detailedContent?.image} alt='엑박' />
+          </S.ImgBoxDiv>
+        </Animation3>
+        <Animation2>
+          <S.ContentsWrapperDiv>
+            <S.ContentsHeaderDiv>
+              <S.CloudImg src='/cloud.png' alt='구름' />
+              <S.ConentsHeaderRightDiv>
+                <S.heartBoxDiv>
+                  {detailedContent?.isPublic === true && (
                     <S.PeopleImg src={'/people.png'} alt='사람들' />
-                  </S.heartBoxDiv>
-                </S.ConentsHeaderRightDiv>
-              </S.ContentsHeaderDiv>
-              <div>
-                <S.ContentBoxHeaderDiv>
-                  <S.TitleTextSpan>
-                    {format(new Date(currentDate), 'yyyy년 MM월 dd일')}
-                  </S.TitleTextSpan>
-                </S.ContentBoxHeaderDiv>
-                <S.ContentsBoxDiv>
-                  <S.PencilBoxDiv>
-                    <S.PencilImg />
-                  </S.PencilBoxDiv>
-                  <S.ContentBoxDiv>
-                    <S.ContentSpan>{detailedContent?.content}</S.ContentSpan>
-                  </S.ContentBoxDiv>
-                </S.ContentsBoxDiv>
-                <S.ContentsFooterDiv>
-                  <img src='/circle.png' alt='circle' />
-                  <S.ContentsSpan>{data?.sentence}</S.ContentsSpan>
-                </S.ContentsFooterDiv>
-              </div>
-              <div>
-                <S.CategoryBoxDiv>
-                  <S.FooterBoxDiv>
-                    {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
-                    {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
-                    <S.CommentsBoxDiv onClick={onClickToggle}>
-                      <S.CommentImg />
-                      <S.HeartCommentTextSpan>
-                        댓글 {comment.length}
-                      </S.HeartCommentTextSpan>
-                    </S.CommentsBoxDiv>
-                    <S.HeartBoxDiv>
-                      <S.CommentHeartImg />
-                      <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
-                    </S.HeartBoxDiv>
-                  </S.FooterBoxDiv>
-                  <S.DeletePostSpan onClick={onClickDeleteBtn}>
-                    일기 삭제하기
-                  </S.DeletePostSpan>
-                </S.CategoryBoxDiv>
-                {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
-                {commentList.length >= 1 && (
-                  <Animation3>
-                    {isActive && (
-                      <BoardDetailComment comment={comment} profile={profile} />
-                    )}
-                  </Animation3>
-                )}
-                {commentList.length === 0 && (
-                  <div>
-                    {isActive && (
-                      <S.BlankCommentBoxDiv>
-                        <S.BlankCommentSpan>
-                          아직 댓글이 없습니다.
-                        </S.BlankCommentSpan>
-                        <S.BlankCommentSpan>
-                          전체공개로 전환해 사람들과 일기를 공유해보세요!
-                        </S.BlankCommentSpan>
-                      </S.BlankCommentBoxDiv>
-                    )}
-                  </div>
-                )}
-              </div>
-            </S.ContentsWrapperDiv>
-          </Animation2>
-        </div>
-      ))}
+                  )}
+                  {detailedContent?.isPublic === false && <S.PersonImg />}
+                </S.heartBoxDiv>
+              </S.ConentsHeaderRightDiv>
+            </S.ContentsHeaderDiv>
+            <div>
+              <S.ContentBoxHeaderDiv>
+                <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
+                <S.PencilImg />
+              </S.ContentBoxHeaderDiv>
+              <S.ContentsBoxDiv>
+                <S.ContentBoxDiv>
+                  <S.ContentSpan>{detailedContent?.content}</S.ContentSpan>
+                </S.ContentBoxDiv>
+              </S.ContentsBoxDiv>
+              <S.ContentsFooterDiv>
+                <S.SentenceSpan>
+                  겨울이 왔다는 것은 봄이 머지 않았다는 뜻이다.
+                </S.SentenceSpan>
+              </S.ContentsFooterDiv>
+            </div>
+            <div>
+              <S.CategoryBoxDiv>
+                <S.FooterBoxDiv>
+                  {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
+                  {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
+                  <S.CommentsBoxDiv onClick={onClickToggle}>
+                    <S.CommentImg />
+                    <S.HeartCommentTextSpan>
+                      댓글 {comment?.length}
+                    </S.HeartCommentTextSpan>
+                  </S.CommentsBoxDiv>
+                  <S.HeartBoxDiv>
+                    <S.CommentHeartImg />
+                    <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
+                  </S.HeartBoxDiv>
+                </S.FooterBoxDiv>
+                <S.DeletePostSpan onClick={onClickDeleteBtn}>
+                  일기 삭제하기
+                </S.DeletePostSpan>
+              </S.CategoryBoxDiv>
+              {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
+              {commentList?.length >= 1 && (
+                <Animation3>
+                  {isActive && (
+                    <BoardDetailComment comment={comment} profile={profile} />
+                  )}
+                </Animation3>
+              )}
+              {commentList.length === 0 && (
+                <div>
+                  {isActive && (
+                    <S.BlankCommentBoxDiv>
+                      <S.BlankCommentSpan>
+                        아직 댓글이 없습니다.
+                      </S.BlankCommentSpan>
+                      <S.BlankCommentSpan>
+                        전체공개로 전환해 사람들과 일기를 공유해보세요!
+                      </S.BlankCommentSpan>
+                    </S.BlankCommentBoxDiv>
+                  )}
+                </div>
+              )}
+            </div>
+          </S.ContentsWrapperDiv>
+        </Animation2>
+      </div>
     </S.ContainerDiv>
   );
 };

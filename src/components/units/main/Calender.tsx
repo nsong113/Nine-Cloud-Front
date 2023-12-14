@@ -10,11 +10,12 @@ import { useNavigate } from 'react-router-dom';
 import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import { useQuery } from 'react-query';
-import { getPosts } from 'src/apis/cheolmin-api/apis';
+import { getPosts, getPrevMonthPosts } from 'src/apis/cheolmin-api/apis';
 
 const Calender = () => {
   const navigate = useNavigate();
   const {
+    weekCalendarList,
     currentDate,
     setCurrentDate,
     currentMonth,
@@ -26,7 +27,7 @@ const Calender = () => {
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
-  const { data, isLoading } = useQuery('posts', getPosts);
+  const { data, isLoading, refetch } = useQuery('posts', getPosts);
 
   console.log(data);
   if (isLoading) {
@@ -43,17 +44,20 @@ const Calender = () => {
 
   const profileImg = localStorage.getItem('image');
 
-  const onClickNextMonth = () => {
+  const onClickNextMonth = async () => {
     const newDate = addMonths(currentMonth, 1);
     setCurrentDate(newDate);
     setCurrentMonth(newDate);
     setAnimationDirection('leftToRight');
+    await refetch(); // 다음 달 데이터 다시 가져오기
   };
-  const onClickPrevMonth = () => {
+
+  const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
     setCurrentDate(newDate);
     setCurrentMonth(newDate);
     setAnimationDirection('rightToLeft');
+    await refetch(); // 이전 달 데이터 다시 가져오기
   };
 
   return (
@@ -63,7 +67,7 @@ const Calender = () => {
           {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
           <S.CalenderHeaderDiv>
             <S.LogoBoxDiv>
-              <S.LogoImg src='/ninecloud.png' alt='로고' />
+              <S.LogoImg src='/logo.png' alt='로고' />
               <S.BrandTextBoxDiv>
                 <span>NINE</span>
                 <span>CLOUD</span>
@@ -141,7 +145,12 @@ const Calender = () => {
                   </S.TableRow>
                 </S.TableHead>
                 {/* 캘린더 바디 컴포넌트 */}
-                <CalendarBody data={data} />
+                <CalendarBody
+                  weekCalendarList={weekCalendarList}
+                  currentMonth={currentMonth}
+                  currentDate={currentDate}
+                  data={data}
+                />
               </S.CalendarTable>
             </S.LeftRightAnimeButton>
           </Animation>
