@@ -13,9 +13,9 @@ const Image = (props: any) => {
     3: '/Purple.png',
     4: '/Lemon.png',
   };
+
   const allData = props?.data?.data;
 
-  console.log('allData', allData);
   const onClickHappyImg = () => {
     setIsHappyImg((prev) => !prev);
   };
