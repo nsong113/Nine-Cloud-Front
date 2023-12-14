@@ -105,7 +105,7 @@ const BoardWriteEmotion = () => {
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentBoxDiv>
-                    오늘의 <S.ContentBoxSpan>소비 습도</S.ContentBoxSpan>는
+                    오늘의 <S.ContentBoxSpan>마음 습도</S.ContentBoxSpan>는
                     어땠나요?
                   </S.ContentBoxDiv>
                   <S.ContentInputBoxDiv>
