@@ -9,6 +9,7 @@ import useSetColor from 'src/components/commons/hooks/useSetColor';
 import useThickness from 'src/components/commons/hooks/useThickness';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
+import { FaCheck } from 'react-icons/fa6';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -222,15 +223,32 @@ const BoardWriteDraw = () => {
           <S.HeaderButtonBoxDiv>
             <S.HeaderLine></S.HeaderLine>
             <S.HeaderFlexBox>
-              <S.DoneCheckBox>
-                <IoIosCheckmark style={{ fontSize: '21px' }} />
+              <S.SelectBox>
+                <FaCheck
+                  style={{
+                    position: 'absolute',
+                    zIndex: '17',
+                    color: '#5035A6',
+                  }}
+                />
                 <S.OneBlackSpan />
-              </S.DoneCheckBox>
-              <S.DoneCheckBox>
-                <IoIosCheckmark style={{ fontSize: '21px' }} />
+                <S.SelectP2>Emotion</S.SelectP2>
+              </S.SelectBox>
+              <S.SelectBox>
+                <FaCheck
+                  style={{
+                    position: 'absolute',
+                    zIndex: '17',
+                    color: '#5035A6',
+                  }}
+                />
                 <S.OneBlackSpan />
-              </S.DoneCheckBox>
-              <S.ThreeFilledSpan>Drawing</S.ThreeFilledSpan>
+                <S.SelectP2>Text</S.SelectP2>
+              </S.SelectBox>
+              <S.SelectBox>
+                <S.ThreeFilledSpan></S.ThreeFilledSpan>
+                <S.SelectP>Drawing</S.SelectP>
+              </S.SelectBox>
             </S.HeaderFlexBox>
           </S.HeaderButtonBoxDiv>
         </S.DrawWrapperUPDiv>

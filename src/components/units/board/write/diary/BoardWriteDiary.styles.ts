@@ -8,22 +8,66 @@ export const DiaryContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
+  background-image: url('/backgroundFinal.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const DiaryWrapperUPDiv = styled.div`
   width: 100%;
-  min-height: 220px;
-  background-color: #ededed;
+  min-height: 100px;
   position: relative;
 `;
 
 export const DiaryWrapperDOWNdiv = styled.div`
-  width: 100%;
-  min-height: 810px;
-  background-color: white;
-  border-radius: 0 0 0 0;
-  filter: drop-shadow(-2px -5px 12px rgba(0, 0, 0, 0.2));
-  transform: translateY(-30px);
+  width: 90%;
+  margin: 0 auto;
+
+  height: 775px;
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 6px,
+        transparent 6px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      319deg,
+      rgba(255, 255, 255, 0.7) 51%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
+    linear-gradient(
+      44deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    );
+  border-radius: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+  backdrop-filter: blur(35px);
+  opacity: 0.8;
+  filter: drop-shadow(-2px -5px 12px rgba(80, 53, 166, 0.27));
+  border-radius: 5px 5px 5px 5px;
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -38,16 +82,27 @@ export const HeaderButtonBoxDiv = styled.div`
   position: absolute;
   bottom: 50px;
 `;
-export const HeaderLine = styled.div`
-  width: 150px;
-  height: 1px;
-  background-color: #909090;
+
+export const HeaderLineDone = styled.div`
+  width: 75px;
+  height: 2px;
+  background-color: #5035a6;
   margin: 0 auto;
   position: absolute;
+  z-index: 5;
+  transform: translateX(-35px);
+`;
+export const HeaderLine = styled.div`
+  width: 150px;
+  height: 2px;
+  background-color: #ece9f5;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 1;
 `;
 
 export const HeaderFlexBox = styled.div`
-  width: 180px;
+  width: 200px;
   height: 32px;
   display: flex;
   align-items: center;
@@ -63,10 +118,52 @@ export const DoneCheckBox = styled.div`
 `;
 
 export const OneBlackSpan = styled.div`
-  width: 18px;
+  width: 17.862px;
   height: 18px;
-  background-color: #909090;
-  border-radius: 50%;
+  position: absolute;
+  z-index: 12;
+  /* transform: translateX(-20px); */
+
+  border-radius: 45px;
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 6px,
+        transparent 6px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      319deg,
+      rgba(255, 255, 255, 0.7) 51%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
+    linear-gradient(
+      44deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    );
+  box-sizing: border-box;
+  /* glassmorphism */
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
 `;
 
 export const TwoBlankSpan = styled.div`
@@ -76,72 +173,165 @@ export const TwoBlankSpan = styled.div`
   border-radius: 50%;
 `;
 
-export const ThreeFilledSpan = styled.div`
-  width: 55px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #d9d9d9;
-  border: 1px solid #909090;
-  border-radius: 12px;
+export const SelectBox = styled.div`
+  width: 75px;
+  height: 37px;
+  transform: translateY(8px);
   z-index: 10;
-`;
-
-export const DiaryTitleDiv = styled.div`
-  width: 100%;
-  margin: 87px 0 26px 0;
-  text-align: left;
-  font-weight: 700;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const DiaryWriteTitleH3 = styled.h3`
+export const ThreeFilledSpan = styled.div`
+  width: 17.862px;
+  height: 18px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
+  z-index: 10;
+
+  border-radius: 45px;
+  border: 1px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77));
+
+  background: var(--1, #5035a6);
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+`;
+
+export const SelectP = styled.div`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 2px;
+  /* transform: translateX(-30%); */
+`;
+
+export const SelectP2 = styled.div`
+  color: var(--1-1, #ece9f5);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 2px;
+  transform: translateY(100%);
+`;
+
+export const SelectP3 = styled.div`
+  color: var(--1-1, #ece9f5);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transform: translateY(100%);
+`;
+
+export const DiaryTitleDiv = styled.div`
+  width: 100%;
+  margin: 15px 0 15px 0;
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+`;
+
+export const DiarySpan = styled.span`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+export const DiaryWriteTitleH3 = styled.p`
+  text-align: left;
+  color: var(--1, #5035a6);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 18px;
 `;
 
 export const FortuneContainer = styled.div`
   width: 90%;
+  margin: 0 auto;
   height: 200px;
-  background-color: #d9d9d9;
-  border-radius: 22px;
-  /* padding: 10px; */
-  margin-top: 15px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(239, 170, 173, 0.7);
+
+  background: rgba(236, 233, 245, 0.8);
+
+  box-shadow: 0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset;
+  backdrop-filter: blur(15px);
 `;
 
 export const FortuneFlexWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* margin-top: 30px; */
+  /* transform: translate(-30px, -10px); */
+  width: 100%;
+  height: 100%;
+  text-align: center;
 `;
 
 export const FortuneBox = styled.div`
+  width: 60%;
   text-align: center;
+  margin-right: 20px;
 `;
 
 export const FortuneP = styled.p`
-  font-size: 13px;
+  color: var(--1, #5035a6);
+  text-align: center;
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 `;
 
 export const FortuneGoDiv = styled.div`
-  width: 130px;
+  width: 90px;
   height: 30px;
-  border-radius: 15px;
-  border: 1px solid black;
-  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
+  background: var(--1, #5035a6);
+  color: #fff;
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  transform: translateX(60px);
 `;
 
 export const DiaryToggleTitleDiv = styled.div`
-  width: 40%;
+  width: 90%;
   height: 70px;
   margin: 20px 100px;
-  text-align: center;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const CustomToggle = styled(Toggle)`
@@ -150,7 +340,7 @@ export const CustomToggle = styled(Toggle)`
     background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
     width: 100px;
     height: 30px;
-    /* transform: translateY(-3px); */
+    transform: translate(-50px, -8px);
   }
 
   //thumb의 스타일 지정
@@ -159,7 +349,7 @@ export const CustomToggle = styled(Toggle)`
     width: 55px;
     height: 20px;
     border-radius: 10px;
-    transform: translate(10px, 4px);
+    transform: translate(-43px, -4px);
   }
 
   //토글이 켜진 상태
@@ -186,6 +376,13 @@ export const CustomToggle = styled(Toggle)`
 `;
 
 export const DiaryToggleP = styled.div`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
   margin-bottom: 16px;
 `;
 
@@ -200,13 +397,14 @@ export const FooterButtonBoxDiv = styled.div`
 `;
 
 export const ContentsWrapperDiv = styled.div`
-  width: 417px;
+  width: 410px;
   height: auto;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateX(-12px);
 `;
 
 export const ImagePlustButtonBox = styled.div``;
@@ -241,20 +439,35 @@ export const PlusDiaryButton = styled.button`
 
 export const PrevButton = styled.button`
   width: 30%;
-  height: 50px;
-  border-radius: 20px;
-  border: none;
+  height: 60px;
   outline: none;
   cursor: pointer;
+  border-radius: 5px 20px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: #fff;
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const NextButton = styled.button`
   width: 60%;
-  height: 50px;
-  border-radius: 20px;
-  border: none;
+  height: 60px;
   outline: none;
   cursor: pointer;
+
+  border-radius: 20px 5px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: var(--1-1, #ece9f5);
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const InputBoxDiv = styled.div`
@@ -275,17 +488,26 @@ export const ContentsTextarea = styled.textarea`
   -moz-appearance: none;
   appearance: none;
   border: none;
-  border-radius: 20px;
-  background-color: #d9d9d9;
+  font-family: 'KyoboHand', sans-serif;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 170, 173, 0.7);
+
+  background: rgba(236, 233, 245, 0.8);
+
+  box-shadow: 0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset;
+  backdrop-filter: blur(15px);
+
   &&focus {
     outline: none;
   }
-  padding: 20px;
+  padding: 50px;
 `;
 
 export const InputDiv = styled.div`
   width: 100%;
   height: 200px;
+  transform: translateY(-20px);
 `;
 
 export const InputFooterBoxDiv = styled.div`
@@ -297,6 +519,14 @@ export const InputFooterBoxDiv = styled.div`
 
 export const TextAreaCount = styled.p`
   margin: 0px;
+  color: #5035a6;
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  transform: translate(-10px, 50px);
+  z-index: 20;
 `;
 
 export const DiaryPrivateCheckboxDiv = styled.div`
