@@ -19,7 +19,6 @@ import Loading from './components/units/login/social/auth/Loading';
 import TestPage from './components/units/login/TestPage';
 import Chatting from './components/units/community/chatting/chatting';
 import NaverLoginHandler from './components/units/login/social/auth/NaverLoginHandler';
-import Chatting from './components/units/community/chatting/Chatting';
 
 
 export default function Router() {
