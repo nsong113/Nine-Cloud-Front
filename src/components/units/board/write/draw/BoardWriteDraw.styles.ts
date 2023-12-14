@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { IPalette } from './BoardWriteDraw.types';
-import { Toggle } from 'src/components/commons/utills/Toggle/Toggle';
 
 export const DrawContainerDiv = styled.div`
   display: flex;
@@ -9,22 +8,66 @@ export const DrawContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
+  background-image: url('/backgroundFinal.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const DrawWrapperUPDiv = styled.div`
   width: 100%;
-  min-height: 220px;
-  background-color: #ededed;
+  min-height: 100px;
   position: relative;
 `;
 
 export const DrawWrapperDOWNdiv = styled.div`
-  width: 100%;
-  min-height: 810px;
-  background-color: white;
-  border-radius: 0 50px 0 0;
-  filter: drop-shadow(-2px -5px 12px rgba(0, 0, 0, 0.2));
-  transform: translateY(-30px);
+  width: 95%;
+  margin: 0 auto;
+
+  height: 775px;
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 6px,
+        transparent 6px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      319deg,
+      rgba(255, 255, 255, 0.7) 51%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
+    linear-gradient(
+      44deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    );
+  border-radius: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+  backdrop-filter: blur(35px);
+  opacity: 0.8;
+  filter: drop-shadow(-2px -5px 12px rgba(80, 53, 166, 0.27));
+  border-radius: 5px 40px 5px 5px;
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -41,14 +84,14 @@ export const HeaderButtonBoxDiv = styled.div`
 `;
 export const HeaderLine = styled.div`
   width: 150px;
-  height: 1px;
-  background-color: #909090;
+  height: 2px;
+  background-color: #5035a6;
   margin: 0 auto;
   position: absolute;
 `;
 
 export const HeaderFlexBox = styled.div`
-  width: 180px;
+  width: 200px;
   height: 32px;
   display: flex;
   align-items: center;
@@ -63,10 +106,50 @@ export const DoneCheckBox = styled.div`
 `;
 
 export const OneBlackSpan = styled.div`
-  width: 18px;
+  width: 17.862px;
   height: 18px;
-  background-color: #909090;
-  border-radius: 50%;
+  /* transform: translateX(-20px); */
+
+  border-radius: 45px;
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 6px,
+        transparent 6px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      319deg,
+      rgba(255, 255, 255, 0.7) 51%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
+    linear-gradient(
+      44deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    );
+  box-sizing: border-box;
+  /* glassmorphism */
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
 `;
 
 export const TwoBlankSpan = styled.div`
@@ -76,16 +159,51 @@ export const TwoBlankSpan = styled.div`
   border-radius: 50%;
 `;
 
-export const ThreeFilledSpan = styled.div`
-  width: 65px;
-  height: 24px;
+export const SelectBox = styled.div`
+  width: 75px;
+  height: 37px;
+  transform: translateY(8px);
+
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: #d9d9d9;
-  border: 1px solid #909090;
-  border-radius: 12px;
+  justify-content: space-between;
+`;
+
+export const ThreeFilledSpan = styled.div`
+  width: 17.862px;
+  height: 18px;
   z-index: 10;
+  border-radius: 45px;
+  border: 1px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77));
+
+  background: var(--1, #5035a6);
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+`;
+
+export const SelectP = styled.div`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 2px;
+  /* transform: translateX(-30%); */
+`;
+
+export const SelectP2 = styled.div`
+  color: var(--1-1, #ece9f5);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 2px;
+  /* transform: translateX(-80%); */
 `;
 
 export const ContainerDiv = styled.div`
@@ -134,20 +252,35 @@ export const ButtonWrapperDiv = styled.div`
 
 export const PrevButton = styled.button`
   width: 30%;
-  height: 50px;
-  border-radius: 20px;
-  border: none;
+  height: 60px;
   outline: none;
   cursor: pointer;
+  border-radius: 5px 20px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: #fff;
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const NextButton = styled.button`
   width: 60%;
-  height: 50px;
-  border-radius: 20px;
-  border: none;
+  height: 60px;
   outline: none;
   cursor: pointer;
+
+  border-radius: 20px 5px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: var(--1-1, #ece9f5);
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const ColorSettingDiv = styled.div`

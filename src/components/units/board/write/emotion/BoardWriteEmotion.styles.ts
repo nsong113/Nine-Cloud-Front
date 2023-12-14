@@ -6,27 +6,74 @@ export const EmotionContainerDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  height: 900px;
+  height: 960px;
   overflow: hidden;
+  background-image: url('/backgroundFinal.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const EmotionWrapperUPDiv = styled.div`
   width: 100%;
-  min-height: 220px;
-  background-color: #ededed;
+  min-height: 100px;
   position: relative;
 `;
 
 export const EmotionWrapperDOWNdiv = styled.div`
-  width: 100%;
-  min-height: 810px;
+  width: 90%;
+  margin: 0 auto;
   background-color: white;
   border-radius: 50px 0 0 0;
-  filter: drop-shadow(-2px -5px 12px rgba(0, 0, 0, 0.2));
-  transform: translateY(-30px);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  height: 775px;
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 6px,
+        transparent 6px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      319deg,
+      rgba(255, 255, 255, 0.7) 51%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
+    linear-gradient(
+      44deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    );
+  border-radius: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+  backdrop-filter: blur(35px);
+  opacity: 0.8;
+  filter: drop-shadow(-2px -5px 12px rgba(80, 53, 166, 0.27));
+  border-radius: 40px 5px 5px 5px;
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -41,14 +88,14 @@ export const HeaderButtonBoxDiv = styled.div`
 `;
 export const HeaderLine = styled.div`
   width: 150px;
-  height: 1px;
-  background-color: #909090;
+  height: 2px;
+  background-color: #ece9f5;
   margin: 0 auto;
   position: absolute;
 `;
 
 export const HeaderFlexBox = styled.div`
-  width: 180px;
+  width: 200px;
   height: 32px;
   display: flex;
   align-items: center;
@@ -57,10 +104,50 @@ export const HeaderFlexBox = styled.div`
 `;
 
 export const OneBlackSpan = styled.div`
-  width: 18px;
+  width: 17.862px;
   height: 18px;
-  background-color: #d9d9d9;
-  border-radius: 50%;
+  /* transform: translateX(-15px); */
+
+  border-radius: 45px;
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 6px,
+        transparent 6px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      319deg,
+      rgba(255, 255, 255, 0.7) 51%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    linear-gradient(
+      128deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.77) 100%
+    ),
+    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
+    linear-gradient(
+      44deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    );
+  box-sizing: border-box;
+  /* glassmorphism */
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
 `;
 
 export const TwoBlankSpan = styled.div`
@@ -70,16 +157,64 @@ export const TwoBlankSpan = styled.div`
   border-radius: 50%;
 `;
 
-export const ThreeFilledSpan = styled.div`
-  width: 65px;
-  height: 24px;
+//////////
+export const SelectBox = styled.div`
+  width: 90px;
+  height: 37px;
+  transform: translateY(8px);
+
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: #d9d9d9;
-  border: 1px solid #909090;
-  border-radius: 12px;
+  justify-content: space-between;
+`;
+
+export const ThreeFilledSpan = styled.div`
+  width: 17.862px;
+  height: 18px;
+
   z-index: 10;
+
+  border-radius: 45px;
+  border: 1px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77));
+
+  background: var(--1, #5035a6);
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+`;
+
+export const SelectP = styled.div`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 2px;
+  /* transform: translateX(-30%); */
+`;
+
+export const SelectP2 = styled.div`
+  color: var(--1-1, #ece9f5);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 2px;
+  /* transform: translateX(-80%); */
+`;
+
+export const SelectP3 = styled.div`
+  color: var(--1-1, #ece9f5);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  /* transform: translateX(-80%); */
 `;
 
 const colors = {
@@ -92,34 +227,70 @@ const colors = {
 };
 
 export const ContentInputBoxDiv = styled.div`
-  width: 300px;
-  height: 80px;
-  background-color: #d9d9d9;
-  margin-top: 3px;
-  border-radius: 0 15px 0 15px;
+  width: 280px;
+  height: 100px;
   padding: 5px;
+  border-radius: 10px;
+  border: 1px solid var(--glassmorphism-line2, rgba(239, 170, 173, 0.7));
+
+  background: rgba(236, 233, 245, 0.5);
+
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
 `;
 
 export const ContentInputDescDiv = styled.div`
   width: 100%;
-  text-align: right;
+  text-align: left;
   font-size: 12px;
-  margin: 4px 0;
   line-height: 1.2;
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+`;
+
+export const ContentSpan = styled.span`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const SliderInput = styled.input<ISliderInputProps>`
   -webkit-appearance: none;
-  /* appearance: none; */
-  width: 280px;
-  height: 6px;
+
+  width: 250px;
+  height: 10px;
+
+  transform: translateY(20px);
   border-radius: 14px;
-  transform: translateX(3px);
-  background: ${(props) => {
+
+  /* background: ${(props) => {
     const percentage =
       ((props.value - props.min) / (props.max - props.min)) * 100;
     return `linear-gradient(to right, red 0%, red ${percentage}%, blue ${percentage}%, blue 100%)`;
+  }}; */
+
+  background: ${(props) => {
+    const percentage =
+      ((props.value - props.min) / (props.max - props.min)) * 100;
+    return `
+      linear-gradient(to right, red 0%, red ${percentage}%, blue ${percentage}%, blue 100%),
+      transparent,
+      transparent
+    `;
   }};
+
+  -webkit-box-shadow: 1px 7px 13px -5px rgba(80, 53, 166, 0.75);
+  box-shadow: 1px 7px 13px -5px rgba(80, 53, 166, 0.75);
+  background-clip: content-box;
 
   &:focus {
     outline: none;
@@ -149,6 +320,13 @@ export const SliderInput = styled.input<ISliderInputProps>`
 export const LabelsDiv = styled.div`
   width: 90%;
   margin: 0 auto;
+  transform: translateY(-20px);
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 100;
+  line-height: normal;
 `;
 
 // 각 label의 컨테이너 스타일 정의
@@ -167,9 +345,11 @@ export const Label = styled.span`
   font-size: 16px;
   margin-top: 6px;
 `;
+export const SliderWrapperDiv = styled.div``;
 
 export const SliderBoxDiv = styled.div`
-  margin: 0 auto;
+  margin: 30px auto;
+  height: 120px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -181,8 +361,6 @@ export const ContainerDiv = styled.div`
   flex-direction: column;
 `;
 
-export const SliderWrapperDiv = styled.div``;
-
 export const ButtonWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -191,31 +369,36 @@ export const ButtonWrapperDiv = styled.div`
   width: 500px;
 `;
 export const CountBoxDiv = styled.div`
-  width: 80px;
+  width: 89.419px;
   height: 30px;
-  background-color: #d9d9d9;
-  border-radius: 10px 0 10px 0;
+  border-radius: 20px;
+  background: var(--1, #5035a6);
   margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+  transform: translateY(30px);
 `;
 export const CountP = styled.p``;
 export const ContentsBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
-  height: 130px;
+  height: 100px;
   justify-content: center;
   align-items: center;
 `;
 
 export const ContentBoxDiv = styled.p`
   width: 100%;
-  font-size: 19px;
+  font-size: 18px;
+  color: #5035a6;
 `;
 
 export const ContentBoxSpan = styled.span`
   font-weight: 800;
+  color: #5035a6;
+  font-size: 18px;
 `;
 
 export const ButtonBoxDiv = styled.div`
@@ -230,18 +413,33 @@ export const ButtonBoxDiv = styled.div`
 
 export const PrevButton = styled.button`
   width: 30%;
-  height: 50px;
-  border-radius: 20px;
-  border: none;
+  height: 60px;
   outline: none;
   cursor: pointer;
+  border-radius: 5px 20px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: #fff;
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const NextButton = styled.button`
   width: 60%;
-  height: 50px;
-  border-radius: 20px;
-  border: none;
+  height: 60px;
   outline: none;
   cursor: pointer;
+
+  border-radius: 20px 5px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: var(--1-1, #ece9f5);
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;

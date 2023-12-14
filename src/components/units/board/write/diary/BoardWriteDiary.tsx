@@ -6,16 +6,15 @@ import React, {
   MutableRefObject,
 } from 'react';
 import * as S from './BoardWriteDiary.styles';
-// import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
 import { useNavigate } from 'react-router-dom';
 import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
-// import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
 import 'react-toggle/style.css';
 import { IoIosCheckmark } from 'react-icons/io';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
+import { FaCheck } from 'react-icons/fa6';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
@@ -24,7 +23,9 @@ const BoardWriteDiary = () => {
   const [contents, setContents] = useState<string>('');
 
   const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setContents(event.target.value);
+    if (event.target.value.length < 201) {
+      setContents(event.target.value);
+    }
   };
 
   //토글버튼
@@ -84,14 +85,28 @@ const BoardWriteDiary = () => {
         <S.DiaryContainerDiv>
           <S.DiaryWrapperUPDiv>
             <S.HeaderButtonBoxDiv>
+              <S.HeaderLineDone></S.HeaderLineDone>
               <S.HeaderLine></S.HeaderLine>
               <S.HeaderFlexBox>
-                <S.DoneCheckBox>
-                  <IoIosCheckmark style={{ fontSize: '21px' }} />
+                <S.SelectBox>
+                  <FaCheck
+                    style={{
+                      position: 'absolute',
+                      zIndex: '17',
+                      color: '#5035A6',
+                    }}
+                  />
                   <S.OneBlackSpan />
-                </S.DoneCheckBox>
-                <S.ThreeFilledSpan>Text</S.ThreeFilledSpan>
-                <S.TwoBlankSpan />
+                  <S.SelectP2>Emotion</S.SelectP2>
+                </S.SelectBox>
+                <S.SelectBox>
+                  <S.ThreeFilledSpan></S.ThreeFilledSpan>
+                  <S.SelectP>Text</S.SelectP>
+                </S.SelectBox>
+                <S.SelectBox>
+                  <S.OneBlackSpan />
+                  <S.SelectP3>Drawing</S.SelectP3>
+                </S.SelectBox>
               </S.HeaderFlexBox>
             </S.HeaderButtonBoxDiv>
           </S.DiaryWrapperUPDiv>
@@ -100,15 +115,21 @@ const BoardWriteDiary = () => {
               <S.InputBoxDiv>
                 <S.DiaryTitleDiv>
                   <S.DiaryWriteTitleH3>
-                    오늘의 일기를 작성해보세요
+                    오늘의 <S.DiarySpan>일기</S.DiarySpan>를 작성해보세요!
                   </S.DiaryWriteTitleH3>
                   <S.TextAreaCount>{contents.length}/200</S.TextAreaCount>
                 </S.DiaryTitleDiv>
                 <S.InputDiv>
-                  <S.ContentsTextarea onChange={onChangeContents} />
+                  <S.ContentsTextarea
+                    onChange={onChangeContents}
+                    value={contents}
+                  />
                   <S.InputFooterBoxDiv></S.InputFooterBoxDiv>
                 </S.InputDiv>
               </S.InputBoxDiv>
+              <S.DiaryWriteTitleH3 style={{ transform: 'translateX(-70px)' }}>
+                오늘의 <S.DiarySpan>포춘쿠키</S.DiarySpan>를 뽑아보세요!
+              </S.DiaryWriteTitleH3>
               <S.FortuneContainer>
                 <S.FortuneFlexWrapper>
                   <img
@@ -117,13 +138,13 @@ const BoardWriteDiary = () => {
                     style={cookieStyle}
                   />
                   <S.FortuneBox>
-                    <S.FortuneP>
-                      오늘의 글그,,, 어쩌구를 <br />
-                      뽑아주세요
-                    </S.FortuneP>
                     <S.FortuneGoDiv onClick={onClickOpenFortune}>
-                      포춘 클라우드 뽑기
+                      열어보기
                     </S.FortuneGoDiv>
+                    <S.FortuneP>
+                      포춘 클라우드는 <br />
+                      하루에 한 번만 뽑을 수 있어요.
+                    </S.FortuneP>
                   </S.FortuneBox>
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
