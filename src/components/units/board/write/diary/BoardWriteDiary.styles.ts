@@ -21,7 +21,7 @@ export const DiaryWrapperUPDiv = styled.div`
 `;
 
 export const DiaryWrapperDOWNdiv = styled.div`
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
 
   height: 775px;
@@ -269,6 +269,7 @@ export const DiaryWriteTitleH3 = styled.p`
 
 export const FortuneContainer = styled.div`
   width: 90%;
+  margin: 0 auto;
   height: 200px;
 
   border-radius: 10px;
@@ -284,15 +285,26 @@ export const FortuneFlexWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transform: translate(-30px, -10px);
-`;
-
-export const FortuneBox = styled.div`
+  /* transform: translate(-30px, -10px); */
+  width: 100%;
+  height: 100%;
   text-align: center;
 `;
 
+export const FortuneBox = styled.div`
+  width: 60%;
+  text-align: center;
+  margin-right: 20px;
+`;
+
 export const FortuneP = styled.p`
-  font-size: 13px;
+  color: var(--1, #5035a6);
+  text-align: center;
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 `;
 
 export const FortuneGoDiv = styled.div`
@@ -309,14 +321,17 @@ export const FortuneGoDiv = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  transform: translateX(20px);
+  transform: translateX(60px);
 `;
 
 export const DiaryToggleTitleDiv = styled.div`
-  width: 40%;
+  width: 90%;
   height: 70px;
   margin: 20px 100px;
-  text-align: center;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const CustomToggle = styled(Toggle)`
@@ -325,7 +340,7 @@ export const CustomToggle = styled(Toggle)`
     background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
     width: 100px;
     height: 30px;
-    /* transform: translateY(-3px); */
+    transform: translate(-50px, -8px);
   }
 
   //thumb의 스타일 지정
@@ -334,7 +349,7 @@ export const CustomToggle = styled(Toggle)`
     width: 55px;
     height: 20px;
     border-radius: 10px;
-    transform: translate(10px, 4px);
+    transform: translate(-43px, -4px);
   }
 
   //토글이 켜진 상태
@@ -361,6 +376,13 @@ export const CustomToggle = styled(Toggle)`
 `;
 
 export const DiaryToggleP = styled.div`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
   margin-bottom: 16px;
 `;
 
@@ -375,13 +397,14 @@ export const FooterButtonBoxDiv = styled.div`
 `;
 
 export const ContentsWrapperDiv = styled.div`
-  width: 417px;
+  width: 410px;
   height: auto;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateX(-12px);
 `;
 
 export const ImagePlustButtonBox = styled.div``;

@@ -149,8 +149,11 @@ const BoardWriteDiary = () => {
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
               <S.DiaryToggleTitleDiv>
-                <S.DiaryToggleP>오늘 하루 만족 하시나요?</S.DiaryToggleP>
-                {/* <label htmlFor='customToggle'> */}
+                <S.DiaryToggleP>
+                  오늘 하루
+                  <S.DiarySpan> 만족 </S.DiarySpan>
+                  하시나요?
+                </S.DiaryToggleP>
                 <S.CustomToggle
                   id='customToggle'
                   checked={isChecked}
@@ -178,5 +181,6 @@ const BoardWriteDiary = () => {
 export default BoardWriteDiary;
 
 const cookieStyle = {
-  transform: 'scale(0.6)',
+  width: '40%',
+  transform: 'scale(0.7)',
 };
