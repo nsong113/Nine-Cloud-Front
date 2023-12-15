@@ -114,13 +114,13 @@ const CommunityMain = () => {
   return (
     <S.MainContainer>
       <S.MainHeader>
-        <div className='MainFlexBox'>
-          <img alt='logo' />
-          <div className='MainProfileFlexDiv'>
-            <div className='MainStatus'></div>
-            <img alt='profile' />
-          </div>
-        </div>
+        <S.MainFlexBoxDiv>
+          <img alt='logo' src='/ninecloud.png' />
+          <S.MainProfileFlexDiv>
+            <img alt='감정이모티콘'></img>
+            <img alt='profile' src='/avatar.png' />
+          </S.MainProfileFlexDiv>
+        </S.MainFlexBoxDiv>
       </S.MainHeader>
       <S.MainSectionContainer>
         <S.MainSectionHeaderWrapper>

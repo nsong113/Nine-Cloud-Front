@@ -9,6 +9,7 @@ const Layout = () => {
 
   const isMyPage = pathname === '/main';
   const isListPage = pathname === '/list';
+  const isCommunity = pathname === '/community';
   return (
     <div>
       <S.Container>
@@ -17,7 +18,7 @@ const Layout = () => {
           <div>
             <Outlet />
           </div>
-          {(isMyPage || isListPage) && <Footer />}
+          {(isMyPage || isListPage || isCommunity) && <Footer />}
         </S.Wrapper>
       </S.Container>
     </div>

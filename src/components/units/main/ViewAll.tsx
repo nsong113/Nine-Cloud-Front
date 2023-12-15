@@ -17,6 +17,10 @@ import {
   ViewAllInfiniteProps,
 } from './Main.types';
 
+//- inView라는 훅을 제공한다. ref 속성을 내가 지정한 곳이 화면에 보이는지, 안보이는지 감지하는 역할을 한다. Boolean값을 반환한다. 내가 지정한 요소가 화면에 보이면 true, 보이지 않으면 false를 반환한다.
+
+import { useInView } from 'react-intersection-observer';
+
 const ViewAll = () => {
   const animationDuration = 300; // 애니메이션 지속 시간(ms)
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
@@ -30,6 +34,7 @@ const ViewAll = () => {
   const [isToggle, setIsToggle] = useState(false);
   const profileImg = localStorage.getItem('image'); //나중에 db에서 get하기
   const [isActiveModal, setIsActiveModal] = useState(false);
+  const [ref, inView] = useInView();
 
   const onClickNextMonth = () => {
     setIsToggle((prev) => !prev);
@@ -74,12 +79,17 @@ const ViewAll = () => {
   };
 
   //렌더링 되자마자 보이는 데이터
-  const [isPrefetchData, setIsPrefetchData] = useState<IViewAllPropsPure[]>([]);
+  // const [isPrefetchData, setIsPrefetchData] = useState<IViewAllPropsPure[]>([]);
   //페이지 숫자
   // const [pageParam, setPageParam] = useState(1);
 
+  const onClickGotoDetailPage = (id: any) => {
+    navigate(`/post/${id}`);
+  };
+
   const {
     data: viewAllData, //현재까지 로드된 데이터를 나타냅니다. 이 속성은 배열 형태로 각 페이지의 데이터를 가지고 있습니다.
+    status,
     isLoading, //데이터를 가져오는 중인지 여부를 나타냅니다. true이면 데이터를 아직 받아오는 중이라는 뜻입니다.
     isFetching, //데이터를 다시 가져오는 중인지 여부를 나타냅니다. true이면 현재 데이터를 다시 가져오는 중이라는 뜻입니다.
     hasNextPage, //더 많은 페이지가 있는지 여부를 나타냅니다. true이면 다음 페이지가 존재한다는 뜻이며, 이 값을 사용하여 무한 스크롤을 구현할 수 있습니다.
@@ -89,16 +99,25 @@ const ViewAll = () => {
     isFetchingNextPage, //다음 페이지를 가져오는 중인지 여부를 나타냅니다. true이면 다음 페이지를 가져오는 중이라는 뜻입니다.
   } = useInfiniteQuery(
     'getInfiniteDiary',
-    ({ pageParam = 0 }) => getInfiniteDiaries(pageParam),
+    ({ pageParam = 1 }) => getInfiniteDiaries(pageParam),
     {
       //다음 페이지의 pageParam 값을 결정하는 데 사용
-
       getNextPageParam: (_lastPage, pages) => {
-        return pages.length + 1;
+        console.log('_lastPage', _lastPage);
+        if (_lastPage?.isLast) {
+          return _lastPage?.nextPage;
+        } else {
+          return null;
+        }
       },
     }
   );
 
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage]);
   // useEffect(() => {
   //   // 페이지 로딩 중이거나 다음 페이지를 가져오는 중이 아닐 때만 실행
   //   if (!isLoading && !isFetchingNextPage) {
@@ -156,9 +175,9 @@ const ViewAll = () => {
                   <S.DateBoxDiv>
                     <S.YearTextSpan>{year}</S.YearTextSpan>
                     <S.PrevNextMonthBoxDiv>
-                      <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+                      {/* <S.PrevMonth onClick={onClickPrevMonth} size={30} /> */}
                       <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
-                      <S.NextMonth onClick={onClickNextMonth} size={30} />
+                      {/* <S.NextMonth onClick={onClickNextMonth} size={30} /> */}
                     </S.PrevNextMonthBoxDiv>
                   </S.DateBoxDiv>
                 </S.HeaderLeftWrapperDiv>
@@ -200,16 +219,22 @@ const ViewAll = () => {
             <S.ViewAllWrapperDiv>
               <div>
                 {viewAllData?.pages.map((page, pageIndex) => {
-                  //통신 되면 isPrefetchData로 변경
-                  return page.data.map((item, itemIndex) => {
-                    return (
-                      <ViewAllInfinite
-                        key={`page-${pageIndex}-item-${itemIndex}`}
-                        item={item} // {data: Array(3)}
-                      />
-                    );
-                  });
+                  return page?.result.data.map(
+                    (item: any, itemIndex: number) => {
+                      return (
+                        <ViewAllInfinite
+                          // lastItemRef={ref}
+                          key={`page-${pageIndex}-item-${itemIndex}`}
+                          item={item} // {data: Array(3)}
+                          onClick={() => onClickGotoDetailPage(item.diaryId)}
+                        />
+                      );
+                    }
+                  );
                 })}
+              </div>
+              <div ref={ref} style={{ color: 'transparent' }}>
+                Loading...
               </div>
 
               {/* <InfiniteScroll
