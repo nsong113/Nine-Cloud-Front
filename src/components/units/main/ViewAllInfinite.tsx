@@ -10,46 +10,40 @@ import { VideoCard } from 'src/components/commons/utills/Date/date';
 import { format } from 'date-fns';
 
 // const ViewAllInfinite: React.FC<IViewAllPropsPure> = ({ item }) => {
-const ViewAllInfinite: React.FC<IViewAllPropsPure> = (props) => {
+// const ViewAllInfinite: React.FC<IViewAllPropsPure> = (props) => {
+const ViewAllInfinite = (props: any) => {
   //이 컴포넌트에서 조건부 렌더링
   // console.log('item', props.item);
+  const formattedDate = format(new Date(props.item.createdAt), 'yyyy. MM. dd');
+  console.log('item', props.item);
+
   return (
     <>
-      {props.item?.data?.map((eachItem: IViewAllPropsEach) => {
-        // const formattedDate = format(eachItem.createdAt, 'yyyy. MM. dd');
-        const formattedDate = format(
-          new Date(eachItem.createdAt),
-          'yyyy. MM. dd'
-        );
-
-        return (
-          <S.ViewAllEachBoxDiv>
-            <S.ViewAllEachFlex>
-              <S.ViewAllIMGbox>
-                <img src={eachItem.image} alt='expic' style={mainInageStyle} />
-              </S.ViewAllIMGbox>
-              <S.ViewAllRightContentDiv>
-                <S.ViewAllRightFlexDiv>
-                  <S.ViewAllDateDiv>
-                    {/* {VideoCard(eachItem.createdAt)} */}
-                    {/* {eachItem.createdAt.format('YYYYMMDD HH:mm:ss')} */}
-                    {formattedDate}
-                  </S.ViewAllDateDiv>
-                  <S.ViewAllPublicIMGDiv>
-                    <img src='/happy.png' style={imgstyle} alt='happy' />
-                    {eachItem.isPublic}
-                  </S.ViewAllPublicIMGDiv>
-                </S.ViewAllRightFlexDiv>
-                <S.ViewAllEmojiIMGDiv>
-                  <img src='/happy.png' style={imgstyle} alt='happy' />
-                  {eachItem.EmotionStatus}
-                </S.ViewAllEmojiIMGDiv>
-                <S.ViewAllContentP>{eachItem.content}</S.ViewAllContentP>
-              </S.ViewAllRightContentDiv>
-            </S.ViewAllEachFlex>
-          </S.ViewAllEachBoxDiv>
-        );
-      })}
+      <S.ViewAllEachBoxDiv>
+        <S.ViewAllEachFlex>
+          <S.ViewAllIMGbox>
+            <img src={props.item.image} alt='expic' style={mainInageStyle} />
+          </S.ViewAllIMGbox>
+          <S.ViewAllRightContentDiv>
+            <S.ViewAllRightFlexDiv>
+              <S.ViewAllDateDiv>
+                {/* {VideoCard(eachItem.createdAt)} */}
+                {/* {eachItem.createdAt.format('YYYYMMDD HH:mm:ss')} */}
+                {formattedDate}
+              </S.ViewAllDateDiv>
+              <S.ViewAllPublicIMGDiv>
+                <img src='/happy.png' style={imgstyle} alt='happy' />
+                {props.item.isPublic}
+              </S.ViewAllPublicIMGDiv>
+            </S.ViewAllRightFlexDiv>
+            <S.ViewAllEmojiIMGDiv>
+              <img src='/happy.png' style={imgstyle} alt='happy' />
+              {props.item.EmotionStatus}
+            </S.ViewAllEmojiIMGDiv>
+            <S.ViewAllContentP>{props.item.content}</S.ViewAllContentP>
+          </S.ViewAllRightContentDiv>
+        </S.ViewAllEachFlex>
+      </S.ViewAllEachBoxDiv>
     </>
   );
 };

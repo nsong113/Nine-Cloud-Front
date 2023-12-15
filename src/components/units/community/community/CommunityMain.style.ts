@@ -99,3 +99,105 @@ export const MainMapContainer = styled.div`
   height: 80%;
   background-color: beige;
 `;
+
+export const ViewAllEachBoxDiv = styled.div`
+  width: 95%;
+  margin: 0 auto;
+  height: 130px;
+  margin-top: 20px;
+  border-radius: 10px;
+  /* border: 2px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77)); */
+
+  /* background: linear-gradient(
+    209deg,
+    rgba(236, 233, 245, 0.3) 0%,
+    rgba(232, 245, 243, 0.3) 48.96%,
+    rgba(252, 245, 245, 0.3) 100%
+  ); */
+
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 3px,
+        transparent 3px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 3px, transparent 3px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 3px, transparent 3px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 3px, transparent 3px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 10px) no-repeat,
+    conic-gradient(
+      rgba(255, 255, 255, 0.5) 3%,
+      rgba(80, 53, 166, 0.77) 40%,
+      rgba(80, 53, 166, 0.2) 60%,
+      rgba(80, 53, 166, 0.2) 65%,
+      rgba(80, 53, 166, 0.77) 84%,
+      rgba(255, 255, 255, 0.5) 100%
+    );
+  border-radius: 8px;
+  padding: 9px;
+  box-sizing: border-box;
+
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+`;
+
+export const ViewAllEachFlex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  gap: 10px;
+`;
+
+export const ViewAllIMGbox = styled.div`
+  width: 106px;
+  height: 106px;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ViewAllRightContentDiv = styled.div`
+  width: 250;
+  height: 105px;
+`;
+
+export const ViewAllRightFlexDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ViewAllDateDiv = styled.div`
+  font-weight: 700;
+`;
+
+export const ViewAllPublicIMGDiv = styled.div``;
+
+export const ViewAllEmojiIMGDiv = styled.div`
+  text-align: left;
+`;
+
+export const ViewAllContentP = styled.p`
+  margin-top: 10px;
+  color: #9a9a9a;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  text-align: left;
+  font-size: 13px;
+`;

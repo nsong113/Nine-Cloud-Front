@@ -162,10 +162,6 @@ const BoardWriteDraw = () => {
 
       console.log('file', file);
 
-      // const formData = new FormData();
-
-      // formData.append('image', file);
-
       setPostDiaryItem({
         EmotionalStatus: Number(localStorage.getItem('countAverage')),
         content: localStorage.getItem('contents'),
