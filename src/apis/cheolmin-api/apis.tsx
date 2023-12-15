@@ -4,6 +4,7 @@ import {
   IAddPost,
   IDeleteComment,
   IEditComment,
+  IUpdatePost,
 } from './apis.types';
 
 const accessToken = localStorage.getItem('accessToken');
@@ -215,6 +216,16 @@ export const getNextMonthPosts = async () => {
       }
     );
     return response.data;
+  } catch (error) {
+    console.log('error');
+  }
+};
+
+export const updatePost = async (target: IUpdatePost) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER_URL}/diary/edit/${target.diaryId}`
+    );
   } catch (error) {
     console.log('error');
   }

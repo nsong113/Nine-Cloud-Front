@@ -16,17 +16,21 @@ import Animation3 from 'src/components/commons/utills/Animation/Animation3';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import { CommentData } from './comment/test';
+import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOverlay';
+import DeleteOverlay from 'src/components/commons/modals/modalSetting/overlay/deleteOverlay/DeleteOverlay';
+import DeleteModal from 'src/components/commons/modals/delete/DeleteModal';
 
 const BoardDetail = () => {
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery('post', () => getOnePostInfo(params.id));
   const { currentDate, currentMonth } = useCalendar();
+  const [isEdit, setIsEdit] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
   const [isActiveModal, setIsActiveModal] = useState(false);
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
-  const onClickMyProfile = () => {
+  const onClickPencilImg = () => {
     setIsActiveModal((prev) => !prev);
   };
 
@@ -38,6 +42,8 @@ const BoardDetail = () => {
 
   const { data: comment } = useQuery('comment', () => getComments(params.id));
   const { data: profile } = useQuery('profile', getMyInfo);
+  const [isPublic, setIsPublic] = useState(false);
+  const [isDeleteModal, setIsDeleteModal] = useState(false);
 
   console.log('상세페이지', data?.data);
 
@@ -75,10 +81,32 @@ const BoardDetail = () => {
     ? format(createdAtDate, 'yyyy년 MM월 dd일')
     : null;
 
+  const onClickPencil = () => {
+    setIsEdit((prev) => !prev);
+  };
+
+  const onClickPublic = () => {
+    setIsPublic((prev) => !prev);
+  };
+
+  const onClickTrashCan = () => {
+    setIsDeleteModal((prev) => !prev);
+  };
   // const formattedData = format(detailedContent?.createdAt, 'yyyy년 mm월 dd일');
 
   return (
     <S.ContainerDiv>
+ 
+        {isActiveModal && (
+          <EditPostOverlay
+            content={detailedContent?.content}
+            onClose={onClickPencilImg}
+          />
+        )}
+      
+      {isDeleteModal && (
+        <DeleteModal onOk={onClickDeleteBtn} onClose={onClickTrashCan} />
+      )}
       <div key={data?.id}>
         <Animation3>
           <S.ImgBoxDiv>
@@ -93,7 +121,17 @@ const BoardDetail = () => {
               <S.ConentsHeaderRightDiv>
                 <S.heartBoxDiv>
                   {detailedContent?.isPublic === true && (
-                    <S.PeopleImg src={'/people.png'} alt='사람들' />
+                    <div>
+                      {!isEdit && (
+                        <S.PeopleImg src={'/people.png'} alt='사람들' />
+                      )}
+                      {isEdit && (
+                        <div>
+                          <label htmlFor='inputField'>공개</label>
+                          <input onClick={onClickPublic} type='checkbox' />
+                        </div>
+                      )}
+                    </div>
                   )}
                   {detailedContent?.isPublic === false && <S.PersonImg />}
                 </S.heartBoxDiv>
@@ -102,11 +140,19 @@ const BoardDetail = () => {
             <div>
               <S.ContentBoxHeaderDiv>
                 <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
-                <S.PencilImg />
+                <div>
+                  <S.PencilImg onClick={onClickPencilImg} />
+                  <S.TrashCanImg onClick={onClickTrashCan} />
+                </div>
               </S.ContentBoxHeaderDiv>
               <S.ContentsBoxDiv>
                 <S.ContentBoxDiv>
-                  <S.ContentSpan>{detailedContent?.content}</S.ContentSpan>
+                  {!isEdit && (
+                    <S.ContentSpan>{detailedContent?.content}</S.ContentSpan>
+                  )}
+                  {isEdit && (
+                    <textarea defaultValue={detailedContent?.content} />
+                  )}
                 </S.ContentBoxDiv>
               </S.ContentsBoxDiv>
               <S.ContentsFooterDiv>

@@ -5,7 +5,8 @@ import { AiFillHeart } from 'react-icons/ai';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
-import { IoPersonOutline } from "react-icons/io5";
+import { IoPersonOutline } from 'react-icons/io5';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 export const ContainerDiv = styled.div`
   display: flex;
@@ -16,26 +17,12 @@ export const ContainerDiv = styled.div`
     #e8f5f3 51.07%,
     #fcf5f5 99.97%
   );
-
-  background-image: url('/detailBack.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px);
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 export const ImgBoxDiv = styled.div`
   height: 396px;
   width: 443px;
-  background-color: #ebebeb;
+  background-color: white;
   border-radius: 0 0 80px 0;
 `;
 
@@ -272,6 +259,7 @@ export const PencilImg = styled(LuPencil)`
   width: 30px;
   height: 33.105px;
   margin-right: 10px;
+  cursor: pointer;
   /* margin-left: 320px; */
 `;
 
@@ -368,8 +356,10 @@ export const BlankCommentBoxDiv = styled.div`
   flex-direction: column;
 `;
 
+export const PersonImg = styled.img``;
 
-export const PersonImg = styled.img`
-
-
-`
+export const TrashCanImg = styled(FaRegTrashAlt)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+`;
