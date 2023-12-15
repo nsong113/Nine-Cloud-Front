@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './CommunityMain.style';
 import { RiMessage3Fill } from 'react-icons/ri';
+import CommunityEach from './CommunityEach';
 
 // type MyEventHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 
@@ -185,7 +186,18 @@ const CommunityMain = () => {
               <p>감정9</p>
             </S.MainEachSlideBox>
           </S.MainSlideFlex>
-          <S.MainMapContainer>{/* map */}</S.MainMapContainer>
+          <S.MainMapContainer>
+            {/* {viewAllData?.pages.map((page, pageIndex) => {
+              return page.data.map((item, itemIndex) => {
+                return (
+                  <CommunityEach
+                    key={`page-${pageIndex}-item-${itemIndex}`}
+                    item={item} // {data: Array(3)}
+                  />
+                );
+              });
+            })} */}
+          </S.MainMapContainer>
         </S.MainSlideBox>
       </S.MainSectionContainer>
     </S.MainContainer>

@@ -19,6 +19,8 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
     formData.append('content', postDiaryItem.content || '');
     formData.append('isPublic', postDiaryItem.isPublic ? 'true' : 'false');
     formData.append('image', postDiaryItem.image || '');
+    formData.append('sentence', postDiaryItem.sentence || '');
+    formData.append('weather', postDiaryItem.weather || '');
 
     console.log(typeof postDiaryItem.image);
     console.log('formData', formData);
@@ -29,14 +31,19 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
       {
         withCredentials: true,
         headers: {
-          // 'Content-Type': 'application/json',
           'Content-Type': 'multipart/form-data',
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
         },
       }
     );
-
+    alert('오늘 일기 포스팅에 성공하셨습니다.');
+    localStorage.removeItem('sentence');
+    localStorage.removeItem('weather');
+    localStorage.removeItem('countAverage');
+    localStorage.removeItem('image');
+    localStorage.removeItem('content');
+    localStorage.removeItem('isPublic');
     return res.data;
   } catch (error) {
     console.log('postDiary error', error);

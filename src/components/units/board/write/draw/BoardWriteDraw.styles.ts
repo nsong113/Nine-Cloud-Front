@@ -21,10 +21,10 @@ export const DrawWrapperUPDiv = styled.div`
 `;
 
 export const DrawWrapperDOWNdiv = styled.div`
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
-
   height: 775px;
+
   box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
@@ -219,10 +219,67 @@ export const DrawTitleBox = styled.div`
   width: 100%;
 `;
 
+export const CanvasContainer = styled.div`
+  /* width: 90%;
+  margin: 0 auto;
+  height: auto; */
+`;
+
+export const DrawCanvas = styled.canvas`
+  margin: 5px auto;
+
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 8px,
+        transparent 8px
+      )
+      0% 0%/10px 10px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 8px, transparent 8px)
+      100% 0%/10px 10px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 8px, transparent 8px)
+      0% 100%/10px 10px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 8px, transparent 8px) 100%
+      100%/10px 10px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 20px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 20px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(
+      128deg,
+      rgba(239, 170, 173, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    ),
+    linear-gradient(
+      319deg,
+      rgba(255, 255, 255, 0.7) 51%,
+      rgba(239, 170, 173, 0.7) 100%
+    ),
+    linear-gradient(
+      44deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(80, 53, 166, 0.2) 100%
+    ),
+    radial-gradient(
+      at 0% 0%,
+      rgba(80, 53, 166, 0.2) 0%,
+      rgba(124, 102, 182, 0.7) 100%
+    );
+  border-radius: 10px;
+  padding: 6px;
+  box-sizing: border-box;
+`;
+
 export const DrawWriteTitleH3 = styled.h3`
   text-align: left;
-  font-weight: 700;
-  margin: 87px 0 10px 0;
+  margin: 30px 0 10px 0;
+
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 `;
 
 export const ProgressWrapperDiv = styled.div`
@@ -396,7 +453,7 @@ export const ArrowDiv = styled.div`
 `;
 
 export const ToggleBox = styled.div`
-  width: 60%;
+  width: 80%;
   height: 61px;
   margin: 0 auto;
   display: flex;
@@ -405,15 +462,63 @@ export const ToggleBox = styled.div`
 `;
 
 export const FirstToggle = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #d9d9d9;
+  width: 45px;
+  height: 45px;
+
   display: flex;
   font-size: 13px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  border-radius: 50px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: var(--3-1, #fcf5f5);
+
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
+  &:hover {
+    background-color: #5035a6;
+    opacity: 70%;
+    color: white;
+    transition: 0.3s;
+  }
+`;
+
+export const SecondToggle = styled.div`
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  border-radius: 50px;
+  border: 1px solid var(--1-1, #ece9f5);
+  background: var(--3-1, #fcf5f5);
+
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
+  &:hover {
+    width: 50px;
+    height: 50px;
+    background-color: #5035a6;
+    color: white;
+
+    transition: 0.3s;
+  }
 `;
 
 //////////eraser
