@@ -1,12 +1,5 @@
 import { styled, css } from 'styled-components';
 
-// interface MainSlideFlexProps {
-//   $offset?: number;
-//   $isDragging?: boolean;
-//   $currentIndex: number;
-//   $transX: number;
-// }
-
 export const MainContainer = styled.div`
   width: 100%;
   height: 960px;
@@ -81,7 +74,7 @@ export const MainSlideBox = styled.div`
   padding: 10px;
   overflow: hidden;
 `;
-// export const MainSlideFlex = styled.div<MainSlideFlexProps>`
+
 export const MainSlideFlex = styled.div`
   width: 1000px;
   height: 50px;
@@ -91,9 +84,6 @@ export const MainSlideFlex = styled.div`
   align-items: center;
   overflow-x: scroll;
 `;
-/* transform: translateX(
-    -${(props) => props.$currentIndex}*1000+${(props) => props.$transX}px
-  ); */
 
 export const MainEachSlideBox = styled.div`
   width: 90px;
@@ -118,14 +108,6 @@ export const ViewAllEachBoxDiv = styled.div`
   height: 130px;
   margin-top: 20px;
   border-radius: 10px;
-  /* border: 2px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77)); */
-
-  /* background: linear-gradient(
-    209deg,
-    rgba(236, 233, 245, 0.3) 0%,
-    rgba(232, 245, 243, 0.3) 48.96%,
-    rgba(252, 245, 245, 0.3) 100%
-  ); */
 
   background: radial-gradient(
         circle at 100% 100%,
@@ -209,7 +191,6 @@ export const ViewAllContentP = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* white-space: nowrap; */
   text-align: left;
   font-size: 13px;
 `;

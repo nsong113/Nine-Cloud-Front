@@ -36,7 +36,7 @@ const BoardWriteEmotion = () => {
   ));
 
   localStorage.setItem('countAverage', countAverage.toString());
-  localStorage.setItem('weather', gloomy.toString());
+  localStorage.setItem('weather', angry.toString());
 
   return (
     <Animation2>

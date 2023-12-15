@@ -49,7 +49,7 @@ const Calender = () => {
     setCurrentDate(newDate);
     setCurrentMonth(newDate);
     setAnimationDirection('leftToRight');
-    await refetch(); // 다음 달 데이터 다시 가져오기
+    await refetch();
   };
 
   const onClickPrevMonth = async () => {
@@ -57,7 +57,7 @@ const Calender = () => {
     setCurrentDate(newDate);
     setCurrentMonth(newDate);
     setAnimationDirection('rightToLeft');
-    await refetch(); // 이전 달 데이터 다시 가져오기
+    await refetch();
   };
 
   return (
