@@ -17,3 +17,9 @@ export interface IEditComment {
 export interface IDeleteComment {
   commentId: number | undefined;
 }
+
+export interface IUpdatePost {
+  diaryId : number,
+  content : string,
+  isPublic : boolean,
+}
