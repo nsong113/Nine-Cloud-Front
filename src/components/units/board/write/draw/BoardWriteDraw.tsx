@@ -21,6 +21,8 @@ const BoardWriteDraw = () => {
   );
   const [isPublic, setIsPublic] = useState<boolean>(true);
 
+  console.log('isPublic', isPublic);
+
   const onClickPrevBtn = () => {
     navigate('/post3');
   };
@@ -145,6 +147,10 @@ const BoardWriteDraw = () => {
     setPen(!init);
   };
 
+  const onChangeIsPublicHandler = () => {
+    setIsPublic(!isPublic);
+  };
+
   let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
 
   const makeImageFile = () => {
@@ -167,6 +173,8 @@ const BoardWriteDraw = () => {
         content: localStorage.getItem('contents'),
         image: file,
         isPublic: isPublic,
+        sentence: localStorage.getItem('sentence'),
+        weather: localStorage.getItem('weather'),
       });
     } else {
       console.log('이미지 불러오기 실패');
@@ -192,10 +200,6 @@ const BoardWriteDraw = () => {
       canvas.removeEventListener('mouseleave', exitPaint);
     };
   }, [startPaint, paint, exitPaint]);
-
-  const onChangeIsPublicHandler = () => {
-    setIsPublic(!isPublic);
-  };
 
   const onClickGotoPost2 = () => {
     setIsModalOpen(!isModalOpen);

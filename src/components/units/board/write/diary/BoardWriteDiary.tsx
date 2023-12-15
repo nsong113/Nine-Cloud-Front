@@ -21,12 +21,16 @@ const BoardWriteDiary = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState(true); //이걸로 나중에 점수 확 높히기
   const [contents, setContents] = useState<string>('');
+  const [todayRandomSaying, setTodayRandomSaying] = useState('');
 
   const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     if (event.target.value.length < 201) {
       setContents(event.target.value);
     }
   };
+
+  //
+  let existedSentence: string | null = localStorage.getItem('sentence');
 
   //토글버튼
   setIsChecked;
@@ -73,6 +77,9 @@ const BoardWriteDiary = () => {
 
   const onClickOpenFortune = () => {
     setIsModalOpen(true);
+    if (existedSentence) {
+      alert('오늘 이미 포춘 클라우드를 뽑았습니다! 내일 다시 뽑아주세요');
+    }
   };
 
   const goBackFortune = () => {
@@ -81,7 +88,13 @@ const BoardWriteDiary = () => {
   return (
     <div>
       <Animation2>
-        {isModalOpen && <FortuneCloudModal goBackFortune={goBackFortune} />}
+        {!existedSentence && isModalOpen && (
+          <FortuneCloudModal
+            goBackFortune={goBackFortune}
+            todayRandomSaying={todayRandomSaying}
+            setTodayRandomSaying={setTodayRandomSaying}
+          />
+        )}
         <S.DiaryContainerDiv>
           <S.DiaryWrapperUPDiv>
             <S.HeaderButtonBoxDiv>
@@ -141,10 +154,17 @@ const BoardWriteDiary = () => {
                     <S.FortuneGoDiv onClick={onClickOpenFortune}>
                       열어보기
                     </S.FortuneGoDiv>
-                    <S.FortuneP>
-                      포춘 클라우드는 <br />
-                      하루에 한 번만 뽑을 수 있어요.
-                    </S.FortuneP>
+                    {todayRandomSaying && (
+                      <S.FortuneP>{todayRandomSaying}</S.FortuneP>
+                    )}
+                    {!todayRandomSaying && !existedSentence && (
+                      <S.FortuneP>
+                        포춘 클라우드는 하루에 한 번만 뽑을 수 있어요.
+                      </S.FortuneP>
+                    )}
+                    {existedSentence && (
+                      <S.FortuneP>{existedSentence}</S.FortuneP>
+                    )}
                   </S.FortuneBox>
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>

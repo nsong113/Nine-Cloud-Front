@@ -26,14 +26,17 @@ const BoardWriteEmotion = () => {
     navigate('/post3');
   };
 
-  const countAverage =
-    (Number(happy) + Number(sad) + Number(gloomy) + Number(angry)) / 4;
+  // const countAverage =
+  //   (Number(happy) + Number(sad) + Number(gloomy) + Number(angry)) / 4;
+
+  const countAverage = (Number(happy) + Number(sad)) / 2;
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
   ));
 
   localStorage.setItem('countAverage', countAverage.toString());
+  localStorage.setItem('weather', gloomy.toString());
 
   return (
     <Animation2>
@@ -96,7 +99,7 @@ const BoardWriteEmotion = () => {
                   <S.CountP>
                     {happy === '1' && '지쳤어요'}
                     {happy === '2' && '무료해요'}
-                    {happy === '3' && '미지근해요'}
+                    {happy === '3' && '그냥그래요'}
                     {happy === '4' && '의기양양해요'}
                     {happy === '5' && '열정넘쳐요'}
                   </S.CountP>
@@ -131,7 +134,7 @@ const BoardWriteEmotion = () => {
                     {sad === '1' && '불쾌해요'}
                     {sad === '2' && '울적해요'}
                     {sad === '3' && '적당해요'}
-                    {sad === '4' && '명랑해요'}
+                    {sad === '4' && '꽤 좋아요'}
                     {sad === '5' && '상쾌해요'}
                   </S.CountP>
                 </S.CountBoxDiv>
@@ -140,7 +143,7 @@ const BoardWriteEmotion = () => {
                 <S.ContentsBoxDiv>
                   <S.ContentBoxDiv>
                     오늘의
-                    <S.ContentBoxSpan>소비 상태</S.ContentBoxSpan>는 어땠나요?
+                    <S.ContentBoxSpan>날씨</S.ContentBoxSpan>는 어땠나요?
                   </S.ContentBoxDiv>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
@@ -162,9 +165,9 @@ const BoardWriteEmotion = () => {
                 </S.ContentsBoxDiv>
                 <S.CountBoxDiv>
                   <S.CountP>
-                    {angry === '1' && 'ONCE'}
-                    {angry === '2' && 'TWICE'}
-                    {angry === '3' && 'THREE T.'}
+                    {angry === '1' && '비왔어요'}
+                    {angry === '2' && '흐렸어요'}
+                    {angry === '3' && '맑았어요'}
                   </S.CountP>
                 </S.CountBoxDiv>
               </S.SliderBoxDiv>
@@ -172,7 +175,7 @@ const BoardWriteEmotion = () => {
                 <S.ContentsBoxDiv>
                   <S.ContentBoxDiv>
                     오늘의
-                    <S.ContentBoxSpan>식사상태</S.ContentBoxSpan>는 어떤가요?
+                    <S.ContentBoxSpan>날씨</S.ContentBoxSpan>는 어떘나요?
                   </S.ContentBoxDiv>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
