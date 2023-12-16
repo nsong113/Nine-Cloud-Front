@@ -154,17 +154,21 @@ const BoardWriteDiary = () => {
                     <S.FortuneGoDiv onClick={onClickOpenFortune}>
                       열어보기
                     </S.FortuneGoDiv>
-                    {todayRandomSaying && (
-                      <S.FortuneP>{todayRandomSaying}</S.FortuneP>
-                    )}
+
                     {!todayRandomSaying && !existedSentence && (
                       <S.FortuneP>
                         포춘 클라우드는 하루에 한 번만 뽑을 수 있어요.
                       </S.FortuneP>
                     )}
-                    {existedSentence && (
-                      <S.FortuneP>{existedSentence}</S.FortuneP>
+
+                    {(todayRandomSaying || existedSentence) && (
+                      <S.FortuneP>
+                        {todayRandomSaying || existedSentence}
+                      </S.FortuneP>
                     )}
+                    {/* {existedSentence && (
+                      <S.FortuneP>{existedSentence}</S.FortuneP>
+                    )} */}
                   </S.FortuneBox>
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
