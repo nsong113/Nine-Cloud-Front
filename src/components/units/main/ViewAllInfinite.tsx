@@ -1,21 +1,9 @@
 import React from 'react';
 import * as S from './Main.styles';
-import {
-  IViewAllProps,
-  IViewAllPropsEach,
-  IViewAllPropsPure,
-  ViewAllInfiniteProps,
-} from './Main.types';
-import { VideoCard } from 'src/components/commons/utills/Date/date';
 import { format } from 'date-fns';
 
-// const ViewAllInfinite: React.FC<IViewAllPropsPure> = ({ item }) => {
-// const ViewAllInfinite: React.FC<IViewAllPropsPure> = (props) => {
 const ViewAllInfinite = (props: any) => {
-  //이 컴포넌트에서 조건부 렌더링
-  // console.log('item', props.item);
   const formattedDate = format(new Date(props.item.createdAt), 'yyyy. MM. dd');
-  console.log('item', props.item);
 
   return (
     <>
@@ -26,11 +14,7 @@ const ViewAllInfinite = (props: any) => {
           </S.ViewAllIMGbox>
           <S.ViewAllRightContentDiv>
             <S.ViewAllRightFlexDiv>
-              <S.ViewAllDateDiv>
-                {/* {VideoCard(eachItem.createdAt)} */}
-                {/* {eachItem.createdAt.format('YYYYMMDD HH:mm:ss')} */}
-                {formattedDate}
-              </S.ViewAllDateDiv>
+              <S.ViewAllDateDiv>{formattedDate}</S.ViewAllDateDiv>
               <S.ViewAllPublicIMGDiv>
                 <img src='/happy.png' style={imgstyle} alt='happy' />
                 {props.item.isPublic}

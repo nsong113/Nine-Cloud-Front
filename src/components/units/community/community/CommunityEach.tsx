@@ -14,11 +14,7 @@ const CommunityEach = (props: any) => {
         </S.ViewAllIMGbox>
         <S.ViewAllRightContentDiv>
           <S.ViewAllRightFlexDiv>
-            <S.ViewAllDateDiv>
-              {/* {VideoCard(eachItem.createdAt)} */}
-              {/* {eachItem.createdAt.format('YYYYMMDD HH:mm:ss')} */}
-              {formattedDate}
-            </S.ViewAllDateDiv>
+            <S.ViewAllDateDiv>{formattedDate}</S.ViewAllDateDiv>
             <S.ViewAllPublicIMGDiv>
               <img src='/happy.png' style={imgstyle} alt='happy' />
               {props.item.isPublic}

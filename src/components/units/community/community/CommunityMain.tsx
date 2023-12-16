@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as S from './CommunityMain.style';
 import { RiMessage3Fill } from 'react-icons/ri';
 import CommunityEach from './CommunityEach';
+import { useInView } from 'react-intersection-observer';
+import { useInfiniteQuery } from 'react-query';
+import { getInfiniteDiaries } from 'src/apis/diary';
 
 // type MyEventHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 
@@ -79,6 +82,49 @@ const CommunityMain = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transX, setTransX] = useState(0);
 
+  const [ref, inView] = useInView();
+
+  const {
+    data: viewAllData, //현재까지 로드된 데이터를 나타냅니다. 이 속성은 배열 형태로 각 페이지의 데이터를 가지고 있습니다.
+    isLoading, //데이터를 가져오는 중인지 여부를 나타냅니다. true이면 데이터를 아직 받아오는 중이라는 뜻입니다.
+    hasNextPage, //더 많은 페이지가 있는지 여부를 나타냅니다. true이면 다음 페이지가 존재한다는 뜻이며, 이 값을 사용하여 무한 스크롤을 구현할 수 있습니다.
+    isError,
+    isSuccess,
+    fetchNextPage, //다음 페이지를 가져오기 위해 호출할 함수입니다. 이 함수를 호출하면 다음 페이지의 데이터를 가져옵니다.
+  } = useInfiniteQuery(
+    'getInfiniteDiary',
+    ({ pageParam = 1 }) => getInfiniteDiaries(pageParam),
+    {
+      //다음 페이지의 pageParam 값을 결정하는 데 사용
+      getNextPageParam: (_lastPage) => {
+        console.log('_lastPage', _lastPage);
+        if (_lastPage?.isLast) {
+          return _lastPage?.nextPage;
+        } else {
+          return null;
+        }
+      },
+    }
+  );
+
+  console.log('viewAllData', viewAllData);
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Loading failed...</div>;
+  }
+  if (isSuccess) {
+    console.log('data', viewAllData);
+  }
+
   //사용할 이벤트
   //onMouseDown: 마우스 왼쪽 버튼 누르고 있는 상태
   //onMouseUp: 마우스 왼쪽 버튼 뗀 상태
@@ -114,13 +160,13 @@ const CommunityMain = () => {
   return (
     <S.MainContainer>
       <S.MainHeader>
-        <div className='MainFlexBox'>
-          <img alt='logo' />
-          <div className='MainProfileFlexDiv'>
-            <div className='MainStatus'></div>
-            <img alt='profile' />
-          </div>
-        </div>
+        <S.MainFlexBoxDiv>
+          <img alt='logo' src='/ninecloud.png' />
+          <S.MainProfileFlexDiv>
+            <img alt='감정이모티콘'></img>
+            <img alt='profile' src='/avatar.png' />
+          </S.MainProfileFlexDiv>
+        </S.MainFlexBoxDiv>
       </S.MainHeader>
       <S.MainSectionContainer>
         <S.MainSectionHeaderWrapper>
@@ -187,16 +233,21 @@ const CommunityMain = () => {
             </S.MainEachSlideBox>
           </S.MainSlideFlex>
           <S.MainMapContainer>
-            {/* {viewAllData?.pages.map((page, pageIndex) => {
-              return page.data.map((item, itemIndex) => {
-                return (
-                  <CommunityEach
-                    key={`page-${pageIndex}-item-${itemIndex}`}
-                    item={item} // {data: Array(3)}
-                  />
-                );
-              });
-            })} */}
+            <div>
+              {/* {viewAllData?.pages.map((page, pageIndex) => {
+                return page?.data.map((item, itemIndex) => {
+                  return (
+                    <CommunityEach
+                      key={`page-${pageIndex}-item-${itemIndex}`}
+                      item={item}
+                    />
+                  );
+                });
+              })} */}
+            </div>
+            <div ref={ref} style={{ color: 'transparent' }}>
+              Loading...
+            </div>
           </S.MainMapContainer>
         </S.MainSlideBox>
       </S.MainSectionContainer>

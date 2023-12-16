@@ -40,7 +40,8 @@ const NaverLoginHandler = () => {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('expiredTime', expiredTime);
-        navigate('/loadingpage');
+        navigate('/main');
+        window.location.reload();
       } catch (error) {
         console.error('로그인 실패', error);
       }
