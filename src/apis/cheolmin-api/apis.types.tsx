@@ -19,7 +19,12 @@ export interface IDeleteComment {
 }
 
 export interface IUpdatePost {
-  diaryId : number,
-  content : string,
-  isPublic : boolean,
+  diaryId: string | undefined;
+  contents: string | undefined;
+  isPublic: boolean;
+}
+
+export interface IGetPosts {
+  currentYear: any;
+  currentMonth: any;
 }

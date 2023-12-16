@@ -20,6 +20,8 @@ const Calender = () => {
     setCurrentDate,
     currentMonth,
     setCurrentMonth,
+    currentYear,
+    setCurrentYear,
     DAY_LIST,
   } = useCalendar();
   const [isActiveModal, setIsActiveModal] = useState(false);
@@ -27,7 +29,14 @@ const Calender = () => {
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
-  const { data, isLoading, refetch } = useQuery('posts', getPosts);
+  const { data, isLoading, refetch } = useQuery('posts', () =>
+    getPosts({
+      currentYear: getYear(currentDate),
+      currentMonth: format(currentMonth, 'M'),
+    })
+  );
+
+  console.log('current Year', currentYear, 'current Month', currentMonth);
 
   console.log(data);
   if (isLoading) {
@@ -46,18 +55,20 @@ const Calender = () => {
 
   const onClickNextMonth = async () => {
     const newDate = addMonths(currentMonth, 1);
+    await setCurrentMonth(newDate); // setCurrentMonth 함수의 실행을 기다림
     setCurrentDate(newDate);
-    setCurrentMonth(newDate);
     setAnimationDirection('leftToRight');
-    await refetch();
+    setCurrentYear(newDate); // setCurrentYear를 수정하여 바로 반영
+    await refetch(); // 다음 달 데이터 다시 가져오기
   };
 
   const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
+    await setCurrentMonth(newDate); // setCurrentMonth 함수의 실행을 기다림
     setCurrentDate(newDate);
-    setCurrentMonth(newDate);
     setAnimationDirection('rightToLeft');
-    await refetch();
+    setCurrentYear(newDate); // setCurrentYear를 수정하여 바로 반영
+    await refetch(); // 이전 달 데이터 다시 가져오기
   };
 
   return (

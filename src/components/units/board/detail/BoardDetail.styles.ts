@@ -7,6 +7,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoPersonOutline } from 'react-icons/io5';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { AiOutlineHeart } from 'react-icons/ai';
 
 export const ContainerDiv = styled.div`
   display: flex;
@@ -302,6 +303,7 @@ export const CommentHeartImg = styled(AiFillHeart)`
   color: rgba(80, 53, 166, 1);
   width: 24.625px;
   height: 15.916px;
+  cursor: pointer;
 `;
 
 export const CommentImg = styled(BsChatSquareDotsFill)`
@@ -362,4 +364,16 @@ export const TrashCanImg = styled(FaRegTrashAlt)`
   width: 30px;
   height: 30px;
   cursor: pointer;
+`;
+
+export const BlankHeartImg = styled(AiOutlineHeart)`
+  color: rgba(80, 53, 166, 1);
+  width: 24.625px;
+  height: 15.916px;
+  cursor: pointer;
+`;
+
+export const WeatherImage = styled.img`
+  width: 40px;
+  height: 40px;
 `;

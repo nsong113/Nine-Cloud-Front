@@ -4,35 +4,36 @@ import {
   IAddPost,
   IDeleteComment,
   IEditComment,
+  IGetPosts,
   IUpdatePost,
 } from './apis.types';
 // axios
 const accessToken = localStorage.getItem('accessToken');
 const refreshToken = localStorage.getItem('refreshToken');
 
-export const addPost = async (target: IAddPost) => {
-  try {
-    const formData = new FormData();
-    formData.append('image', target.image);
-    formData.append('content', target.content);
-    // formData.append('EmotionStatus', target.EmotionStatus);
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
-      formData,
-      {
-        withCredentials: true,
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.log('다시 시도하세요');
-  }
-};
+// export const addPost = async (target: IAddPost) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append('image', target.image);
+//     formData.append('content', target.content);
+//     // formData.append('EmotionStatus', target.EmotionStatus);
+//     const response = await axios.post(
+//       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
+//       formData,
+//       {
+//         withCredentials: true,
+//         headers: {
+//           Refreshtoken: `${refreshToken}`,
+//           Authorization: `${accessToken}`,
+//         },
+//       }
+//     );
+//     console.log(response);
+//     return response.data;
+//   } catch (error) {
+//     console.log('다시 시도하세요');
+//   }
+// };
 
 export const deletePost = async (id: any) => {
   try {
@@ -52,12 +53,12 @@ export const deletePost = async (id: any) => {
   }
 };
 
-export const getPosts = async () => {
+export const getPosts = async (target: IGetPosts) => {
   try {
     console.log(accessToken);
     console.log(refreshToken);
     const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/diary/calendar`,
+      `${process.env.REACT_APP_SERVER_URL}/diary/calendar/${target.currentYear}/${target.currentMonth}`,
       {
         withCredentials: true,
         headers: {
@@ -179,6 +180,26 @@ export const getMyInfo = async () => {
         },
       }
     );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log('error');
+  }
+};
+
+export const editMyInfo = async (target: any) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER_URL}/myinfo/editmyInfo`,
+      target,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     console.log('error');
@@ -224,9 +245,41 @@ export const getNextMonthPosts = async () => {
 export const updatePost = async (target: IUpdatePost) => {
   try {
     const response = await axios.patch(
-      `${process.env.REACT_APP_SERVER_URL}/diary/edit/${target.diaryId}`
+      `${process.env.REACT_APP_SERVER_URL}/diary/edit/${target.diaryId}`,
+      {
+        content: target.contents,
+        isPublic: target.isPublic,
+      },
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
     );
   } catch (error) {
     console.log('error');
+  }
+};
+
+export const getHearts = async (diaryId: string | undefined) => {
+  const data = null;
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/feeds/${diaryId}/like`,
+      data,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log('에러');
   }
 };

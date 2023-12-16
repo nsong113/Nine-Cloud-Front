@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
-import useEmotion from 'src/components/commons/hooks/useEmotion';
+
 import { dayList } from './test';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -9,14 +9,10 @@ import { getPosts } from 'src/apis/cheolmin-api/apis';
 import Loading from 'src/components/commons/utills/loading/Loading';
 
 const CalendarBody = (props: any) => {
-  const { data, isLoading } = useQuery('posts', getPosts);
   const navigate = useNavigate();
   const { weekCalendarList, currentDate, currentMonth, DAY_LIST } =
     useCalendar();
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);
-  if (isLoading) {
-    return <Loading />;
-  }
 
   const allData = props?.data?.data;
 
