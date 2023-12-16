@@ -6,6 +6,16 @@ import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from 'react-query';
 import { getInfiniteDiaries } from 'src/apis/diary';
 
+// type MyEventHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+
+// interface CloudyProps {
+//   hasCloudyArea?: boolean;
+//   cloudyAreaBgColor?: string;
+// }
+// interface Props extends CloudyProps {
+//   children: React.ReactNode;
+// }
+
 const CommunityMain = () => {
   // //드래그 중인지 여부를 나타내는 상태 변수
   // const [isDragging, setIsDragging] = useState(false);
@@ -97,6 +107,8 @@ const CommunityMain = () => {
     }
   );
 
+  console.log('viewAllData', viewAllData);
+
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
@@ -177,6 +189,8 @@ const CommunityMain = () => {
             onMouseUp={onDragEnd}
             onMouseLeave={onDragEnd}
             ref={scrollRef}
+            // $currentIndex={currentIndex}
+            // $transX={transX}
           >
             <S.MainEachSlideBox>
               <p>전체</p>
@@ -221,7 +235,7 @@ const CommunityMain = () => {
           <S.MainMapContainer>
             <div>
               {/* {viewAllData?.pages.map((page, pageIndex) => {
-                return page.data.map((item, itemIndex) => {
+                return page?.data.map((item, itemIndex) => {
                   return (
                     <CommunityEach
                       key={`page-${pageIndex}-item-${itemIndex}`}

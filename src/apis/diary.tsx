@@ -82,7 +82,7 @@ const getInfiniteDiaries = async (pageParam: number) => {
   const refreshToken = localStorage.getItem('refreshToken');
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/feeds?page=${pageParam}`,
+      `${process.env.REACT_APP_SERVER_URL}/feeds/mydiaries?page=${pageParam}`,
       {
         withCredentials: true,
         headers: {
