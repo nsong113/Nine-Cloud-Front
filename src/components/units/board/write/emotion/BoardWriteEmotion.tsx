@@ -26,14 +26,17 @@ const BoardWriteEmotion = () => {
     navigate('/post3');
   };
 
-  const countAverage =
-    (Number(happy) + Number(sad) + Number(gloomy) + Number(angry)) / 4;
+  // const countAverage =
+  //   (Number(happy) + Number(sad) + Number(gloomy) + Number(angry)) / 4;
 
-  const labels = ['MIN', '', 'MAX'].map((label, index) => (
+  const countAverage = (Number(happy) + Number(sad)) / 2;
+
+  const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
   ));
 
   localStorage.setItem('countAverage', countAverage.toString());
+  localStorage.setItem('weather', angry.toString());
 
   return (
     <Animation2>
@@ -42,9 +45,18 @@ const BoardWriteEmotion = () => {
           <S.HeaderButtonBoxDiv>
             <S.HeaderLine></S.HeaderLine>
             <S.HeaderFlexBox>
-              <S.ThreeFilledSpan>Emotion</S.ThreeFilledSpan>
-              <S.OneBlackSpan />
-              <S.TwoBlankSpan />
+              <S.SelectBox>
+                <S.ThreeFilledSpan></S.ThreeFilledSpan>
+                <S.SelectP>Emotion</S.SelectP>
+              </S.SelectBox>
+              <S.SelectBox>
+                <S.OneBlackSpan />
+                <S.SelectP2>Text</S.SelectP2>
+              </S.SelectBox>
+              <S.SelectBox>
+                <S.OneBlackSpan />
+                <S.SelectP3>Drawing</S.SelectP3>
+              </S.SelectBox>
             </S.HeaderFlexBox>
           </S.HeaderButtonBoxDiv>
         </S.EmotionWrapperUPDiv>
@@ -61,18 +73,20 @@ const BoardWriteEmotion = () => {
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentBoxDiv>
-                    오늘의 <S.ContentBoxSpan>행복도</S.ContentBoxSpan>는
-                    어떠신가요?
+                    오늘의 <S.ContentBoxSpan>마음 온도</S.ContentBoxSpan>는
+                    어땠나요?
                   </S.ContentBoxDiv>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
-                      일과를 돌아보며 <br />
-                      전반적인 평가를 내려보세요!
+                      하루 동안의
+                      <br />
+                      <S.ContentSpan>전반적인 상태</S.ContentSpan>를
+                      입력해주세요!
                     </S.ContentInputDescDiv>
                     <S.SliderInput
                       type='range'
                       min={1}
-                      max={3}
+                      max={5}
                       value={parseInt(happy) || 1}
                       onChange={onChangeHappyCount}
                     />
@@ -83,27 +97,30 @@ const BoardWriteEmotion = () => {
                 </S.ContentsBoxDiv>
                 <S.CountBoxDiv>
                   <S.CountP>
-                    {happy === '1' && 'AWFUL'}
-                    {happy === '2' && 'GOOD'}
-                    {happy === '3' && 'GREAT'}
+                    {happy === '1' && '지쳤어요'}
+                    {happy === '2' && '무료해요'}
+                    {happy === '3' && '그냥그래요'}
+                    {happy === '4' && '의기양양해요'}
+                    {happy === '5' && '열정넘쳐요'}
                   </S.CountP>
                 </S.CountBoxDiv>
               </S.SliderBoxDiv>
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentBoxDiv>
-                    오늘의 <S.ContentBoxSpan>소비 상태</S.ContentBoxSpan>는
+                    오늘의 <S.ContentBoxSpan>마음 습도</S.ContentBoxSpan>는
                     어땠나요?
                   </S.ContentBoxDiv>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
-                      괜찮아요 <br />
-                      솔찍해져보세요
+                      하루 동안의 <br />
+                      <S.ContentSpan>전반적인 감정</S.ContentSpan>을
+                      입력해주세요!
                     </S.ContentInputDescDiv>
                     <S.SliderInput
                       type='range'
                       min={1}
-                      max={3}
+                      max={5}
                       value={parseInt(sad) || 1}
                       onChange={onChangeSadCount}
                     />
@@ -114,21 +131,25 @@ const BoardWriteEmotion = () => {
                 </S.ContentsBoxDiv>
                 <S.CountBoxDiv>
                   <S.CountP>
-                    {sad === '1' && 'AWFUL'}
-                    {sad === '2' && 'GOOD'}
-                    {sad === '3' && 'GREAT'}
+                    {sad === '1' && '불쾌해요'}
+                    {sad === '2' && '울적해요'}
+                    {sad === '3' && '적당해요'}
+                    {sad === '4' && '꽤 좋아요'}
+                    {sad === '5' && '상쾌해요'}
                   </S.CountP>
                 </S.CountBoxDiv>
               </S.SliderBoxDiv>
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentBoxDiv>
-                    <S.ContentBoxSpan>식사</S.ContentBoxSpan>는 잘 챙기셨나요?
+                    오늘의
+                    <S.ContentBoxSpan>날씨</S.ContentBoxSpan>는 어땠나요?
                   </S.ContentBoxDiv>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
-                      때에 맞춰 건강하게 먹는 것도 <br />
-                      아주 중요해요
+                      괜찮아요
+                      <br />
+                      솔찍해져보세요
                     </S.ContentInputDescDiv>
                     <S.SliderInput
                       type='range'
@@ -144,21 +165,21 @@ const BoardWriteEmotion = () => {
                 </S.ContentsBoxDiv>
                 <S.CountBoxDiv>
                   <S.CountP>
-                    {angry === '1' && 'ONCE'}
-                    {angry === '2' && 'TWICE'}
-                    {angry === '3' && 'THREE T.'}
+                    {angry === '1' && '비왔어요'}
+                    {angry === '2' && '흐렸어요'}
+                    {angry === '3' && '맑았어요'}
                   </S.CountP>
                 </S.CountBoxDiv>
               </S.SliderBoxDiv>
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentBoxDiv>
-                    <S.ContentBoxSpan>스트레스</S.ContentBoxSpan>
+                    오늘의
+                    <S.ContentBoxSpan>날씨</S.ContentBoxSpan>는 어떘나요?
                   </S.ContentBoxDiv>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
-                      일과를 돌아보며 <br />
-                      전반적인 평가를 내려보세요!
+                      때에 맞춰 <br />잘 챙겨 먹는 것도 중요해요
                     </S.ContentInputDescDiv>
                     <S.SliderInput
                       type='range'

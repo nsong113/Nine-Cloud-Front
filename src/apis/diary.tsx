@@ -17,11 +17,15 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
       postDiaryItem.EmotionalStatus?.toString() || ''
     );
     formData.append('content', postDiaryItem.content || '');
-    formData.append('isPublic', postDiaryItem.isPublic ? 'true' : 'false');
+    formData.append('isPublic', postDiaryItem.isPublic ? 'true' : '');
     formData.append('image', postDiaryItem.image || '');
+    formData.append('sentence', postDiaryItem.sentence || '');
+    formData.append('weather', postDiaryItem.weather || '');
 
-    console.log(typeof postDiaryItem.image);
-    console.log('formData', formData);
+    let values: any = formData.values();
+    for (const pair of values) {
+      console.log('pair', pair);
+    }
 
     const res = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
@@ -29,14 +33,19 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
       {
         withCredentials: true,
         headers: {
-          // 'Content-Type': 'application/json',
           'Content-Type': 'multipart/form-data',
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
         },
       }
     );
-
+    alert('오늘 일기 포스팅에 성공하셨습니다.');
+    localStorage.removeItem('sentence');
+    localStorage.removeItem('weather');
+    localStorage.removeItem('countAverage');
+    localStorage.removeItem('image');
+    localStorage.removeItem('content');
+    localStorage.removeItem('isPublic');
     return res.data;
   } catch (error) {
     console.log('postDiary error', error);
@@ -73,7 +82,7 @@ const getInfiniteDiaries = async (pageParam: number) => {
   const refreshToken = localStorage.getItem('refreshToken');
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/feeds?page=${pageParam}`,
+      `${process.env.REACT_APP_SERVER_URL}/feeds/mydiaries?page=${pageParam}`,
       {
         withCredentials: true,
         headers: {
@@ -83,7 +92,11 @@ const getInfiniteDiaries = async (pageParam: number) => {
         },
       }
     );
-    return res.data;
+    return {
+      result: res.data,
+      nextPage: pageParam + 1,
+      isLast: !res.data.next,
+    };
   } catch (error) {
     console.log('getInfiniteDiaries error', error);
   }

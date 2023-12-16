@@ -5,19 +5,24 @@ import { AiFillHeart } from 'react-icons/ai';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoIosArrowUp } from 'react-icons/io';
 import { IoIosArrowBack } from 'react-icons/io';
+import { IoPersonOutline } from 'react-icons/io5';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 export const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  background: linear-gradient(
+    192deg,
+    #ece9f5 -0.99%,
+    #e8f5f3 51.07%,
+    #fcf5f5 99.97%
+  );
 `;
 
 export const ImgBoxDiv = styled.div`
   height: 396px;
   width: 443px;
-  background-color: #ebebeb;
+  background-color: white;
   border-radius: 0 0 80px 0;
 `;
 
@@ -40,11 +45,12 @@ export const ContentsHeaderDiv = styled.div`
 `;
 
 export const TitleTextSpan = styled.span`
-  color: #000;
-  font-family: Pretendard;
-  font-size: 28.466px;
+  color: #5035a6;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 30px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: normal;
 `;
 
@@ -64,11 +70,16 @@ export const WriterSpan = styled.span`
 `;
 
 export const ContentsBoxDiv = styled.div`
-  width: 371.835px;
-  height: 261.53px;
-  flex-shrink: 0;
-  border-radius: 9.785px;
-  background: #d9d9d9;
+  width: 380px;
+  height: 281.582px;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 170, 173, 0.7);
+
+  background: rgba(255, 255, 255, 0.7);
+
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset;
+  backdrop-filter: blur(15px);
 `;
 
 export const WriterImageDiv = styled.div`
@@ -78,8 +89,8 @@ export const WriterImageDiv = styled.div`
 `;
 
 export const CloudImg = styled.img`
-  width: 126.186px;
-  height: 77.125px;
+  width: 83.863px;
+  height: 51.161px;
   flex-shrink: 0;
   margin-top: 10px;
 `;
@@ -97,10 +108,13 @@ export const ContentsSpan = styled.span`
 `;
 
 export const ContentsFooterDiv = styled.div`
+  width: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 30px 0px;
+
+  border-bottom: 2px solid #5035a6;
 `;
 
 export const CategoryBoxDiv = styled.div`
@@ -113,7 +127,7 @@ export const CategoryBoxDiv = styled.div`
 `;
 
 export const HeartCommentTextSpan = styled.span`
-  color: #d9d9d9;
+  color: rgba(80, 53, 166, 1);
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
@@ -204,15 +218,7 @@ export const WeatherImg = styled.img`
 `;
 
 export const ContentBoxDiv = styled.div`
-  width: 338.032px;
-  color: #000;
-  font-family: Inter;
-  font-size: 16.012px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  height: 209px;
-  margin: 0px 20px;
+  margin: 20px 20px;
 `;
 
 export const heartBoxDiv = styled.div`
@@ -250,9 +256,10 @@ export const HeartImg = styled.img`
 `;
 
 export const PencilImg = styled(LuPencil)`
-  width: 40px;
-  height: 43.105px;
-  margin-right: 20px;
+  width: 30px;
+  height: 33.105px;
+  margin-right: 10px;
+  cursor: pointer;
   /* margin-left: 320px; */
 `;
 
@@ -263,13 +270,22 @@ export const PencilBoxDiv = styled.div`
 `;
 
 export const ContentSpan = styled.span`
-  color: #000;
-
-  font-family: Inter;
-  font-size: 16.012px;
+  color: rgba(43, 23, 107, 1);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 18.012px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+export const SentenceSpan = styled.span`
+  color: var(--1, #5035a6);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 15px;
 `;
 
 export const CommentBoxDiv = styled.div`
@@ -283,13 +299,13 @@ export const HeartBoxDiv = styled.div`
 `;
 
 export const CommentHeartImg = styled(AiFillHeart)`
-  color: black;
+  color: rgba(80, 53, 166, 1);
   width: 24.625px;
   height: 15.916px;
 `;
 
 export const CommentImg = styled(BsChatSquareDotsFill)`
-  color: black;
+  color: rgba(80, 53, 166, 1);
   width: 24.625px;
   height: 15.916px;
 `;
@@ -309,6 +325,7 @@ export const ToggleOnImg = styled(IoIosArrowDown)`
   width: 30px;
   height: 30px;
   cursor: pointer;
+  color: rgba(80, 53, 166, 1);
 `;
 
 export const FooterBoxDiv = styled.div`
@@ -316,6 +333,7 @@ export const FooterBoxDiv = styled.div`
 `;
 
 export const ToggleOffImg = styled(IoIosArrowUp)`
+  color: rgba(80, 53, 166, 1);
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -336,4 +354,12 @@ export const BlankCommentSpan = styled.span`
 export const BlankCommentBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const PersonImg = styled.img``;
+
+export const TrashCanImg = styled(FaRegTrashAlt)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 `;

@@ -9,6 +9,7 @@ import useSetColor from 'src/components/commons/hooks/useSetColor';
 import useThickness from 'src/components/commons/hooks/useThickness';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
+import { FaCheck } from 'react-icons/fa6';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const BoardWriteDraw = () => {
     undefined
   );
   const [isPublic, setIsPublic] = useState<boolean>(true);
+
+  console.log('isPublic', isPublic);
 
   const onClickPrevBtn = () => {
     navigate('/post3');
@@ -39,8 +42,8 @@ const BoardWriteDraw = () => {
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
     return {
-      x: event.offsetX,
-      y: event.offsetY,
+      x: event.clientX - canvas.getBoundingClientRect().left,
+      y: event.clientY - canvas.getBoundingClientRect().top,
     };
   };
 
@@ -144,6 +147,10 @@ const BoardWriteDraw = () => {
     setPen(!init);
   };
 
+  const onChangeIsPublicHandler = () => {
+    setIsPublic(!isPublic);
+  };
+
   let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
 
   const makeImageFile = () => {
@@ -161,16 +168,16 @@ const BoardWriteDraw = () => {
 
       console.log('file', file);
 
-      // const formData = new FormData();
-
-      // formData.append('image', file);
-
       setPostDiaryItem({
         EmotionalStatus: Number(localStorage.getItem('countAverage')),
         content: localStorage.getItem('contents'),
         image: file,
         isPublic: isPublic,
+        sentence: localStorage.getItem('sentence'),
+        weather: localStorage.getItem('weather'),
       });
+
+      console.log('isPublic111', isPublic);
     } else {
       console.log('이미지 불러오기 실패');
     }
@@ -196,10 +203,6 @@ const BoardWriteDraw = () => {
     };
   }, [startPaint, paint, exitPaint]);
 
-  const onChangeIsPublicHandler = () => {
-    setIsPublic(!isPublic);
-  };
-
   const onClickGotoPost2 = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -222,15 +225,32 @@ const BoardWriteDraw = () => {
           <S.HeaderButtonBoxDiv>
             <S.HeaderLine></S.HeaderLine>
             <S.HeaderFlexBox>
-              <S.DoneCheckBox>
-                <IoIosCheckmark style={{ fontSize: '21px' }} />
+              <S.SelectBox>
+                <FaCheck
+                  style={{
+                    position: 'absolute',
+                    zIndex: '17',
+                    color: '#5035A6',
+                  }}
+                />
                 <S.OneBlackSpan />
-              </S.DoneCheckBox>
-              <S.DoneCheckBox>
-                <IoIosCheckmark style={{ fontSize: '21px' }} />
+                <S.SelectP2>Emotion</S.SelectP2>
+              </S.SelectBox>
+              <S.SelectBox>
+                <FaCheck
+                  style={{
+                    position: 'absolute',
+                    zIndex: '17',
+                    color: '#5035A6',
+                  }}
+                />
                 <S.OneBlackSpan />
-              </S.DoneCheckBox>
-              <S.ThreeFilledSpan>Drawing</S.ThreeFilledSpan>
+                <S.SelectP2>Text</S.SelectP2>
+              </S.SelectBox>
+              <S.SelectBox>
+                <S.ThreeFilledSpan></S.ThreeFilledSpan>
+                <S.SelectP>Drawing</S.SelectP>
+              </S.SelectBox>
             </S.HeaderFlexBox>
           </S.HeaderButtonBoxDiv>
         </S.DrawWrapperUPDiv>
@@ -238,23 +258,21 @@ const BoardWriteDraw = () => {
           <S.ContainerDiv>
             <S.DrawTitleBox>
               <S.DrawWriteTitleH3>
-                오늘의 이슈를 그림으로 기록해보세요!
+                오늘의 마음 날씨는 어떤지
+                <br />
+                그림으로 그려볼까요?
               </S.DrawWriteTitleH3>
             </S.DrawTitleBox>
-            <div>
-              <canvas
-                ref={canvasRef}
-                height={400}
-                width={380}
-                style={canvasStyle}
-              />
+            <S.CanvasContainer>
+              {/* ========================= */}
+              <S.DrawCanvas ref={canvasRef} height={400} width={370} />
               <S.ToggleBox>
-                <S.FirstToggle onClick={onClickPenToggleHandler}>
+                <S.SecondToggle onClick={onClickPenToggleHandler}>
                   펜
-                </S.FirstToggle>
-                <S.FirstToggle onClick={onClickThicknessToggleHandler}>
+                </S.SecondToggle>
+                <S.SecondToggle onClick={onClickThicknessToggleHandler}>
                   굵기
-                </S.FirstToggle>
+                </S.SecondToggle>
                 <S.FirstToggle onClick={onClickEraserToggleHandler}>
                   지우개
                 </S.FirstToggle>
@@ -337,7 +355,7 @@ const BoardWriteDraw = () => {
                   </S.ColorSettingDiv>
                 </>
               )}
-            </div>
+            </S.CanvasContainer>
             <S.ToggleDiv>
               <S.ToggleFlexDiv>
                 <S.ToggleP>
@@ -370,9 +388,3 @@ const BoardWriteDraw = () => {
 };
 
 export default BoardWriteDraw;
-
-const canvasStyle = {
-  border: '1px solid #C4C4C4',
-  borderRadius: '25px',
-  margin: '17px auto',
-};

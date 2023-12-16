@@ -3,6 +3,8 @@ export interface IpostDiaryItem {
   content: string | null;
   isPublic?: boolean;
   image: File | Blob;
+  sentence: string | null;
+  weather: string | null;
 }
 
 // export interface IpostDiaryItem {

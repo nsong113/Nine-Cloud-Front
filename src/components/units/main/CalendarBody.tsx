@@ -62,12 +62,12 @@ const CalendarBody = (props: any) => {
 
   return (
     <S.TableBody>
-      {weekCalendarList.map((week, weekIndex) => (
+      {props.weekCalendarList.map((week: any, weekIndex: any) => (
         <S.DayRoow key={weekIndex}>
-          {week.map((day, dayIndex) => {
+          {week.map((day: any, dayIndex: any) => {
             const firstDayOfMonth = new Date(
-              currentMonth.getFullYear(),
-              currentMonth.getMonth(),
+              props.currentMonth.getFullYear(),
+              props.currentMonth.getMonth(),
               1
             );
             const daysBeforeFirstDay = firstDayOfMonth.getDay();
@@ -82,7 +82,7 @@ const CalendarBody = (props: any) => {
 
             const isToday =
               cellDate === new Date().getDate() &&
-              currentMonth.getMonth() === new Date().getMonth();
+              props.currentMonth.getMonth() === new Date().getMonth();
 
             return (
               <S.TableCell

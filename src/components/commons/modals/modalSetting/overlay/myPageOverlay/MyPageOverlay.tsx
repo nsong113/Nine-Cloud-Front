@@ -86,7 +86,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                   />
                 )}
                 {isActive && (
-                  <S.PicutureImg src={preview as string} alt='엑박' />
+                  <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
                 )}
               </div>
             </S.ImageBoxDiv>

@@ -4,6 +4,7 @@ import {
   IAddPost,
   IDeleteComment,
   IEditComment,
+  IUpdatePost,
 } from './apis.types';
 // axios
 const accessToken = localStorage.getItem('accessToken');
@@ -184,19 +185,48 @@ export const getMyInfo = async () => {
   }
 };
 
-// export const getPrevMonthPosts = async (target: any) => {
-//   try {
-//     const response = await axios.get(
-//       `${process.env.REACT_APP_SERVER_URL}/diary/calendar/previousMonth/${target.year}/${target.month}/${target.data}`,
-//       {
-//         withCredentials: true,
-//         headers: {
-//           Refreshtoken: `${refreshToken}`,
-//           Authorization: `${accessToken}`,
-//         },
-//       }
-//     );
-//   } catch (error) {
-//     console.log('error');
-//   }
-// };
+export const getPrevMonthPosts = async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/diary/calendar/previousMonth`,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log('error');
+  }
+};
+
+export const getNextMonthPosts = async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/diary/calendar/nextMonth`,
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log('error');
+  }
+};
+
+export const updatePost = async (target: IUpdatePost) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER_URL}/diary/edit/${target.diaryId}`
+    );
+  } catch (error) {
+    console.log('error');
+  }
+};
