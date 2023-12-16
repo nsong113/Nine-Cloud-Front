@@ -8,6 +8,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import {
   deletePost,
   getComments,
+  getHearts,
   getMyInfo,
   getOnePostInfo,
 } from 'src/apis/cheolmin-api/apis';
@@ -23,6 +24,8 @@ import DeleteModal from 'src/components/commons/modals/delete/DeleteModal';
 const BoardDetail = () => {
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery('post', () => getOnePostInfo(params.id));
+
+  console.log('data', data);
   const { currentDate, currentMonth } = useCalendar();
   const [isEdit, setIsEdit] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -30,22 +33,25 @@ const BoardDetail = () => {
   const [isActiveModal, setIsActiveModal] = useState(false);
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
+  const [isHeart, setIsHeart] = useState(false);
   const onClickPencilImg = () => {
     setIsActiveModal((prev) => !prev);
   };
 
-  const deleteMutation = useMutation(deletePost, {
+  const heartMutation = useMutation(getHearts, {
     onSuccess: () => {
-      queryClient.invalidateQueries('post');
+      queryClient.invalidateQueries('heart');
     },
   });
+
+  const heartCount = heartMutation?.data;
+  console.log('heartCount', heartCount);
+  console.log('heartMutation', heartMutation);
 
   const { data: comment } = useQuery('comment', () => getComments(params.id));
   const { data: profile } = useQuery('profile', getMyInfo);
   const [isPublic, setIsPublic] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
-
-  console.log('상세페이지', data?.data);
 
   const detailedContent = data?.data;
 
@@ -58,7 +64,6 @@ const BoardDetail = () => {
     navigate('/main');
   };
   const date = new Date(currentDate);
-  console.log('date', date);
 
   const onClickToggle = () => {
     setIsActive((prev) => !prev);
@@ -67,12 +72,6 @@ const BoardDetail = () => {
   const commentList = CommentData.filter(
     (comment) => comment.DiaryId === Number(params.id)
   );
-
-  const onClickDeleteBtn = () => {
-    deleteMutation.mutate(params.id);
-    alert('글이 정상적으로 삭제 됐습니다');
-    navigate('/main');
-  };
 
   const createdAtDate = detailedContent?.createdAt
     ? parseISO(detailedContent.createdAt)
@@ -89,24 +88,32 @@ const BoardDetail = () => {
     setIsPublic((prev) => !prev);
   };
 
-  const onClickTrashCan = () => {
-    setIsDeleteModal((prev) => !prev);
+  const onClickHeart = () => {
+    heartMutation.mutate(params.id);
+    setIsHeart((prev) => !prev);
+  };
+
+  const weatherImages: { [key: string]: string | undefined } = {
+    1: '/sunny.png',
+    2: '/rain.png',
+    3: '/cloudy.png',
+  };
+
+  const getImage = () => {
+    return weatherImages[detailedContent?.weather];
   };
   // const formattedData = format(detailedContent?.createdAt, 'yyyy년 mm월 dd일');
 
   return (
     <S.ContainerDiv>
- 
-        {isActiveModal && (
-          <EditPostOverlay
-            content={detailedContent?.content}
-            onClose={onClickPencilImg}
-          />
-        )}
-      
-      {isDeleteModal && (
-        <DeleteModal onOk={onClickDeleteBtn} onClose={onClickTrashCan} />
+      {isActiveModal && (
+        <EditPostOverlay
+          content={detailedContent?.content}
+          onClose={onClickPencilImg}
+          detailedContent={detailedContent}
+        />
       )}
+
       <div key={data?.id}>
         <Animation3>
           <S.ImgBoxDiv>
@@ -140,9 +147,9 @@ const BoardDetail = () => {
             <div>
               <S.ContentBoxHeaderDiv>
                 <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
+                <S.WeatherImage src={getImage()} alt='이미지' />
                 <div>
                   <S.PencilImg onClick={onClickPencilImg} />
-                  <S.TrashCanImg onClick={onClickTrashCan} />
                 </div>
               </S.ContentBoxHeaderDiv>
               <S.ContentsBoxDiv>
@@ -156,9 +163,7 @@ const BoardDetail = () => {
                 </S.ContentBoxDiv>
               </S.ContentsBoxDiv>
               <S.ContentsFooterDiv>
-                <S.SentenceSpan>
-                  겨울이 왔다는 것은 봄이 머지 않았다는 뜻이다.
-                </S.SentenceSpan>
+                <S.SentenceSpan>{detailedContent?.sentence}</S.SentenceSpan>
               </S.ContentsFooterDiv>
             </div>
             <div>
@@ -173,13 +178,22 @@ const BoardDetail = () => {
                     </S.HeartCommentTextSpan>
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
-                    <S.CommentHeartImg />
-                    <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
+                    {!isHeart && (
+                      <div>
+                        <S.CommentHeartImg onClick={onClickHeart} />
+                        <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
+                        {/* <span>{heartMutation.data}</span> */}
+                      </div>
+                    )}
+                    {isHeart && (
+                      <div>
+                        <S.BlankHeartImg onClick={onClickHeart} />
+                        <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
+                        <span>{heartMutation.data}</span>
+                      </div>
+                    )}
                   </S.HeartBoxDiv>
                 </S.FooterBoxDiv>
-                <S.DeletePostSpan onClick={onClickDeleteBtn}>
-                  일기 삭제하기
-                </S.DeletePostSpan>
               </S.CategoryBoxDiv>
               {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
               {commentList?.length >= 1 && (

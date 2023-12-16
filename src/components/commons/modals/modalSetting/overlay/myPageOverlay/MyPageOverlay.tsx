@@ -9,16 +9,25 @@ import styled, { keyframes } from 'styled-components';
 import { IMyPage } from './MyPageOverlay.types';
 import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { getMyInfo } from 'src/apis/cheolmin-api/apis';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { editMyInfo, getMyInfo } from 'src/apis/cheolmin-api/apis';
 
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
+  const queryClient = useQueryClient();
+  const editMyInfoMutation = useMutation(editMyInfo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('myInfo');
+    },
+  });
   const { data } = useQuery('myInfo', getMyInfo);
   const navigate = useNavigate();
   const [imgFile, setImgFile] = useState<File | null>();
   const [isActive, setIsActive] = useState<boolean>(false);
   const buttonRef = useRef() as MutableRefObject<HTMLInputElement>;
   const [preview, setPreview] = useState<string | null>(''); // Default preview state
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -51,6 +60,14 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     e.stopPropagation();
   };
 
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event?.target.value);
+  };
+
+  const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
+    setUsername(event?.target.value);
+  };
+
   const onClickEditBtn = () => {
     setIsEdit((prev) => !prev);
     if (isEdit && imgFile) {
@@ -61,6 +78,8 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
       };
       reader.readAsDataURL(imgFile);
     }
+    // editMyInfoMutation.mutate();
+
     navigate('/main');
   };
 
@@ -113,7 +132,15 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                     </S.MyinfoBoxDiv>
                   )}
                 </div>
-                {isEdit && <S.NicknameInput type='text' />}
+                {isEdit && (
+                  <div>
+                    <S.NicknameInput onChange={onChangePassword} type='text' />
+                    <S.NicknameInput
+                      onChange={onChangeUsername}
+                      type='password'
+                    />
+                  </div>
+                )}
               </S.NameBoxDiv>
               <div>
                 <span></span>

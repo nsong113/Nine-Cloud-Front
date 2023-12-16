@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 export const ContainerDiv = styled.div`
   position: fixed;
@@ -47,3 +47,16 @@ export const ContentTextArea = styled.textarea`
   height: 200px;
 `;
 
+export const TrashCanImg = styled(FaRegTrashAlt)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+`;
+
+export const FooterBoxDiv = styled.div`
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
