@@ -38,7 +38,7 @@ const refreshToken = localStorage.getItem('refreshToken');
 export const deletePost = async (id: any) => {
   try {
     const response = await axios.delete(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/${id}`,
+      `${process.env.REACT_APP_SERVER_URL}/diary/delete/${id}`,
       {
         withCredentials: true,
         headers: {
@@ -190,19 +190,50 @@ export const getMyInfo = async () => {
   }
 };
 
+// export const addPost = async (target: IAddPost) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append('image', target.image);
+//     formData.append('content', target.content);
+//     // formData.append('EmotionStatus', target.EmotionStatus);
+//     const response = await axios.post(
+//       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
+//       formData,
+//       {
+//         withCredentials: true,
+//         headers: {
+//           Refreshtoken: `${refreshToken}`,
+//           Authorization: `${accessToken}`,
+//         },
+//       }
+//     );
+//     console.log(response);
+//     return response.data;
+//   } catch (error) {
+//     console.log('다시 시도하세요');
+//   }
+// };
+
 export const editMyInfo = async (target: any) => {
   try {
+    const formData = new FormData();
+    formData.append('username', target.username);
+    formData.append('image', target.imgFile);
+    formData.append('password', target.password);
+    formData.append('newPassword', target.newPassoword);
     const response = await axios.patch(
-      `${process.env.REACT_APP_SERVER_URL}/myinfo/editmyInfo`,
-      target,
+      `${process.env.REACT_APP_SERVER_URL}/myInfo/editmyInfo`,
+      formData,
       {
         withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
+          'Content-Type': 'multipart/form-data',
         },
       }
     );
+    console.log('formData', formData);
     return response.data;
   } catch (error) {
     console.log('error');

@@ -22,7 +22,7 @@ const CalendarBody = (props: any) => {
         el?.createdAt &&
         parseInt(el.createdAt.split('.')[2], 10).toString() === date
     );
-    console.log('matchingDay', matchingDay);
+   
     return matchingDay ? matchingDay.diaryId : 0;
   };
 

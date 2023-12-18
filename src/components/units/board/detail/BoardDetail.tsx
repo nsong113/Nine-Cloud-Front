@@ -162,6 +162,13 @@ const BoardDetail = () => {
                   {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
                   {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
                   <S.CommentsBoxDiv onClick={onClickToggle}>
+                    {/* {detailedContent.isPublic !== true && (
+                    
+                    )}
+
+                  {detailedContent.isPublic === false && (
+                    
+                    )} */}
                     <S.CommentImg />
                     <S.HeartCommentTextSpan>
                       댓글 {comment?.data?.length}

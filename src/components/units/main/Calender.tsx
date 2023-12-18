@@ -10,7 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import { useQuery } from 'react-query';
-import { getPosts, getPrevMonthPosts } from 'src/apis/cheolmin-api/apis';
+import {
+  getMyInfo,
+  getPosts,
+  getPrevMonthPosts,
+} from 'src/apis/cheolmin-api/apis';
 
 const Calender = () => {
   const navigate = useNavigate();
@@ -37,6 +41,10 @@ const Calender = () => {
         currentMonth: format(currentMonth, 'M'),
       })
   );
+
+  const { data: profile } = useQuery('myInfo', getMyInfo);
+
+  console.log('data', profile?.data?.profileImg);
 
   console.log('current Year', currentYear, 'current Month', currentMonth);
 
@@ -118,7 +126,10 @@ const Calender = () => {
                     >
                       {!profileImg && (
                         <S.ProfileBoxDiv>
-                          <S.AvatarSizeImg src='/avatar.png' alt='기본' />
+                          <S.AvatarSizeImg
+                            src={profile?.data?.profileImg}
+                            alt='기본'
+                          />
                         </S.ProfileBoxDiv>
                       )}
                       {profileImg && (

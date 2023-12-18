@@ -27,23 +27,29 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const buttonRef = useRef() as MutableRefObject<HTMLInputElement>;
   const [preview, setPreview] = useState<string | null>(''); // Default preview state
+  const [selectedImage, setSelectedImage] = useState<string | File>('');
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [newPassoword, setNewPassword] = useState('');
 
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
+      setSelectedImage(event.target.files?.[0]);
       const file = event.target.files[0];
-      if (file && file.type.substring(0, 5) === 'image') {
-        setImgFile(file);
-        setIsActive(true);
-      } else {
-        setImgFile(null);
-        setIsActive(false);
-      }
+
+      // if (file && file.type.substring(0, 5) === 'image') {
+      //   setImgFile(file);
+      //   setIsActive(true);
+      // } else {
+      //   setImgFile(null);
+      //   setIsActive(false);
+      // }
+
+      // console.log('file', file);
     }
   };
-
+  console.log('selectedImage', selectedImage);
   useEffect(() => {
     if (imgFile) {
       const reader = new FileReader();
@@ -70,17 +76,31 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     setUsername(event?.target.value);
   };
 
+  const editMypageMutation = useMutation(editMyInfo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('myInfo');
+    },
+  });
+
   const onClickEditBtn = () => {
-    setIsEdit((prev) => !prev);
-    if (isEdit && imgFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const result = reader.result as string;
-        localStorage.setItem('image', result);
-      };
-      reader.readAsDataURL(imgFile);
-    }
+    // setIsEdit((prev) => !prev);
+    // if (isEdit && imgFile) {
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     const result = reader.result as string;
+    //     localStorage.setItem('image', result);
+    //   };
+    //   reader.readAsDataURL(imgFile);
+    // }
     // editMyInfoMutation.mutate();
+    const newProfile = {
+      imgFile: selectedImage,
+      username,
+      password,
+      newPassoword,
+    };
+
+    editMypageMutation.mutate(newProfile);
 
     navigate('/main');
   };
@@ -90,6 +110,16 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const onClickButton = () => {
     buttonRef.current.click();
   };
+
+  const onChangeNewPassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setNewPassword(event.target.value);
+  };
+
+  const onClickToggle = () => {
+    setIsEdit((prev) => !prev);
+  };
+
+  console.log('newPassword', newPassoword);
 
   return (
     <S.ContainerDiv onClick={onOk} className='modal'>
@@ -136,11 +166,18 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                 </div>
                 {isEdit && (
                   <div>
-                    <S.NicknameInput onChange={onChangePassword} type='text' />
+                    <span>새로운 비번</span>
                     <S.NicknameInput
-                      onChange={onChangeUsername}
+                      onChange={onChangeNewPassword}
                       type='password'
                     />
+                    <span>원래 비번</span>
+                    <S.NicknameInput
+                      onChange={onChangePassword}
+                      type='password'
+                    />
+                    <span>넥니엠</span>
+                    <S.NicknameInput onChange={onChangeUsername} type='text' />
                   </div>
                 )}
               </S.NameBoxDiv>
@@ -153,12 +190,12 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
             {!isEdit && (
               <div>
                 <button onClick={onOk}>메인으로</button>
-                <button onClick={onClickEditBtn}>수정하기</button>
+                <button onClick={onClickToggle}>수정하기</button>
               </div>
             )}
             {isEdit && (
               <div>
-                <button onClick={onClickEditBtn}>취소하기</button>
+                <button onClick={onClickToggle}>취소하기</button>
                 <button onClick={onClickEditBtn}>등록하기</button>
               </div>
             )}
