@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './CommunityMain.style';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import * as DOMPurify from 'dompurify';
 
 const CommunityEach = (props: any) => {
   const formattedDate = format(new Date(props.item.createdAt), 'yyyy. MM. dd');
@@ -31,7 +32,11 @@ const CommunityEach = (props: any) => {
             <img src='/happy.png' style={imgstyle} alt='happy' />
             {props.item.EmotionStatus}
           </S.ViewAllEmojiIMGDiv>
-          <S.ViewAllContentP>{props.item.content}</S.ViewAllContentP>
+          <S.ViewAllContentP
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(String(props.item.content)),
+            }}
+          ></S.ViewAllContentP>
         </S.ViewAllRightContentDiv>
       </S.ViewAllEachFlex>
     </S.ViewAllEachBoxDiv>

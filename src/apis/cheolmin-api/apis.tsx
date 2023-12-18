@@ -38,7 +38,7 @@ const refreshToken = localStorage.getItem('refreshToken');
 export const deletePost = async (id: any) => {
   try {
     const response = await axios.delete(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/${id}`,
+      `${process.env.REACT_APP_SERVER_URL}/diary/delete/${id}`,
       {
         withCredentials: true,
         headers: {
