@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as S from './CommunityMain.style';
 import { RiMessage3Fill } from 'react-icons/ri';
-import CommunityEach from './CommunityEach';
+
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery } from 'react-query';
 import { getInfiniteDiaries } from 'src/apis/diary';
+import CommunityEach from './CommunityEach';
+import { getInfiniteCommunity } from 'src/apis/community';
 
 // type MyEventHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 
@@ -17,65 +19,6 @@ import { getInfiniteDiaries } from 'src/apis/diary';
 // }
 
 const CommunityMain = () => {
-  // //드래그 중인지 여부를 나타내는 상태 변수
-  // const [isDragging, setIsDragging] = useState(false);
-  // console.log('isDragging', isDragging);
-  // //드래그 시작 지점의 x좌포를 저장하는 상태 변수
-  // const [startX, setStartX] = useState(0);
-  // console.log('startX', startX);
-  // //드래그 중인 동안 x좌표의 변위를 나타내는 상태 변수
-  // const [offset, setOffset] = useState(0);
-  // console.log('offset', offset);
-  // //
-  // //슬라이더를 참조하는 레프
-  // const sliderRef = useRef<HTMLDivElement | null>(null);
-
-  // //마우스 핸들러: 마우스 클릭으로 드래그 시작 시 호출되는 함수. 'isDragging'을 true로 설정하고 시작 지점 x좌표를 저장
-  // const handleMouseDown: MyEventHandler = (e) => {
-  //   setIsDragging(true);
-  //   setStartX(e.clientX - startX);
-  // };
-
-  // //마우스 핸들러: 마우스 이동 중 호출되는 함수, 드래그 중이면 현재 x좌표와 시작 지점 x좌표의 차이를 offset에 저장
-  // const handleMouseMove: MyEventHandler = (e) => {
-  //   if (isDragging) {
-  //     const deltaX = e.clientX - startX;
-  //     setOffset(deltaX);
-  //   }
-  // };
-
-  // //마우스 핸들러: 마우스 클릭 해제로 드래그 종료 시 호출되는 함수. 'isDragging'을 flase로 설정하고 시작 지점 x좌표 초기화
-  // const handleMouseUp: MyEventHandler = (e) => {
-  //   setIsDragging(false);
-  //   setStartX(e.clientX - startX);
-  // };
-
-  // if (startX > 1000) {
-  //   setStartX(startX - 900);
-  // }
-
-  // //마우스 이벤트 리스너 등록과 해제
-  // useEffect(() => {
-  //   //isDragging의 변화에 따라 mousemove, mouseup이벤트 리스너를 동록하거나 해제
-  //   const sliderElement = sliderRef.current;
-  //   if (sliderElement) {
-  //     if (isDragging) {
-  //       /* eslint-disable */
-  //       sliderElement.addEventListener('mousemove', handleMouseMove); // @ts-ignore:
-  //       sliderElement.addEventListener('mouseup', handleMouseUp); // @ts-ignore:
-  //     } else {
-  //       sliderElement.removeEventListener('mousemove', handleMouseMove); // @ts-ignore:
-  //       sliderElement.removeEventListener('mouseup', handleMouseUp); // @ts-ignore:
-  //     }
-  //     return () => {
-  //       sliderElement.removeEventListener('mousemove', handleMouseMove); // @ts-ignore:
-  //       sliderElement.removeEventListener('mouseup', handleMouseUp); // @ts-ignore:
-  //       /* eslint-enable */
-  //     };
-  //   }
-  // }, [isDragging]);
-
-  const scrollRef = useRef<HTMLDivElement | null>(null);
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState<number | undefined>();
 
@@ -83,6 +26,7 @@ const CommunityMain = () => {
   const [transX, setTransX] = useState(0);
 
   const [ref, inView] = useInView();
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const {
     data: viewAllData, //현재까지 로드된 데이터를 나타냅니다. 이 속성은 배열 형태로 각 페이지의 데이터를 가지고 있습니다.
@@ -92,12 +36,11 @@ const CommunityMain = () => {
     isSuccess,
     fetchNextPage, //다음 페이지를 가져오기 위해 호출할 함수입니다. 이 함수를 호출하면 다음 페이지의 데이터를 가져옵니다.
   } = useInfiniteQuery(
-    'getInfiniteDiary',
-    ({ pageParam = 1 }) => getInfiniteDiaries(pageParam),
+    'getInfiniteCommunity',
+    ({ pageParam = 1 }) => getInfiniteCommunity(pageParam),
     {
       //다음 페이지의 pageParam 값을 결정하는 데 사용
       getNextPageParam: (_lastPage) => {
-        console.log('_lastPage', _lastPage);
         if (_lastPage?.isLast) {
           return _lastPage?.nextPage;
         } else {
@@ -106,8 +49,6 @@ const CommunityMain = () => {
       },
     }
   );
-
-  console.log('viewAllData', viewAllData);
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -122,7 +63,7 @@ const CommunityMain = () => {
     return <div>Loading failed...</div>;
   }
   if (isSuccess) {
-    console.log('data', viewAllData);
+    // console.log('data', viewAllData);
   }
 
   //사용할 이벤트
@@ -143,10 +84,12 @@ const CommunityMain = () => {
     if (!scrollRef.current) return;
     console.log('1', e.pageX + scrollRef.current.scrollLeft);
     setStartX(e.pageX + scrollRef.current.scrollLeft);
+    //현재 클릭한 pageX의 길이 scrollLeft를 합친 값. 스크롤이 이동하지 않았을 떄는 문제가 없지만 스크롤이 이동된 상태에서 클릭을 한다면, 브라우저의 width의 pageX값이 설정이 돼 순간적으로 앞쪽으로 스크롤이 된다. 이를 막기 위해 scrollLeft를 더해 현재 x의 위치를 계산
   };
 
   const onDragEnd: React.MouseEventHandler<HTMLDivElement> = () => {
     setIsDrag(false);
+    //onMouseUp, onMouseLeave 이벤트가 발생했을 때 isDrag를 false로 설정
   };
 
   const onMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -155,7 +98,34 @@ const CommunityMain = () => {
       console.log('2', startX - e.pageX);
       scrollRef.current.scrollLeft = startX - e.pageX;
     }
+
+    // if (isDrag) {
+    //   const scrollRefCurrent = scrollRef.current;
+
+    //   if (scrollRefCurrent && startX) {
+    //     const { scrollWidth, clientWidth, scrollLeft } = scrollRefCurrent;
+    //     scrollRefCurrent.scrollLeft = startX - e.pageX;
+    //     if (scrollLeft === 0) {
+    //       setStartX(e.pageX); //가장 왼쪽일 때, 움직이고 있는 마우스의 x좌표가 곧 startX로 설정.
+    //     } else if (scrollWidth <= clientWidth + scrollLeft) {
+    //       setStartX(e.pageX + scrollLeft); //가장 오른쪽일 때, 움직이고 있는 마우스의 x좌표에 현재 스크롤된 길이 scrollLeft의 합으로 설정
+    //     }
+    //   }
+    // }
   };
+
+  const carousel = [
+    '전체',
+    '감정1',
+    '감정2',
+    '감정3',
+    '감정4',
+    '감정5',
+    '감정6',
+    '감정7',
+    '감정8',
+    '감정9',
+  ];
 
   return (
     <S.MainContainer>
@@ -189,53 +159,20 @@ const CommunityMain = () => {
             onMouseUp={onDragEnd}
             onMouseLeave={onDragEnd}
             ref={scrollRef}
-            // $currentIndex={currentIndex}
-            // $transX={transX}
           >
-            <S.MainEachSlideBox>
-              <p>전체</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정1</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정2</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정3</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정4</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정5</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정6</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정7</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정8</p>
-            </S.MainEachSlideBox>
-            <S.MainEachSlideBox>
-              <div className='MainEachSlideEmojiBox'></div>
-              <p>감정9</p>
-            </S.MainEachSlideBox>
+            {carousel.map((emotion, index) => {
+              return (
+                <S.MainEachSlideBox key={index}>
+                  <div className='MainEachSlideEmojiBox'></div>
+                  <p>{emotion}</p>
+                </S.MainEachSlideBox>
+              );
+            })}
           </S.MainSlideFlex>
           <S.MainMapContainer>
             <div>
-              {/* {viewAllData?.pages.map((page, pageIndex) => {
-                return page?.data.map((item, itemIndex) => {
+              {viewAllData?.pages.map((page, pageIndex) => {
+                return page?.result.data.map((item: any, itemIndex: number) => {
                   return (
                     <CommunityEach
                       key={`page-${pageIndex}-item-${itemIndex}`}
@@ -243,7 +180,7 @@ const CommunityMain = () => {
                     />
                   );
                 });
-              })} */}
+              })}
             </div>
             <div ref={ref} style={{ color: 'transparent' }}>
               Loading...

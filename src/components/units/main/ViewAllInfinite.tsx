@@ -1,13 +1,22 @@
 import React from 'react';
 import * as S from './Main.styles';
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const ViewAllInfinite = (props: any) => {
   const formattedDate = format(new Date(props.item.createdAt), 'yyyy. MM. dd');
+  const navigate = useNavigate();
+
+  const onClickGotoDetailPage = (id: any) => {
+    navigate(`/post/${id}`);
+    // console.log('click');
+  };
 
   return (
     <>
-      <S.ViewAllEachBoxDiv>
+      <S.ViewAllEachBoxDiv
+        onClick={() => onClickGotoDetailPage(props.item.diaryId)}
+      >
         <S.ViewAllEachFlex>
           <S.ViewAllIMGbox>
             <img src={props.item.image} alt='expic' style={mainInageStyle} />
