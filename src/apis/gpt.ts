@@ -11,17 +11,11 @@ export const CallGPT = async ({ prompt }) => {
       {
         role: 'user',
         content: ` 1. [title]: Think of the title of today after understanding the [events] separated by "" at the bottom.
-      2. [summarize]: summarize events in order with one line sentence.
-      3.  [evaluates]: The written emotional [evaluates], using explore the unconscious based on the contents of the [events] and [summarize]
-      4. [analysis]: Psychological analysis is performed using professional psychological knowledge much more detailed information a famous quote.
-      5. [actionTips]: Write down 2 action tips that will be helpful in the future customer situation. The two action tips must be converted into JSON Array format.
+      2. [actionTips]: Write down 2 action tips that will be helpful in the future customer situation. The two action tips must be converted into JSON Array format.
     
       translate into Korean and Use the output in the following JSON format:
       {
       title: here is [title],
-      summarize: here is [summarize],
-      evaluates: here is [evaluates],
-      analysis: here is [analysis],
       actionTips: here is [actionTips]
       }`,
       },

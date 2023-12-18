@@ -34,14 +34,14 @@ const BoardDetailGPT = () => {
       {/* <div>data:{JSON.stringify(data)}</div> */}
       <div>title: {data.title}</div>
       <br />
-      <div>analysis: {data.analysis}</div>
+      {/* <div>analysis: {data.analysis}</div>
       <br />
       <div>evaluates: {data.evaluates}</div>
-      <br />
+      <br /> */}
       {/* <div>summarize: {data.summarize}</div> */}
       <br />
       <div>actionTips: {data.actionTips}</div>
-      {/* <div>isLoading:{isLoading ? 'loading...' : 'finished...'}</div> */}
+      <div>isLoading:{isLoading ? 'loading...' : 'finished...'}</div>
     </>
   );
 };
