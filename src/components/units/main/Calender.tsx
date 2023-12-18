@@ -29,11 +29,13 @@ const Calender = () => {
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
-  const { data, isLoading, refetch } = useQuery('posts', () =>
-    getPosts({
-      currentYear: getYear(currentDate),
-      currentMonth: format(currentMonth, 'M'),
-    })
+  const { data, isLoading, refetch } = useQuery(
+    ['posts', currentMonth, currentYear],
+    () =>
+      getPosts({
+        currentYear: getYear(currentDate),
+        currentMonth: format(currentMonth, 'M'),
+      })
   );
 
   console.log('current Year', currentYear, 'current Month', currentMonth);
@@ -59,7 +61,7 @@ const Calender = () => {
     setCurrentDate(newDate);
     setAnimationDirection('leftToRight');
     setCurrentYear(newDate); // setCurrentYear를 수정하여 바로 반영
-    await refetch(); // 다음 달 데이터 다시 가져오기
+    // await refetch(); // 다음 달 데이터 다시 가져오기
   };
 
   const onClickPrevMonth = async () => {
@@ -68,7 +70,7 @@ const Calender = () => {
     setCurrentDate(newDate);
     setAnimationDirection('rightToLeft');
     setCurrentYear(newDate); // setCurrentYear를 수정하여 바로 반영
-    await refetch(); // 이전 달 데이터 다시 가져오기
+    // await refetch(); // 이전 달 데이터 다시 가져오기
   };
 
   return (
@@ -87,13 +89,13 @@ const Calender = () => {
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <S.HeaderLeftWrapperDiv>
                 <S.DateBoxDiv>
-                  <S.YearTextSpan>{year}</S.YearTextSpan>
-                  <S.PrevNextMonthBoxDiv>
+                  <S.YearMonthChangeBoxDiv>
+                    <S.YearTextSpan>{year}</S.YearTextSpan>
                     <S.PrevMonth onClick={onClickPrevMonth} size={30} />
-
+                    <S.NextMonth onClick={onClickNextMonth} size={26} />
+                  </S.YearMonthChangeBoxDiv>
+                  <S.PrevNextMonthBoxDiv>
                     <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
-
-                    <S.NextMonth onClick={onClickNextMonth} size={30} />
                   </S.PrevNextMonthBoxDiv>
                 </S.DateBoxDiv>
               </S.HeaderLeftWrapperDiv>

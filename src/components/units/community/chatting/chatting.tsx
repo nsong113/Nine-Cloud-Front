@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import * as S from './chatting.styles';
+import * as S from './Chatting.styles';
 
 const Chatting = () => {
   const [count, setCount] = useState(0);

@@ -7,11 +7,14 @@ import DeleteModal from '../../../delete/DeleteModal';
 import { useMutation, useQueryClient } from 'react-query';
 import { deletePost, updatePost } from 'src/apis/cheolmin-api/apis';
 import { useNavigate, useParams } from 'react-router-dom';
+import { IMyPost } from './EditOverlay.types';
+import ReactQuill from 'react-quill';
 
 const EditOverlay: React.FC<IEditPost> = ({
   detailedContent,
   content,
   onClose,
+  setIsEdit,
 }) => {
   const [isPublic, setIsPublic] = useState(false);
   const queryClient = useQueryClient();
@@ -32,7 +35,7 @@ const EditOverlay: React.FC<IEditPost> = ({
 
   const deleteMutation = useMutation(deletePost, {
     onSuccess: () => {
-      queryClient.invalidateQueries('post');
+      queryClient.invalidateQueries('posts');
     },
   });
 
@@ -47,9 +50,15 @@ const EditOverlay: React.FC<IEditPost> = ({
   };
 
   const onClickEditBtn = () => {
-    editMutation.mutate({ diaryId,isPublic,contents });
+    const myPost: IMyPost = {};
+    if (contents) myPost.contents = contents;
+    if (isPublic) myPost.isPublic = isPublic;
+
+    // if(detailedContent.content === )
+    editMutation.mutate({ diaryId, myPost });
     alert('정상적으로 수정됐습니다');
     onClose();
+    setIsEdit((prev) => !prev);
   };
 
   const onClickCheck = () => {
@@ -60,11 +69,16 @@ const EditOverlay: React.FC<IEditPost> = ({
     setIsDeleteModal((prev) => !prev);
   };
 
-  const onChangeTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setContents(event.target.value);
+  const onChangeContents = (value: string) => {
+    setContents(value === '<p><br></p>' ? '' : value);
+    if (contents.length > 205) {
+      alert('200자 이상 입력 불가합니다');
+      return;
+    }
   };
 
-  console.log('isPublic', isPublic);
+  console.log('contents', contents);
+
   return (
     <S.ContainerDiv onClick={onClose} className='modal'>
       <Animation3>
@@ -85,16 +99,19 @@ const EditOverlay: React.FC<IEditPost> = ({
                 <S.CheckBoxInput onClick={onClickCheck} type='checkbox' />
               </div>
               <div>
-                <S.ContentTextArea
-                  onChange={onChangeTextArea}
+                <ReactQuill
+                  style={{ height: '150px', width: '400px' }}
+                  onChange={onChangeContents}
                   defaultValue={content}
-                ></S.ContentTextArea>
+                />
               </div>
+
               <S.FooterBoxDiv>
                 <div>
                   <button onClick={onClickCancel}>취소하기</button>
                   <button onClick={onClickEditBtn}>수정하기</button>
                 </div>
+                {contents && <span>200 / {contents.length - 7}</span>}
                 <S.TrashCanImg onClick={onClickTrashCan} />
               </S.FooterBoxDiv>
             </div>

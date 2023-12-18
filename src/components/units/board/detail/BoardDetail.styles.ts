@@ -8,6 +8,7 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { IoPersonOutline } from 'react-icons/io5';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { MdPeopleOutline } from 'react-icons/md';
 
 export const ContainerDiv = styled.div`
   display: flex;
@@ -157,6 +158,7 @@ export const CircleImg = styled.img`
 export const CommentHeaderDiv = styled.div`
   height: 40px;
   display: flex;
+  flex-direction: column;
 `;
 
 export const CommentsBoxDiv = styled.div`
@@ -190,7 +192,7 @@ export const CommentContent = styled.span`
 
 export const InputBoxDiv = styled.input`
   background-color: white;
-  width: 260px;
+  width: 350px;
   height: 47px;
   border-radius: 28px;
   margin-left: 10px;
@@ -243,7 +245,7 @@ export const HeartCountSpan = styled.span`
   line-height: normal;
 `;
 
-export const PeopleImg = styled.img`
+export const PeopleImg = styled(MdPeopleOutline)`
   width: 44.157px;
   height: 34.268px;
   flex-shrink: 0;
@@ -358,7 +360,11 @@ export const BlankCommentBoxDiv = styled.div`
   flex-direction: column;
 `;
 
-export const PersonImg = styled.img``;
+export const PersonImg = styled(IoPersonOutline)`
+  width: 44.157px;
+  height: 34.268px;
+  flex-shrink: 0;
+`;
 
 export const TrashCanImg = styled(FaRegTrashAlt)`
   width: 30px;
@@ -377,3 +383,10 @@ export const WeatherImage = styled.img`
   width: 40px;
   height: 40px;
 `;
+
+export const CommentWriterBoxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const CommentWrapperDiv = styled.div``;

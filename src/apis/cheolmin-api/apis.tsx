@@ -136,7 +136,9 @@ export const editComment = async (target: IEditComment) => {
   try {
     const response = await axios.patch(
       `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.commentId}`,
-      target.editComment,
+      {
+        content: target.message,
+      },
       {
         withCredentials: true,
         headers: {
@@ -145,6 +147,7 @@ export const editComment = async (target: IEditComment) => {
         },
       }
     );
+    alert('성공적으로 수정됐습니다');
     return response.data;
   } catch (error) {
     console.log('잘못된 접근입니다.');
@@ -247,8 +250,8 @@ export const updatePost = async (target: IUpdatePost) => {
     const response = await axios.patch(
       `${process.env.REACT_APP_SERVER_URL}/diary/edit/${target.diaryId}`,
       {
-        content: target.contents,
-        isPublic: target.isPublic,
+        content: target.myPost?.contents,
+        isPublic: target.myPost.isPublic,
       },
       {
         withCredentials: true,
@@ -258,12 +261,13 @@ export const updatePost = async (target: IUpdatePost) => {
         },
       }
     );
+    return response.data;
   } catch (error) {
     console.log('error');
   }
 };
 
-export const getHearts = async (diaryId: string | undefined) => {
+export const getHearts = async (diaryId: any) => {
   const data = null;
   try {
     const response = await axios.post(
