@@ -1,5 +1,6 @@
 export interface IEditPost {
   onClose: () => void;
   content: string | undefined;
-  detailedContent : any;
+  detailedContent: any;
+  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }

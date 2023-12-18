@@ -20,6 +20,8 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     },
   });
   const { data } = useQuery('myInfo', getMyInfo);
+
+  console.log('사진', data?.data);
   const navigate = useNavigate();
   const [imgFile, setImgFile] = useState<File | null>();
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -98,13 +100,13 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
             <h3>마이프로필</h3>
             <S.ImageBoxDiv>
               <div>
-                {!isActive && (
+                {!data?.data.profileImg && (
                   <S.PicutureImg
                     src={profileImage || '/avatar.png'}
                     alt='엑박'
                   />
                 )}
-                {isActive && (
+                {data?.data.profileImg && (
                   <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
                 )}
               </div>
