@@ -179,8 +179,6 @@ const BoardWriteDraw = () => {
         sentence: localStorage.getItem('sentence'),
         weather: weatherToday,
       });
-
-      // console.log('isPublicToday', isPublicToday);
     } else {
       console.log('이미지 불러오기 실패');
     }
