@@ -17,7 +17,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   const onClickPostHandler = () => {
     if (postDiaryItem) {
       postDiaryMutation.mutate(postDiaryItem);
-      console.log(postDiaryItem);
+      // console.log(postDiaryItem);
     }
   };
 

@@ -7,7 +7,7 @@ export const countAverage = atom({
 
 export const weather = atom({
   key: 'weather',
-  default: '3',
+  default: '2',
 });
 
 export const contents = atom({

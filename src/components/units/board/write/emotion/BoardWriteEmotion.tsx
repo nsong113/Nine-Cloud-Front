@@ -18,9 +18,10 @@ const BoardWriteEmotion = () => {
   const { emotion: gloomy, handler: onChangeGloomyCount } = useSetEmotion();
 
   const onClickMoveToMain = () => {
-    setIsModalOpen((prev) => !prev);
+    setIsModalOpen(!isModalOpen);
   };
 
+  console.log(isModalOpen);
   const onClickSubmit = () => {
     navigate('/main');
   };
@@ -64,8 +65,8 @@ const BoardWriteEmotion = () => {
           <S.ContainerDiv>
             {isModalOpen && (
               <AlertModal
-                onClickMoveToMain={onClickMoveToMain}
-                onClickSubmit={onClickSubmit}
+                onClickMoveToMain={onClickMoveToMain} //onClose
+                onClickSubmit={onClickSubmit} //onOk
               />
             )}
 
