@@ -16,7 +16,7 @@ import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
 import { FaCheck } from 'react-icons/fa6';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import './Quill.snow.css';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
@@ -145,12 +145,14 @@ const BoardWriteDiary = () => {
                 </S.DiaryTitleDiv>
                 <S.InputDiv>
                   {/* //////////////////////// */}
+
                   <ReactQuill
                     theme='snow'
                     style={ReactQuillStyle}
                     onChange={onChangeContents}
                     defaultValue={contents}
                     modules={quillModules}
+                    placeholder='정성스럽게 마음일기를 적어주실 수록 디테일한 AI 감정 솔루션을 받아볼 수 있어요!'
                   />
                   {/* <S.ContentsTextarea
                     onChange={onChangeContents}
@@ -159,7 +161,7 @@ const BoardWriteDiary = () => {
                   <S.InputFooterBoxDiv></S.InputFooterBoxDiv>
                 </S.InputDiv>
               </S.InputBoxDiv>
-              <S.DiaryWriteTitleH3 style={{ transform: 'translateX(-70px)' }}>
+              <S.DiaryWriteTitleH3 style={{ transform: 'translateX(-55px)' }}>
                 오늘의 <S.DiarySpan>포춘쿠키</S.DiarySpan>를 뽑아보세요!
               </S.DiaryWriteTitleH3>
               <S.FortuneContainer>
@@ -191,13 +193,13 @@ const BoardWriteDiary = () => {
                   </S.FortuneBox>
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
-              <S.DiaryToggleTitleDiv>
-                <S.DiaryToggleP>
+              {/* <S.DiaryToggleTitleDiv> */}
+              {/* <S.DiaryToggleP>
                   오늘 하루
                   <S.DiarySpan> 만족 </S.DiarySpan>
                   하시나요?
-                </S.DiaryToggleP>
-                <S.CustomToggle
+                </S.DiaryToggleP> */}
+              {/* <S.CustomToggle
                   id='customToggle'
                   checked={isChecked}
                   icons={{
@@ -205,9 +207,9 @@ const BoardWriteDiary = () => {
                     unchecked: <IoIosHeartHalf />,
                   }}
                   onChange={onChangeToggleHandler}
-                />
-                {/* </label> */}
-              </S.DiaryToggleTitleDiv>
+                /> */}
+              {/* </label> */}
+              {/* </S.DiaryToggleTitleDiv> */}
             </S.ContentsWrapperDiv>
 
             <S.FooterButtonBoxDiv>
@@ -251,16 +253,13 @@ const ReactQuillStyle: React.CSSProperties = {
   width: '100%',
   height: '100%',
   margin: '0 auto',
-  outline: 'none',
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  appearance: 'none',
-  fontSize: '16px',
+  fontSize: '15px',
   borderRadius: '10px',
-  border: '1px solid rgba(239, 170, 173, 0.7) !important',
+
+  // border: '1px solid rgba(239, 170, 173, 0.7) !important',
   zIndex: '100',
-  background: 'rgba(236, 233, 245, 0.8)',
-  boxShadow: '0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset',
+  background: '#F5F2FF',
+  boxShadow: '0px 4px 20px 0px rgba(80, 53, 166, 0.10) inset',
   backdropFilter: 'blur(15px)',
 
   // '& .ql-editor': {
