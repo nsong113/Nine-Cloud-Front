@@ -154,7 +154,7 @@ export const TableCell = styled.td<ITableCellProps>`
 
   cursor: pointer;
   &:hover {
-    background-color: #926FFF
+    background-color: #926fff;
   }
   /* opacity: 0.7; */
 

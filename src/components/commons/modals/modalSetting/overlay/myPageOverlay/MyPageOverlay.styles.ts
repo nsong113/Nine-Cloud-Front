@@ -52,8 +52,6 @@ export const ImgBoxDiv = styled.div`
   position: fixed;
 `;
 
-
-
 export const ContainerDiv = styled.div`
   position: fixed;
   z-index: 1000;
@@ -67,7 +65,6 @@ export const ContainerDiv = styled.div`
   display: flex;
   align-items: end;
 `;
-
 
 export const ContentsBoxDiv = styled.div`
   display: flex;
