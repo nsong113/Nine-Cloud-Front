@@ -11,7 +11,12 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   postDiaryItem,
 }) => {
   const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
-    postDiary
+    postDiary,
+    {
+      onSuccess: () => {
+        onClickGotoMain();
+      },
+    }
   );
 
   const onClickPostHandler = () => {
@@ -40,7 +45,6 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
           <S.CancelButton onClick={onClickGotoPost2}>돌아가기</S.CancelButton>
           <S.StyleButton
             onClick={() => {
-              onClickGotoMain?.();
               onClickPostHandler();
             }}
           >

@@ -8,5 +8,5 @@ export const FooterContainer = styled.div`
   transform: translateX(-50%);
   bottom: 20;
   position: relative;
-  background: #ece9f5;
+  background: white;
 `;

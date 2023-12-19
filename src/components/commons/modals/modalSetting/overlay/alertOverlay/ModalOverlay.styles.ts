@@ -7,7 +7,7 @@ export const ContainerDiv = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 443px;
-  height: 100%;
+  height: 960px;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.2);
   display: flex;
@@ -18,20 +18,17 @@ export const ContainerDiv = styled.div`
 `;
 
 export const ModalContentDiv = styled.div`
-  width: 415px;
-  height: 260px;
+
+  width: 414.683px;
+  height: 250px;
+  border-radius: 40px;
+  background: #fff;
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
-  background: #fff;
-
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(15px);
-
-  display: flex;
-  align-items: center;
+  border-radius: 10px;
   justify-content: center;
-  padding: 25px;
+  align-items: center;
+
 `;
 
 export const Div = styled.div`
@@ -45,8 +42,20 @@ export const TitleBoxDiv = styled.div`
   width: 90%;
   height: 80px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
+`;
+
+export const BoxButton = styled.div`
+  width: 400px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin-bottom: 10px;
+=======
   text-align: center;
 `;
 
@@ -118,4 +127,45 @@ export const StyleButton = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+`;
+
+export const TitleSpan = styled.span`
+  color: #5035a6;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 15px;
+`;
+
+export const SubTitleSpan = styled.span`
+  color: #646464;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 17.063px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const CancelButton = styled.button`
+  width: 242px;
+  height: 60px;
+  flex-shrink: 0;
+  background-color: #ece9f5;
+  color: #5035a6;
+  border-radius: 22px 0 22px 0;
+  border: 0px;
+  margin-left: 10px;
+`;
+
+export const OkButton = styled.button`
+  width: 146px;
+  height: 60px;
+  flex-shrink: 0;
+  color: #5035a6;
+  border-radius: 0 20px 0 20px;
+  border: 0px;
 `;
