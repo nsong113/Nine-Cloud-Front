@@ -114,7 +114,6 @@ export const CalendarTable = styled.table`
   width: 403px;
   height: 400px;
   margin-left: 20px;
-  margin-top: 50px;
 `;
 
 export const Test = styled.div`
@@ -220,23 +219,29 @@ export const CountSpan = styled.span`
 export const DateBoxDiv = styled.div`
   display: flex;
   width: 100px;
-  align-items: start;
-  margin-top: 20.48px;
-  height: 500px;
+  align-items: center;
+  height: 60px;
 `;
 
 export const HeaderLeftWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
   height: 80px;
+  justify-content: space-between;
+`;
+
+export const HeaderWrapperDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: space-between;
 `;
 
 export const RightProfile = styled.div`
-  margin-left: 130px;
   width: 130px;
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
 `;
 
@@ -438,10 +443,10 @@ export const List = styled(IoList)`
   &:hover {
     color: white;
   }
+  margin-right: 30px;
 `;
 
 export const ButtonWrapperDiv = styled.div`
-  margin-left: 145px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -487,7 +492,8 @@ export const DateImg = styled.img`
 
 export const StyledHoverTapButton = styled(motion.button)`
   background: rgba(239, 170, 173, 0);
-
+  display: flex;
+  align-items: end;
   border: 0;
 `;
 

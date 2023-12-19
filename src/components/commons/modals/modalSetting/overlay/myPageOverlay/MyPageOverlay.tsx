@@ -45,17 +45,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       setSelectedImage(event.target.files?.[0]);
-      const file = event.target.files[0];
-
-      // if (file && file.type.substring(0, 5) === 'image') {
-      //   setImgFile(file);
-      //   setIsActive(true);
-      // } else {
-      //   setImgFile(null);
-      //   setIsActive(false);
-      // }
-
-      // console.log('file', file);
     }
   };
   console.log('selectedImage', selectedImage);
