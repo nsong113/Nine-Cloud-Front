@@ -1,0 +1,26 @@
+/*!
+ * Quill Editor v1.3.7
+ * https://quilljs.com/
+ * Copyright (c) 2014, Jason Chen
+ * Copyright (c) 2013, salesforce.com
+ */
+.ql-container {
+  box-sizing: border-box;
+  font-family: 'GangwonEdu_OTFBoldA';
+  font-size: 13px;
+  height: 80%;
+  margin: 0px;
+  border: transparent !important;
+  outline: none !important;
+  position: relative;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+.ql-toolbar.ql-snow {
+  padding-right: 5px;
+  border: none !important;
+  box-sizing: border-box;
+  font-family: 'GangwonEdu_OTFBoldA';
+  padding: 8px;
+}

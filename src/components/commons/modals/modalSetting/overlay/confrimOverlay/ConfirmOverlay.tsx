@@ -17,7 +17,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   const onClickPostHandler = () => {
     if (postDiaryItem) {
       postDiaryMutation.mutate(postDiaryItem);
-      console.log(postDiaryItem);
+      // console.log(postDiaryItem);
     }
   };
 
@@ -28,7 +28,8 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
         <S.TitleBoxDiv>
           <S.TextStyleSpan>
             <S.TextStyleSpanH5>
-              오늘의 감정일기를 등록하시겠어요?
+              오늘의 클라우드와 함께 <br />
+              감정일기를 등록하시겠어요?
             </S.TextStyleSpanH5>
             <S.TextStyleSpanP>
               등록 후에도 수정할 수 있으니 <br /> 자유롭게 등록해보세요!
@@ -43,7 +44,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
               onClickPostHandler();
             }}
           >
-            확인
+            등록하기
           </S.StyleButton>
         </S.BoxButton>
       </S.ModalContentDiv>

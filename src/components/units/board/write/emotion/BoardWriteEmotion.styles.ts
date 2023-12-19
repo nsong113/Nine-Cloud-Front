@@ -194,17 +194,17 @@ const colors = {
 };
 
 export const ContentInputBoxDiv = styled.div`
-  width: 280px;
+  width: 100%;
   height: 100px;
   padding: 5px;
-  border-radius: 10px;
-  border: 1px solid var(--glassmorphism-line2, rgba(239, 170, 173, 0.7));
 
-  background: rgba(236, 233, 245, 0.5);
+  /* border: 1px solid var(--glassmorphism-line2, rgba(239, 170, 173, 0.7)); */
 
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  border-radius: 10px 0px;
+  background: #f5f2ff;
+
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 2px 10px 0px rgba(80, 53, 166, 0.15);
   backdrop-filter: blur(15px);
 `;
 
@@ -213,18 +213,16 @@ export const ContentInputDescDiv = styled.div`
   text-align: left;
   font-size: 12px;
   line-height: 1.2;
-  color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
-  font-size: 13px;
+  color: var(--Gray1, #3d3d3d);
+  font-size: 15px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
 `;
 
 export const ContentSpan = styled.span`
-  color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
-  font-size: 13px;
+  color: var(--Gray1, #3d3d3d);
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -233,10 +231,10 @@ export const ContentSpan = styled.span`
 export const SliderInput = styled.input<ISliderInputProps>`
   -webkit-appearance: none;
 
-  width: 250px;
-  height: 8px;
+  width: 90%;
+  height: 5px;
   background: transparent;
-  transform: translateY(25px);
+  transform: translate(17px, 25px);
   border-radius: 14px;
 
   background: ${(props) => {
@@ -258,7 +256,7 @@ export const SliderInput = styled.input<ISliderInputProps>`
     appearance: none;
     width: 15px;
     height: 15px;
-    background-color: #5035a6;
+    background: #5035a6;
     /* border: 1px solid ${colors.grey[300]}; */
     border-radius: 50%;
     cursor: pointer;
@@ -302,7 +300,9 @@ export const Label = styled.span`
   font-size: 16px;
   margin-top: 6px;
 `;
-export const SliderWrapperDiv = styled.div``;
+export const SliderWrapperDiv = styled.div`
+  width: 100%;
+`;
 
 export const SliderBoxDiv = styled.div`
   margin: 30px auto;
@@ -314,6 +314,7 @@ export const SliderBoxDiv = styled.div`
 `;
 
 export const ContainerDiv = styled.div`
+  width: 95%;
   display: flex;
   flex-direction: column;
 `;
@@ -327,18 +328,18 @@ export const ButtonWrapperDiv = styled.div`
 `;
 export const CountBoxDiv = styled.div`
   width: 89.419px;
-  height: 30px;
-  border-radius: 20px;
-  background: var(--1, #5035a6);
+  height: 25px;
+  border-radius: 5px 2px;
+  background: #5035a6;
   margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  transform: translateY(30px);
 `;
 export const CountP = styled.p``;
 export const ContentsBoxDiv = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 100px;
@@ -347,19 +348,18 @@ export const ContentsBoxDiv = styled.div`
 `;
 
 export const ContentFlexDivBox = styled.div`
-  width: 100%;
+  width: 95%;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: red;
 `;
 
 export const ContentBoxDiv = styled.p`
-  width: 60%;
+  width: 70%;
   font-size: 18px;
   color: #222122;
-  background-color: aqua;
+  font-weight: 300;
 `;
 
 export const ContentBoxSpan = styled.span`
