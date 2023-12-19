@@ -72,10 +72,21 @@ const BoardWriteEmotion = () => {
             <S.SliderWrapperDiv>
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
-                  <S.ContentBoxDiv>
-                    오늘의 <S.ContentBoxSpan>마음 온도</S.ContentBoxSpan>는
-                    어땠나요?
-                  </S.ContentBoxDiv>
+                  <S.ContentFlexDivBox>
+                    <S.ContentBoxDiv>
+                      오늘의 <S.ContentBoxSpan>마음 온도</S.ContentBoxSpan>는
+                      어땠나요?
+                    </S.ContentBoxDiv>
+                    <S.CountBoxDiv>
+                      <S.CountP>
+                        {happy === '1' && '지쳤어요'}
+                        {happy === '2' && '무료해요'}
+                        {happy === '3' && '그냥그래요'}
+                        {happy === '4' && '의기양양해요'}
+                        {happy === '5' && '열정넘쳐요'}
+                      </S.CountP>
+                    </S.CountBoxDiv>
+                  </S.ContentFlexDivBox>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
                       하루 동안의
@@ -95,15 +106,6 @@ const BoardWriteEmotion = () => {
                     </S.LabelsDiv>
                   </S.ContentInputBoxDiv>
                 </S.ContentsBoxDiv>
-                <S.CountBoxDiv>
-                  <S.CountP>
-                    {happy === '1' && '지쳤어요'}
-                    {happy === '2' && '무료해요'}
-                    {happy === '3' && '그냥그래요'}
-                    {happy === '4' && '의기양양해요'}
-                    {happy === '5' && '열정넘쳐요'}
-                  </S.CountP>
-                </S.CountBoxDiv>
               </S.SliderBoxDiv>
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
