@@ -18,7 +18,6 @@ export const ContainerDiv = styled.div`
 `;
 
 export const ModalContentDiv = styled.div`
-
   width: 414.683px;
   height: 250px;
   border-radius: 40px;
@@ -28,7 +27,6 @@ export const ModalContentDiv = styled.div`
   border-radius: 10px;
   justify-content: center;
   align-items: center;
-
 `;
 
 export const Div = styled.div`
@@ -55,7 +53,6 @@ export const BoxButton = styled.div`
   justify-content: center;
   align-items: end;
   margin-bottom: 10px;
-=======
   text-align: center;
 `;
 
@@ -80,31 +77,6 @@ export const TextStyleSpanP = styled.p`
   line-height: normal;
 
   transform: translateY(-30px);
-`;
-
-export const CancelButton = styled.div`
-  width: 146px;
-  height: 60px;
-  border: 1px solid #ece9f5;
-  border-radius: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #5035a6;
-
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
-export const BoxButton = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export const TextStyleSpan = styled.span`
