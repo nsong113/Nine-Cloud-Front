@@ -26,7 +26,7 @@ export const ShowCloudDivRed = styled.div`
 `;
 
 export const HeaderContainerDiv = styled.div`
-  width: 443px;
+  width: 100%;
   height: 115px;
   flex-shrink: 0;
   border-radius: 0px 0px 40px 0px;
@@ -35,7 +35,7 @@ export const HeaderContainerDiv = styled.div`
 `;
 
 export const LogoBoxDiv = styled.div`
-  width: 443px;
+  width: 100%;
   display: flex;
   margin: 35px 0px 0px 27px;
   align-items: center;
@@ -154,7 +154,7 @@ export const TableCell = styled.td<ITableCellProps>`
 
   cursor: pointer;
   &:hover {
-    background-color: #926FFF
+    background-color: #926fff;
   }
   /* opacity: 0.7; */
 
@@ -253,7 +253,6 @@ export const MonthNumberSpan = styled.span`
 export const YearTextSpan = styled.span`
   color: #a294cd;
 
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -263,7 +262,6 @@ export const YearTextSpan = styled.span`
 export const MonthTextSpan = styled.span`
   color: #a294cd;
 
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
