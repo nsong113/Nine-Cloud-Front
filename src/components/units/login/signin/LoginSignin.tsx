@@ -21,7 +21,7 @@ const LoginSignin = () => {
     }
   };
 
-  const onClickLoginHandler = async () => {
+  const onClickLoginHandler = async (): Promise<void> => {
     try {
       // 이메일 정규식 표현 부분
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,29 +49,45 @@ const LoginSignin = () => {
         {
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         }
       );
       const accessToken = response.headers['authorization'];
       const refreshToken = response.headers['refreshtoken'];
       const expiredTime = response.headers['expiredtime'];
-      console.log('at: ', accessToken);
-      console.log('rt: ', refreshToken);
-      console.log('et: ', expiredTime);
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('expiredTime', expiredTime);
-      // const token = response.headers.authorization;
-      // console.log('response', response);
-      // console.log('response.data.accessToken', response.data);
-      // console.log('로그인 성공:', token);
       alert(`${response.data.msg}`);
       navigate('/loadingpage');
     } catch (error: any) {
       if (error.response) {
         const errorMsg = error.response.data.msg;
         console.error('로그인 실패', errorMsg);
-        alert(errorMsg);
+
+        if (error.response.status === 400) {
+          try {
+            const refreshResponse = await axios.post(`${BASE_URL}/token`, {
+              refreshToken: localStorage.getItem('refreshToken'),
+            });
+
+            const newAccessToken = refreshResponse.headers['authorization'];
+            const newRefreshToken = refreshResponse.headers['refreshtoken'];
+            const newExpiredTime = refreshResponse.headers['expiredtime'];
+
+            localStorage.setItem('accessToken', newAccessToken);
+            localStorage.setItem('refreshToken', newRefreshToken);
+            localStorage.setItem('expiredTime', newExpiredTime);
+
+            return onClickLoginHandler();
+          } catch (refreshError: any) {
+            console.error('토큰 갱신 실패', refreshError.message);
+            alert('토큰 갱신 실패');
+          }
+        } else {
+          alert(errorMsg);
+        }
       } else {
         console.error('네트워크 오류', error.message);
         alert('네트워크 오류');

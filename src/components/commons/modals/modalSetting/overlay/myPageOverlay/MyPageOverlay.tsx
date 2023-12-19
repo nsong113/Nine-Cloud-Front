@@ -11,6 +11,7 @@ import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { editMyInfo, getMyInfo } from 'src/apis/cheolmin-api/apis';
+import axios from 'axios';
 
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const queryClient = useQueryClient();
@@ -31,6 +32,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const BASE_URL = process.env.REACT_APP_SERVER_URL;
   const [newPassoword, setNewPassword] = useState('');
 
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
