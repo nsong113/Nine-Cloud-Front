@@ -11,6 +11,7 @@ import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { editMyInfo, getMyInfo } from 'src/apis/cheolmin-api/apis';
+import axios from 'axios';
 
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const queryClient = useQueryClient();
@@ -28,6 +29,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -55,6 +57,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   }, [imgFile]);
 
   const [isEdit, setIsEdit] = useState(false);
+  // const [isUnRegister, setIsUnRegister] = useState(false); (덕용)
 
   const onClickModalDiv = (e: any) => {
     e.stopPropagation();
@@ -82,6 +85,35 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
 
     navigate('/main');
   };
+
+  // const onClickLogout = () => {
+  //   localStorage.removeItem('accessToken');
+  //   localStorage.removeItem('refreshToken');
+  //   localStorage.removeItem('expiredTime');
+  //   alert('로그아웃이 완료되었습니다.');
+  //   navigate('/login');
+  // };
+  // const onClickUnRegister = async () => {
+  //   try {
+  //     const accessToken = localStorage.getItem('accessToken');
+  //     const refreshToken = localStorage.getItem('refreshToken');
+  //     const response = await axios.delete(`${BASE_URL}/signoff`, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: `${accessToken}`,
+  //         Refreshtoken: `${refreshToken}`,
+  //       },
+  //     });
+  //     localStorage.removeItem('accessToken');
+  //     localStorage.removeItem('refreshToken');
+  //     localStorage.removeItem('expiredTime');
+  //     alert(response.data.message);
+  //     navigate('/login');
+  //   } catch (error: any) {
+  //     console.error('네트워크 오류', error.message);
+  //     alert('네트워크 오류');
+  //   }
+  // }; (덕용)
 
   const profileImage = localStorage.getItem('image');
 
@@ -152,6 +184,9 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
               <div>
                 <button onClick={onOk}>메인으로</button>
                 <button onClick={onClickEditBtn}>수정하기</button>
+                {/* <button onClick={onClickLogout}>로그아웃</button>
+                <button onClick={onClickUnRegister}>회원탈퇴</button> (덕용)*/}
+
               </div>
             )}
             {isEdit && (

@@ -102,7 +102,7 @@ const Signup = () => {
     try {
       // 서버에 이메일, 인증 코드, 비밀번호, 사용자명을 보내 확인 요청
       const response = await axios.post(
-        'http://localhost:3001/complete-signup',
+        'http://localhost:3000/complete-signup',
         {
           email,
           //인증코드
