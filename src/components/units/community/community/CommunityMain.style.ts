@@ -83,6 +83,10 @@ export const MainSlideFlex = styled.div`
   justify-content: space-between;
   align-items: center;
   overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const MainEachSlideBox = styled.div`
@@ -97,9 +101,10 @@ export const MainEachSlideBox = styled.div`
 `;
 
 export const MainMapContainer = styled.div`
-  width: 100%;
-  height: 80%;
-  background-color: beige;
+  width: 90%;
+  height: 90%;
+  margin: 5px auto;
+  overflow: auto;
 `;
 
 export const ViewAllEachBoxDiv = styled.div`

@@ -40,6 +40,7 @@ const ViewAll = () => {
 
   const onClickGotoDetailPage = (id: any) => {
     navigate(`/post/${id}`);
+    console.log('click');
   };
 
   const {
@@ -153,7 +154,7 @@ const ViewAll = () => {
                         <ViewAllInfinite
                           key={`page-${pageIndex}-item-${itemIndex}`}
                           item={item}
-                          onClick={() => onClickGotoDetailPage(item.diaryId)}
+                          // onClick={() => onClickGotoDetailPage(item.diaryId)}
                         />
                       );
                     }

@@ -1,9 +1,11 @@
 import React, { ChangeEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import ReactQuill from 'react-quill';
 import {
   addComment,
   deleteComment,
+  editComment,
   getComments,
   getMyInfo,
 } from 'src/apis/cheolmin-api/apis';
@@ -11,18 +13,21 @@ import { useParams } from 'react-router-dom';
 import { CommentData } from './test';
 import { IComment } from './BoardDetailComment.types';
 
-const BoardDetailComment : React.FC<IComment> = ({profile,comment}) => {
+const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
   const [content, setContent] = useState('');
+  const [isEdit, setIsEdit] = useState(false);
   const queryClient = useQueryClient();
+  const [editingCommentId, setEditingCommentId] = useState(null);
+  const [isDeleteModal, setIsDeleteModal] = useState(false);
   const params = useParams();
 
-  console.log('params', params.id);
-
+  const [message, setMessage] = useState('');
   const diaryId = params.id;
 
+  const profileInfo = profile?.data;
 
   const comments = comment?.data;
-  console.log('data', comment);
+
   const commentMutation = useMutation(addComment, {
     onSuccess: () => {
       queryClient.invalidateQueries('comment');
@@ -35,50 +40,151 @@ const BoardDetailComment : React.FC<IComment> = ({profile,comment}) => {
     },
   });
 
+  const editMutation = useMutation(editComment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('comment');
+    },
+  });
+
   const onClickSubmitBtn = () => {
     commentMutation.mutate({ content, diaryId });
+    setContent('');
+  };
+
+  const onClickEditComment = (commentId: number) => () => {
+    editMutation.mutate({ message, commentId });
+    setIsEdit((prev) => !prev);
+  };
+
+  const onClickEditBtn = (commentId: any) => () => {
+    setEditingCommentId(commentId);
+    setIsEdit((prev) => !prev);
   };
 
   const onChangeComment = (e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 
-  const commentList = CommentData.filter(
-    (comment) => comment.DiaryId === Number(params.id)
-  );
-
   const onClickDeleteBtn = (commentId: any) => () => {
+    alert('정상적으로 삭제 됐습니다');
     deleteMutation.mutate(commentId);
   };
 
-  console.log('commentList', commentList);
+  const onClickOkBtn = () => {
+    setIsDeleteModal((prev) => !prev);
+  };
 
+  const onClickCancelBtn = () => {
+    setIsEdit((prev) => !prev);
+  };
+
+  const onChangeEditComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(event.target.value);
+  };
   return (
     <div>
-      <S.CommentsWrapperDiv>
-        <S.CommentBox>
-          <S.CommentHeaderDiv>
-            {comments?.map((el: any) => (
-              <S.CommentWrapperDiv key={el.commentId}>
-                <S.CommentBoxDiv>
-                  <S.DeepCircleImg src='/deepCircle.png' alt='타원' />
-                  <S.CommentWriterBoxDiv>
-                    <S.CommentWriterSpan>{el.UserId}</S.CommentWriterSpan>
-                    <S.CommentContent>{el.content}</S.CommentContent>
-                  </S.CommentWriterBoxDiv>
-                  <button onClick={onClickDeleteBtn(el.commentId)}>
-                    삭제하기
-                  </button>
-                </S.CommentBoxDiv>
-              </S.CommentWrapperDiv>
-            ))}
-          </S.CommentHeaderDiv>
-          <S.CommentFooterWrapDiv>
-            <S.InputBoxDiv value={content} onChange={onChangeComment} />
-            <S.SubmitButton onClick={onClickSubmitBtn}>등록</S.SubmitButton>
-          </S.CommentFooterWrapDiv>
-        </S.CommentBox>
-      </S.CommentsWrapperDiv>
+      {comments.length === 0 && (
+        <div>
+          <S.CommentsWrapperDiv>
+            <S.CommentBox>
+              <S.CommentHeaderDiv></S.CommentHeaderDiv>
+              <S.CommentFooterWrapDiv>
+                <S.InputBoxDiv
+                  placeholder='첫 번째 댓글을 등록해보세요'
+                  value={content}
+                  onChange={onChangeComment}
+                />
+                <S.SubmitButton onClick={onClickSubmitBtn}>등록</S.SubmitButton>
+              </S.CommentFooterWrapDiv>
+            </S.CommentBox>
+          </S.CommentsWrapperDiv>
+        </div>
+      )}
+      {comments.length !== 0 && (
+        <div>
+          <S.CommentsWrapperDiv>
+            <S.CommentBox>
+              <S.CommentHeaderDiv>
+                {comments?.map((el: any) => (
+                  <S.CommentWrapperDiv key={el.commentId}>
+                    <S.CommentBoxDiv>
+                      <S.DeepCircleImg src='/deepCircle.png' alt='타원' />
+                      <S.CommentWriterBoxDiv>
+                        <S.CommentWriterSpan>
+                          {profileInfo?.username}
+                        </S.CommentWriterSpan>
+                        {editingCommentId !== el.commentId && (
+                          <S.ButtonWrapperDiv>
+                            <S.CommentContent>{el.content}</S.CommentContent>
+                            <div>
+                              <S.PencilBtn
+                                onClick={onClickEditBtn(el.commentId)}
+                              >
+                                수정하기
+                              </S.PencilBtn>
+                              <S.TrashButton
+                                onClick={onClickDeleteBtn(el.commentId)}
+                              >
+                                삭제하기
+                              </S.TrashButton>
+                            </div>
+                          </S.ButtonWrapperDiv>
+                        )}
+                        {editingCommentId === el.commentId && (
+                          <div>
+                            {!isEdit && (
+                              <S.ButtonWrapperDiv>
+                                <S.CommentContent>
+                                  {el.content}
+                                </S.CommentContent>
+                                <div>
+                                  <S.PencilBtn
+                                    onClick={onClickEditBtn(el.commentId)}
+                                  >
+                                    수정하기
+                                  </S.PencilBtn>
+                                  <S.TrashButton
+                                    onClick={onClickDeleteBtn(el.commentId)}
+                                  >
+                                    삭제하기
+                                  </S.TrashButton>
+                                </div>
+                              </S.ButtonWrapperDiv>
+                            )}
+
+                            {isEdit && (
+                              <S.ButtonWrapperDiv>
+                                <S.CommentTextArea
+                                  onChange={onChangeEditComment}
+                                  defaultValue={el.content}
+                                />
+                                <div>
+                                  <S.CancelImg onClick={onClickCancelBtn}>
+                                    취소하기
+                                  </S.CancelImg>
+                                  <S.ConfrimImg
+                                    onClick={onClickEditComment(el.commentId)}
+                                  >
+                                    수정하기
+                                  </S.ConfrimImg>
+                                </div>
+                              </S.ButtonWrapperDiv>
+                            )}
+                          </div>
+                        )}
+                      </S.CommentWriterBoxDiv>
+                    </S.CommentBoxDiv>
+                  </S.CommentWrapperDiv>
+                ))}
+              </S.CommentHeaderDiv>
+              <S.CommentFooterWrapDiv>
+                <S.InputBoxDiv value={content} onChange={onChangeComment} />
+                <S.SubmitButton onClick={onClickSubmitBtn}>등록</S.SubmitButton>
+              </S.CommentFooterWrapDiv>
+            </S.CommentBox>
+          </S.CommentsWrapperDiv>
+        </div>
+      )}
     </div>
   );
 };

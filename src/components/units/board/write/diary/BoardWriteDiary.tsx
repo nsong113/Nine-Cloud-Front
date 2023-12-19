@@ -15,6 +15,8 @@ import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
 import { FaCheck } from 'react-icons/fa6';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
@@ -23,9 +25,18 @@ const BoardWriteDiary = () => {
   const [contents, setContents] = useState<string>('');
   const [todayRandomSaying, setTodayRandomSaying] = useState('');
 
-  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    if (event.target.value.length < 201) {
-      setContents(event.target.value);
+  // const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  // // const onChangeContents = (event: any) => {
+  //   if (event.target.value.length < 201) {
+  //     setContents(event.target.value);
+  //   }
+  // };
+
+  const onChangeContents = (value: string) => {
+    setContents(value === '<p><br></p>' ? '' : value);
+    if (contents.length > 199) {
+      alert('200자 이상 입력 불가합니다');
+      return;
     }
   };
 
@@ -133,10 +144,18 @@ const BoardWriteDiary = () => {
                   <S.TextAreaCount>{contents.length}/200</S.TextAreaCount>
                 </S.DiaryTitleDiv>
                 <S.InputDiv>
-                  <S.ContentsTextarea
+                  {/* //////////////////////// */}
+                  <ReactQuill
+                    theme='snow'
+                    style={ReactQuillStyle}
+                    onChange={onChangeContents}
+                    defaultValue={contents}
+                    modules={quillModules}
+                  />
+                  {/* <S.ContentsTextarea
                     onChange={onChangeContents}
                     value={contents}
-                  />
+                  /> */}
                   <S.InputFooterBoxDiv></S.InputFooterBoxDiv>
                 </S.InputDiv>
               </S.InputBoxDiv>
@@ -207,4 +226,44 @@ export default BoardWriteDiary;
 const cookieStyle = {
   width: '40%',
   transform: 'scale(0.7)',
+};
+
+const quillModules = {
+  toolbar: [
+    // [{ size: ['small', false, 'large', 'huge'] }], // 글꼴 크기
+    ['italic', 'underline', 'strike'], // 글자 스타일
+    // ['blockquote', 'code-block'], // 인용구 및 코드 블록
+    // [{ header: 1 }, { header: 2 }], // 헤더
+    // [{ list: 'ordered' }, { list: 'bullet' }], // 순서 있는 목록 및 순서 없는 목록
+    // [{ script: 'sub' }, { script: 'super' }], // 아래 첨자 및 위 첨자
+    // [{ indent: '-1' }, { indent: '+1' }], // 들여쓰기
+    // [{ direction: 'rtl' }], // 오른쪽에서 왼쪽으로 작성
+    // [{ header: [1, 2, 3, 4, 5, 6, false] }], // 헤더 크기
+    // [{ font: [] }], // 글꼴
+    // [{ color: [] }, { background: [] }], // 글자색 및 배경색
+    [{ align: [] }], // 정렬
+    // ['clean'], // 포맷 제거
+    // ['link', 'image', 'video'], // 링크, 이미지, 동영상 삽입
+  ],
+};
+
+const ReactQuillStyle: React.CSSProperties = {
+  width: '100%',
+  height: '100%',
+  margin: '0 auto',
+  outline: 'none',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  appearance: 'none',
+  fontSize: '16px',
+  borderRadius: '10px',
+  border: '1px solid rgba(239, 170, 173, 0.7) !important',
+  zIndex: '100',
+  background: 'rgba(236, 233, 245, 0.8)',
+  boxShadow: '0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset',
+  backdropFilter: 'blur(15px)',
+
+  // '& .ql-editor': {
+  //   border: '1px solid rgba(239, 170, 173, 0.7)',
+  // },
 };

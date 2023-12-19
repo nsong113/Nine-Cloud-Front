@@ -10,8 +10,8 @@ export interface IAddComment {
 }
 
 export interface IEditComment {
-  commentId: string | undefined;
-  editComment: string | undefined;
+  commentId: number | undefined;
+  message: string | undefined;
 }
 
 export interface IDeleteComment {
@@ -20,8 +20,10 @@ export interface IDeleteComment {
 
 export interface IUpdatePost {
   diaryId: string | undefined;
-  contents: string | undefined;
-  isPublic: boolean;
+  myPost: {
+    contents?: string | undefined;
+    isPublic?: boolean;
+  };
 }
 
 export interface IGetPosts {

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardDetail.styles';
 import { format, getYear, parseISO } from 'date-fns';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate, useParams } from 'react-router-dom';
-import { dayList } from '../../main/test';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import * as DOMPurify from 'dompurify';
+
 import {
-  deletePost,
   getComments,
   getHearts,
   getMyInfo,
@@ -18,25 +18,23 @@ import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import { CommentData } from './comment/test';
 import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOverlay';
-import DeleteOverlay from 'src/components/commons/modals/modalSetting/overlay/deleteOverlay/DeleteOverlay';
-import DeleteModal from 'src/components/commons/modals/delete/DeleteModal';
 
 const BoardDetail = () => {
   const queryClient = useQueryClient();
-  const { data, isLoading } = useQuery('post', () => getOnePostInfo(params.id));
 
-  console.log('data', data);
   const { currentDate, currentMonth } = useCalendar();
   const [isEdit, setIsEdit] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
   const [isActiveModal, setIsActiveModal] = useState(false);
-  const formattedMonth = format(currentMonth, 'MMMM');
-  const newDate = new Date(currentDate);
   const [isHeart, setIsHeart] = useState(false);
   const onClickPencilImg = () => {
     setIsActiveModal((prev) => !prev);
   };
+
+  const { data, isLoading } = useQuery(['post'], () =>
+    getOnePostInfo(params.id)
+  );
 
   const heartMutation = useMutation(getHearts, {
     onSuccess: () => {
@@ -45,13 +43,13 @@ const BoardDetail = () => {
   });
 
   const heartCount = heartMutation?.data;
-  console.log('heartCount', heartCount);
-  console.log('heartMutation', heartMutation);
 
   const { data: comment } = useQuery('comment', () => getComments(params.id));
   const { data: profile } = useQuery('profile', getMyInfo);
   const [isPublic, setIsPublic] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+
+  const profileInfo = profile?.data;
 
   const detailedContent = data?.data;
 
@@ -88,9 +86,11 @@ const BoardDetail = () => {
     setIsPublic((prev) => !prev);
   };
 
+  const id = params.id;
+
   const onClickHeart = () => {
-    heartMutation.mutate(params.id);
     setIsHeart((prev) => !prev);
+    heartMutation.mutate(id);
   };
 
   const weatherImages: { [key: string]: string | undefined } = {
@@ -111,6 +111,7 @@ const BoardDetail = () => {
           content={detailedContent?.content}
           onClose={onClickPencilImg}
           detailedContent={detailedContent}
+          setIsEdit={setIsEdit}
         />
       )}
 
@@ -127,19 +128,7 @@ const BoardDetail = () => {
               <S.CloudImg src='/cloud.png' alt='구름' />
               <S.ConentsHeaderRightDiv>
                 <S.heartBoxDiv>
-                  {detailedContent?.isPublic === true && (
-                    <div>
-                      {!isEdit && (
-                        <S.PeopleImg src={'/people.png'} alt='사람들' />
-                      )}
-                      {isEdit && (
-                        <div>
-                          <label htmlFor='inputField'>공개</label>
-                          <input onClick={onClickPublic} type='checkbox' />
-                        </div>
-                      )}
-                    </div>
-                  )}
+                  {detailedContent?.isPublic === true && <S.PeopleImg />}
                   {detailedContent?.isPublic === false && <S.PersonImg />}
                 </S.heartBoxDiv>
               </S.ConentsHeaderRightDiv>
@@ -154,12 +143,13 @@ const BoardDetail = () => {
               </S.ContentBoxHeaderDiv>
               <S.ContentsBoxDiv>
                 <S.ContentBoxDiv>
-                  {!isEdit && (
-                    <S.ContentSpan>{detailedContent?.content}</S.ContentSpan>
-                  )}
-                  {isEdit && (
-                    <textarea defaultValue={detailedContent?.content} />
-                  )}
+                  <S.ContentSpan
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(
+                        String(detailedContent?.content)
+                      ),
+                    }}
+                  ></S.ContentSpan>
                 </S.ContentBoxDiv>
               </S.ContentsBoxDiv>
               <S.ContentsFooterDiv>
@@ -172,48 +162,79 @@ const BoardDetail = () => {
                   {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
                   {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
                   <S.CommentsBoxDiv onClick={onClickToggle}>
+                    {/* {detailedContent.isPublic !== true && (
+                    
+                    )}
+
+                  {detailedContent.isPublic === false && (
+                    
+                    )} */}
                     <S.CommentImg />
                     <S.HeartCommentTextSpan>
-                      댓글 {comment?.length}
+                      댓글 {comment?.data?.length}
                     </S.HeartCommentTextSpan>
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
-                    {!isHeart && (
+                    {isHeart && (
                       <div>
                         <S.CommentHeartImg onClick={onClickHeart} />
                         <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
-                        {/* <span>{heartMutation.data}</span> */}
+                        <span>{heartCount?.data}</span>
                       </div>
                     )}
-                    {isHeart && (
+                    {!isHeart && (
                       <div>
                         <S.BlankHeartImg onClick={onClickHeart} />
                         <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
-                        <span>{heartMutation.data}</span>
+                        <span>{heartCount?.data}</span>
                       </div>
                     )}
                   </S.HeartBoxDiv>
                 </S.FooterBoxDiv>
               </S.CategoryBoxDiv>
               {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
-              {commentList?.length >= 1 && (
+              {detailedContent.isPublic === true && (
                 <Animation3>
                   {isActive && (
-                    <BoardDetailComment comment={comment} profile={profile} />
+                    <BoardDetailComment profile={profile} comment={comment} />
                   )}
                 </Animation3>
               )}
-              {commentList.length === 0 && (
+              {!isActive && (
                 <div>
-                  {isActive && (
-                    <S.BlankCommentBoxDiv>
-                      <S.BlankCommentSpan>
-                        아직 댓글이 없습니다.
-                      </S.BlankCommentSpan>
-                      <S.BlankCommentSpan>
-                        전체공개로 전환해 사람들과 일기를 공유해보세요!
-                      </S.BlankCommentSpan>
-                    </S.BlankCommentBoxDiv>
+                  {detailedContent.isPublic === false && (
+                    <div>
+                      <S.CommentsWrapperDiv>
+                        <S.CommentBox>
+                          <S.CommentHeaderDiv>
+                            {comment?.data?.map((el: any) => (
+                              <S.CommentWrapperDiv key={el.commentId}>
+                                <S.CommentBoxDiv>
+                                  <S.DeepCircleImg
+                                    src='/deepCircle.png'
+                                    alt='타원'
+                                  />
+                                  <S.CommentWriterBoxDiv>
+                                    <S.CommentWriterSpan>
+                                      {profileInfo?.username}
+                                    </S.CommentWriterSpan>
+                                    <S.CommentContent>
+                                      {el.content}
+                                    </S.CommentContent>
+                                  </S.CommentWriterBoxDiv>
+                                </S.CommentBoxDiv>
+                              </S.CommentWrapperDiv>
+                            ))}
+                          </S.CommentHeaderDiv>
+                          <S.CommentFooterWrapDiv>
+                            <S.InputBoxDiv
+                              placeholder='공개로 바꾸면 친구들이 댓글을 달 수 있습니다.'
+                              disabled
+                            />
+                          </S.CommentFooterWrapDiv>
+                        </S.CommentBox>
+                      </S.CommentsWrapperDiv>
+                    </div>
                   )}
                 </div>
               )}

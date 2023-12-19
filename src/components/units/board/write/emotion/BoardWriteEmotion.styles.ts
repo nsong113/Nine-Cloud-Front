@@ -267,30 +267,20 @@ export const SliderInput = styled.input<ISliderInputProps>`
   -webkit-appearance: none;
 
   width: 250px;
-  height: 10px;
-
-  transform: translateY(20px);
+  height: 8px;
+  background: transparent;
+  transform: translateY(25px);
   border-radius: 14px;
-
-  /* background: ${(props) => {
-    const percentage =
-      ((props.value - props.min) / (props.max - props.min)) * 100;
-    return `linear-gradient(to right, red 0%, red ${percentage}%, blue ${percentage}%, blue 100%)`;
-  }}; */
 
   background: ${(props) => {
     const percentage =
       ((props.value - props.min) / (props.max - props.min)) * 100;
-    return `
-      linear-gradient(to right, red 0%, red ${percentage}%, blue ${percentage}%, blue 100%),
-      transparent,
-      transparent
-    `;
+    return `linear-gradient(to right, #9279E1 0%, #9279E1 ${percentage}%, #ECE9F5 ${percentage}%, #ECE9F5 100%)`;
   }};
 
-  -webkit-box-shadow: 1px 7px 13px -5px rgba(80, 53, 166, 0.75);
+  /* -webkit-box-shadow: 1px 7px 13px -5px rgba(80, 53, 166, 0.75);
   box-shadow: 1px 7px 13px -5px rgba(80, 53, 166, 0.75);
-  background-clip: content-box;
+  background-clip: content-box; */
 
   &:focus {
     outline: none;
@@ -299,10 +289,10 @@ export const SliderInput = styled.input<ISliderInputProps>`
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
-    background-color: ${colors.white};
-    border: 1px solid ${colors.grey[300]};
+    width: 15px;
+    height: 15px;
+    background-color: #5035a6;
+    /* border: 1px solid ${colors.grey[300]}; */
     border-radius: 50%;
     cursor: pointer;
   }

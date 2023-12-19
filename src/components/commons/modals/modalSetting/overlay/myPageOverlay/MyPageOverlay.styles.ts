@@ -63,7 +63,7 @@ export const ModalContentDiv = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 50px 50px 0 0;
-  animation: ${slideIn} 0.3s ease-in-out;
+  animation: ${slideIn} 0.5s ease-in-out;
 `;
 
 export const ContentsBoxDiv = styled.div`
@@ -158,5 +158,4 @@ export const NameBoxDiv = styled.div`
 export const MyinfoBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
-
-`
+`;

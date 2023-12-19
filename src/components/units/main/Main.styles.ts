@@ -227,7 +227,7 @@ export const YearTextSpan = styled.span`
   font-style: normal;
   font-weight: 900;
   line-height: normal;
-  margin-left: 45px;
+  margin-left: 5px;
 `;
 
 export const MonthTextSpan = styled.span`
@@ -394,6 +394,9 @@ export const Calendar = styled(IoCalendarNumberOutline)`
   cursor: pointer;
   width: 40px;
   height: 40px;
+  &:hover {
+    color: white;
+  }
 `;
 
 export const List = styled(IoList)`
@@ -462,6 +465,11 @@ export const StyledHoverTapButton = styled(motion.button)`
 export const LeftRightAnimeButton = styled(motion.div)`
   opacity: 0;
   transition: opacity 0.35s ease-out, x 0.35s ease-out;
+`;
+export const YearMonthChangeBoxDiv = styled.div`
+  display: flex;
+  margin-left: 14px;
+  align-items: center;
 `;
 
 export const PrevNextMonthBoxDiv = styled.div`

@@ -101,16 +101,14 @@ const Signup = () => {
     e.preventDefault();
     try {
       // 서버에 이메일, 인증 코드, 비밀번호, 사용자명을 보내 확인 요청
-      const response = await axios.post(
-        'http://localhost:3000/complete-signup',
-        {
-          email,
-          //인증코드
-          Authenticationcode,
-          password,
-          nickname,
-        }
-      );
+
+      const response = await axios.post(`${BASE_URL}/complete-signup`, {
+        email,
+        //인증코드
+        Authenticationcode,
+        password,
+        username: nickname,
+      });
       console.log(response.data);
       alert(response.data.message);
       // 회원가입이 완료되면 상태 초기화

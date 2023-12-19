@@ -11,7 +11,6 @@ const useCalendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());
   //currentDate Sat Dec 09 2023 13:34:18 GMT+0900 (한국 표준시)
-  console.log('currentDate', currentDate);
 
   //해당 year + month + 1(day)
   const firstDayOfMonth = new Date(
@@ -28,14 +27,11 @@ const useCalendar = () => {
   //firstDayOfMonth의 요일에 해당하는 값으로 설정 => 5로 설정
   const startingDayOfWeek = firstDayOfMonth.getDay();
 
-  console.log('startingDayOfWeek', startingDayOfWeek);
   //해당 월의 날짜를 출력.
   //currentDate에 월이 있으니 그 월을 기반으로 하는 듯.
   //getDaysInMonth는 date-fns의 내장함수
   //totalMonthDays === 31
   const totalMonthDays = getDaysInMonth(currentDate);
-
-  console.log('totalMonthDays', totalMonthDays);
 
   //startingDayOfWeek가 5라면  그 달의 1일은 금요일이다. 그럼 0부터 시작하니 총 5다. (0(일),1(월),2(화),3(수),4(목),5(금)) => 이게 startingDayOfWeek
   //그럼 길이가 startingDayOfWeek 길이는 5다. 근데 알다시피 index 0부터 시작.
@@ -63,12 +59,10 @@ const useCalendar = () => {
     0
   );
   // Sun Dec 31 2023 00:00:00 GMT+0900 (한국 표준시)
-  console.log('lastDayOfMonth', lastDayOfMonth);
+
   // lastDayOfWeek => 0
   //0이 나온 이유는 12월의 마지막 날의 요일이 일요일이기 때문이다
   const lastDayOfWeek = lastDayOfMonth.getDay();
-
-  console.log('lastDayOfWeek', lastDayOfWeek);
 
   // 토요일까지의 남은 날짜 수를 계산합니다
   //const remainingDaysInWeek = 6

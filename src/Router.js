@@ -18,8 +18,9 @@ import { AnimatePresence } from 'framer-motion';
 import Loading from './components/units/login/social/auth/Loading';
 import TestPage from './components/units/login/TestPage';
 import NaverLoginHandler from './components/units/login/social/auth/NaverLoginHandler';
-import Chatting from './components/units/community/chatting/Chatting';
 import EditOverlay from './components/commons/modals/modalSetting/overlay/editOverlay/EditOverlay';
+import Chatting from './components/units/community/chatting/Chatting';
+import BoardDetailGPT from './components/units/board/detail/gpt/BoardDetailGPT';
 
 export default function Router() {
   return (
@@ -50,6 +51,8 @@ export default function Router() {
           {/* community 페이지 */}
           <Route path='/community' element={<Community />} />
           <Route path='/community/chat' element={<Chatting />} />
+          {/* gpt */}
+          <Route path='/gpt' element={<BoardDetailGPT />} />
         </Route>
       </Routes>
     </BrowserRouter>

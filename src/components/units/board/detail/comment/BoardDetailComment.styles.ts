@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import { LuPencil } from 'react-icons/lu';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import { MdOutlineCancel } from 'react-icons/md';
+import { FaRegCircleCheck } from 'react-icons/fa6';
 
 export const CommentsWrapperDiv = styled.div`
   height: 300px;
@@ -68,6 +72,7 @@ export const SubmitButton = styled.button`
   flex-shrink: 0;
   margin-left: 20px;
   border: 0;
+  cursor: pointer;
 `;
 
 export const CommentWriterBoxDiv = styled.div`
@@ -76,3 +81,38 @@ export const CommentWriterBoxDiv = styled.div`
 `;
 
 export const CommentWrapperDiv = styled.div``;
+
+export const ButtonWrapperDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+`;
+
+export const PencilBtn = styled(LuPencil)`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
+export const TrashButton = styled(FaRegTrashAlt)`
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+`;
+
+export const ConfrimImg = styled(FaRegCircleCheck)`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
+export const CancelImg = styled(MdOutlineCancel)`
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+`;
+
+export const CommentTextArea = styled.textarea`
+  width: 200px;
+  height: 50px;
+`;
