@@ -13,9 +13,12 @@ export const ContainerDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: opacity 0.3s ease-in-out;
 `;
 
 export const ModalContentDiv = styled.div`
+
   width: 414.683px;
   height: 250px;
   border-radius: 40px;
@@ -25,6 +28,7 @@ export const ModalContentDiv = styled.div`
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+
 `;
 
 export const Div = styled.div`
@@ -35,6 +39,8 @@ export const Div = styled.div`
 `;
 
 export const TitleBoxDiv = styled.div`
+  width: 90%;
+  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,10 +55,78 @@ export const BoxButton = styled.div`
   justify-content: center;
   align-items: end;
   margin-bottom: 10px;
+=======
+  text-align: center;
 `;
 
-export const StyleButton = styled.button`
-  margin-left: 20px;
+export const TextStyleSpanH5 = styled.h5`
+  color: #5035a6;
+  width: 100%;
+  text-align: center;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+export const TextStyleSpanP = styled.p`
+  width: 100%;
+  color: #646464;
+
+  text-align: center;
+  font-size: 17.063px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  transform: translateY(-30px);
+`;
+
+export const CancelButton = styled.div`
+  width: 146px;
+  height: 60px;
+  border: 1px solid #ece9f5;
+  border-radius: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #5035a6;
+
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const BoxButton = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const TextStyleSpan = styled.span`
+  color: white;
+`;
+
+export const StyleButton = styled.div`
+  width: 242px;
+  height: 60px;
+  background-color: #ece9f5;
+  border-radius: 5px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #5035a6;
+
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const TitleSpan = styled.span`

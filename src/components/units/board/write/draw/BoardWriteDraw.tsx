@@ -1,15 +1,16 @@
 import React, { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import * as S from './BoardWriteDraw.styles';
 import { useNavigate } from 'react-router-dom';
-// import BoardDrawPaper from './BoardDrawPaper';
 import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
-import { IoIosCheckmark } from 'react-icons/io';
 import { IpostDiaryItem } from 'src/apis/apiesType';
 import useSetColor from 'src/components/commons/hooks/useSetColor';
 import useThickness from 'src/components/commons/hooks/useThickness';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from 'react-icons/fa6';
+import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
+import { useRecoilState } from 'recoil';
+import { contents, countAverage, isPublic, weather } from 'src/states/counter';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -19,19 +20,17 @@ const BoardWriteDraw = () => {
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  const [isPublic, setIsPublic] = useState<boolean>(true);
-
-  console.log('isPublic', isPublic);
+  const [isPublicToday, setIsPublicToday] = useRecoilState<boolean>(isPublic);
+  const [isChecked, setIsChecked] = useState(true); //토글 체크 여부
+  const [countAverageToday, setCountAverageToday] =
+    useRecoilState(countAverage);
+  const [weatherToday, setWeatherToday] = useRecoilState(weather);
+  const [contentsToday, setContentsToday] = useRecoilState(contents);
 
   const onClickPrevBtn = () => {
     navigate('/post3');
   };
-  const onClickSubmitBtn = () => {
-    navigate('/main');
-  };
-  const onClickMoveToCancel = () => {
-    setIsModalOpen((prev) => !prev);
-  };
+
   const onClickAddBtn = () => {
     setIsModalOpen((prev) => !prev);
   };
@@ -81,7 +80,7 @@ const BoardWriteDraw = () => {
 
   const [pen, setPen] = useState(true);
   const [thicknessToggle, setThicknessToggle] = useState(false);
-  const [init, setInit] = useState(false);
+  const [colorPickerValue, setColorPickerValue] = useState<string>();
 
   const onClickPenToggleHandler = () => {
     setPen(!pen);
@@ -94,11 +93,8 @@ const BoardWriteDraw = () => {
 
   const onClickThicknessToggleHandler = () => {
     setThicknessToggle(!thicknessToggle);
-    console.log(thicknessToggle);
     setPen(false);
   };
-
-  const [colorPickerValue, setColorPickerValue] = useState<string>();
 
   useEffect(() => {
     setColorPickerValue(color);
@@ -144,11 +140,18 @@ const BoardWriteDraw = () => {
   };
 
   const onClickInitToggleHandler = () => {
-    setPen(!init);
+    if (!canvasRef.current) {
+      return;
+    }
+    const canvas: HTMLCanvasElement = canvasRef.current;
+    const context = canvas.getContext('2d');
+    if (!context) return;
+    context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
   const onChangeIsPublicHandler = () => {
-    setIsPublic(!isPublic);
+    setIsPublicToday(!isPublicToday);
+    setIsChecked(!isChecked);
   };
 
   let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
@@ -169,15 +172,13 @@ const BoardWriteDraw = () => {
       console.log('file', file);
 
       setPostDiaryItem({
-        EmotionalStatus: Number(localStorage.getItem('countAverage')),
-        content: localStorage.getItem('contents'),
+        EmotionalStatus: countAverageToday,
+        content: contentsToday,
         image: file,
-        isPublic: isPublic,
+        isPublic: isPublicToday,
         sentence: localStorage.getItem('sentence'),
-        weather: localStorage.getItem('weather'),
+        weather: weatherToday,
       });
-
-      console.log('isPublic111', isPublic);
     } else {
       console.log('이미지 불러오기 실패');
     }
@@ -262,99 +263,89 @@ const BoardWriteDraw = () => {
                 <br />
                 그림으로 그려볼까요?
               </S.DrawWriteTitleH3>
+              <S.DrawTitleFlexIcon>
+                <S.TrashcanDiv onClick={onClickInitToggleHandler} />
+                <S.DownloadDiv onClick={onClickSaveToggleHandler} />
+              </S.DrawTitleFlexIcon>
             </S.DrawTitleBox>
             <S.CanvasContainer>
-              {/* ========================= */}
-              <S.DrawCanvas ref={canvasRef} height={400} width={370} />
+              <S.DrawCanvas ref={canvasRef} height={385} width={365} />
               <S.ToggleBox>
-                <S.SecondToggle onClick={onClickPenToggleHandler}>
+                <S.FirstPenToggle onClick={onClickPenToggleHandler}>
                   펜
-                </S.SecondToggle>
-                <S.SecondToggle onClick={onClickThicknessToggleHandler}>
-                  굵기
-                </S.SecondToggle>
-                <S.FirstToggle onClick={onClickEraserToggleHandler}>
-                  지우개
-                </S.FirstToggle>
-                <S.FirstToggle onClick={onClickInitToggleHandler}>
-                  초기화
-                </S.FirstToggle>
-                <S.FirstToggle onClick={onClickSaveToggleHandler}>
-                  저장하기
-                </S.FirstToggle>
-              </S.ToggleBox>
-              {pen && (
-                <>
-                  <S.ArrowDiv></S.ArrowDiv>
-                  <S.ColorSettingDiv>
-                    <S.ColorPaletteFlexDiv>
-                      <S.Palette
-                        color={'black'}
-                        onClick={colorHandlerBlack}
-                      ></S.Palette>
-                      <S.Palette
-                        color={'#FF2323'}
-                        onClick={colorHandlerRed}
-                      ></S.Palette>
-                      <S.Palette
-                        color={'#FFC225'}
-                        onClick={colorHandlerOrange}
-                      ></S.Palette>
-                      <S.Palette
-                        color={'#EDFF22'}
-                        onClick={colorHandlerYellow}
-                      ></S.Palette>
-                      <S.Palette
-                        color={'#16FF4A'}
-                        onClick={colorHandlerGreen}
-                      ></S.Palette>
-                      <S.Palette
-                        color={'#4BA9FF'}
-                        onClick={colorHandlerBlue}
-                      ></S.Palette>
-                      <S.Palette
-                        color={'#4E12F6'}
-                        onClick={colorHandlerPurple}
-                      ></S.Palette>
-                      <S.Palette
-                        color={'#DB00FF'}
-                        onClick={colorHandlerPink}
-                      ></S.Palette>
-                      <input
-                        type='color'
-                        id='color'
-                        ref={colorPickerRef}
-                        onChange={onChangePickColorHandler}
-                        value={colorPickerValue}
-                      ></input>
-                    </S.ColorPaletteFlexDiv>
-                  </S.ColorSettingDiv>
-                </>
-              )}
-              {thicknessToggle && (
-                <>
-                  <S.EraserArrowDiv></S.EraserArrowDiv>
-                  <S.ColorSettingDiv>
+                </S.FirstPenToggle>
+                <S.FirstEraserToggle
+                  onClick={onClickEraserToggleHandler}
+                ></S.FirstEraserToggle>
+                <S.ThicknessBoxDiv>
+                  <S.SecondToggle
+                    onClick={onClickThicknessToggleHandler}
+                  ></S.SecondToggle>
+                  <S.ColorEraserSettingDiv>
                     <S.EraserThicknessDiv>
-                      <S.EraserThicknessBold
-                        onClick={EraserBoldHaneler}
-                      ></S.EraserThicknessBold>
-                      <S.ThicknessBoldMedium
-                        onClick={EraserBoldMediumHandler}
-                      ></S.ThicknessBoldMedium>
-                      <S.EraserThicknessMedium
-                        onClick={EraserMediumHandler}
-                      ></S.EraserThicknessMedium>
-                      <S.ThicknessMediumThin
-                        onClick={EraserMediumThinHandler}
-                      ></S.ThicknessMediumThin>
                       <S.EraserThicknessThin
                         onClick={EraserThinHandler}
                       ></S.EraserThicknessThin>
+                      <S.ThicknessMediumThin
+                        onClick={EraserMediumThinHandler}
+                      ></S.ThicknessMediumThin>
+                      <S.EraserThicknessMedium
+                        onClick={EraserMediumHandler}
+                      ></S.EraserThicknessMedium>
+                      <S.ThicknessBoldMedium
+                        onClick={EraserBoldMediumHandler}
+                      ></S.ThicknessBoldMedium>
+                      <S.EraserThicknessBold
+                        onClick={EraserBoldHaneler}
+                      ></S.EraserThicknessBold>
                     </S.EraserThicknessDiv>
-                  </S.ColorSettingDiv>
-                </>
-              )}
+                  </S.ColorEraserSettingDiv>
+                </S.ThicknessBoxDiv>
+              </S.ToggleBox>
+
+              <S.ColorSettingDiv>
+                <S.ColorPaletteFlexDiv>
+                  <S.Palette
+                    color={'black'}
+                    onClick={colorHandlerBlack}
+                  ></S.Palette>
+                  <S.Palette
+                    color={'#FF2323'}
+                    onClick={colorHandlerRed}
+                  ></S.Palette>
+                  <S.Palette
+                    color={'#FFC225'}
+                    onClick={colorHandlerOrange}
+                  ></S.Palette>
+                  <S.Palette
+                    color={'#EDFF22'}
+                    onClick={colorHandlerYellow}
+                  ></S.Palette>
+                  <S.Palette
+                    color={'#16FF4A'}
+                    onClick={colorHandlerGreen}
+                  ></S.Palette>
+                  <S.Palette
+                    color={'#4BA9FF'}
+                    onClick={colorHandlerBlue}
+                  ></S.Palette>
+                  <S.Palette
+                    color={'#4E12F6'}
+                    onClick={colorHandlerPurple}
+                  ></S.Palette>
+                  <S.Palette
+                    color={'#DB00FF'}
+                    onClick={colorHandlerPink}
+                  ></S.Palette>
+                  <input
+                    type='color'
+                    id='color'
+                    ref={colorPickerRef}
+                    onChange={onChangePickColorHandler}
+                    value={colorPickerValue}
+                  ></input>
+                </S.ColorPaletteFlexDiv>
+              </S.ColorSettingDiv>
             </S.CanvasContainer>
             <S.ToggleDiv>
               <S.ToggleFlexDiv>
@@ -362,11 +353,24 @@ const BoardWriteDraw = () => {
                   오늘의 일기를 전체공개로 등록해 <br />
                   사람들과 공유해보세요!
                 </S.ToggleP>
-                <input
+
+                <S.DiaryToggleTitleDiv>
+                  <S.CustomToggle
+                    id='customToggle'
+                    checked={isChecked}
+                    icons={{
+                      checked: <IoMdHeart />,
+                      unchecked: <IoIosHeartHalf />,
+                    }}
+                    onChange={onChangeIsPublicHandler}
+                  />
+                  {/* </label> */}
+                </S.DiaryToggleTitleDiv>
+                {/* <input
                   type='checkbox'
                   checked={isPublic} // 현재 상태에 따라 체크 여부 결정
                   onChange={onChangeIsPublicHandler}
-                />
+                /> */}
               </S.ToggleFlexDiv>
             </S.ToggleDiv>
             <S.ButtonWrapperDiv>

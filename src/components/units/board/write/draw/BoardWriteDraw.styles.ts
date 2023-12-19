@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IPalette } from './BoardWriteDraw.types';
+import Toggle from 'react-toggle';
 
 export const DrawContainerDiv = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const DrawContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/backgroundFinal.png');
+  background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,51 +24,19 @@ export const DrawWrapperUPDiv = styled.div`
 export const DrawWrapperDOWNdiv = styled.div`
   width: 90%;
   margin: 0 auto;
+  background-color: white;
+
   height: 775px;
 
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  background: radial-gradient(
-        circle at 100% 100%,
-        #ffffff 0,
-        #ffffff 6px,
-        transparent 6px
-      )
-      0% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
-      100% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
-      0% 100%/8px 8px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
-      100%/8px 8px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 16px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
-      calc(100% - 4px) no-repeat,
-    linear-gradient(
-      319deg,
-      rgba(255, 255, 255, 0.7) 51%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    linear-gradient(
-      128deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
-    linear-gradient(
-      44deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.2) 100%
-    );
-  border-radius: 8px;
+  border-radius: 5px 20px 5px 5px;
+  border: 1px solid var(--line, #cfc0ff);
+  background: rgba(245, 242, 255, 0.2);
+
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset;
+  backdrop-filter: blur(15px);
   padding: 6px;
   box-sizing: border-box;
-  backdrop-filter: blur(35px);
-  opacity: 0.8;
-  filter: drop-shadow(-2px -5px 12px rgba(80, 53, 166, 0.27));
-  border-radius: 5px 40px 5px 5px;
+  backdrop-filter: blur(15px);
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -215,8 +184,36 @@ export const ContainerDiv = styled.div`
   align-items: center;
 `;
 
+export const DrawTitleFlexIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50px;
+  transform: translateY(20px);
+`;
+
 export const DrawTitleBox = styled.div`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const TrashcanDiv = styled.div`
+  width: 15.778px;
+  height: 24.351px;
+  background-image: url('/trashcan.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+export const DownloadDiv = styled.div`
+  width: 15.778px;
+  height: 24.351px;
+  background-image: url('/download.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const CanvasContainer = styled.div`
@@ -228,44 +225,10 @@ export const CanvasContainer = styled.div`
 export const DrawCanvas = styled.canvas`
   margin: 5px auto;
 
-  background: radial-gradient(
-        circle at 100% 100%,
-        #ffffff 0,
-        #ffffff 8px,
-        transparent 8px
-      )
-      0% 0%/10px 10px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 8px, transparent 8px)
-      100% 0%/10px 10px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 8px, transparent 8px)
-      0% 100%/10px 10px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 8px, transparent 8px) 100%
-      100%/10px 10px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 20px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 20px)
-      calc(100% - 4px) no-repeat,
-    linear-gradient(
-      128deg,
-      rgba(239, 170, 173, 0.7) 0%,
-      rgba(80, 53, 166, 0.2) 100%
-    ),
-    linear-gradient(
-      319deg,
-      rgba(255, 255, 255, 0.7) 51%,
-      rgba(239, 170, 173, 0.7) 100%
-    ),
-    linear-gradient(
-      44deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.2) 100%
-    ),
-    radial-gradient(
-      at 0% 0%,
-      rgba(80, 53, 166, 0.2) 0%,
-      rgba(124, 102, 182, 0.7) 100%
-    );
   border-radius: 10px;
+  border: 1px solid var(--line, #cfc0ff);
+  background: #fff;
+
   padding: 6px;
   box-sizing: border-box;
 `;
@@ -274,8 +237,7 @@ export const DrawWriteTitleH3 = styled.h3`
   text-align: left;
   margin: 30px 0 10px 0;
 
-  color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
+  color: var(--Black, #222122);
   font-size: 18px;
   font-style: normal;
   font-weight: 300;
@@ -342,15 +304,19 @@ export const NextButton = styled.button`
 
 export const ColorSettingDiv = styled.div`
   width: 377px;
-  height: 55px;
-  border-radius: 11px;
-  background-color: #ebebeb;
+  height: 59.739px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 21px;
   margin: 0 auto;
   margin-bottom: 10px;
+
+  border-radius: 10px;
+  border: 1px solid var(--line, #cfc0ff);
+  background: rgba(245, 242, 255, 0.5);
+
+  backdrop-filter: blur(15px);
 `;
 
 export const ThicknessDiv = styled.div`
@@ -387,41 +353,41 @@ export const ThicknessThin = styled.div`
 `;
 
 export const EraserThicknessBold = styled.div`
-  width: 43px;
-  height: 43px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
-  background-color: #111;
+  background-color: #929292;
   cursor: pointer;
 `;
 export const ThicknessBoldMedium = styled.div`
-  width: 38px;
-  height: 38px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background-color: #111;
+  background-color: #929292;
   cursor: pointer;
 `;
 
 export const EraserThicknessMedium = styled.div`
-  width: 31px;
-  height: 31px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
-  background-color: #111;
+  background-color: #929292;
   cursor: pointer;
 `;
 
 export const ThicknessMediumThin = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background-color: #111;
+  background-color: #929292;
   cursor: pointer;
 `;
 
 export const EraserThicknessThin = styled.div`
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  background-color: #111;
+  background-color: #929292;
   cursor: pointer;
 `;
 
@@ -453,7 +419,7 @@ export const ArrowDiv = styled.div`
 `;
 
 export const ToggleBox = styled.div`
-  width: 80%;
+  width: 100%;
   height: 61px;
   margin: 0 auto;
   display: flex;
@@ -461,19 +427,30 @@ export const ToggleBox = styled.div`
   justify-content: space-between;
 `;
 
-export const FirstToggle = styled.div`
-  width: 45px;
-  height: 45px;
+export const ThicknessBoxDiv = styled.div`
+  width: 258px;
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid var(--line, #cfc0ff);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+`;
+
+export const FirstPenToggle = styled.div`
+  width: 37px;
+  height: 37px;
+
+  border-radius: 71px;
+  border: 1px solid var(--main, #391d93);
+  background: #f5f2ff;
 
   display: flex;
   font-size: 13px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  border-radius: 50px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: var(--3-1, #fcf5f5);
 
   color: var(--1, #5035a6);
   /* font-family: Spoqa Han Sans Neo; */
@@ -482,17 +459,23 @@ export const FirstToggle = styled.div`
   font-weight: 300;
   line-height: normal;
 
-  &:hover {
-    background-color: #5035a6;
-    opacity: 70%;
+  &:active {
+    border-radius: 71px;
+    background: #5035a6;
+
     color: white;
     transition: 0.3s;
+    transform: scale(1.3);
   }
 `;
 
-export const SecondToggle = styled.div`
-  width: 45px;
-  height: 45px;
+export const FirstEraserToggle = styled.div`
+  width: 37px;
+  height: 37px;
+
+  border-radius: 71px;
+  border: 1px solid var(--main, #391d93);
+  background: #f5f2ff;
 
   display: flex;
   font-size: 13px;
@@ -500,25 +483,61 @@ export const SecondToggle = styled.div`
   justify-content: center;
   cursor: pointer;
 
-  border-radius: 50px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: var(--3-1, #fcf5f5);
-
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
 
-  &:hover {
-    width: 50px;
-    height: 50px;
-    background-color: #5035a6;
-    color: white;
+  background-image: url('/eraser.png');
+  background-size: 60%;
 
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &:active {
+    border-radius: 71px;
+    background: #5035a6;
+
+    color: white;
     transition: 0.3s;
+    transform: scale(1.3);
   }
+`;
+
+export const ColorEraserSettingDiv = styled.div`
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+`;
+
+export const SecondToggle = styled.div`
+  width: 37px;
+  height: 37px;
+
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  border-radius: 71px;
+  border: 1px solid var(--main, #391d93);
+  background: #f5f2ff;
+
+  color: var(--1, #5035a6);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
+  background-image: url('/thickness.png');
+  background-size: 50%;
+
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 //////////eraser
@@ -532,6 +551,15 @@ export const EraserArrowDiv = styled.div`
   border-radius: 20px;
   transform: translate(150px, 20%);
   z-index: -1;
+
+  &:focus {
+    width: 50px;
+    height: 50px;
+    background-color: #5035a6;
+    color: white;
+
+    transition: 0.3s;
+  }
 `;
 
 export const EraserThicknessDiv = styled.div`
@@ -543,17 +571,93 @@ export const EraserThicknessDiv = styled.div`
 `;
 
 export const ToggleDiv = styled.div`
-  width: 60%;
+  width: 100%;
   height: 50px;
 `;
 
 export const ToggleFlexDiv = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 export const ToggleP = styled.p`
-  font-size: 12px;
+  width: 60%;
+  color: #5035a6;
+
   text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const DiaryToggleTitleDiv = styled.div`
+  width: 40%;
+  height: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CustomToggle = styled(Toggle)`
+  .react-toggle-track {
+    //배경색 - 체크여부 확인하고 초기값은 gray
+    background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
+    width: 100px;
+    height: 30px;
+    transform: translateX(15px);
+  }
+
+  //thumb의 스타일 지정
+  .react-toggle-thumb {
+    background-color: purple;
+    width: 55px;
+    height: 20px;
+    border-radius: 10px;
+    transform: translate(20px, 4px);
+  }
+
+  //토글이 켜진 상태
+  &.react-toggle--checked {
+    .react-toggle-track {
+      background-color: yellow;
+    }
+    .react-toggle-thumb {
+      background-color: red;
+    }
+  }
+
+  &:hover {
+    .react-toggle-track {
+      background-color: ${(props) =>
+        props.checked ? 'red' : 'gray'} !important;
+    }
+
+    .react-toggle-thumb {
+      background-color: pink;
+    }
+  }
+`;
+
+export const DiaryToggleP = styled.div`
+  color: var(--1, #5035a6);
+  /* font-family: Spoqa Han Sans Neo; */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+
+  margin-bottom: 16px;
+`;
+
+export const DiarySpan = styled.span`
+  color: var(--Black, #222122);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
