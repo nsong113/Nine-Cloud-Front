@@ -101,6 +101,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       // 서버에 이메일, 인증 코드, 비밀번호, 사용자명을 보내 확인 요청
+
       const response = await axios.post(`${BASE_URL}/complete-signup`, {
         email,
         //인증코드
