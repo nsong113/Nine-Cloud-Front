@@ -9,6 +9,7 @@ import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import { useInfiniteQuery } from 'react-query';
 import { getInfiniteDiaries } from 'src/apis/diary';
+import { getMonth } from 'date-fns';
 
 //- inView라는 훅을 제공한다. ref 속성을 내가 지정한 곳이 화면에 보이는지, 안보이는지 감지하는 역할을 한다. Boolean값을 반환한다. 내가 지정한 요소가 화면에 보이면 true, 보이지 않으면 false를 반환한다.
 import { useInView } from 'react-intersection-observer';
@@ -27,6 +28,8 @@ const ViewAll = () => {
   const profileImg = localStorage.getItem('image'); //나중에 db에서 get하기
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [ref, inView] = useInView();
+
+  const month = getMonth(newDate) + 1;
 
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
@@ -87,63 +90,30 @@ const ViewAll = () => {
       <S.LargeContainer>
         <S.CalendarContainerDiv>
           {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
-          <S.HeaderContainerDiv>
-            <S.CalenderHeaderDiv>
-              {' '}
-              <S.LogoBoxDiv>
-                <S.LogoImg
-                  src='/ninecloud.png'
-                  alt='로고'
-                  onClick={onClickLogo}
-                />
-                <S.BrandTextBoxDiv>
-                  <span>NINE</span>
-                  <span>CLOUD</span>
-                </S.BrandTextBoxDiv>
-              </S.LogoBoxDiv>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <S.HeaderLeftWrapperDiv>
-                  <S.DateBoxDiv>
-                    <S.YearTextSpan>{year}</S.YearTextSpan>
-                    <S.PrevNextMonthBoxDiv>
-                      <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
-                    </S.PrevNextMonthBoxDiv>
-                  </S.DateBoxDiv>
-                </S.HeaderLeftWrapperDiv>
-                <S.RightProfile>
-                  <S.ButtonWrapperDiv>
-                    <Tooltip message='달력'>
-                      <S.StyledHoverTapButton
-                        whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
-                        whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
-                        onClick={onClickListBtn}
-                      >
-                        <S.Calendar />
-                      </S.StyledHoverTapButton>
-                    </Tooltip>
-                    <Tooltip message='마이페이지'>
-                      <S.StyledHoverTapButton
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={onClickMyProfile}
-                      >
-                        {!profileImg && (
-                          <S.ProfileBoxDiv>
-                            <S.AvatarSizeImg src='/avatar.png' alt='기본' />
-                          </S.ProfileBoxDiv>
-                        )}
-                        {profileImg && (
-                          <div>
-                            <S.AvatarSizeImg src={profileImg} alt='기본' />
-                          </div>
-                        )}
-                      </S.StyledHoverTapButton>
-                    </Tooltip>
-                  </S.ButtonWrapperDiv>
-                </S.RightProfile>
-              </div>
-            </S.CalenderHeaderDiv>
-          </S.HeaderContainerDiv>
+          <S.HeaderWrapperDiv>
+            <S.DateBoxDiv>
+              <S.YearMonthChangeBoxDiv>
+                <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
+              </S.YearMonthChangeBoxDiv>
+              <S.PrevNextMonthBoxDiv>
+                <S.YearTextSpan>{year}</S.YearTextSpan>
+                <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+              </S.PrevNextMonthBoxDiv>
+            </S.DateBoxDiv>
+            <S.ViewAllRightProfile>
+              <S.ButtonWrapperDiv>
+                <Tooltip message='달력'>
+                  <S.StyledHoverTapButton
+                    whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
+                    whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
+                    onClick={onClickListBtn}
+                  >
+                    <S.Calendar />
+                  </S.StyledHoverTapButton>
+                </Tooltip>
+              </S.ButtonWrapperDiv>
+            </S.ViewAllRightProfile>
+          </S.HeaderWrapperDiv>
           <Animation>
             <S.ViewAllWrapperDiv>
               <div>

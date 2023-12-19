@@ -54,8 +54,9 @@ const Footer = () => {
   };
 
   return (
-    <S.FooterContainer>
-      <div className='navbar' style={{ backgroundColor: '#391D93' }}>
+    <div className='FooterContainer'>
+      {/* <S.FooterContainer> */}
+      <div className='navbar'>
         <li className='list-item'>
           <FaHouseChimney style={iconStyle} onClick={goToMainHandler} />
           <span className='list-item-name'>Main</span>
@@ -69,7 +70,8 @@ const Footer = () => {
           <span className='list-item-name'>Community</span>
         </li>
       </div>
-    </S.FooterContainer>
+      {/* </S.FooterContainer> */}
+    </div>
   );
 };
 

@@ -139,8 +139,8 @@ export const TableBody = styled.tbody`
 
 export const TableRow = styled.tr`
   background-color: transparent; /* 배경색 없애기 */
-  margin-top: 20px;
-  margin-bottom: 10px;
+  /* margin-top: 20px;
+  margin-bottom: 10px; */
 `;
 
 export const DayRoow = styled.tr`
@@ -149,7 +149,7 @@ export const DayRoow = styled.tr`
 
 export const TableCell = styled.td<ITableCellProps>`
   width: 56px;
-  height: 63px;
+  height: 53px;
 
   cursor: pointer;
   &:hover {
@@ -245,6 +245,15 @@ export const RightProfile = styled.div`
   align-items: center;
 `;
 
+export const ViewAllRightProfile = styled.div`
+  width: 130px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: #391d93;
+  margin-right: 35px;
+`;
+
 export const MonthNumberSpan = styled.span`
   color: #391d93;
 
@@ -310,8 +319,9 @@ export const LogoImg = styled.img`
 ////View All
 export const LargeContainer = styled.div`
   width: 100%;
-  height: 85vh;
-  background-image: url('/background.png');
+  height: 100vh;
+  background-color: red;
+  background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -330,6 +340,13 @@ export const ViewAllEachBoxDiv = styled.div`
   height: 130px;
   margin-top: 20px;
   border-radius: 10px;
+
+  border-radius: 10px 2px;
+  background: rgba(245, 242, 255, 0.3);
+
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(25px);
   /* border: 2px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77)); */
 
   /* background: linear-gradient(
@@ -339,7 +356,7 @@ export const ViewAllEachBoxDiv = styled.div`
     rgba(252, 245, 245, 0.3) 100%
   ); */
 
-  background: radial-gradient(
+  /* background: radial-gradient(
         circle at 100% 100%,
         #ffffff 0,
         #ffffff 3px,
@@ -371,7 +388,7 @@ export const ViewAllEachBoxDiv = styled.div`
   box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px); */
 `;
 
 export const ViewAllEachFlex = styled.div`
@@ -482,7 +499,7 @@ export const DateSpan = styled.span<IDateSpanProps>`
   height: 22px;
   margin: 10px 0px;
   font-weight: 700;
-  line-height: 22px;
+  /* line-height: 22px; */
 `;
 
 export const DateImg = styled.img`
@@ -510,9 +527,9 @@ export const YearMonthChangeBoxDiv = styled.div`
 export const PrevNextMonthBoxDiv = styled.div`
   display: flex;
   align-items: start;
-  margin-top: 10px;
-
+  margin-top: 4px;
   flex-direction: column;
+  margin-left: 5px;
 `;
 
 export const ProfileBoxDiv = styled.div`
