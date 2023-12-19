@@ -80,8 +80,8 @@ const Signup = () => {
       // if (response.data.message.includes('이메일 전송 완료')) {
       setIsVerificationSent(true);
       // }
-      // alert('회원가입이 성공적으로 완료되었습니다.');
-      // navigate('/login');
+      alert('회원가입이 성공적으로 완료되었습니다.');
+      navigate('/login');
     } catch (error: any) {
       if (error.response) {
         // 서버 응답이 있는 경우
