@@ -9,6 +9,8 @@ import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from 'react-icons/fa6';
 import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
+import { useRecoilState } from 'recoil';
+import { contents, countAverage, isPublic, weather } from 'src/states/counter';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -18,20 +20,17 @@ const BoardWriteDraw = () => {
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  const [isPublic, setIsPublic] = useState<boolean>(true);
-  const [isChecked, setIsChecked] = useState(true); //이걸로 나중에 점수 확 높히기
-
-  console.log('isPublic', isPublic);
+  const [isPublicToday, setIsPublicToday] = useRecoilState<boolean>(isPublic);
+  const [isChecked, setIsChecked] = useState(true); //토글 체크 여부
+  const [countAverageToday, setCountAverageToday] =
+    useRecoilState(countAverage);
+  const [weatherToday, setWeatherToday] = useRecoilState(weather);
+  const [contentsToday, setContentsToday] = useRecoilState(contents);
 
   const onClickPrevBtn = () => {
     navigate('/post3');
   };
-  const onClickSubmitBtn = () => {
-    navigate('/main');
-  };
-  const onClickMoveToCancel = () => {
-    setIsModalOpen((prev) => !prev);
-  };
+
   const onClickAddBtn = () => {
     setIsModalOpen((prev) => !prev);
   };
@@ -151,7 +150,8 @@ const BoardWriteDraw = () => {
   };
 
   const onChangeIsPublicHandler = () => {
-    setIsPublic(!isPublic);
+    setIsPublicToday(!isPublicToday);
+    setIsChecked(!isChecked);
   };
 
   let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
@@ -172,15 +172,15 @@ const BoardWriteDraw = () => {
       console.log('file', file);
 
       setPostDiaryItem({
-        EmotionalStatus: Number(localStorage.getItem('countAverage')),
-        content: localStorage.getItem('contents'),
+        EmotionalStatus: countAverageToday,
+        content: contentsToday,
         image: file,
-        isPublic: isPublic,
+        isPublic: isPublicToday,
         sentence: localStorage.getItem('sentence'),
-        weather: localStorage.getItem('weather'),
+        weather: weatherToday,
       });
 
-      console.log('isPublic111', isPublic);
+      // console.log('isPublicToday', isPublicToday);
     } else {
       console.log('이미지 불러오기 실패');
     }
@@ -212,10 +212,6 @@ const BoardWriteDraw = () => {
 
   const onClickGotoMain = () => {
     navigate('/main');
-  };
-
-  const onChangeToggleHandler = () => {
-    setIsChecked(!isChecked);
   };
 
   return (

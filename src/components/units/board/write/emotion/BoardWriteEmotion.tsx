@@ -5,13 +5,16 @@ import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
+import { useRecoilState } from 'recoil';
+import { countAverage, weather } from 'src/states/counter';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { emotion: happy, handler: onChangeHappyCount } = useSetEmotion();
   const { emotion: sad, handler: onChangeSadCount } = useSetEmotion();
-  const { emotion: angry, handler: onChangeAngryCount } = useSetEmotion();
+  const { emotion: todayWeather, handler: onChangeAngryCount } =
+    useSetEmotion();
   const { emotion: gloomy, handler: onChangeGloomyCount } = useSetEmotion();
 
   const onClickMoveToMain = () => {
@@ -26,17 +29,14 @@ const BoardWriteEmotion = () => {
     navigate('/post3');
   };
 
-  // const countAverage =
-  //   (Number(happy) + Number(sad) + Number(gloomy) + Number(angry)) / 4;
-
-  const countAverage = (Number(happy) + Number(sad)) / 2;
+  const [countAverageNum, setCountAverage] = useRecoilState(countAverage);
+  const [weatherToday, setWeatherToday] = useRecoilState(weather);
+  setCountAverage((Number(happy) + Number(sad)) / 2);
+  setWeatherToday(todayWeather);
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
   ));
-
-  localStorage.setItem('countAverage', countAverage.toString());
-  localStorage.setItem('weather', angry.toString());
 
   return (
     <Animation2>
@@ -152,9 +152,9 @@ const BoardWriteEmotion = () => {
                     </S.ContentBoxDiv>
                     <S.CountBoxDiv>
                       <S.CountP>
-                        {angry === '1' && '비왔어요'}
-                        {angry === '2' && '흐렸어요'}
-                        {angry === '3' && '맑았어요'}
+                        {todayWeather === '1' && '비왔어요'}
+                        {todayWeather === '2' && '흐렸어요'}
+                        {todayWeather === '3' && '맑았어요'}
                       </S.CountP>
                     </S.CountBoxDiv>
                   </S.ContentFlexDivBox>
@@ -168,7 +168,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={3}
-                      value={parseInt(angry) || 1}
+                      value={parseInt(todayWeather) || 1}
                       onChange={onChangeAngryCount}
                     />
                     <S.LabelsDiv>

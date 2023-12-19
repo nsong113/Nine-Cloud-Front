@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 import { IpostDiaryItem } from './apiesType';
+import { useRecoilState } from 'recoil';
+import { countAverage } from 'src/states/counter';
 
 // create (post)
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
@@ -42,7 +44,7 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
     alert('오늘 일기 포스팅에 성공하셨습니다.');
     localStorage.removeItem('sentence');
     localStorage.removeItem('weather');
-    localStorage.removeItem('countAverage');
+    // localStorage.removeItem('countAverage');
     localStorage.removeItem('image');
     localStorage.removeItem('content');
     localStorage.removeItem('isPublic');

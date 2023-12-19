@@ -1,53 +1,33 @@
-import React, {
-  ChangeEvent,
-  useEffect,
-  useRef,
-  useState,
-  MutableRefObject,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
-import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
 import 'react-toggle/style.css';
-import { IoIosCheckmark } from 'react-icons/io';
-import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
-import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
 import { FaCheck } from 'react-icons/fa6';
 import ReactQuill from 'react-quill';
 import './Quill.snow.css';
+import { useRecoilState } from 'recoil';
+import { contents } from 'src/states/counter';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isChecked, setIsChecked] = useState(true); //이걸로 나중에 점수 확 높히기
-  const [contents, setContents] = useState<string>('');
+  // const [isChecked, setIsChecked] = useState(true); //이걸로 나중에 점수 확 높히기
+  // const [contents, setContents] = useState<string>('');
+  const [contentsToday, setContentsToday] = useRecoilState<string>(contents);
+
   const [todayRandomSaying, setTodayRandomSaying] = useState('');
 
-  // const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
-  // // const onChangeContents = (event: any) => {
-  //   if (event.target.value.length < 201) {
-  //     setContents(event.target.value);
-  //   }
-  // };
-
   const onChangeContents = (value: string) => {
-    setContents(value === '<p><br></p>' ? '' : value);
-    if (contents.length > 199) {
+    setContentsToday(value === '<p><br></p>' ? '' : value);
+    if (contentsToday.length > 199) {
       alert('200자 이상 입력 불가합니다');
       return;
     }
   };
 
-  //
   let existedSentence: string | null = localStorage.getItem('sentence');
-
-  //토글버튼
-  setIsChecked;
-  const onChangeToggleHandler = () => {
-    setIsChecked(!isChecked);
-  };
 
   //onClickNextBtn
   const onClickPrevPage = () => {
@@ -57,34 +37,34 @@ const BoardWriteDiary = () => {
     navigate('/post2');
   };
 
-  console.log(isChecked);
   //로컬스토리지에 저장
-  localStorage.setItem('contents', contents);
+  // localStorage.setItem('contents', contents);
+  localStorage.setItem('sentence', todayRandomSaying);
 
-  useEffect(() => {
-    if (isChecked === true) {
-      const countAverage = localStorage.getItem('countAverage');
-      if (countAverage) {
-        const parsedValue = JSON.parse(countAverage);
-        if (typeof parsedValue === 'string') {
-          let plusAverage = Number(parsedValue) + 1;
-          let newValue = plusAverage.toString();
-          localStorage.setItem('countAverage', JSON.stringify(newValue));
-        }
-      }
-    }
-    if (isChecked === false) {
-      const countAverage = localStorage.getItem('countAverage');
-      if (countAverage) {
-        const parsedValue = JSON.parse(countAverage);
-        if (typeof parsedValue === 'string') {
-          let plusAverage = Number(parsedValue) - 1;
-          let newValue = plusAverage.toString();
-          localStorage.setItem('countAverage', JSON.stringify(newValue));
-        }
-      }
-    }
-  }, [isChecked]);
+  // useEffect(() => {
+  //   if (isChecked === true) {
+  //     const countAverage = localStorage.getItem('countAverage');
+  //     if (countAverage) {
+  //       const parsedValue = JSON.parse(countAverage);
+  //       if (typeof parsedValue === 'string') {
+  //         let plusAverage = Number(parsedValue) + 1;
+  //         let newValue = plusAverage.toString();
+  //         localStorage.setItem('countAverage', JSON.stringify(newValue));
+  //       }
+  //     }
+  //   }
+  //   if (isChecked === false) {
+  //     const countAverage = localStorage.getItem('countAverage');
+  //     if (countAverage) {
+  //       const parsedValue = JSON.parse(countAverage);
+  //       if (typeof parsedValue === 'string') {
+  //         let plusAverage = Number(parsedValue) - 1;
+  //         let newValue = plusAverage.toString();
+  //         localStorage.setItem('countAverage', JSON.stringify(newValue));
+  //       }
+  //     }
+  //   }
+  // }, [isChecked]);
 
   const onClickOpenFortune = () => {
     setIsModalOpen(true);
@@ -141,7 +121,7 @@ const BoardWriteDiary = () => {
                   <S.DiaryWriteTitleH3>
                     오늘의 <S.DiarySpan>일기</S.DiarySpan>를 작성해보세요!
                   </S.DiaryWriteTitleH3>
-                  <S.TextAreaCount>{contents.length}/200</S.TextAreaCount>
+                  <S.TextAreaCount>{contentsToday.length}/200</S.TextAreaCount>
                 </S.DiaryTitleDiv>
                 <S.InputDiv>
                   {/* //////////////////////// */}
@@ -150,7 +130,7 @@ const BoardWriteDiary = () => {
                     theme='snow'
                     style={ReactQuillStyle}
                     onChange={onChangeContents}
-                    defaultValue={contents}
+                    defaultValue={contentsToday}
                     modules={quillModules}
                     placeholder='정성스럽게 마음일기를 적어주실 수록 디테일한 AI 감정 솔루션을 받아볼 수 있어요!'
                   />
