@@ -5,8 +5,36 @@ import { FaHouseChimney } from 'react-icons/fa6';
 import { IoAddCircle } from 'react-icons/io5';
 import { MdPeopleAlt } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getPosts } from 'src/apis/cheolmin-api/apis';
+import useCalendar from '../../hooks/useCalender';
+import { format, getYear, getDate } from 'date-fns';
 
 const Footer = () => {
+  const {
+    currentDate,
+    setCurrentDate,
+    currentMonth,
+    setCurrentMonth,
+    currentYear,
+    setCurrentYear,
+  } = useCalendar();
+
+  const { data, isLoading, refetch } = useQuery(
+    ['posts', currentMonth, currentYear],
+    () =>
+      getPosts({
+        currentYear: getYear(currentDate),
+        currentMonth: format(currentMonth, 'M'),
+      })
+  );
+
+  const today = getDate(currentDate) - 1;
+  console.log('footer', data?.data[today]);
+
+  const diaryCheck = data?.data[today];
+
+  // const checkData = data.
   const navigate = useNavigate();
 
   const goToMainHandler = () => {
@@ -14,6 +42,10 @@ const Footer = () => {
   };
 
   const goToPostHandler = () => {
+    if (diaryCheck !== null) {
+      alert('오늘은 이미 글을 작성하셨습니다.');
+      return;
+    }
     navigate('/post');
   };
 
@@ -23,7 +55,7 @@ const Footer = () => {
 
   return (
     <S.FooterContainer>
-      <div className='navbar'>
+      <div className='navbar' style={{ backgroundColor: '#391D93' }}>
         <li className='list-item'>
           <FaHouseChimney style={iconStyle} onClick={goToMainHandler} />
           <span className='list-item-name'>Main</span>
@@ -45,4 +77,5 @@ export default Footer;
 
 const iconStyle = {
   fontSize: '20px',
+  color: 'white',
 };

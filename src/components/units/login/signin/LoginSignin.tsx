@@ -60,7 +60,7 @@ const LoginSignin = () => {
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('expiredTime', expiredTime);
       alert(`${response.data.msg}`);
-      navigate('/loadingpage');
+      // navigate('/loadingpage');
     } catch (error: any) {
       if (error.response) {
         const errorMsg = error.response.data.msg;

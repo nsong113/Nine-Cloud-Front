@@ -1,6 +1,25 @@
 import styled, { keyframes } from 'styled-components';
 import { IoIosArrowForward } from 'react-icons/io';
 
+export const slideIn = keyframes`
+  from {
+    transform: translateY(100%)
+  }
+  to {
+    transform: translateY(0) 
+  }
+`;
+
+export const ModalContentDiv = styled.div`
+  width: 443px;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 50px 50px 0 0;
+  animation: ${slideIn} 0.5s ease-in-out;
+`;
+
 export const MainContainerDiv = styled.div`
   width: 443px;
   height: 100%;
@@ -33,14 +52,7 @@ export const ImgBoxDiv = styled.div`
   position: fixed;
 `;
 
-export const slideIn = keyframes`
-  from {
-    transform: translateY(100%)
-  }
-  to {
-    transform: translateY(0) 
-  }
-`;
+
 
 export const ContainerDiv = styled.div`
   position: fixed;
@@ -56,15 +68,6 @@ export const ContainerDiv = styled.div`
   align-items: end;
 `;
 
-export const ModalContentDiv = styled.div`
-  width: 443px;
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 50px 50px 0 0;
-  animation: ${slideIn} 0.5s ease-in-out;
-`;
 
 export const ContentsBoxDiv = styled.div`
   display: flex;

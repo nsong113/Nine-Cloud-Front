@@ -219,8 +219,6 @@ export const editMyInfo = async (target: any) => {
     const formData = new FormData();
     formData.append('username', target.username);
     formData.append('image', target.imgFile);
-    formData.append('password', target.password);
-    formData.append('newPassword', target.newPassoword);
     const response = await axios.patch(
       `${process.env.REACT_APP_SERVER_URL}/myInfo/editmyInfo`,
       formData,
@@ -234,6 +232,28 @@ export const editMyInfo = async (target: any) => {
       }
     );
     console.log('formData', formData);
+    return response.data;
+  } catch (error) {
+    console.log('error');
+  }
+};
+
+export const editPassword = async (target: any) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER_URL}/myInfo/edit-pw`,
+      {
+        password: target.password,
+        newPassword: target.newPassword,
+      },
+      {
+        withCredentials: true,
+        headers: {
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     console.log('error');

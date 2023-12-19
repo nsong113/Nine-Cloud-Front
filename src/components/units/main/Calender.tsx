@@ -7,7 +7,14 @@ import Image from './Image';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import CalendarBody from './CalendarBody';
 import { useNavigate } from 'react-router-dom';
-import { addMonths, format, getYear, setMonth, subMonths } from 'date-fns';
+import {
+  addMonths,
+  format,
+  getMonth,
+  getYear,
+  setMonth,
+  subMonths,
+} from 'date-fns';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import { useQuery } from 'react-query';
 import {
@@ -33,6 +40,8 @@ const Calender = () => {
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
+  const month = getMonth(newDate) + 1;
+
   const { data, isLoading, refetch } = useQuery(
     ['posts', currentMonth, currentYear],
     () =>
@@ -72,6 +81,8 @@ const Calender = () => {
     // await refetch(); // 다음 달 데이터 다시 가져오기
   };
 
+  console.log('currentMonth', currentMonth);
+
   const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
     await setCurrentMonth(newDate); // setCurrentMonth 함수의 실행을 기다림
@@ -88,21 +99,51 @@ const Calender = () => {
           {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
           <S.CalenderHeaderDiv>
             <S.LogoBoxDiv>
-              <S.LogoImg src='/logo.png' alt='로고' />
-              <S.BrandTextBoxDiv>
-                <span>NINE</span>
-                <span>CLOUD</span>
-              </S.BrandTextBoxDiv>
+              <div style={{ display: 'flex' }}>
+                <S.LogoImg src='/logo.png' alt='로고' />
+                <S.BrandTextBoxDiv>
+                  <S.LogoText>NINE</S.LogoText>
+                  <div>
+                    <S.LogoText>CLOUD</S.LogoText>
+                  </div>
+                </S.BrandTextBoxDiv>
+              </div>
+              <Tooltip message='마이페이지'>
+                <S.StyledHoverTapButton
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onClickMyProfile}
+                >
+                  {!profileImg && (
+                    <S.AvatarSizeImg
+                      src={profile?.data?.profileImg}
+                      alt='기본'
+                    />
+                  )}
+                  {profileImg && (
+                    <div>
+                      <S.AvatarSizeImg src={profileImg} alt='기본' />
+                    </div>
+                  )}
+                </S.StyledHoverTapButton>
+              </Tooltip>
             </S.LogoBoxDiv>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                // alignItems: 'center',
+              }}
+            >
               <S.HeaderLeftWrapperDiv>
                 <S.DateBoxDiv>
                   <S.YearMonthChangeBoxDiv>
-                    <S.YearTextSpan>{year}</S.YearTextSpan>
                     <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+                    <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
                     <S.NextMonth onClick={onClickNextMonth} size={26} />
                   </S.YearMonthChangeBoxDiv>
                   <S.PrevNextMonthBoxDiv>
+                    <S.YearTextSpan>{year}</S.YearTextSpan>
                     <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
                   </S.PrevNextMonthBoxDiv>
                 </S.DateBoxDiv>
@@ -116,27 +157,6 @@ const Calender = () => {
                       onClick={onClickListBtn}
                     >
                       <S.List />
-                    </S.StyledHoverTapButton>
-                  </Tooltip>
-                  <Tooltip message='마이페이지'>
-                    <S.StyledHoverTapButton
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={onClickMyProfile}
-                    >
-                      {!profileImg && (
-                        <S.ProfileBoxDiv>
-                          <S.AvatarSizeImg
-                            src={profile?.data?.profileImg}
-                            alt='기본'
-                          />
-                        </S.ProfileBoxDiv>
-                      )}
-                      {profileImg && (
-                        <div>
-                          <S.AvatarSizeImg src={profileImg} alt='기본' />
-                        </div>
-                      )}
                     </S.StyledHoverTapButton>
                   </Tooltip>
                 </S.ButtonWrapperDiv>
@@ -178,7 +198,7 @@ const Calender = () => {
               </S.CalendarTable>
             </S.LeftRightAnimeButton>
           </Animation>
-          <Image data={data} />
+          {/* <Image data={data} /> */}
         </S.Test>
       </S.CalendarContainerDiv>
     </>

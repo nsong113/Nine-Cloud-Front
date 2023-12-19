@@ -26,27 +26,42 @@ export const ShowCloudDivRed = styled.div`
 `;
 
 export const HeaderContainerDiv = styled.div`
-  height: 170px;
-  border-radius: 0px 0px 50px 50px;
-  background: #5035a6;
-  /* box-shadow: 0px 20px 10px 0px rgba(80, 53, 166, 0.25); */
+  width: 443px;
+  height: 115px;
+  flex-shrink: 0;
+  border-radius: 0px 0px 40px 0px;
+  background: #391d93;
+  box-shadow: 0px 4px 4px 0px rgba(57, 29, 147, 0.2);
 `;
 
 export const LogoBoxDiv = styled.div`
+  width: 443px;
   display: flex;
-  margin: 25px 0px 0px 27px;
+  margin: 35px 0px 0px 27px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const BrandTextBoxDiv = styled.div`
+  color: #d9cdfc;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 20.394px;
+  font-style: normal;
+  font-weight: 500;
+  /* line-height: 0%; 0px */
+  letter-spacing: -1.224px;
   display: flex;
   flex-direction: column;
-  color: #a294cd;
-  font-family: Spoqa Han Sans Neo;
-  font-size: 16.394px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.984px;
+  align-items: start;
+  margin-left: 5px;
+  margin-top: 5px;
+`;
+
+export const LogoText = styled.span`
+  margin: 0px;
+  line-height: 15px;
+  font-size: 20.394px;
 `;
 
 export const ShowCloudDivGreen = styled.div`
@@ -99,6 +114,7 @@ export const CalendarTable = styled.table`
   width: 403px;
   height: 400px;
   margin-left: 20px;
+  margin-top: 50px;
 `;
 
 export const Test = styled.div`
@@ -110,12 +126,13 @@ export const TableHead = styled.thead`
 `;
 
 export const TableBody = styled.tbody`
-  background: rgba(255, 255, 255, 0.5);
+  width: 401px;
+  height: 500px;
+  background: rgba(248, 245, 255, 0.5);
 
-  box-shadow: 0px 4px 10px 0px rgba(80, 53, 166, 0) inset,
-    0px 4px 20px 0px rgba(83, 51, 186, 0.28),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.3),
-    0px 4px 20px 0px rgba(87, 48, 209, 0.31);
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   opacity: 0.8;
   border: 5px solid rgba(80, 53, 166, 0.77);
@@ -133,19 +150,20 @@ export const DayRoow = styled.tr`
 
 export const TableCell = styled.td<ITableCellProps>`
   width: 56px;
-  height: 103px;
+  height: 63px;
 
   cursor: pointer;
   &:hover {
-    background-color: gray;
+    background-color: #926FFF
   }
-  /* opacity: 0.3; */
+  /* opacity: 0.7; */
 
   background: rgba(255, 255, 255, 0.5);
+  /* border: 1px solid #cfc0ff; */
 
-  /* box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2); */
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(15px);
 `;
 
@@ -201,15 +219,16 @@ export const CountSpan = styled.span`
 
 export const DateBoxDiv = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100px;
   align-items: start;
   margin-top: 20.48px;
+  height: 500px;
 `;
 
 export const HeaderLeftWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
+  height: 80px;
 `;
 
 export const RightProfile = styled.div`
@@ -218,25 +237,37 @@ export const RightProfile = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  align-items: center;
 `;
 
-export const YearTextSpan = styled.span`
-  color: #a294cd;
-  font-family: Spoqa Han Sans Neo;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
-  margin-left: 5px;
-`;
+export const MonthNumberSpan = styled.span`
+  color: #391d93;
 
-export const MonthTextSpan = styled.span`
-  color: #fff;
   font-family: Spoqa Han Sans Neo;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
-  line-height: 30px;
+  line-height: normal;
+`;
+
+export const YearTextSpan = styled.span`
+  color: #a294cd;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 10px;
+`;
+
+export const MonthTextSpan = styled.span`
+  color: #a294cd;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const AvatarSizeImg = styled.img`
@@ -246,6 +277,7 @@ export const AvatarSizeImg = styled.img`
   cursor: pointer;
   border-radius: 159px;
   border: 1px solid #fff;
+  margin-right: 50px;
 
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 
@@ -401,18 +433,17 @@ export const Calendar = styled(IoCalendarNumberOutline)`
 
 export const List = styled(IoList)`
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
-  color: #a294cd;
+  color: #391d93;
   &:hover {
     color: white;
   }
 `;
 
 export const ButtonWrapperDiv = styled.div`
-  margin-top: 32px;
-  margin-left: 70px;
+  margin-left: 145px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -474,8 +505,10 @@ export const YearMonthChangeBoxDiv = styled.div`
 
 export const PrevNextMonthBoxDiv = styled.div`
   display: flex;
-  margin-left: 14px;
   align-items: start;
+  margin-top: 10px;
+
+  flex-direction: column;
 `;
 
 export const ProfileBoxDiv = styled.div`
