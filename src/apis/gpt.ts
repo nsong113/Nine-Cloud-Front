@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { Iprops } from './apiesType';
 
-export const CallGPT = async ({ prompt }) => {
+export const CallGPT = async ({ prompt }: { prompt: string }) => {
   try {
     const messages = [
       {
@@ -10,8 +11,8 @@ export const CallGPT = async ({ prompt }) => {
       },
       {
         role: 'user',
-        content: ` 1. [title]: Think of the title of today after understanding the [events] separated by "" at the bottom.
-      2. [actionTips]: Write down 2 action tips that will be helpful in the future customer situation. The two action tips must be converted into JSON Array format.
+        content: ` 1. the title of today after understanding the [events] separated by "" at th [title]: Think of bottom.
+      2. [actionTips]: Write down 2 action tips that will be helpful in the future customer situation. The two action tips must be converted into JSON Array format. 
     
       translate into Korean and Use the output in the following JSON format:
       {
@@ -36,6 +37,7 @@ export const CallGPT = async ({ prompt }) => {
         messages,
         temperature: 0.7,
         max_tokens: 1000,
+        stream: true,
       },
       {
         headers: {

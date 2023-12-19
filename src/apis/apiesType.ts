@@ -17,3 +17,7 @@ export interface IpostDiaryItem {
 //   isPublic?: boolean;
 //   image?: File | null;
 // }
+
+export interface Iprops {
+  prompt: string;
+}

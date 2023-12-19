@@ -8,7 +8,7 @@ export const EmotionContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/backgroundFinal.png');
+  background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,49 +31,16 @@ export const EmotionWrapperDOWNdiv = styled.div`
   align-items: center;
 
   height: 775px;
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  background: radial-gradient(
-        circle at 100% 100%,
-        #ffffff 0,
-        #ffffff 6px,
-        transparent 6px
-      )
-      0% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
-      100% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
-      0% 100%/8px 8px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
-      100%/8px 8px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 16px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
-      calc(100% - 4px) no-repeat,
-    linear-gradient(
-      319deg,
-      rgba(255, 255, 255, 0.7) 51%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    linear-gradient(
-      128deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
-    linear-gradient(
-      44deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.2) 100%
-    );
-  border-radius: 8px;
+  border-radius: 20px 5px 5px 5px;
+  border: 1px solid var(--line, #cfc0ff);
+  background: rgba(245, 242, 255, 0.2);
+
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset;
+  backdrop-filter: blur(15px);
   padding: 6px;
   box-sizing: border-box;
-  backdrop-filter: blur(35px);
-  opacity: 0.8;
-  filter: drop-shadow(-2px -5px 12px rgba(80, 53, 166, 0.27));
-  border-radius: 40px 5px 5px 5px;
+  backdrop-filter: blur(15px);
+  /* opacity: 0.8; */
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -379,15 +346,25 @@ export const ContentsBoxDiv = styled.div`
   align-items: center;
 `;
 
-export const ContentBoxDiv = styled.p`
+export const ContentFlexDivBox = styled.div`
   width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: red;
+`;
+
+export const ContentBoxDiv = styled.p`
+  width: 60%;
   font-size: 18px;
-  color: #5035a6;
+  color: #222122;
+  background-color: aqua;
 `;
 
 export const ContentBoxSpan = styled.span`
-  font-weight: 800;
-  color: #5035a6;
+  font-weight: 500;
+  color: #222122;
   font-size: 18px;
 `;
 
