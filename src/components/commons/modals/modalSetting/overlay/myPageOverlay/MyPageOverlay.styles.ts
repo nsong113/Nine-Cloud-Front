@@ -12,7 +12,7 @@ export const slideIn = keyframes`
 
 export const ModalContentDiv = styled.div`
   width: 443px;
-  height: 40%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   background-color: white;

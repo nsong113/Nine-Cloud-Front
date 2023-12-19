@@ -3,7 +3,6 @@ import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import Animation from 'src/components/commons/utills/Animation/Animation';
-import Image from './Image';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import CalendarBody from './CalendarBody';
 import { useNavigate } from 'react-router-dom';
@@ -22,6 +21,7 @@ import {
   getPosts,
   getPrevMonthPosts,
 } from 'src/apis/cheolmin-api/apis';
+import Image from './Image';
 
 const Calender = () => {
   const navigate = useNavigate();
@@ -95,75 +95,33 @@ const Calender = () => {
   return (
     <>
       <S.CalendarContainerDiv>
-        <S.HeaderContainerDiv>
-          {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
-          <S.CalenderHeaderDiv>
-            <S.LogoBoxDiv>
-              <div style={{ display: 'flex' }}>
-                <S.LogoImg src='/logo.png' alt='로고' />
-                <S.BrandTextBoxDiv>
-                  <S.LogoText>NINE</S.LogoText>
-                  <div>
-                    <S.LogoText>CLOUD</S.LogoText>
-                  </div>
-                </S.BrandTextBoxDiv>
-              </div>
-              <Tooltip message='마이페이지'>
+        <S.HeaderWrapperDiv>
+          <S.DateBoxDiv>
+            <S.YearMonthChangeBoxDiv>
+              <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+              <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
+              <S.NextMonth onClick={onClickNextMonth} size={26} />
+            </S.YearMonthChangeBoxDiv>
+            <S.PrevNextMonthBoxDiv>
+              <S.YearTextSpan>{year}</S.YearTextSpan>
+              <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
+            </S.PrevNextMonthBoxDiv>
+          </S.DateBoxDiv>
+          <S.RightProfile>
+            <S.ButtonWrapperDiv>
+              <Tooltip message='리스트'>
                 <S.StyledHoverTapButton
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={onClickMyProfile}
+                  whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
+                  whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
+                  onClick={onClickListBtn}
                 >
-                  {!profileImg && (
-                    <S.AvatarSizeImg
-                      src={profile?.data?.profileImg}
-                      alt='기본'
-                    />
-                  )}
-                  {profileImg && (
-                    <div>
-                      <S.AvatarSizeImg src={profileImg} alt='기본' />
-                    </div>
-                  )}
+                  <S.List />
                 </S.StyledHoverTapButton>
               </Tooltip>
-            </S.LogoBoxDiv>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                // alignItems: 'center',
-              }}
-            >
-              <S.HeaderLeftWrapperDiv>
-                <S.DateBoxDiv>
-                  <S.YearMonthChangeBoxDiv>
-                    <S.PrevMonth onClick={onClickPrevMonth} size={30} />
-                    <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
-                    <S.NextMonth onClick={onClickNextMonth} size={26} />
-                  </S.YearMonthChangeBoxDiv>
-                  <S.PrevNextMonthBoxDiv>
-                    <S.YearTextSpan>{year}</S.YearTextSpan>
-                    <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
-                  </S.PrevNextMonthBoxDiv>
-                </S.DateBoxDiv>
-              </S.HeaderLeftWrapperDiv>
-              <S.RightProfile>
-                <S.ButtonWrapperDiv>
-                  <Tooltip message='리스트'>
-                    <S.StyledHoverTapButton
-                      whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
-                      whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
-                      onClick={onClickListBtn}
-                    >
-                      <S.List />
-                    </S.StyledHoverTapButton>
-                  </Tooltip>
-                </S.ButtonWrapperDiv>
-              </S.RightProfile>
-            </div>
-          </S.CalenderHeaderDiv>
-        </S.HeaderContainerDiv>
+            </S.ButtonWrapperDiv>
+          </S.RightProfile>
+        </S.HeaderWrapperDiv>
+
         <S.Test>
           <Animation>
             {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
@@ -198,7 +156,7 @@ const Calender = () => {
               </S.CalendarTable>
             </S.LeftRightAnimeButton>
           </Animation>
-          {/* <Image data={data} /> */}
+          <div style={{ height: '100px', backgroundColor: 'blue' }}></div>
         </S.Test>
       </S.CalendarContainerDiv>
     </>

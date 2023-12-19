@@ -42,7 +42,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  color: #555;
+  color: white;
   transform: translateY(0);
   transition: transform 0.5s ease, opacity 0.2s ease;
   cursor: pointer;
@@ -58,7 +58,7 @@ body {
 }
 
 .list-item:hover {
-  color: var(--highlight);
+  color: white;
   transform: translateY(-6px);
   .list-item-name {
     transform: translateY(20px);

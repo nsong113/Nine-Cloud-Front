@@ -14,7 +14,7 @@ const Layout = () => {
     <div>
       <S.Container>
         <S.Wrapper>
-          {/* {isMyPage && <Header />} */}
+          {(isMyPage || isListPage) && <Header />}
           <div>
             <Outlet />
           </div>
