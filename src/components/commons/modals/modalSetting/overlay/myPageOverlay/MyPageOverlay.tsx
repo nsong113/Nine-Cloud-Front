@@ -37,10 +37,18 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
-  const [newPassword, setNewPassword] = useState('');
+
   const [isEditPW, setIsEditPW] = useState(false);
+  const [passwordValidationMessage, setPasswordValidationMessage] =
+    useState('');
+  const [
+    confirmPasswordValidationMessage,
+    setConfirmPasswordValidationMessage,
+  ] = useState('');
 
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -70,6 +78,50 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     setPassword(event?.target.value);
   };
 
+  const onChangeNewPassword = (event: ChangeEvent<HTMLInputElement>) => {
+    const newPassword = event.target.value;
+    setNewPassword(newPassword);
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{8,20}$/;
+    if (newPassword.trim() === '') {
+      // 비밀번호가 비어 있다면 메시지 초기화
+      setPasswordValidationMessage('');
+    } else if (!passwordRegex.test(newPassword)) {
+      // 비밀번호 유효성 검사 실패 시 메시지 표시
+      setPasswordValidationMessage(
+        '8~20자의 소문자, 숫자, 특수문자를 포함해야 합니다.'
+      );
+    } else {
+      // 유효한 비밀번호인 경우 완료 메시지 표시
+      setPasswordValidationMessage('완료');
+    }
+  };
+
+  const onChangeConfirmPasswordChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const newConfirmPassword = event.target.value;
+    setConfirmPassword(newConfirmPassword);
+    const confirmPasswordRegex =
+      /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{8,20}$/;
+
+    if (newConfirmPassword.trim() === '') {
+      // 비밀번호가 비어 있다면 메시지 초기화
+      setConfirmPasswordValidationMessage('');
+    } else if (!confirmPasswordRegex.test(newConfirmPassword)) {
+      // 비밀번호 유효성 검사 실패 시 메시지 표시
+      setConfirmPasswordValidationMessage(
+        '8~20자의 소문자, 숫자, 특수문자를 포함해야 합니다.'
+      );
+    } else if (newConfirmPassword !== newPassword) {
+      // 비밀번호와 확인 비밀번호가 일치하지 않는 경우 메시지 표시
+      setConfirmPasswordValidationMessage('비밀번호가 일치하지 않습니다.');
+    } else {
+      // 유효한 비밀번호인 경우 완료 메시지 표시
+      setConfirmPasswordValidationMessage('완료');
+    }
+  };
+
   const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event?.target.value);
   };
@@ -83,23 +135,17 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
 
   const editPasswordMutation = useMutation(editPassword, {
     onSuccess: () => {
+      // setIsEdit((prev) => !prev);
+      // setIsEditPW((prev) => !prev);
+      navigate('/main');
       queryClient.invalidateQueries('myPassword');
-      setIsEdit((prev) => !prev);
-      setIsEditPW((prev) => !prev);
+    },
+    onError: () => {
+      alert('현재 비밀번호가 일치하지 않습니다.');
     },
   });
 
   const onClickEditBtn = () => {
-    // setIsEdit((prev) => !prev);
-    // if (isEdit && imgFile) {
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     const result = reader.result as string;
-    //     localStorage.setItem('image', result);
-    //   };
-    //   reader.readAsDataURL(imgFile);
-    // }
-    // editMyInfoMutation.mutate();
     const newProfile = {
       imgFile: selectedImage,
       username,
@@ -117,10 +163,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
 
   const onClickButton = () => {
     buttonRef.current.click();
-  };
-
-  const onChangeNewPassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setNewPassword(event.target.value);
   };
 
   const onClickToggle = () => {
@@ -182,7 +224,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
           <S.HeaderWrapperDiv></S.HeaderWrapperDiv>
           <S.ContentsWrapperDiv>
             <S.ImageBoxDiv>
-              <div>
+              <S.ImageBoxDiv>
                 {!data?.data.profileImg && (
                   <S.PicutureImg
                     src={profileImage || '/avatar.png'}
@@ -190,13 +232,13 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                   />
                 )}
                 {data?.data.profileImg && (
-                  <div>
+                  <S.ImageBoxDiv>
                     {!isEditPW && (
                       <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
                     )}
-                  </div>
+                  </S.ImageBoxDiv>
                 )}
-              </div>
+              </S.ImageBoxDiv>
             </S.ImageBoxDiv>
             <S.ImagePlustButtonBox>
               <S.HiddenInput
@@ -243,19 +285,31 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                           </S.PasswordTitleSpan>
                           <S.PasswordSpan>현재 비밀번호</S.PasswordSpan>
                           <S.PasswordInput
-                            onChange={onChangeNewPassword}
+                            onChange={onChangePassword}
                             type='password'
                           />
                           <S.PasswordSpan>새로운 비밀번호</S.PasswordSpan>
                           <S.PasswordInput
-                            onChange={onChangePassword}
+                            onChange={onChangeNewPassword}
                             type='password'
                           />
+                          <S.ValidationMessage
+                            isError={passwordValidationMessage !== '완료'}
+                          >
+                            {passwordValidationMessage}
+                          </S.ValidationMessage>
                           <S.PasswordSpan>새 비밀번호 확인</S.PasswordSpan>
                           <S.PasswordInput
-                            onChange={onChangePassword}
+                            onChange={onChangeConfirmPasswordChange}
                             type='password'
                           />
+                          <S.ValidationMessage
+                            isError={
+                              confirmPasswordValidationMessage !== '완료'
+                            }
+                          >
+                            {confirmPasswordValidationMessage}
+                          </S.ValidationMessage>
                         </S.PasswordWrapperDiv>
                       )}
                     </S.PasswordContainerDiv>

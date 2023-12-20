@@ -77,7 +77,7 @@ const Header = () => {
                 )}
                 {profileImg && (
                   <div>
-                    <S.AvatarSizeImg src={profileImg} alt='기본' />
+                    <S.AvatarSizeImg src='/avatar.png' alt='기본' />
                   </div>
                 )}
               </S.StyledHoverTapButton>
