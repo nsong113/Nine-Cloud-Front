@@ -19,7 +19,7 @@ const StaticDrawing = (
   const [startPosition, setStartPosition] = useState<ICoordinate | undefined>(
     undefined
   );
-
+  //
   const drawStaticLine = (
     originalMousePosition: ICoordinate | null,
     newMousePosition: ICoordinate | null

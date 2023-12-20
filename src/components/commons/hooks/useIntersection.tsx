@@ -8,7 +8,7 @@
 // //     `https://mypocketbase.fly.dev/api/collections/products/records/?perPage=4&page=${page}`,
 // //   )
 // // }
-
+//
 // export const PaginatedQuery = () => {
 //   const {
 //     data,
