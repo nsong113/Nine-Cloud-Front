@@ -269,7 +269,7 @@ const BoardWriteDraw = () => {
               </S.DrawTitleFlexIcon>
             </S.DrawTitleBox>
             <S.CanvasContainer>
-              <S.DrawCanvas ref={canvasRef} height={385} width={365} />
+              <S.DrawCanvas ref={canvasRef} height={365} width={365} />
               <S.ToggleBox>
                 <S.FirstPenToggle onClick={onClickPenToggleHandler}>
                   펜
@@ -353,7 +353,6 @@ const BoardWriteDraw = () => {
                   오늘의 일기를 전체공개로 등록해 <br />
                   사람들과 공유해보세요!
                 </S.ToggleP>
-
                 <S.DiaryToggleTitleDiv>
                   <S.CustomToggle
                     id='customToggle'
@@ -364,13 +363,7 @@ const BoardWriteDraw = () => {
                     }}
                     onChange={onChangeIsPublicHandler}
                   />
-                  {/* </label> */}
                 </S.DiaryToggleTitleDiv>
-                {/* <input
-                  type='checkbox'
-                  checked={isPublic} // 현재 상태에 따라 체크 여부 결정
-                  onChange={onChangeIsPublicHandler}
-                /> */}
               </S.ToggleFlexDiv>
             </S.ToggleDiv>
             <S.ButtonWrapperDiv>

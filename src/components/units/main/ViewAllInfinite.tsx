@@ -24,16 +24,17 @@ const ViewAllInfinite = (props: any) => {
           </S.ViewAllIMGbox>
           <S.ViewAllRightContentDiv>
             <S.ViewAllRightFlexDiv>
-              <S.ViewAllDateDiv>{formattedDate}</S.ViewAllDateDiv>
+              <S.ViewAllEmojiIMGDiv>
+                <img src='/happy.png' style={imgstyle} alt='happy' />
+                {props.item.EmotionStatus}
+              </S.ViewAllEmojiIMGDiv>
               <S.ViewAllPublicIMGDiv>
                 <img src='/happy.png' style={imgstyle} alt='happy' />
                 {props.item.isPublic}
               </S.ViewAllPublicIMGDiv>
             </S.ViewAllRightFlexDiv>
-            <S.ViewAllEmojiIMGDiv>
-              <img src='/happy.png' style={imgstyle} alt='happy' />
-              {props.item.EmotionStatus}
-            </S.ViewAllEmojiIMGDiv>
+            <S.ViewAllDateDiv>{formattedDate}</S.ViewAllDateDiv>
+
             <S.ViewAllContentP
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(String(props.item.content)),
