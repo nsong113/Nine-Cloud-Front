@@ -124,7 +124,6 @@ const ViewAll = () => {
                         <ViewAllInfinite
                           key={`page-${pageIndex}-item-${itemIndex}`}
                           item={item}
-                          // onClick={() => onClickGotoDetailPage(item.diaryId)}
                         />
                       );
                     }

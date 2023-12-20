@@ -50,6 +50,7 @@ export const TitleBoxDiv = styled.div`
   align-items: center;
   text-align: center;
   margin-top: 10px;
+  transform: translateY(-100px);
 `;
 
 export const TextStyleSpanH5 = styled.h5`
@@ -100,6 +101,7 @@ export const BoxButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transform: translateY(-100px);
 `;
 
 export const TextStyleSpan = styled.span`
