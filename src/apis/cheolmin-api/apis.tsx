@@ -217,8 +217,8 @@ export const getMyInfo = async () => {
 export const editMyInfo = async (target: any) => {
   try {
     const formData = new FormData();
-    formData.append('username', target.username);
-    formData.append('image', target.imgFile);
+    formData.append('username', target?.myPost.username);
+    formData.append('image', target?.newProfile.imgFile);
     const response = await axios.patch(
       `${process.env.REACT_APP_SERVER_URL}/myInfo/editmyInfo`,
       formData,

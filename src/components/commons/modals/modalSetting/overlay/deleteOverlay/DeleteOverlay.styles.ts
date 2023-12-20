@@ -77,6 +77,7 @@ export const CancleButton = styled.button`
   background-color: #391d93;
   border-radius: 5px 20px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 export const OkButton = styled.button`
@@ -96,6 +97,7 @@ export const OkButton = styled.button`
     0px 5px 50px 0px rgba(57, 29, 147, 0.2),
     0px -5px 50px 0px rgba(57, 29, 147, 0.2);
   backdrop-filter: blur(15px);
+  cursor: pointer;
 `;
 
 export const ContentsDiv = styled.div`

@@ -103,7 +103,12 @@ const BoardDetail = () => {
   const id = params.id;
 
   const onClickHeart = () => {
-    setIsHeart((prev) => !prev);
+    setIsHeart(true);
+    heartMutation.mutate(id);
+  };
+
+  const onClickHeartCancel = () => {
+    setIsHeart(false);
     heartMutation.mutate(id);
   };
 
@@ -189,20 +194,12 @@ const BoardDetail = () => {
                     </S.HeartCommentTextSpan>
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
-                    {isHeart && (
-                      <div>
-                        <S.CommentHeartImg onClick={onClickHeart} />
-                        <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
-                        <span>{heartCount?.data}</span>
-                      </div>
-                    )}
-                    {!isHeart && (
-                      <div>
-                        <S.BlankHeartImg onClick={onClickHeart} />
-                        <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
-                        <span>{heartCount?.data}</span>
-                      </div>
-                    )}
+                    <div>
+                      {isHeart && <S.CommentHeartImg onClick={onClickHeartCancel} />}
+                      {!isHeart && <S.BlankHeartImg onClick={onClickHeart} />}
+                      <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
+                      <span>{heartCount?.data}</span>
+                    </div>
                   </S.HeartBoxDiv>
                 </S.FooterBoxDiv>
               </S.CategoryBoxDiv>
