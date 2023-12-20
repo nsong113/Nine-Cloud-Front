@@ -76,9 +76,7 @@ const Header = () => {
                   <S.AvatarSizeImg src={profile?.data?.profileImg} alt='기본' />
                 )}
                 {profileImg && (
-                  <div>
                     <S.AvatarSizeImg src='/avatar.png' alt='기본' />
-                  </div>
                 )}
               </S.StyledHoverTapButton>
             </Tooltip>

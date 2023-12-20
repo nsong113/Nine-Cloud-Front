@@ -40,7 +40,7 @@ export const ModalContentDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 0.93;
+  opacity: 0.97;
 `;
 
 export const TitleSpan = styled.span`

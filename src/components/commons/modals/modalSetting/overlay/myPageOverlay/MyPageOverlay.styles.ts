@@ -381,5 +381,6 @@ export const PasswordConfirmDiv = styled.div`
 export const ValidationMessage = styled.div<ValidationMessageProps>`
   font-size: 14px;
   height: 14px;
-  margin-top: 5px;
+  margin-top: 5px; /* 적절한 여백 설정 */
+  color: ${(props) => (props.isError ? 'red' : 'blue')};
 `;
