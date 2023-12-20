@@ -14,7 +14,7 @@ export const DrawContainerDiv = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 `;
-//
+
 export const DrawWrapperUPDiv = styled.div`
   width: 100%;
   min-height: 100px;

@@ -13,5 +13,3 @@ export const ContainerDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
-//
-//

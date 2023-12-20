@@ -29,4 +29,3 @@ export const Title = styled.div`
   margin-left: 10px;
   font-size: 20px;
 `;
-//

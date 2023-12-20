@@ -11,7 +11,7 @@ export default function OnBoard() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isLastSlide, setIsLastSlide] = useState(false);
-//
+
   const titleList = [
     '하루하루 감정을 기록해요',
     '감정에 맞는 이모티콘을 추천',

@@ -13,7 +13,7 @@ export const EmotionContainerDiv = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 `;
-// 
+
 export const EmotionWrapperUPDiv = styled.div`
   width: 100%;
   min-height: 100px;

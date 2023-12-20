@@ -14,7 +14,7 @@ export interface IdateOptions {
   month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow';
   day?: any;
 }
-//
+
 export interface ItileContent {
   date?: any;
   view?: any;

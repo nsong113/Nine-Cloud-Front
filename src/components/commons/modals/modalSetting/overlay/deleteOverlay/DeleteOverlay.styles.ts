@@ -8,7 +8,7 @@ export const slideIn = keyframes`
     transform: translateY(0%) 
   }
 `;
-//
+
 export const ContainerDiv = styled.div`
   position: fixed;
   z-index: 1000;

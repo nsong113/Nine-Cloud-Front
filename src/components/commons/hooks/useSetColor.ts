@@ -22,7 +22,7 @@ const useSetColor = () => {
   };
   const colorHandlerPurple = (): void => {
     setColor('#4E12F6');
-  };//
+  };
   const colorHandlerPink = (): void => {
     setColor('#DB00FF');
   };

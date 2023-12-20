@@ -99,7 +99,7 @@ export const MainEachSlideBox = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
-// 
+
 export const MainMapContainer = styled.div`
   width: 90%;
   height: 90%;

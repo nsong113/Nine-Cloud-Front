@@ -12,7 +12,7 @@ import {
 import { useParams } from 'react-router-dom';
 import { CommentData } from './test';
 import { IComment } from './BoardDetailComment.types';
-// 
+
 const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
   const [content, setContent] = useState('');
   const [isEdit, setIsEdit] = useState(false);

@@ -17,7 +17,7 @@ import { getInfiniteCommunity } from 'src/apis/community';
 // interface Props extends CloudyProps {
 //   children: React.ReactNode;
 // }
-// 
+
 const CommunityMain = () => {
   const [isDrag, setIsDrag] = useState(false);
   const [startX, setStartX] = useState<number | undefined>();

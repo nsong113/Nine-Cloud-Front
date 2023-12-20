@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../social/LoginKakao';
 import LoginGoogle from '../social/LoginGoogle';
 import LoginNaver from '../social/LoginNaver';
-// 
+
 const LoginSignin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

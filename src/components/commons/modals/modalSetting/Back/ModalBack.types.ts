@@ -1,4 +1,3 @@
 interface IProp {
   onClose?: () => void;
 }
-//

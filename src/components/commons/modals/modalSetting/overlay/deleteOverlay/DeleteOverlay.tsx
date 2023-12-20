@@ -4,7 +4,7 @@ import * as S from './DeleteOverlay.styles';
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import { IDelete } from '../../../delete/DeleteModal.types';
-//
+
 const DeleteOverlay: React.FC<IDelete> = ({ onOk, onClose }) => {
   const onClickCancel = () => {
     onClose();

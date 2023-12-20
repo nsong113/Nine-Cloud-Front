@@ -12,7 +12,7 @@ const ViewAllInfinite = (props: any) => {
     navigate(`/post/${id}`);
     // console.log('click');
   };
-  //
+  
   return (
     <>
       <S.ViewAllEachBoxDiv

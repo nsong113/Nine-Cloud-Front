@@ -9,7 +9,7 @@ import { IoPersonOutline } from 'react-icons/io5';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { MdPeopleOutline } from 'react-icons/md';
-//
+
 export const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;

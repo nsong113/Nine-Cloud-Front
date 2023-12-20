@@ -16,7 +16,7 @@ export const Container = styled.div`
   margin: 0;
   padding: 0;
 `;
-//
+
 export const Wrapper = styled.div`
   width: 443px;
   height: 99.8%;

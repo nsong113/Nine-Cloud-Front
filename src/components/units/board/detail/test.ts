@@ -16,4 +16,4 @@ export const data = [
     image: '/pig.png',
   },
 ];
-//
+

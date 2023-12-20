@@ -52,4 +52,3 @@ const UserNameGenerator = () => {
 };
 
 export default UserNameGenerator;
-//

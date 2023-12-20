@@ -18,7 +18,7 @@ export const signupTitle = styled.h1`
   font-weight: 500;
   font-size: 50px;
 `;
-//
+
 export const InputBox = styled.div`
   width: 80%;
   margin-top: 40px;

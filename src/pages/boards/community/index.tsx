@@ -4,5 +4,5 @@ import CommunityMain from 'src/components/units/community/community/CommunityMai
 const Community = () => {
   return <CommunityMain />;
 };
-//
+
 export default CommunityMain;

@@ -8,4 +8,3 @@ interface Props {
 
   // onClickMoveToMain?: (e: React.FormEvent<HTMLButtonElement>) => void;
 }
-//

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Iprops } from './apiesType';
-//
+
 export const CallGPT = async ({
   contents,
   temperature,

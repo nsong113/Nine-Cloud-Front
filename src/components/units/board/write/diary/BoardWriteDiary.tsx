@@ -24,7 +24,7 @@ const BoardWriteDiary = () => {
       return;
     }
   };
-  //
+
   let existedSentence: string | null = localStorage.getItem('sentence');
 
   //onClickNextBtn

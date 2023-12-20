@@ -12,7 +12,7 @@ import {
 } from 'src/states/counter';
 
 //더미데이터도 json 파싱
-// 
+
 const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo }) => {
   const [data, setData] = useState({ title: '', actionTips: '' });
   const [isLoading, setIsLoading] = useState(false);

@@ -16,7 +16,7 @@ export const ContainerDiv = styled.div`
 
   transition: opacity 0.3s ease-in-out;
 `;
-//
+
 export const ModalContentDiv = styled.div`
   width: 414.683px;
   height: 250px;

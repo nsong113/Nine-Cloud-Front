@@ -521,7 +521,7 @@ export const GPTBox = styled.div`
   align-items: center;
   justify-content: center;
 `;
-// 
+
 export const GPTFlexBox = styled.div`
   width: 80%;
   display: flex;

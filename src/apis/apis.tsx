@@ -1,2 +1,1 @@
 export const get = 'dd';
-// 

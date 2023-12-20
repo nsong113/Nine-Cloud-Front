@@ -10,7 +10,7 @@ export const slideIn = keyframes`
     transform: translateY(0) 
   }
 `;
-// 
+
 export const ModalContentDiv = styled.div`
   width: 443px;
   height: 50%;

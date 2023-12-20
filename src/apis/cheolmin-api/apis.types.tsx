@@ -8,7 +8,7 @@ export interface IAddComment {
   diaryId: string | undefined;
   content: string | undefined;
 }
-//
+
 export interface IEditComment {
   commentId: number | undefined;
   message: string | undefined;

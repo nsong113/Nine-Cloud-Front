@@ -14,7 +14,7 @@
 //     3: '/Purple.png',
 //     4: '/Lemon.png',
 //   };
-//
+
 //   const getEmotion = (emotionStatus: any) => {
 //     return emotionImages[emotionStatus] || '/blank.png';
 //   };

@@ -4,4 +4,3 @@ export interface IProfile {
   country: string;
   hobby: string;
 }
-//

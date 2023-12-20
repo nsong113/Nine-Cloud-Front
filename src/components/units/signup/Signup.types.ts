@@ -4,7 +4,7 @@ export interface IProfile {
   country: string;
   hobby: string;
 }
-//
+
 export interface ValidationMessageProps {
   isError: boolean;
 }

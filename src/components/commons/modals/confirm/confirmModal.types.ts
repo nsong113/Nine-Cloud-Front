@@ -12,4 +12,3 @@ export interface IConfirm {
   onClickGotoPost2: () => void;
   postDiaryItem: IpostDiaryItem | null;
 }
-//

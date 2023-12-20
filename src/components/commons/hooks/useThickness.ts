@@ -18,7 +18,7 @@ const useThickness = () => {
   const EraserThinHandler = (): void => {
     setThickness(10);
   };
-  //
+  
   return {
     thickness,
     EraserBoldHaneler,

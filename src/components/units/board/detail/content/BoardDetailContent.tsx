@@ -7,4 +7,3 @@ const BoardDetailContent = (props: any) => {
 };
 
 export default BoardDetailContent;
-//

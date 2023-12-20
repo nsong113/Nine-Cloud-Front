@@ -4,4 +4,4 @@ export interface IEditPost {
   detailedContent: any;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
-//
+
