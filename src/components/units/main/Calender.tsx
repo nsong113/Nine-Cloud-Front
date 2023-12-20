@@ -22,6 +22,7 @@ import {
   getPrevMonthPosts,
 } from 'src/apis/cheolmin-api/apis';
 import Image from './Image';
+import GPTModal from 'src/components/commons/modals/gpt/GPTModal';
 
 const Calender = () => {
   const navigate = useNavigate();
@@ -98,6 +99,13 @@ const Calender = () => {
     setIsGPTModal(!isGPTModal);
   };
 
+  const onClickConfirm = () => {
+    setIsGPTModal(!isGPTModal);
+  };
+  const onClickGotoPost = () => {
+    navigate('/post');
+  };
+
   return (
     <>
       <S.CalendarContainerDiv>
@@ -162,7 +170,9 @@ const Calender = () => {
               </S.CalendarTable>
             </S.LeftRightAnimeButton>
           </Animation>
-
+          {isGPTModal && (
+            <GPTModal onOk={onClickConfirm} onGo={onClickGotoPost} />
+          )}
           <S.GPTBox onClick={onClickCheckGPT}>
             <S.GPTFlexBox>
               <S.GPTLogo></S.GPTLogo>
