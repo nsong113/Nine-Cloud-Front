@@ -6,8 +6,8 @@ const refreshToken = localStorage.getItem('refreshToken');
 const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `bearer ${accessToken}`,
-    Refreshtoken: `bearer ${refreshToken}`,
+    Authorization: `Bearer ${accessToken}`,
+    Refreshtoken: `${refreshToken}`,
   },
 });
 
@@ -23,7 +23,7 @@ axiosInstance.interceptors.response.use(
 
     const originalRequest = config;
 
-    if (status === 400) {
+    if (status === 401) {
       const accessToken = localStorage.getItem('accessToken');
       const refreshToken = localStorage.getItem('refreshToken');
 
@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
         const newRefreshToken = data.data.refreshToken;
         originalRequest.headers = {
           'Content-Type': 'application/json',
-          Authorization: `${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
           Refreshtoken: `${refreshToken}`,
         };
         localStorage.setItem('accessToken', newAccessToken);
