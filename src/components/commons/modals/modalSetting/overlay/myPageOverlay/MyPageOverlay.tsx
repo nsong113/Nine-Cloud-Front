@@ -175,10 +175,12 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
         {isOpenModal && (
           <DeleteModal onOk={onClickUnRegister} onClose={onClickOpenModal} />
         )}
+        <S.CancelImgBox>
+          <S.CancelImg onClick={onOk} src='/cancel.png' alt='취소' />
+        </S.CancelImgBox>
         <S.ContentsBoxDiv>
           <S.HeaderWrapperDiv></S.HeaderWrapperDiv>
           <S.ContentsWrapperDiv>
-            <h3>마이프로필</h3>
             <S.ImageBoxDiv>
               <div>
                 {!data?.data.profileImg && (
@@ -188,7 +190,11 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                   />
                 )}
                 {data?.data.profileImg && (
-                  <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
+                  <div>
+                    {!isEditPW && (
+                      <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
+                    )}
+                  </div>
                 )}
               </div>
             </S.ImageBoxDiv>
@@ -204,9 +210,12 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
               {isEdit && (
                 <div>
                   {!isEditPW && (
-                    <S.ImageButton onClick={onClickButton}>
-                      사진 수정
-                    </S.ImageButton>
+                    <S.UploadBoxDiv>
+                      <S.ImageButton onClick={onClickButton}>
+                        사진 불러오기
+                      </S.ImageButton>
+                      <S.PictureDeleteSpan>현재 사진 삭제</S.PictureDeleteSpan>
+                    </S.UploadBoxDiv>
                   )}
                 </div>
               )}
@@ -218,62 +227,59 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                     <div>
                       {!isEditPW && (
                         <S.MyinfoBoxDiv>
-                          <span>닉네임 : {data?.data.username} </span>
-                          <span>이메일 : {data?.data.email}</span>
+                          <S.NicknameSpan>{data?.data.username}</S.NicknameSpan>
+                          <S.EmailSpan> {data?.data.email}</S.EmailSpan>
                         </S.MyinfoBoxDiv>
                       )}
                     </div>
                   )}
 
                   {isEditPW && (
-                    <div>
+                    <S.PasswordContainerDiv>
                       {isEditPW && (
-                        <div
-                          style={{ display: 'flex', flexDirection: 'column' }}
-                        >
-                          현재 비밀번호 :
-                          <S.NicknameInput
+                        <S.PasswordWrapperDiv>
+                          <S.PasswordTitleSpan>
+                            비밀번호 변경
+                          </S.PasswordTitleSpan>
+                          <S.PasswordSpan>현재 비밀번호</S.PasswordSpan>
+                          <S.PasswordInput
                             onChange={onChangeNewPassword}
                             type='password'
                           />
-                          새로운 비밀번호 :
-                          <S.NicknameInput
+                          <S.PasswordSpan>새로운 비밀번호</S.PasswordSpan>
+                          <S.PasswordInput
                             onChange={onChangePassword}
                             type='password'
                           />
-                        </div>
+                          <S.PasswordSpan>새 비밀번호 확인</S.PasswordSpan>
+                          <S.PasswordInput
+                            onChange={onChangePassword}
+                            type='password'
+                          />
+                        </S.PasswordWrapperDiv>
                       )}
-                    </div>
+                    </S.PasswordContainerDiv>
                   )}
                 </div>
                 {isEdit && (
                   <div>
                     {!isEditPW && (
-                      <div>
-                        {/* <span>새로운 비번</span>
-                    <S.NicknameInput
-                      onChange={onChangeNewPassword}
-                      type='password'
-                    />
-                    <span>원래 비번</span>
-                    <S.NicknameInput
-                      onChange={onChangePassword}
-                      type='password'
-                    /> */}
-                        <span>닉네임</span>
+                      <S.NewNameWrapperDiv>
+                        <S.UsernameSpan>사용자 이름</S.UsernameSpan>
                         <div
                           style={{ display: 'flex', flexDirection: 'column' }}
                         >
-                          <S.NicknameInput
+                          <S.NameInput
                             onChange={onChangeUsername}
                             type='text'
+                            placeholder={data?.data.username}
                           />
                           <div></div>
-                          <button onClick={onClickChangePW} type='button'>
-                            비밀번호를 바꾸시겠습니까?
-                          </button>
+                          <S.ChangePasswordSpan onClick={onClickChangePW}>
+                            비밀번호를 변경하려면 여기를 누르세요
+                          </S.ChangePasswordSpan>
                         </div>
-                      </div>
+                      </S.NewNameWrapperDiv>
                     )}
                   </div>
                 )}
@@ -285,27 +291,35 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
           </S.ContentsWrapperDiv>
           <S.ButtonWrapperDiv>
             {!isEdit && (
-              <div>
-                <button onClick={onClickToggle}>수정하기</button>
-                <button onClick={onClickLogout}>로그아웃</button>
-                <button onClick={onClickOpenModal}>회원탈퇴</button>
-              </div>
+              <S.ButtonBoxDiv>
+                <S.EditButton onClick={onClickToggle}>수정하기</S.EditButton>
+                <S.SignButtonDiv>
+                  <S.SignText onClick={onClickLogout}>로그아웃</S.SignText>
+                  <S.SignText onClick={onClickOpenModal}>회원탈퇴</S.SignText>
+                </S.SignButtonDiv>
+              </S.ButtonBoxDiv>
             )}
             {isEdit && (
               <div>
                 {!isEditPW && (
                   <div>
-                    <button onClick={onClickToggle}>취소하기</button>
-                    <button onClick={onClickEditBtn}>등록하기</button>
+                    <S.CancelButton onClick={onClickToggle}>
+                      취소하기
+                    </S.CancelButton>
+                    <S.SubmitButton onClick={onClickEditBtn}>
+                      등록하기
+                    </S.SubmitButton>
                   </div>
                 )}
                 {isEditPW && (
-                  <div>
-                    <button onClick={onClickReset}>취소하기</button>
-                    <button onClick={onClickPasswordChange}>
-                      비밀번호 바꾸기
-                    </button>
-                  </div>
+                  <S.PasswordConfirmDiv>
+                    <S.CancelButton onClick={onClickReset}>
+                      취소하기
+                    </S.CancelButton>
+                    <S.SubmitButton onClick={onClickPasswordChange}>
+                      변경하기
+                    </S.SubmitButton>
+                  </S.PasswordConfirmDiv>
                 )}
               </div>
             )}

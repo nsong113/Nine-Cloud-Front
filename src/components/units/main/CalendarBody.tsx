@@ -66,7 +66,7 @@ const CalendarBody = (props: any) => {
               props.currentMonth.getMonth(),
               1
             );
-            const daysBeforeFirstDay = firstDayOfMonth.getDay();
+            const daysBeforeFirstDay = firstDayOfMonth.getDay() - 1;
 
             const cellDate = weekIndex * 7 + dayIndex - daysBeforeFirstDay + 1;
             if (cellDate <= 0 || cellDate > allDate.length) {
