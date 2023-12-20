@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './MessageContainer.css';
 import { Container } from '@mui/system';
+import * as S from './MessageContainer.styles';
 
 const MessageContainer = ({ messageList, user }) => {
   return (
@@ -32,7 +33,7 @@ const MessageContainer = ({ messageList, user }) => {
                       : { visibility: 'hidden' }
                   }
                 />
-                <div className='your-message'>{message.chat}</div>
+                <S.YourMessage>{message.chat}</S.YourMessage>
               </div>
             )}
           </Container>
