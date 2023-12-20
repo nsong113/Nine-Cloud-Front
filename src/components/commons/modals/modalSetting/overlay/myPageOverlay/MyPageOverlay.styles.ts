@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { IoIosArrowForward } from 'react-icons/io';
+import { ValidationMessageProps } from './MyPageOverlay.types';
 
 export const slideIn = keyframes`
   from {
@@ -28,13 +29,16 @@ export const MainContainerDiv = styled.div`
 export const ImageBoxDiv = styled.div`
   display: flex;
   justify-content: start;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PicutureImg = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 150px;
   border: 1px solid black;
+  margin-top: 15px;
 `;
 
 export const HiddenInput = styled.input`
@@ -161,6 +165,7 @@ export const NicknameInput = styled.input`
 export const NameBoxDiv = styled.div``;
 
 export const MyinfoBoxDiv = styled.div`
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,6 +204,10 @@ export const EditButton = styled.button`
   margin-left: 20px;
   margin-top: 20px;
   cursor: pointer;
+  &:active {
+    background-color: #391d93;
+    color: #fff;
+  }
 `;
 
 export const SignText = styled.div`
@@ -214,6 +223,15 @@ export const SignText = styled.div`
   cursor: pointer;
   margin-left: 10px;
   margin-top: 10px;
+  &:hover {
+    color: var(--Gray2, #929292);
+    font-family: Spoqa Han Sans Neo;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 29px;
+    border-bottom: 1px solid gray;
+  }
 `;
 
 export const ButtonBoxDiv = styled.div`
@@ -227,8 +245,8 @@ export const SignButtonDiv = styled.div`
 `;
 
 export const CancelImg = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   margin: 20px;
   cursor: pointer;
@@ -353,7 +371,7 @@ export const PasswordSpan = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
-  margin-top: 40px;
+  margin-top: 10px;
 `;
 
 export const PasswordInput = styled.input`
@@ -362,7 +380,6 @@ export const PasswordInput = styled.input`
   flex-shrink: 0;
   border-radius: 2px 10px;
   background: var(--contents-box, #f5f2ff);
-  margin-bottom: 10px;
 `;
 
 export const PasswordContainerDiv = styled.div`
@@ -370,4 +387,13 @@ export const PasswordContainerDiv = styled.div`
   top: 70%;
 `;
 
-export const PasswordConfirmDiv = styled.div``;
+export const PasswordConfirmDiv = styled.div`
+  margin-top: 30px;
+`;
+
+export const ValidationMessage = styled.div<ValidationMessageProps>`
+  font-size: 14px;
+  height: 14px;
+  margin-top: 5px; /* 적절한 여백 설정 */
+  color: ${(props) => (props.isError ? 'red' : 'blue')};
+`;

@@ -256,7 +256,8 @@ export const editPassword = async (target: any) => {
     );
     return response.data;
   } catch (error) {
-    console.log('error');
+    // alert('현재 비밀번호가 일치하지 않습니다.');
+    console.log('에러');
   }
 };
 

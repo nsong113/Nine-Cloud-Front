@@ -22,6 +22,7 @@ import EditOverlay from './components/commons/modals/modalSetting/overlay/editOv
 import Chatting from './components/units/community/chatting/Chatting';
 // import BoardDetailGPT from './components/units/main/gpt/BoardDetailGPT';
 
+
 export default function Router() {
   return (
     <BrowserRouter>
