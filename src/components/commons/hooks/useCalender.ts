@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const DATE_MONTH_FIXER = 1;
 const DAY_OF_WEEK = 7;
-const DAY_LIST = ['SUN', 'MON', 'THU', 'WED', 'THR', 'FRI', 'SAT'];
+const DAY_LIST = ['MON', 'THU', 'WED', 'THR', 'FRI', 'SAT', 'SUN'];
 
 const useCalendar = () => {
   //현재 날짜 상태관리
@@ -25,7 +25,7 @@ const useCalendar = () => {
   //예를 들어 12월 1일은 금요일에 있으니 0(일요일)부터 시작한다면 6번째에 위치한다.
   //근데 0부터 시작하니 [0,1,2,3,4,5] index 상으로는 5에 위치
   //firstDayOfMonth의 요일에 해당하는 값으로 설정 => 5로 설정
-  const startingDayOfWeek = firstDayOfMonth.getDay();
+  const startingDayOfWeek = firstDayOfMonth.getDay() - 1;
 
   //해당 월의 날짜를 출력.
   //currentDate에 월이 있으니 그 월을 기반으로 하는 듯.
@@ -67,18 +67,20 @@ const useCalendar = () => {
   // 토요일까지의 남은 날짜 수를 계산합니다
   //const remainingDaysInWeek = 6
   // -1을 하는 이유는 getDay 함수가 0부터 시작하니까 맞춰줘야 한다. 그래서 -1을 하는 것. 아니면 DAY_OF_WEEK이 지금 7이니까 이걸 6으로 한다면 -1을 하지 않아도 된다.
-  const remainingDaysInWeek = DAY_OF_WEEK - lastDayOfWeek - 1;
+  // 토요일까지의 남은 날짜 수를 계산합니다
+  const remainingDaysInWeek = DAY_OF_WEEK - lastDayOfWeek;
 
-  // nextDayList를 현재 월의 나머지 날짜로 채웁니다
-  // nextDayList = [0,0,0,0,0,0]
-  const nextDayList = Array.from({
-    length: remainingDaysInWeek,
-  }).fill(0);
-
+  // remainingDaysInWeek가 7이면 다음 주가 완전히 차 있으므로 nextDayList에 아무것도 추가하지 않습니다.
+  const nextDayList =
+    remainingDaysInWeek === DAY_OF_WEEK
+      ? []
+      : Array.from({ length: remainingDaysInWeek }).fill(0);
   //concat은 배열을 합치는 용도.
   // 즉 3개의 배열을 합친 결과물이 currentCalendarList다.
   // currentCalendarList = [0,0,0,0,0,1~31,0,0,0,0,0,0]
   const currentCalendarList = prevDayList.concat(currentDayList, nextDayList);
+
+  console.log('currentCalendarList', currentCalendarList);
 
   //2차원 배열로 만드는 과정인데... 쉽지 않다...
   // [[0,0,0,0,0,1,2] [3,4,5,6,7,8,9] ... [31,0,0,0,0,0,0]]
@@ -93,6 +95,8 @@ const useCalendar = () => {
     },
     []
   );
+
+  console.log('weekCalendarList', weekCalendarList);
   return {
     weekCalendarList: weekCalendarList,
     currentDate: currentDate,

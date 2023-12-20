@@ -26,22 +26,32 @@ export const MainContainerDiv = styled.div`
 `;
 
 export const ImageBoxDiv = styled.div`
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
+  display: flex;
+  justify-content: start;
 `;
 
 export const PicutureImg = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+  border: 1px solid black;
 `;
 
 export const HiddenInput = styled.input`
   display: none;
 `;
 
-export const ImageButton = styled.button``;
+export const ImageButton = styled.button`
+  color: var(--sub, #8066d1);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 29px;
+  border-radius: 2px 10px;
+  border: 2px solid var(--sub, #8066d1);
+  cursor: pointer;
+`;
 
 export const ImagePlustButtonBox = styled.div``;
 
@@ -75,7 +85,7 @@ export const ContentsBoxDiv = styled.div`
 export const HeaderWrapperDiv = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 30px;
 `;
 export const TtitleTextSpan = styled.span`
   color: #000;
@@ -134,13 +144,10 @@ export const MoveToPageImg = styled(IoIosArrowForward)`
 export const ContentsWrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
-export const ButtonWrapperDiv = styled.div`
-  margin-top: 100px;
-`;
+export const ButtonWrapperDiv = styled.div``;
 
 export const ContentsBoxDIv = styled.div`
   display: flex;
@@ -151,11 +158,216 @@ export const NicknameInput = styled.input`
   border: 1px solid black;
 `;
 
-export const NameBoxDiv = styled.div`
-  margin-top: 20px;
-`;
+export const NameBoxDiv = styled.div``;
 
 export const MyinfoBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
+
+export const NicknameSpan = styled.span`
+  color: var(--main, #391d93);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+export const EmailSpan = styled.span`
+  color: var(--Gray2, #929292);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+`;
+
+export const EditButton = styled.button`
+  width: 105px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 10px 2px;
+  border: 2px solid var(--sub, #8066d1);
+  color: var(--sub, #8066d1);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 29px;
+  margin-left: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+`;
+
+export const SignText = styled.div`
+  width: 56px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--Gray3, #bbb);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+`;
+
+export const ButtonBoxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SignButtonDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const CancelImg = styled.img`
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  margin: 20px;
+  cursor: pointer;
+`;
+
+export const CancelImgBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  position: fixed;
+`;
+
+export const UploadBoxDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const PictureDeleteSpan = styled.span`
+  color: var(--Gray3, #bbb);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px; /* 181.25% */
+  cursor: pointer;
+`;
+
+export const UsernameSpan = styled.span`
+  color: var(--main, #391d93);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+`;
+
+export const NewNameWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NameInput = styled.input`
+  width: 403px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 2px 10px;
+  background: var(--contents-box, #f5f2ff);
+  border: 0px;
+`;
+
+export const ChangePasswordSpan = styled.span`
+  color: var(--Gray3, #bbb);
+  text-align: center;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  cursor: pointer;
+`;
+
+export const CancelButton = styled.button`
+  width: 146px;
+  height: 60px;
+  flex-shrink: 0;
+  color: #5035a6;
+  background-color: #ffffff;
+  text-align: center;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 5px 20px;
+  border: 1px solid #ece9f5;
+  cursor: pointer;
+  background: #fff;
+`;
+
+export const SubmitButton = styled.button`
+  width: 242px;
+  height: 60px;
+  flex-shrink: 0;
+  color: #5035a6;
+  cursor: pointer;
+  text-align: center;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 5px 20px;
+  border: 1px solid #ece9f5;
+
+  background: #ece9f5;
+  margin-left: 20px;
+`;
+
+export const PasswordTitleSpan = styled.span`
+  color: var(--main, #391d93);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  cursor: pointer;
+`;
+
+export const PasswordWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PasswordSpan = styled.span`
+  color: var(--main, #391d93);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  margin-top: 40px;
+`;
+
+export const PasswordInput = styled.input`
+  width: 403px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 2px 10px;
+  background: var(--contents-box, #f5f2ff);
+  margin-bottom: 10px;
+`;
+
+export const PasswordContainerDiv = styled.div`
+  width: 100%;
+  top: 70%;
+`;
+
+export const PasswordConfirmDiv = styled.div``;
