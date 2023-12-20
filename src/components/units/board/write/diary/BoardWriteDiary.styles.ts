@@ -8,7 +8,7 @@ export const DiaryContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/backgroundFinal.png');
+  background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,51 +23,19 @@ export const DiaryWrapperUPDiv = styled.div`
 export const DiaryWrapperDOWNdiv = styled.div`
   width: 90%;
   margin: 0 auto;
+  background-color: white;
 
   height: 775px;
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  background: radial-gradient(
-        circle at 100% 100%,
-        #ffffff 0,
-        #ffffff 6px,
-        transparent 6px
-      )
-      0% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
-      100% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
-      0% 100%/8px 8px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
-      100%/8px 8px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 16px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
-      calc(100% - 4px) no-repeat,
-    linear-gradient(
-      319deg,
-      rgba(255, 255, 255, 0.7) 51%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    linear-gradient(
-      128deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
-    linear-gradient(
-      44deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.2) 100%
-    );
-  border-radius: 8px;
+
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid var(--line, #cfc0ff);
+  background: rgba(245, 242, 255, 0.2);
+
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset;
+  backdrop-filter: blur(15px);
   padding: 6px;
   box-sizing: border-box;
-  backdrop-filter: blur(35px);
-  opacity: 0.8;
-  filter: drop-shadow(-2px -5px 12px rgba(80, 53, 166, 0.27));
-  border-radius: 5px 5px 5px 5px;
+  backdrop-filter: blur(15px);
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -243,8 +211,7 @@ export const DiaryTitleDiv = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
+  color: var(--Black, #222122);
   font-size: 18px;
   font-style: normal;
   font-weight: 300;
@@ -252,8 +219,7 @@ export const DiaryTitleDiv = styled.div`
 `;
 
 export const DiarySpan = styled.span`
-  color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
+  color: var(--Black, #222122);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -262,9 +228,9 @@ export const DiarySpan = styled.span`
 
 export const DiaryWriteTitleH3 = styled.p`
   text-align: left;
-  color: var(--1, #5035a6);
-  font-family: Spoqa Han Sans Neo;
+  color: var(--Black, #222122);
   font-size: 18px;
+  font-weight: 300;
 `;
 
 export const FortuneContainer = styled.div`
@@ -272,10 +238,10 @@ export const FortuneContainer = styled.div`
   margin: 0 auto;
   height: 200px;
 
-  border-radius: 10px;
-  border: 1px solid rgba(239, 170, 173, 0.7);
+  /* border: 1px solid rgba(239, 170, 173, 0.7); */
 
-  background: rgba(236, 233, 245, 0.8);
+  border-radius: 10px;
+  background: #f5f2ff;
 
   box-shadow: 0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset;
   backdrop-filter: blur(15px);
@@ -324,68 +290,6 @@ export const FortuneGoDiv = styled.div`
   transform: translateX(60px);
 `;
 
-export const DiaryToggleTitleDiv = styled.div`
-  width: 90%;
-  height: 70px;
-  margin: 20px 100px;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const CustomToggle = styled(Toggle)`
-  .react-toggle-track {
-    //배경색 - 체크여부 확인하고 초기값은 gray
-    background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
-    width: 100px;
-    height: 30px;
-    transform: translate(-50px, -8px);
-  }
-
-  //thumb의 스타일 지정
-  .react-toggle-thumb {
-    background-color: purple;
-    width: 55px;
-    height: 20px;
-    border-radius: 10px;
-    transform: translate(-43px, -4px);
-  }
-
-  //토글이 켜진 상태
-  &.react-toggle--checked {
-    .react-toggle-track {
-      background-color: yellow;
-    }
-    .react-toggle-thumb {
-      background-color: red;
-      /* transform: translateX(45px); */
-    }
-  }
-
-  &:hover {
-    .react-toggle-track {
-      background-color: ${(props) =>
-        props.checked ? 'red' : 'gray'} !important;
-    }
-
-    .react-toggle-thumb {
-      background-color: pink;
-    }
-  }
-`;
-
-export const DiaryToggleP = styled.div`
-  color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-
-  margin-bottom: 16px;
-`;
-
 export const FooterButtonBoxDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -397,14 +301,16 @@ export const FooterButtonBoxDiv = styled.div`
 `;
 
 export const ContentsWrapperDiv = styled.div`
-  width: 410px;
-  height: auto;
+  width: 100%;
+  height: 90%;
+
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateX(-12px);
+
+  transform: translateY(-40px);
 `;
 
 export const ImagePlustButtonBox = styled.div``;
@@ -506,7 +412,7 @@ export const ContentsTextarea = styled.textarea`
 
 export const InputDiv = styled.div`
   width: 100%;
-  height: 200px;
+  height: 250px;
   transform: translateY(-20px);
 `;
 

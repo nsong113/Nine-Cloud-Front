@@ -20,13 +20,19 @@ const DeleteOverlay: React.FC<IDelete> = ({ onOk, onClose }) => {
     <S.ContainerDiv className='modal' onClick={onClose}>
       <Animation3>
         <S.ModalContentDiv onClick={onClickModalDiv}>
-          <div>
-            <h2>정말로 삭제 하실겁니까?</h2>
-          </div>
-          <div>
-            <button onClick={onClickCancel}>취소</button>
-            <button onClick={onClickOk}>확인</button>
-          </div>
+          <img src='/cloud2.png' alt='구름' />
+          <S.ContentsDiv>
+            <S.TitleSpan>나인 클라우드를 정말 떠나시겠어요?</S.TitleSpan>
+            <S.SubTitleSpan>
+              떠나시면 작성하신 마음 일기는 모두 사라져요!
+            </S.SubTitleSpan>
+          </S.ContentsDiv>
+          <S.ButtonWrapperDiv>
+            <S.CancleButton onClick={onClickCancel}>
+              다시 생각해볼게요
+            </S.CancleButton>
+            <S.OkButton onClick={onClickOk}>네 떠날래요</S.OkButton>
+          </S.ButtonWrapperDiv>
         </S.ModalContentDiv>
       </Animation3>
     </S.ContainerDiv>

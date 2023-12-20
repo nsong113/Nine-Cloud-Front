@@ -6,51 +6,57 @@ import React, {
   useRef,
 } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { IMyPage } from './MyPageOverlay.types';
+import { IMyPage, IMyPost } from './MyPageOverlay.types';
 import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { editMyInfo, getMyInfo } from 'src/apis/cheolmin-api/apis';
+import {
+  editMyInfo,
+  editPassword,
+  getMyInfo,
+} from 'src/apis/cheolmin-api/apis';
 import axios from 'axios';
+import DeleteModal from '../../../delete/DeleteModal';
 
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const queryClient = useQueryClient();
-  const editMyInfoMutation = useMutation(editMyInfo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('myInfo');
-    },
-  });
   const { data } = useQuery('myInfo', getMyInfo);
 
   console.log('사진', data?.data);
   const navigate = useNavigate();
   const [imgFile, setImgFile] = useState<File | null>();
-  const [isActive, setIsActive] = useState<boolean>(false);
   const buttonRef = useRef() as MutableRefObject<HTMLInputElement>;
   const [preview, setPreview] = useState<string | null>(''); // Default preview state
   const [selectedImage, setSelectedImage] = useState<string | File>('');
-
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
-  const [newPassoword, setNewPassword] = useState('');
+  const [isEditPW, setIsEditPW] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       setSelectedImage(event.target.files?.[0]);
-      const file = event.target.files[0];
-
-      // if (file && file.type.substring(0, 5) === 'image') {
-      //   setImgFile(file);
-      //   setIsActive(true);
-      // } else {
-      //   setImgFile(null);
-      //   setIsActive(false);
-      // }
-
-      // console.log('file', file);
+      const file: File = event.target.files?.[0];
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file); // 선택된 파일을 데이터 URL로 변환시킨다.
+      fileReader.onload = (event) => {
+        // 파일 읽기 작업 후, state에 url 추가
+        if (typeof event.target?.result === 'string')
+          setPreview(event.target?.result);
+      };
     }
   };
+
   console.log('selectedImage', selectedImage);
   useEffect(() => {
     if (imgFile) {
@@ -64,14 +70,8 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     }
   }, [imgFile]);
 
-  const [isEdit, setIsEdit] = useState(false);
-
   const onClickModalDiv = (e: any) => {
     e.stopPropagation();
-  };
-
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event?.target.value);
   };
 
   const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
@@ -81,28 +81,25 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const editMypageMutation = useMutation(editMyInfo, {
     onSuccess: () => {
       queryClient.invalidateQueries('myInfo');
+      setIsEdit((prev) => !prev);
+    },
+    onError: () => {
+      alert('에러입니다');
     },
   });
 
   const onClickEditBtn = () => {
-    // setIsEdit((prev) => !prev);
-    // if (isEdit && imgFile) {
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     const result = reader.result as string;
-    //     localStorage.setItem('image', result);
-    //   };
-    //   reader.readAsDataURL(imgFile);
-    // }
-    // editMyInfoMutation.mutate();
+    if (username === '') {
+      alert('바꿀 닉네임을 입력하세요');
+      return;
+    }
+    const myPost: IMyPost = {};
+    if (username) myPost.username = username;
     const newProfile = {
       imgFile: selectedImage,
-      username,
-      password,
-      newPassoword,
     };
 
-    editMypageMutation.mutate(newProfile);
+    editMypageMutation.mutate({ myPost, newProfile });
 
     navigate('/main');
   };
@@ -113,35 +110,78 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     buttonRef.current.click();
   };
 
-  const onChangeNewPassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setNewPassword(event.target.value);
-  };
-
   const onClickToggle = () => {
     setIsEdit((prev) => !prev);
   };
 
-  console.log('newPassword', newPassoword);
+  const onClickLogout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('expiredTime');
+    alert('로그아웃이 완료되었습니다.');
+    navigate('/login');
+  };
+  const onClickUnRegister = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      const refreshToken = localStorage.getItem('refreshToken');
+      const response = await axios.delete(`${BASE_URL}/signoff`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${accessToken}`,
+          Refreshtoken: `${refreshToken}`,
+        },
+      });
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('expiredTime');
+      alert(response.data.message);
+      navigate('/login');
+    } catch (error: any) {
+      console.error('네트워크 오류', error.message);
+      alert('네트워크 오류');
+    }
+  };
+
+  const onClickOpenModal = () => {
+    setIsOpenModal((prev) => !prev);
+  };
 
   return (
     <S.ContainerDiv onClick={onOk} className='modal'>
       <S.ModalContentDiv onClick={onClickModalDiv}>
+        {isOpenModal && (
+          <DeleteModal onOk={onClickUnRegister} onClose={onClickOpenModal} />
+        )}
+        <S.CancelImgBox>
+          <S.CancelImg
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={onOk}
+            src={isHovered ? '/cancel2.png' : '/cancel.png'}
+            alt='취소'
+          />
+        </S.CancelImgBox>
+
         <S.ContentsBoxDiv>
+          {isEdit && <S.ProfileTitleSpan>프로필 수정</S.ProfileTitleSpan>}
           <S.HeaderWrapperDiv></S.HeaderWrapperDiv>
           <S.ContentsWrapperDiv>
-            <h3>마이프로필</h3>
             <S.ImageBoxDiv>
-              <div>
-                {!data?.data.profileImg && (
-                  <S.PicutureImg
-                    src={profileImage || '/avatar.png'}
-                    alt='엑박'
-                  />
-                )}
-                {data?.data.profileImg && (
-                  <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
-                )}
-              </div>
+              <S.ImageBoxDiv>
+                {/* {!data?.data.profileImg && ( */}
+                <S.PicutureImg
+                  src={preview || data?.data.profileImg}
+                  alt='엑박'
+                  isEdit={isEdit}
+                />
+                {/* )} */}
+                {/* {data?.data.profileImg && (
+                  <S.ImageBoxDiv>
+                    <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
+                  </S.ImageBoxDiv>
+                )} */}
+              </S.ImageBoxDiv>
             </S.ImageBoxDiv>
             <S.ImagePlustButtonBox>
               <S.HiddenInput
@@ -153,34 +193,36 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                 ref={buttonRef}
               />
               {isEdit && (
-                <S.ImageButton onClick={onClickButton}>사진 수정</S.ImageButton>
+                <S.UploadBoxDiv>
+                  <S.ImageButton onClick={onClickButton}>
+                    사진 불러오기
+                  </S.ImageButton>
+                </S.UploadBoxDiv>
               )}
             </S.ImagePlustButtonBox>
             <S.ContentsBoxDIv>
               <S.NameBoxDiv>
                 <div>
                   {!isEdit && (
-                    <S.MyinfoBoxDiv>
-                      <span>닉네임 : {data?.data.username} </span>
-                      <span>이메일 : {data?.data.email}</span>
-                    </S.MyinfoBoxDiv>
+                    <div>
+                      <S.MyinfoBoxDiv>
+                        <S.NicknameSpan>{data?.data.username}</S.NicknameSpan>
+                        <S.EmailSpan> {data?.data.email}</S.EmailSpan>
+                      </S.MyinfoBoxDiv>
+                    </div>
                   )}
                 </div>
                 {isEdit && (
-                  <div>
-                    <span>새로운 비번</span>
-                    <S.NicknameInput
-                      onChange={onChangeNewPassword}
-                      type='password'
-                    />
-                    <span>원래 비번</span>
-                    <S.NicknameInput
-                      onChange={onChangePassword}
-                      type='password'
-                    />
-                    <span>넥니엠</span>
-                    <S.NicknameInput onChange={onChangeUsername} type='text' />
-                  </div>
+                  <S.NewNameWrapperDiv>
+                    <S.UsernameSpan>사용자 이름</S.UsernameSpan>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <S.NameInput
+                        onChange={onChangeUsername}
+                        type='text'
+                        placeholder={data?.data.username}
+                      />
+                    </div>
+                  </S.NewNameWrapperDiv>
                 )}
               </S.NameBoxDiv>
               <div>
@@ -190,16 +232,23 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
           </S.ContentsWrapperDiv>
           <S.ButtonWrapperDiv>
             {!isEdit && (
-              <div>
-                <button onClick={onOk}>메인으로</button>
-                <button onClick={onClickToggle}>수정하기</button>
-              </div>
+              <S.ButtonBoxDiv>
+                <S.EditButton onClick={onClickToggle}>수정하기</S.EditButton>
+                <S.SignButtonDiv>
+                  <S.SignText onClick={onClickLogout}>로그아웃</S.SignText>
+                  <S.SignText onClick={onClickOpenModal}>회원탈퇴</S.SignText>
+                </S.SignButtonDiv>
+              </S.ButtonBoxDiv>
             )}
             {isEdit && (
-              <div>
-                <button onClick={onClickToggle}>취소하기</button>
-                <button onClick={onClickEditBtn}>등록하기</button>
-              </div>
+              <S.ButtonDiv>
+                <S.CancelButton onClick={onClickToggle}>
+                  취소하기
+                </S.CancelButton>
+                <S.SubmitButton onClick={onClickEditBtn}>
+                  등록하기
+                </S.SubmitButton>
+              </S.ButtonDiv>
             )}
           </S.ButtonWrapperDiv>
         </S.ContentsBoxDiv>
@@ -207,5 +256,4 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     </S.ContainerDiv>
   );
 };
-
 export default MyPageOverlay;

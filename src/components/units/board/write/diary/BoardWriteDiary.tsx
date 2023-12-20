@@ -1,53 +1,31 @@
-import React, {
-  ChangeEvent,
-  useEffect,
-  useRef,
-  useState,
-  MutableRefObject,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
-import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
 import 'react-toggle/style.css';
-import { IoIosCheckmark } from 'react-icons/io';
-import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
-import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
 import { FaCheck } from 'react-icons/fa6';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import './Quill.snow.css';
+import { useRecoilState } from 'recoil';
+import { contents } from 'src/states/counter';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isChecked, setIsChecked] = useState(true); //이걸로 나중에 점수 확 높히기
-  const [contents, setContents] = useState<string>('');
+  const [contentsToday, setContentsToday] = useRecoilState<string>(contents);
+
   const [todayRandomSaying, setTodayRandomSaying] = useState('');
 
-  // const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
-  // // const onChangeContents = (event: any) => {
-  //   if (event.target.value.length < 201) {
-  //     setContents(event.target.value);
-  //   }
-  // };
-
   const onChangeContents = (value: string) => {
-    setContents(value === '<p><br></p>' ? '' : value);
-    if (contents.length > 199) {
+    setContentsToday(value === '<p><br></p>' ? '' : value);
+    if (contentsToday.length > 199) {
       alert('200자 이상 입력 불가합니다');
       return;
     }
   };
 
-  //
   let existedSentence: string | null = localStorage.getItem('sentence');
-
-  //토글버튼
-  setIsChecked;
-  const onChangeToggleHandler = () => {
-    setIsChecked(!isChecked);
-  };
 
   //onClickNextBtn
   const onClickPrevPage = () => {
@@ -57,34 +35,7 @@ const BoardWriteDiary = () => {
     navigate('/post2');
   };
 
-  console.log(isChecked);
-  //로컬스토리지에 저장
-  localStorage.setItem('contents', contents);
-
-  useEffect(() => {
-    if (isChecked === true) {
-      const countAverage = localStorage.getItem('countAverage');
-      if (countAverage) {
-        const parsedValue = JSON.parse(countAverage);
-        if (typeof parsedValue === 'string') {
-          let plusAverage = Number(parsedValue) + 1;
-          let newValue = plusAverage.toString();
-          localStorage.setItem('countAverage', JSON.stringify(newValue));
-        }
-      }
-    }
-    if (isChecked === false) {
-      const countAverage = localStorage.getItem('countAverage');
-      if (countAverage) {
-        const parsedValue = JSON.parse(countAverage);
-        if (typeof parsedValue === 'string') {
-          let plusAverage = Number(parsedValue) - 1;
-          let newValue = plusAverage.toString();
-          localStorage.setItem('countAverage', JSON.stringify(newValue));
-        }
-      }
-    }
-  }, [isChecked]);
+  localStorage.setItem('sentence', todayRandomSaying);
 
   const onClickOpenFortune = () => {
     setIsModalOpen(true);
@@ -141,31 +92,27 @@ const BoardWriteDiary = () => {
                   <S.DiaryWriteTitleH3>
                     오늘의 <S.DiarySpan>일기</S.DiarySpan>를 작성해보세요!
                   </S.DiaryWriteTitleH3>
-                  <S.TextAreaCount>{contents.length}/200</S.TextAreaCount>
+                  <S.TextAreaCount>{contentsToday.length}/200</S.TextAreaCount>
                 </S.DiaryTitleDiv>
                 <S.InputDiv>
-                  {/* //////////////////////// */}
                   <ReactQuill
                     theme='snow'
                     style={ReactQuillStyle}
                     onChange={onChangeContents}
-                    defaultValue={contents}
+                    defaultValue={contentsToday}
                     modules={quillModules}
+                    placeholder='정성스럽게 마음일기를 적어주실 수록 디테일한 AI 감정 솔루션을 받아볼 수 있어요!'
                   />
-                  {/* <S.ContentsTextarea
-                    onChange={onChangeContents}
-                    value={contents}
-                  /> */}
                   <S.InputFooterBoxDiv></S.InputFooterBoxDiv>
                 </S.InputDiv>
               </S.InputBoxDiv>
-              <S.DiaryWriteTitleH3 style={{ transform: 'translateX(-70px)' }}>
+              <S.DiaryWriteTitleH3 style={{ transform: 'translateX(-55px)' }}>
                 오늘의 <S.DiarySpan>포춘쿠키</S.DiarySpan>를 뽑아보세요!
               </S.DiaryWriteTitleH3>
               <S.FortuneContainer>
                 <S.FortuneFlexWrapper>
                   <img
-                    src={'/cookie.png'}
+                    src={'/fortune_final.png'}
                     alt='fortune cookie'
                     style={cookieStyle}
                   />
@@ -185,31 +132,10 @@ const BoardWriteDiary = () => {
                         {todayRandomSaying || existedSentence}
                       </S.FortuneP>
                     )}
-                    {/* {existedSentence && (
-                      <S.FortuneP>{existedSentence}</S.FortuneP>
-                    )} */}
                   </S.FortuneBox>
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
-              <S.DiaryToggleTitleDiv>
-                <S.DiaryToggleP>
-                  오늘 하루
-                  <S.DiarySpan> 만족 </S.DiarySpan>
-                  하시나요?
-                </S.DiaryToggleP>
-                <S.CustomToggle
-                  id='customToggle'
-                  checked={isChecked}
-                  icons={{
-                    checked: <IoMdHeart />,
-                    unchecked: <IoIosHeartHalf />,
-                  }}
-                  onChange={onChangeToggleHandler}
-                />
-                {/* </label> */}
-              </S.DiaryToggleTitleDiv>
             </S.ContentsWrapperDiv>
-
             <S.FooterButtonBoxDiv>
               <S.PrevButton onClick={onClickPrevPage}>이전</S.PrevButton>
               <S.NextButton onClick={onClickNextBtn}>다음</S.NextButton>
@@ -251,19 +177,10 @@ const ReactQuillStyle: React.CSSProperties = {
   width: '100%',
   height: '100%',
   margin: '0 auto',
-  outline: 'none',
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  appearance: 'none',
-  fontSize: '16px',
+  fontSize: '15px',
   borderRadius: '10px',
-  border: '1px solid rgba(239, 170, 173, 0.7) !important',
   zIndex: '100',
-  background: 'rgba(236, 233, 245, 0.8)',
-  boxShadow: '0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset',
+  background: '#F5F2FF',
+  boxShadow: '0px 4px 20px 0px rgba(80, 53, 166, 0.10) inset',
   backdropFilter: 'blur(15px)',
-
-  // '& .ql-editor': {
-  //   border: '1px solid rgba(239, 170, 173, 0.7)',
-  // },
 };

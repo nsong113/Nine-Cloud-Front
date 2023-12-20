@@ -8,7 +8,7 @@ export const ContainerDiv = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 443px;
-  height: 960px;
+  height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.2);
   display: flex;
@@ -19,11 +19,11 @@ export const ContainerDiv = styled.div`
 `;
 
 export const ModalContentDiv = styled.div`
-  width: 400px;
-  height: 360px;
+  width: 415px;
+  height: 408px;
   display: flex;
   flex-direction: column;
-  border-radius: 50px;
+  border-radius: 24px;
   background: #fff;
 
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
@@ -44,33 +44,55 @@ export const Div = styled.div`
 
 export const TitleBoxDiv = styled.div`
   width: 20rem;
-  height: 100px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 10px;
+  transform: translateY(-100px);
 `;
 
 export const TextStyleSpanH5 = styled.h5`
-  font-size: 16px;
-  color: black;
+  color: #5035a6;
+
+  text-align: center;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const TextStyleSpanP = styled.p`
-  font-size: 10px;
-  color: black;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+
+  color: #646464;
+
+  text-align: center;
+  font-size: 17.063px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  transform: translateY(-30px);
 `;
 
 export const CancelButton = styled.div`
-  width: 130px;
-  height: 65px;
-  border: 2px solid #5035a6;
-  color: #5035a6;
-  border-radius: 0 55px 0 55px;
+  width: 146px;
+  height: 60px;
+  border: 1px solid #ece9f5;
+  border-radius: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  color: #5035a6;
+
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const BoxButton = styled.div`
@@ -79,6 +101,7 @@ export const BoxButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transform: translateY(-100px);
 `;
 
 export const TextStyleSpan = styled.span`
@@ -86,12 +109,19 @@ export const TextStyleSpan = styled.span`
 `;
 
 export const StyleButton = styled.div`
-  width: 230px;
-  height: 65px;
-  background-color: #5035a6;
-  color: white;
-  border-radius: 55px 0 55px 0;
+  width: 242px;
+  height: 60px;
+  background-color: #ece9f5;
+  border-radius: 5px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  color: #5035a6;
+
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;

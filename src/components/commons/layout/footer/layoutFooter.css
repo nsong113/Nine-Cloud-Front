@@ -14,15 +14,15 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: 'Inter', sans-serif;
+}
+
+.FooterContainer {
+  position: relative;
 }
 
 .navbar {
-  /* position: absolute;
-  left: 50%;
-  transform: translateX(-50%); */
   border-radius: 32px;
-  background-color: white;
+
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -31,7 +31,8 @@ body {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10%;
+  bottom: 3%;
+  background-color: #391d93;
 }
 
 .list-item {
@@ -42,7 +43,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  color: #555;
+  color: white;
   transform: translateY(0);
   transition: transform 0.5s ease, opacity 0.2s ease;
   cursor: pointer;
@@ -58,7 +59,7 @@ body {
 }
 
 .list-item:hover {
-  color: var(--highlight);
+  color: white;
   transform: translateY(-6px);
   .list-item-name {
     transform: translateY(20px);

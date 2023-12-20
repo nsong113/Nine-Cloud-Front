@@ -72,11 +72,25 @@ const BoardDetail = () => {
   );
 
   const createdAtDate = detailedContent?.createdAt
-    ? parseISO(detailedContent.createdAt)
+    ? new Date(detailedContent.createdAt)
     : null;
+
+  if (createdAtDate) {
+    createdAtDate.setHours(createdAtDate.getHours() - 9);
+  }
+
   const formattedDate = createdAtDate
-    ? format(createdAtDate, 'yyyy년 MM월 dd일')
+    ? createdAtDate.toLocaleString('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
     : null;
+
+  // console.log('formattedDate', formattedDate);
+  console.log('createdAtDate', createdAtDate);
+  console.log('현재시간', detailedContent?.createdAt);
 
   const onClickPencil = () => {
     setIsEdit((prev) => !prev);
@@ -89,7 +103,12 @@ const BoardDetail = () => {
   const id = params.id;
 
   const onClickHeart = () => {
-    setIsHeart((prev) => !prev);
+    setIsHeart(true);
+    heartMutation.mutate(id);
+  };
+
+  const onClickHeartCancel = () => {
+    setIsHeart(false);
     heartMutation.mutate(id);
   };
 
@@ -175,20 +194,12 @@ const BoardDetail = () => {
                     </S.HeartCommentTextSpan>
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
-                    {isHeart && (
-                      <div>
-                        <S.CommentHeartImg onClick={onClickHeart} />
-                        <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
-                        <span>{heartCount?.data}</span>
-                      </div>
-                    )}
-                    {!isHeart && (
-                      <div>
-                        <S.BlankHeartImg onClick={onClickHeart} />
-                        <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
-                        <span>{heartCount?.data}</span>
-                      </div>
-                    )}
+                    <div>
+                      {isHeart && <S.CommentHeartImg onClick={onClickHeartCancel} />}
+                      {!isHeart && <S.BlankHeartImg onClick={onClickHeart} />}
+                      <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
+                      <span>{heartCount?.data}</span>
+                    </div>
                   </S.HeartBoxDiv>
                 </S.FooterBoxDiv>
               </S.CategoryBoxDiv>
