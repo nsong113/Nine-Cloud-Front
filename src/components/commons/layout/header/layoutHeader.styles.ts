@@ -10,7 +10,7 @@ import {
 } from '../../../units/main/Main.types';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
-
+// 
 export const MainContainerDiv = styled.div`
   width: 100%;
   height: 100%;

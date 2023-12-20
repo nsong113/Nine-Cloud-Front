@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+// 
 //get- 무한스크롤  `${apiUrl}?page=${pageNumber}
 const getInfiniteCommunity = async (pageParam: number) => {
   const accessToken = localStorage.getItem('accessToken');

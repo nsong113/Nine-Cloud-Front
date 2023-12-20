@@ -3,3 +3,4 @@ export interface ICloudModal {
   todayRandomSaying: string;
   setTodayRandomSaying: React.Dispatch<React.SetStateAction<string>>;
 }
+//

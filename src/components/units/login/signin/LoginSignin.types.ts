@@ -5,7 +5,7 @@ export interface IProfile {
   hobby: string;
   email: string;
 }
-
+//
 export interface ValidationMessageProps {
   isError: boolean;
 }

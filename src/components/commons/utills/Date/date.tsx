@@ -1,6 +1,6 @@
 import { format, register } from 'timeago.js';
 import koLocale from 'timeago.js/lib/lang/ko';
-
+//
 format('YYYY-MM-DD', 'ko');
 register('ko', koLocale);
 

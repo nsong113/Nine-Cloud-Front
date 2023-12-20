@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { pageEffect } from './Animation.styles';
 import PropTypes from 'prop-types';
-
+// 
 const Animation: React.FC<{ children: React.ReactNode }> = ({
   children,
   ...rest

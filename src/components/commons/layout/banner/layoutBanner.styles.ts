@@ -1,3 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 //
-export const TitleAreaDiv =styled.div``
+export const TitleAreaDiv = styled.div``;
+//

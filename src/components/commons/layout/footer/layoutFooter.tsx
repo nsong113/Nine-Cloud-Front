@@ -9,7 +9,7 @@ import { useQuery } from 'react-query';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
 import useCalendar from '../../hooks/useCalender';
 import { format, getYear, getDate } from 'date-fns';
-
+//
 const Footer = () => {
   const {
     currentDate,

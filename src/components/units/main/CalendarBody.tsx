@@ -25,7 +25,7 @@ const CalendarBody = (props: any) => {
 
     return matchingDay ? matchingDay.diaryId : 0;
   };
-
+  //
   const onClickGoToDetailHandler = (id: any) => () => {
     if (id !== 0) {
       navigate(`/post/${id}`);

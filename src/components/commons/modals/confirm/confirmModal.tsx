@@ -21,7 +21,7 @@ const ConfrimModal: React.FC<IConfirm> = ({
     </div>
   );
 };
-
+//
 export default ConfrimModal;
 
 //정리:

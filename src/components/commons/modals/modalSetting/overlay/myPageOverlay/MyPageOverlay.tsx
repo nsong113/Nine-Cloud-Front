@@ -17,7 +17,7 @@ import {
 } from 'src/apis/cheolmin-api/apis';
 import axios from 'axios';
 import DeleteModal from '../../../delete/DeleteModal';
-
+//
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const queryClient = useQueryClient();
   const { data } = useQuery('myInfo', getMyInfo);

@@ -13,7 +13,7 @@ const Image = (props: any) => {
     3: '/Purple.png',
     4: '/Lemon.png',
   };
-
+  //
   const allData = props?.data?.data;
 
   const onClickHappyImg = () => {
