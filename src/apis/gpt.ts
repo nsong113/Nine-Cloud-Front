@@ -1,7 +1,17 @@
 import axios from 'axios';
 import { Iprops } from './apiesType';
 
-export const CallGPT = async ({ prompt }: { prompt: string }) => {
+export const CallGPT = async ({
+  contents,
+  temperature,
+  humid,
+  weather,
+}: {
+  contents: string;
+  temperature: string;
+  humid: string;
+  weather: string;
+}) => {
   try {
     const messages = [
       {
@@ -24,7 +34,7 @@ export const CallGPT = async ({ prompt }: { prompt: string }) => {
         role: 'user',
         content: `
       ""
-      나는 오늘 열정이 넘치고 울적한 날입니다. 날씨는 흐립니다. 식사는 2번 먹었습니다. ${prompt}
+      나는 오늘 열정이 넘치고 울적한 날입니다. 날씨는 흐립니다. 식사는 2번 먹었습니다. ${contents}
       ""
       `,
       },
@@ -37,7 +47,6 @@ export const CallGPT = async ({ prompt }: { prompt: string }) => {
         messages,
         temperature: 0.7,
         max_tokens: 1000,
-        stream: true,
       },
       {
         headers: {
@@ -47,10 +56,11 @@ export const CallGPT = async ({ prompt }: { prompt: string }) => {
       }
     );
 
-    const responseData = res.data;
-    console.log(responseData);
+    const responseData = await res.data;
+    console.log('responseData', responseData);
 
     const message = responseData.choices[0].message.content;
+    console.log('message', message);
 
     return message;
   } catch (error) {

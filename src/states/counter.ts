@@ -5,6 +5,15 @@ export const countAverage = atom({
   default: 5,
 });
 
+export const happyA = atom({
+  key: 'happy',
+  default: '5',
+});
+export const sadA = atom({
+  key: 'happy',
+  default: '5',
+});
+
 export const weather = atom({
   key: 'weather',
   default: '2',

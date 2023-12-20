@@ -6,7 +6,7 @@ import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import { useRecoilState } from 'recoil';
-import { countAverage, weather } from 'src/states/counter';
+import { countAverage, happyA, sadA, weather } from 'src/states/counter';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ const BoardWriteEmotion = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  console.log(isModalOpen);
   const onClickSubmit = () => {
     navigate('/main');
   };
@@ -29,10 +28,13 @@ const BoardWriteEmotion = () => {
   const onClickNextPage = () => {
     navigate('/post3');
   };
-
+  const [happyAtom, setHappyAtom] = useRecoilState(happyA);
+  const [sadAtom, setSadAtom] = useRecoilState(sadA);
   const [countAverageNum, setCountAverage] = useRecoilState(countAverage);
   const [weatherToday, setWeatherToday] = useRecoilState(weather);
   setCountAverage((Number(happy) + Number(sad)) / 2);
+  setHappyAtom(happy);
+  setSadAtom(sad);
   setWeatherToday(todayWeather);
 
   const labels = ['bad', '', 'good'].map((label, index) => (
