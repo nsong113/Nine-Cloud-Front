@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { IoIosArrowForward } from 'react-icons/io';
-import { ValidationMessageProps } from './MyPageOverlay.types';
+import { CheckEdit, ValidationMessageProps } from './MyPageOverlay.types';
 
 export const slideIn = keyframes`
   from {
@@ -33,14 +33,13 @@ export const ImageBoxDiv = styled.div`
   justify-content: center;
 `;
 
-export const PicutureImg = styled.img`
-  width: 150px;
-  height: 150px;
+export const PicutureImg = styled.img<CheckEdit>`
+  width: ${(props) => (props.isEdit ? '170px' : '210px')};
+  height: ${(props) => (props.isEdit ? '170px' : '210px')};
   border-radius: 150px;
   border: 1px solid black;
-  margin-top: 15px;
+  margin-top: ${(props) => (props.isEdit ? '0px' : '30px')};
 `;
-
 export const HiddenInput = styled.input`
   display: none;
 `;
@@ -55,6 +54,10 @@ export const ImageButton = styled.button`
   border-radius: 2px 10px;
   border: 2px solid var(--sub, #8066d1);
   cursor: pointer;
+  &:hover {
+    background-color: #391d93;
+    color: #fff;
+  }
 `;
 
 export const ImagePlustButtonBox = styled.div``;
@@ -165,17 +168,17 @@ export const NicknameInput = styled.input`
 export const NameBoxDiv = styled.div``;
 
 export const MyinfoBoxDiv = styled.div`
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 `;
 
 export const NicknameSpan = styled.span`
   color: var(--main, #391d93);
   font-family: Spoqa Han Sans Neo;
-  font-size: 40px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -183,7 +186,7 @@ export const NicknameSpan = styled.span`
 export const EmailSpan = styled.span`
   color: var(--Gray2, #929292);
   font-family: Spoqa Han Sans Neo;
-  font-size: 24px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 29px;
@@ -204,7 +207,7 @@ export const EditButton = styled.button`
   margin-left: 20px;
   margin-top: 20px;
   cursor: pointer;
-  &:active {
+  &:hover {
     background-color: #391d93;
     color: #fff;
   }
@@ -327,6 +330,10 @@ export const CancelButton = styled.button`
   border: 1px solid #ece9f5;
   cursor: pointer;
   background: #fff;
+  &:hover {
+    background-color: #391d93;
+    color: #fff;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -343,9 +350,12 @@ export const SubmitButton = styled.button`
   line-height: normal;
   border-radius: 5px 20px;
   border: 1px solid #ece9f5;
-
   background: #ece9f5;
   margin-left: 20px;
+  &:hover {
+    background-color: #391d93;
+    color: #fff;
+  }
 `;
 
 export const PasswordTitleSpan = styled.span`
@@ -396,4 +406,18 @@ export const ValidationMessage = styled.div<ValidationMessageProps>`
   height: 14px;
   margin-top: 5px; /* 적절한 여백 설정 */
   color: ${(props) => (props.isError ? 'red' : 'blue')};
+`;
+
+export const ProfileTitleSpan = styled.span`
+  color: var(--main, #391d93);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px;
+`;
+
+export const ButtonDiv = styled.div`
+  margin-top: 15px;
 `;
