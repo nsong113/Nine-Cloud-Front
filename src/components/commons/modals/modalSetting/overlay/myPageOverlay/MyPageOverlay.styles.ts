@@ -204,6 +204,10 @@ export const EditButton = styled.button`
   margin-left: 20px;
   margin-top: 20px;
   cursor: pointer;
+  &:active {
+    background-color: #391d93;
+    color: #fff;
+  }
 `;
 
 export const SignText = styled.div`
@@ -219,6 +223,15 @@ export const SignText = styled.div`
   cursor: pointer;
   margin-left: 10px;
   margin-top: 10px;
+  &:hover {
+    color: var(--Gray2, #929292);
+    font-family: Spoqa Han Sans Neo;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 29px;
+    border-bottom: 1px solid gray;
+  }
 `;
 
 export const ButtonBoxDiv = styled.div`

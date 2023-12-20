@@ -50,11 +50,30 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     setConfirmPasswordValidationMessage,
   ] = useState('');
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const onChangeImg = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       setSelectedImage(event.target.files?.[0]);
     }
   };
+
+  // const file: File = event.target.files?.[0];
+  // const fileReader = new FileReader();
+  // fileReader.readAsDataURL(file); // 선택된 파일을 데이터 URL로 변환시킨다.
+  // fileReader.onload = (event) => {
+  //   // 파일 읽기 작업 후, state에 url 추가
+  //   if (typeof event.target?.result === 'string')
+  //     setPreview(event.target?.result);
+  // };
   console.log('selectedImage', selectedImage);
   useEffect(() => {
     if (imgFile) {
@@ -218,7 +237,13 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
           <DeleteModal onOk={onClickUnRegister} onClose={onClickOpenModal} />
         )}
         <S.CancelImgBox>
-          <S.CancelImg onClick={onOk} src='/cancel.png' alt='취소' />
+          <S.CancelImg
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={onOk}
+            src={isHovered ? '/cancel2.png' : '/cancel.png'}
+            alt='취소'
+          />
         </S.CancelImgBox>
         <S.ContentsBoxDiv>
           <S.HeaderWrapperDiv></S.HeaderWrapperDiv>
@@ -256,7 +281,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                       <S.ImageButton onClick={onClickButton}>
                         사진 불러오기
                       </S.ImageButton>
-                      <S.PictureDeleteSpan>현재 사진 삭제</S.PictureDeleteSpan>
+                      {/* <S.PictureDeleteSpan>현재 사진 삭제</S.PictureDeleteSpan> */}
                     </S.UploadBoxDiv>
                   )}
                 </div>
@@ -383,5 +408,4 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     </S.ContainerDiv>
   );
 };
-
 export default MyPageOverlay;
