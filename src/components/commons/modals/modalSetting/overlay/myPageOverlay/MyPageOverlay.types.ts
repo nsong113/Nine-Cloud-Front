@@ -9,7 +9,7 @@ export interface ValidationMessageProps {
 export interface CheckEdit {
   isEdit: boolean;
 }
-
+//
 export interface IMyPost {
   imgFile?: any;
   username?: string;

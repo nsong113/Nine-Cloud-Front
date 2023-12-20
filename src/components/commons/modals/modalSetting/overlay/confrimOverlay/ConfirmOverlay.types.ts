@@ -5,7 +5,7 @@ export interface IConfirmMod {
   onClickGotoMain: () => void;
   postDiaryItem: IpostDiaryItem | null;
 }
-
+//
 export interface IStyled {
   $isModalOpen: boolean;
 }

@@ -11,7 +11,7 @@ import { FaCheck } from 'react-icons/fa6';
 import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
 import { useRecoilState } from 'recoil';
 import { contents, countAverage, isPublic, weather } from 'src/states/counter';
-
+//
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

@@ -9,7 +9,7 @@ import { deletePost, updatePost } from 'src/apis/cheolmin-api/apis';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IMyPost } from './EditOverlay.types';
 import ReactQuill from 'react-quill';
-
+// 
 const EditOverlay: React.FC<IEditPost> = ({
   detailedContent,
   content,

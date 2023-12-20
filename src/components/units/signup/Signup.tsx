@@ -26,7 +26,7 @@ const Signup = () => {
   const [state, setState] = useState<number>(
     Math.floor(Math.random() * (99999999 - 10000 + 1)) + 10000
   );
-
+//
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
   const onClickSignupHandler = async (e: any) => {

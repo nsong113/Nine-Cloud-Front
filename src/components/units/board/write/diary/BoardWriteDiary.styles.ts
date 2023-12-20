@@ -19,7 +19,7 @@ export const DiaryWrapperUPDiv = styled.div`
   min-height: 100px;
   position: relative;
 `;
-
+//
 export const DiaryWrapperDOWNdiv = styled.div`
   width: 90%;
   margin: 0 auto;

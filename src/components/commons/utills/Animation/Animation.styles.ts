@@ -1,5 +1,5 @@
 //이동;
-
+// 
 export const moveEffect = {
   initial: {
     x: -100,

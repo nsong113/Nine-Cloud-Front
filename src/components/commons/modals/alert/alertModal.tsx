@@ -11,5 +11,5 @@ const AlertModal: React.FC<Props> = ({ onClickSubmit, onClickMoveToMain }) => {
     </div>
   );
 };
-
+//
 export default AlertModal;

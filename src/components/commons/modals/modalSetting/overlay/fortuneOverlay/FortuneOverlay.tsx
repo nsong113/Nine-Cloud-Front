@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ICloudModal } from '../../../fortuneCloud/FortuneCloudModal.types';
 import * as S from './FortuneOverlay.styles';
 import { RandomSaying } from 'src/components/units/board/write/diary/RandomSentences';
-
+//
 const FortuneOverlay: React.FC<ICloudModal> = ({
   goBackFortune,
   todayRandomSaying,

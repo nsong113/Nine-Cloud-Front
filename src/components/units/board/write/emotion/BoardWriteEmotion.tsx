@@ -7,7 +7,7 @@ import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import { useRecoilState } from 'recoil';
 import { countAverage, happyA, sadA, weather } from 'src/states/counter';
-
+//
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);

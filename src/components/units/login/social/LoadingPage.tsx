@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Loading = () => {
   const navigate = useNavigate();
-
+// 
   // 이미 가입한 유저일 시 : 메인 페이지로 이동
   const handleHome = () => {
     navigate('/main');

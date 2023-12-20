@@ -10,3 +10,4 @@ export interface ISliderInputProps
   value: number;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
+// 

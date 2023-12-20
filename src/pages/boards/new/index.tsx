@@ -4,5 +4,5 @@ import BoardWriteEmotion from '../../../components/units/board/write/emotion/Boa
 const NewPostPage = () => {
   return <BoardWriteEmotion />;
 };
-
+//
 export default NewPostPage;

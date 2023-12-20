@@ -6,7 +6,7 @@ import { IpostDiaryItem } from 'src/apis/apiesType';
 import { postDiary } from 'src/apis/diary';
 import { useRecoilState } from 'recoil';
 import { countAverage, weather } from 'src/states/counter';
-
+//
 const ConfirmOverlay: React.FC<IConfirmMod> = ({
   onClickGotoMain,
   onClickGotoPost2,

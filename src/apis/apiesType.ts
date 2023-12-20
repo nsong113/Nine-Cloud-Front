@@ -6,7 +6,7 @@ export interface IpostDiaryItem {
   sentence?: string | null;
   weather?: string | null;
 }
-
+//
 // export interface IpostDiaryItem {
 //   file?: Blob | null;
 // }

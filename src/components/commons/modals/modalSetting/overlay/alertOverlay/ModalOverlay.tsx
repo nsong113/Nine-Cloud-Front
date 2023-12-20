@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './ModalOverlay.styles';
-
+//
 const ModalOverlay: React.FC<IProps> = ({ onOk, onClose }) => {
   return (
     <S.ContainerDiv>

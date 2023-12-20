@@ -5,7 +5,7 @@ import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import * as DOMPurify from 'dompurify';
-
+// 
 import {
   getComments,
   getHearts,
@@ -195,7 +195,9 @@ const BoardDetail = () => {
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
                     <div>
-                      {isHeart && <S.CommentHeartImg onClick={onClickHeartCancel} />}
+                      {isHeart && (
+                        <S.CommentHeartImg onClick={onClickHeartCancel} />
+                      )}
                       {!isHeart && <S.BlankHeartImg onClick={onClickHeart} />}
                       <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
                       <span>{heartCount?.data}</span>

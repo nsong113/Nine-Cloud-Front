@@ -15,7 +15,7 @@ export const OnboardTitle = styled.div`
   font-size: 30px;
   font-weight: 600;
 `;
-
+//
 export const OnboardContent = styled.div`
   margin-top: 25px;
   margin-bottom: 35px;

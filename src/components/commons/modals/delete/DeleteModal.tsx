@@ -15,3 +15,4 @@ const DeleteModal: React.FC<IDelete> = ({ onOk, onClose }) => {
 };
 
 export default DeleteModal;
+//
