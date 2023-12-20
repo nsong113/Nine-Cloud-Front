@@ -573,6 +573,7 @@ export const EraserThicknessDiv = styled.div`
 export const ToggleDiv = styled.div`
   width: 100%;
   height: 50px;
+  margin: 18px;
 `;
 
 export const ToggleFlexDiv = styled.div`

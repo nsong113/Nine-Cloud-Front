@@ -10,12 +10,12 @@ import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
 export const MainContainerDiv = styled.div`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 `;
 
 export const CalenContainerDiv = styled.div`
   width: 80%;
-  height: 300px;
+  height: 500px;
   margin: 60px auto;
 `;
 
@@ -85,7 +85,7 @@ export const ShowCloudDivBlack = styled.div`
 export const CalenderBackDiv = styled.div``;
 
 export const CalendarContainerDiv = styled.div`
-  font-family: 'Arial', sans-serif;
+  height: 100%;
   text-align: center;
 `;
 
@@ -139,8 +139,6 @@ export const TableBody = styled.tbody`
 
 export const TableRow = styled.tr`
   background-color: transparent; /* 배경색 없애기 */
-  /* margin-top: 20px;
-  margin-bottom: 10px; */
 `;
 
 export const DayRoow = styled.tr`
@@ -155,10 +153,8 @@ export const TableCell = styled.td<ITableCellProps>`
   &:hover {
     background-color: #926fff;
   }
-  /* opacity: 0.7; */
 
   background: rgba(255, 255, 255, 0.5);
-  /* border: 1px solid #cfc0ff; */
 
   box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
@@ -256,8 +252,6 @@ export const ViewAllRightProfile = styled.div`
 
 export const MonthNumberSpan = styled.span`
   color: #391d93;
-
-  font-family: Spoqa Han Sans Neo;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
@@ -320,7 +314,6 @@ export const LogoImg = styled.img`
 export const LargeContainer = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: red;
   background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
@@ -329,8 +322,8 @@ export const LargeContainer = styled.div`
 
 export const ViewAllWrapperDiv = styled.div`
   width: 90%;
-  height: 607px;
-  margin: 5px auto;
+  height: 807px;
+  margin: 0 auto;
   overflow: auto;
 `;
 
@@ -347,70 +340,30 @@ export const ViewAllEachBoxDiv = styled.div`
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(25px);
-  /* border: 2px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77)); */
-
-  /* background: linear-gradient(
-    209deg,
-    rgba(236, 233, 245, 0.3) 0%,
-    rgba(232, 245, 243, 0.3) 48.96%,
-    rgba(252, 245, 245, 0.3) 100%
-  ); */
-
-  /* background: radial-gradient(
-        circle at 100% 100%,
-        #ffffff 0,
-        #ffffff 3px,
-        transparent 3px
-      )
-      0% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 3px, transparent 3px)
-      100% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 3px, transparent 3px)
-      0% 100%/8px 8px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 3px, transparent 3px) 100%
-      100%/8px 8px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px)
-      calc(100% - 16px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
-      calc(100% - 10px) no-repeat,
-    conic-gradient(
-      rgba(255, 255, 255, 0.5) 3%,
-      rgba(80, 53, 166, 0.77) 40%,
-      rgba(80, 53, 166, 0.2) 60%,
-      rgba(80, 53, 166, 0.2) 65%,
-      rgba(80, 53, 166, 0.77) 84%,
-      rgba(255, 255, 255, 0.5) 100%
-    );
-  border-radius: 8px;
-  padding: 9px;
-  box-sizing: border-box;
-
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px); */
 `;
 
 export const ViewAllEachFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 13px;
   gap: 10px;
 `;
 
 export const ViewAllIMGbox = styled.div`
   width: 106px;
   height: 106px;
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 10px 2px;
+  border: 1px solid #cfc0ff;
 `;
 
 export const ViewAllRightContentDiv = styled.div`
-  width: 250;
+  width: 250px;
   height: 105px;
 `;
 export const ViewAllRightFlexDiv = styled.div`
@@ -421,6 +374,8 @@ export const ViewAllRightFlexDiv = styled.div`
 
 export const ViewAllDateDiv = styled.div`
   font-weight: 700;
+  text-align: left;
+  transform: translateY(16px);
 `;
 
 export const ViewAllPublicIMGDiv = styled.div``;
@@ -550,4 +505,44 @@ export const dayWrapperDiv = styled.div`
 
 export const NextMonthBoxDiv = styled.div`
   width: 100px;
+`;
+
+export const GPTBox = styled.div`
+  width: 203px;
+  height: 62px;
+  border-radius: 2px 10px;
+  background: #f5f2ff;
+
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+  margin: 15px 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const GPTFlexBox = styled.div`
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const GPTLogo = styled.div`
+  width: 77px;
+  height: 43px;
+  background-image: url('/gptCloud.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
+export const GPTDiv = styled.div`
+  color: var(--Black, #222122);
+  text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 `;

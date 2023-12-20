@@ -41,6 +41,7 @@ const Calender = () => {
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
   const month = getMonth(newDate) + 1;
+  const [isGPTModal, setIsGPTModal] = useState(false);
 
   const { data, isLoading, refetch } = useQuery(
     ['posts', currentMonth, currentYear],
@@ -90,6 +91,11 @@ const Calender = () => {
     setAnimationDirection('rightToLeft');
     setCurrentYear(newDate); // setCurrentYear를 수정하여 바로 반영
     // await refetch(); // 이전 달 데이터 다시 가져오기
+  };
+
+  // const [isGPTModal, setIsGPTModal] = useState(false);
+  const onClickCheckGPT = () => {
+    setIsGPTModal(!isGPTModal);
   };
 
   return (
@@ -156,7 +162,16 @@ const Calender = () => {
               </S.CalendarTable>
             </S.LeftRightAnimeButton>
           </Animation>
-          <div style={{ height: '100px', backgroundColor: 'blue' }}></div>
+
+          <S.GPTBox onClick={onClickCheckGPT}>
+            <S.GPTFlexBox>
+              <S.GPTLogo></S.GPTLogo>
+              <S.GPTDiv>
+                AI클라우드 <br />
+                확인하기
+              </S.GPTDiv>
+            </S.GPTFlexBox>
+          </S.GPTBox>
         </S.Test>
       </S.CalendarContainerDiv>
     </>
