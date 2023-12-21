@@ -2,13 +2,18 @@ import { styled, css } from 'styled-components';
 
 export const MainContainer = styled.div`
   width: 100%;
-  height: 960px;
+  height: 100%;
+  background-image: url('/bg_community.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 1px solid transparent;
 `;
 
 export const MainHeader = styled.div`
   width: 100%;
   height: 120px;
-  background-color: white;
 `;
 
 export const MainFlexBoxDiv = styled.div`
@@ -27,7 +32,7 @@ export const MainSectionContainer = styled.div`
   width: 100%;
   height: 840px;
   border-radius: 50px 0 0 0;
-  background-color: #e8e8e8;
+  /* background-color: #e8e8e8; */
   transform: translateY(-40px);
 `;
 
@@ -69,7 +74,7 @@ export const MainSlideBox = styled.div`
   width: 100%;
   height: 765px;
   border-radius: 50px 0 0 0;
-  background-color: white;
+  /* background-color: white; */
   transform: translateY(75px);
   padding: 10px;
   overflow: hidden;
@@ -102,7 +107,7 @@ export const MainEachSlideBox = styled.div`
 
 export const MainMapContainer = styled.div`
   width: 90%;
-  height: 90%;
+  height: 100%;
   margin: 5px auto;
   overflow: auto;
 `;
@@ -112,41 +117,13 @@ export const ViewAllEachBoxDiv = styled.div`
   margin: 0 auto;
   height: 130px;
   margin-top: 20px;
-  border-radius: 10px;
 
-  background: radial-gradient(
-        circle at 100% 100%,
-        #ffffff 0,
-        #ffffff 3px,
-        transparent 3px
-      )
-      0% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 3px, transparent 3px)
-      100% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 3px, transparent 3px)
-      0% 100%/8px 8px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 3px, transparent 3px) 100%
-      100%/8px 8px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 10px)
-      calc(100% - 16px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
-      calc(100% - 10px) no-repeat,
-    conic-gradient(
-      rgba(255, 255, 255, 0.5) 3%,
-      rgba(80, 53, 166, 0.77) 40%,
-      rgba(80, 53, 166, 0.2) 60%,
-      rgba(80, 53, 166, 0.2) 65%,
-      rgba(80, 53, 166, 0.77) 84%,
-      rgba(255, 255, 255, 0.5) 100%
-    );
-  border-radius: 8px;
-  padding: 9px;
-  box-sizing: border-box;
+  border-radius: 10px 2px;
+  background: rgba(245, 242, 255, 0.3);
 
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(25px);
 `;
 
 export const ViewAllEachFlex = styled.div`
@@ -168,7 +145,7 @@ export const ViewAllIMGbox = styled.div`
 `;
 
 export const ViewAllRightContentDiv = styled.div`
-  width: 250;
+  width: 250px;
   height: 105px;
 `;
 
