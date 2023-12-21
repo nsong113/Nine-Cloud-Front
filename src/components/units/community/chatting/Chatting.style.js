@@ -12,7 +12,7 @@ export const Background = styled.div`
 
 export const Header = styled.div`
   width: 100%;
-  height: 170px;
+  height: 115px;
   background: #5035a6;
   border-radius: 0px 0px 50px 50px;
   font-family: 'Arial', sans-serif;

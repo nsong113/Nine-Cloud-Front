@@ -1,3 +1,3 @@
 import io from 'socket.io-client';
-const socket = io('백엔드 주소');
+const socket = io(`https://astraiosissda.shop/community/chat`);
 export default socket;

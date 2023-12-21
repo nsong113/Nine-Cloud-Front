@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../social/LoginKakao';
 import LoginGoogle from '../social/LoginGoogle';
 import LoginNaver from '../social/LoginNaver';
+import axiosInstance from 'src/apis/loginapi';
 
 const LoginSignin = () => {
   const [email, setEmail] = useState('');
@@ -40,8 +41,8 @@ const LoginSignin = () => {
         return;
       }
 
-      const response = await axios.post(
-        `${BASE_URL}/signin`,
+      const response = await axiosInstance.post(
+        `/signin`,
         {
           email: email,
           password: password,
@@ -49,7 +50,6 @@ const LoginSignin = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `${localStorage.getItem('accessToken')}`,
           },
         }
       );
