@@ -10,3 +10,4 @@ export const FooterContainer = styled.div`
   position: relative;
   background: white;
 `;
+

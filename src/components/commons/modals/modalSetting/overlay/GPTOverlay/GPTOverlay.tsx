@@ -12,9 +12,6 @@ import {
 } from 'src/states/counter';
 
 //더미데이터도 json 파싱
-const dummyData =
-  JSON.parse(`{ "title": "오늘의 감정",  "actionTips": ["1. 열정적인 감정을 유지하기 위해 목표 설정과 자기 동기부여를 강화해보세요.", "2. 버그와 같은 도전적인 상황에 직면했을 때는 자신의 능력을 믿고 문제 해결에 집중해보세요." ] }
-`);
 
 const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo }) => {
   const [data, setData] = useState({ title: '', actionTips: '' });
@@ -30,9 +27,7 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo }) => {
     try {
       setIsLoading(true);
       const message = await CallGPT({
-        contents: `
-      나는 오늘 가족들이랑 여행을 갔다 재미있었다.   
-      `,
+        contents: contentsAtom,
         temperature: `지쳤어요`,
         humid: `상쾌해요`,
         weather: `맑아요`,

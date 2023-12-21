@@ -44,10 +44,11 @@ export const CommentHeaderDiv = styled.div`
   flex-direction: column;
 `;
 
-export const DeepCircleImg = styled.img`
+export const ProfileImg = styled.img`
   width: 40px;
   height: 40px;
-  margin: 10px;
+  margin: 0px 10px;
+  border-radius: 100px;
 `;
 
 export const CommentFooterWrapDiv = styled.div`
