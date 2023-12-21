@@ -7,6 +7,7 @@ import {
   IGetPosts,
   IUpdatePost,
 } from './apis.types';
+import axiosInstance from '../loginapi';
 // axios
 const accessToken = localStorage.getItem('accessToken');
 const refreshToken = localStorage.getItem('refreshToken');
@@ -57,8 +58,8 @@ export const getPosts = async (target: IGetPosts) => {
   try {
     console.log(accessToken);
     console.log(refreshToken);
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/diary/calendar/${target.currentYear}/${target.currentMonth}`,
+    const response = await axiosInstance.get(
+      `/diary/calendar/${target.currentYear}/${target.currentMonth}`,
       {
         withCredentials: true,
         headers: {
@@ -72,6 +73,7 @@ export const getPosts = async (target: IGetPosts) => {
     console.log('다시 시도하세요');
   }
 };
+
 export const getOnePostInfo = async (diaryId: string | undefined) => {
   try {
     const response = await axios.get(
@@ -173,16 +175,13 @@ export const deleteComment = async (commentId: IDeleteComment) => {
 
 export const getMyInfo = async () => {
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/myInfo`,
-      {
-        withCredentials: true,
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const response = await axiosInstance.get(`/myInfo`, {
+      withCredentials: true,
+      headers: {
+        Authorization: `${accessToken}`,
+        Refreshtoken: `${refreshToken}`,
+      },
+    });
     console.log(response.data);
     return response.data;
   } catch (error) {

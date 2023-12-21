@@ -9,13 +9,13 @@ const Chatting = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
-  const [rooms, setRooms] = useState([]);
+  // const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     userName();
-    socket.on('rooms', (res) => {
-      setRooms(res);
-    });
+    // socket.on('rooms', (res) => {
+    //   setRooms(res);
+    // });
     socket.on('message', (message) => {
       setMessageList((prevState) => prevState.concat(message));
     });
