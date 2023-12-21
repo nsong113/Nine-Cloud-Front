@@ -34,6 +34,8 @@ const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
     },
   });
 
+  console.log('profile', profile);
+
   const deleteMutation = useMutation(deleteComment, {
     onSuccess: () => {
       queryClient.invalidateQueries('comment');
@@ -108,7 +110,7 @@ const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
                 {comments?.map((el: any) => (
                   <S.CommentWrapperDiv key={el.commentId}>
                     <S.CommentBoxDiv>
-                      <S.DeepCircleImg src='/deepCircle.png' alt='타원' />
+                      <S.ProfileImg src={profileInfo?.profileImg} alt='타원' />
                       <S.CommentWriterBoxDiv>
                         <S.CommentWriterSpan>
                           {profileInfo?.username}
