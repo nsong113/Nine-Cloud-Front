@@ -28,5 +28,4 @@ export const Title = styled.div`
   margin-bottom: 20px;
   margin-left: 10px;
   font-size: 20px;
-  
 `;

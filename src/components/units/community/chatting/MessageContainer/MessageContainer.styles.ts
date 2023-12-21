@@ -7,3 +7,4 @@ export const YourMessage = styled.div`
   max-width: 200px;
   font-size: 12px;
 `;
+

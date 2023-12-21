@@ -10,7 +10,6 @@ import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
 export const MainContainerDiv = styled.div`
   width: 100%;
-  /* height: 100%; */
 `;
 
 export const CalenContainerDiv = styled.div`
@@ -375,7 +374,7 @@ export const ViewAllRightFlexDiv = styled.div`
 export const ViewAllDateDiv = styled.div`
   font-weight: 700;
   text-align: left;
-  transform: translateY(16px);
+  /* transform: translateY(16px); */
 `;
 
 export const ViewAllPublicIMGDiv = styled.div``;
@@ -392,9 +391,9 @@ export const ViewAllContentP = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* white-space: nowrap; */
   text-align: left;
   font-size: 13px;
+  transform: translateY(-15px);
 `;
 
 export const Calendar = styled(IoCalendarNumberOutline)`
@@ -510,13 +509,16 @@ export const NextMonthBoxDiv = styled.div`
 export const GPTBox = styled.div`
   width: 203px;
   height: 62px;
+
+  margin: 15px auto;
+
   border-radius: 2px 10px;
   background: #f5f2ff;
 
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2),
+    0px -2px 10px 0px rgba(80, 53, 166, 0.25);
   backdrop-filter: blur(15px);
-  margin: 15px 0 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;

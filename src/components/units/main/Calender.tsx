@@ -13,6 +13,7 @@ import {
   getYear,
   setMonth,
   subMonths,
+  getDate,
 } from 'date-fns';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import { useQuery } from 'react-query';
@@ -55,6 +56,10 @@ const Calender = () => {
 
   const { data: profile } = useQuery('myInfo', getMyInfo);
 
+  const today = getDate(currentDate) - 1;
+  const diaryCheck = data?.data[today];
+  /////////////////
+
   console.log('data', profile?.data?.profileImg);
 
   console.log('current Year', currentYear, 'current Month', currentMonth);
@@ -94,7 +99,6 @@ const Calender = () => {
     // await refetch(); // 이전 달 데이터 다시 가져오기
   };
 
-  // const [isGPTModal, setIsGPTModal] = useState(false);
   const onClickCheckGPT = () => {
     setIsGPTModal(!isGPTModal);
   };
@@ -171,7 +175,11 @@ const Calender = () => {
             </S.LeftRightAnimeButton>
           </Animation>
           {isGPTModal && (
-            <GPTModal onOk={onClickConfirm} onGo={onClickGotoPost} />
+            <GPTModal
+              onOk={onClickConfirm}
+              onGo={onClickGotoPost}
+              diaryCheck={diaryCheck}
+            />
           )}
           <S.GPTBox onClick={onClickCheckGPT}>
             <S.GPTFlexBox>

@@ -19,7 +19,7 @@ const usePen = (
     if (!canvasRef.current) {
       return;
     }
-
+    
     const canvas: HTMLCanvasElement = canvasRef.current;
     const context = canvas.getContext('2d');
 
