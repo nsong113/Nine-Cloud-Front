@@ -4,3 +4,7 @@ export interface IProfile {
   country: string;
   hobby: string;
 }
+
+export interface IComment {
+  public: string | undefined;
+}

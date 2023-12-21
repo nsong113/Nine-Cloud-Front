@@ -49,6 +49,8 @@ const BoardDetail = () => {
   const [isPublic, setIsPublic] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
 
+  console.log('comment', comment);
+
   const profileInfo = profile?.data;
 
   const detailedContent = data?.data;
@@ -136,31 +138,62 @@ const BoardDetail = () => {
 
       <div key={data?.id}>
         <Animation3>
-          <S.ImgBoxDiv>
+          <S.HeaderWrapperDiv>
             <S.BackImg onClick={onClickMoveToMain} />
+            <S.HearderRightBoxDiv>
+              <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
+              <S.WeatherImage src={getImage()} alt='이미지' />
+            </S.HearderRightBoxDiv>
+          </S.HeaderWrapperDiv>
+          <S.ImgBoxDiv>
             <S.MainImg src={detailedContent?.image} alt='엑박' />
+            {detailedContent?.isPublic === true && (
+              <img src='/people.png' alt='공개' />
+            )}
+            {detailedContent?.isPublic === false && (
+              <img src='/person.png' alt='비공개' />
+            )}
           </S.ImgBoxDiv>
         </Animation3>
         <Animation2>
           <S.ContentsWrapperDiv>
             <S.ContentsHeaderDiv>
-              <S.CloudImg src='/cloud.png' alt='구름' />
+              <S.CloudImg src='/rain3.png' alt='구름' />
               <S.ConentsHeaderRightDiv>
                 <S.heartBoxDiv>
-                  {detailedContent?.isPublic === true && <S.PeopleImg />}
-                  {detailedContent?.isPublic === false && <S.PersonImg />}
+                  <div>
+                    <S.CategoryText>마음 온도</S.CategoryText>
+                    <S.StatusBoxDiv>
+                      <S.MindStatusSpan>지쳤어요</S.MindStatusSpan>
+                    </S.StatusBoxDiv>
+                  </div>
+                  <div>
+                    <S.CategoryText>마음 습도</S.CategoryText>
+                    <S.StatusBoxDiv>
+                      <S.MindStatusSpan>울적해요</S.MindStatusSpan>
+                    </S.StatusBoxDiv>
+                  </div>
+                  <div>
+                    <S.CategoryText>마음 일출</S.CategoryText>
+                    <S.StatusBoxDiv>
+                      <S.MindStatusSpan>나빠요</S.MindStatusSpan>
+                    </S.StatusBoxDiv>
+                  </div>
                 </S.heartBoxDiv>
               </S.ConentsHeaderRightDiv>
             </S.ContentsHeaderDiv>
             <div>
               <S.ContentBoxHeaderDiv>
-                <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
-                <S.WeatherImage src={getImage()} alt='이미지' />
-                <div>
-                  <S.PencilImg onClick={onClickPencilImg} />
-                </div>
+                <div></div>
               </S.ContentBoxHeaderDiv>
               <S.ContentsBoxDiv>
+                <S.PencilsBoxDiv>
+                  <S.PencilImg
+                    src='/pencil.png'
+                    alt='수정버튼'
+                    onClick={onClickPencilImg}
+                  />
+                </S.PencilsBoxDiv>
                 <S.ContentBoxDiv>
                   <S.ContentSpan
                     dangerouslySetInnerHTML={{
@@ -180,18 +213,30 @@ const BoardDetail = () => {
                 <S.FooterBoxDiv>
                   {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
                   {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
-                  <S.CommentsBoxDiv onClick={onClickToggle}>
-                    {/* {detailedContent.isPublic !== true && (
-                    
+                  <S.CommentsBoxDiv>
+                    {detailedContent.isPublic === true && (
+                      <div>
+                        <S.PurpleChatImg
+                          src='/chat_purple.png'
+                          alt='보라색말풍선'
+                        />
+                        <S.HeartCommentTextSpan
+                          public={detailedContent.isPublic}
+                        >
+                          댓글 {comment?.data?.length}
+                        </S.HeartCommentTextSpan>
+                      </div>
                     )}
-
-                  {detailedContent.isPublic === false && (
-                    
-                    )} */}
-                    <S.CommentImg />
-                    <S.HeartCommentTextSpan>
-                      댓글 {comment?.data?.length}
-                    </S.HeartCommentTextSpan>
+                    {detailedContent.isPublic === false && (
+                      <div>
+                        <img src='/chat_gray.png' alt='회색말풍선' />
+                        <S.HeartCommentTextSpan
+                          public={detailedContent.isPublic}
+                        >
+                          댓글 {comment?.data?.length}
+                        </S.HeartCommentTextSpan>
+                      </div>
+                    )}
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
                     <div>
@@ -199,7 +244,9 @@ const BoardDetail = () => {
                         <S.CommentHeartImg onClick={onClickHeartCancel} />
                       )}
                       {!isHeart && <S.BlankHeartImg onClick={onClickHeart} />}
-                      <S.HeartCommentTextSpan>좋아요</S.HeartCommentTextSpan>
+                      <S.HeartCommentTextSpan public={detailedContent.isPublic}>
+                        좋아요
+                      </S.HeartCommentTextSpan>
                       <span>{heartCount?.data}</span>
                     </div>
                   </S.HeartBoxDiv>
@@ -223,8 +270,8 @@ const BoardDetail = () => {
                             {comment?.data?.map((el: any) => (
                               <S.CommentWrapperDiv key={el.commentId}>
                                 <S.CommentBoxDiv>
-                                  <S.DeepCircleImg
-                                    src='/deepCircle.png'
+                                  <S.ProfileImg
+                                    src={profile.data.profileImg}
                                     alt='타원'
                                   />
                                   <S.CommentWriterBoxDiv>
