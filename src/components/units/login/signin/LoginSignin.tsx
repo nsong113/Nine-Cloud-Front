@@ -49,7 +49,7 @@ const LoginSignin = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            Authorization: `${localStorage.getItem('accessToken')}`,
           },
         }
       );
@@ -60,38 +60,39 @@ const LoginSignin = () => {
       localStorage.setItem('refreshToken', refreshToken);
       localStorage.setItem('expiredTime', expiredTime);
       alert(`${response.data.msg}`);
-      // navigate('/loadingpage');
+      navigate('/loadingpage');
     } catch (error: any) {
-      if (error.response) {
-        const errorMsg = error.response.data.msg;
-        console.error('로그인 실패', errorMsg);
+      console.error('네트워크 오류', error.message);
+      // if (error.response) {
+      //   const errorMsg = error.response.data.msg;
+      //   console.error('로그인 실패', errorMsg);
 
-        if (error.response.status === 400) {
-          try {
-            const refreshResponse = await axios.post(`${BASE_URL}/token`, {
-              refreshToken: localStorage.getItem('refreshToken'),
-            });
+      //   if (error.response.status === 400) {
+      //     try {
+      //       const refreshResponse = await axios.post(`${BASE_URL}/token`, {
+      //         refreshToken: localStorage.getItem('refreshToken'),
+      //       });
 
-            const newAccessToken = refreshResponse.headers['authorization'];
-            const newRefreshToken = refreshResponse.headers['refreshtoken'];
-            const newExpiredTime = refreshResponse.headers['expiredtime'];
+      //       const newAccessToken = refreshResponse.headers['authorization'];
+      //       const newRefreshToken = refreshResponse.headers['refreshtoken'];
+      //       const newExpiredTime = refreshResponse.headers['expiredtime'];
 
-            localStorage.setItem('accessToken', newAccessToken);
-            localStorage.setItem('refreshToken', newRefreshToken);
-            localStorage.setItem('expiredTime', newExpiredTime);
+      //       localStorage.setItem('accessToken', newAccessToken);
+      //       localStorage.setItem('refreshToken', newRefreshToken);
+      //       localStorage.setItem('expiredTime', newExpiredTime);
 
-            return onClickLoginHandler();
-          } catch (refreshError: any) {
-            console.error('토큰 갱신 실패', refreshError.message);
-            alert('토큰 갱신 실패');
-          }
-        } else {
-          alert(errorMsg);
-        }
-      } else {
-        console.error('네트워크 오류', error.message);
-        alert('네트워크 오류');
-      }
+      //       return onClickLoginHandler();
+      //     } catch (refreshError: any) {
+      //       console.error('토큰 갱신 실패', refreshError.message);
+      //       alert('토큰 갱신 실패');
+      //     }
+      //   } else {
+      //     alert(errorMsg);
+      //   }
+      // } else {
+      //   console.error('네트워크 오류', error.message);
+      //   alert('네트워크 오류');
+      // }
     }
   };
 

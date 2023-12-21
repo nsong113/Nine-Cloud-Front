@@ -6,16 +6,16 @@ import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import { useRecoilState } from 'recoil';
-import { countAverage, happyA, sadA, weather } from 'src/states/counter';
+import { countAverage, happyA, sadA, sleep, weather } from 'src/states/counter';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { emotion: happy, handler: onChangeHappyCount } = useSetEmotion();
   const { emotion: sad, handler: onChangeSadCount } = useSetEmotion();
-  const { emotion: todayWeather, handler: onChangeAngryCount } =
+  const { emotion: todayWeather, handler: onChangeWeatherCount } =
     useSetEmotion();
-  const { emotion: gloomy, handler: onChangeGloomyCount } = useSetEmotion();
+  const { emotion: todaySleep, handler: onChangeTodaySleep } = useSetEmotion();
 
   const onClickMoveToMain = () => {
     setIsModalOpen(!isModalOpen);
@@ -32,10 +32,15 @@ const BoardWriteEmotion = () => {
   const [sadAtom, setSadAtom] = useRecoilState(sadA);
   const [countAverageNum, setCountAverage] = useRecoilState(countAverage);
   const [weatherToday, setWeatherToday] = useRecoilState(weather);
-  setCountAverage((Number(happy) + Number(sad)) / 2);
-  setHappyAtom(happy);
-  setSadAtom(sad);
-  setWeatherToday(todayWeather);
+
+  const [sleepToday, setSleepToday] = useRecoilState(sleep);
+
+  useEffect(() => {
+    setHappyAtom(happy);
+    setSadAtom(sad);
+    setWeatherToday(todayWeather);
+    setCountAverage((Number(happy) + Number(sad)) / 2);
+  }, [happy, sad, todayWeather, setHappyAtom, setSadAtom, setWeatherToday]);
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
@@ -146,6 +151,43 @@ const BoardWriteEmotion = () => {
                   </S.ContentInputBoxDiv>
                 </S.ContentsBoxDiv>
               </S.SliderBoxDiv>
+
+              <S.SliderBoxDiv>
+                <S.ContentsBoxDiv>
+                  <S.ContentFlexDivBox>
+                    <S.ContentBoxDiv>
+                      오늘의
+                      <S.ContentBoxSpan>수면 상태</S.ContentBoxSpan>는 어땠나요?
+                    </S.ContentBoxDiv>
+                    <S.CountBoxDiv>
+                      <S.CountP>
+                        {todaySleep === '1' && '매우 나빠요'}
+                        {todaySleep === '2' && '나빠요'}
+                        {todaySleep === '3' && '보통이에요'}
+                        {todaySleep === '4' && '좋아요'}
+                        {todaySleep === '5' && '매우 좋아요'}
+                      </S.CountP>
+                    </S.CountBoxDiv>
+                  </S.ContentFlexDivBox>
+                  <S.ContentInputBoxDiv>
+                    <S.ContentInputDescDiv>
+                      <S.ContentSpan>맑은 날</S.ContentSpan>이었는지
+                      <S.ContentSpan> 흐린 날</S.ContentSpan>이었는지
+                      <br /> 기록해볼까요
+                    </S.ContentInputDescDiv>
+                    <S.SliderInput
+                      type='range'
+                      min={1}
+                      max={5}
+                      value={parseInt(todaySleep) || 1}
+                      onChange={onChangeTodaySleep}
+                    />
+                    <S.LabelsDiv>
+                      <S.Labels>{labels}</S.Labels>
+                    </S.LabelsDiv>
+                  </S.ContentInputBoxDiv>
+                </S.ContentsBoxDiv>
+              </S.SliderBoxDiv>
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentFlexDivBox>
@@ -172,41 +214,7 @@ const BoardWriteEmotion = () => {
                       min={1}
                       max={3}
                       value={parseInt(todayWeather) || 1}
-                      onChange={onChangeAngryCount}
-                    />
-                    <S.LabelsDiv>
-                      <S.Labels>{labels}</S.Labels>
-                    </S.LabelsDiv>
-                  </S.ContentInputBoxDiv>
-                </S.ContentsBoxDiv>
-              </S.SliderBoxDiv>
-              <S.SliderBoxDiv>
-                <S.ContentsBoxDiv>
-                  <S.ContentFlexDivBox>
-                    <S.ContentBoxDiv>
-                      오늘의
-                      <S.ContentBoxSpan>날씨</S.ContentBoxSpan>는 어땠나요?
-                    </S.ContentBoxDiv>
-                    <S.CountBoxDiv>
-                      <S.CountP>
-                        {gloomy === '1' && 'AWFUL'}
-                        {gloomy === '2' && 'GOOD'}
-                        {gloomy === '3' && 'GREAT'}
-                      </S.CountP>
-                    </S.CountBoxDiv>
-                  </S.ContentFlexDivBox>
-                  <S.ContentInputBoxDiv>
-                    <S.ContentInputDescDiv>
-                      <S.ContentSpan>맑은 날</S.ContentSpan>이었는지
-                      <S.ContentSpan> 흐린 날</S.ContentSpan>이었는지
-                      <br /> 기록해볼까요
-                    </S.ContentInputDescDiv>
-                    <S.SliderInput
-                      type='range'
-                      min={1}
-                      max={3}
-                      value={parseInt(gloomy) || 1}
-                      onChange={onChangeGloomyCount}
+                      onChange={onChangeWeatherCount}
                     />
                     <S.LabelsDiv>
                       <S.Labels>{labels}</S.Labels>

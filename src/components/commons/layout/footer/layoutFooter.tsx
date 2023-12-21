@@ -30,11 +30,10 @@ const Footer = () => {
   );
 
   const today = getDate(currentDate) - 1;
-  console.log('footer', data?.data[today]);
+  // console.log('footer', data?.data[today]);
 
   const diaryCheck = data?.data[today];
 
-  // const checkData = data.
   const navigate = useNavigate();
 
   const goToMainHandler = () => {

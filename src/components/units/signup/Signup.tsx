@@ -81,7 +81,7 @@ const Signup = () => {
       setIsVerificationSent(true);
       // }
       alert('회원가입이 성공적으로 완료되었습니다.');
-      navigate('/login');
+      // navigate('/login');
     } catch (error: any) {
       if (error.response) {
         // 서버 응답이 있는 경우
