@@ -92,7 +92,9 @@ const ViewAll = () => {
           {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
           <S.HeaderWrapperDiv>
             <S.DateBoxDiv>
+              <S.ExcludeImg src='/exclude.png' alt='이미지' />
               <S.YearMonthChangeBoxDiv>
+                <div></div>
                 <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
               </S.YearMonthChangeBoxDiv>
               <S.PrevNextMonthBoxDiv>
@@ -102,7 +104,8 @@ const ViewAll = () => {
             </S.DateBoxDiv>
             <S.ViewAllRightProfile>
               <S.ButtonWrapperDiv>
-                <Tooltip message='달력'>
+                <S.RightProfile>
+                  {/* <Tooltip message='달력'> */}
                   <S.StyledHoverTapButton
                     whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
                     whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
@@ -110,7 +113,8 @@ const ViewAll = () => {
                   >
                     <S.Calendar />
                   </S.StyledHoverTapButton>
-                </Tooltip>
+                  {/* </Tooltip> */}
+                </S.RightProfile>
               </S.ButtonWrapperDiv>
             </S.ViewAllRightProfile>
           </S.HeaderWrapperDiv>

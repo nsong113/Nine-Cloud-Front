@@ -157,7 +157,8 @@ const BoardWriteEmotion = () => {
                   <S.ContentFlexDivBox>
                     <S.ContentBoxDiv>
                       오늘의
-                      <S.ContentBoxSpan>수면 상태</S.ContentBoxSpan>는 어땠나요?
+                      <S.ContentBoxSpan>마음 일출</S.ContentBoxSpan>을
+                      떠올려볼까요?
                     </S.ContentBoxDiv>
                     <S.CountBoxDiv>
                       <S.CountP>
@@ -171,9 +172,8 @@ const BoardWriteEmotion = () => {
                   </S.ContentFlexDivBox>
                   <S.ContentInputBoxDiv>
                     <S.ContentInputDescDiv>
-                      <S.ContentSpan>맑은 날</S.ContentSpan>이었는지
-                      <S.ContentSpan> 흐린 날</S.ContentSpan>이었는지
-                      <br /> 기록해볼까요
+                      하루를 시작하기 전 단계인 <br />
+                      <S.ContentSpan> 수면 상태</S.ContentSpan>는 어땠나요?
                     </S.ContentInputDescDiv>
                     <S.SliderInput
                       type='range'

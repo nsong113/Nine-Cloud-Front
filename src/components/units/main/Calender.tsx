@@ -115,6 +115,7 @@ const Calender = () => {
       <S.CalendarContainerDiv>
         <S.HeaderWrapperDiv>
           <S.DateBoxDiv>
+            <S.ExcludeImg src='/exclude.png' alt='이미지' />
             <S.YearMonthChangeBoxDiv>
               <S.PrevMonth onClick={onClickPrevMonth} size={30} />
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
@@ -127,15 +128,15 @@ const Calender = () => {
           </S.DateBoxDiv>
           <S.RightProfile>
             <S.ButtonWrapperDiv>
-              <Tooltip message='리스트'>
-                <S.StyledHoverTapButton
-                  whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
-                  whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
-                  onClick={onClickListBtn}
-                >
-                  <S.List />
-                </S.StyledHoverTapButton>
-              </Tooltip>
+              {/* <Tooltip message='리스트'> */}
+              <S.StyledHoverTapButton
+                whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
+                whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
+                onClick={onClickListBtn}
+              >
+                <S.List />
+              </S.StyledHoverTapButton>
+              {/* </Tooltip> */}
             </S.ButtonWrapperDiv>
           </S.RightProfile>
         </S.HeaderWrapperDiv>

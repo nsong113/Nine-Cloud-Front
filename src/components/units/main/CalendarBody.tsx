@@ -26,23 +26,47 @@ const CalendarBody = (props: any) => {
     return matchingDay ? matchingDay.diaryId : 0;
   };
 
-  const onClickGoToDetailHandler = (id: any) => () => {
+  const onClickGoToDetailHandler = (id: number) => () => {
     if (id !== 0) {
       navigate(`/post/${id}`);
     } else {
       alert('작성하신 글이 없습니다.');
     }
   };
+ 
 
-  const emotionImages: { [key: string]: string | undefined } = {
-    1: '/blue.png',
-    2: '/Pink.png',
-    3: '/Purple.png',
-    4: '/Lemon.png',
-  };
   const filteredDayList = allData.filter((el: any) => el !== null);
-  const getEmotion = (emotionStatus: any) => {
-    return emotionImages[emotionStatus] || '/blank.png';
+  const getEmotion = (emotionStatus: any, weatherStatus: any): any => {
+    switch (true) {
+      case weatherStatus === '1' && emotionStatus <= 1.6:
+        return '/rain_sad.png';
+      case weatherStatus === '1' && emotionStatus > 1.6 && emotionStatus <= 3.3:
+        return '/rain_soso.png';
+
+      case weatherStatus === '1' && emotionStatus > 3.3 && emotionStatus <= 5:
+        return '/rain_happy.png';
+
+      case weatherStatus === '2' && emotionStatus <= 1.6:
+        return '/cloud_sad.png';
+
+      case weatherStatus === '2' && emotionStatus > 1.6 && emotionStatus <= 3.3:
+        return '/cloud_soso.png';
+
+      case weatherStatus === '2' && emotionStatus > 3.3 && emotionStatus <= 5:
+        return '/cloud_happy.png';
+
+      case weatherStatus === '3' && emotionStatus <= 1.6:
+        return '/sun_sad.png';
+
+      case weatherStatus === '3' && emotionStatus > 1.6 && emotionStatus <= 3.3:
+        return '/sun_soso.png';
+
+      case weatherStatus === '3' && emotionStatus > 3.3 && emotionStatus <= 5:
+        return '/sun_happy.png';
+
+      default:
+        return '/blank_circle.png';
+    }
   };
 
   const getEmotionStatusForDate = (date: string) => {
@@ -54,6 +78,17 @@ const CalendarBody = (props: any) => {
     );
 
     return matchingDay ? matchingDay.EmotionStatus : 0;
+  };
+
+  const getWeatherData = (date: string) => {
+    const weatherData = filteredDayList.find(
+      (el: any) =>
+        //day 일치여부 조회 로직
+        el?.createdAt &&
+        parseInt(el.createdAt.split('.')[2]).toString() === date
+    );
+
+    return weatherData ? weatherData.weather : 0;
   };
 
   return (
@@ -74,6 +109,7 @@ const CalendarBody = (props: any) => {
             }
 
             const emotionStatus = getEmotionStatusForDate(String(cellDate));
+            const weatherStatus = getWeatherData(String(cellDate));
             const id = getId(String(cellDate));
 
             const isToday =
@@ -90,11 +126,15 @@ const CalendarBody = (props: any) => {
                   <S.DayWrapperDiv>
                     <S.DateWrapperDiv>
                       <S.DateSpan isToday={isToday}>{cellDate}</S.DateSpan>
-                      {/* {cellDate <= currentDate.getDate() && ( */}
-                      <S.DateImg
-                        src={getEmotion(emotionStatus)}
-                        alt={`Emotion ${emotionStatus}`}
-                      />
+                      {cellDate > new Date().getDate() && (
+                        <S.BlankDiv></S.BlankDiv>
+                      )}
+                      {cellDate <= new Date().getDate() && (
+                        <S.DateImg
+                          src={getEmotion(emotionStatus, weatherStatus)}
+                          alt={`Emotion ${emotionStatus}`}
+                        />
+                      )}
                       {/* )} */}
                     </S.DateWrapperDiv>
                   </S.DayWrapperDiv>

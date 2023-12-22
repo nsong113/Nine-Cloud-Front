@@ -46,6 +46,9 @@ const BoardDetail = () => {
 
   const { data: comment } = useQuery('comment', () => getComments(params.id));
   const { data: profile } = useQuery('profile', getMyInfo);
+  const [humid, setHumid] = useState('');
+  const [temperature, setTemperature] = useState('');
+  const [sleep, setSleep] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
 
@@ -55,10 +58,65 @@ const BoardDetail = () => {
 
   const detailedContent = data?.data;
 
+  console.log('detailedContent', detailedContent);
   const params = useParams();
   if (isLoading) {
     return <Loading />;
   }
+
+  const teperatureHandle = () => {
+    switch (true) {
+      case detailedContent?.temperature === '1':
+        return '지쳤어요';
+      case detailedContent?.temperature === '2':
+        return '무료해요';
+      case detailedContent?.temperature === '3':
+        return '그냥그래요';
+      case detailedContent?.temperature === '4':
+        return '좋아요';
+      case detailedContent?.temperature === '5':
+        return '열정넘쳐요';
+      default:
+        console.log('아무것도 아님');
+        break;
+    }
+  };
+
+  const humidHandle = () => {
+    switch (true) {
+      case detailedContent?.humid === '1':
+        return '불쾌해요';
+      case detailedContent?.humid === '2':
+        return '울적해요';
+      case detailedContent?.humid === '3':
+        return '적당해요';
+      case detailedContent?.humid === '4':
+        return '꽤 좋아요';
+      case detailedContent?.humid === '5':
+        return '상쾌해요';
+      default:
+        console.log('아무것도 아님');
+        break;
+    }
+  };
+
+  const sleepHandle = () => {
+    switch (true) {
+      case detailedContent?.sleep === '1':
+        return '매우 나빠요';
+      case detailedContent?.sleep === '2':
+        return '나빠요';
+      case detailedContent?.sleep === '3':
+        return '보통이에요';
+      case detailedContent?.sleep === '4':
+        return '좋아요';
+      case detailedContent?.sleep === '5':
+        return '매우 좋아요';
+      default:
+        console.log('아무것도 아님');
+        break;
+    }
+  };
 
   const onClickMoveToMain = () => {
     navigate('/main');
@@ -142,7 +200,6 @@ const BoardDetail = () => {
             <S.BackImg onClick={onClickMoveToMain} />
             <S.HearderRightBoxDiv>
               <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
-              <S.WeatherImage src={getImage()} alt='이미지' />
             </S.HearderRightBoxDiv>
           </S.HeaderWrapperDiv>
           <S.ImgBoxDiv>
@@ -164,19 +221,19 @@ const BoardDetail = () => {
                   <div>
                     <S.CategoryText>마음 온도</S.CategoryText>
                     <S.StatusBoxDiv>
-                      <S.MindStatusSpan>지쳤어요</S.MindStatusSpan>
+                      <S.MindStatusSpan>{teperatureHandle()}</S.MindStatusSpan>
                     </S.StatusBoxDiv>
                   </div>
                   <div>
                     <S.CategoryText>마음 습도</S.CategoryText>
                     <S.StatusBoxDiv>
-                      <S.MindStatusSpan>울적해요</S.MindStatusSpan>
+                      <S.MindStatusSpan>{humidHandle()}</S.MindStatusSpan>
                     </S.StatusBoxDiv>
                   </div>
                   <div>
                     <S.CategoryText>마음 일출</S.CategoryText>
                     <S.StatusBoxDiv>
-                      <S.MindStatusSpan>나빠요</S.MindStatusSpan>
+                      <S.MindStatusSpan>{sleepHandle()}</S.MindStatusSpan>
                     </S.StatusBoxDiv>
                   </div>
                 </S.heartBoxDiv>
@@ -211,8 +268,20 @@ const BoardDetail = () => {
             <div>
               <S.CategoryBoxDiv>
                 <S.FooterBoxDiv>
-                  {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
-                  {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
+                  {detailedContent.isPublic === true && (
+                    <div>
+                      {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
+                      {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
+                    </div>
+                  )}
+                  {detailedContent.isPublic === false && (
+                    <div>
+                      {!isActive && <S.GrayToggleImg onClick={onClickToggle} />}
+                      {isActive && (
+                        <S.GrayToggleOffImg onClick={onClickToggle} />
+                      )}
+                    </div>
+                  )}
                   <S.CommentsBoxDiv>
                     {detailedContent.isPublic === true && (
                       <div>
@@ -228,26 +297,44 @@ const BoardDetail = () => {
                       </div>
                     )}
                     {detailedContent.isPublic === false && (
-                      <div>
-                        <img src='/chat_gray.png' alt='회색말풍선' />
+                      <S.GrayChatBoxDiv>
+                        <S.GrayChatImg src='/chat_gray.png' alt='회색말풍선' />
                         <S.HeartCommentTextSpan
                           public={detailedContent.isPublic}
                         >
-                          댓글 {comment?.data?.length}
+                          댓글
                         </S.HeartCommentTextSpan>
-                      </div>
+                        <S.HeartCommentTextSpan
+                          public={detailedContent.isPublic}
+                        >
+                          {comment?.data?.length}
+                        </S.HeartCommentTextSpan>
+                      </S.GrayChatBoxDiv>
                     )}
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
                     <div>
-                      {isHeart && (
-                        <S.CommentHeartImg onClick={onClickHeartCancel} />
+                      {detailedContent.isPublic === true && (
+                        <S.GrayChatBoxDiv>
+                          {isHeart && (
+                            <S.CommentHeartImg onClick={onClickHeartCancel} />
+                          )}
+                          {!isHeart && (
+                            <S.BlankHeartImg onClick={onClickHeart} />
+                          )}
+                        </S.GrayChatBoxDiv>
                       )}
-                      {!isHeart && <S.BlankHeartImg onClick={onClickHeart} />}
-                      <S.HeartCommentTextSpan public={detailedContent.isPublic}>
-                        좋아요
-                      </S.HeartCommentTextSpan>
-                      <span>{heartCount?.data}</span>
+                      {detailedContent.isPublic === false && (
+                        <S.HeartWrapperDiv>
+                          <img src='/grayHeart.png' alt='회색하트' />
+                          <S.HeartCommentTextSpan
+                            public={detailedContent.isPublic}
+                          >
+                            좋아요
+                          </S.HeartCommentTextSpan>
+                          <span>{heartCount?.data}</span>
+                        </S.HeartWrapperDiv>
+                      )}
                     </div>
                   </S.HeartBoxDiv>
                 </S.FooterBoxDiv>
@@ -286,13 +373,13 @@ const BoardDetail = () => {
                               </S.CommentWrapperDiv>
                             ))}
                           </S.CommentHeaderDiv>
-                          <S.CommentFooterWrapDiv>
-                            <S.InputBoxDiv
-                              placeholder='공개로 바꾸면 친구들이 댓글을 달 수 있습니다.'
-                              disabled
-                            />
-                          </S.CommentFooterWrapDiv>
                         </S.CommentBox>
+                        <S.CommentFooterWrapDiv>
+                          <S.InputBoxDiv
+                            placeholder='공개로 바꾸면 친구들이 댓글을 달 수 있습니다.'
+                            disabled
+                          />
+                        </S.CommentFooterWrapDiv>
                       </S.CommentsWrapperDiv>
                     </div>
                   )}

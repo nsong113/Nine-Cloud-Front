@@ -12,6 +12,7 @@ import {
 import { useParams } from 'react-router-dom';
 import { CommentData } from './test';
 import { IComment } from './BoardDetailComment.types';
+import { VideoCard } from 'src/components/commons/utills/Date/date';
 
 const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
   const [content, setContent] = useState('');
@@ -23,6 +24,17 @@ const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
 
   const [message, setMessage] = useState('');
   const diaryId = params.id;
+
+  const createdAtDate: Date | '' = comment?.data?.createdAt
+    ? new Date(comment?.data?.createdAt)
+    : '';
+
+  if (createdAtDate) {
+    createdAtDate.setHours(createdAtDate.getHours() - 9);
+  }
+
+  console.log('댓글', createdAtDate);
+  console.log('comment', comment);
 
   const profileInfo = profile?.data;
 
@@ -112,9 +124,13 @@ const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
                     <S.CommentBoxDiv>
                       <S.ProfileImg src={profileInfo?.profileImg} alt='타원' />
                       <S.CommentWriterBoxDiv>
-                        <S.CommentWriterSpan>
-                          {profileInfo?.username}
-                        </S.CommentWriterSpan>
+                        <S.DateBoxDiv>
+                          <S.CommentWriterSpan>
+                            {profileInfo?.username}
+                            <S.DateTextSpan>{VideoCard(createdAtDate)}</S.DateTextSpan>
+                          </S.CommentWriterSpan>
+                        </S.DateBoxDiv>
+
                         {editingCommentId !== el.commentId && (
                           <S.ButtonWrapperDiv>
                             <S.CommentContent>{el.content}</S.CommentContent>
@@ -179,11 +195,11 @@ const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
                   </S.CommentWrapperDiv>
                 ))}
               </S.CommentHeaderDiv>
-              <S.CommentFooterWrapDiv>
-                <S.InputBoxDiv value={content} onChange={onChangeComment} />
-                <S.SubmitButton onClick={onClickSubmitBtn}>등록</S.SubmitButton>
-              </S.CommentFooterWrapDiv>
             </S.CommentBox>
+            <S.CommentFooterWrapDiv>
+              <S.InputBoxDiv value={content} onChange={onChangeComment} />
+              <S.SubmitButton onClick={onClickSubmitBtn}>등록</S.SubmitButton>
+            </S.CommentFooterWrapDiv>
           </S.CommentsWrapperDiv>
         </div>
       )}

@@ -4,6 +4,7 @@ import { IpostDiaryItem } from './apiesType';
 import { useRecoilState } from 'recoil';
 import { countAverage } from 'src/states/counter';
 import axiosInstance from './loginapi';
+import { countAverage, happyA, sadA, sleep } from 'src/states/counter';
 
 // create (post)
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
@@ -23,6 +24,9 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
     formData.append('image', postDiaryItem.image || '');
     formData.append('sentence', postDiaryItem.sentence || '');
     formData.append('weather', postDiaryItem.weather || '');
+    formData.append('temperature', postDiaryItem.temperature || '');
+    formData.append('humid', postDiaryItem.humid || '');
+    formData.append('sleep', postDiaryItem.sleep || '');
 
     let values: any = formData.values();
     for (const pair of values) {
