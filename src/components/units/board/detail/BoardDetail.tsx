@@ -181,6 +181,10 @@ const BoardDetail = () => {
   const getImage = () => {
     return weatherImages[detailedContent?.weather];
   };
+
+  console.log('teperatureHandle', teperatureHandle());
+  console.log('humidHandle', humidHandle());
+  console.log('sleepHandle', sleepHandle());
   // const formattedData = format(detailedContent?.createdAt, 'yyyy년 mm월 dd일');
 
   return (
