@@ -49,6 +49,10 @@ const Header = () => {
     navigate('/list');
   };
 
+  const onClickLogo = () => {
+    navigate('/main');
+  };
+
   const profileImg = localStorage.getItem('image');
 
   return (
@@ -58,7 +62,11 @@ const Header = () => {
         <S.CalenderHeaderDiv>
           <S.LogoBoxDiv>
             <div style={{ display: 'flex' }}>
-              <S.LogoImg src='/logo_final.png' alt='로고' />
+              <S.LogoImg
+                onClick={onClickLogo}
+                src='/logo_final.png'
+                alt='로고'
+              />
             </div>
             <Tooltip message='마이페이지'>
               <S.StyledHoverTapButton

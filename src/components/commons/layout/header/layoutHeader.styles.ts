@@ -277,12 +277,12 @@ export const AvatarSizeImg = styled.img`
   flex-shrink: 0;
   cursor: pointer;
   border-radius: 159px;
-  border: 1px solid #fff;
+  border: 1px solid white;
 
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
 
   &:hover {
-    border: 3px solid red;
+    border: 3px solid white;
   }
 `;
 
@@ -303,6 +303,7 @@ export const LogoImg = styled.img`
   width: 200.25px;
   height: 50.516px;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 ////////////////////
 ////View All

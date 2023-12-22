@@ -33,27 +33,7 @@ const CalendarBody = (props: any) => {
       alert('작성하신 글이 없습니다.');
     }
   };
-  const allWeatherImages = [
-    [],
-    [
-      {},
-      { 1: '/rain_sad.png' },
-      { 2: '/rain_soso.png' },
-      { 3: '/rain_happy.png' },
-    ],
-    [
-      {},
-      { 1: '/cloud_sad.png' },
-      { 2: '/cloud_soso.png' },
-      { 3: '/cloud_happy.png' },
-    ],
-    [
-      {},
-      { 1: '/sun_sad.png' },
-      { 2: '/sun_soso.png' },
-      { 3: '/sun_happy.png' },
-    ],
-  ];
+ 
 
   const filteredDayList = allData.filter((el: any) => el !== null);
   const getEmotion = (emotionStatus: any, weatherStatus: any): any => {

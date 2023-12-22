@@ -143,7 +143,6 @@ export const CategoryBoxDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid black;
 `;
 
 export const HeartCommentTextSpan = styled.span<IComment>`
@@ -160,12 +159,15 @@ export const CommentsWrapperDiv = styled.div`
 `;
 
 export const CommentBox = styled.div`
-  height: 250px;
-  border-radius: 4px;
-  background: #d9d9d9;
+  width: 403px;
+  height: 167px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(245, 242, 255, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: scroll;
 `;
 
 export const CircleImg = styled.img`
@@ -211,7 +213,7 @@ export const CommentContent = styled.span`
 
 export const InputBoxDiv = styled.input`
   background-color: white;
-  width: 350px;
+  width: 403px;
   height: 47px;
   border-radius: 28px;
   margin-left: 10px;
@@ -352,6 +354,7 @@ export const CommentBoxDiv = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  overflow: scroll;
 `;
 
 export const HeartBoxDiv = styled.div`

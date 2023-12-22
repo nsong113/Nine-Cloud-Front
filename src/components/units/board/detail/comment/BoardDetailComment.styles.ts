@@ -61,7 +61,7 @@ export const CommentFooterWrapDiv = styled.div`
 
 export const InputBoxDiv = styled.input`
   background-color: white;
-  width: 260px;
+  width: 403px;
   height: 47px;
   border-radius: 28px;
   margin-left: 10px;
