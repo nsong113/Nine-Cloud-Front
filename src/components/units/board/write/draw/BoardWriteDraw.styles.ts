@@ -29,10 +29,11 @@ export const DrawWrapperDOWNdiv = styled.div`
   height: 775px;
 
   border-radius: 5px 20px 5px 5px;
-  border: 1px solid var(--line, #cfc0ff);
-  background: rgba(245, 242, 255, 0.2);
+  background: rgba(245, 242, 255, 0.3);
 
-  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset;
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(15px);
   padding: 6px;
   box-sizing: border-box;
@@ -54,7 +55,7 @@ export const HeaderButtonBoxDiv = styled.div`
 export const HeaderLine = styled.div`
   width: 150px;
   height: 2px;
-  background-color: #5035a6;
+  background-color: rgba(57, 29, 147, 0.5);
   margin: 0 auto;
   position: absolute;
 `;
@@ -356,14 +357,14 @@ export const EraserThicknessBold = styled.div`
   width: 33px;
   height: 33px;
   border-radius: 50%;
-  background-color: #929292;
+  background: var(--sub, #8066d1);
   cursor: pointer;
 `;
 export const ThicknessBoldMedium = styled.div`
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: #929292;
+  background: var(--sub, #8066d1);
   cursor: pointer;
 `;
 
@@ -371,7 +372,7 @@ export const EraserThicknessMedium = styled.div`
   width: 23px;
   height: 23px;
   border-radius: 50%;
-  background-color: #929292;
+  background: var(--sub, #8066d1);
   cursor: pointer;
 `;
 
@@ -379,7 +380,7 @@ export const ThicknessMediumThin = styled.div`
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: #929292;
+  background: var(--sub, #8066d1);
   cursor: pointer;
 `;
 
@@ -387,7 +388,7 @@ export const EraserThicknessThin = styled.div`
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background-color: #929292;
+  background: var(--sub, #8066d1);
   cursor: pointer;
 `;
 
