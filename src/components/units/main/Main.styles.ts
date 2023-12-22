@@ -229,11 +229,13 @@ export const HeaderWrapperDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 60px;
+  height: 30px;
   justify-content: space-between;
+  margin-bottom: 10px;
 `;
 
 export const RightProfile = styled.div`
+  margin-top: 20px;
   width: 130px;
   display: flex;
   justify-content: end;
@@ -251,6 +253,8 @@ export const ViewAllRightProfile = styled.div`
 
 export const MonthNumberSpan = styled.span`
   color: #391d93;
+
+  font-family: Spoqa Han Sans Neo;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
@@ -428,6 +432,10 @@ export const PrevMonth = styled(IoIosArrowBack)`
   color: #a294cd;
 `;
 
+export const ExcludeImg = styled.img`
+  margin-bottom: 12px;
+`;
+
 export const NextMonth = styled(MdOutlineArrowForwardIos)`
   cursor: pointer;
   color: #a294cd;
@@ -446,19 +454,40 @@ export const DateWrapperDiv = styled.div`
 `;
 
 export const DateSpan = styled.span<IDateSpanProps>`
-  color: ${({ isToday }) => (isToday ? 'black' : 'inherit')};
+  color: ${({ isToday }) => (isToday ? 'black' : 'var(--Gray2, #929292);')};
   background-color: ${({ isToday }) => (isToday ? '#ff4bb7' : 'inherit')};
-  border-radius: 50px;
-  width: 22px;
-  height: 22px;
-  margin: 10px 0px;
-  font-weight: 700;
+  background-image: ${({ isToday }) =>
+    isToday
+      ? 'url("/today.png")'
+      : 'none'}; /* 이미지 경로를 실제 이미지 파일의 경로로 변경하세요 */
+  background-size: cover; /* 이미지를 컨테이너에 맞게 조절합니다 */
+  background-position: center; /* 이미지를 가운데 정렬합니다 */
+  font-family: Spoqa Han Sans Neo;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: 20px;
+  margin-bottom: 20px;
   /* line-height: 22px; */
 `;
 
+export const ImgBoxDiv = styled.div`
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  stroke-width: 0.5px;
+  stroke: rgba(207, 192, 255, 0.5);
+  border: 1px solid #cfc0ff80;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const DateImg = styled.img`
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
 `;
 
 export const StyledHoverTapButton = styled(motion.button)`
@@ -474,7 +503,6 @@ export const LeftRightAnimeButton = styled(motion.div)`
 `;
 export const YearMonthChangeBoxDiv = styled.div`
   display: flex;
-  margin-left: 14px;
   align-items: center;
 `;
 
@@ -547,4 +575,9 @@ export const GPTDiv = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+`;
+
+export const BlankDiv = styled.div`
+  width: 40px;
+  height: 50px;
 `;

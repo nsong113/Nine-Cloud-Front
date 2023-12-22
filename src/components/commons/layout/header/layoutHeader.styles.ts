@@ -300,8 +300,9 @@ export const FooterBoxDiv = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  width: 77.25px;
-  height: 45.516px;
+  width: 200.25px;
+  height: 50.516px;
+  margin-bottom: 10px;
 `;
 ////////////////////
 ////View All

@@ -58,13 +58,7 @@ const Header = () => {
         <S.CalenderHeaderDiv>
           <S.LogoBoxDiv>
             <div style={{ display: 'flex' }}>
-              <S.LogoImg src='/logo.png' alt='로고' />
-              <S.BrandTextBoxDiv>
-                <S.LogoText>NINE</S.LogoText>
-                <div>
-                  <S.LogoText>CLOUD</S.LogoText>
-                </div>
-              </S.BrandTextBoxDiv>
+              <S.LogoImg src='/logo_final.png' alt='로고' />
             </div>
             <Tooltip message='마이페이지'>
               <S.StyledHoverTapButton
@@ -72,11 +66,11 @@ const Header = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={onClickMyProfile}
               >
-                {!profileImg && (
+                {profile?.data?.profileImg && (
                   <S.AvatarSizeImg src={profile?.data?.profileImg} alt='기본' />
                 )}
-                {profileImg && (
-                    <S.AvatarSizeImg src='/avatar.png' alt='기본' />
+                {!profile?.data?.profileImg && (
+                  <S.AvatarSizeImg src='/avatar.png' alt='기본' />
                 )}
               </S.StyledHoverTapButton>
             </Tooltip>
