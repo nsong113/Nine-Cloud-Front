@@ -22,7 +22,7 @@ const EditOverlay: React.FC<IEditPost> = ({
   const navigate = useNavigate();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [contents, setContents] = useState('');
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
   const onClickModalDiv = (e: any) => {
     e.stopPropagation();
   };
@@ -37,7 +37,6 @@ const EditOverlay: React.FC<IEditPost> = ({
   });
 
   const onChangeIsPublicHandler = () => {
-    setIsPublicToday(!isPublicToday);
     setIsPublic(!isPublic);
   };
 
@@ -66,7 +65,7 @@ const EditOverlay: React.FC<IEditPost> = ({
     editMutation.mutate({ diaryId, myPost });
     alert('정상적으로 수정됐습니다');
     onClose();
-    setIsEdit((prev) => !prev);
+    // setIsEdit((prev) => !prev);
   };
 
   const onClickCheck = () => {
@@ -74,7 +73,7 @@ const EditOverlay: React.FC<IEditPost> = ({
   };
 
   const onClickTrashCan = () => {
-    setIsDeleteModal((prev) => !prev);
+    setIsChecked((prev) => !prev);
   };
 
   const onChangeContents = (value: string) => {
@@ -105,30 +104,38 @@ const EditOverlay: React.FC<IEditPost> = ({
                   onChange={onChangeContents}
                   defaultValue={content}
                 />
+                {/* {contents && <span>200 / {contents.length - 7}</span>} */}
                 <S.ToggleWrapperDiv>
-                  <h3>공개여부</h3>
+                  <S.OpenToggleTitleSpan>공개여부</S.OpenToggleTitleSpan>
                   <S.ToggleContainerDiv>
-                    {isPublic && (
-                      <S.PrivateTextDiv>
-                        <span>비공개</span>
-                        {/* <span>나의 일기를 확인할 수 있어요</span> */}
-                      </S.PrivateTextDiv>
-                    )}
-                    {!isPublic && <div style={{ width: '50px' }}></div>}
-
                     <S.CustomToggle
                       id='customToggle'
                       checked={isPublic}
                       icons={{
-                        checked: <img src='/person.png' alt='사람' />,
-                        unchecked: <img src='/people.png' alt='사람들' />,
+                        unchecked: (
+                          <S.ToggleTumbsImg
+                            src='/private_person.png'
+                            alt='사람들'
+                          />
+                        ),
+                        checked: <S.PublicImg />,
                       }}
                       onChange={onChangeIsPublicHandler}
                     />
-                    {isPublic && <div style={{ width: '50px' }}></div>}
                     {!isPublic && (
+                      <S.PrivateTextDiv>
+                        <S.SubTitleSpan>
+                          나만 일기를 확인할 수 있어요.
+                        </S.SubTitleSpan>
+                        {/* <span>나의 일기를 확인할 수 있어요</span> */}
+                      </S.PrivateTextDiv>
+                    )}
+                    {!isPublic && <div style={{ width: '50px' }}></div>}
+                    {isPublic && (
                       <S.PublicTextDiv>
-                        <span>공개</span>
+                        <S.SubTitleSpan>
+                          다른 사람들과 공유할 수 있습니다.
+                        </S.SubTitleSpan>
                         {/* <span>다른 사람들과 공유할 수 있어요</span> */}
                       </S.PublicTextDiv>
                     )}
@@ -137,14 +144,20 @@ const EditOverlay: React.FC<IEditPost> = ({
               </S.ContentsContainerDiv>
               <S.FooterBoxDiv>
                 <S.ButtonBoxDiv>
-                  <S.DeleteButton onClick={onClickCheck}>
+                  {/* <S.DeleteButton onClick={onClickCheck}>
                     삭제하기
-                  </S.DeleteButton>
+                  </S.DeleteButton> */}
                   <S.EditButton onClick={onClickEditBtn}>수정하기</S.EditButton>
+                  <S.TrashCanImg onClick={onClickTrashCan} />
                 </S.ButtonBoxDiv>
-                {contents && <span>200 / {contents.length - 7}</span>}
-                {/* <S.TrashCanImg onClick={onClickTrashCan} /> */}
               </S.FooterBoxDiv>
+              <S.DeleteTextDiv>
+                {isChecked && (
+                  <S.DeleteTextSpan onClick={onClickDeleteBtn}>
+                    일기를 삭제하시려면 여기를 누르세요
+                  </S.DeleteTextSpan>
+                )}
+              </S.DeleteTextDiv>
             </div>
           </S.ContentsWrapperDiv>
         </S.ModalContentDiv>

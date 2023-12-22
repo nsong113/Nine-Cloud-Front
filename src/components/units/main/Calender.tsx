@@ -115,6 +115,7 @@ const Calender = () => {
       <S.CalendarContainerDiv>
         <S.HeaderWrapperDiv>
           <S.DateBoxDiv>
+            <S.ExcludeImg src='/exclude.png' alt='이미지' />
             <S.YearMonthChangeBoxDiv>
               <S.PrevMonth onClick={onClickPrevMonth} size={30} />
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>

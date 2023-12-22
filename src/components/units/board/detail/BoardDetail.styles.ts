@@ -22,6 +22,7 @@ export const HeaderWrapperDiv = styled.div`
   width: 430px;
   margin-bottom: 30px;
   margin-top: 10px;
+  margin-top: 40px;
 `;
 
 export const ImgBoxDiv = styled.div`
@@ -39,6 +40,7 @@ export const ImgBoxDiv = styled.div`
 export const HearderRightBoxDiv = styled.div`
   display: flex;
   align-items: center;
+  margin
 `;
 
 export const MainImg = styled.img`
@@ -139,7 +141,6 @@ export const ContentsFooterDiv = styled.div`
 export const CategoryBoxDiv = styled.div`
   height: 50px;
   display: flex;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid black;
@@ -147,11 +148,11 @@ export const CategoryBoxDiv = styled.div`
 
 export const HeartCommentTextSpan = styled.span<IComment>`
   color: ${(props) => (props.public ? 'rgba(80, 53, 166, 1)' : '#BBBBBB')};
-  font-size: 13px;
+  font-family: Pretendard;
+  font-size: 16.867px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-right: 10px;
 `;
 
 export const CommentsWrapperDiv = styled.div`
@@ -382,11 +383,18 @@ export const DeletePostSpan = styled.span`
   margin-left: 70px;
 `;
 
+export const GrayToggleImg = styled(IoIosArrowDown)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: #bbbbbb;
+`;
+
 export const ToggleOnImg = styled(IoIosArrowDown)`
   width: 30px;
   height: 30px;
   cursor: pointer;
-  color: rgba(80, 53, 166, 1);
+  color: #bbbbbb;
 `;
 
 export const FooterBoxDiv = styled.div`
@@ -396,6 +404,13 @@ export const FooterBoxDiv = styled.div`
 
 export const ToggleOffImg = styled(IoIosArrowUp)`
   color: rgba(80, 53, 166, 1);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+`;
+
+export const GrayToggleOffImg = styled(IoIosArrowUp)`
+  color: #bbbbbb;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -458,4 +473,19 @@ export const PurpleChatImg = styled.img`
 export const PurpleHeart = styled.img`
   width: 18.455px;
   height: 17.301px;
+`;
+
+export const GrayChatImg = styled.img`
+  width: 22.546px;
+  height: 14.684px;
+`;
+
+export const GrayChatBoxDiv = styled.div`
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+export const HeartWrapperDiv = styled.div`
+  margin-top: 6px;
 `;

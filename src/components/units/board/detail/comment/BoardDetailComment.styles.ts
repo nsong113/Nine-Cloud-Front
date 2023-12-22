@@ -8,12 +8,15 @@ export const CommentsWrapperDiv = styled.div`
   height: 300px;
 `;
 export const CommentBox = styled.div`
-  height: 250px;
-  border-radius: 4px;
-  background: #d9d9d9;
+  width: 403px;
+  height: 167px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(245, 242, 255, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: scroll;
 `;
 
 export const CommentBoxDiv = styled.div`
@@ -62,18 +65,25 @@ export const InputBoxDiv = styled.input`
   height: 47px;
   border-radius: 28px;
   margin-left: 10px;
+  border: 1px solid #8066d1;
+  & :active {
+    border: 1px solid #391d93;
+  }
 `;
 
 export const SubmitButton = styled.button`
   color: #fff;
   border-radius: 9px;
-  background: #858585;
+  background: #8066d1;
   width: 61px;
   height: 47px;
   flex-shrink: 0;
   margin-left: 20px;
   border: 0;
   cursor: pointer;
+  &:hover {
+    background-color: #391d93;
+  }
 `;
 
 export const CommentWriterBoxDiv = styled.div`
@@ -116,4 +126,12 @@ export const CancelImg = styled(MdOutlineCancel)`
 export const CommentTextArea = styled.textarea`
   width: 200px;
   height: 50px;
+`;
+
+export const DateBoxDiv = styled.div`
+  display: flex;
+`;
+
+export const DateTextSpan = styled.span`
+  color: gray;
 `;

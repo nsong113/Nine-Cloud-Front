@@ -142,7 +142,6 @@ const BoardDetail = () => {
             <S.BackImg onClick={onClickMoveToMain} />
             <S.HearderRightBoxDiv>
               <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
-              <S.WeatherImage src={getImage()} alt='이미지' />
             </S.HearderRightBoxDiv>
           </S.HeaderWrapperDiv>
           <S.ImgBoxDiv>
@@ -211,8 +210,20 @@ const BoardDetail = () => {
             <div>
               <S.CategoryBoxDiv>
                 <S.FooterBoxDiv>
-                  {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
-                  {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
+                  {detailedContent.isPublic === true && (
+                    <div>
+                      {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
+                      {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
+                    </div>
+                  )}
+                  {detailedContent.isPublic === false && (
+                    <div>
+                      {!isActive && <S.GrayToggleImg onClick={onClickToggle} />}
+                      {isActive && (
+                        <S.GrayToggleOffImg onClick={onClickToggle} />
+                      )}
+                    </div>
+                  )}
                   <S.CommentsBoxDiv>
                     {detailedContent.isPublic === true && (
                       <div>
@@ -228,26 +239,44 @@ const BoardDetail = () => {
                       </div>
                     )}
                     {detailedContent.isPublic === false && (
-                      <div>
-                        <img src='/chat_gray.png' alt='회색말풍선' />
+                      <S.GrayChatBoxDiv>
+                        <S.GrayChatImg src='/chat_gray.png' alt='회색말풍선' />
                         <S.HeartCommentTextSpan
                           public={detailedContent.isPublic}
                         >
-                          댓글 {comment?.data?.length}
+                          댓글
                         </S.HeartCommentTextSpan>
-                      </div>
+                        <S.HeartCommentTextSpan
+                          public={detailedContent.isPublic}
+                        >
+                          {comment?.data?.length}
+                        </S.HeartCommentTextSpan>
+                      </S.GrayChatBoxDiv>
                     )}
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
                     <div>
-                      {isHeart && (
-                        <S.CommentHeartImg onClick={onClickHeartCancel} />
+                      {detailedContent.isPublic === true && (
+                        <S.GrayChatBoxDiv>
+                          {isHeart && (
+                            <S.CommentHeartImg onClick={onClickHeartCancel} />
+                          )}
+                          {!isHeart && (
+                            <S.BlankHeartImg onClick={onClickHeart} />
+                          )}
+                        </S.GrayChatBoxDiv>
                       )}
-                      {!isHeart && <S.BlankHeartImg onClick={onClickHeart} />}
-                      <S.HeartCommentTextSpan public={detailedContent.isPublic}>
-                        좋아요
-                      </S.HeartCommentTextSpan>
-                      <span>{heartCount?.data}</span>
+                      {detailedContent.isPublic === false && (
+                        <S.HeartWrapperDiv>
+                          <img src='/grayHeart.png' alt='회색하트' />
+                          <S.HeartCommentTextSpan
+                            public={detailedContent.isPublic}
+                          >
+                            좋아요
+                          </S.HeartCommentTextSpan>
+                          <span>{heartCount?.data}</span>
+                        </S.HeartWrapperDiv>
+                      )}
                     </div>
                   </S.HeartBoxDiv>
                 </S.FooterBoxDiv>
