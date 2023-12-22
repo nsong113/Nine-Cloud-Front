@@ -127,7 +127,7 @@ const BoardDetailComment: React.FC<IComment> = ({ profile, comment }) => {
                         <S.DateBoxDiv>
                           <S.CommentWriterSpan>
                             {profileInfo?.username}
-                            <S.DateTextSpan>{el?.createdAt}</S.DateTextSpan>
+                            <S.DateTextSpan>{VideoCard(createdAtDate)}</S.DateTextSpan>
                           </S.CommentWriterSpan>
                         </S.DateBoxDiv>
 

@@ -128,15 +128,15 @@ const Calender = () => {
           </S.DateBoxDiv>
           <S.RightProfile>
             <S.ButtonWrapperDiv>
-              <Tooltip message='리스트'>
-                <S.StyledHoverTapButton
-                  whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
-                  whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
-                  onClick={onClickListBtn}
-                >
-                  <S.List />
-                </S.StyledHoverTapButton>
-              </Tooltip>
+              {/* <Tooltip message='리스트'> */}
+              <S.StyledHoverTapButton
+                whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
+                whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
+                onClick={onClickListBtn}
+              >
+                <S.List />
+              </S.StyledHoverTapButton>
+              {/* </Tooltip> */}
             </S.ButtonWrapperDiv>
           </S.RightProfile>
         </S.HeaderWrapperDiv>

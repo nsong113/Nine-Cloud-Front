@@ -404,8 +404,9 @@ export const Calendar = styled(IoCalendarNumberOutline)`
   cursor: pointer;
   width: 40px;
   height: 40px;
+  color: #391d93;
   &:hover {
-    color: white;
+    color: purple;
   }
 `;
 
@@ -416,7 +417,7 @@ export const List = styled(IoList)`
   flex-shrink: 0;
   color: #391d93;
   &:hover {
-    color: white;
+    color: #8066d1;
   }
   margin-right: 30px;
 `;
@@ -454,14 +455,11 @@ export const DateWrapperDiv = styled.div`
 `;
 
 export const DateSpan = styled.span<IDateSpanProps>`
-  color: ${({ isToday }) => (isToday ? 'black' : 'var(--Gray2, #929292);')};
-  background-color: ${({ isToday }) => (isToday ? '#ff4bb7' : 'inherit')};
-  background-image: ${({ isToday }) =>
-    isToday
-      ? 'url("/today.png")'
-      : 'none'}; /* 이미지 경로를 실제 이미지 파일의 경로로 변경하세요 */
-  background-size: cover; /* 이미지를 컨테이너에 맞게 조절합니다 */
-  background-position: center; /* 이미지를 가운데 정렬합니다 */
+  color: ${({ isToday }) => (isToday ? '#391D93' : 'var(--Gray2, #929292);')};
+  background-color: ${({ isToday }) => (isToday ? '#CFC0FF' : 'inherit')};
+
+  border-radius: 20px;
+
   font-family: Spoqa Han Sans Neo;
   font-size: 15px;
   font-style: normal;
@@ -493,7 +491,7 @@ export const DateImg = styled.img`
 export const StyledHoverTapButton = styled(motion.button)`
   background: rgba(239, 170, 173, 0);
   display: flex;
-  align-items: end;
+
   border: 0;
 `;
 
@@ -581,3 +579,5 @@ export const BlankDiv = styled.div`
   width: 40px;
   height: 50px;
 `;
+
+export const HeaderBlankDiv = styled.div``;
