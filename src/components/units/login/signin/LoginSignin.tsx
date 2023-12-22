@@ -147,53 +147,60 @@ const LoginSignin = () => {
 
   return (
     <>
-      <S.LoginTitle>Login</S.LoginTitle>
-      <S.LoginContainer>
-        <S.InputBox>
-          <S.InputLabel>E- mail</S.InputLabel>
-          <S.Input
-            type='text'
-            value={email}
-            onChange={handleEmailChange}
-            onKeyDown={handleKeyPress}
-          />
-          <S.ValidationMessage isError={emailValidationMessage !== '완료'}>
-            {emailValidationMessage}
-          </S.ValidationMessage>
-        </S.InputBox>
-        <S.InputBox>
-          <S.InputLabel style={{ marginTop: '60px' }}>Password</S.InputLabel>
-          <S.Input
-            type='password'
-            value={password}
-            onChange={handlePasswordChange}
-            onKeyDown={handleKeyPress}
-          />
-          <S.ValidationMessage isError={passwordValidationMessage !== '완료'}>
-            {passwordValidationMessage}
-          </S.ValidationMessage>
-        </S.InputBox>
-        <S.Button
-          onClick={onClickLoginHandler}
-          style={{
-            backgroundColor: isValidationComplete() ? '#0080FF' : 'grey',
-            cursor: isValidationComplete() ? 'pointer' : 'not-allowed',
-          }}
-        >
-          로그인
-        </S.Button>
-        <S.Divider>
-          <S.DividerText>sns 계정으로 로그인하기</S.DividerText>
-        </S.Divider>
-        <S.SocialButton>
-          <LoginKakao />
-          <LoginGoogle />
-          <LoginNaver />
-        </S.SocialButton>
-        <S.SignupLink onClick={navigateToSignup}>
-          아직 계정이 없으신가요?
-        </S.SignupLink>
-      </S.LoginContainer>
+      <S.Base>
+        <S.LogoGroup>
+          <S.LogoImg />
+        </S.LogoGroup>
+        <S.LoginTitle>Login</S.LoginTitle>
+        <S.LoginContainer>
+          <S.InputBox>
+            <div style={{ display: 'flex' }}>
+              <S.Input
+                type='text'
+                value={email}
+                onChange={handleEmailChange}
+                onKeyDown={handleKeyPress}
+                placeholder='Email'
+              />
+            </div>
+            <S.ValidationMessage isError={emailValidationMessage !== '완료'}>
+              {emailValidationMessage}
+            </S.ValidationMessage>
+            <div>
+              <S.Input
+                type='password'
+                value={password}
+                onChange={handlePasswordChange}
+                onKeyDown={handleKeyPress}
+                placeholder='Password'
+              />
+            </div>
+            <S.ValidationMessage isError={passwordValidationMessage !== '완료'}>
+              {passwordValidationMessage}
+            </S.ValidationMessage>
+          </S.InputBox>
+          <S.Button
+            onClick={onClickLoginHandler}
+            style={{
+              backgroundColor: isValidationComplete() ? '#391d93' : 'grey',
+              cursor: isValidationComplete() ? 'pointer' : 'not-allowed',
+            }}
+          >
+            나인 클라우드 시작하기
+          </S.Button>
+          <S.Divider>
+            <S.DividerText>sns 계정으로 로그인하기</S.DividerText>
+          </S.Divider>
+          <S.SocialButton>
+            <LoginKakao />
+            <LoginGoogle />
+            <LoginNaver />
+          </S.SocialButton>
+          <S.SignupLink onClick={navigateToSignup}>
+            아직 계정이 없으신가요?
+          </S.SignupLink>
+        </S.LoginContainer>
+      </S.Base>
     </>
   );
 };

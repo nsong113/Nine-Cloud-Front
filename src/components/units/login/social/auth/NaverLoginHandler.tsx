@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import BarLoader from 'react-spinners/BarLoader';
 import axios from 'axios';
 import * as S from '../LoginSocial.styles';
+import axiosInstance from 'src/apis/loginapi';
 
 const NaverLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
@@ -17,8 +18,8 @@ const NaverLoginHandler = () => {
     }, 500);
     const KakaoLogin = async () => {
       try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/naver/callback`,
+        const response = await axiosInstance.post(
+          `/naver/callback`,
           {
             code: code,
             state: state,

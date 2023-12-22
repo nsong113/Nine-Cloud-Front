@@ -21,20 +21,21 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const statusCode = error.response?.status;
-    console.log(statusCode);
-    if (statusCode === 401) {
+    const statusCode = error.response.status;
+    if (statusCode === 401 || statusCode === 400) {
       // const accessToken = localStorage.getItem('accessToken');
       // const refreshToken = localStorage.getItem('refreshToken');
       try {
+        console.log('여기까지는 왔냐? 1', statusCode);
         const response = await axios({
           method: 'post',
           url: `${BASE_URL}/token`,
           headers: {
-            Authorization: `${localStorage.getItem('accessToken')}`,
+            // Authorization: `${localStorage.getItem('accessToken')}`,
             Refreshtoken: `${localStorage.getItem('refreshToken')}`,
           },
         });
+        console.log('여기까지는 왔냐? 2');
         const newAccessToken = response.headers['authorization'];
         const newRefreshToken = response.headers['refreshtoken'];
         localStorage.setItem('accessToken', newAccessToken);

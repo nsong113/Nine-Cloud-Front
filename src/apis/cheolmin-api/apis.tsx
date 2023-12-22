@@ -38,10 +38,9 @@ const refreshToken = localStorage.getItem('refreshToken');
 
 export const deletePost = async (id: any) => {
   try {
-    const response = await axios.delete(
-      `${process.env.REACT_APP_SERVER_URL}/diary/delete/${id}`,
+    const response = await axiosInstance.delete(
+      `/diary/delete/${id}`,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -61,7 +60,6 @@ export const getPosts = async (target: IGetPosts) => {
     const response = await axiosInstance.get(
       `/diary/calendar/${target.currentYear}/${target.currentMonth}`,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -76,10 +74,9 @@ export const getPosts = async (target: IGetPosts) => {
 
 export const getOnePostInfo = async (diaryId: string | undefined) => {
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/${diaryId}`,
+    const response = await axiosInstance.get(
+      `/diary/detail/${diaryId}`,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -96,10 +93,9 @@ export const getOnePostInfo = async (diaryId: string | undefined) => {
 
 export const getComments = async (diaryId: string | undefined | number) => {
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${diaryId}`,
+    const response = await axiosInstance.get(
+      `/diary/detail/comment/${diaryId}`,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -115,13 +111,12 @@ export const getComments = async (diaryId: string | undefined | number) => {
 
 export const addComment = async (target: IAddComment) => {
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.diaryId}`,
+    const response = await axiosInstance.post(
+      `/diary/detail/comment/${target.diaryId}`,
       {
         content: target.content,
       },
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -136,13 +131,12 @@ export const addComment = async (target: IAddComment) => {
 
 export const editComment = async (target: IEditComment) => {
   try {
-    const response = await axios.patch(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${target.commentId}`,
+    const response = await axiosInstance.patch(
+      `/diary/detail/comment/${target.commentId}`,
       {
         content: target.message,
       },
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -158,10 +152,9 @@ export const editComment = async (target: IEditComment) => {
 
 export const deleteComment = async (commentId: IDeleteComment) => {
   try {
-    const response = await axios.delete(
-      `${process.env.REACT_APP_SERVER_URL}/diary/detail/comment/${commentId}`,
+    const response = await axiosInstance.delete(
+      `/diary/detail/comment/${commentId}`,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -176,7 +169,6 @@ export const deleteComment = async (commentId: IDeleteComment) => {
 export const getMyInfo = async () => {
   try {
     const response = await axiosInstance.get(`/myInfo`, {
-      withCredentials: true,
       headers: {
         Authorization: `${accessToken}`,
         Refreshtoken: `${refreshToken}`,
@@ -218,11 +210,10 @@ export const editMyInfo = async (target: any) => {
     const formData = new FormData();
     formData.append('username', target?.myPost.username);
     formData.append('image', target?.newProfile.imgFile);
-    const response = await axios.patch(
-      `${process.env.REACT_APP_SERVER_URL}/myInfo/editmyInfo`,
+    const response = await axiosInstance.patch(
+      `/myInfo/editmyInfo`,
       formData,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -239,14 +230,13 @@ export const editMyInfo = async (target: any) => {
 
 export const editPassword = async (target: any) => {
   try {
-    const response = await axios.patch(
-      `${process.env.REACT_APP_SERVER_URL}/myInfo/edit-pw`,
+    const response = await axiosInstance.patch(
+      `/myInfo/edit-pw`,
       {
         password: target.password,
         newPassword: target.newPassword,
       },
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -262,10 +252,9 @@ export const editPassword = async (target: any) => {
 
 export const getPrevMonthPosts = async () => {
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/diary/calendar/previousMonth`,
+    const response = await axiosInstance.get(
+      `/diary/calendar/previousMonth`,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -280,10 +269,9 @@ export const getPrevMonthPosts = async () => {
 
 export const getNextMonthPosts = async () => {
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/diary/calendar/nextMonth`,
+    const response = await axiosInstance.get(
+      `/diary/calendar/nextMonth`,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -298,14 +286,13 @@ export const getNextMonthPosts = async () => {
 
 export const updatePost = async (target: IUpdatePost) => {
   try {
-    const response = await axios.patch(
-      `${process.env.REACT_APP_SERVER_URL}/diary/edit/${target.diaryId}`,
+    const response = await axiosInstance.patch(
+      `/diary/edit/${target.diaryId}`,
       {
         content: target.myPost?.contents,
         isPublic: target.myPost.isPublic,
       },
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,
@@ -321,11 +308,10 @@ export const updatePost = async (target: IUpdatePost) => {
 export const getHearts = async (diaryId: any) => {
   const data = null;
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/feeds/${diaryId}/like`,
+    const response = await axiosInstance.post(
+      `/feeds/${diaryId}/like`,
       data,
       {
-        withCredentials: true,
         headers: {
           Refreshtoken: `${refreshToken}`,
           Authorization: `${accessToken}`,

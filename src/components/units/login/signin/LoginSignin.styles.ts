@@ -1,22 +1,47 @@
 import styled, { css } from 'styled-components';
 import { ValidationMessageProps } from './LoginSignin.types';
 
+export const Base = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-image: url('/bg_final_final.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
+export const LogoGroup = styled.div`
+  display: flex;
+  margin-top: 40px;
+  margin-left: 30px;
+`;
+
+export const LogoImg = styled.div`
+  width: 160px;
+  height: 40px;
+  background-image: url('/logo_final.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
 export const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 785px;
-  background-color: #f0f0f0;
-  border-top-left-radius: 80px;
+  height: 85vh;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 30px rgba(200, 200, 200, 0.7);
+  border-top-right-radius: 50px;
+  border-top: 1px solid #ebebeb;
 `;
 
 export const LoginTitle = styled.h1`
-  margin-top: 140px;
   margin-bottom: 20px;
-  margin-left: 44px;
-  color: #c8c8c8;
-  font-weight: 500;
-  font-size: 50px;
+  margin-left: 30px;
+  color: #391d93;
+  font-weight: 900;
+  font-size: 42px;
 `;
 
 export const InputBox = styled.div`
@@ -25,51 +50,57 @@ export const InputBox = styled.div`
 `;
 
 export const InputLabel = styled.div`
-  font-size: 18px;
-  margin-top: 45px;
-  color: black;
+  font-size: 17px;
+  font-weight: 700;
+  color: #391d93;
 `;
 
 export const Input = styled.input`
+  margin-top: 60px;
   width: 100%;
-  height: 30%;
-  padding: 10px;
-  font-size: 22px;
+  height: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  border: none;
+  background-color: #f5f2ff;
   border-top: none;
   border-left: none;
   border-right: none;
   background-color: inherit;
-  border-bottom: 5px solid #ffffff;
+  border-bottom: 3px solid #391d93;
   &:focus {
     outline: none; /* 클릭 시 포커스 효과 제거 */
-    border-bottom: 5px solid white; /* 클릭 시 하단 border 추가 */
+    border-bottom: 3px solid #391d93; /* 클릭 시 하단 border 추가 */
   }
 `;
 
 export const Button = styled.button`
   width: 80%;
-  height: 80px;
+  height: 60px;
   padding: 10px 0;
   border: none;
   border-radius: 20px;
   background-color: #aaa;
   color: white;
   cursor: pointer;
-  margin-top: 80px;
+  margin-top: 50px;
   margin-bottom: 60px;
-  font-size: 25px;
+  font-size: 21px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 
 export const Divider = styled.div`
   width: 80%;
   text-align: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #391d93;
   line-height: 0.1em;
   margin: 20px 0 20px;
 `;
 
 export const DividerText = styled.span`
-  background-color: #f0f0f0;
+  background-color: white;
   padding: 0 10px;
 `;
 
@@ -114,7 +145,7 @@ export const ValidationMessage = styled.div<ValidationMessageProps>`
   ${({ isError }) =>
     isError
       ? css`
-          color: red;
+          color: #391d93;
         `
       : css`
           color: blue;

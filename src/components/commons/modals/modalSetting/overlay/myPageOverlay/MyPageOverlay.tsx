@@ -17,6 +17,7 @@ import {
 } from 'src/apis/cheolmin-api/apis';
 import axios from 'axios';
 import DeleteModal from '../../../delete/DeleteModal';
+import axiosInstance from 'src/apis/loginapi';
 
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const queryClient = useQueryClient();
@@ -125,7 +126,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     try {
       const accessToken = localStorage.getItem('accessToken');
       const refreshToken = localStorage.getItem('refreshToken');
-      const response = await axios.delete(`${BASE_URL}/signoff`, {
+      const response = await axiosInstance.delete(`/signoff`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `${accessToken}`,
