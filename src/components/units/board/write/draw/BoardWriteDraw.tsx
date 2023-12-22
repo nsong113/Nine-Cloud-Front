@@ -10,7 +10,15 @@ import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from 'react-icons/fa6';
 import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
 import { useRecoilState } from 'recoil';
-import { contents, countAverage, isPublic, weather } from 'src/states/counter';
+import {
+  contents,
+  countAverage,
+  happyA,
+  isPublic,
+  sadA,
+  sleep,
+  weather,
+} from 'src/states/counter';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -26,6 +34,9 @@ const BoardWriteDraw = () => {
     useRecoilState(countAverage);
   const [weatherToday, setWeatherToday] = useRecoilState(weather);
   const [contentsToday, setContentsToday] = useRecoilState(contents);
+  const [temperatureAtom, setTemperature] = useRecoilState<string>(happyA);
+  const [humidAtom, setHumid] = useRecoilState<string>(sadA);
+  const [sleepAtom, setSleep] = useRecoilState<string>(sleep);
 
   const onClickPrevBtn = () => {
     navigate('/post3');
@@ -169,8 +180,6 @@ const BoardWriteDraw = () => {
       const file = new Blob([u8arr], { type: 'image/png' });
       const imageUrl = URL.createObjectURL(file);
 
-      console.log('file', file);
-
       setPostDiaryItem({
         EmotionalStatus: countAverageToday,
         content: contentsToday,
@@ -178,6 +187,9 @@ const BoardWriteDraw = () => {
         isPublic: isPublicToday,
         sentence: localStorage.getItem('sentence'),
         weather: weatherToday,
+        temperature: temperatureAtom,
+        humid: humidAtom,
+        sleep: sleepAtom,
       });
     } else {
       console.log('이미지 불러오기 실패');
