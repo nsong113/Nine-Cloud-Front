@@ -31,15 +31,12 @@ export const EmotionWrapperDOWNdiv = styled.div`
   align-items: center;
 
   height: 775px;
-  border-radius: 20px 5px 5px 5px;
-  border: 1px solid var(--line, #cfc0ff);
-  background: rgba(245, 242, 255, 0.2);
-
-  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset;
-  backdrop-filter: blur(15px);
-  padding: 6px;
-  box-sizing: border-box;
-  backdrop-filter: blur(15px);
+  border-radius: 22.583px 5.646px 5.646px 5.646px;
+  background: rgba(245, 242, 255, 0.3);
+  box-shadow: 0px 4.517px 2.258px 0px rgba(80, 53, 166, 0.2),
+    0px 4.517px 11.291px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4.517px 22.583px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(16.93691062927246px);
   /* opacity: 0.8; */
 `;
 
