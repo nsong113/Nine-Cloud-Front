@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import BarLoader from 'react-spinners/BarLoader';
 import axios from 'axios';
 import * as S from '../LoginSocial.styles';
+import axiosInstance from 'src/apis/loginapi';
 
 const GoogleLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
@@ -17,8 +18,8 @@ const GoogleLoginHandler = () => {
     }, 500);
     const GoogleLogin = async () => {
       try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/google/callback`,
+        const response = await axiosInstance.post(
+          `/google/callback`,
           {
             code: code,
           },

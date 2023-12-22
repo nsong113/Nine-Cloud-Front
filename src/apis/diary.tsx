@@ -3,6 +3,7 @@ import axios from 'axios';
 import { IpostDiaryItem } from './apiesType';
 import { useRecoilState } from 'recoil';
 import { countAverage } from 'src/states/counter';
+import axiosInstance from './loginapi';
 
 // create (post)
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
@@ -28,8 +29,8 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
       console.log('pair', pair);
     }
 
-    const res = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
+    const res = await axiosInstance.post(
+      `/diary/posting`,
       formData,
       {
         withCredentials: true,
@@ -58,8 +59,8 @@ const getDiary = async () => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   try {
-    const res = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/diary/calandar`,
+    const res = await axiosInstance.post(
+      `/diary/calandar`,
       {
         withCredentials: true,
         headers: {
@@ -82,8 +83,8 @@ const getInfiniteDiaries = async (pageParam: number) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   try {
-    const res = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/feeds/mydiaries?page=${pageParam}`,
+    const res = await axiosInstance.get(
+      `/feeds/mydiaries?page=${pageParam}`,
       {
         withCredentials: true,
         headers: {

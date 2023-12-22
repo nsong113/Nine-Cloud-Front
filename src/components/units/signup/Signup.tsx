@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../login/social/LoginKakao';
 import LoginGoogle from '../login/social/LoginGoogle';
 import LoginNaver from '../login/social/LoginNaver';
+import axiosInstance from 'src/apis/loginapi';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -63,8 +64,8 @@ const Signup = () => {
         return;
       }
 
-      const response = await axios.post(
-        `${BASE_URL}/signup`,
+      const response = await axiosInstance.post(
+        `/signup`,
         {
           email: email,
           password: password,
@@ -102,7 +103,7 @@ const Signup = () => {
     try {
       // 서버에 이메일, 인증 코드, 비밀번호, 사용자명을 보내 확인 요청
 
-      const response = await axios.post(`${BASE_URL}/complete-signup`, {
+      const response = await axiosInstance.post(`/complete-signup`, {
         email,
         //인증코드
         Authenticationcode,
@@ -221,86 +222,107 @@ const Signup = () => {
 
   return (
     <>
-      <S.signupTitle>Sign up</S.signupTitle>
-      <form
-        onSubmit={
-          isVerificationSent ? handleVerification : onClickSignupHandler
-        }
-      >
-        <S.SignupContainer>
-          <S.InputBox>
-            <S.InputLabel>E- mail</S.InputLabel>
-            <S.Input type='text' value={email} onChange={handleEmailChange} />
-            <S.ValidationMessage isError={emailValidationMessage !== '완료'}>
-              {emailValidationMessage}
-            </S.ValidationMessage>
-            <S.InputLabel>Password</S.InputLabel>
-            <S.Input
-              type='password'
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <S.ValidationMessage isError={passwordValidationMessage !== '완료'}>
-              {passwordValidationMessage}
-            </S.ValidationMessage>
-            <S.InputLabel>Confirm Password</S.InputLabel>
-            <S.Input
-              type='password'
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-            />
-            <S.ValidationMessage
-              isError={confirmPasswordValidationMessage !== '완료'}
-            >
-              {confirmPasswordValidationMessage}
-            </S.ValidationMessage>
-            <S.InputLabel>Nickname</S.InputLabel>
-            <S.Input
-              type='text'
-              value={nickname}
-              onChange={handleNicknameChange}
-            />
-            <S.ValidationMessage isError={nicknameValidationMessage !== '완료'}>
-              {nicknameValidationMessage}
-            </S.ValidationMessage>
-          </S.InputBox>
-          {!isVerificationSent && <button type='submit'>인증번호 받기</button>}
-          {isVerificationSent && (
-            <>
-              <label htmlFor='Authenticationcode'>인증 번호:</label>
-              <input
+      <S.Base>
+        <S.LogoGroup>
+          <S.LogoImg />
+        </S.LogoGroup>
+        <S.signupTitle>Sign up</S.signupTitle>
+        <form
+          onSubmit={
+            isVerificationSent ? handleVerification : onClickSignupHandler
+          }
+        >
+          <S.SignupContainer>
+            <S.InputBox>
+              <S.InputLabel>Email</S.InputLabel>
+              <S.Input
                 type='text'
-                id='Authenticationcode'
-                name='Authenticationcode'
-                value={Authenticationcode}
-                onChange={(e) => setAuthenticationcode(e.target.value)}
-                required
+                value={email}
+                onChange={handleEmailChange}
+                placeholder='Email'
               />
-
-              <S.Button
-                type='submit'
-                style={{
-                  backgroundColor: isValidationComplete() ? '#0080FF' : 'grey',
-                  cursor: isValidationComplete() ? 'pointer' : 'not-allowed',
-                }}
+              <S.ValidationMessage isError={emailValidationMessage !== '완료'}>
+                {emailValidationMessage}
+              </S.ValidationMessage>
+              <S.InputLabel2>Password</S.InputLabel2>
+              <S.Input
+                type='password'
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder='Password'
+              />
+              <S.ValidationMessage
+                isError={passwordValidationMessage !== '완료'}
               >
-                회원가입
-              </S.Button>
-            </>
-          )}
-          <S.Divider>
-            <S.DividerText>sns 계정으로 로그인하기</S.DividerText>
-          </S.Divider>
-          <S.SocialButton>
-            <LoginKakao />
-            <LoginGoogle />
-            <LoginNaver />
-          </S.SocialButton>
-          <S.ReturnLoginButton onClick={returnLoginHandler}>
-            로그인 화면으로 돌아가기
-          </S.ReturnLoginButton>
-        </S.SignupContainer>
-      </form>
+                {passwordValidationMessage}
+              </S.ValidationMessage>
+              <S.InputLabel2>Confirm Password</S.InputLabel2>
+              <S.Input
+                type='password'
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                placeholder='Confirm Password'
+              />
+              <S.ValidationMessage
+                isError={confirmPasswordValidationMessage !== '완료'}
+              >
+                {confirmPasswordValidationMessage}
+              </S.ValidationMessage>
+              <S.InputLabel2>Nickname</S.InputLabel2>
+              <S.Input
+                type='text'
+                value={nickname}
+                onChange={handleNicknameChange}
+                placeholder='Nickname'
+              />
+              <S.ValidationMessage
+                isError={nicknameValidationMessage !== '완료'}
+              >
+                {nicknameValidationMessage}
+              </S.ValidationMessage>
+            </S.InputBox>
+            {!isVerificationSent && (
+              <S.Height150px>
+                <S.CertifiedPlease>Email 인증을 진행해주세요</S.CertifiedPlease>
+                <S.FlexCenter>
+                  <S.NumberButton type='submit'>인증번호 받기</S.NumberButton>
+                </S.FlexCenter>
+              </S.Height150px>
+            )}
+            {isVerificationSent && (
+              <>
+                <S.Height150px>
+                  <S.Mail4>메일로 받은 6자리를 입력해주세요.</S.Mail4>
+                  <S.FlexCenter>
+                    <S.NumberButtonSend>인증번호 받기</S.NumberButtonSend>
+                  </S.FlexCenter>
+                  <S.FlexCenter>
+                    <S.NumberCertified
+                      type='text'
+                      name='Authenticationcode'
+                      value={Authenticationcode}
+                      onChange={(e) => setAuthenticationcode(e.target.value)}
+                      required
+                    />
+                  </S.FlexCenter>
+                </S.Height150px>
+              </>
+            )}
+            <S.SignupButton
+              type='submit'
+              style={{
+                backgroundColor: isValidationComplete() ? '#391d93' : '#D9D9D9',
+                cursor: isValidationComplete() ? 'pointer' : 'not-allowed',
+              }}
+            >
+              회원가입
+            </S.SignupButton>
+            <S.ReturnLoginButton onClick={returnLoginHandler}>
+              로그인 화면으로 돌아가기
+            </S.ReturnLoginButton>
+          </S.SignupContainer>
+        </form>
+      </S.Base>
     </>
   );
 };
