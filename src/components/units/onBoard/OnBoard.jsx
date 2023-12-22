@@ -106,7 +106,7 @@ export default function OnBoard() {
       </Swiper>
       <S.Button
         style={{
-          backgroundColor: isLastSlide ? '#66CCFF' : '#D9D9D9',
+          backgroundColor: isLastSlide ? '#391d93' : '#D9D9D9',
           color: isLastSlide ? 'white' : 'black',
         }}
         onClick={handleButtonClick}

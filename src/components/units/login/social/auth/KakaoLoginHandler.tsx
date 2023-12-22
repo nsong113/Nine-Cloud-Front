@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import BarLoader from 'react-spinners/BarLoader';
 import axios from 'axios';
 import * as S from '../LoginSocial.styles';
+import axiosInstance from 'src/apis/loginapi';
 
 const KakaoLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
@@ -17,8 +18,8 @@ const KakaoLoginHandler = () => {
     }, 500);
     const KakaoLogin = async () => {
       try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/kakao/callback`,
+        const response = await axiosInstance.post(
+          `/kakao/callback`,
           {
             code: code,
           },
