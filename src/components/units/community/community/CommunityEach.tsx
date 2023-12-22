@@ -1,11 +1,39 @@
 import React, { useState } from 'react';
 import * as S from './CommunityMain.style';
-import { format } from 'date-fns';
+import {
+  addMonths,
+  format,
+  getMonth,
+  getYear,
+  setMonth,
+  subMonths,
+  getDate,
+} from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import * as DOMPurify from 'dompurify';
 import { VideoCard } from 'src/components/commons/utills/Date/date';
 
 const CommunityEach = (props: any) => {
+
+  // const formattedDate = format(new Date(props.item.createdAt), 'yyyy. MM. dd');
+
+  const createdAtDate = new Date(props.item.createdAt); //Tue Dec 19 2023 09:08:45 GMT+0900 (일본 표준시)
+
+  if (createdAtDate) {
+    createdAtDate.setHours(createdAtDate.getHours() - 9);
+  }
+
+  const formattedDate = createdAtDate
+    ? createdAtDate.toLocaleString('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : '';
+
+  // console.log('formattedDate', formattedDate);
+
   const navigate = useNavigate();
 
   const createdAtDate: Date | '' = props.item?.createdAt
@@ -88,7 +116,6 @@ const CommunityEach = (props: any) => {
       break;
   }
 
-  console.log(props.item.createdAt); //2023-12-20T22:22:20.588Z
 
   return (
     <>
@@ -106,6 +133,8 @@ const CommunityEach = (props: any) => {
               </S.ViewAllEmojiIMGDiv>
               <S.ViewAllPublicIMGDiv>
                 {VideoCard(createdAtDate)}
+                {/* {VideoCard(kr_curr.toString())} */}
+                {/* {VideoCard(props.item.createdAt)} */}
                 {/* {VideoCard(props.item.updatedAt)} */}
               </S.ViewAllPublicIMGDiv>
             </S.ViewAllRightFlexDiv>

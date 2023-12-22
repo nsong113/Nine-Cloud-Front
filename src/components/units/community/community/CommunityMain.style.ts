@@ -11,6 +11,40 @@ export const MainContainer = styled.div`
   border: 1px solid transparent;
 `;
 
+export const Div = styled.div``;
+
+export const MainTitleFlex = styled.div`
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const MainTodayEmoji = styled.div`
+  width: 110px;
+  height: 80px;
+`;
+
+export const ChatTitleSpan = styled.div`
+  color: var(--Gray1, #3d3d3d);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: inline-block;
+`;
+
+export const MainChatTitle = styled.div`
+  width: 190px;
+  height: 60px;
+
+  color: var(--Gray1, #3d3d3d);
+  font-size: 15px;
+  font-weight: 400;
+
+  margin-left: 10px;
+`;
+
 export const MainHeader = styled.div`
   width: 100%;
   height: 120px;
@@ -38,9 +72,19 @@ export const MainSectionContainer = styled.div`
 
 export const MainSectionHeaderWrapper = styled.div`
   width: 100%;
-  height: 50px;
+  height: 120px;
   position: absolute;
   padding: 20px;
+`;
+
+export const MainLine = styled.div`
+  width: 401px;
+  height: 1px;
+  margin: 0 auto;
+  background: #391d93;
+  z-index: 1000;
+  transform: translateY(120px);
+  margin-bottom: 10px;
 `;
 
 export const MainFlexBox = styled.div`
@@ -50,24 +94,41 @@ export const MainFlexBox = styled.div`
 `;
 
 export const MainHeaderOn = styled.div`
-  width: 110px;
-  height: 50px;
-  border-radius: 15px;
-  background-color: #f6f6f6;
+  width: 100%;
+  height: 71px;
+  border-radius: 20px 3px;
+  background: var(--contents-box, #f5f2ff);
+  box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 2px 5px 0px rgba(80, 53, 166, 0.2),
+    0px -2px 5px 0px rgba(80, 53, 166, 0.15);
+  backdrop-filter: blur(15px);
+
+  cursor: pointer;
 `;
 
-export const MainProfileDiv = styled.div`
-  width: 220px;
-  height: 50px;
+export const MainChattingRoomFlex = styled.div`
+  width: 90%;
+  margin: 0 auto;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const MainHeaderContent = styled.div`
-  font-size: 13px;
-  text-align: right;
-  cursor: pointer;
+export const MainChattingContent = styled.div`
+  color: var(--main, #391d93);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const MainProfileDiv = styled.div`
+  width: 30%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const MainSlideBox = styled.div`
@@ -75,7 +136,7 @@ export const MainSlideBox = styled.div`
   height: 765px;
   border-radius: 50px 0 0 0;
   /* background-color: white; */
-  transform: translateY(75px);
+  transform: translateY(105px);
   padding: 10px;
   overflow: hidden;
 `;
@@ -130,15 +191,15 @@ export const ViewAllEachFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
+  padding: 10px;
   gap: 10px;
 `;
 
 export const ViewAllIMGbox = styled.div`
-  width: 106px;
-  height: 106px;
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
+  width: 110px;
+  height: 110px;
+  border-radius: 10px 2px;
+  border: 1px solid #cfc0ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,10 +230,11 @@ export const ViewAllContentP = styled.p`
   margin-top: 10px;
   color: #9a9a9a;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
   font-size: 13px;
+  transform: translateY(-20px);
 `;
