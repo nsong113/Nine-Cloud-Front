@@ -14,7 +14,6 @@ import * as DOMPurify from 'dompurify';
 import { VideoCard } from 'src/components/commons/utills/Date/date';
 
 const CommunityEach = (props: any) => {
-
   // const formattedDate = format(new Date(props.item.createdAt), 'yyyy. MM. dd');
 
   const createdAtDate = new Date(props.item.createdAt); //Tue Dec 19 2023 09:08:45 GMT+0900 (일본 표준시)
@@ -35,24 +34,6 @@ const CommunityEach = (props: any) => {
   // console.log('formattedDate', formattedDate);
 
   const navigate = useNavigate();
-
-  const createdAtDate: Date | '' = props.item?.createdAt
-    ? new Date(props.item.createdAt)
-    : '';
-
-  if (createdAtDate) {
-    createdAtDate.setHours(createdAtDate.getHours() - 9);
-  }
-
-  const formattedDate = createdAtDate
-    ? createdAtDate.toLocaleString('ko-KR', {
-        timeZone: 'Asia/Seoul',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    : '';
-
   console.log('createdAtDate', createdAtDate);
 
   const onClickGotoDetailPage = (id: any) => {
@@ -115,7 +96,6 @@ const CommunityEach = (props: any) => {
       console.log('아무것도 아님');
       break;
   }
-
 
   return (
     <>
