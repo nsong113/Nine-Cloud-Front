@@ -1,8 +1,5 @@
 import React from 'react';
 import { Circle } from './LoginSocial.styles';
-// Redirect URI : http://localhost:3000/auth/kakao/callback
-// JavaScript 키 : 1033e5934902e97e107547d11e0b7eaa
-// REST API 키 : 32357dbebba692f404b5417ad1630f3b, 찬영님 8e93eaeaded45bab5247d4260ffa68d5
 const LoginKakao = () => {
   // kakao developer에서 발급 가능
   const REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
