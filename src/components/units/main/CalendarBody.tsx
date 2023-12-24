@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
-
-import { dayList } from './test';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { getPosts } from 'src/apis/cheolmin-api/apis';
-import Loading from 'src/components/commons/utills/loading/Loading';
+import { useRecoilState } from 'recoil';
+import getEmotion from 'src/components/commons/utills/emotionImage';
+import { targetDate } from 'src/states/emotionImage';
 
 const CalendarBody = (props: any) => {
   const navigate = useNavigate();
-  const { weekCalendarList, currentDate, currentMonth, DAY_LIST } =
-    useCalendar();
+  const { weekCalendarList } = useCalendar();
+  const [date, setDate] = useRecoilState(targetDate);
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);
+
+  console.log('리코일date', date);
 
   const allData = props?.data?.data;
 
@@ -33,41 +33,8 @@ const CalendarBody = (props: any) => {
       alert('작성하신 글이 없습니다.');
     }
   };
- 
 
   const filteredDayList = allData.filter((el: any) => el !== null);
-  const getEmotion = (emotionStatus: any, weatherStatus: any): any => {
-    switch (true) {
-      case weatherStatus === '1' && emotionStatus <= 1.6:
-        return '/rain_sad.png';
-      case weatherStatus === '1' && emotionStatus > 1.6 && emotionStatus <= 3.3:
-        return '/rain_soso.png';
-
-      case weatherStatus === '1' && emotionStatus > 3.3 && emotionStatus <= 5:
-        return '/rain_happy.png';
-
-      case weatherStatus === '2' && emotionStatus <= 1.6:
-        return '/cloud_sad.png';
-
-      case weatherStatus === '2' && emotionStatus > 1.6 && emotionStatus <= 3.3:
-        return '/cloud_soso.png';
-
-      case weatherStatus === '2' && emotionStatus > 3.3 && emotionStatus <= 5:
-        return '/cloud_happy.png';
-
-      case weatherStatus === '3' && emotionStatus <= 1.6:
-        return '/sun_sad.png';
-
-      case weatherStatus === '3' && emotionStatus > 1.6 && emotionStatus <= 3.3:
-        return '/sun_soso.png';
-
-      case weatherStatus === '3' && emotionStatus > 3.3 && emotionStatus <= 5:
-        return '/sun_happy.png';
-
-      default:
-        return '/blank_circle.png';
-    }
-  };
 
   const getEmotionStatusForDate = (date: string) => {
     const matchingDay = filteredDayList.find(
@@ -110,6 +77,7 @@ const CalendarBody = (props: any) => {
 
             const emotionStatus = getEmotionStatusForDate(String(cellDate));
             const weatherStatus = getWeatherData(String(cellDate));
+            const images = getEmotion(emotionStatus, weatherStatus);
             const id = getId(String(cellDate));
 
             const isToday =

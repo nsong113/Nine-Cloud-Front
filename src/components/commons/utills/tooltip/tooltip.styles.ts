@@ -16,7 +16,7 @@ export const Content = styled.div`
   display: none;
   position: absolute;
   z-index: 200;
-  top: 10%; /* 수정된 부분: 부모 요소의 50% 위에 위치 */
+  top: 0%; /* 수정된 부분: 부모 요소의 50% 위에 위치 */
   left: 50%; /* 가운데 정렬을 위해 50%로 설정 */
   transform: translate(
     -50%,

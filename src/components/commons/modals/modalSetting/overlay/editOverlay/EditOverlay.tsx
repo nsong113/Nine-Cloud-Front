@@ -68,6 +68,16 @@ const EditOverlay: React.FC<IEditPost> = ({
     // setIsEdit((prev) => !prev);
   };
 
+  const quillModules = {
+    toolbar: [
+      ['italic', 'underline', 'strike'],
+      [
+        // 글자 스타일
+        { align: [] },
+      ], // 정렬
+    ],
+  };
+
   const onClickCheck = () => {
     setIsDeleteModal((prev) => !prev);
   };
@@ -100,11 +110,14 @@ const EditOverlay: React.FC<IEditPost> = ({
             </S.HeaderWrapperDiv>
             <div>
               <S.ContentsContainerDiv>
+                {/* {contents && <span>200 / {contents.length - 7}</span>} */}
                 <S.DiarySpace
+                  theme='snow'
+                  modules={quillModules}
                   onChange={onChangeContents}
                   defaultValue={content}
                 />
-                {/* {contents && <span>200 / {contents.length - 7}</span>} */}
+
                 <S.ToggleWrapperDiv>
                   <S.OpenToggleTitleSpan>공개여부</S.OpenToggleTitleSpan>
                   <S.ToggleContainerDiv>

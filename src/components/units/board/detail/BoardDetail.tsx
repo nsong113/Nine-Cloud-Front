@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './BoardDetail.styles';
-import { format, getYear, parseISO } from 'date-fns';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
@@ -18,6 +17,9 @@ import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import { CommentData } from './comment/test';
 import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOverlay';
+import getEmotion from 'src/components/commons/utills/emotionImage';
+import useSliderCounts from 'src/components/commons/hooks/useSliderCounts';
+import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 
 const BoardDetail = () => {
   const queryClient = useQueryClient();
@@ -28,95 +30,62 @@ const BoardDetail = () => {
   const navigate = useNavigate();
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [isHeart, setIsHeart] = useState(false);
+
   const onClickPencilImg = () => {
     setIsActiveModal((prev) => !prev);
   };
-
+  const { data: comment } = useQuery('comment', () => getComments(params.id));
+  const { data: profile } = useQuery('profile', getMyInfo);
   const { data, isLoading } = useQuery(['post'], () =>
     getOnePostInfo(params.id)
   );
-
+  const profileInfo = profile?.data;
+  const detailedContent = data?.data;
+  const { temperatureHandle, humidHandle, sleepHandle } =
+    useSliderCounts(detailedContent);
+  const params = useParams();
   const heartMutation = useMutation(getHearts, {
     onSuccess: () => {
-      queryClient.invalidateQueries('heart');
+      queryClient.invalidateQueries('post');
+      setIsHeart((prev) => !prev);
     },
   });
 
+  console.log('id', params.id);
+
+  console.log('detailedContent', detailedContent?.likeExist);
+
+  useEffect(() => {
+    if (detailedContent?.likeExist === true) {
+      setIsHeart(true);
+    } else {
+      setIsHeart(false);
+    }
+
+    console.log('isHeart', isHeart);
+  }, [detailedContent?.likeExist]);
+
+  // const [countAverage, setCountAverage] = useState(0);
+
   const heartCount = heartMutation?.data;
+  // useEffect(() => {
+  //   setCountAverage(
+  //     Number(data?.data?.temperature) + Number(data?.data?.humid) / 2
+  //   );
+  // }, []);
 
-  const { data: comment } = useQuery('comment', () => getComments(params.id));
-  const { data: profile } = useQuery('profile', getMyInfo);
-  const [humid, setHumid] = useState('');
-  const [temperature, setTemperature] = useState('');
-  const [sleep, setSleep] = useState('');
-  const [isPublic, setIsPublic] = useState(false);
-  const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const countAverage =
+    (Number(data?.data?.temperature) + Number(data?.data?.humid)) / 2;
 
-  console.log('comment', comment);
-
-  const profileInfo = profile?.data;
-
-  const detailedContent = data?.data;
+  const onClickHeart = () => {
+    heartMutation.mutate(id);
+  };
 
   console.log('detailedContent', detailedContent);
-  const params = useParams();
+
   if (isLoading) {
     return <Loading />;
   }
-
-  const teperatureHandle = () => {
-    switch (true) {
-      case detailedContent?.temperature === '1':
-        return '지쳤어요';
-      case detailedContent?.temperature === '2':
-        return '무료해요';
-      case detailedContent?.temperature === '3':
-        return '그냥그래요';
-      case detailedContent?.temperature === '4':
-        return '좋아요';
-      case detailedContent?.temperature === '5':
-        return '열정넘쳐요';
-      default:
-        console.log('아무것도 아님');
-        break;
-    }
-  };
-
-  const humidHandle = () => {
-    switch (true) {
-      case detailedContent?.humid === '1':
-        return '불쾌해요';
-      case detailedContent?.humid === '2':
-        return '울적해요';
-      case detailedContent?.humid === '3':
-        return '적당해요';
-      case detailedContent?.humid === '4':
-        return '꽤 좋아요';
-      case detailedContent?.humid === '5':
-        return '상쾌해요';
-      default:
-        console.log('아무것도 아님');
-        break;
-    }
-  };
-
-  const sleepHandle = () => {
-    switch (true) {
-      case detailedContent?.sleep === '1':
-        return '매우 나빠요';
-      case detailedContent?.sleep === '2':
-        return '나빠요';
-      case detailedContent?.sleep === '3':
-        return '보통이에요';
-      case detailedContent?.sleep === '4':
-        return '좋아요';
-      case detailedContent?.sleep === '5':
-        return '매우 좋아요';
-      default:
-        console.log('아무것도 아님');
-        break;
-    }
-  };
 
   const onClickMoveToMain = () => {
     navigate('/main');
@@ -126,10 +95,6 @@ const BoardDetail = () => {
   const onClickToggle = () => {
     setIsActive((prev) => !prev);
   };
-
-  const commentList = CommentData.filter(
-    (comment) => comment.DiaryId === Number(params.id)
-  );
 
   const createdAtDate = detailedContent?.createdAt
     ? new Date(detailedContent.createdAt)
@@ -148,44 +113,7 @@ const BoardDetail = () => {
       })
     : null;
 
-  // console.log('formattedDate', formattedDate);
-  console.log('createdAtDate', createdAtDate);
-  console.log('현재시간', detailedContent?.createdAt);
-
-  const onClickPencil = () => {
-    setIsEdit((prev) => !prev);
-  };
-
-  const onClickPublic = () => {
-    setIsPublic((prev) => !prev);
-  };
-
   const id = params.id;
-
-  const onClickHeart = () => {
-    setIsHeart(true);
-    heartMutation.mutate(id);
-  };
-
-  const onClickHeartCancel = () => {
-    setIsHeart(false);
-    heartMutation.mutate(id);
-  };
-
-  const weatherImages: { [key: string]: string | undefined } = {
-    1: '/sunny.png',
-    2: '/rain.png',
-    3: '/cloudy.png',
-  };
-
-  const getImage = () => {
-    return weatherImages[detailedContent?.weather];
-  };
-
-  console.log('teperatureHandle', teperatureHandle());
-  console.log('humidHandle', humidHandle());
-  console.log('sleepHandle', sleepHandle());
-  // const formattedData = format(detailedContent?.createdAt, 'yyyy년 mm월 dd일');
 
   return (
     <S.ContainerDiv>
@@ -201,31 +129,40 @@ const BoardDetail = () => {
       <div key={data?.id}>
         <Animation3>
           <S.HeaderWrapperDiv>
-            <S.BackImg onClick={onClickMoveToMain} />
-            <S.HearderRightBoxDiv>
+            <S.HeaderLeftBoxDiv>
+              <S.BackImg onClick={onClickMoveToMain} />
               <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
+            </S.HeaderLeftBoxDiv>
+            <S.HearderRightBoxDiv>
+              <Tooltip message='공개'>
+                {detailedContent?.isPublic === true && (
+                  <S.PublicPrivateImg src='/people.png' alt='공개' />
+                )}
+              </Tooltip>
+              <Tooltip message='비공개'>
+                {detailedContent?.isPublic === false && (
+                  <S.PublicPrivateImg src='/person.png' alt='비공개' />
+                )}
+              </Tooltip>
             </S.HearderRightBoxDiv>
           </S.HeaderWrapperDiv>
           <S.ImgBoxDiv>
             <S.MainImg src={detailedContent?.image} alt='엑박' />
-            {detailedContent?.isPublic === true && (
-              <img src='/people.png' alt='공개' />
-            )}
-            {detailedContent?.isPublic === false && (
-              <img src='/person.png' alt='비공개' />
-            )}
           </S.ImgBoxDiv>
         </Animation3>
         <Animation2>
           <S.ContentsWrapperDiv>
             <S.ContentsHeaderDiv>
-              <S.CloudImg src='/rain3.png' alt='구름' />
+              <S.CloudImg
+                src={getEmotion(countAverage, data?.data?.weather)}
+                alt='구름'
+              />
               <S.ConentsHeaderRightDiv>
                 <S.heartBoxDiv>
                   <div>
                     <S.CategoryText>마음 온도</S.CategoryText>
                     <S.StatusBoxDiv>
-                      <S.MindStatusSpan>{teperatureHandle()}</S.MindStatusSpan>
+                      <S.MindStatusSpan>{temperatureHandle()}</S.MindStatusSpan>
                     </S.StatusBoxDiv>
                   </div>
                   <div>
@@ -274,8 +211,8 @@ const BoardDetail = () => {
                 <S.FooterBoxDiv>
                   {detailedContent.isPublic === true && (
                     <div>
-                      {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
-                      {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
+                      {isActive && <S.ToggleOnImg onClick={onClickToggle} />}
+                      {!isActive && <S.ToggleOffImg onClick={onClickToggle} />}
                     </div>
                   )}
                   {detailedContent.isPublic === false && (
@@ -288,7 +225,7 @@ const BoardDetail = () => {
                   )}
                   <S.CommentsBoxDiv>
                     {detailedContent.isPublic === true && (
-                      <div>
+                      <S.ChatBoxDiv>
                         <S.PurpleChatImg
                           src='/chat_purple.png'
                           alt='보라색말풍선'
@@ -296,12 +233,17 @@ const BoardDetail = () => {
                         <S.HeartCommentTextSpan
                           public={detailedContent.isPublic}
                         >
-                          댓글 {comment?.data?.length}
+                          댓글
                         </S.HeartCommentTextSpan>
-                      </div>
+                        <S.HeartCommentTextSpan
+                          public={detailedContent.isPublic}
+                        >
+                          {comment?.data?.length}
+                        </S.HeartCommentTextSpan>
+                      </S.ChatBoxDiv>
                     )}
                     {detailedContent.isPublic === false && (
-                      <S.GrayChatBoxDiv>
+                      <S.ChatBoxDiv>
                         <S.GrayChatImg src='/chat_gray.png' alt='회색말풍선' />
                         <S.HeartCommentTextSpan
                           public={detailedContent.isPublic}
@@ -313,20 +255,30 @@ const BoardDetail = () => {
                         >
                           {comment?.data?.length}
                         </S.HeartCommentTextSpan>
-                      </S.GrayChatBoxDiv>
+                      </S.ChatBoxDiv>
                     )}
                   </S.CommentsBoxDiv>
                   <S.HeartBoxDiv>
                     <div>
                       {detailedContent.isPublic === true && (
-                        <S.GrayChatBoxDiv>
-                          {isHeart && (
-                            <S.CommentHeartImg onClick={onClickHeartCancel} />
-                          )}
-                          {!isHeart && (
-                            <S.BlankHeartImg onClick={onClickHeart} />
-                          )}
-                        </S.GrayChatBoxDiv>
+                        <S.ChatBoxDiv>
+                          <S.HeartWrapperDiv>
+                            {isHeart && (
+                              <S.CommentHeartImg onClick={onClickHeart} />
+                            )}
+                            {!isHeart && (
+                              <S.BlankHeartImg onClick={onClickHeart} />
+                            )}
+                            <S.HeartCommentTextSpan
+                              public={detailedContent.isPublic}
+                            >
+                              좋아요
+                            </S.HeartCommentTextSpan>
+                            <S.PurpleHeartCountSpan>
+                              {detailedContent.likeCount}
+                            </S.PurpleHeartCountSpan>
+                          </S.HeartWrapperDiv>
+                        </S.ChatBoxDiv>
                       )}
                       {detailedContent.isPublic === false && (
                         <S.HeartWrapperDiv>
@@ -336,7 +288,9 @@ const BoardDetail = () => {
                           >
                             좋아요
                           </S.HeartCommentTextSpan>
-                          <span>{heartCount?.data}</span>
+                          <S.GrayHeartCountSpan>
+                            {detailedContent.likeCount}
+                          </S.GrayHeartCountSpan>
                         </S.HeartWrapperDiv>
                       )}
                     </div>
@@ -347,7 +301,11 @@ const BoardDetail = () => {
               {detailedContent.isPublic === true && (
                 <Animation3>
                   {isActive && (
-                    <BoardDetailComment profile={profile} comment={comment} />
+                    <BoardDetailComment
+                      detailedContent={detailedContent}
+                      profile={profile}
+                      comment={comment}
+                    />
                   )}
                 </Animation3>
               )}
@@ -355,36 +313,45 @@ const BoardDetail = () => {
                 <div>
                   {detailedContent.isPublic === false && (
                     <div>
-                      <S.CommentsWrapperDiv>
-                        <S.CommentBox>
-                          <S.CommentHeaderDiv>
-                            {comment?.data?.map((el: any) => (
-                              <S.CommentWrapperDiv key={el.commentId}>
-                                <S.CommentBoxDiv>
-                                  <S.ProfileImg
-                                    src={profile.data.profileImg}
-                                    alt='타원'
-                                  />
-                                  <S.CommentWriterBoxDiv>
-                                    <S.CommentWriterSpan>
-                                      {profileInfo?.username}
-                                    </S.CommentWriterSpan>
-                                    <S.CommentContent>
-                                      {el.content}
-                                    </S.CommentContent>
-                                  </S.CommentWriterBoxDiv>
-                                </S.CommentBoxDiv>
-                              </S.CommentWrapperDiv>
-                            ))}
-                          </S.CommentHeaderDiv>
-                        </S.CommentBox>
-                        <S.CommentFooterWrapDiv>
-                          <S.InputBoxDiv
-                            placeholder='공개로 바꾸면 친구들이 댓글을 달 수 있습니다.'
-                            disabled
-                          />
-                        </S.CommentFooterWrapDiv>
-                      </S.CommentsWrapperDiv>
+                      {comment?.data?.length === 0 && (
+                        <S.NoCommentBoxDiv>
+                          <S.NoCommentSpan>
+                            전체공개로 전환해 사람들과 일기를 공유해보세요!
+                          </S.NoCommentSpan>
+                        </S.NoCommentBoxDiv>
+                      )}
+                      {comment?.data?.length !== 0 && (
+                        <S.CommentsWrapperDiv>
+                          <S.CommentBox>
+                            <S.CommentHeaderDiv>
+                              {comment?.data?.map((el: any) => (
+                                <S.CommentWrapperDiv key={el.commentId}>
+                                  <S.CommentBoxDiv>
+                                    <S.ProfileImg
+                                      src={profile.data.profileImg}
+                                      alt='타원'
+                                    />
+                                    <S.CommentWriterBoxDiv>
+                                      <S.CommentWriterSpan>
+                                        {profileInfo?.username}
+                                      </S.CommentWriterSpan>
+                                      <S.CommentContent>
+                                        {el.content}
+                                      </S.CommentContent>
+                                    </S.CommentWriterBoxDiv>
+                                  </S.CommentBoxDiv>
+                                </S.CommentWrapperDiv>
+                              ))}
+                            </S.CommentHeaderDiv>
+                          </S.CommentBox>
+                          <S.CommentFooterWrapDiv>
+                            <S.InputBoxDiv
+                              placeholder='공개로 바꾸면 친구들이 댓글을 달 수 있습니다.'
+                              disabled
+                            />
+                          </S.CommentFooterWrapDiv>
+                        </S.CommentsWrapperDiv>
+                      )}
                     </div>
                   )}
                 </div>

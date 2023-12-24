@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { IpostDiaryItem } from './apiesType';
 import { useRecoilState } from 'recoil';
-import { countAverage } from 'src/states/counter';
 import axiosInstance from './loginapi';
 import { countAverage, happyA, sadA, sleep } from 'src/states/counter';
 
@@ -33,18 +32,14 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
       console.log('pair', pair);
     }
 
-    const res = await axiosInstance.post(
-      `/diary/posting`,
-      formData,
-      {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const res = await axiosInstance.post(`/diary/posting`, formData, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
     alert('오늘 일기 포스팅에 성공하셨습니다.');
     localStorage.removeItem('sentence');
     localStorage.removeItem('weather');
@@ -63,18 +58,15 @@ const getDiary = async () => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   try {
-    const res = await axiosInstance.post(
-      `/diary/calandar`,
-      {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'multipart/form-data',
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const res = await axiosInstance.post(`/diary/calandar`, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'multipart/form-data',
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
     console.log(res.data);
     return res.data;
   } catch (error) {
@@ -87,17 +79,14 @@ const getInfiniteDiaries = async (pageParam: number) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   try {
-    const res = await axiosInstance.get(
-      `/feeds/mydiaries?page=${pageParam}`,
-      {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json',
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const res = await axiosInstance.get(`/feeds/mydiaries?page=${pageParam}`, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
     return {
       result: res.data,
       nextPage: pageParam + 1,

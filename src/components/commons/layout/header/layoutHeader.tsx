@@ -25,35 +25,15 @@ const Header = () => {
   const [animationDirection, setAnimationDirection] = useState('');
   const { data: profile } = useQuery('myInfo', getMyInfo);
   const newDate = new Date(currentDate);
-  const year = getYear(newDate);
-  const month = getMonth(newDate) + 1;
-  const formattedMonth = format(currentMonth, 'MMMM');
-  const onClickPrevMonth = () => {
-    const newDate = subMonths(currentMonth, 1);
-    setCurrentDate(newDate);
-    setCurrentMonth(newDate);
-    setAnimationDirection('rightToLeft');
-  };
-
-  const onClickNextMonth = () => {
-    const newDate = addMonths(currentMonth, 1);
-    setCurrentDate(newDate);
-    setCurrentMonth(newDate);
-    setAnimationDirection('leftToRight');
-  };
 
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
-  };
-  const onClickListBtn = () => {
-    navigate('/list');
   };
 
   const onClickLogo = () => {
     navigate('/main');
   };
 
-  const profileImg = localStorage.getItem('image');
 
   return (
     <S.CalendarContainerDiv>

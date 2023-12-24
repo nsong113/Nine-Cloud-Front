@@ -135,3 +135,22 @@ export const DateBoxDiv = styled.div`
 export const DateTextSpan = styled.span`
   color: gray;
 `;
+
+export const NoCommentBoxDiv = styled.div`
+  width: 403px;
+  height: 64.442px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 170, 173, 0.7);
+  background: rgba(245, 242, 255, 0.7);
+`;
+
+export const NoCommentSpan = styled.span`
+  color: #aeaeae;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
