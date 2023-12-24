@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { IpostDiaryItem } from './apiesType';
 import { useRecoilState } from 'recoil';
-import { countAverage } from 'src/states/counter';
+// import { countAverage } from 'src/states/counter';
 import axiosInstance from './loginapi';
 import { countAverage, happyA, sadA, sleep } from 'src/states/counter';
 
