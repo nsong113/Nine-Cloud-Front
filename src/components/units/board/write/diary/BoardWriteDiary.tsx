@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
@@ -16,6 +16,7 @@ const BoardWriteDiary = () => {
   const [contentsToday, setContentsToday] = useRecoilState<string>(contents);
 
   const [todayRandomSaying, setTodayRandomSaying] = useState('');
+  let existedSentence: string | null = localStorage.getItem('sentence');
 
   const onChangeContents = (value: string) => {
     setContentsToday(value === '<p><br></p>' ? '' : value);
@@ -25,9 +26,6 @@ const BoardWriteDiary = () => {
     }
   };
 
-  let existedSentence: string | null = localStorage.getItem('sentence');
-
-  //onClickNextBtn
   const onClickPrevPage = () => {
     navigate('/post');
   };
@@ -47,6 +45,7 @@ const BoardWriteDiary = () => {
   const goBackFortune = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   return (
     <div>
       <Animation2>
@@ -156,20 +155,8 @@ const cookieStyle = {
 
 const quillModules = {
   toolbar: [
-    // [{ size: ['small', false, 'large', 'huge'] }], // 글꼴 크기
     ['italic', 'underline', 'strike'], // 글자 스타일
-    // ['blockquote', 'code-block'], // 인용구 및 코드 블록
-    // [{ header: 1 }, { header: 2 }], // 헤더
-    // [{ list: 'ordered' }, { list: 'bullet' }], // 순서 있는 목록 및 순서 없는 목록
-    // [{ script: 'sub' }, { script: 'super' }], // 아래 첨자 및 위 첨자
-    // [{ indent: '-1' }, { indent: '+1' }], // 들여쓰기
-    // [{ direction: 'rtl' }], // 오른쪽에서 왼쪽으로 작성
-    // [{ header: [1, 2, 3, 4, 5, 6, false] }], // 헤더 크기
-    // [{ font: [] }], // 글꼴
-    // [{ color: [] }, { background: [] }], // 글자색 및 배경색
     [{ align: [] }], // 정렬
-    // ['clean'], // 포맷 제거
-    // ['link', 'image', 'video'], // 링크, 이미지, 동영상 삽입
   ],
 };
 

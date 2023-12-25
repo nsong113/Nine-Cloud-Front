@@ -78,7 +78,6 @@ export const DoneCheckBox = styled.div`
 export const OneBlackSpan = styled.div`
   width: 17.862px;
   height: 18px;
-  /* transform: translateX(-20px); */
 
   border-radius: 45px;
   background: radial-gradient(
@@ -156,24 +155,16 @@ export const ThreeFilledSpan = styled.div`
 
 export const SelectP = styled.div`
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   margin-top: 2px;
-  /* transform: translateX(-30%); */
 `;
 
 export const SelectP2 = styled.div`
   color: var(--1-1, #ece9f5);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   margin-top: 2px;
-  /* transform: translateX(-80%); */
 `;
 
 export const ContainerDiv = styled.div`
@@ -217,11 +208,7 @@ export const DownloadDiv = styled.div`
   background-repeat: no-repeat;
 `;
 
-export const CanvasContainer = styled.div`
-  /* width: 90%;
-  margin: 0 auto;
-  height: auto; */
-`;
+export const CanvasContainer = styled.div``;
 
 export const DrawCanvas = styled.canvas`
   margin: 5px auto;
@@ -240,9 +227,7 @@ export const DrawWriteTitleH3 = styled.h3`
 
   color: var(--Black, #222122);
   font-size: 18px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 `;
 
 export const ProgressWrapperDiv = styled.div`
@@ -279,11 +264,8 @@ export const PrevButton = styled.button`
   border: 1px solid var(--1-1, #ece9f5);
   background: #fff;
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const NextButton = styled.button`
@@ -296,11 +278,8 @@ export const NextButton = styled.button`
   border: 1px solid var(--1-1, #ece9f5);
   background: var(--1-1, #ece9f5);
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const ColorSettingDiv = styled.div`
@@ -454,11 +433,8 @@ export const FirstPenToggle = styled.div`
   cursor: pointer;
 
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 10px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 
   &:active {
     border-radius: 71px;
@@ -486,9 +462,7 @@ export const FirstEraserToggle = styled.div`
 
   color: var(--1, #5035a6);
   font-size: 10px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 
   background-image: url('/eraser.png');
   background-size: 60%;
@@ -530,9 +504,7 @@ export const SecondToggle = styled.div`
 
   color: var(--1, #5035a6);
   font-size: 10px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 
   background-image: url('/thickness.png');
   background-size: 50%;
@@ -571,95 +543,15 @@ export const EraserThicknessDiv = styled.div`
   gap: 10px;
 `;
 
-export const ToggleDiv = styled.div`
-  width: 100%;
-  height: 50px;
-  margin: 18px;
-`;
-
-export const ToggleFlexDiv = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const ToggleP = styled.p`
-  width: 60%;
-  color: #5035a6;
-
-  text-align: center;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
-export const DiaryToggleTitleDiv = styled.div`
-  width: 40%;
-  height: 100%;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const CustomToggle = styled(Toggle)`
-  .react-toggle-track {
-    //배경색 - 체크여부 확인하고 초기값은 gray
-    background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
-    width: 100px;
-    height: 30px;
-    transform: translateX(15px);
-  }
-
-  //thumb의 스타일 지정
-  .react-toggle-thumb {
-    background-color: purple;
-    width: 55px;
-    height: 20px;
-    border-radius: 10px;
-    transform: translate(20px, 4px);
-  }
-
-  //토글이 켜진 상태
-  &.react-toggle--checked {
-    .react-toggle-track {
-      background-color: yellow;
-    }
-    .react-toggle-thumb {
-      background-color: red;
-    }
-  }
-
-  &:hover {
-    .react-toggle-track {
-      background-color: ${(props) =>
-        props.checked ? 'red' : 'gray'} !important;
-    }
-
-    .react-toggle-thumb {
-      background-color: pink;
-    }
-  }
-`;
-
 export const DiaryToggleP = styled.div`
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 18px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
-
   margin-bottom: 16px;
 `;
 
 export const DiarySpan = styled.span`
   color: var(--Black, #222122);
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;

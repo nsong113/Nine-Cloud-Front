@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { IStyled } from './ConfirmOverlay.types';
+import { IPalette } from './ConfirmOverlay.types';
+import Toggle from 'react-toggle';
 
 export const ContainerDiv = styled.div`
   position: fixed;
@@ -124,4 +126,79 @@ export const StyleButton = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+`;
+
+export const ToggleDiv = styled.div`
+  width: 100%;
+  height: 50px;
+  margin: 18px;
+  background-color: red;
+`;
+
+export const ToggleFlexDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ToggleP = styled.p`
+  width: 60%;
+  color: #5035a6;
+
+  text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const DiaryToggleTitleDiv = styled.div`
+  width: 40%;
+  height: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CustomToggle = styled(Toggle)`
+  .react-toggle-track {
+    //배경색 - 체크여부 확인하고 초기값은 gray
+    background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
+    width: 100px;
+    height: 30px;
+    transform: translateX(15px);
+  }
+
+  //thumb의 스타일 지정
+  .react-toggle-thumb {
+    background-color: purple;
+    width: 55px;
+    height: 20px;
+    border-radius: 10px;
+    transform: translate(20px, 4px);
+  }
+
+  //토글이 켜진 상태
+  &.react-toggle--checked {
+    .react-toggle-track {
+      background-color: yellow;
+    }
+    .react-toggle-thumb {
+      background-color: red;
+    }
+  }
+
+  &:hover {
+    .react-toggle-track {
+      background-color: ${(props) =>
+        props.checked ? 'red' : 'gray'} !important;
+    }
+
+    .react-toggle-thumb {
+      background-color: pink;
+    }
+  }
 `;

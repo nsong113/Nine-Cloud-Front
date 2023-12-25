@@ -8,17 +8,6 @@ import useThickness from 'src/components/commons/hooks/useThickness';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from 'react-icons/fa6';
-import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
-import { useRecoilState } from 'recoil';
-import {
-  contents,
-  countAverage,
-  happyA,
-  isPublic,
-  sadA,
-  sleep,
-  weather,
-} from 'src/states/counter';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -28,15 +17,10 @@ const BoardWriteDraw = () => {
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  const [isPublicToday, setIsPublicToday] = useRecoilState<boolean>(isPublic);
-  const [isChecked, setIsChecked] = useState(true); //토글 체크 여부
-  const [countAverageToday, setCountAverageToday] =
-    useRecoilState(countAverage);
-  const [weatherToday, setWeatherToday] = useRecoilState(weather);
-  const [contentsToday, setContentsToday] = useRecoilState(contents);
-  const [temperatureAtom, setTemperature] = useRecoilState<string>(happyA);
-  const [humidAtom, setHumid] = useRecoilState<string>(sadA);
-  const [sleepAtom, setSleep] = useRecoilState<string>(sleep);
+  const [pen, setPen] = useState(true);
+  const [thicknessToggle, setThicknessToggle] = useState(false);
+  const [colorPickerValue, setColorPickerValue] = useState<string>();
+  let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
 
   const onClickPrevBtn = () => {
     navigate('/post3');
@@ -80,7 +64,7 @@ const BoardWriteDraw = () => {
     EraserThinHandler,
   } = useThickness();
 
-  const { startPaint, paint, exitPaint, isPainting } = usePen(
+  const { startPaint, paint, exitPaint } = usePen(
     canvasRef,
     getCoordinates,
     color,
@@ -88,10 +72,6 @@ const BoardWriteDraw = () => {
     mousePosition,
     setMousePosition
   );
-
-  const [pen, setPen] = useState(true);
-  const [thicknessToggle, setThicknessToggle] = useState(false);
-  const [colorPickerValue, setColorPickerValue] = useState<string>();
 
   const onClickPenToggleHandler = () => {
     setPen(!pen);
@@ -131,7 +111,6 @@ const BoardWriteDraw = () => {
   };
 
   const onClickSaveToggleHandler = () => {
-    //다운로드 링크
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
     if (image) {
       const byteCharacters = atob(image);
@@ -160,13 +139,6 @@ const BoardWriteDraw = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
-  const onChangeIsPublicHandler = () => {
-    setIsPublicToday(!isPublicToday);
-    setIsChecked(!isChecked);
-  };
-
-  let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
-
   const makeImageFile = () => {
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
 
@@ -181,18 +153,8 @@ const BoardWriteDraw = () => {
       const imageUrl = URL.createObjectURL(file);
 
       setPostDiaryItem({
-        EmotionalStatus: countAverageToday,
-        content: contentsToday,
         image: file,
-        isPublic: isPublicToday,
-        sentence: localStorage.getItem('sentence'),
-        weather: weatherToday,
-        temperature: temperatureAtom,
-        humid: humidAtom,
-        sleep: sleepAtom,
       });
-    } else {
-      console.log('이미지 불러오기 실패');
     }
   };
 
@@ -359,25 +321,6 @@ const BoardWriteDraw = () => {
                 </S.ColorPaletteFlexDiv>
               </S.ColorSettingDiv>
             </S.CanvasContainer>
-            <S.ToggleDiv>
-              <S.ToggleFlexDiv>
-                <S.ToggleP>
-                  오늘의 일기를 전체공개로 등록해 <br />
-                  사람들과 공유해보세요!
-                </S.ToggleP>
-                <S.DiaryToggleTitleDiv>
-                  <S.CustomToggle
-                    id='customToggle'
-                    checked={isChecked}
-                    icons={{
-                      checked: <IoMdHeart />,
-                      unchecked: <IoIosHeartHalf />,
-                    }}
-                    onChange={onChangeIsPublicHandler}
-                  />
-                </S.DiaryToggleTitleDiv>
-              </S.ToggleFlexDiv>
-            </S.ToggleDiv>
             <S.ButtonWrapperDiv>
               <S.PrevButton onClick={onClickPrevBtn}>이전</S.PrevButton>
               <S.NextButton
