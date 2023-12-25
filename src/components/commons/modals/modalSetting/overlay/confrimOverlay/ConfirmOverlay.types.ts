@@ -9,3 +9,7 @@ export interface IConfirmMod {
 export interface IStyled {
   $isModalOpen: boolean;
 }
+
+export interface IPalette {
+  color: string;
+}

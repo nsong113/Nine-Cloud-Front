@@ -24,12 +24,9 @@ export const DiaryWrapperDOWNdiv = styled.div`
   width: 90%;
   margin: 0 auto;
   background-color: white;
-
   height: 775px;
-
   border-radius: 5px;
   background: rgba(245, 242, 255, 0.3);
-
   box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
@@ -46,7 +43,6 @@ export const HeaderButtonBoxDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
   margin-top: 50px;
   position: absolute;
   bottom: 50px;
@@ -91,7 +87,6 @@ export const OneBlackSpan = styled.div`
   height: 18px;
   position: absolute;
   z-index: 12;
-  /* transform: translateX(-20px); */
 
   border-radius: 45px;
   background: radial-gradient(
@@ -128,7 +123,7 @@ export const OneBlackSpan = styled.div`
       rgba(80, 53, 166, 0.2) 100%
     );
   box-sizing: border-box;
-  /* glassmorphism */
+
   box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
@@ -156,9 +151,6 @@ export const SelectBox = styled.div`
 export const ThreeFilledSpan = styled.div`
   width: 17.862px;
   height: 18px;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 
   z-index: 10;
 
@@ -174,33 +166,23 @@ export const ThreeFilledSpan = styled.div`
 
 export const SelectP = styled.div`
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   margin-top: 2px;
-  /* transform: translateX(-30%); */
 `;
 
 export const SelectP2 = styled.div`
   color: var(--1-1, #ece9f5);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   margin-top: 2px;
   transform: translateY(100%);
 `;
 
 export const SelectP3 = styled.div`
   color: var(--1-1, #ece9f5);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   transform: translateY(100%);
 `;
 
@@ -239,8 +221,6 @@ export const FortuneContainer = styled.div`
   margin: 0 auto;
   height: 200px;
 
-  /* border: 1px solid rgba(239, 170, 173, 0.7); */
-
   border-radius: 10px;
   background: #f5f2ff;
 
@@ -252,7 +232,6 @@ export const FortuneFlexWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* transform: translate(-30px, -10px); */
   width: 100%;
   height: 100%;
   text-align: center;
@@ -267,11 +246,8 @@ export const FortuneBox = styled.div`
 export const FortuneP = styled.p`
   color: var(--1, #5035a6);
   text-align: center;
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 `;
 
 export const FortuneGoDiv = styled.div`
@@ -283,11 +259,8 @@ export const FortuneGoDiv = styled.div`
   border-radius: 20px;
   background: var(--1, #5035a6);
   color: #fff;
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 18px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   transform: translateX(60px);
 `;
 
@@ -353,11 +326,8 @@ export const PrevButton = styled.button`
   border: 1px solid var(--1-1, #ece9f5);
   background: #fff;
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const NextButton = styled.button`
@@ -370,11 +340,8 @@ export const NextButton = styled.button`
   border: 1px solid var(--1-1, #ece9f5);
   background: var(--1-1, #ece9f5);
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const InputBoxDiv = styled.div`
@@ -427,11 +394,8 @@ export const InputFooterBoxDiv = styled.div`
 export const TextAreaCount = styled.p`
   margin: 0px;
   color: #5035a6;
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
   transform: translate(-10px, 50px);
   z-index: 20;
 `;

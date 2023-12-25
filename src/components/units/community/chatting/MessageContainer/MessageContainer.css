@@ -1,4 +1,4 @@
-.system-message-container {
+/* .system-message-container {
   display: flex;
 
   justify-content: center;
@@ -29,7 +29,6 @@
 .your-message-container {
   display: flex;
   justify-content: flex-start;
-  /* margin-bottom: 5px; */
   align-items: center;
 }
 .your-message {
@@ -46,4 +45,4 @@
   border-radius: 100px;
   margin-right: 10px;
 }
-
+ */
