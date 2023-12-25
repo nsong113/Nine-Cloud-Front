@@ -37,19 +37,16 @@ const CommunityMain = () => {
     setProfilePicture(todayOriginData?.userProfileImg.profileImg || '');
   }, [todayOriginData]);
 
-  console.log('profilePicture', profilePicture);
-
   const {
-    data: viewAllData, //현재까지 로드된 데이터를 나타냅니다. 이 속성은 배열 형태로 각 페이지의 데이터를 가지고 있습니다.
-    isLoading, //데이터를 가져오는 중인지 여부를 나타냅니다. true이면 데이터를 아직 받아오는 중이라는 뜻입니다.
-    hasNextPage, //더 많은 페이지가 있는지 여부를 나타냅니다. true이면 다음 페이지가 존재한다는 뜻이며, 이 값을 사용하여 무한 스크롤을 구현할 수 있습니다.
+    data: viewAllData,
+    isLoading,
+    hasNextPage,
     isError,
-    fetchNextPage, //다음 페이지를 가져오기 위해 호출할 함수입니다. 이 함수를 호출하면 다음 페이지의 데이터를 가져옵니다.
+    fetchNextPage,
   } = useInfiniteQuery(
     'getInfiniteCommunity',
     ({ pageParam = 1 }) => getInfiniteCommunity(pageParam),
     {
-      //다음 페이지의 pageParam 값을 결정하는 데 사용
       getNextPageParam: (_lastPage) => {
         if (_lastPage?.isLast) {
           return _lastPage?.nextPage;
@@ -66,20 +63,12 @@ const CommunityMain = () => {
     }
   }, [inView, hasNextPage]);
 
-  console.log('todayOriginData', todayOriginData);
-
-  console.log('todayData', todayData);
-
   useEffect(() => {
-    console.log('Entering useEffect');
     if (todayData) {
-      console.log('Setting todayEmotion and weather');
       setTodayEmotion(todayData.EmotionStatus);
       setWeather(todayData.weather);
     }
   }, [todayData, isSuccess]);
-
-  console.log('123123123', todayEmotion, weather);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -91,10 +80,6 @@ const CommunityMain = () => {
   const goToMain = () => {
     navigate('/main');
   };
-
-  // const [emotionPicture, setEmotionPicture] = useState('');
-  //React Hook "useState" is called conditionally.
-  //Rendered more hooks than during the previous render.
 
   let emotionPath = '';
 
@@ -123,14 +108,12 @@ const CommunityMain = () => {
       emotionPath = '/sun_happy.png';
     }
   } else {
-    console.log('아무것도 아님');
+    emotionPath = '/community_none.png';
   }
 
   if (emotionPath && emotionPath !== emotionPicture) {
     setEmotionPicture(emotionPath);
   }
-
-  console.log('todayOriginData', todayOriginData);
 
   return (
     <S.MainContainer>

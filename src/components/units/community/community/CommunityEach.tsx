@@ -34,7 +34,6 @@ const CommunityEach = (props: any) => {
   // console.log('formattedDate', formattedDate);
 
   const navigate = useNavigate();
-  console.log('createdAtDate', createdAtDate);
 
   const onClickGotoDetailPage = (id: any) => {
     navigate(`/post/${id}`);
