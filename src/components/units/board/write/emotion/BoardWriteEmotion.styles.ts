@@ -37,7 +37,6 @@ export const EmotionWrapperDOWNdiv = styled.div`
     0px 4.517px 11.291px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4.517px 22.583px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(16.93691062927246px);
-  /* opacity: 0.8; */
 `;
 
 export const HeaderButtonBoxDiv = styled.div`
@@ -70,7 +69,6 @@ export const HeaderFlexBox = styled.div`
 export const OneBlackSpan = styled.div`
   width: 17.862px;
   height: 18px;
-  /* transform: translateX(-15px); */
 
   border-radius: 45px;
   background: radial-gradient(
@@ -107,7 +105,7 @@ export const OneBlackSpan = styled.div`
       rgba(80, 53, 166, 0.2) 100%
     );
   box-sizing: border-box;
-  /* glassmorphism */
+
   box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
@@ -121,7 +119,6 @@ export const TwoBlankSpan = styled.div`
   border-radius: 50%;
 `;
 
-//////////
 export const SelectBox = styled.div`
   width: 90px;
   height: 37px;
@@ -151,34 +148,22 @@ export const ThreeFilledSpan = styled.div`
 
 export const SelectP = styled.div`
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   margin-top: 2px;
-  /* transform: translateX(-30%); */
 `;
 
 export const SelectP2 = styled.div`
   color: var(--1-1, #ece9f5);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   margin-top: 2px;
-  /* transform: translateX(-80%); */
 `;
 
 export const SelectP3 = styled.div`
   color: var(--1-1, #ece9f5);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
-  /* transform: translateX(-80%); */
 `;
 
 const colors = {
@@ -195,8 +180,6 @@ export const ContentInputBoxDiv = styled.div`
   height: 100px;
   padding: 5px;
 
-  /* border: 1px solid var(--glassmorphism-line2, rgba(239, 170, 173, 0.7)); */
-
   border-radius: 10px 0px;
   background: #f5f2ff;
 
@@ -212,17 +195,13 @@ export const ContentInputDescDiv = styled.div`
   line-height: 1.2;
   color: var(--Gray1, #3d3d3d);
   font-size: 15px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 `;
 
 export const ContentSpan = styled.span`
   color: var(--Gray1, #3d3d3d);
   font-size: 15px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const SliderInput = styled.input<ISliderInputProps>`
@@ -240,10 +219,6 @@ export const SliderInput = styled.input<ISliderInputProps>`
     return `linear-gradient(to right, #9279E1 0%, #9279E1 ${percentage}%, #ECE9F5 ${percentage}%, #ECE9F5 100%)`;
   }};
 
-  /* -webkit-box-shadow: 1px 7px 13px -5px rgba(80, 53, 166, 0.75);
-  box-shadow: 1px 7px 13px -5px rgba(80, 53, 166, 0.75);
-  background-clip: content-box; */
-
   &:focus {
     outline: none;
   }
@@ -254,7 +229,6 @@ export const SliderInput = styled.input<ISliderInputProps>`
     width: 15px;
     height: 15px;
     background: #5035a6;
-    /* border: 1px solid ${colors.grey[300]}; */
     border-radius: 50%;
     cursor: pointer;
   }
@@ -274,11 +248,8 @@ export const LabelsDiv = styled.div`
   margin: 0 auto;
   transform: translateY(-20px);
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 15px;
-  font-style: normal;
   font-weight: 100;
-  line-height: normal;
 `;
 
 // 각 label의 컨테이너 스타일 정의
@@ -297,6 +268,7 @@ export const Label = styled.span`
   font-size: 16px;
   margin-top: 6px;
 `;
+
 export const SliderWrapperDiv = styled.div`
   width: 100%;
 `;
@@ -334,6 +306,7 @@ export const CountBoxDiv = styled.div`
   justify-content: center;
   color: white;
 `;
+
 export const CountP = styled.p``;
 export const ContentsBoxDiv = styled.div`
   width: 100%;
@@ -384,11 +357,8 @@ export const PrevButton = styled.button`
   border: 1px solid var(--1-1, #ece9f5);
   background: #fff;
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const NextButton = styled.button`
@@ -401,9 +371,6 @@ export const NextButton = styled.button`
   border: 1px solid var(--1-1, #ece9f5);
   background: var(--1-1, #ece9f5);
   color: var(--1, #5035a6);
-  /* font-family: Spoqa Han Sans Neo; */
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;

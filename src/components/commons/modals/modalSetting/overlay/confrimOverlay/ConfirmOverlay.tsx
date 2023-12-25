@@ -1,17 +1,72 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './ConfirmOverlay.styles';
 import { IConfirmMod } from './ConfirmOverlay.types';
 import { useMutation } from 'react-query';
 import { IpostDiaryItem } from 'src/apis/apiesType';
 import { postDiary } from 'src/apis/diary';
 import { useRecoilState } from 'recoil';
-import { countAverage, weather } from 'src/states/counter';
+import {
+  contents,
+  countAverage,
+  happyA,
+  sadA,
+  sleep,
+  weather,
+  isPublic,
+} from 'src/states/counter';
+import { IoMdHeart, IoIosHeartHalf } from 'react-icons/io';
 
 const ConfirmOverlay: React.FC<IConfirmMod> = ({
   onClickGotoMain,
   onClickGotoPost2,
   postDiaryItem,
 }) => {
+  /////////////////
+  const [countAverageToday, setCountAverageToday] =
+    useRecoilState(countAverage);
+  const [weatherToday, setWeatherToday] = useRecoilState(weather);
+  const [contentsToday, setContentsToday] = useRecoilState(contents);
+  const [temperatureAtom, setTemperature] = useRecoilState<string>(happyA);
+  const [humidAtom, setHumid] = useRecoilState<string>(sadA);
+  const [sleepAtom, setSleep] = useRecoilState<string>(sleep);
+  /////////////////
+  const [isPublicToday, setIsPublicToday] = useRecoilState<boolean>(isPublic);
+  const [isChecked, setIsChecked] = useState(true); //토글 체크 여부
+
+  const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
+  const [weatherAtom, setWeatherAtom] = useRecoilState(weather);
+
+  const [emotionPicture, setEmotionPicture] = useState('');
+
+  let [postDiaryEveryItem, setPostDiaryEveryItem] =
+    useState<IpostDiaryItem | null>(null);
+
+  // if (!postDiaryItem) return;
+
+  useEffect(() => {
+    if (postDiaryItem) {
+      setPostDiaryEveryItem({
+        EmotionalStatus: countAverageToday,
+        content: contentsToday,
+        image: postDiaryItem.image,
+        isPublic: isPublicToday,
+        sentence: localStorage.getItem('sentence'),
+        weather: weatherToday,
+        temperature: temperatureAtom,
+        humid: humidAtom,
+        sleep: sleepAtom,
+      });
+    }
+  }, [
+    countAverageToday,
+    contentsToday,
+    weatherToday,
+    temperatureAtom,
+    humidAtom,
+    sleepAtom,
+    isPublicToday,
+  ]);
+
   const postDiaryMutation = useMutation<void, Error, IpostDiaryItem, unknown>(
     postDiary,
     {
@@ -22,15 +77,10 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   );
 
   const onClickPostHandler = () => {
-    if (postDiaryItem) {
-      postDiaryMutation.mutate(postDiaryItem);
+    if (postDiaryEveryItem) {
+      postDiaryMutation.mutate(postDiaryEveryItem);
     }
   };
-
-  const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
-  const [weatherAtom, setWeatherAtom] = useRecoilState(weather);
-
-  const [emotionPicture, setEmotionPicture] = useState('');
 
   //감정 이모티콘 생성
   switch (true) {
@@ -90,6 +140,11 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
       break;
   }
 
+  const onChangeIsPublicHandler = () => {
+    setIsPublicToday(!isPublicToday);
+    setIsChecked(!isChecked);
+  };
+
   return (
     <S.ContainerDiv className='modal' onClick={onClickGotoPost2}>
       <S.ModalContentDiv>
@@ -109,6 +164,25 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
             </S.TextStyleSpanP>
           </S.TextStyleSpan>
         </S.TitleBoxDiv>
+        <S.ToggleDiv>
+          <S.ToggleFlexDiv>
+            <S.ToggleP>
+              오늘의 일기를 전체공개로 등록해 <br />
+              사람들과 공유해보세요!
+            </S.ToggleP>
+            <S.DiaryToggleTitleDiv>
+              <S.CustomToggle
+                id='customToggle'
+                checked={isChecked}
+                icons={{
+                  checked: <IoMdHeart />,
+                  unchecked: <IoIosHeartHalf />,
+                }}
+                onChange={onChangeIsPublicHandler}
+              />
+            </S.DiaryToggleTitleDiv>
+          </S.ToggleFlexDiv>
+        </S.ToggleDiv>
         <S.BoxButton>
           <S.CancelButton onClick={onClickGotoPost2}>돌아가기</S.CancelButton>
           <S.StyleButton

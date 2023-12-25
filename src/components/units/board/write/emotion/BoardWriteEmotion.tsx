@@ -1,9 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
-import Animation from 'src/components/commons/utills/Animation/Animation';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import { useRecoilState } from 'recoil';
 import { countAverage, happyA, sadA, sleep, weather } from 'src/states/counter';
@@ -11,11 +10,18 @@ import { countAverage, happyA, sadA, sleep, weather } from 'src/states/counter';
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { emotion: happy, handler: onChangeHappyCount } = useSetEmotion();
   const { emotion: sad, handler: onChangeSadCount } = useSetEmotion();
   const { emotion: todayWeather, handler: onChangeWeatherCount } =
     useSetEmotion();
   const { emotion: todaySleep, handler: onChangeTodaySleep } = useSetEmotion();
+
+  const [happyAtom, setHappyAtom] = useRecoilState(happyA);
+  const [sadAtom, setSadAtom] = useRecoilState(sadA);
+  const [countAverageNum, setCountAverage] = useRecoilState(countAverage);
+  const [weatherToday, setWeatherToday] = useRecoilState(weather);
+  const [sleepToday, setSleepToday] = useRecoilState(sleep);
 
   const onClickMoveToMain = () => {
     setIsModalOpen(!isModalOpen);
@@ -28,19 +34,23 @@ const BoardWriteEmotion = () => {
   const onClickNextPage = () => {
     navigate('/post3');
   };
-  const [happyAtom, setHappyAtom] = useRecoilState(happyA);
-  const [sadAtom, setSadAtom] = useRecoilState(sadA);
-  const [countAverageNum, setCountAverage] = useRecoilState(countAverage);
-  const [weatherToday, setWeatherToday] = useRecoilState(weather);
-
-  const [sleepToday, setSleepToday] = useRecoilState(sleep);
 
   useEffect(() => {
     setHappyAtom(happy);
     setSadAtom(sad);
+    setSleepToday(todaySleep);
     setWeatherToday(todayWeather);
     setCountAverage((Number(happy) + Number(sad)) / 2);
-  }, [happy, sad, todayWeather, setHappyAtom, setSadAtom, setWeatherToday]);
+    setSleepToday(todaySleep);
+  }, [
+    happy,
+    sad,
+    todayWeather,
+    todaySleep,
+    setHappyAtom,
+    setSadAtom,
+    setWeatherToday,
+  ]);
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
@@ -223,7 +233,6 @@ const BoardWriteEmotion = () => {
                 </S.ContentsBoxDiv>
               </S.SliderBoxDiv>
             </S.SliderWrapperDiv>
-
             <S.ButtonBoxDiv>
               <S.PrevButton onClick={onClickMoveToMain}>이전</S.PrevButton>
               <S.NextButton onClick={onClickNextPage}>다음</S.NextButton>
