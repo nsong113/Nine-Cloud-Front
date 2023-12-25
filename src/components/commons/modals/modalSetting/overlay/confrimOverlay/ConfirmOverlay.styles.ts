@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IStyled } from './ConfirmOverlay.types';
 import { IPalette } from './ConfirmOverlay.types';
 import Toggle from 'react-toggle';
+import { IoPeople } from 'react-icons/io5';
 
 export const ContainerDiv = styled.div`
   position: fixed;
@@ -20,9 +21,17 @@ export const ContainerDiv = styled.div`
   transition: opacity 0.3s ease-in-out;
 `;
 
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(-130px);
+`;
+
 export const ModalContentDiv = styled.div`
   width: 415px;
-  height: 408px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
@@ -34,7 +43,7 @@ export const ModalContentDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  /* padding: 15px; */
 `;
 
 export const Div = styled.div`
@@ -51,8 +60,6 @@ export const TitleBoxDiv = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 10px;
-  transform: translateY(-100px);
 `;
 
 export const TextStyleSpanH5 = styled.h5`
@@ -103,7 +110,6 @@ export const BoxButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transform: translateY(-100px);
 `;
 
 export const TextStyleSpan = styled.span`
@@ -130,14 +136,13 @@ export const StyleButton = styled.div`
 
 export const ToggleDiv = styled.div`
   width: 100%;
-  height: 50px;
-  margin: 18px;
-  background-color: red;
+  height: 70px;
 `;
 
 export const ToggleFlexDiv = styled.div`
-  width: 100%;
+  width: 75%;
   height: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -166,39 +171,70 @@ export const DiaryToggleTitleDiv = styled.div`
 export const CustomToggle = styled(Toggle)`
   .react-toggle-track {
     //배경색 - 체크여부 확인하고 초기값은 gray
-    background-color: ${(props) => (props.checked ? 'yellow' : 'gray')};
-    width: 100px;
-    height: 30px;
-    transform: translateX(15px);
+    background-color: ${(props) => (props.checked ? '#8066D1' : '#CFC0FF')};
+    width: 130px;
+    height: 38px;
+    border: 2px solid var(--main, #391d93);
+    margin-top: 10px;
+    /* transform: translateX(15px); */
   }
 
   //thumb의 스타일 지정
   .react-toggle-thumb {
-    background-color: purple;
-    width: 55px;
-    height: 20px;
-    border-radius: 10px;
-    transform: translate(20px, 4px);
+    background-color: ${(props) => (props.checked ? '#391D93' : '#391D93')};
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    transform: translate(${(props) => (props.checked ? '60px' : '0px')}, 4px);
   }
 
   //토글이 켜진 상태
   &.react-toggle--checked {
     .react-toggle-track {
-      background-color: yellow;
+      background-color: #8066d1;
     }
     .react-toggle-thumb {
-      background-color: red;
+      background-color: #cfc0ff;
     }
   }
 
   &:hover {
     .react-toggle-track {
       background-color: ${(props) =>
-        props.checked ? 'red' : 'gray'} !important;
+        props.checked ? '#8066D1' : '#CFC0FF'} !important;
     }
 
-    .react-toggle-thumb {
+    /* .react-toggle-thumb {
       background-color: pink;
-    }
+    } */
   }
 `;
+
+export const ToggleTumbsImg = styled.img`
+  width: 17px;
+  height: 17px;
+`;
+
+export const PublicImg = styled(IoPeople)`
+  fill: var(--contents-box, #f5f2ff);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+`;
+
+export const PrivateTextDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 15px;
+`;
+
+export const SubTitleSpan = styled.span`
+  color: var(--sub, #8066d1);
+  text-align: center;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 100%;
+`;
+
+export const PublicTextDiv = styled.div``;

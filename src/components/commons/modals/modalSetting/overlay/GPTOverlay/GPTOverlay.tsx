@@ -80,7 +80,7 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
       {diaryCheck === null && (
         <S.ContainerDiv onClick={onOk}>
           <S.ModalContentDivGo onClick={stopProp}>
-            <S.GptX></S.GptX>
+            <S.GptX onClick={onOk}></S.GptX>
             <S.GptH3>아직 일기를 작성하지 않았어요!</S.GptH3>
             <S.GptP>
               AI클라우드의 솔루션을 받아보고 싶다면 <br />
@@ -102,9 +102,6 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
             <S.GPTSolutionDiv>
               {data && (
                 <>
-                  {/* <S.GPTEachSolutionDiv>
-                오늘의 감정 분석 : {data.evaluates}
-              </S.GPTEachSolutionDiv> */}
                   <br />
                   <S.GPTEachSolutionDiv>
                     <S.GptFlexBox>

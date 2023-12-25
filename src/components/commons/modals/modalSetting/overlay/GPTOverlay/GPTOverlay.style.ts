@@ -18,7 +18,6 @@ export const ContainerDiv = styled.div`
   width: 443px;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: end;
 `;
@@ -32,8 +31,7 @@ export const ModalContentDiv = styled.div`
   animation: ${slideIn} 0.5s ease-in-out;
 
   border-radius: 5px 20px;
-  background: rgba(245, 242, 255, 1);
-
+  background: rgba(245, 242, 255, 0.3);
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 5px 50px 0px rgba(57, 29, 147, 0.2),
     0px -5px 50px 0px rgba(57, 29, 147, 0.2);
@@ -178,6 +176,8 @@ export const GPTBtnDivGo = styled.div`
   letter-spacing: 0.18px;
 
   margin: 0 auto;
+
+  margin-top: 30px;
 `;
 
 export const GptReloadingBox = styled.div`
