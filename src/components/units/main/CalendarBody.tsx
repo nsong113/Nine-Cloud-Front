@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import  { useMemo } from 'react';
 import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate } from 'react-router-dom';
@@ -9,10 +9,7 @@ import { targetDate } from 'src/states/emotionImage';
 const CalendarBody = (props: any) => {
   const navigate = useNavigate();
   const { weekCalendarList } = useCalendar();
-  const [date, setDate] = useRecoilState(targetDate);
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);
-
-  console.log('리코일date', date);
 
   const allData = props?.data?.data;
 
@@ -34,7 +31,10 @@ const CalendarBody = (props: any) => {
     }
   };
 
-  const filteredDayList = allData.filter((el: any) => el !== null);
+  const filteredDayList = useMemo(
+    () => allData.filter((el: any) => el !== null),
+    []
+  );
 
   const getEmotionStatusForDate = (date: string) => {
     const matchingDay = filteredDayList.find(
@@ -77,7 +77,6 @@ const CalendarBody = (props: any) => {
 
             const emotionStatus = getEmotionStatusForDate(String(cellDate));
             const weatherStatus = getWeatherData(String(cellDate));
-            const images = getEmotion(emotionStatus, weatherStatus);
             const id = getId(String(cellDate));
 
             const isToday =

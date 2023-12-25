@@ -15,7 +15,6 @@ import BoardDetailComment from './comment/BoardDetailComment';
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import Loading from 'src/components/commons/utills/loading/Loading';
-import { CommentData } from './comment/test';
 import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOverlay';
 import getEmotion from 'src/components/commons/utills/emotionImage';
 import useSliderCounts from 'src/components/commons/hooks/useSliderCounts';
@@ -53,7 +52,7 @@ const BoardDetail = () => {
 
   console.log('id', params.id);
 
-  console.log('detailedContent', detailedContent?.likeExist);
+  console.log('detailedContent', detailedContent);
 
   useEffect(() => {
     if (detailedContent?.likeExist === true) {
@@ -63,16 +62,8 @@ const BoardDetail = () => {
     }
 
     console.log('isHeart', isHeart);
-  }, [detailedContent?.likeExist]);
+  }, [params.id, detailedContent?.likeExist]);
 
-  // const [countAverage, setCountAverage] = useState(0);
-
-  const heartCount = heartMutation?.data;
-  // useEffect(() => {
-  //   setCountAverage(
-  //     Number(data?.data?.temperature) + Number(data?.data?.humid) / 2
-  //   );
-  // }, []);
 
   const countAverage =
     (Number(data?.data?.temperature) + Number(data?.data?.humid)) / 2;
