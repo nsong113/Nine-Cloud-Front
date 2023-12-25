@@ -40,12 +40,13 @@ export const ImgBoxDiv = styled.div`
 export const HearderRightBoxDiv = styled.div`
   display: flex;
   align-items: center;
-  margin
 `;
 
 export const MainImg = styled.img`
-  width: 380px;
-  height: 380px;
+  height: 396px;
+  width: 443px;
+  background-color: white;
+  border-radius: 0 0 40px 0;
 `;
 
 export const ContentsWrapperDiv = styled.div`
@@ -97,6 +98,7 @@ export const ContentsBoxDiv = styled.div`
   flex-shrink: 0;
   border-radius: 20px 2px;
   background: rgba(245, 242, 255, 0.5);
+  overflow: scroll;
 
   box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.5) inset,
     0px 2px 5px 0px rgba(80, 53, 166, 0.1);
@@ -110,8 +112,8 @@ export const WriterImageDiv = styled.div`
 `;
 
 export const CloudImg = styled.img`
-  width: 74px;
-  height: 101px;
+  width: 100px;
+  height: 100px;
   margin-top: 12px;
   margin-left: 30px;
 `;
@@ -148,10 +150,11 @@ export const CategoryBoxDiv = styled.div`
 export const HeartCommentTextSpan = styled.span<IComment>`
   color: ${(props) => (props.public ? 'rgba(80, 53, 166, 1)' : '#BBBBBB')};
   font-family: Pretendard;
-  font-size: 16.867px;
+  font-size: 16.677px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  text-align: center;
 `;
 
 export const CommentsWrapperDiv = styled.div`
@@ -243,6 +246,7 @@ export const WeatherImg = styled.img`
 
 export const ContentBoxDiv = styled.div`
   margin: 0px 18px 30px 18px;
+  x
 `;
 
 export const heartBoxDiv = styled.div`
@@ -325,6 +329,25 @@ export const PencilImg = styled.img`
   /* margin-left: 320px; */
 `;
 
+export const GrayHeartCountSpan = styled.span`
+  color: #bbbbbb;
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16.867px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const PurpleHeartCountSpan = styled.span`
+  color: var(--sub, #8066d1);
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16.867px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const HeartDiv = styled.div``;
 export const PencilBoxDiv = styled.div`
   width: 371px;
   display: flex;
@@ -364,8 +387,8 @@ export const HeartBoxDiv = styled.div`
 
 export const CommentHeartImg = styled(AiFillHeart)`
   color: rgba(80, 53, 166, 1);
-  width: 35.625px;
-  height: 20.916px;
+  width: 18.625px;
+  height: 18.916px;
   cursor: pointer;
 `;
 
@@ -451,8 +474,8 @@ export const TrashCanImg = styled(FaRegTrashAlt)`
 
 export const BlankHeartImg = styled(AiOutlineHeart)`
   color: rgba(80, 53, 166, 1);
-  width: 24.625px;
-  height: 15.916px;
+  width: 18.625px;
+  height: 18.916px;
   cursor: pointer;
 `;
 
@@ -483,12 +506,47 @@ export const GrayChatImg = styled.img`
   height: 14.684px;
 `;
 
-export const GrayChatBoxDiv = styled.div`
+export const ChatBoxDiv = styled.div`
   margin-right: 10px;
   display: flex;
   align-items: center;
 `;
 
-export const HeartWrapperDiv = styled.div`
-  margin-top: 6px;
+export const PublicPrivateImg = styled.img`
+  z-index: 100;
 `;
+
+export const HeartWrapperDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NoCommentBoxDiv = styled.div`
+  width: 403px;
+  height: 64.442px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(239, 170, 173, 0.7);
+  background: rgba(245, 242, 255, 0.7);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NoCommentSpan = styled.span`
+  color: #aeaeae;
+
+  font-family: Spoqa Han Sans Neo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+export const HeaderLeftBoxDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items : center
+`

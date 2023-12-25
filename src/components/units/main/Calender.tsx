@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
@@ -11,18 +11,13 @@ import {
   format,
   getMonth,
   getYear,
-  setMonth,
   subMonths,
   getDate,
 } from 'date-fns';
-import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import { useQuery } from 'react-query';
 import {
-  getMyInfo,
   getPosts,
-  getPrevMonthPosts,
 } from 'src/apis/cheolmin-api/apis';
-import Image from './Image';
 import GPTModal from 'src/components/commons/modals/gpt/GPTModal';
 
 const Calender = () => {
@@ -45,7 +40,7 @@ const Calender = () => {
   const month = getMonth(newDate) + 1;
   const [isGPTModal, setIsGPTModal] = useState(false);
 
-  const { data, isLoading, refetch } = useQuery(
+  const { data, isLoading } = useQuery(
     ['posts', currentMonth, currentYear],
     () =>
       getPosts({
@@ -54,17 +49,9 @@ const Calender = () => {
       })
   );
 
-  const { data: profile } = useQuery('myInfo', getMyInfo);
-
   const today = getDate(currentDate) - 1;
   const diaryCheck = data?.data[today];
-  /////////////////
 
-  console.log('data', profile?.data?.profileImg);
-
-  console.log('current Year', currentYear, 'current Month', currentMonth);
-
-  console.log(data);
   if (isLoading) {
     return <Loading />;
   }
@@ -77,26 +64,25 @@ const Calender = () => {
     navigate('/list');
   };
 
-  const profileImg = localStorage.getItem('image');
 
   const onClickNextMonth = async () => {
     const newDate = addMonths(currentMonth, 1);
-    await setCurrentMonth(newDate); // setCurrentMonth 함수의 실행을 기다림
+    await setCurrentMonth(newDate); 
     setCurrentDate(newDate);
     setAnimationDirection('leftToRight');
-    setCurrentYear(newDate); // setCurrentYear를 수정하여 바로 반영
-    // await refetch(); // 다음 달 데이터 다시 가져오기
+    setCurrentYear(newDate); 
+
   };
 
-  console.log('currentMonth', currentMonth);
+
 
   const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
-    await setCurrentMonth(newDate); // setCurrentMonth 함수의 실행을 기다림
+    await setCurrentMonth(newDate); 
     setCurrentDate(newDate);
     setAnimationDirection('rightToLeft');
-    setCurrentYear(newDate); // setCurrentYear를 수정하여 바로 반영
-    // await refetch(); // 이전 달 데이터 다시 가져오기
+    setCurrentYear(newDate);
+
   };
 
   const onClickCheckGPT = () => {
@@ -130,11 +116,11 @@ const Calender = () => {
             <S.ButtonWrapperDiv>
               {/* <Tooltip message='리스트'> */}
               <S.StyledHoverTapButton
-                whileHover={{ scale: 1.1 }} //마우스를 올리면 자연스럽게 scale이 커진다
-                whileTap={{ scale: 0.9 }} // 마우스를 클릭하면 자연스럽게 줄어든다
+                whileHover={{ scale: 1.1 }} 
+                whileTap={{ scale: 0.9 }} 
                 onClick={onClickListBtn}
               >
-                <S.List />
+                <S.List  />
               </S.StyledHoverTapButton>
               {/* </Tooltip> */}
             </S.ButtonWrapperDiv>

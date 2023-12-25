@@ -78,6 +78,7 @@ export const DiarySpace = styled(ReactQuill)`
   flex-shrink: 0;
   margin-top: 10px;
   margin-bottom: 20px;
+  overflow: scroll;
 `;
 
 export const ToggleTumbsImg = styled.img`
@@ -91,6 +92,7 @@ export const ContentsContainerDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 `;
 
 export const ModalContentDiv = styled.div`

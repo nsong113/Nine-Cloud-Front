@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { IoCalendarNumberOutline } from 'react-icons/io5';
 import { IoList } from 'react-icons/io5';
-import { IoIosArrowDropleft } from 'react-icons/io';
-import { IoIosArrowDropright } from 'react-icons/io';
 import { motion } from 'framer-motion';
 import { IDateSpanProps, ITableCellProps } from './Main.types';
 import { IoIosArrowBack } from 'react-icons/io';
