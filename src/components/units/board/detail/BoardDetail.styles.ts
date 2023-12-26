@@ -10,6 +10,7 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { MdPeopleOutline } from 'react-icons/md';
 import { IComment } from './BoardDetail.types';
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 
 export const ContainerDiv = styled.div`
   display: flex;
@@ -246,14 +247,12 @@ export const WeatherImg = styled.img`
 
 export const ContentBoxDiv = styled.div`
   margin: 0px 18px 30px 18px;
-  x
 `;
 
 export const heartBoxDiv = styled.div`
   width: 250px;
   display: flex;
   align-items: center;
-  margin-left: 24px;
 `;
 
 export const MindStatusSpan = styled.span`
@@ -548,5 +547,53 @@ export const NoCommentSpan = styled.span`
 export const HeaderLeftBoxDiv = styled.div`
   display: flex;
   justify-content: center;
-  align-items : center
-`
+  align-items: center;
+`;
+
+export const EditPencilDiv = styled.div`
+  position: fixed;
+  margin-right: 40px;
+  border-radius: 5px;
+  border: 1px solid var(--sub, #8066d1);
+  background: rgba(255, 255, 255, 0.3);
+  width: 87px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DeleteSpan = styled.span`
+  color: #000;
+  text-align: right;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  cursor: pointer;
+  &:hover {
+    color: #391d93;
+  }
+`;
+
+export const EditSpan = styled.span`
+  color: #000;
+  text-align: right;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  border-bottom: 1px solid #8066d1;
+  cursor: pointer;
+  &:hover {
+    color: #391d93;
+  }
+`;
+
+export const BlankDiv = styled.div`
+  width: 25px;
+  height: 24px;
+  margin-top: 6px;
+  margin-right: 10px;
+`;

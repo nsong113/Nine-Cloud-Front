@@ -19,6 +19,7 @@ import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOver
 import getEmotion from 'src/components/commons/utills/emotionImage';
 import useSliderCounts from 'src/components/commons/hooks/useSliderCounts';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
+import DiaryDeleteModal from 'src/components/commons/modals/diaryDelete/diaryDelete';
 
 const BoardDetail = () => {
   const queryClient = useQueryClient();
@@ -29,9 +30,15 @@ const BoardDetail = () => {
   const navigate = useNavigate();
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [isHeart, setIsHeart] = useState(false);
+  const [isClickedPencil, setIsClickedPencil] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
+
+  const onClickEdit = () => {
+    setIsActiveModal((prev) => !prev);
+  };
 
   const onClickPencilImg = () => {
-    setIsActiveModal((prev) => !prev);
+    setIsClickedPencil((prev) => !prev);
   };
   const { data: comment } = useQuery('comment', () => getComments(params.id));
   const { data: profile } = useQuery('profile', getMyInfo);
@@ -50,9 +57,8 @@ const BoardDetail = () => {
     },
   });
 
-  console.log('id', params.id);
-
-  console.log('detailedContent', detailedContent);
+  console.log('profile', profile?.data?.userId);
+  console.log('data', data?.data?.UserId);
 
   useEffect(() => {
     if (detailedContent?.likeExist === true) {
@@ -63,7 +69,6 @@ const BoardDetail = () => {
 
     console.log('isHeart', isHeart);
   }, [params.id, detailedContent?.likeExist]);
-
 
   const countAverage =
     (Number(data?.data?.temperature) + Number(data?.data?.humid)) / 2;
@@ -85,6 +90,10 @@ const BoardDetail = () => {
 
   const onClickToggle = () => {
     setIsActive((prev) => !prev);
+  };
+
+  const onClickDeleteBtn = () => {
+    setIsDelete((prev) => !prev);
   };
 
   const createdAtDate = detailedContent?.createdAt
@@ -111,13 +120,15 @@ const BoardDetail = () => {
       {isActiveModal && (
         <EditPostOverlay
           content={detailedContent?.content}
-          onClose={onClickPencilImg}
+          onClose={onClickEdit}
           detailedContent={detailedContent}
           setIsEdit={setIsEdit}
+          setIsClickedPencil={setIsClickedPencil}
         />
       )}
 
       <div key={data?.id}>
+        {isDelete && <DiaryDeleteModal onClose={onClickDeleteBtn} />}
         <Animation3>
           <S.HeaderWrapperDiv>
             <S.HeaderLeftBoxDiv>
@@ -177,11 +188,28 @@ const BoardDetail = () => {
               </S.ContentBoxHeaderDiv>
               <S.ContentsBoxDiv>
                 <S.PencilsBoxDiv>
-                  <S.PencilImg
-                    src='/pencil.png'
-                    alt='수정버튼'
-                    onClick={onClickPencilImg}
-                  />
+                  {isClickedPencil && (
+                    <S.EditPencilDiv
+                      style={{ position: 'fixed', marginRight: '40px' }}
+                    >
+                      <S.EditSpan onClick={onClickEdit}>일기 수정</S.EditSpan>
+                      <S.DeleteSpan onClick={onClickDeleteBtn}>
+                        일기 삭제
+                      </S.DeleteSpan>
+                    </S.EditPencilDiv>
+                  )}
+                  {profile?.data?.userId === data?.data?.UserId && (
+                    <S.PencilImg
+                      src='/pencil.png'
+                      alt='수정버튼'
+                      onClick={onClickPencilImg}
+                    />
+                  )}
+                  {profile?.data?.userId === data?.data?.UserId && (
+                    <div>
+                      
+                    </div>
+                  )}
                 </S.PencilsBoxDiv>
                 <S.ContentBoxDiv>
                   <S.ContentSpan
@@ -289,7 +317,7 @@ const BoardDetail = () => {
                 </S.FooterBoxDiv>
               </S.CategoryBoxDiv>
               {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
-              {detailedContent.isPublic === true && (
+
                 <Animation3>
                   {isActive && (
                     <BoardDetailComment
@@ -299,54 +327,6 @@ const BoardDetail = () => {
                     />
                   )}
                 </Animation3>
-              )}
-              {!isActive && (
-                <div>
-                  {detailedContent.isPublic === false && (
-                    <div>
-                      {comment?.data?.length === 0 && (
-                        <S.NoCommentBoxDiv>
-                          <S.NoCommentSpan>
-                            전체공개로 전환해 사람들과 일기를 공유해보세요!
-                          </S.NoCommentSpan>
-                        </S.NoCommentBoxDiv>
-                      )}
-                      {comment?.data?.length !== 0 && (
-                        <S.CommentsWrapperDiv>
-                          <S.CommentBox>
-                            <S.CommentHeaderDiv>
-                              {comment?.data?.map((el: any) => (
-                                <S.CommentWrapperDiv key={el.commentId}>
-                                  <S.CommentBoxDiv>
-                                    <S.ProfileImg
-                                      src={profile.data.profileImg}
-                                      alt='타원'
-                                    />
-                                    <S.CommentWriterBoxDiv>
-                                      <S.CommentWriterSpan>
-                                        {profileInfo?.username}
-                                      </S.CommentWriterSpan>
-                                      <S.CommentContent>
-                                        {el.content}
-                                      </S.CommentContent>
-                                    </S.CommentWriterBoxDiv>
-                                  </S.CommentBoxDiv>
-                                </S.CommentWrapperDiv>
-                              ))}
-                            </S.CommentHeaderDiv>
-                          </S.CommentBox>
-                          <S.CommentFooterWrapDiv>
-                            <S.InputBoxDiv
-                              placeholder='공개로 바꾸면 친구들이 댓글을 달 수 있습니다.'
-                              disabled
-                            />
-                          </S.CommentFooterWrapDiv>
-                        </S.CommentsWrapperDiv>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </S.ContentsWrapperDiv>
         </Animation2>

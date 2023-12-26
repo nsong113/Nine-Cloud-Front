@@ -8,6 +8,7 @@ const EditPostOverlay: React.FC<IEditPost> = ({
   onClose,
   detailedContent,
   setIsEdit,
+  setIsClickedPencil,
 }) => {
   return (
     <>
@@ -17,6 +18,7 @@ const EditPostOverlay: React.FC<IEditPost> = ({
           content={content}
           onClose={onClose}
           setIsEdit={setIsEdit}
+          setIsClickedPencil={setIsClickedPencil}
         />,
         document.getElementById('overlay-root') as HTMLElement
       )}

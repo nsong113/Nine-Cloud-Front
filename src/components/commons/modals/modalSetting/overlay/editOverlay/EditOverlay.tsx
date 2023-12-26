@@ -16,6 +16,7 @@ const EditOverlay: React.FC<IEditPost> = ({
   content,
   onClose,
   setIsEdit,
+  setIsClickedPencil,
 }) => {
   const [isPublic, setIsPublic] = useState(false);
   const queryClient = useQueryClient();
@@ -32,6 +33,7 @@ const EditOverlay: React.FC<IEditPost> = ({
 
   const editMutation = useMutation(updatePost, {
     onSuccess: () => {
+      setIsClickedPencil((prev) => !prev);
       queryClient.invalidateQueries('post');
     },
   });

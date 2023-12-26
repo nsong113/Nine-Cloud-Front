@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import ReactQuill from 'react-quill';
 import {
   addComment,
   deleteComment,
@@ -9,6 +8,7 @@ import {
   getComments,
   getMyInfo,
 } from 'src/apis/cheolmin-api/apis';
+import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
 import { CommentData } from './test';
 import { IComment } from './BoardDetailComment.types';
@@ -55,7 +55,26 @@ const BoardDetailComment: React.FC<IComment> = ({
     onSuccess: () => {
       queryClient.invalidateQueries('comment');
     },
+    onError: () => {
+      Swal.fire({
+        title: '메모 제목을 적어주세요.',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off',
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Create',
+        showLoaderOnConfirm: true,
+        preConfirm: (title) => {
+          return title;
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+      });
+    },
   });
+
+  console.log('profile', profile?.data?.userId);
+  console.log('comment', comment);
 
   const user = comment?.User?.profileImg;
 
@@ -77,22 +96,62 @@ const BoardDetailComment: React.FC<IComment> = ({
     setIsEdit((prev) => !prev);
   };
 
-  const onClickEditBtn = (commentId: any) => () => {
+  const onClickEditBtn = (commentId: any, userId: any) => () => {
+    if (profile?.data?.userId !== userId) {
+      Swal.fire({
+        icon: 'error',
+        width: '400px',
+        title: '수정 권한이 없습니다.',
+        confirmButtonText: '확인',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading(),
+      });
+      return;
+    }
     setEditingCommentId(commentId);
-    setIsEdit((prev) => !prev);
+    Swal.fire({
+      icon: 'question',
+      width: '400px',
+      title: '댓글 수정 하시겠습니까 ?',
+      showCancelButton: true,
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      cancelButtonText: '취소',
+      allowOutsideClick: () => !Swal.isLoading(),
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: '수정할 내용을 입력하세요',
+          input: 'text',
+          inputValue: '', // 초기값은 비어있음
+          confirmButtonText: '수정하기',
+          cancelButtonText: '취소하기',
+          showCancelButton: true,
+          reverseButtons: true,
+          inputValidator: (value) => {
+            // 입력값이 유효한지 검사할 수 있는 함수
+            if (!value) {
+              return '수정할 내용을 입력하세요';
+            }
+          },
+        }).then((editResult) => {
+          if (editResult.isConfirmed) {
+            const message = editResult.value;
+            // 여기서 editMutation.mutate를 호출하여 댓글을 수정합니다.
+            editMutation.mutate({ message, commentId });
+          }
+        });
+      }
+    });
   };
 
   const onChangeComment = (e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 
-  const onClickDeleteBtn = (commentId: any) => () => {
-    alert('정상적으로 삭제 됐습니다');
+  const onClickDeleteBtn = (commentId: any, userId: any) => () => {
     deleteMutation.mutate(commentId);
-  };
-
-  const onClickOkBtn = () => {
-    setIsDeleteModal((prev) => !prev);
   };
 
   const onClickCancelBtn = () => {
@@ -150,22 +209,29 @@ const BoardDetailComment: React.FC<IComment> = ({
                             </S.DateTextSpan>
                           </S.CommentWriterSpan>
                         </S.DateBoxDiv>
-
                         {editingCommentId !== el.commentId && (
                           <S.ButtonWrapperDiv>
                             <S.CommentContent>{el.content}</S.CommentContent>
-                            <div>
-                              <S.PencilBtn
-                                onClick={onClickEditBtn(el.commentId)}
-                              >
-                                수정하기
-                              </S.PencilBtn>
-                              <S.TrashButton
-                                onClick={onClickDeleteBtn(el.commentId)}
-                              >
-                                삭제하기
-                              </S.TrashButton>
-                            </div>
+                            {profile?.data?.userId === el.UserId && (
+                              <div>
+                                <S.PencilBtn
+                                  onClick={onClickEditBtn(
+                                    el.commentId,
+                                    el.UserId
+                                  )}
+                                >
+                                  수정하기
+                                </S.PencilBtn>
+                                <S.TrashButton
+                                  onClick={onClickDeleteBtn(
+                                    el.commentId,
+                                    el.UserId
+                                  )}
+                                >
+                                  삭제하기
+                                </S.TrashButton>
+                              </div>
+                            )}
                           </S.ButtonWrapperDiv>
                         )}
                         {editingCommentId === el.commentId && (
@@ -177,12 +243,18 @@ const BoardDetailComment: React.FC<IComment> = ({
                                 </S.CommentContent>
                                 <div>
                                   <S.PencilBtn
-                                    onClick={onClickEditBtn(el.commentId)}
+                                    onClick={onClickEditBtn(
+                                      el.commentId,
+                                      el.UserId
+                                    )}
                                   >
                                     수정하기
                                   </S.PencilBtn>
                                   <S.TrashButton
-                                    onClick={onClickDeleteBtn(el.commentId)}
+                                    onClick={onClickDeleteBtn(
+                                      el.commentId,
+                                      el.UserId
+                                    )}
                                   >
                                     삭제하기
                                   </S.TrashButton>
@@ -217,8 +289,28 @@ const BoardDetailComment: React.FC<IComment> = ({
               </S.CommentHeaderDiv>
             </S.CommentBox>
             <S.CommentFooterWrapDiv>
-              <S.InputBoxDiv value={content} onChange={onChangeComment} />
-              <S.SubmitButton onClick={onClickSubmitBtn}>등록</S.SubmitButton>
+              {detailedContent.isPublic === true && (
+                <S.BlankDiv>
+                  <S.InputBoxDiv
+                    placeholder='댓글을 작성해보세요.'
+                    value={content}
+                    onChange={onChangeComment}
+                  />
+                  <S.SubmitButton onClick={onClickSubmitBtn}>
+                    등록
+                  </S.SubmitButton>
+                </S.BlankDiv>
+              )}
+              {detailedContent.isPublic === false && (
+                <div>
+                  <S.BlankInput
+                    placeholder='공개로 전환하면 다른 사용자가 댓글을 달 수 있어요'
+                    value={content}
+                    onChange={onChangeComment}
+                    disabled
+                  />
+                </div>
+              )}
             </S.CommentFooterWrapDiv>
           </S.CommentsWrapperDiv>
         </div>
