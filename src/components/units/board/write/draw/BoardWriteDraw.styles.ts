@@ -332,44 +332,15 @@ export const ThicknessThin = styled.div`
   cursor: pointer;
 `;
 
-export const EraserThicknessBold = styled.div`
-  width: 33px;
-  height: 33px;
+/* eslint-disable */
+export const ThicknessOption = styled.div<{ size: number }>`
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
   border-radius: 50%;
   background: var(--sub, #8066d1);
   cursor: pointer;
 `;
-export const ThicknessBoldMedium = styled.div`
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--sub, #8066d1);
-  cursor: pointer;
-`;
-
-export const EraserThicknessMedium = styled.div`
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  background: var(--sub, #8066d1);
-  cursor: pointer;
-`;
-
-export const ThicknessMediumThin = styled.div`
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--sub, #8066d1);
-  cursor: pointer;
-`;
-
-export const EraserThicknessThin = styled.div`
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--sub, #8066d1);
-  cursor: pointer;
-`;
+/* eslint-enable */
 
 export const ColorPaletteFlexDiv = styled.div`
   display: flex;
