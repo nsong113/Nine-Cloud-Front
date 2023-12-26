@@ -1,4 +1,10 @@
-import React, { ChangeEventHandler, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import * as S from './BoardWriteDraw.styles';
 import { useNavigate } from 'react-router-dom';
 import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
@@ -17,10 +23,41 @@ const BoardWriteDraw = () => {
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  const [pen, setPen] = useState(true);
-  const [thicknessToggle, setThicknessToggle] = useState(false);
   const [colorPickerValue, setColorPickerValue] = useState<string>();
   let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
+  const [penClickedEmoji, setPenClickedEmoji] = useState('/pen_unclicked.png');
+  const [eraserClickedEmoji, setEraserClickedEmoji] = useState(
+    '/eraser_unclicked.png'
+  );
+  const [penMode, setPenMode] = useState(true);
+  const [eraserMode, setEraserMode] = useState(false);
+
+  const ClickPenMode = () => {
+    setPenMode(!penMode);
+  };
+
+  const ClickEraserMode = () => {
+    setEraserMode(!eraserMode);
+  };
+
+  useEffect(() => {
+    if (penMode === true) {
+      setPenClickedEmoji('/pen_clicked.png');
+      setEraserMode(false);
+      colorHandlerBlack();
+    } else {
+      setPenClickedEmoji('/pen_unclicked.png');
+    }
+  }, [penMode]);
+
+  useEffect(() => {
+    if (eraserMode === true) {
+      setEraserClickedEmoji('/eraser_clicked.png');
+      setPenMode(false);
+    } else {
+      setEraserClickedEmoji('/eraser_unclicked.png');
+    }
+  }, [eraserMode]);
 
   const onClickPrevBtn = () => {
     navigate('/post3');
@@ -72,20 +109,6 @@ const BoardWriteDraw = () => {
     mousePosition,
     setMousePosition
   );
-
-  const onClickPenToggleHandler = () => {
-    setPen(!pen);
-    setThicknessToggle(false);
-  };
-
-  const onClickEraserToggleHandler = () => {
-    colorHandlerWhite();
-  };
-
-  const onClickThicknessToggleHandler = () => {
-    setThicknessToggle(!thicknessToggle);
-    setPen(false);
-  };
 
   useEffect(() => {
     setColorPickerValue(color);
@@ -158,6 +181,58 @@ const BoardWriteDraw = () => {
     }
   };
 
+  const startTouch = useCallback((event: TouchEvent) => {
+    if (!canvasRef.current) {
+      return;
+    }
+    const canvas: HTMLCanvasElement = canvasRef.current;
+
+    let touch = event.touches[0];
+
+    let mouseEvent = new MouseEvent('mousedown', {
+      clientX: touch?.clientX,
+      clientY: touch?.clientY,
+    });
+    canvas.dispatchEvent(mouseEvent);
+  }, []);
+
+  const moveTouch = useCallback((event: TouchEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!canvasRef.current) {
+      return;
+    }
+    const canvas: HTMLCanvasElement = canvasRef.current;
+
+    let touch = event.touches[0];
+    let mouseEvent = new MouseEvent('mousemove', {
+      clientX: touch?.clientX,
+      clientY: touch?.clientY,
+    });
+
+    canvas.dispatchEvent(mouseEvent);
+  }, []);
+
+  const endTouch = useCallback((event: TouchEvent) => {
+    if (!canvasRef.current) {
+      return;
+    }
+    const canvas: HTMLCanvasElement = canvasRef.current;
+
+    let touch = event.touches[0];
+    let mouseUpEvent = new MouseEvent('mouseup', {
+      clientX: touch?.clientX,
+      clientY: touch?.clientY,
+    });
+    let mouseLeaveEvent = new MouseEvent('mouseleave', {
+      clientX: touch?.clientX,
+      clientY: touch?.clientY,
+    });
+    canvas.dispatchEvent(mouseUpEvent);
+    canvas.dispatchEvent(mouseLeaveEvent);
+  }, []);
+
   useEffect(() => {
     if (!canvasRef.current) {
       return;
@@ -168,6 +243,9 @@ const BoardWriteDraw = () => {
     canvas.addEventListener('mousemove', paint);
     canvas.addEventListener('mouseup', exitPaint);
     canvas.addEventListener('mouseleave', exitPaint);
+    canvas.addEventListener('touchstart', startTouch);
+    canvas.addEventListener('touchmove', moveTouch);
+    canvas.addEventListener('touchend', endTouch);
 
     return () => {
       // Unmount 시 이벤트 리스너 제거
@@ -175,6 +253,9 @@ const BoardWriteDraw = () => {
       canvas.removeEventListener('mousemove', paint);
       canvas.removeEventListener('mouseup', exitPaint);
       canvas.removeEventListener('mouseleave', exitPaint);
+      canvas.removeEventListener('touchstart', startTouch);
+      canvas.removeEventListener('touchmove', moveTouch);
+      canvas.removeEventListener('touchend', endTouch);
     };
   }, [startPaint, paint, exitPaint]);
 
@@ -185,6 +266,25 @@ const BoardWriteDraw = () => {
   const onClickGotoMain = () => {
     navigate('/main');
   };
+
+  const colors = [
+    { color: 'black', handler: colorHandlerBlack },
+    { color: '#FF2323', handler: colorHandlerRed },
+    { color: '#FFC225', handler: colorHandlerOrange },
+    { color: '#EDFF22', handler: colorHandlerYellow },
+    { color: '#16FF4A', handler: colorHandlerGreen },
+    { color: '#4BA9FF', handler: colorHandlerBlue },
+    { color: '#4E12F6', handler: colorHandlerPurple },
+    { color: '#DB00FF', handler: colorHandlerPink },
+  ];
+
+  const thicknessOptions = [
+    { size: 13, handler: EraserThinHandler },
+    { size: 18, handler: EraserMediumThinHandler },
+    { size: 23, handler: EraserMediumHandler },
+    { size: 28, handler: EraserBoldMediumHandler },
+    { size: 33, handler: EraserBoldHaneler },
+  ];
 
   return (
     <>
@@ -245,33 +345,32 @@ const BoardWriteDraw = () => {
             <S.CanvasContainer>
               <S.DrawCanvas ref={canvasRef} height={365} width={365} />
               <S.ToggleBox>
-                <S.FirstPenToggle onClick={onClickPenToggleHandler}>
-                  펜
-                </S.FirstPenToggle>
-                <S.FirstEraserToggle
-                  onClick={onClickEraserToggleHandler}
-                ></S.FirstEraserToggle>
+                {/* eslint-disable-next-line */}
+                <img
+                  src={penClickedEmoji}
+                  alt='펜 클릭하기'
+                  onClick={ClickPenMode}
+                />
+                {/* eslint-disable-next-line */}
+                <img
+                  src={eraserClickedEmoji}
+                  alt='지우개 클릭하기'
+                  onClick={() => {
+                    ClickEraserMode();
+                    colorHandlerWhite();
+                  }}
+                />
                 <S.ThicknessBoxDiv>
-                  <S.SecondToggle
-                    onClick={onClickThicknessToggleHandler}
-                  ></S.SecondToggle>
+                  <S.SecondToggle></S.SecondToggle>
                   <S.ColorEraserSettingDiv>
                     <S.EraserThicknessDiv>
-                      <S.EraserThicknessThin
-                        onClick={EraserThinHandler}
-                      ></S.EraserThicknessThin>
-                      <S.ThicknessMediumThin
-                        onClick={EraserMediumThinHandler}
-                      ></S.ThicknessMediumThin>
-                      <S.EraserThicknessMedium
-                        onClick={EraserMediumHandler}
-                      ></S.EraserThicknessMedium>
-                      <S.ThicknessBoldMedium
-                        onClick={EraserBoldMediumHandler}
-                      ></S.ThicknessBoldMedium>
-                      <S.EraserThicknessBold
-                        onClick={EraserBoldHaneler}
-                      ></S.EraserThicknessBold>
+                      {thicknessOptions.map((option, index) => (
+                        <S.ThicknessOption
+                          key={index}
+                          size={option.size}
+                          onClick={option.handler}
+                        ></S.ThicknessOption>
+                      ))}
                     </S.EraserThicknessDiv>
                   </S.ColorEraserSettingDiv>
                 </S.ThicknessBoxDiv>
@@ -279,38 +378,13 @@ const BoardWriteDraw = () => {
 
               <S.ColorSettingDiv>
                 <S.ColorPaletteFlexDiv>
-                  <S.Palette
-                    color={'black'}
-                    onClick={colorHandlerBlack}
-                  ></S.Palette>
-                  <S.Palette
-                    color={'#FF2323'}
-                    onClick={colorHandlerRed}
-                  ></S.Palette>
-                  <S.Palette
-                    color={'#FFC225'}
-                    onClick={colorHandlerOrange}
-                  ></S.Palette>
-                  <S.Palette
-                    color={'#EDFF22'}
-                    onClick={colorHandlerYellow}
-                  ></S.Palette>
-                  <S.Palette
-                    color={'#16FF4A'}
-                    onClick={colorHandlerGreen}
-                  ></S.Palette>
-                  <S.Palette
-                    color={'#4BA9FF'}
-                    onClick={colorHandlerBlue}
-                  ></S.Palette>
-                  <S.Palette
-                    color={'#4E12F6'}
-                    onClick={colorHandlerPurple}
-                  ></S.Palette>
-                  <S.Palette
-                    color={'#DB00FF'}
-                    onClick={colorHandlerPink}
-                  ></S.Palette>
+                  {colors.map((palette, index) => (
+                    <S.Palette
+                      key={index}
+                      color={palette.color}
+                      onClick={palette.handler}
+                    ></S.Palette>
+                  ))}
                   <input
                     type='color'
                     id='color'
