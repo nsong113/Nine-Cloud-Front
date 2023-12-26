@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { IPalette } from './BoardWriteDraw.types';
-import Toggle from 'react-toggle';
 
 export const DrawContainerDiv = styled.div`
   display: flex;
@@ -198,7 +197,9 @@ export const TrashcanDiv = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
 `;
+
 export const DownloadDiv = styled.div`
   width: 15.778px;
   height: 24.351px;
@@ -206,6 +207,7 @@ export const DownloadDiv = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
 `;
 
 export const CanvasContainer = styled.div``;
@@ -219,6 +221,8 @@ export const DrawCanvas = styled.canvas`
 
   padding: 6px;
   box-sizing: border-box;
+
+  cursor: pointer;
 `;
 
 export const DrawWriteTitleH3 = styled.h3`
@@ -251,8 +255,8 @@ export const ButtonWrapperDiv = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 90%;
-  margin: 0 auto;
-  margin-bottom: 50px;
+  margin: 50px auto;
+  /* margin-bottom: 50px; */
 `;
 
 export const PrevButton = styled.button`
@@ -289,8 +293,7 @@ export const ColorSettingDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 21px;
-  margin: 0 auto;
-  margin-bottom: 10px;
+  margin: 20px auto;
 
   border-radius: 10px;
   border: 1px solid var(--line, #cfc0ff);
@@ -467,7 +470,6 @@ export const SecondToggle = styled.div`
   font-size: 13px;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 
   border-radius: 71px;
   border: 1px solid var(--main, #391d93);

@@ -131,6 +131,8 @@ export const CancelButton = styled.button`
   border-radius: 22px 0 22px 0;
   border: 0px;
   margin-left: 10px;
+
+  cursor: pointer;
 `;
 
 export const OkButton = styled.button`
@@ -140,4 +142,6 @@ export const OkButton = styled.button`
   color: #5035a6;
   border-radius: 0 20px 0 20px;
   border: 0px;
+
+  cursor: pointer;
 `;

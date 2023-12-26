@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './CommunityMain.style';
-import { RiMessage3Fill } from 'react-icons/ri';
-
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import CommunityEach from './CommunityEach';
@@ -39,9 +37,7 @@ const CommunityMain = () => {
 
   const {
     data: viewAllData,
-    isLoading,
     hasNextPage,
-    isError,
     fetchNextPage,
   } = useInfiniteQuery(
     'getInfiniteCommunity',
@@ -69,13 +65,6 @@ const CommunityMain = () => {
       setWeather(todayData.weather);
     }
   }, [todayData, isSuccess]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (isError) {
-    return <div>Loading failed...</div>;
-  }
 
   const goToMain = () => {
     navigate('/main');
@@ -149,10 +138,6 @@ const CommunityMain = () => {
               </S.MainChatTitle>
             </S.MainTitleFlex>
             <S.MainProfileDiv>
-              {/* <S.MainHeaderContent>
-                오늘의 채팅방을 <br />
-                방문해보세요
-              </S.MainHeaderContent> */}
               <S.MainHeaderOn>
                 <S.MainChattingRoomFlex>
                   <img
@@ -198,13 +183,13 @@ const iconStyle = {
 };
 
 const emotionPictureStyle = {
-  width: '100%',
-  height: '100%',
+  width: '80%',
+  height: '80%',
 };
 
 const chatting_emoji = {
-  width: '40px',
-  height: '40px',
+  width: '30px',
+  height: '30px',
 };
 
 const profileImgStyle = {
