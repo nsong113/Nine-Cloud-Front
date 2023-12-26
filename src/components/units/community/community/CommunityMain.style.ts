@@ -1,4 +1,4 @@
-import { styled, css } from 'styled-components';
+import { styled } from 'styled-components';
 
 export const MainContainer = styled.div`
   width: 100%;
@@ -42,7 +42,7 @@ export const MainChatTitle = styled.div`
   font-size: 15px;
   font-weight: 400;
 
-  margin-left: 10px;
+  transform: translateY(10px);
 `;
 
 export const MainHeader = styled.div`
@@ -66,13 +66,12 @@ export const MainSectionContainer = styled.div`
   width: 100%;
   height: 840px;
   border-radius: 50px 0 0 0;
-  /* background-color: #e8e8e8; */
   transform: translateY(-40px);
 `;
 
 export const MainSectionHeaderWrapper = styled.div`
   width: 100%;
-  height: 120px;
+  height: 110px;
   position: absolute;
   padding: 20px;
 `;
@@ -83,7 +82,7 @@ export const MainLine = styled.div`
   margin: 0 auto;
   background: #391d93;
   z-index: 1000;
-  transform: translateY(120px);
+  transform: translateY(100px);
   margin-bottom: 10px;
 `;
 
@@ -94,15 +93,14 @@ export const MainFlexBox = styled.div`
 `;
 
 export const MainHeaderOn = styled.div`
-  width: 100%;
-  height: 71px;
+  width: 90%;
+  height: 61px;
   border-radius: 20px 3px;
   background: var(--contents-box, #f5f2ff);
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 2px 5px 0px rgba(80, 53, 166, 0.2),
     0px -2px 5px 0px rgba(80, 53, 166, 0.15);
   backdrop-filter: blur(15px);
-
   cursor: pointer;
 `;
 
@@ -135,9 +133,7 @@ export const MainSlideBox = styled.div`
   width: 100%;
   height: 765px;
   border-radius: 50px 0 0 0;
-  /* background-color: white; */
   transform: translateY(105px);
-  padding: 10px;
   overflow: hidden;
 `;
 

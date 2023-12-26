@@ -56,7 +56,7 @@ const FortuneOverlay: React.FC<ICloudModal> = ({
       <S.ModalContentDiv>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
         <img
-          src='/cookie.png'
+          src='/fortune_break.png'
           alt='쿠키이미지'
           style={imgStyle}
           onClick={() => {
@@ -68,7 +68,7 @@ const FortuneOverlay: React.FC<ICloudModal> = ({
           <div>
             <S.ShowNoteP>{todayRandomSaying}</S.ShowNoteP>
             <img
-              src='/EllipseFortune.png'
+              src='/fortune_box.png'
               alt='포춘쿠키 종이'
               style={paperStyle}
             />
@@ -85,9 +85,13 @@ const imgStyle: React.CSSProperties = {
   width: '80%',
   position: 'absolute',
   top: '-40px',
-  left: '40px',
+  left: '30px',
 };
 
 const paperStyle: React.CSSProperties = {
   position: 'absolute',
+  top: '-170px',
+  left: '-40px',
+  width: '380px',
+  height: '150px',
 };

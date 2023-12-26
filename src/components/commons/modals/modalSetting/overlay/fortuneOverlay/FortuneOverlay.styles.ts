@@ -9,7 +9,7 @@ export const ContainerDiv = styled.div`
   width: 443px;
   height: 960px;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,8 +28,10 @@ export const ModalContentDiv = styled.div`
 
 export const ShowNoteP = styled.p`
   z-index: 1000;
+  width: 300px;
+  text-align: center;
   position: absolute;
-  top: 30%;
+  top: -95%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;

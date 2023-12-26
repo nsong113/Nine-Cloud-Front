@@ -9,6 +9,25 @@ export const slideIn = keyframes`
   }
 `;
 
+export const Background = styled.div`
+  position: absolute;
+  width: 443px;
+  height: 357px;
+  bottom: 0;
+  left: 0;
+  background: #ffffffb7;
+  opacity: 0.5;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LoadingText = styled.div`
+  text-align: center;
+`;
+
 export const ContainerDiv = styled.div`
   position: fixed;
   z-index: 1000;
@@ -194,7 +213,7 @@ export const GptReloadingFlex = styled.div`
 `;
 
 export const GptReloadingP = styled.div`
-  color: var(--Gray2, #929292);
+  color: #5035a6;
   font-size: 15px;
   font-weight: 300;
 `;

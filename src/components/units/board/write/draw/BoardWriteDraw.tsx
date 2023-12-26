@@ -350,6 +350,7 @@ const BoardWriteDraw = () => {
                   src={penClickedEmoji}
                   alt='펜 클릭하기'
                   onClick={ClickPenMode}
+                  style={cursor}
                 />
                 {/* eslint-disable-next-line */}
                 <img
@@ -359,6 +360,7 @@ const BoardWriteDraw = () => {
                     ClickEraserMode();
                     colorHandlerWhite();
                   }}
+                  style={cursor}
                 />
                 <S.ThicknessBoxDiv>
                   <S.SecondToggle></S.SecondToggle>
@@ -414,3 +416,7 @@ const BoardWriteDraw = () => {
 };
 
 export default BoardWriteDraw;
+
+const cursor = {
+  cursor: 'pointer',
+};

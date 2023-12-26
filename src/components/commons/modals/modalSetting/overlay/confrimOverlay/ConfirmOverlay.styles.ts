@@ -13,7 +13,7 @@ export const ContainerDiv = styled.div`
   width: 443px;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,6 @@ export const ModalContentDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 15px; */
 `;
 
 export const Div = styled.div`
@@ -55,39 +54,32 @@ export const Div = styled.div`
 
 export const TitleBoxDiv = styled.div`
   width: 20rem;
-  height: 120px;
+  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 `;
 
-export const TextStyleSpanH5 = styled.h5`
+export const TextStyleSpanH5 = styled.div`
   color: #5035a6;
-
   text-align: center;
   font-size: 23px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const TextStyleSpanP = styled.p`
-  /* margin-bottom: 20px; */
-
   color: #646464;
 
   text-align: center;
   font-size: 17.063px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 
   transform: translateY(-30px);
 `;
 
 export const CancelButton = styled.div`
-  width: 146px;
+  width: 116px;
   height: 60px;
   border: 1px solid #ece9f5;
   border-radius: 0 20px;
@@ -102,6 +94,8 @@ export const CancelButton = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  cursor: pointer;
 `;
 
 export const BoxButton = styled.div`
@@ -110,6 +104,9 @@ export const BoxButton = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
+
+  transform: translateY(60px);
 `;
 
 export const TextStyleSpan = styled.span`
@@ -117,7 +114,7 @@ export const TextStyleSpan = styled.span`
 `;
 
 export const StyleButton = styled.div`
-  width: 242px;
+  width: 222px;
   height: 60px;
   background-color: #ece9f5;
   border-radius: 5px 20px;
@@ -132,6 +129,8 @@ export const StyleButton = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  cursor: pointer;
 `;
 
 export const ToggleDiv = styled.div`
@@ -162,21 +161,19 @@ export const ToggleP = styled.p`
 export const DiaryToggleTitleDiv = styled.div`
   width: 40%;
   height: 100%;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
+  transform: translateX(115px);
+
+  margin-bottom: 20px;
 `;
 
 export const CustomToggle = styled(Toggle)`
   .react-toggle-track {
-    //배경색 - 체크여부 확인하고 초기값은 gray
     background-color: ${(props) => (props.checked ? '#8066D1' : '#CFC0FF')};
     width: 130px;
     height: 38px;
     border: 2px solid var(--main, #391d93);
     margin-top: 10px;
-    /* transform: translateX(15px); */
   }
 
   //thumb의 스타일 지정
@@ -203,16 +200,13 @@ export const CustomToggle = styled(Toggle)`
       background-color: ${(props) =>
         props.checked ? '#8066D1' : '#CFC0FF'} !important;
     }
-
-    /* .react-toggle-thumb {
-      background-color: pink;
-    } */
   }
 `;
 
 export const ToggleTumbsImg = styled.img`
   width: 17px;
   height: 17px;
+  margin-right: 40px;
 `;
 
 export const PublicImg = styled(IoPeople)`
@@ -220,13 +214,12 @@ export const PublicImg = styled(IoPeople)`
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  margin: 0 10px;
 `;
 
 export const PrivateTextDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
-  margin-top: 15px;
 `;
 
 export const SubTitleSpan = styled.span`
@@ -237,4 +230,9 @@ export const SubTitleSpan = styled.span`
   line-height: 100%;
 `;
 
-export const PublicTextDiv = styled.div``;
+export const PublicTextDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 15px;
+`;

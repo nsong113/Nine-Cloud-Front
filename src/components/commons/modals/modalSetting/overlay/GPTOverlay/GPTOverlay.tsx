@@ -6,7 +6,6 @@ import { useRecoilState } from 'recoil';
 import {
   contents,
   countAverage,
-  // diaryCheckToday,
   happyA,
   sadA,
   sleep,
@@ -17,11 +16,11 @@ import useHumid from 'src/components/commons/hooks/GPT/useHumid';
 import useWeather from 'src/components/commons/hooks/GPT/useWeather';
 import useSleep from 'src/components/commons/hooks/GPT/useSleep';
 import { useNavigate } from 'react-router-dom';
+import GPTloading from './GPTloading';
 
 const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
   const [data, setData] = useState({
     title: '',
-    // evaluates: '',
     actionTips: '',
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -94,6 +93,7 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
       )}
       {diaryCheck !== null && (
         <S.ContainerDiv onClick={onOk}>
+          {isLoading && <GPTloading />}
           <S.ModalContentDiv onClick={stopProp}>
             <S.GPTHeaderDiv>
               AI클라우드가 추천하는 <br />
@@ -128,7 +128,6 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
               </S.GptReloadingFlex>
             </S.GptReloadingBox>
             <S.GPTBtnDiv onClick={onOk}>확인</S.GPTBtnDiv>
-            <div>isLoading:{isLoading ? 'loading...' : 'finished...'}</div>
           </S.ModalContentDiv>
         </S.ContainerDiv>
       )}
