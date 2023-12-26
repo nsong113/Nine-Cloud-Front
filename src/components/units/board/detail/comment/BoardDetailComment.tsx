@@ -55,30 +55,7 @@ const BoardDetailComment: React.FC<IComment> = ({
     onSuccess: () => {
       queryClient.invalidateQueries('comment');
     },
-    onError: () => {
-      Swal.fire({
-        title: '메모 제목을 적어주세요.',
-        input: 'text',
-        inputAttributes: {
-          autocapitalize: 'off',
-        },
-        showCancelButton: true,
-        confirmButtonText: 'Create',
-        showLoaderOnConfirm: true,
-        preConfirm: (title) => {
-          return title;
-        },
-        allowOutsideClick: () => !Swal.isLoading(),
-      });
-    },
   });
-
-  console.log('profile', profile?.data?.userId);
-  console.log('comment', comment);
-
-  const user = comment?.User?.profileImg;
-
-  console.log('user입니다', user);
 
   const editMutation = useMutation(editComment, {
     onSuccess: () => {
@@ -122,6 +99,7 @@ const BoardDetailComment: React.FC<IComment> = ({
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
+          width: '400px',
           title: '수정할 내용을 입력하세요',
           input: 'text',
           inputValue: '', // 초기값은 비어있음
@@ -151,7 +129,29 @@ const BoardDetailComment: React.FC<IComment> = ({
   };
 
   const onClickDeleteBtn = (commentId: any, userId: any) => () => {
-    deleteMutation.mutate(commentId);
+    Swal.fire({
+      icon: 'error',
+      width: '400px',
+      title: '댓글을 삭제 하시겠습니까 ?',
+      confirmButtonText: '확인',
+      showCancelButton: true,
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMutation.mutate(commentId),
+          Swal.fire({
+            icon: 'success',
+            width: '400px',
+            title: '댓글이 삭제됐습니다.',
+            confirmButtonText: '확인',
+            showLoaderOnConfirm: true,
+            allowOutsideClick: () => !Swal.isLoading(),
+          });
+      }
+    });
   };
 
   const onClickCancelBtn = () => {

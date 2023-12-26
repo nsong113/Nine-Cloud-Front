@@ -181,36 +181,22 @@ const BoardDetail = () => {
                   </div>
                 </S.heartBoxDiv>
               </S.ConentsHeaderRightDiv>
+              
             </S.ContentsHeaderDiv>
+            <S.PencilsBoxDiv>
+                  {profile?.data?.userId === data?.data?.UserId && (
+                    <S.PencilImg
+                      src='/dotdotdot.png'
+                      alt='수정버튼'
+                      onClick={onClickPencilImg}
+                    />
+                  )}
+                </S.PencilsBoxDiv>
             <div>
               <S.ContentBoxHeaderDiv>
                 <div></div>
               </S.ContentBoxHeaderDiv>
               <S.ContentsBoxDiv>
-                <S.PencilsBoxDiv>
-                  {isClickedPencil && (
-                    <S.EditPencilDiv
-                      style={{ position: 'fixed', marginRight: '40px' }}
-                    >
-                      <S.EditSpan onClick={onClickEdit}>일기 수정</S.EditSpan>
-                      <S.DeleteSpan onClick={onClickDeleteBtn}>
-                        일기 삭제
-                      </S.DeleteSpan>
-                    </S.EditPencilDiv>
-                  )}
-                  {profile?.data?.userId === data?.data?.UserId && (
-                    <S.PencilImg
-                      src='/pencil.png'
-                      alt='수정버튼'
-                      onClick={onClickPencilImg}
-                    />
-                  )}
-                  {profile?.data?.userId === data?.data?.UserId && (
-                    <div>
-                      
-                    </div>
-                  )}
-                </S.PencilsBoxDiv>
                 <S.ContentBoxDiv>
                   <S.ContentSpan
                     dangerouslySetInnerHTML={{
@@ -318,15 +304,15 @@ const BoardDetail = () => {
               </S.CategoryBoxDiv>
               {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
 
-                <Animation3>
-                  {isActive && (
-                    <BoardDetailComment
-                      detailedContent={detailedContent}
-                      profile={profile}
-                      comment={comment}
-                    />
-                  )}
-                </Animation3>
+              <Animation3>
+                {isActive && (
+                  <BoardDetailComment
+                    detailedContent={detailedContent}
+                    profile={profile}
+                    comment={comment}
+                  />
+                )}
+              </Animation3>
             </div>
           </S.ContentsWrapperDiv>
         </Animation2>

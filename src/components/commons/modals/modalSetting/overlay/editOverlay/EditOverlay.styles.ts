@@ -36,7 +36,6 @@ export const EditButton = styled.button`
     background-color: #391d93;
     color: #fff;
   }
-  margin-right: 20px;
 `;
 
 export const DeleteButton = styled.button`
@@ -92,7 +91,6 @@ export const ContentsContainerDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 `;
 
 export const ModalContentDiv = styled.div`

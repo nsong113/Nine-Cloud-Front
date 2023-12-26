@@ -30,7 +30,6 @@ const DiaryDeleteOverlay: React.FC<IDiaryDelete> = ({ onOk, onClose }) => {
               <img src='/alert.png' alt='경고' />
               <S.TitleSpan>일기를 삭제 하시겠습니까? </S.TitleSpan>
               <S.SubTitleSpan>
-                {' '}
                 삭제하기를 누르면 오늘의 일기가 삭제됩니다.
               </S.SubTitleSpan>
             </S.TitleBoxDiv>
