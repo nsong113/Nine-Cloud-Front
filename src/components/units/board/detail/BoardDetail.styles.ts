@@ -320,7 +320,7 @@ export const HeartImg = styled.img`
 `;
 
 export const PencilImg = styled.img`
-  width: 25px;
+  width: 5px;
   height: 24px;
   margin-top: 6px;
   margin-right: 10px;
@@ -552,7 +552,7 @@ export const HeaderLeftBoxDiv = styled.div`
 
 export const EditPencilDiv = styled.div`
   position: fixed;
-  margin-right: 40px;
+  margin-right: 20px;
   border-radius: 5px;
   border: 1px solid var(--sub, #8066d1);
   background: rgba(255, 255, 255, 0.3);

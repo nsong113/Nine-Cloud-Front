@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
 import useCalendar from '../../hooks/useCalender';
 import { format, getYear, getDate } from 'date-fns';
+import Swal from 'sweetalert2';
 
 const Footer = () => {
   const {
@@ -42,7 +43,15 @@ const Footer = () => {
 
   const goToPostHandler = () => {
     if (diaryCheck !== null) {
-      alert('오늘은 이미 글을 작성하셨습니다.');
+      Swal.fire({
+        icon: 'error',
+        width: '400px',
+        title: '오늘 일기를 작성 하셨습니다.',
+        confirmButtonText: '확인',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading(),
+        reverseButtons: true,
+      });
       return;
     }
     navigate('/post');

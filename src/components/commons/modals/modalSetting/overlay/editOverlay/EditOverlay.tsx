@@ -50,7 +50,6 @@ const EditOverlay: React.FC<IEditPost> = ({
 
   const onClickDeleteBtn = () => {
     deleteMutation.mutate(params.id);
-    alert('글이 정상적으로 삭제 됐습니다');
     navigate('/main');
   };
 
@@ -65,7 +64,6 @@ const EditOverlay: React.FC<IEditPost> = ({
 
     // if(detailedContent.content === )
     editMutation.mutate({ diaryId, myPost });
-    alert('정상적으로 수정됐습니다');
     onClose();
     // setIsEdit((prev) => !prev);
   };
@@ -159,20 +157,9 @@ const EditOverlay: React.FC<IEditPost> = ({
               </S.ContentsContainerDiv>
               <S.FooterBoxDiv>
                 <S.ButtonBoxDiv>
-                  {/* <S.DeleteButton onClick={onClickCheck}>
-                    삭제하기
-                  </S.DeleteButton> */}
                   <S.EditButton onClick={onClickEditBtn}>수정하기</S.EditButton>
-                  <S.TrashCanImg onClick={onClickTrashCan} />
                 </S.ButtonBoxDiv>
               </S.FooterBoxDiv>
-              <S.DeleteTextDiv>
-                {isChecked && (
-                  <S.DeleteTextSpan onClick={onClickDeleteBtn}>
-                    일기를 삭제하시려면 여기를 누르세요
-                  </S.DeleteTextSpan>
-                )}
-              </S.DeleteTextDiv>
             </div>
           </S.ContentsWrapperDiv>
         </S.ModalContentDiv>

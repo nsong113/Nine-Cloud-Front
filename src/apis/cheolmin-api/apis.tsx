@@ -49,7 +49,7 @@ export const deletePost = async (id: any) => {
     Swal.fire({
       icon: 'success',
       width: '400px',
-      title: '<span style="font-size: 24px;">일기 삭제가 완료됐습니다</span>',
+      title: '일기 삭제가 완료됐습니다',
       confirmButtonText: '확인',
       showLoaderOnConfirm: true,
       allowOutsideClick: () => !Swal.isLoading(),
@@ -196,14 +196,6 @@ export const deleteComment = async (commentId: IDeleteComment) => {
         },
       }
     );
-    Swal.fire({
-      icon: 'success',
-      width: '400px',
-      title: '댓글 삭제가 완료됐습니다',
-      confirmButtonText: '확인',
-      showLoaderOnConfirm: true,
-      allowOutsideClick: () => !Swal.isLoading(),
-    });
   } catch (error) {
     Swal.fire({
       icon: 'error',

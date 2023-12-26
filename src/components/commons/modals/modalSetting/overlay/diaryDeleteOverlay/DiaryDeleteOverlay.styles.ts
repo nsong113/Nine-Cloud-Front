@@ -20,7 +20,6 @@ export const ContainerDiv = styled.div`
 export const ModalContentDiv = styled.div`
   width: 414.683px;
   height: 250px;
-  border-radius: 40px;
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -43,7 +42,7 @@ export const TitleBoxDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 50px;
 `;
 
 export const BoxButton = styled.div`
@@ -125,7 +124,7 @@ export const SubTitleSpan = styled.span`
 export const CancelButton = styled.button`
   width: 182px;
   height: 48px;
-  color: var(--sub, #8066d1);
+  color: white;
   font-family: Spoqa Han Sans Neo;
   font-size: 18px;
   font-style: normal;
@@ -133,10 +132,11 @@ export const CancelButton = styled.button`
   line-height: 31px; /* 172.222% */
   letter-spacing: 0.18px;
   border-radius: 5px 20px;
-  background: rgba(255, 255, 255, 0.7);
+  background: #8066d1;
   backdrop-filter: blur(15px);
   cursor: pointer;
-
+  border: 0px;
+  margin-right: 10px;
 `;
 
 export const OkButton = styled.button`
@@ -154,5 +154,5 @@ export const OkButton = styled.button`
   border-radius: 5px 20px;
   margin-right: 10px;
   cursor: pointer;
-
+  border: 0px;
 `;
