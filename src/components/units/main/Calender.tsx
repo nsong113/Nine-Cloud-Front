@@ -15,9 +15,7 @@ import {
   getDate,
 } from 'date-fns';
 import { useQuery } from 'react-query';
-import {
-  getPosts,
-} from 'src/apis/cheolmin-api/apis';
+import { getPosts } from 'src/apis/cheolmin-api/apis';
 import GPTModal from 'src/components/commons/modals/gpt/GPTModal';
 
 const Calender = () => {
@@ -32,12 +30,13 @@ const Calender = () => {
     setCurrentYear,
     DAY_LIST,
   } = useCalendar();
+
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [animationDirection, setAnimationDirection] = useState('');
   const formattedMonth = format(currentMonth, 'MMMM');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
-  const month = getMonth(newDate) + 1;
+  const month = String(getMonth(newDate) + 1).padStart(2, '0');
   const [isGPTModal, setIsGPTModal] = useState(false);
 
   const { data, isLoading } = useQuery(
@@ -64,25 +63,20 @@ const Calender = () => {
     navigate('/list');
   };
 
-
   const onClickNextMonth = async () => {
     const newDate = addMonths(currentMonth, 1);
-    await setCurrentMonth(newDate); 
+    await setCurrentMonth(newDate);
     setCurrentDate(newDate);
     setAnimationDirection('leftToRight');
-    setCurrentYear(newDate); 
-
+    setCurrentYear(newDate);
   };
-
-
 
   const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
-    await setCurrentMonth(newDate); 
+    await setCurrentMonth(newDate);
     setCurrentDate(newDate);
     setAnimationDirection('rightToLeft');
     setCurrentYear(newDate);
-
   };
 
   const onClickCheckGPT = () => {
@@ -116,11 +110,11 @@ const Calender = () => {
             <S.ButtonWrapperDiv>
               {/* <Tooltip message='리스트'> */}
               <S.StyledHoverTapButton
-                whileHover={{ scale: 1.1 }} 
-                whileTap={{ scale: 0.9 }} 
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={onClickListBtn}
               >
-                <S.List  />
+                <S.List />
               </S.StyledHoverTapButton>
               {/* </Tooltip> */}
             </S.ButtonWrapperDiv>

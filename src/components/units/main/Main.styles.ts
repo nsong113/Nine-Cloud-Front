@@ -42,7 +42,6 @@ export const LogoBoxDiv = styled.div`
 export const BrandTextBoxDiv = styled.div`
   color: #d9cdfc;
 
-  font-family: Spoqa Han Sans Neo;
   font-size: 20.394px;
   font-style: normal;
   font-weight: 500;
@@ -252,7 +251,6 @@ export const ViewAllRightProfile = styled.div`
 export const MonthNumberSpan = styled.span`
   color: #391d93;
 
-  font-family: Spoqa Han Sans Neo;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
@@ -457,8 +455,6 @@ export const DateSpan = styled.span<IDateSpanProps>`
   background-color: ${({ isToday }) => (isToday ? '#CFC0FF' : 'inherit')};
 
   border-radius: 20px;
-
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;

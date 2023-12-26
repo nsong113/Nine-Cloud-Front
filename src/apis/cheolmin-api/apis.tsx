@@ -7,7 +7,9 @@ import {
   IGetPosts,
   IUpdatePost,
 } from './apis.types';
+import { IoAlert } from 'react-icons/io5';
 import axiosInstance from '../loginapi';
+import Swal from 'sweetalert2';
 // axios
 const accessToken = localStorage.getItem('accessToken');
 const refreshToken = localStorage.getItem('refreshToken');
@@ -38,18 +40,30 @@ const refreshToken = localStorage.getItem('refreshToken');
 
 export const deletePost = async (id: any) => {
   try {
-    const response = await axiosInstance.delete(
-      `/diary/delete/${id}`,
-      {
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const response = await axiosInstance.delete(`/diary/delete/${id}`, {
+      headers: {
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
+    Swal.fire({
+      icon: 'success',
+      width: '400px',
+      title: '<span style="font-size: 24px;">일기 삭제가 완료됐습니다</span>',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
     return response.data;
   } catch (error) {
-    console.log('다시 시도하세요');
+    Swal.fire({
+      icon: 'error',
+      width: '400px',
+      title: '삭제 권한이 없습니다',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
   }
 };
 
@@ -74,15 +88,12 @@ export const getPosts = async (target: IGetPosts) => {
 
 export const getOnePostInfo = async (diaryId: string | undefined) => {
   try {
-    const response = await axiosInstance.get(
-      `/diary/detail/${diaryId}`,
-      {
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const response = await axiosInstance.get(`/diary/detail/${diaryId}`, {
+      headers: {
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
     console.log('게시글 상세조회에 성공하셨습니다.');
 
     return response.data;
@@ -123,6 +134,15 @@ export const addComment = async (target: IAddComment) => {
         },
       }
     );
+    Swal.fire({
+      icon: 'success',
+      width: '400px',
+      // title: '<span style="font-size: 24px;">댓글 작성이 완료됐습니다</span>',
+      title: '댓글 작성이 완료됐습니다',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
     return response.data;
   } catch (error) {
     console.log('테스트');
@@ -143,9 +163,24 @@ export const editComment = async (target: IEditComment) => {
         },
       }
     );
-    alert('성공적으로 수정됐습니다');
+    Swal.fire({
+      icon: 'success',
+      width: '400px',
+      title: '댓글 수정이 완료됐습니다',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
     return response.data;
   } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      width: '400px',
+      title: '수정 권한이 없습니다.',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
     console.log('잘못된 접근입니다.');
   }
 };
@@ -161,8 +196,23 @@ export const deleteComment = async (commentId: IDeleteComment) => {
         },
       }
     );
+    Swal.fire({
+      icon: 'success',
+      width: '400px',
+      title: '댓글 삭제가 완료됐습니다',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
   } catch (error) {
-    console.log('이상한 접근입니다.');
+    Swal.fire({
+      icon: 'error',
+      width: '400px',
+      title: '삭제 권한이 없습니다.',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
   }
 };
 
@@ -208,23 +258,34 @@ export const getMyInfo = async () => {
 export const editMyInfo = async (target: any) => {
   try {
     const formData = new FormData();
-    formData.append('username', target?.myPost.username);
-    formData.append('image', target?.newProfile.imgFile);
-    const response = await axiosInstance.patch(
-      `/myInfo/editmyInfo`,
-      formData,
-      {
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    );
+    formData.append('username', target?.username);
+    formData.append('image', target?.selectedImage);
+    const response = await axiosInstance.patch(`/myInfo/editmyInfo`, formData, {
+      headers: {
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    Swal.fire({
+      icon: 'success',
+      width: '400px',
+      title: '정상적으로 수정 됐습니다.',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
     console.log('formData', formData);
     return response.data;
   } catch (error) {
-    console.log('error');
+    // Swal.fire({
+    //   icon: 'error',
+    //   width: '400px',
+    //   title: '이미지와 닉네임을 다시 확인하세요.',
+    //   confirmButtonText: '확인',
+    //   showLoaderOnConfirm: true,
+    //   allowOutsideClick: () => !Swal.isLoading(),
+    // });
   }
 };
 
@@ -252,15 +313,12 @@ export const editPassword = async (target: any) => {
 
 export const getPrevMonthPosts = async () => {
   try {
-    const response = await axiosInstance.get(
-      `/diary/calendar/previousMonth`,
-      {
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const response = await axiosInstance.get(`/diary/calendar/previousMonth`, {
+      headers: {
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.log('error');
@@ -269,15 +327,12 @@ export const getPrevMonthPosts = async () => {
 
 export const getNextMonthPosts = async () => {
   try {
-    const response = await axiosInstance.get(
-      `/diary/calendar/nextMonth`,
-      {
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const response = await axiosInstance.get(`/diary/calendar/nextMonth`, {
+      headers: {
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.log('error');
@@ -299,6 +354,14 @@ export const updatePost = async (target: IUpdatePost) => {
         },
       }
     );
+    Swal.fire({
+      icon: 'success',
+      width: '400px',
+      title: '일기 수정이 완료됐습니다',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+    });
     return response.data;
   } catch (error) {
     console.log('error');
@@ -308,16 +371,12 @@ export const updatePost = async (target: IUpdatePost) => {
 export const getHearts = async (diaryId: any) => {
   const data = null;
   try {
-    const response = await axiosInstance.post(
-      `/feeds/${diaryId}/like`,
-      data,
-      {
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
+    const response = await axiosInstance.post(`/feeds/${diaryId}/like`, data, {
+      headers: {
+        Refreshtoken: `${refreshToken}`,
+        Authorization: `${accessToken}`,
+      },
+    });
 
     return response.data;
   } catch (error) {

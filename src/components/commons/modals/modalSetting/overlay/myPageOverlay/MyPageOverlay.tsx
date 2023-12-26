@@ -96,16 +96,11 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     }
     const myPost: IMyPost = {};
     if (username) myPost.username = username;
-    const newProfile = {
-      imgFile: selectedImage,
-    };
-
-    editMypageMutation.mutate({ myPost, newProfile });
+    if (selectedImage !== undefined) myPost.selectedImage = selectedImage;
+    editMypageMutation.mutate(myPost);
 
     navigate('/main');
   };
-
-  const profileImage = localStorage.getItem('image');
 
   const onClickButton = () => {
     buttonRef.current.click();
@@ -170,18 +165,12 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
           <S.ContentsWrapperDiv>
             <S.ImageBoxDiv>
               <S.ImageBoxDiv>
-                {/* {!data?.data.profileImg && ( */}
                 <S.PicutureImg
                   src={preview || data?.data.profileImg}
                   alt='엑박'
                   isEdit={isEdit}
                 />
-                {/* )} */}
-                {/* {data?.data.profileImg && (
-                  <S.ImageBoxDiv>
-                    <S.PicutureImg src={data?.data.profileImg} alt='엑박' />
-                  </S.ImageBoxDiv>
-                )} */}
+
               </S.ImageBoxDiv>
             </S.ImageBoxDiv>
             <S.ImagePlustButtonBox>

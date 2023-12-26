@@ -1,4 +1,10 @@
-import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import axios, { AxiosError } from 'axios';
 import * as S from './LoginSignin.styles';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +12,8 @@ import LoginKakao from '../social/LoginKakao';
 import LoginGoogle from '../social/LoginGoogle';
 import LoginNaver from '../social/LoginNaver';
 import axiosInstance from 'src/apis/loginapi';
+
+const imagePreload = [];
 
 const LoginSignin = () => {
   const [email, setEmail] = useState('');
@@ -15,6 +23,24 @@ const LoginSignin = () => {
     useState('');
   const navigate = useNavigate();
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
+  const imageUrls = [
+    '/avatar.png',
+    '/exclude.png',
+    'blank_circle.png',
+    '/logo_final.png',
+    '/gptCloud.png',
+    '/spinner.gif',
+  ];
+
+  useEffect(() => {
+    imageUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+      img.onload = () => {
+        imagePreload.push(img);
+      };
+    });
+  }, []);
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {

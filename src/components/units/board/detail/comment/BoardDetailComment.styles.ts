@@ -59,13 +59,30 @@ export const CommentFooterWrapDiv = styled.div`
   margin-bottom: 10px;
 `;
 
+export const BlankDiv = styled.div`
+  display: flex;
+
+`
+
 export const InputBoxDiv = styled.input`
   background-color: white;
-  width: 403px;
+  width: 310px;
   height: 47px;
   border-radius: 28px;
   margin-left: 10px;
   border: 1px solid #8066d1;
+  & :active {
+    border: 1px solid #391d93;
+  }
+`;
+
+export const BlankInput = styled.input`
+  background-color: white;
+  width: 380px;
+  height: 47px;
+  border-radius: 28px;
+  margin-left: 10px;
+  border: 1px solid gray;
   & :active {
     border: 1px solid #391d93;
   }
@@ -143,6 +160,10 @@ export const NoCommentBoxDiv = styled.div`
   border-radius: 10px;
   border: 1px solid rgba(239, 170, 173, 0.7);
   background: rgba(245, 242, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
 `;
 
 export const NoCommentSpan = styled.span`
