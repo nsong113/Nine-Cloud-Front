@@ -562,6 +562,7 @@ export const EditPencilDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 export const DeleteSpan = styled.span`
