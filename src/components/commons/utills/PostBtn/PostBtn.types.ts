@@ -11,4 +11,5 @@ export interface PostBtnPropsI {
   onOk?: () => void;
   onClickPostHandler?: () => void;
   onClickGotoPost2?: () => void;
+  contentsToday?: string;
 }

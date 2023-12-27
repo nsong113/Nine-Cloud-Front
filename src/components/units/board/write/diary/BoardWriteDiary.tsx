@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
@@ -19,6 +19,8 @@ const BoardWriteDiary = () => {
   const [todayRandomSaying, setTodayRandomSaying] = useState('');
   let existedSentence: string | null = localStorage.getItem('sentence');
 
+  const [validate, setValidate] = useState(true);
+
   const onChangeContents = (value: string) => {
     setContentsToday(value === '<p><br></p>' ? '' : value);
     if (contentsToday.length > 199) {
@@ -31,8 +33,19 @@ const BoardWriteDiary = () => {
     navigate('/post');
   };
   const onClickNextPageBtn = () => {
-    navigate('/post2');
+    if (contentsToday) {
+      navigate('/post2');
+    }
+    if (!contentsToday) {
+      setValidate(false);
+    }
   };
+
+  // useEffect(() => {
+  //   if (!contentsToday) {
+  //     setValidate(false);
+  //   }
+  // }, [onClickNextPageBtn]);
 
   localStorage.setItem('sentence', todayRandomSaying);
 
@@ -136,6 +149,9 @@ const BoardWriteDiary = () => {
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
             </S.ContentsWrapperDiv>
+            <S.Validate color={contentsToday} fontColor={validate}>
+              일기를 작성해야 다음 페이지로 넘어갈 수 있어요.
+            </S.Validate>
             <PostBtn
               onClickPrevPage={onClickPrevPage}
               onClickNextPageBtn={onClickNextPageBtn}

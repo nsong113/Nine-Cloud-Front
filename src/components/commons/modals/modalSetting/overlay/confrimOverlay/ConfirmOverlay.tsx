@@ -88,11 +88,13 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   return (
     <S.ContainerDiv className='modal' onClick={onClickGotoPost2}>
       <S.ModalContentDiv onClick={stopPropogate}>
-        <img
-          src={emotionPicture}
-          alt='최종 감정이모티콘'
-          style={emotionStyle}
-        />
+        <S.emojiImgBox>
+          <img
+            src={emotionPicture}
+            alt='최종 감정이모티콘'
+            style={emotionStyle}
+          />
+        </S.emojiImgBox>
         <S.ModalWrapper>
           <S.TitleBoxDiv>
             <S.TextStyleSpan>
@@ -157,6 +159,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
 export default ConfirmOverlay;
 
 const emotionStyle = {
-  height: '600px',
-  transform: 'scale(0.3)',
+  width: '100%',
+  height: '100%',
+  transform: 'scale(0.9)',
 };

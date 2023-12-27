@@ -1,5 +1,10 @@
+/* eslint-disable */
 import styled from 'styled-components';
-import Toggle from 'react-toggle';
+
+interface BoardWriteDiaryProps {
+  color: string;
+  fontColor: boolean;
+}
 
 export const DiaryContainerDiv = styled.div`
   display: flex;
@@ -285,9 +290,6 @@ export const ContentsWrapperDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  transform: translateY(-40px);
-  margin-bottom: 80px;
 `;
 
 export const ImagePlustButtonBox = styled.div``;
@@ -386,4 +388,14 @@ export const DiaryPrivateCheckboxDiv = styled.div`
 export const OpenPublicP = styled.p`
   margin-top: 5px;
   color: #d0cecd;
+`;
+
+export const Validate = styled.div<BoardWriteDiaryProps>`
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  color: ${(props) =>
+    !props.color ? (!props.fontColor ? '#111' : '#999') : 'transparent'};
+  margin: 0;
+  transform: translateY(50px);
 `;

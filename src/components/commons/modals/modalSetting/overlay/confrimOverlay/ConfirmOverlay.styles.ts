@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { IStyled } from './ConfirmOverlay.types';
-import { IPalette } from './ConfirmOverlay.types';
 import Toggle from 'react-toggle';
 import { IoPeople } from 'react-icons/io5';
 
@@ -26,12 +24,12 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  transform: translateY(-130px);
+  /* transform: translateY(-150px); */
 `;
 
 export const ModalContentDiv = styled.div`
   width: 415px;
-  height: 500px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
@@ -39,9 +37,7 @@ export const ModalContentDiv = styled.div`
 
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(15px);
-
-  display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 `;
 
@@ -75,17 +71,18 @@ export const TextStyleSpanP = styled.p`
   font-size: 17.063px;
   font-weight: 400;
 
-  transform: translateY(-30px);
+  /* background-color: red;
+  transform: translateY(-30px); */
 `;
 
 export const BoxButton = styled.div`
-  width: 120%;
-  height: 65px;
+  width: 100%;
+  /* height: 65px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  transform: translateY(40px);
+  /* transform: translateY(40px); */
 `;
 
 export const TextStyleSpan = styled.span`
@@ -121,7 +118,7 @@ export const DiaryToggleTitleDiv = styled.div`
   width: 40%;
   height: 100%;
   text-align: center;
-  transform: translateX(115px);
+  transform: translateX(127px);
 
   margin-bottom: 20px;
 `;
@@ -194,4 +191,13 @@ export const PublicTextDiv = styled.div`
   flex-direction: column;
   margin-left: 15px;
   margin-top: 15px;
+`;
+
+export const emojiImgBox = styled.div`
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
