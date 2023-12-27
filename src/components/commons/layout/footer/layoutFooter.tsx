@@ -21,11 +21,7 @@ const Footer = () => {
   );
 
   const today = getDate(currentDate) - 1;
-
-  const diaryCheck = data?.data[today].diaryId;
-
-  console.log('diaryCheck', diaryCheck);
-
+  const diaryCheck = data?.data[today]?.diaryId;
   const navigate = useNavigate();
 
   const goToMainHandler = () => {
@@ -33,7 +29,7 @@ const Footer = () => {
   };
 
   const goToPostHandler = () => {
-    if (diaryCheck !== null) {
+    if (diaryCheck !== undefined) {
       Swal.fire({
         icon: 'info',
         width: '400px',
