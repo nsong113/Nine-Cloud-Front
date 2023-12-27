@@ -1,9 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import BarLoader from 'react-spinners/BarLoader';
-import axios from 'axios';
-import * as S from '../LoginSocial.styles';
 import axiosInstance from 'src/apis/loginapi';
+import Loading from 'src/components/units/loading/Loading';
 
 const KakaoLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
@@ -52,12 +50,7 @@ const KakaoLoginHandler = () => {
 
   return (
     <>
-      <S.DivCenter>
-        <div>
-          <S.Title>잠시만 기다려주세요{dots}</S.Title>
-          <BarLoader color='#36d7b7' height={14} width={380} />
-        </div>
-      </S.DivCenter>
+      <Loading />
     </>
   );
 };
