@@ -78,59 +78,18 @@ export const TextStyleSpanP = styled.p`
   transform: translateY(-30px);
 `;
 
-export const CancelButton = styled.div`
-  width: 116px;
-  height: 60px;
-  border: 1px solid #ece9f5;
-  border-radius: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #5035a6;
-
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  cursor: pointer;
-`;
-
 export const BoxButton = styled.div`
-  width: 100%;
+  width: 120%;
   height: 65px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-
-  transform: translateY(60px);
+  transform: translateY(40px);
 `;
 
 export const TextStyleSpan = styled.span`
   color: white;
-`;
-
-export const StyleButton = styled.div`
-  width: 222px;
-  height: 60px;
-  background-color: #ece9f5;
-  border-radius: 5px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #5035a6;
-
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-
-  cursor: pointer;
 `;
 
 export const ToggleDiv = styled.div`

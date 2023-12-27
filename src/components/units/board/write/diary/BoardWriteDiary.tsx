@@ -9,6 +9,7 @@ import ReactQuill from 'react-quill';
 import './Quill.snow.css';
 import { useRecoilState } from 'recoil';
 import { contents } from 'src/states/counter';
+import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const BoardWriteDiary = () => {
   const onClickPrevPage = () => {
     navigate('/post');
   };
-  const onClickNextBtn = () => {
+  const onClickNextPageBtn = () => {
     navigate('/post2');
   };
 
@@ -135,10 +136,11 @@ const BoardWriteDiary = () => {
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
             </S.ContentsWrapperDiv>
-            <S.FooterButtonBoxDiv>
-              <S.PrevButton onClick={onClickPrevPage}>이전</S.PrevButton>
-              <S.NextButton onClick={onClickNextBtn}>다음</S.NextButton>
-            </S.FooterButtonBoxDiv>
+            <PostBtn
+              onClickPrevPage={onClickPrevPage}
+              onClickNextPageBtn={onClickNextPageBtn}
+              page={'write'}
+            />
           </S.DiaryWrapperDOWNdiv>
         </S.DiaryContainerDiv>
       </Animation2>

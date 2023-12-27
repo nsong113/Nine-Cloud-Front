@@ -14,6 +14,7 @@ import useThickness from 'src/components/commons/hooks/useThickness';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from 'react-icons/fa6';
+import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -398,15 +399,12 @@ const BoardWriteDraw = () => {
               </S.ColorSettingDiv>
             </S.CanvasContainer>
             <S.ButtonWrapperDiv>
-              <S.PrevButton onClick={onClickPrevBtn}>이전</S.PrevButton>
-              <S.NextButton
-                onClick={() => {
-                  onClickAddBtn();
-                  makeImageFile();
-                }}
-              >
-                등록하기
-              </S.NextButton>
+              <PostBtn
+                onClickPrevBtn={onClickPrevBtn}
+                onClickAddBtn={onClickAddBtn}
+                makeImageFile={makeImageFile}
+                page={'draw'}
+              />
             </S.ButtonWrapperDiv>
           </S.ContainerDiv>
         </S.DrawWrapperDOWNdiv>

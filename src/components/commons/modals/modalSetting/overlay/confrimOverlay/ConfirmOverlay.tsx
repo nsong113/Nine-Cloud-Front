@@ -15,6 +15,7 @@ import {
   isPublic,
 } from 'src/states/counter';
 import useMakeEmotionEmoji from 'src/components/commons/hooks/useMakeEmotionEmoji';
+import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
 const ConfirmOverlay: React.FC<IConfirmMod> = ({
   onClickGotoMain,
@@ -141,14 +142,11 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
             {/* </S.ToggleFlexDiv> */}
           </S.ToggleDiv>
           <S.BoxButton>
-            <S.CancelButton onClick={onClickGotoPost2}>돌아가기</S.CancelButton>
-            <S.StyleButton
-              onClick={() => {
-                onClickPostHandler();
-              }}
-            >
-              등록하기
-            </S.StyleButton>
+            <PostBtn
+              page={'confirm'}
+              onClickGotoPost2={onClickGotoPost2}
+              onClickPostHandler={onClickPostHandler}
+            />
           </S.BoxButton>
         </S.ModalWrapper>
       </S.ModalContentDiv>

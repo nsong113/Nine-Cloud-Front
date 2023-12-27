@@ -252,11 +252,11 @@ export const ContentsDiv = styled.div`
 export const ButtonWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin: 50px auto;
-  /* margin-bottom: 50px; */
+  width: 110%;
+  margin: 0 auto;
+  transform: translateX(-18px);
 `;
 
 export const PrevButton = styled.button`

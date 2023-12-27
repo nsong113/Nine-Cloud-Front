@@ -278,7 +278,7 @@ export const FooterButtonBoxDiv = styled.div`
 
 export const ContentsWrapperDiv = styled.div`
   width: 100%;
-  height: 90%;
+  height: 80%;
 
   margin: 0 auto;
   display: flex;
@@ -287,6 +287,7 @@ export const ContentsWrapperDiv = styled.div`
   align-items: center;
 
   transform: translateY(-40px);
+  margin-bottom: 80px;
 `;
 
 export const ImagePlustButtonBox = styled.div``;
@@ -317,33 +318,6 @@ export const PlusDiaryButton = styled.button`
   border: 3px solid blue;
   height: 50px;
   background-color: green;
-`;
-
-export const PrevButton = styled.button`
-  width: 30%;
-  height: 60px;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px 20px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: #fff;
-  color: var(--1, #5035a6);
-  font-size: 20px;
-  font-weight: 500;
-`;
-
-export const NextButton = styled.button`
-  width: 60%;
-  height: 60px;
-  outline: none;
-  cursor: pointer;
-
-  border-radius: 20px 5px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: var(--1-1, #ece9f5);
-  color: var(--1, #5035a6);
-  font-size: 20px;
-  font-weight: 500;
 `;
 
 export const InputBoxDiv = styled.div`
