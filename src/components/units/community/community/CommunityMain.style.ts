@@ -21,8 +21,8 @@ export const MainTitleFlex = styled.div`
 `;
 
 export const MainTodayEmoji = styled.div`
-  width: 110px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
 `;
 
 export const ChatTitleSpan = styled.div`
@@ -71,9 +71,10 @@ export const MainSectionContainer = styled.div`
 
 export const MainSectionHeaderWrapper = styled.div`
   width: 100%;
-  height: 110px;
+  height: 120px;
   position: absolute;
   padding: 20px;
+  /* background-color: red; */
 `;
 
 export const MainLine = styled.div`
@@ -82,7 +83,7 @@ export const MainLine = styled.div`
   margin: 0 auto;
   background: #391d93;
   z-index: 1000;
-  transform: translateY(100px);
+  transform: translateY(120px);
   margin-bottom: 10px;
 `;
 
