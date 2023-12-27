@@ -181,17 +181,24 @@ const BoardDetail = () => {
                   </div>
                 </S.heartBoxDiv>
               </S.ConentsHeaderRightDiv>
-              
             </S.ContentsHeaderDiv>
             <S.PencilsBoxDiv>
-                  {profile?.data?.userId === data?.data?.UserId && (
-                    <S.PencilImg
-                      src='/dotdotdot.png'
-                      alt='수정버튼'
-                      onClick={onClickPencilImg}
-                    />
-                  )}
-                </S.PencilsBoxDiv>
+              {isClickedPencil && (
+                <S.EditPencilDiv>
+                  <S.EditSpan onClick={onClickEdit}>일기 수정</S.EditSpan>
+                  <S.DeleteSpan onClick={onClickDeleteBtn}>
+                    일기 삭제
+                  </S.DeleteSpan>
+                </S.EditPencilDiv>
+              )}
+              {profile?.data?.userId === data?.data?.UserId && (
+                <S.PencilImg
+                  src='/dotdotdot.png'
+                  alt='수정버튼'
+                  onClick={onClickPencilImg}
+                />
+              )}
+            </S.PencilsBoxDiv>
             <div>
               <S.ContentBoxHeaderDiv>
                 <div></div>

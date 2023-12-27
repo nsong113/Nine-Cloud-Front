@@ -47,6 +47,7 @@ const Footer = () => {
         icon: 'error',
         width: '400px',
         title: '오늘 일기를 작성 하셨습니다.',
+        
         confirmButtonText: '확인',
         showLoaderOnConfirm: true,
         allowOutsideClick: () => !Swal.isLoading(),
