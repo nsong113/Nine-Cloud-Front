@@ -17,6 +17,7 @@ export const ContainerDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 20;
 `;
 
 export const EditButton = styled.button`

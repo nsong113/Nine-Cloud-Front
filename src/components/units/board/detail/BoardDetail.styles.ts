@@ -94,7 +94,7 @@ export const PencilsBoxDiv = styled.div`
 `;
 
 export const ContentsBoxDiv = styled.div`
-  width: 404px;
+  width: 380px;
   height: 150px;
   flex-shrink: 0;
   border-radius: 20px 2px;
@@ -116,7 +116,7 @@ export const CloudImg = styled.img`
   width: 100px;
   height: 100px;
   margin-top: 12px;
-  margin-left: 30px;
+  margin-left: 15px;
 `;
 export const DrawingImg = styled.img`
   height: 4dvh;
@@ -552,7 +552,6 @@ export const HeaderLeftBoxDiv = styled.div`
 
 export const EditPencilDiv = styled.div`
   position: fixed;
-  margin-right: 20px;
   border-radius: 5px;
   border: 1px solid var(--sub, #8066d1);
   background: rgba(255, 255, 255, 0.3);
@@ -562,6 +561,8 @@ export const EditPencilDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 10;
+  margin-right: 20px;
 `;
 
 export const DeleteSpan = styled.span`
