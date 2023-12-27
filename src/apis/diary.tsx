@@ -40,7 +40,6 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
         Authorization: `${accessToken}`,
       },
     });
-    alert('오늘 일기 포스팅에 성공하셨습니다.');
     localStorage.removeItem('sentence');
     localStorage.removeItem('weather');
     // localStorage.removeItem('countAverage');

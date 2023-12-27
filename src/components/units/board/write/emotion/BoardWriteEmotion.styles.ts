@@ -8,10 +8,11 @@ export const EmotionContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/bg_final_final.png');
+  background-color: white;
+  /* background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 `;
 
 export const EmotionWrapperUPDiv = styled.div`
@@ -216,7 +217,7 @@ export const SliderInput = styled.input<ISliderInputProps>`
   background: ${(props) => {
     const percentage =
       ((props.value - props.min) / (props.max - props.min)) * 100;
-    return `linear-gradient(to right, #9279E1 0%, #9279E1 ${percentage}%, #ECE9F5 ${percentage}%, #ECE9F5 100%)`;
+    return `linear-gradient(to right, #5035A6 0%, #ECE9F5 ${percentage}%, white ${percentage}%, white 100%)`;
   }};
 
   &:focus {

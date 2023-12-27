@@ -18,8 +18,8 @@ export const ContainerDiv = styled.div`
 `;
 
 export const ModalContentDiv = styled.div`
-  width: 414.683px;
-  height: 250px;
+  width: 415px;
+  height: 210px;
   border-radius: 40px;
   background: #fff;
   display: flex;
@@ -38,12 +38,13 @@ export const Div = styled.div`
 
 export const TitleBoxDiv = styled.div`
   width: 90%;
-  height: 80px;
+  /* height: 100px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-bottom: 50px;
+  transform: translateY(70px);
 `;
 
 export const BoxButton = styled.div`
@@ -52,7 +53,7 @@ export const BoxButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: end;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   text-align: center;
 `;
 
@@ -96,30 +97,19 @@ export const StyleButton = styled.div`
 
   text-align: center;
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const TitleSpan = styled.span`
   color: #5035a6;
-
-  font-family: Spoqa Han Sans Neo;
   font-size: 23px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-top: 15px;
+  font-weight: 700;
 `;
 
 export const SubTitleSpan = styled.span`
   color: #646464;
-
-  font-family: Spoqa Han Sans Neo;
   font-size: 17.063px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 `;
 
 export const CancelButton = styled.button`

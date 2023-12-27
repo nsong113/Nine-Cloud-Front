@@ -13,10 +13,11 @@ export const DiaryContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/bg_final_final.png');
+  background-color: white;
+  /* background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 `;
 
 export const DiaryWrapperUPDiv = styled.div`

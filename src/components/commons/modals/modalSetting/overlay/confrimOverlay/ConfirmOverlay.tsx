@@ -88,6 +88,37 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   return (
     <S.ContainerDiv className='modal' onClick={onClickGotoPost2}>
       <S.ModalContentDiv onClick={stopPropogate}>
+        <S.ToggleDiv>
+          {/* <S.ToggleFlexDiv> */}
+          <S.DiaryToggleTitleDiv>
+            <S.CustomToggle
+              id='customToggle'
+              checked={isChecked}
+              icons={{
+                unchecked: (
+                  <S.ToggleTumbsImg src='/private_person.png' alt='사람들' />
+                ),
+                checked: <S.PublicImg />,
+              }}
+              onChange={onChangeIsPublicHandler}
+            />
+          </S.DiaryToggleTitleDiv>
+          {!isChecked && <div style={{ width: '50px' }}></div>}
+          {!isChecked ? (
+            <S.PublicTextDiv>
+              <S.SubTitleSpan>나만 일기를 확인할 수 있어요.</S.SubTitleSpan>
+            </S.PublicTextDiv>
+          ) : (
+            isChecked && (
+              <S.PublicTextDiv>
+                <S.SubTitleSpan>
+                  다른 사람들과 공유할 수 있습니다.
+                </S.SubTitleSpan>
+              </S.PublicTextDiv>
+            )
+          )}
+          {/* </S.ToggleFlexDiv> */}
+        </S.ToggleDiv>
         <S.emojiImgBox>
           <img
             src={emotionPicture}
@@ -102,47 +133,9 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
                 오늘의 클라우드와 함께 <br />
                 감정일기를 등록하시겠어요?
               </S.TextStyleSpanH5>
-              {/* <S.TextStyleSpanP>
-                등록 후에도 수정할 수 있으니 <br /> 자유롭게 등록해보세요!
-              </S.TextStyleSpanP> */}
             </S.TextStyleSpan>
           </S.TitleBoxDiv>
-          <S.ToggleDiv>
-            {/* <S.ToggleFlexDiv> */}
 
-            {!isChecked && <div style={{ width: '50px' }}></div>}
-            {!isChecked ? (
-              <S.PublicTextDiv>
-                <S.SubTitleSpan>
-                  나만 일기를 <br />
-                  확인할 수 있어요.
-                </S.SubTitleSpan>
-              </S.PublicTextDiv>
-            ) : (
-              isChecked && (
-                <S.PublicTextDiv>
-                  <S.SubTitleSpan>
-                    다른 사람들과 <br />
-                    공유할 수 있습니다.
-                  </S.SubTitleSpan>
-                </S.PublicTextDiv>
-              )
-            )}
-            <S.DiaryToggleTitleDiv>
-              <S.CustomToggle
-                id='customToggle'
-                checked={isChecked}
-                icons={{
-                  unchecked: (
-                    <S.ToggleTumbsImg src='/private_person.png' alt='사람들' />
-                  ),
-                  checked: <S.PublicImg />,
-                }}
-                onChange={onChangeIsPublicHandler}
-              />
-            </S.DiaryToggleTitleDiv>
-            {/* </S.ToggleFlexDiv> */}
-          </S.ToggleDiv>
           <S.BoxButton>
             <PostBtn
               page={'confirm'}
@@ -161,5 +154,4 @@ export default ConfirmOverlay;
 const emotionStyle = {
   width: '100%',
   height: '100%',
-  transform: 'scale(0.9)',
 };
