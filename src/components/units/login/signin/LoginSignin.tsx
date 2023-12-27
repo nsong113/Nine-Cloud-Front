@@ -88,6 +88,7 @@ const LoginSignin = () => {
       alert(`${response.data.msg}`);
       navigate('/loadingpage');
     } catch (error: any) {
+      alert(`${error.response.data.msg}`);
       console.error('네트워크 오류', error.message);
       // if (error.response) {
       //   const errorMsg = error.response.data.msg;
