@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import CommunityEach from './CommunityEach';
 import { getInfiniteCommunity } from 'src/apis/community';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
 
 const CommunityMain = () => {
@@ -139,14 +139,16 @@ const CommunityMain = () => {
             </S.MainTitleFlex>
             <S.MainProfileDiv>
               <S.MainHeaderOn>
-                <S.MainChattingRoomFlex>
-                  <img
-                    src='/chatting_emoji.png'
-                    alt='채팅방 가기'
-                    style={chatting_emoji}
-                  />
-                  <S.MainChattingContent>참여하기</S.MainChattingContent>
-                </S.MainChattingRoomFlex>
+                <Link to='/community/chat'>
+                  <S.MainChattingRoomFlex>
+                    <img
+                      src='/chatting_emoji.png'
+                      alt='채팅방 가기'
+                      style={chatting_emoji}
+                    />
+                    <S.MainChattingContent>참여하기</S.MainChattingContent>
+                  </S.MainChattingRoomFlex>
+                </Link>
               </S.MainHeaderOn>
             </S.MainProfileDiv>
           </S.MainFlexBox>
