@@ -182,12 +182,9 @@ const BoardDetail = () => {
                 </S.heartBoxDiv>
               </S.ConentsHeaderRightDiv>
             </S.ContentsHeaderDiv>
-
             <S.PencilsBoxDiv>
               {isClickedPencil && (
-                <S.EditPencilDiv
-                  style={{ position: 'fixed', marginRight: '40px' }}
-                >
+                <S.EditPencilDiv>
                   <S.EditSpan onClick={onClickEdit}>일기 수정</S.EditSpan>
                   <S.DeleteSpan onClick={onClickDeleteBtn}>
                     일기 삭제
