@@ -16,8 +16,8 @@ export const Background = styled.div`
   bottom: 0;
   left: 0;
   background: #ffffffb7;
-  opacity: 0.5;
-  z-index: 999;
+  opacity: 1;
+  z-index: 99;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +26,7 @@ export const Background = styled.div`
 
 export const LoadingText = styled.div`
   text-align: center;
+  z-index: 1000;
 `;
 
 export const ContainerDiv = styled.div`
@@ -50,7 +51,7 @@ export const ModalContentDiv = styled.div`
   animation: ${slideIn} 0.5s ease-in-out;
 
   border-radius: 5px 20px;
-  background: rgba(245, 242, 255, 0.3);
+  background: rgba(245, 242, 255, 0.7);
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 5px 50px 0px rgba(57, 29, 147, 0.2),
     0px -5px 50px 0px rgba(57, 29, 147, 0.2);
