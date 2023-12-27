@@ -1,5 +1,4 @@
-import React from 'react';
-import * as S from './layoutFooter.styles';
+/*eslint-disable*/
 import './layoutFooter.css';
 import { FaHouseChimney } from 'react-icons/fa6';
 import { IoAddCircle } from 'react-icons/io5';
@@ -12,28 +11,20 @@ import { format, getYear, getDate } from 'date-fns';
 import Swal from 'sweetalert2';
 
 const Footer = () => {
-  const {
-    currentDate,
-    setCurrentDate,
-    currentMonth,
-    setCurrentMonth,
-    currentYear,
-    setCurrentYear,
-  } = useCalendar();
+  const { currentDate, currentMonth, currentYear } = useCalendar();
 
-  const { data, isLoading, refetch } = useQuery(
-    ['posts', currentMonth, currentYear],
-    () =>
-      getPosts({
-        currentYear: getYear(currentDate),
-        currentMonth: format(currentMonth, 'M'),
-      })
+  const { data } = useQuery(['posts', currentMonth, currentYear], () =>
+    getPosts({
+      currentYear: getYear(currentDate),
+      currentMonth: format(currentMonth, 'M'),
+    })
   );
 
   const today = getDate(currentDate) - 1;
-  // console.log('footer', data?.data[today]);
 
-  const diaryCheck = data?.data[today];
+  const diaryCheck = data?.data[today].diaryId;
+
+  console.log('diaryCheck', diaryCheck);
 
   const navigate = useNavigate();
 
@@ -44,14 +35,21 @@ const Footer = () => {
   const goToPostHandler = () => {
     if (diaryCheck !== null) {
       Swal.fire({
-        icon: 'error',
+        icon: 'info',
         width: '400px',
-        title: '오늘 일기를 작성 하셨습니다.',
-        
-        confirmButtonText: '확인',
+        title:
+          '<span style="font-size: 24px; font-weight : bolder;">오늘의 일기를 이미 기록 했습니다.</span>',
+        text: '상세페이지에서 삭제, 수정 하실 수 있습니다.',
+        showCancelButton: true,
+        cancelButtonText: '확인',
+        confirmButtonText: '상세페이지 가기',
         showLoaderOnConfirm: true,
         allowOutsideClick: () => !Swal.isLoading(),
         reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`/post/${diaryCheck}`);
+        }
       });
       return;
     }
@@ -64,14 +62,13 @@ const Footer = () => {
 
   return (
     <div className='FooterContainer'>
-      {/* <S.FooterContainer> */}
       <div className='navbar'>
-        <li className='list-item'>
-          <FaHouseChimney style={iconStyle} onClick={goToMainHandler} />
+        <li className='list-item' onClick={goToMainHandler}>
+          <FaHouseChimney style={iconStyle} />
           <span className='list-item-name'>Main</span>
         </li>
-        <li className='list-item'>
-          <IoAddCircle style={iconStyle} onClick={goToPostHandler} />
+        <li className='list-item' onClick={goToPostHandler}>
+          <IoAddCircle style={iconStyle} />
           <span className='list-item-name'>Post</span>
         </li>
         <li className='list-item'>
@@ -79,7 +76,6 @@ const Footer = () => {
           <span className='list-item-name'>Community</span>
         </li>
       </div>
-      {/* </S.FooterContainer> */}
     </div>
   );
 };
