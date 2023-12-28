@@ -59,7 +59,7 @@ const ViewAll = () => {
     {
       //다음 페이지의 pageParam 값을 결정하는 데 사용
       getNextPageParam: (_lastPage) => {
-        console.log('_lastPage', _lastPage);
+        // console.log('_lastPage', _lastPage);
         if (_lastPage?.isLast) {
           return _lastPage?.nextPage;
         } else {
@@ -82,7 +82,7 @@ const ViewAll = () => {
     return <div>Loading failed...</div>;
   }
   if (isSuccess) {
-    console.log('data', viewAllData);
+    // console.log('data', viewAllData);
   }
 
   return (

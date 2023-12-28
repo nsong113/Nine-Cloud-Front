@@ -39,7 +39,7 @@ const BoardDetailComment: React.FC<IComment> = ({
     },
   });
 
-  console.log('profile', profile);
+  // console.log('profile', profile);
 
   const deleteMutation = useMutation(deleteComment, {
     onSuccess: () => {

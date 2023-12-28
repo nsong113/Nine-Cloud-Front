@@ -77,7 +77,6 @@ const Signup = () => {
           },
         }
       );
-      console.log('회원가입 성공:', response);
       // if (response.data.message.includes('이메일 전송 완료')) {
       setIsVerificationSent(true);
       // }
@@ -110,7 +109,6 @@ const Signup = () => {
         password,
         username: nickname,
       });
-      console.log(response.data);
       alert(response.data.message);
       // 회원가입이 완료되면 상태 초기화
       if (response.data.message.includes('회원가입이 완료')) {

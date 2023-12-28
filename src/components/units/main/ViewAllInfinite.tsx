@@ -16,7 +16,7 @@ const ViewAllInfinite = (props: any) => {
   const weather = props.item.weather; //string
   const countAverage = props.item.EmotionStatus; //number
   const isPublic = props.item.isPublic;
-  console.log('isPublic', isPublic);
+  // console.log('isPublic', isPublic);
   const [emotionPicture, setEmotionPicture] = useState('');
   const [isPublicPicture, setIsPublicPicture] = useState('');
 
