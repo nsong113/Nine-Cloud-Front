@@ -1,6 +1,8 @@
 import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
+
 // const accessToken = localStorage.getItem('accessToken');
 // const refreshToken = localStorage.getItem('refreshToken');
 const axiosInstance = axios.create({
@@ -21,12 +23,12 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    // const navigate = useNavigate();
     const statusCode = error.response.status;
     if (statusCode === 401 || statusCode === 400) {
       // const accessToken = localStorage.getItem('accessToken');
       // const refreshToken = localStorage.getItem('refreshToken');
       try {
-        console.log('여기까지는 왔냐? 1', statusCode);
         const response = await axios({
           method: 'post',
           url: `${BASE_URL}/token`,
@@ -35,14 +37,17 @@ axiosInstance.interceptors.response.use(
             Refreshtoken: `${localStorage.getItem('refreshToken')}`,
           },
         });
-        console.log('여기까지는 왔냐? 2');
         const newAccessToken = response.headers['authorization'];
-        const newRefreshToken = response.headers['refreshtoken'];
+        // const newRefreshToken = response.headers['refreshtoken'];
         localStorage.setItem('accessToken', newAccessToken);
-        localStorage.setItem('refreshToken', newRefreshToken);
+        // localStorage.setItem('refreshToken', newRefreshToken);
         console.log('재발급 성공');
+        // navigate('/loading');
+        window.location.reload();
       } catch (err) {
         console.log(err);
+        // alert(`${error.response.msg}`);
+        // navigate('/main');
       }
     }
     return Promise.reject(error);

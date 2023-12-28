@@ -11,14 +11,14 @@ const Loading = () => {
       setDots((prevDots) => (prevDots.length === 3 ? '.' : prevDots + '.'));
     }, 500);
     // 페이지가 로드된 후 5초 뒤에 /main으로 이동
-    // const timeoutId = setTimeout(() => {
-    //   // /main으로 이동하면서 페이지를 다시로드
-    //   navigate('/main');
-    //   window.location.reload();
-    // }, 2000);
+    const timeoutId = setTimeout(() => {
+      // /main으로 이동하면서 페이지를 다시로드
+      navigate('/main');
+      window.location.reload();
+    }, 2000);
 
-    // // 컴포넌트가 언마운트되면 타이머 클리어
-    // return () => clearTimeout(timeoutId);
+    // 컴포넌트가 언마운트되면 타이머 클리어
+    return () => clearTimeout(timeoutId);
   }, [navigate]);
 
   return (
@@ -30,7 +30,7 @@ const Loading = () => {
             <S.ImgStyle2 src='cloud_soso.png' alt='happy' />
             <S.ImgStyle3 src='rain_sad.png' alt='rain' />
           </S.ImgGroup>
-          <S.Title>밥 먹고 오겠습니다{dots}</S.Title>
+          <S.Title>잠시만 기다려주세요{dots}</S.Title>
           <BarLoader color='#36d7b7' height={14} width={380} />
         </div>
       </S.DivCenter>

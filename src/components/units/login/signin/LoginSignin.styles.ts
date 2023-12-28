@@ -3,7 +3,6 @@ import { ValidationMessageProps } from './LoginSignin.types';
 
 export const Base = styled.div`
   width: 100%;
-  height: 100vh;
   background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
@@ -108,7 +107,7 @@ export const SocialButton = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 80%;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
 `;
 
 export const Circle = styled.button`
@@ -123,7 +122,7 @@ export const Circle = styled.button`
   transition: transform 0.2s ease-in-out; /* 클릭 시 애니메이션 효과 */
 
   &:active {
-    transform: scale(0.95); /* 클릭 시 약간 축소 효과 */
+    transform: scale(0.95);
   }
 `;
 
@@ -131,6 +130,8 @@ export const SignupLink = styled.div`
   color: #777;
   cursor: pointer;
   margin-top: 40px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
 `;
 
 export const FlexBox = styled.div`
