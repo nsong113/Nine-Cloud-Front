@@ -9,7 +9,7 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
 
-  console.log('POSTpostDiaryItem', postDiaryItem);
+  // console.log('POSTpostDiaryItem', postDiaryItem);
   try {
     const formData = new FormData();
 
@@ -28,7 +28,7 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
 
     let values: any = formData.values();
     for (const pair of values) {
-      console.log('pair', pair);
+      // console.log('pair', pair);
     }
 
     const res = await axiosInstance.post(`/diary/posting`, formData, {

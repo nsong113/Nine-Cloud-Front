@@ -40,11 +40,7 @@ const NaverLoginHandler = () => {
     return () => clearInterval(intervalId);
   }, [code, navigate]);
 
-  return (
-    <>
-      {/* <Loading /> */}
-    </>
-  );
+  return <>{/* <Loading /> */}</>;
 };
 
 export default NaverLoginHandler;

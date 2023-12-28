@@ -69,6 +69,8 @@ export const deletePost = async (id: any) => {
 
 export const getPosts = async (target: IGetPosts) => {
   try {
+    // console.log(accessToken);
+    // console.log(refreshToken);
     const response = await axiosInstance.get(
       `/diary/calendar/${target.currentYear}/${target.currentMonth}`,
       {
@@ -92,7 +94,7 @@ export const getOnePostInfo = async (diaryId: string | undefined) => {
         Authorization: `${accessToken}`,
       },
     });
-    console.log('게시글 상세조회에 성공하셨습니다.');
+    // console.log('게시글 상세조회에 성공하셨습니다.');
 
     return response.data;
   } catch (error) {
@@ -189,7 +191,7 @@ export const getMyInfo = async () => {
         Refreshtoken: `${refreshToken}`,
       },
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log('error');
@@ -241,7 +243,7 @@ export const editMyInfo = async (target: any) => {
       showLoaderOnConfirm: true,
       allowOutsideClick: () => !Swal.isLoading(),
     });
-    console.log('formData', formData);
+    // console.log('formData', formData);
     return response.data;
   } catch (error) {
     // Swal.fire({
@@ -272,7 +274,6 @@ export const editPassword = async (target: any) => {
     );
     return response.data;
   } catch (error) {
-    // alert('현재 비밀번호가 일치하지 않습니다.');
     console.log('에러');
   }
 };
