@@ -113,7 +113,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const onClickLogout = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    localStorage.removeItem('expiredTime');
     alert('로그아웃이 완료되었습니다.');
     navigate('/login');
   };
@@ -130,7 +129,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
       });
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
-      localStorage.removeItem('expiredTime');
       alert(response.data.message);
       navigate('/login');
     } catch (error: any) {

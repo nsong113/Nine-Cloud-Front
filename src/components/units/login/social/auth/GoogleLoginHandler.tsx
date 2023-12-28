@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosInstance from 'src/apis/loginapi';
-import Loading from 'src/components/units/loading/Loading';
 
 const GoogleLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
@@ -30,14 +29,11 @@ const GoogleLoginHandler = () => {
         console.log(response);
         const accessToken = response.headers['authorization'];
         const refreshToken = response.headers['refreshtoken'];
-        const expiredTime = response.headers['expiredtime'];
         console.log(response);
         console.log('at: ', accessToken);
         console.log('rt: ', refreshToken);
-        console.log('et: ', expiredTime);
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        localStorage.setItem('expiredTime', expiredTime);
         navigate('/main');
         window.location.reload();
       } catch (error) {
@@ -50,7 +46,7 @@ const GoogleLoginHandler = () => {
 
   return (
     <>
-      <Loading />
+      {/* <Loading /> */}
     </>
   );
 };

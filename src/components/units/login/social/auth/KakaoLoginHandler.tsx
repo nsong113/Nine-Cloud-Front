@@ -30,14 +30,11 @@ const KakaoLoginHandler = () => {
         console.log(response);
         const accessToken = response.headers['authorization'];
         const refreshToken = response.headers['refreshtoken'];
-        const expiredTime = response.headers['expiredtime'];
         console.log(response);
         console.log('at: ', accessToken);
         console.log('rt: ', refreshToken);
-        console.log('et: ', expiredTime);
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        localStorage.setItem('expiredTime', expiredTime);
         navigate('/main');
         window.location.reload();
       } catch (error) {
@@ -50,7 +47,7 @@ const KakaoLoginHandler = () => {
 
   return (
     <>
-      <Loading />
+      {/* <Loading /> */}
     </>
   );
 };
