@@ -126,7 +126,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/onboard001.png)',
+            backgroundImage: 'url(/OnBoard001.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -136,7 +136,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/onboard002.png)',
+            backgroundImage: 'url(/OnBoard002.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -146,7 +146,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/onboard003.png)',
+            backgroundImage: 'url(/OnBoard003.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -156,7 +156,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/onboard004.png)',
+            backgroundImage: 'url(/OnBoard004.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -189,7 +189,7 @@ export default function OnBoard() {
           }}
           onClick={handleButtonClick}
         >
-          {isLastSlide ? '나인크라우드 시작하기' : '다음'}
+          {isLastSlide ? '나인 클라우드 시작하기' : '다음'}
         </S.Button>
       </S.FlexCenter>
     </S.Base>

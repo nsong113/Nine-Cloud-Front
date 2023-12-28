@@ -9,7 +9,6 @@ const KakaoLoginHandler = () => {
   const navigate = useNavigate();
   const [dots, setDots] = useState('.');
 
-  console.log(code);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setDots((prevDots) => (prevDots.length === 3 ? '.' : prevDots + '.'));
@@ -27,12 +26,8 @@ const KakaoLoginHandler = () => {
             },
           }
         );
-        console.log(response);
         const accessToken = response.headers['authorization'];
         const refreshToken = response.headers['refreshtoken'];
-        // console.log(response);
-        // console.log('at: ', accessToken);
-        // console.log('rt: ', refreshToken);
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         navigate('/main');
