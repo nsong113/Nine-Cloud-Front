@@ -1,18 +1,14 @@
 import React, { ChangeEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import {
   addComment,
   deleteComment,
   editComment,
-  getComments,
-  getMyInfo,
 } from 'src/apis/cheolmin-api/apis';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
-import { CommentData } from './test';
 import { IComment } from './BoardDetailComment.types';
-import { VideoCard } from 'src/components/commons/utills/Date/date';
 const BoardDetailComment: React.FC<IComment> = ({
   detailedContent,
   profile,
@@ -22,7 +18,6 @@ const BoardDetailComment: React.FC<IComment> = ({
   const [isEdit, setIsEdit] = useState(false);
   const queryClient = useQueryClient();
   const [editingCommentId, setEditingCommentId] = useState(null);
-  const [isDeleteModal, setIsDeleteModal] = useState(false);
   const params = useParams();
 
   const [message, setMessage] = useState('');
@@ -35,11 +30,6 @@ const BoardDetailComment: React.FC<IComment> = ({
   if (createdAtDate) {
     createdAtDate.setHours(createdAtDate.getHours() - 9);
   }
-
-  console.log('댓글', createdAtDate);
-  console.log('comment', comment);
-
-  const profileInfo = profile?.data;
 
   const comments = comment?.data;
 
@@ -74,52 +64,28 @@ const BoardDetailComment: React.FC<IComment> = ({
   };
 
   const onClickEditBtn = (commentId: any, userId: any) => () => {
-    if (profile?.data?.userId !== userId) {
-      Swal.fire({
-        icon: 'error',
-        width: '400px',
-        title: '수정 권한이 없습니다.',
-        confirmButtonText: '확인',
-        showLoaderOnConfirm: true,
-        allowOutsideClick: () => !Swal.isLoading(),
-      });
-      return;
-    }
     setEditingCommentId(commentId);
     Swal.fire({
-      icon: 'question',
       width: '400px',
-      title: '댓글 수정 하시겠습니까 ?',
+      title:
+        '<span style="font-size: 24px; font-weight : bolder;">수정할 내용을 입력하세요</span>',
+      input: 'text',
+      inputValue: '', // 초기값은 비어있음
+      confirmButtonText: '수정하기',
+      cancelButtonText: '취소하기',
       showCancelButton: true,
-      confirmButtonText: '확인',
-      showLoaderOnConfirm: true,
-      cancelButtonText: '취소',
-      allowOutsideClick: () => !Swal.isLoading(),
       reverseButtons: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          width: '400px',
-          title: '수정할 내용을 입력하세요',
-          input: 'text',
-          inputValue: '', // 초기값은 비어있음
-          confirmButtonText: '수정하기',
-          cancelButtonText: '취소하기',
-          showCancelButton: true,
-          reverseButtons: true,
-          inputValidator: (value) => {
-            // 입력값이 유효한지 검사할 수 있는 함수
-            if (!value) {
-              return '수정할 내용을 입력하세요';
-            }
-          },
-        }).then((editResult) => {
-          if (editResult.isConfirmed) {
-            const message = editResult.value;
-            // 여기서 editMutation.mutate를 호출하여 댓글을 수정합니다.
-            editMutation.mutate({ message, commentId });
-          }
-        });
+      inputValidator: (value) => {
+        // 입력값이 유효한지 검사할 수 있는 함수
+        if (!value) {
+          return '수정할 내용을 입력하세요';
+        }
+      },
+    }).then((editResult) => {
+      if (editResult.isConfirmed) {
+        const message = editResult.value;
+        // 여기서 editMutation.mutate를 호출하여 댓글을 수정합니다.
+        editMutation.mutate({ message, commentId });
       }
     });
   };
@@ -132,7 +98,8 @@ const BoardDetailComment: React.FC<IComment> = ({
     Swal.fire({
       icon: 'error',
       width: '400px',
-      title: '댓글을 삭제 하시겠습니까 ?',
+      title:
+        '<span style="font-size: 24px; font-weight : bolder;">댓글을 삭제 하시겠습니까 ?</span>',
       confirmButtonText: '확인',
       showCancelButton: true,
       cancelButtonText: '취소',
@@ -141,15 +108,7 @@ const BoardDetailComment: React.FC<IComment> = ({
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteMutation.mutate(commentId),
-          Swal.fire({
-            icon: 'success',
-            width: '400px',
-            title: '댓글이 삭제됐습니다.',
-            confirmButtonText: '확인',
-            showLoaderOnConfirm: true,
-            allowOutsideClick: () => !Swal.isLoading(),
-          });
+        deleteMutation.mutate(commentId);
       }
     });
   };
@@ -204,84 +163,31 @@ const BoardDetailComment: React.FC<IComment> = ({
                         <S.DateBoxDiv>
                           <S.CommentWriterSpan>
                             {el?.User?.username}
-                            <S.DateTextSpan>
-                              {/* {VideoCard(createdAtDate)} */}
-                            </S.DateTextSpan>
                           </S.CommentWriterSpan>
+                          {profile?.data?.userId === el.UserId && (
+                            <S.CommentSettingDiv>
+                              <S.EditTextSpan
+                                onClick={onClickEditBtn(
+                                  el.commentId,
+                                  el.UserId
+                                )}
+                              >
+                                수정
+                              </S.EditTextSpan>
+                              <S.DeleteTextSpan
+                                onClick={onClickDeleteBtn(
+                                  el.commentId,
+                                  el.UserId
+                                )}
+                              >
+                                삭제
+                              </S.DeleteTextSpan>
+                            </S.CommentSettingDiv>
+                          )}
                         </S.DateBoxDiv>
-                        {editingCommentId !== el.commentId && (
-                          <S.ButtonWrapperDiv>
-                            <S.CommentContent>{el.content}</S.CommentContent>
-                            {profile?.data?.userId === el.UserId && (
-                              <div>
-                                <S.PencilBtn
-                                  onClick={onClickEditBtn(
-                                    el.commentId,
-                                    el.UserId
-                                  )}
-                                >
-                                  수정하기
-                                </S.PencilBtn>
-                                <S.TrashButton
-                                  onClick={onClickDeleteBtn(
-                                    el.commentId,
-                                    el.UserId
-                                  )}
-                                >
-                                  삭제하기
-                                </S.TrashButton>
-                              </div>
-                            )}
-                          </S.ButtonWrapperDiv>
-                        )}
-                        {editingCommentId === el.commentId && (
-                          <div>
-                            {!isEdit && (
-                              <S.ButtonWrapperDiv>
-                                <S.CommentContent>
-                                  {el.content}
-                                </S.CommentContent>
-                                <div>
-                                  <S.PencilBtn
-                                    onClick={onClickEditBtn(
-                                      el.commentId,
-                                      el.UserId
-                                    )}
-                                  >
-                                    수정하기
-                                  </S.PencilBtn>
-                                  <S.TrashButton
-                                    onClick={onClickDeleteBtn(
-                                      el.commentId,
-                                      el.UserId
-                                    )}
-                                  >
-                                    삭제하기
-                                  </S.TrashButton>
-                                </div>
-                              </S.ButtonWrapperDiv>
-                            )}
-
-                            {isEdit && (
-                              <S.ButtonWrapperDiv>
-                                <S.CommentTextArea
-                                  onChange={onChangeEditComment}
-                                  defaultValue={el.content}
-                                />
-                                <div>
-                                  <S.CancelImg onClick={onClickCancelBtn}>
-                                    취소하기
-                                  </S.CancelImg>
-                                  <S.ConfrimImg
-                                    onClick={onClickEditComment(el.commentId)}
-                                  >
-                                    수정하기
-                                  </S.ConfrimImg>
-                                </div>
-                              </S.ButtonWrapperDiv>
-                            )}
-                          </div>
-                        )}
+                        <S.ButtonWrapperDiv>
+                          <S.CommentContent>{el.content}</S.CommentContent>
+                        </S.ButtonWrapperDiv>
                       </S.CommentWriterBoxDiv>
                     </S.CommentBoxDiv>
                   </S.CommentWrapperDiv>

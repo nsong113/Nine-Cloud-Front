@@ -72,7 +72,6 @@ export const DiarySpace = styled(ReactQuill)`
 
   box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.5) inset,
     0px 2px 5px 0px rgba(80, 53, 166, 0.1);
-  backdrop-filter: blur(15px);
   width: 404px;
   height: 175px;
   flex-shrink: 0;

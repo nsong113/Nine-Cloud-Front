@@ -8,7 +8,7 @@ export const CommentsWrapperDiv = styled.div`
   height: 300px;
 `;
 export const CommentBox = styled.div`
-  width: 403px;
+  width: 380px;
   height: 167px;
   flex-shrink: 0;
   border-radius: 10px;
@@ -61,12 +61,11 @@ export const CommentFooterWrapDiv = styled.div`
 
 export const BlankDiv = styled.div`
   display: flex;
-
-`
+`;
 
 export const InputBoxDiv = styled.input`
   background-color: white;
-  width: 310px;
+  width: 290px;
   height: 47px;
   border-radius: 28px;
   margin-left: 10px;
@@ -74,6 +73,7 @@ export const InputBoxDiv = styled.input`
   & :active {
     border: 1px solid #391d93;
   }
+  padding-left: 20px;
 `;
 
 export const BlankInput = styled.input`
@@ -81,7 +81,6 @@ export const BlankInput = styled.input`
   width: 380px;
   height: 47px;
   border-radius: 28px;
-  margin-left: 10px;
   border: 1px solid gray;
   & :active {
     border: 1px solid #391d93;
@@ -122,6 +121,31 @@ export const PencilBtn = styled(LuPencil)`
   cursor: pointer;
 `;
 
+export const EditTextSpan = styled.span`
+  color: #000;
+  text-align: ;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: normal;
+  cursor: pointer;
+  &:hover {
+    color: #391d93;
+  }
+  margin-right: 5px;
+`;
+
+export const DeleteTextSpan = styled.span`
+  color: #000;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: normal;
+  cursor: pointer;
+  &:hover {
+    color: #391d93;
+  }
+`;
+
 export const TrashButton = styled(FaRegTrashAlt)`
   cursor: pointer;
   width: 20px;
@@ -147,6 +171,8 @@ export const CommentTextArea = styled.textarea`
 
 export const DateBoxDiv = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const DateTextSpan = styled.span`
@@ -154,7 +180,7 @@ export const DateTextSpan = styled.span`
 `;
 
 export const NoCommentBoxDiv = styled.div`
-  width: 403px;
+  width: 380px;
   height: 64.442px;
   flex-shrink: 0;
   border-radius: 10px;
@@ -175,3 +201,5 @@ export const NoCommentSpan = styled.span`
   font-weight: 500;
   line-height: normal;
 `;
+
+export const CommentSettingDiv = styled.div``;
