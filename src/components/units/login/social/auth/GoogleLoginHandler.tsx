@@ -29,9 +29,9 @@ const GoogleLoginHandler = () => {
         console.log(response);
         const accessToken = response.headers['authorization'];
         const refreshToken = response.headers['refreshtoken'];
-        console.log(response);
-        console.log('at: ', accessToken);
-        console.log('rt: ', refreshToken);
+        // console.log(response);
+        // console.log('at: ', accessToken);
+        // console.log('rt: ', refreshToken);
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         navigate('/main');
@@ -44,11 +44,7 @@ const GoogleLoginHandler = () => {
     return () => clearInterval(intervalId);
   }, [code, navigate]);
 
-  return (
-    <>
-      {/* <Loading /> */}
-    </>
-  );
+  return <>{/* <Loading /> */}</>;
 };
 
 export default GoogleLoginHandler;

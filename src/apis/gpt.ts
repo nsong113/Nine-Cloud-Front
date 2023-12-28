@@ -62,10 +62,10 @@ export const CallGPT = async ({
     );
 
     const responseData = await res.data;
-    console.log('responseData', responseData);
+    // console.log('responseData', responseData);
 
     const message = responseData.choices[0].message.content;
-    console.log('message', message);
+    // console.log('message', message);
 
     return message;
   } catch (error) {

@@ -8,8 +8,8 @@ const NaverLoginHandler = () => {
   const navigate = useNavigate();
   const [dots, setDots] = useState('.');
   const state = '99999';
-  console.log(code);
-  console.log(state);
+  // console.log(code);
+  // console.log(state);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setDots((prevDots) => (prevDots.length === 3 ? '.' : prevDots + '.'));
@@ -31,9 +31,9 @@ const NaverLoginHandler = () => {
         console.log(response);
         const accessToken = response.headers['authorization'];
         const refreshToken = response.headers['refreshtoken'];
-        console.log(response);
-        console.log('at: ', accessToken);
-        console.log('rt: ', refreshToken);
+        // console.log(response);
+        // console.log('at: ', accessToken);
+        // console.log('rt: ', refreshToken);
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         navigate('/main');
@@ -46,11 +46,7 @@ const NaverLoginHandler = () => {
     return () => clearInterval(intervalId);
   }, [code, navigate]);
 
-  return (
-    <>
-      {/* <Loading /> */}
-    </>
-  );
+  return <>{/* <Loading /> */}</>;
 };
 
 export default NaverLoginHandler;
