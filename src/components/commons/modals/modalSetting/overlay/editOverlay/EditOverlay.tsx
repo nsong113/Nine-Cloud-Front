@@ -1,15 +1,12 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { IEditPost } from '../../../editPost/EditPostOverlay.types';
 import * as S from './EditOverlay.styles';
-import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
 import DeleteModal from '../../../delete/DeleteModal';
 import { useMutation, useQueryClient } from 'react-query';
 import { deletePost, updatePost } from 'src/apis/cheolmin-api/apis';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IMyPost } from './EditOverlay.types';
-import ReactQuill from 'react-quill';
-import { IoIosHeartHalf, IoMdHeart } from 'react-icons/io';
 
 const EditOverlay: React.FC<IEditPost> = ({
   detailedContent,
@@ -27,7 +24,6 @@ const EditOverlay: React.FC<IEditPost> = ({
   const onClickModalDiv = (e: any) => {
     e.stopPropagation();
   };
-  const [isPublicToday, setIsPublicToday] = useState(false);
   const params = useParams();
   const diaryId = params.id;
 
@@ -53,19 +49,14 @@ const EditOverlay: React.FC<IEditPost> = ({
     navigate('/main');
   };
 
-  const onClickCancel = () => {
-    onClose();
-  };
 
   const onClickEditBtn = () => {
     const myPost: IMyPost = {};
     if (contents) myPost.contents = contents;
     if (isPublic) myPost.isPublic = isPublic;
 
-    // if(detailedContent.content === )
     editMutation.mutate({ diaryId, myPost });
     onClose();
-    // setIsEdit((prev) => !prev);
   };
 
   const quillModules = {
@@ -76,10 +67,6 @@ const EditOverlay: React.FC<IEditPost> = ({
         { align: [] },
       ], // 정렬
     ],
-  };
-
-  const onClickCheck = () => {
-    setIsDeleteModal((prev) => !prev);
   };
 
   const onClickTrashCan = () => {
@@ -93,8 +80,6 @@ const EditOverlay: React.FC<IEditPost> = ({
       return;
     }
   };
-
-  console.log('contents', contents);
 
   return (
     <S.ContainerDiv onClick={onClose} className='modal'>
@@ -110,14 +95,12 @@ const EditOverlay: React.FC<IEditPost> = ({
             </S.HeaderWrapperDiv>
             <div>
               <S.ContentsContainerDiv>
-                {/* {contents && <span>200 / {contents.length - 7}</span>} */}
                 <S.DiarySpace
                   theme='snow'
                   modules={quillModules}
                   onChange={onChangeContents}
                   defaultValue={content}
                 />
-
                 <S.ToggleWrapperDiv>
                   <S.OpenToggleTitleSpan>공개여부</S.OpenToggleTitleSpan>
                   <S.ToggleContainerDiv>
@@ -140,7 +123,6 @@ const EditOverlay: React.FC<IEditPost> = ({
                         <S.SubTitleSpan>
                           나만 일기를 확인할 수 있어요.
                         </S.SubTitleSpan>
-                        {/* <span>나의 일기를 확인할 수 있어요</span> */}
                       </S.PrivateTextDiv>
                     )}
                     {!isPublic && <div style={{ width: '50px' }}></div>}
@@ -149,7 +131,6 @@ const EditOverlay: React.FC<IEditPost> = ({
                         <S.SubTitleSpan>
                           다른 사람들과 공유할 수 있습니다.
                         </S.SubTitleSpan>
-                        {/* <span>다른 사람들과 공유할 수 있어요</span> */}
                       </S.PublicTextDiv>
                     )}
                   </S.ToggleContainerDiv>

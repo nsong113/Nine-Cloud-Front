@@ -2,10 +2,6 @@ import styled from 'styled-components';
 
 export const Base = styled.div`
   width: 100%;
-  background-image: url('/bg_final_final.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 `;
 
 export const FlexCenter = styled.div`
@@ -23,7 +19,7 @@ export const Dlatlbox = styled.div`
 `;
 
 export const OnboardTitle = styled.div`
-  margin-top: 130px;
+  margin-top: 120px;
   text-align: center;
   font-size: 25px;
   font-weight: 600;
@@ -31,20 +27,20 @@ export const OnboardTitle = styled.div`
 `;
 
 export const OnboardContent = styled.div`
-  margin-top: 25px;
+  margin-top: 16px;
   text-align: center;
   font-size: 16px;
   color: #3d3d3d;
 `;
 
 export const Button = styled.button`
-  width: 90%;
-  height: 80px;
+  width: 90.55%;
+  height: 6.15%;
   padding: 10px 0;
   border: none;
-  border-radius: 10px;
-  border-top-right-radius: 40px;
-  border-bottom-left-radius: 40px;
+  border-radius: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
   background-color: #aaa;
   color: white;
   cursor: pointer;
@@ -53,7 +49,6 @@ export const Button = styled.button`
 `;
 
 export const UnderBallList = styled.div`
-  margin-top: 15px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -61,9 +56,10 @@ export const UnderBallList = styled.div`
 `;
 
 export const UnderBall = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background-color: #f5f2ff;
   margin-right: 10px;
+  cursor: pointer;
 `;

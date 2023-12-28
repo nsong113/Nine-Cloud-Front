@@ -18,7 +18,6 @@ const DiaryDeleteOverlay: React.FC<IDiaryDelete> = ({ onOk, onClose }) => {
 
   const onClickDeleteBtn = () => {
     deleteMutation.mutate(params.id);
-    alert('글이 정상적으로 삭제 됐습니다');
   };
 
   return (

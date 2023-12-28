@@ -57,17 +57,12 @@ const BoardDetail = () => {
     },
   });
 
-  console.log('profile', profile?.data?.userId);
-  console.log('data', data?.data?.UserId);
-
   useEffect(() => {
-    if (detailedContent?.likeExist === true) {
+    if (data?.like !== null) {
       setIsHeart(true);
     } else {
       setIsHeart(false);
     }
-
-    console.log('isHeart', isHeart);
   }, [params.id, detailedContent?.likeExist]);
 
   const countAverage =
@@ -76,8 +71,6 @@ const BoardDetail = () => {
   const onClickHeart = () => {
     heartMutation.mutate(id);
   };
-
-  console.log('detailedContent', detailedContent);
 
   if (isLoading) {
     return <Loading />;
@@ -192,11 +185,13 @@ const BoardDetail = () => {
                 </S.EditPencilDiv>
               )}
               {profile?.data?.userId === data?.data?.UserId && (
-                <S.PencilImg
-                  src='/dotdotdot.png'
-                  alt='수정버튼'
-                  onClick={onClickPencilImg}
-                />
+                <div style={{ height: '50px' }}>
+                  <S.PencilImg
+                    src='/dotdotdot.png'
+                    alt='수정버튼'
+                    onClick={onClickPencilImg}
+                  />
+                </div>
               )}
             </S.PencilsBoxDiv>
             <div>
@@ -223,21 +218,21 @@ const BoardDetail = () => {
                 <S.FooterBoxDiv>
                   {detailedContent.isPublic === true && (
                     <div>
-                      {isActive && <S.ToggleOnImg onClick={onClickToggle} />}
-                      {!isActive && <S.ToggleOffImg onClick={onClickToggle} />}
+                      {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
+                      {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
                     </div>
                   )}
                   {detailedContent.isPublic === false && (
                     <div>
-                      {!isActive && <S.GrayToggleImg onClick={onClickToggle} />}
-                      {isActive && (
+                      {isActive && <S.GrayToggleImg onClick={onClickToggle} />}
+                      {!isActive && (
                         <S.GrayToggleOffImg onClick={onClickToggle} />
                       )}
                     </div>
                   )}
                   <S.CommentsBoxDiv>
                     {detailedContent.isPublic === true && (
-                      <S.ChatBoxDiv>
+                      <S.ChatBoxDiv onClick={onClickToggle}>
                         <S.PurpleChatImg
                           src='/chat_purple.png'
                           alt='보라색말풍선'
@@ -274,13 +269,13 @@ const BoardDetail = () => {
                     <div>
                       {detailedContent.isPublic === true && (
                         <S.ChatBoxDiv>
-                          <S.HeartWrapperDiv>
-                            {isHeart && (
-                              <S.CommentHeartImg onClick={onClickHeart} />
-                            )}
-                            {!isHeart && (
-                              <S.BlankHeartImg onClick={onClickHeart} />
-                            )}
+                          <S.HeartWrapperDiv onClick={onClickHeart}>
+                            {/* {isHeart && ( */}
+                            <S.CommentHeartImg />
+                            {/* )} */}
+                            {/* {!isHeart && ( */}
+                            {/* <S.BlankHeartImg onClick={onClickHeart} /> */}
+                            {/* )} */}
                             <S.HeartCommentTextSpan
                               public={detailedContent.isPublic}
                             >

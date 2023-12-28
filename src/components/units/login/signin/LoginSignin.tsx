@@ -81,12 +81,10 @@ const LoginSignin = () => {
       );
       const accessToken = response.headers['authorization'];
       const refreshToken = response.headers['refreshtoken'];
-      const expiredTime = response.headers['expiredtime'];
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
-      localStorage.setItem('expiredTime', expiredTime);
       alert(`${response.data.msg}`);
-      navigate('/loadingpage');
+      navigate('/loading');
     } catch (error: any) {
       alert(`${error.response.data.msg}`);
       console.error('네트워크 오류', error.message);
@@ -216,7 +214,7 @@ const LoginSignin = () => {
             나인 클라우드 시작하기
           </S.Button>
           <S.Divider>
-            <S.DividerText>sns 계정으로 로그인하기</S.DividerText>
+            <S.DividerText>sns 계정으로 시작하기</S.DividerText>
           </S.Divider>
           <S.SocialButton>
             <LoginKakao />

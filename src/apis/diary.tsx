@@ -1,5 +1,4 @@
 //다이어리 관련 CRUD
-import axios from 'axios';
 import { IpostDiaryItem } from './apiesType';
 import { useRecoilState } from 'recoil';
 import axiosInstance from './loginapi';
