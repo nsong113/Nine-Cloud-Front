@@ -313,10 +313,11 @@ export const LogoImg = styled.img`
 export const LargeContainer = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url('/bg_final_final.png');
+  background-color: white;
+  /* background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 `;
 
 export const ViewAllWrapperDiv = styled.div`

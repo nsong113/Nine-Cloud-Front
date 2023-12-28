@@ -396,7 +396,9 @@ export const Validate = styled.div<BoardWriteDiaryProps>`
   height: 30px;
   text-align: center;
   color: ${(props) =>
-    !props.color ? (!props.fontColor ? '#111' : '#999') : 'transparent'};
+    !props.color ? (!props.fontColor ? 'red' : '#999') : 'transparent'};
   margin: 0;
+  font-weight: ${(props) =>
+    !props.color ? (!props.fontColor ? '500' : '400') : ''};
   transform: translateY(50px);
 `;

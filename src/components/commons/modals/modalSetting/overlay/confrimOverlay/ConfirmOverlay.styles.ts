@@ -32,7 +32,7 @@ export const ModalContentDiv = styled.div`
   height: 460px;
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
+  border-radius: 5px 20px;
   background: #fff;
 
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
@@ -67,6 +67,7 @@ export const TextStyleSpanH5 = styled.div`
   text-align: center;
   font-size: 23px;
   font-weight: 500;
+  margin-top: 20px;
 `;
 
 export const TextStyleSpanP = styled.p`
@@ -87,7 +88,7 @@ export const BoxButton = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  transform: translateY(30px);
+  transform: translateY(20px);
   /* background-color: #f9f7ff; */
 `;
 
