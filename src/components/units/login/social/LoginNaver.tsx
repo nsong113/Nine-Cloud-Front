@@ -9,7 +9,6 @@ const LoginNaver = () => {
   const state = '99999';
   // 리포지토리 후크를 읽어 사용자 이메일에 대한 권한을 요청
   const link = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&state=${state}`;
-  console.log(state);
   const loginHandler = () => {
     window.location.href = link;
   };
