@@ -93,6 +93,8 @@ const BoardDetail = () => {
     ? new Date(detailedContent.createdAt)
     : null;
 
+  const text = "123"
+
   if (createdAtDate) {
     createdAtDate.setHours(createdAtDate.getHours() - 9);
   }
