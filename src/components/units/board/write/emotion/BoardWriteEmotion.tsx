@@ -6,6 +6,7 @@ import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import { useRecoilState } from 'recoil';
 import { countAverage, happyA, sadA, sleep, weather } from 'src/states/counter';
+import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
@@ -233,10 +234,11 @@ const BoardWriteEmotion = () => {
                 </S.ContentsBoxDiv>
               </S.SliderBoxDiv>
             </S.SliderWrapperDiv>
-            <S.ButtonBoxDiv>
-              <S.PrevButton onClick={onClickMoveToMain}>이전</S.PrevButton>
-              <S.NextButton onClick={onClickNextPage}>다음</S.NextButton>
-            </S.ButtonBoxDiv>
+            <PostBtn
+              onClickMoveToMain={onClickMoveToMain}
+              onClickNextPage={onClickNextPage}
+              page={'emotion'}
+            />
           </S.ContainerDiv>
         </S.EmotionWrapperDOWNdiv>
       </S.EmotionContainerDiv>

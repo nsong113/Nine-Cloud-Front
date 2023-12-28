@@ -8,10 +8,11 @@ export const DrawContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/bg_final_final.png');
+  background-color: white;
+  /* background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 `;
 
 export const DrawWrapperUPDiv = styled.div`
@@ -252,11 +253,11 @@ export const ContentsDiv = styled.div`
 export const ButtonWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin: 50px auto;
-  /* margin-bottom: 50px; */
+  width: 110%;
+  margin: 0 auto;
+  transform: translateX(-18px);
 `;
 
 export const PrevButton = styled.button`

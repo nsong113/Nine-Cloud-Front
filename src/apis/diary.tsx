@@ -1,5 +1,4 @@
 //다이어리 관련 CRUD
-import axios from 'axios';
 import { IpostDiaryItem } from './apiesType';
 import { useRecoilState } from 'recoil';
 import axiosInstance from './loginapi';
@@ -40,7 +39,6 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
         Authorization: `${accessToken}`,
       },
     });
-    alert('오늘 일기 포스팅에 성공하셨습니다.');
     localStorage.removeItem('sentence');
     localStorage.removeItem('weather');
     // localStorage.removeItem('countAverage');

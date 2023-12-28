@@ -100,7 +100,6 @@ export const ContentsBoxDiv = styled.div`
   border-radius: 20px 2px;
   background: rgba(245, 242, 255, 0.5);
   overflow: scroll;
-
   box-shadow: 0px 4px 20px 0px rgba(255, 255, 255, 0.5) inset,
     0px 2px 5px 0px rgba(80, 53, 166, 0.1);
   backdrop-filter: blur(15px);
@@ -113,10 +112,9 @@ export const WriterImageDiv = styled.div`
 `;
 
 export const CloudImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   margin-top: 12px;
-  margin-left: 15px;
 `;
 export const DrawingImg = styled.img`
   height: 4dvh;
@@ -136,7 +134,7 @@ export const ContentsFooterDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0px;
+  margin: 20px 0px;
 
   border-bottom: 2px solid #5035a6;
 `;
@@ -278,8 +276,10 @@ export const StatusBoxDiv = styled.div`
   height: 30px;
   flex-shrink: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-right: 15px;
 `;
 
 export const CategoryText = styled.span`
@@ -290,7 +290,7 @@ export const CategoryText = styled.span`
   font-style: normal;
   font-weight: 300;
   line-height: 21px;
-  margin-right: 12px;
+  margin-left: 3px;
 `;
 
 export const ConentsHeaderRightDiv = styled.div`
@@ -419,7 +419,7 @@ export const ToggleOnImg = styled(IoIosArrowDown)`
   width: 30px;
   height: 30px;
   cursor: pointer;
-  color: #bbbbbb;
+  color: rgba(80, 53, 166, 1);
 `;
 
 export const FooterBoxDiv = styled.div`
@@ -519,6 +519,7 @@ export const HeartWrapperDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const NoCommentBoxDiv = styled.div`
@@ -551,7 +552,6 @@ export const HeaderLeftBoxDiv = styled.div`
 `;
 
 export const EditPencilDiv = styled.div`
-  position: fixed;
   border-radius: 5px;
   border: 1px solid var(--sub, #8066d1);
   background: rgba(255, 255, 255, 0.3);
@@ -562,7 +562,7 @@ export const EditPencilDiv = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
-  margin-right: 20px;
+  margin-right: 10px;
 `;
 
 export const DeleteSpan = styled.span`
@@ -590,6 +590,7 @@ export const EditSpan = styled.span`
   &:hover {
     color: #391d93;
   }
+  margin-bottom: 3px;
 `;
 
 export const BlankDiv = styled.div`

@@ -14,10 +14,10 @@ import LoginKakao from './components/units/login/social/LoginKakao';
 import KakaoLoginHandler from './components/units/login/social/auth/KakaoLoginHandler';
 import ViewAll from './components/units/main/ViewAll';
 import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
-import Loading from './components/units/login/social/auth/Loading';
 import TestPage from './components/units/login/TestPage';
 import NaverLoginHandler from './components/units/login/social/auth/NaverLoginHandler';
 import Chatting from './components/units/community/chatting/Chatting';
+import Loading from './components/units/loading/Loading';
 
 export default function Router() {
   return (
@@ -33,7 +33,7 @@ export default function Router() {
             element={<GoogleLoginHandler />}
           />
           <Route path='/auth/naver/callback' element={<NaverLoginHandler />} />
-          <Route path='/loadingpage' element={<Loading />} />
+          <Route path='/loading' element={<Loading />} />
           <Route path='/signup' element={<SignupPage />} />
           {/* main 페이지 */}
           <Route path='/main' element={<MainPage />} />
