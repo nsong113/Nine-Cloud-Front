@@ -7,9 +7,8 @@
 * {
   box-sizing: border-box;
 }
-/*  */
+
 body {
-  /* background-color: #a4b1e6; */
   display: flex;
   justify-content: center;
   align-items: center;

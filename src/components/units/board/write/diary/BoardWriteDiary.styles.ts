@@ -1,5 +1,10 @@
+/* eslint-disable */
 import styled from 'styled-components';
-import Toggle from 'react-toggle';
+
+interface BoardWriteDiaryProps {
+  color: string;
+  fontColor: boolean;
+}
 
 export const DiaryContainerDiv = styled.div`
   display: flex;
@@ -8,10 +13,11 @@ export const DiaryContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/bg_final_final.png');
+  background-color: white;
+  /* background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 `;
 
 export const DiaryWrapperUPDiv = styled.div`
@@ -278,15 +284,13 @@ export const FooterButtonBoxDiv = styled.div`
 
 export const ContentsWrapperDiv = styled.div`
   width: 100%;
-  height: 90%;
+  height: 80%;
 
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  transform: translateY(-40px);
 `;
 
 export const ImagePlustButtonBox = styled.div``;
@@ -317,33 +321,6 @@ export const PlusDiaryButton = styled.button`
   border: 3px solid blue;
   height: 50px;
   background-color: green;
-`;
-
-export const PrevButton = styled.button`
-  width: 30%;
-  height: 60px;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px 20px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: #fff;
-  color: var(--1, #5035a6);
-  font-size: 20px;
-  font-weight: 500;
-`;
-
-export const NextButton = styled.button`
-  width: 60%;
-  height: 60px;
-  outline: none;
-  cursor: pointer;
-
-  border-radius: 20px 5px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: var(--1-1, #ece9f5);
-  color: var(--1, #5035a6);
-  font-size: 20px;
-  font-weight: 500;
 `;
 
 export const InputBoxDiv = styled.div`
@@ -412,4 +389,16 @@ export const DiaryPrivateCheckboxDiv = styled.div`
 export const OpenPublicP = styled.p`
   margin-top: 5px;
   color: #d0cecd;
+`;
+
+export const Validate = styled.div<BoardWriteDiaryProps>`
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  color: ${(props) =>
+    !props.color ? (!props.fontColor ? 'red' : '#999') : 'transparent'};
+  margin: 0;
+  font-weight: ${(props) =>
+    !props.color ? (!props.fontColor ? '500' : '400') : ''};
+  transform: translateY(50px);
 `;

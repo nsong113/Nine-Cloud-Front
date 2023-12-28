@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { IStyled } from './ConfirmOverlay.types';
-import { IPalette } from './ConfirmOverlay.types';
 import Toggle from 'react-toggle';
 import { IoPeople } from 'react-icons/io5';
 
@@ -26,23 +24,26 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  transform: translateY(-130px);
+  /* transform: translateY(-150px); */
 `;
 
 export const ModalContentDiv = styled.div`
   width: 415px;
-  height: 500px;
+  height: 460px;
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
+  border-radius: 5px 20px;
   background: #fff;
 
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(15px);
-
-  display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
+
+  background-image: url('/post_confirm_modal.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const Div = styled.div`
@@ -53,8 +54,8 @@ export const Div = styled.div`
 `;
 
 export const TitleBoxDiv = styled.div`
-  width: 20rem;
-  height: 70px;
+  /* width: 20rem; */
+  /* height: 70px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,6 +67,7 @@ export const TextStyleSpanH5 = styled.div`
   text-align: center;
   font-size: 23px;
   font-weight: 500;
+  margin-top: 20px;
 `;
 
 export const TextStyleSpanP = styled.p`
@@ -75,77 +77,42 @@ export const TextStyleSpanP = styled.p`
   font-size: 17.063px;
   font-weight: 400;
 
-  transform: translateY(-30px);
-`;
-
-export const CancelButton = styled.div`
-  width: 116px;
-  height: 60px;
-  border: 1px solid #ece9f5;
-  border-radius: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #5035a6;
-
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  cursor: pointer;
+  /* background-color: red;
+  transform: translateY(-30px); */
 `;
 
 export const BoxButton = styled.div`
   width: 100%;
-  height: 65px;
+  /* height: 65px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-
-  transform: translateY(60px);
+  transform: translateY(20px);
+  /* background-color: #f9f7ff; */
 `;
 
 export const TextStyleSpan = styled.span`
   color: white;
 `;
 
-export const StyleButton = styled.div`
-  width: 222px;
-  height: 60px;
-  background-color: #ece9f5;
-  border-radius: 5px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #5035a6;
-
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-
-  cursor: pointer;
-`;
-
 export const ToggleDiv = styled.div`
   width: 100%;
   height: 70px;
+  transform: translateY(-25px);
+  /* background-color: red; */
 `;
 
-export const ToggleFlexDiv = styled.div`
-  width: 75%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+// export const ToggleFlexDiv = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   margin: 0 auto;
+//   /* display: flex;
+//   align-items: center;
+//   justify-content: space-between; */
+
+//   background-color: #f9f7ff;
+// `;
 
 export const ToggleP = styled.p`
   width: 60%;
@@ -160,18 +127,18 @@ export const ToggleP = styled.p`
 
 export const DiaryToggleTitleDiv = styled.div`
   width: 40%;
-  height: 100%;
+  height: 70%;
   text-align: center;
-  transform: translateX(115px);
-
-  margin-bottom: 20px;
+  transform: translateX(127px);
+  /* background-color: blue; */
+  /* margin-bottom: 20px; */
 `;
 
 export const CustomToggle = styled(Toggle)`
   .react-toggle-track {
     background-color: ${(props) => (props.checked ? '#8066D1' : '#CFC0FF')};
-    width: 130px;
-    height: 38px;
+    width: 82px;
+    height: 26px;
     border: 2px solid var(--main, #391d93);
     margin-top: 10px;
   }
@@ -179,10 +146,10 @@ export const CustomToggle = styled(Toggle)`
   //thumb의 스타일 지정
   .react-toggle-thumb {
     background-color: ${(props) => (props.checked ? '#391D93' : '#391D93')};
-    width: 50px;
-    height: 50px;
+    width: 38px;
+    height: 38px;
     border-radius: 100px;
-    transform: translate(${(props) => (props.checked ? '60px' : '0px')}, 4px);
+    transform: translate(${(props) => (props.checked ? '30px' : '0px')}, 4px);
   }
 
   //토글이 켜진 상태
@@ -233,6 +200,15 @@ export const SubTitleSpan = styled.span`
 export const PublicTextDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
-  margin-top: 15px;
+  /* margin-left: 15px; */
+  /* margin-top: 15px; */
+`;
+
+export const emojiImgBox = styled.div`
+  width: 130px;
+  height: 130px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

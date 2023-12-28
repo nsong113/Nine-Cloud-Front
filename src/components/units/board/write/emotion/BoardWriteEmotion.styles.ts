@@ -8,10 +8,11 @@ export const EmotionContainerDiv = styled.div`
   width: 100%;
   height: 960px;
   overflow: hidden;
-  background-image: url('/bg_final_final.png');
+  background-color: white;
+  /* background-image: url('/bg_final_final.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 `;
 
 export const EmotionWrapperUPDiv = styled.div`
@@ -216,7 +217,7 @@ export const SliderInput = styled.input<ISliderInputProps>`
   background: ${(props) => {
     const percentage =
       ((props.value - props.min) / (props.max - props.min)) * 100;
-    return `linear-gradient(to right, #9279E1 0%, #9279E1 ${percentage}%, #ECE9F5 ${percentage}%, #ECE9F5 100%)`;
+    return `linear-gradient(to right, #5035A6 0%, #ECE9F5 ${percentage}%, white ${percentage}%, white 100%)`;
   }};
 
   &:focus {
@@ -336,41 +337,4 @@ export const ContentBoxSpan = styled.span`
   font-weight: 500;
   color: #222122;
   font-size: 18px;
-`;
-
-export const ButtonBoxDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
-  margin-top: 50px;
-`;
-
-export const PrevButton = styled.button`
-  width: 30%;
-  height: 60px;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px 20px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: #fff;
-  color: var(--1, #5035a6);
-  font-size: 20px;
-  font-weight: 500;
-`;
-
-export const NextButton = styled.button`
-  width: 60%;
-  height: 60px;
-  outline: none;
-  cursor: pointer;
-
-  border-radius: 20px 5px;
-  border: 1px solid var(--1-1, #ece9f5);
-  background: var(--1-1, #ece9f5);
-  color: var(--1, #5035a6);
-  font-size: 20px;
-  font-weight: 500;
 `;

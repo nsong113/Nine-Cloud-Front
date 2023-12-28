@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
@@ -9,6 +9,7 @@ import ReactQuill from 'react-quill';
 import './Quill.snow.css';
 import { useRecoilState } from 'recoil';
 import { contents } from 'src/states/counter';
+import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const BoardWriteDiary = () => {
 
   const [todayRandomSaying, setTodayRandomSaying] = useState('');
   let existedSentence: string | null = localStorage.getItem('sentence');
+
+  const [validate, setValidate] = useState(true);
 
   const onChangeContents = (value: string) => {
     setContentsToday(value === '<p><br></p>' ? '' : value);
@@ -29,9 +32,20 @@ const BoardWriteDiary = () => {
   const onClickPrevPage = () => {
     navigate('/post');
   };
-  const onClickNextBtn = () => {
-    navigate('/post2');
+  const onClickNextPageBtn = () => {
+    if (contentsToday) {
+      navigate('/post2');
+    }
+    if (!contentsToday) {
+      setValidate(false);
+    }
   };
+
+  // useEffect(() => {
+  //   if (!contentsToday) {
+  //     setValidate(false);
+  //   }
+  // }, [onClickNextPageBtn]);
 
   localStorage.setItem('sentence', todayRandomSaying);
 
@@ -135,10 +149,14 @@ const BoardWriteDiary = () => {
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
             </S.ContentsWrapperDiv>
-            <S.FooterButtonBoxDiv>
-              <S.PrevButton onClick={onClickPrevPage}>이전</S.PrevButton>
-              <S.NextButton onClick={onClickNextBtn}>다음</S.NextButton>
-            </S.FooterButtonBoxDiv>
+            <S.Validate color={contentsToday} fontColor={validate}>
+              일기를 작성해야 다음 페이지로 넘어갈 수 있어요.
+            </S.Validate>
+            <PostBtn
+              onClickPrevPage={onClickPrevPage}
+              onClickNextPageBtn={onClickNextPageBtn}
+              page={'write'}
+            />
           </S.DiaryWrapperDOWNdiv>
         </S.DiaryContainerDiv>
       </Animation2>

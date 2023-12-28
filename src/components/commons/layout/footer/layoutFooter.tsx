@@ -21,10 +21,7 @@ const Footer = () => {
   );
 
   const today = getDate(currentDate) - 1;
-
   const diaryCheck = data?.data[today]?.diaryId;
-
-
   const navigate = useNavigate();
 
   const goToMainHandler = () => {
@@ -47,7 +44,7 @@ const Footer = () => {
         reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
-            navigate(`/post/${diaryCheck}`);
+          navigate(`/post/${diaryCheck}`);
         }
       });
       return;
