@@ -10,6 +10,7 @@ import { IMyPage, IMyPost } from './MyPageOverlay.types';
 import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import Swal from 'sweetalert2';
 import {
   editMyInfo,
   editPassword,
@@ -23,7 +24,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const queryClient = useQueryClient();
   const { data } = useQuery('myInfo', getMyInfo);
 
-  console.log('사진', data?.data);
   const navigate = useNavigate();
   const [imgFile, setImgFile] = useState<File | null>();
   const buttonRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -58,7 +58,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     }
   };
 
-  console.log('selectedImage', selectedImage);
+
   useEffect(() => {
     if (imgFile) {
       const reader = new FileReader();
@@ -114,8 +114,20 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('expiredTime');
-    alert('로그아웃이 완료되었습니다.');
-    navigate('/login');
+    Swal.fire({
+      icon: 'success',
+      width: '400px',
+      title:
+        '<span style="font-size: 24px; font-weight : bolder;"> 성공적으로 처리 됐습니다.</span>',
+      confirmButtonText: '확인',
+      showLoaderOnConfirm: true,
+      allowOutsideClick: () => !Swal.isLoading(),
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/login');
+      }
+    });
   };
   const onClickUnRegister = async () => {
     try {
@@ -132,6 +144,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('expiredTime');
       alert(response.data.message);
+
       navigate('/login');
     } catch (error: any) {
       console.error('네트워크 오류', error.message);
@@ -170,7 +183,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                   alt='엑박'
                   isEdit={isEdit}
                 />
-
               </S.ImageBoxDiv>
             </S.ImageBoxDiv>
             <S.ImagePlustButtonBox>

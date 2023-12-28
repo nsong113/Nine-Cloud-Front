@@ -134,15 +134,6 @@ export const addComment = async (target: IAddComment) => {
         },
       }
     );
-    Swal.fire({
-      icon: 'success',
-      width: '400px',
-      // title: '<span style="font-size: 24px;">댓글 작성이 완료됐습니다</span>',
-      title: '댓글 작성이 완료됐습니다',
-      confirmButtonText: '확인',
-      showLoaderOnConfirm: true,
-      allowOutsideClick: () => !Swal.isLoading(),
-    });
     return response.data;
   } catch (error) {
     console.log('테스트');
@@ -163,24 +154,8 @@ export const editComment = async (target: IEditComment) => {
         },
       }
     );
-    Swal.fire({
-      icon: 'success',
-      width: '400px',
-      title: '댓글 수정이 완료됐습니다',
-      confirmButtonText: '확인',
-      showLoaderOnConfirm: true,
-      allowOutsideClick: () => !Swal.isLoading(),
-    });
     return response.data;
   } catch (error) {
-    Swal.fire({
-      icon: 'error',
-      width: '400px',
-      title: '수정 권한이 없습니다.',
-      confirmButtonText: '확인',
-      showLoaderOnConfirm: true,
-      allowOutsideClick: () => !Swal.isLoading(),
-    });
     console.log('잘못된 접근입니다.');
   }
 };
@@ -262,7 +237,8 @@ export const editMyInfo = async (target: any) => {
     Swal.fire({
       icon: 'success',
       width: '400px',
-      title: '정상적으로 수정 됐습니다.',
+      title:
+        '<span style="font-size: 24px; font-weight : bolder;">정상적으로 수정 됐습니다.</span>',
       confirmButtonText: '확인',
       showLoaderOnConfirm: true,
       allowOutsideClick: () => !Swal.isLoading(),
@@ -349,7 +325,8 @@ export const updatePost = async (target: IUpdatePost) => {
     Swal.fire({
       icon: 'success',
       width: '400px',
-      title: '일기 수정이 완료됐습니다',
+      title:
+        '<span style="font-size: 24px; font-weight : bolder;">일기 수정이 완료됐습니다</span>',
       confirmButtonText: '확인',
       showLoaderOnConfirm: true,
       allowOutsideClick: () => !Swal.isLoading(),

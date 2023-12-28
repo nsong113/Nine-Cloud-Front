@@ -58,6 +58,7 @@ export const ImageButton = styled.button`
     background-color: #391d93;
     color: #fff;
   }
+  margin-top: 10px;
 `;
 
 export const ImagePlustButtonBox = styled.div``;

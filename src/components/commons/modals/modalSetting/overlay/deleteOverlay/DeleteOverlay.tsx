@@ -20,7 +20,7 @@ const DeleteOverlay: React.FC<IDelete> = ({ onOk, onClose }) => {
     <S.ContainerDiv className='modal' onClick={onClose}>
       <Animation3>
         <S.ModalContentDiv onClick={onClickModalDiv}>
-          <img src='/cloud2.png' alt='구름' />
+          <img src='/cloud.png.png' alt='구름' />
           <S.ContentsDiv>
             <S.TitleSpan>나인 클라우드를 정말 떠나시겠어요?</S.TitleSpan>
             <S.SubTitleSpan>
