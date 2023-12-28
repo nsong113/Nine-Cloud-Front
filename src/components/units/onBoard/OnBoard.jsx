@@ -78,14 +78,14 @@ export default function OnBoard() {
     underBalls.forEach((underBall, index) => {
       if (index === swiper.activeIndex) {
         // 활성 슬라이드인 경우 해당하는 스타일로 업데이트
-        underBall.style.width = '48px';
+        underBall.style.width = '7.15%';
         underBall.style.backgroundColor = '#391D93';
-        underBall.style.borderRadius = '15px';
-        underBall.style.borderTopLeftRadius = '0px';
-        underBall.style.borderBottomRightRadius = '0px';
+        underBall.style.borderRadius = '10px';
+        underBall.style.borderTopLeftRadius = '2px';
+        underBall.style.borderBottomRightRadius = '2px';
       } else {
         // 비활성 슬라이드인 경우 기본 스타일로 재설정
-        underBall.style.width = '24px'; // 비활성 슬라이드의 기본 너비
+        underBall.style.width = '15px'; // 비활성 슬라이드의 기본 너비
         underBall.style.backgroundColor = '#F5F2FF'; // 비활성 슬라이드의 기본 배경색
         underBall.style.borderRadius = '50%';
       }
@@ -112,7 +112,7 @@ export default function OnBoard() {
     <S.Base>
       <S.OnboardTitle>{title}</S.OnboardTitle>
       <S.OnboardContent>{content1}</S.OnboardContent>
-      <S.OnboardContent style={{ marginTop: '0px', marginBottom: '30px' }}>
+      <S.OnboardContent style={{ marginTop: '0px', marginBottom: '10px' }}>
         {content2}
       </S.OnboardContent>
       <Swiper
@@ -120,13 +120,13 @@ export default function OnBoard() {
         modules={[Pagination, Navigation]}
         className='mySwiper'
         onSlideChange={handleSlideChange}
-        style={{ width: '80%' }}
+        style={{ width: '90%' }}
       >
         <SwiperSlide
           style={{
             borderRadius: '10px',
-            height: '500px',
-            backgroundImage: 'url(/onboard01.png)',
+            height: '57.92vh',
+            backgroundImage: 'url(/onboard001.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -135,8 +135,8 @@ export default function OnBoard() {
         <SwiperSlide
           style={{
             borderRadius: '10px',
-            height: '500px',
-            backgroundImage: 'url(/onboard02.png)',
+            height: '57.92vh',
+            backgroundImage: 'url(/onboard002.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -145,8 +145,8 @@ export default function OnBoard() {
         <SwiperSlide
           style={{
             borderRadius: '10px',
-            height: '500px',
-            backgroundImage: 'url(/onboard03.png)',
+            height: '57.92vh',
+            backgroundImage: 'url(/onboard003.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -155,8 +155,8 @@ export default function OnBoard() {
         <SwiperSlide
           style={{
             borderRadius: '10px',
-            height: '500px',
-            backgroundImage: 'url(/onboard04.png)',
+            height: '57.92vh',
+            backgroundImage: 'url(/onboard004.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -184,12 +184,12 @@ export default function OnBoard() {
       <S.FlexCenter>
         <S.Button
           style={{
-            backgroundColor: isLastSlide ? '#391d93' : '#D9D9D9',
-            color: isLastSlide ? 'white' : 'black',
+            backgroundColor: isLastSlide ? '#391d93' : '#8066D1',
+            color: isLastSlide ? 'white' : 'white',
           }}
           onClick={handleButtonClick}
         >
-          {isLastSlide ? '로그인' : '다음'}
+          {isLastSlide ? '나인크라우드 시작하기' : '다음'}
         </S.Button>
       </S.FlexCenter>
     </S.Base>

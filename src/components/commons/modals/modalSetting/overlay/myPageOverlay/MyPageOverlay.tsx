@@ -142,7 +142,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
       });
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
-      localStorage.removeItem('expiredTime');
       alert(response.data.message);
 
       navigate('/login');
