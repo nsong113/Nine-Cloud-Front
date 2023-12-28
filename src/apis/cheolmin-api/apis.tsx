@@ -69,8 +69,6 @@ export const deletePost = async (id: any) => {
 
 export const getPosts = async (target: IGetPosts) => {
   try {
-    console.log(accessToken);
-    console.log(refreshToken);
     const response = await axiosInstance.get(
       `/diary/calendar/${target.currentYear}/${target.currentMonth}`,
       {
