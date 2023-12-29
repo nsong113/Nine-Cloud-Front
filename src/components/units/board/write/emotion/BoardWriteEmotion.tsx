@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable*/
+
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
@@ -8,21 +10,61 @@ import { useRecoilState } from 'recoil';
 import { countAverage, happyA, sadA, sleep, weather } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
+// interface EmotionState {
+//   happy: string;
+//   sad: string;
+//   todayWeather: string;
+//   todaySleep: string;
+// }
+
+// interface EmotionHandlers {
+//   onChangeHappyCount: (event: ChangeEvent<HTMLInputElement>) => void;
+//   onChangeSadCount: (event: ChangeEvent<HTMLInputElement>) => void;
+//   onChangeWeatherCount: (event: ChangeEvent<HTMLInputElement>) => void;
+//   onChangeTodaySleep: (event: ChangeEvent<HTMLInputElement>) => void;
+// }
+
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { emotion: happy, handler: onChangeHappyCount } = useSetEmotion();
-  const { emotion: sad, handler: onChangeSadCount } = useSetEmotion();
-  const { emotion: todayWeather, handler: onChangeWeatherCount } =
-    useSetEmotion();
-  const { emotion: todaySleep, handler: onChangeTodaySleep } = useSetEmotion();
+  const { happy, onChangeCount: onChangeHappyCount } = useSetEmotion({
+    emotionKey: 'happy',
+    emotionAtom: happyA,
+  });
 
-  const [happyAtom, setHappyAtom] = useRecoilState(happyA);
-  const [sadAtom, setSadAtom] = useRecoilState(sadA);
-  const [countAverageNum, setCountAverage] = useRecoilState(countAverage);
-  const [weatherToday, setWeatherToday] = useRecoilState(weather);
-  const [sleepToday, setSleepToday] = useRecoilState(sleep);
+  const { sad, onChangeCount: onChangeSadCount } = useSetEmotion({
+    emotionKey: 'sad',
+    emotionAtom: sadA,
+  });
+  const { todayWeather, onChangeCount: onChangeWeatherCount } = useSetEmotion({
+    emotionKey: 'todayWeather',
+    emotionAtom: weather,
+  });
+  const { todaySleep, onChangeCount: onChangeTodaySleep } = useSetEmotion({
+    emotionKey: 'todaySleep',
+    emotionAtom: sleep,
+  });
+
+  // const typedHappy: EmotionState['happy'] = happy;
+  // const typedSad: EmotionState['sad'] = sad;
+  // const typedTodayWeather: EmotionState['todayWeather'] = todayWeather;
+  // const typedTodaySleep: EmotionState['todaySleep'] = todaySleep;
+
+  // const typedOnChangeHappyCount: EmotionHandlers['onChangeHappyCount'] =
+  //   onChangeHappyCount;
+  // const typedOnChangeSadCount: EmotionHandlers['onChangeSadCount'] =
+  //   onChangeSadCount;
+  // const typedOnChangeWeatherCount: EmotionHandlers['onChangeWeatherCount'] =
+  //   onChangeWeatherCount;
+  // const typedOnChangeTodaySleep: EmotionHandlers['onChangeTodaySleep'] =
+  //   onChangeTodaySleep;
+
+  // type HappyType = string;
+  // type OnChangeHappyCountType = (event: ChangeEvent<HTMLInputElement>) => void;
+
+  // const typedHappy: HappyType = happy;
+  // const typedOnChangeHappyCount: OnChangeHappyCountType = onChangeHappyCount;
 
   const onClickMoveToMain = () => {
     setIsModalOpen(!isModalOpen);
@@ -36,22 +78,10 @@ const BoardWriteEmotion = () => {
     navigate('/post3');
   };
 
-  useEffect(() => {
-    setHappyAtom(happy);
-    setSadAtom(sad);
-    setSleepToday(todaySleep);
-    setWeatherToday(todayWeather);
-    setCountAverage((Number(happy) + Number(sad)) / 2);
-    setSleepToday(todaySleep);
-  }, [
-    happy,
-    sad,
-    todayWeather,
-    todaySleep,
-    setHappyAtom,
-    setSadAtom,
-    setWeatherToday,
-  ]);
+  // console.log('happyAtom', parseInt(happy as string), typeof happy);
+  // console.log('sadAtom', sad);
+  // console.log('weatherToday', todayWeather);
+  // console.log('sleepToday', todaySleep);
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
@@ -117,7 +147,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={5}
-                      value={parseInt(happy) || 1}
+                      value={parseInt(happy as string) || 1}
                       onChange={onChangeHappyCount}
                     />
                     <S.LabelsDiv>
@@ -153,7 +183,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={5}
-                      value={parseInt(sad) || 1}
+                      value={parseInt(sad as string) || 1}
                       onChange={onChangeSadCount}
                     />
                     <S.LabelsDiv>
@@ -190,7 +220,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={5}
-                      value={parseInt(todaySleep) || 1}
+                      value={parseInt(todaySleep as string) || 1}
                       onChange={onChangeTodaySleep}
                     />
                     <S.LabelsDiv>
@@ -224,7 +254,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={3}
-                      value={parseInt(todayWeather) || 1}
+                      value={parseInt(todayWeather as string) || 1}
                       onChange={onChangeWeatherCount}
                     />
                     <S.LabelsDiv>

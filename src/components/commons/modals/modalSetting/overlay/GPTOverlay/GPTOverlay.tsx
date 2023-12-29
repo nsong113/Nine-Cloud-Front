@@ -95,6 +95,7 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
         <S.ContainerDiv onClick={onOk}>
           {isLoading && <GPTloading />}
           <S.ModalContentDiv onClick={stopProp}>
+            <S.GptX onClick={onOk}></S.GptX>
             <S.GPTHeaderDiv>
               AI클라우드가 추천하는 <br />
               <S.GptSpan>감정 솔루션</S.GptSpan>

@@ -67,8 +67,8 @@ const Footer = () => {
           <IoAddCircle style={iconStyle} />
           <span className='list-item-name'>Post</span>
         </li>
-        <li className='list-item'>
-          <MdPeopleAlt style={iconStyle} onClick={goToCOmmunityHandler} />
+        <li className='list-item' onClick={goToCOmmunityHandler}>
+          <MdPeopleAlt style={iconStyle} />
           <span className='list-item-name'>Community</span>
         </li>
       </div>

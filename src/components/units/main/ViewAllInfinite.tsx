@@ -32,7 +32,7 @@ const ViewAllInfinite = (props: any) => {
       }
       break;
     default:
-      console.log('아무것도 아님');
+      // console.log('아무것도 아님');
       break;
   }
 
@@ -83,7 +83,7 @@ const ViewAllInfinite = (props: any) => {
       }
       break;
     default:
-      console.log('아무것도 아님');
+      // console.log('아무것도 아님');
       break;
   }
 
