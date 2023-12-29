@@ -85,7 +85,7 @@ const Signup = () => {
     } catch (error: any) {
       if (error.response) {
         // 서버 응답이 있는 경우
-        const errorMsg = error.response.data.msg;
+        const errorMsg = error.response.data.message;
         console.error('로그인 실패', errorMsg);
         alert(errorMsg);
       } else {
@@ -117,6 +117,7 @@ const Signup = () => {
         setNickname('');
         setAuthenticationcode('');
         setIsVerificationSent(false);
+        navigate('/login');
       }
     } catch (error) {
       console.error(error);

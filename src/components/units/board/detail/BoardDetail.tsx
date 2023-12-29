@@ -151,6 +151,7 @@ const BoardDetail = () => {
               <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
             </S.HeaderLeftBoxDiv>
             <S.HearderRightBoxDiv>
+              <div>공유하기 넣을 곳</div>
               <Tooltip message='공개'>
                 {detailedContent?.isPublic === true && (
                   <S.PublicPrivateImg src='/people.png' alt='공개' />

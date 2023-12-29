@@ -149,7 +149,7 @@ const LoginSignin = () => {
     setPassword(newPassword);
 
     const passwordRegex =
-      /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{8,20}$/;
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,20}$/;
     if (newPassword.trim() === '') {
       // 비밀번호가 비어 있다면 메시지 초기화
       setPasswordValidationMessage('');
