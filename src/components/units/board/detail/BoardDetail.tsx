@@ -288,12 +288,12 @@ const BoardDetail = () => {
                       {detailedContent.isPublic === true && (
                         <S.ChatBoxDiv>
                           <S.HeartWrapperDiv>
-                            {isHeart && (
-                              <S.CommentHeartImg onClick={onClickHeart} />
-                            )}
-                            {!isHeart && (
-                              <S.BlankHeartImg onClick={onClickHeart} />
-                            )}
+                            {/* {isHeart && ( */}
+                            <S.CommentHeartImg onClick={onClickHeart} />
+                            {/* )} */}
+                            {/* {!isHeart && ( */}
+                            {/* <S.BlankHeartImg onClick={onClickHeart} /> */}
+                            {/* )} */}
                             <S.HeartCommentTextSpan
                               public={detailedContent.isPublic}
                             >
