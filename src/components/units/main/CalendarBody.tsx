@@ -1,12 +1,13 @@
-import  { useMemo } from 'react';
+import { useMemo } from 'react';
 import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import getEmotion from 'src/components/commons/utills/emotionImage';
-import { targetDate } from 'src/states/emotionImage';
+import { arrowNavigate } from 'src/states/navigate';
 
 const CalendarBody = (props: any) => {
+  const [isGoingToMain, setIsGoingToMain] = useRecoilState(arrowNavigate);
   const navigate = useNavigate();
   const { weekCalendarList } = useCalendar();
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);
@@ -25,6 +26,7 @@ const CalendarBody = (props: any) => {
 
   const onClickGoToDetailHandler = (id: number) => () => {
     if (id !== 0) {
+      setIsGoingToMain(true);
       navigate(`/post/${id}`);
     } else {
       alert('작성하신 글이 없습니다.');

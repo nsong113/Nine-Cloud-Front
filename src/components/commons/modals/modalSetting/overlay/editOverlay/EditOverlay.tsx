@@ -15,7 +15,7 @@ const EditOverlay: React.FC<IEditPost> = ({
   setIsEdit,
   setIsClickedPencil,
 }) => {
-  const [isPublic, setIsPublic] = useState(false);
+  const [isPublic, setIsPublic] = useState(detailedContent?.isPublic);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
@@ -48,7 +48,6 @@ const EditOverlay: React.FC<IEditPost> = ({
     deleteMutation.mutate(params.id);
     navigate('/main');
   };
-
 
   const onClickEditBtn = () => {
     const myPost: IMyPost = {};
@@ -95,6 +94,10 @@ const EditOverlay: React.FC<IEditPost> = ({
             </S.HeaderWrapperDiv>
             <div>
               <S.ContentsContainerDiv>
+                {contents?.length === 0 && <S.BlankDiv></S.BlankDiv>}
+                {contents?.length !== 0 && (
+                  <S.TextAreaCount>{contents.length - 7}/200</S.TextAreaCount>
+                )}
                 <S.DiarySpace
                   theme='snow'
                   modules={quillModules}

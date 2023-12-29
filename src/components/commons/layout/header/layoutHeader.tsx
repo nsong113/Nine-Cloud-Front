@@ -34,7 +34,6 @@ const Header = () => {
     navigate('/main');
   };
 
-
   return (
     <S.CalendarContainerDiv>
       <S.HeaderContainerDiv>
