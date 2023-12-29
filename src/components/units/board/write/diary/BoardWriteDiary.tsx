@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
@@ -14,20 +14,36 @@ import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [contentNow, setContentNow] = useState<string>('');
   const [contentsToday, setContentsToday] = useRecoilState<string>(contents);
 
   const [todayRandomSaying, setTodayRandomSaying] = useState('');
   let existedSentence: string | null = localStorage.getItem('sentence');
 
   const [validate, setValidate] = useState(true);
+  // const quillRef = useRef();
+
+  const maxCharacters = 200;
 
   const onChangeContents = (value: string) => {
-    setContentsToday(value === '<p><br></p>' ? '' : value);
-    if (contentsToday.length > 199) {
-      alert('200자 이상 입력 불가합니다');
+    // setContentsToday(value === '<p><br></p>' ? '' : value);
+    const strippedValue = value.replace(/<[^>]*>/g, '');
+    setContentNow(strippedValue);
+
+    if (strippedValue.length <= maxCharacters) {
+      setContentsToday(value);
+      console.log('200자 작음');
+    }
+
+    if (strippedValue.length > maxCharacters) {
+      setContentsToday((prev) => prev);
+      console.log('200자 넘음');
+      alert('200자까지 입력 가능합니다.');
       return;
     }
   };
+
+  // const handleChange = (value: string) => {};
 
   const onClickPrevPage = () => {
     navigate('/post');
@@ -40,12 +56,6 @@ const BoardWriteDiary = () => {
       setValidate(false);
     }
   };
-
-  // useEffect(() => {
-  //   if (!contentsToday) {
-  //     setValidate(false);
-  //   }
-  // }, [onClickNextPageBtn]);
 
   localStorage.setItem('sentence', todayRandomSaying);
 
@@ -105,13 +115,15 @@ const BoardWriteDiary = () => {
                   <S.DiaryWriteTitleH3>
                     오늘의 <S.DiarySpan>일기</S.DiarySpan>를 작성해보세요!
                   </S.DiaryWriteTitleH3>
-                  <S.TextAreaCount>{contentsToday.length}/200</S.TextAreaCount>
+                  <S.TextAreaCount>{contentNow.length}/200</S.TextAreaCount>
                 </S.DiaryTitleDiv>
                 <S.InputDiv>
                   <ReactQuill
                     theme='snow'
                     style={ReactQuillStyle}
-                    onChange={onChangeContents}
+                    onChange={(e) => {
+                      onChangeContents(e);
+                    }}
                     defaultValue={contentsToday}
                     modules={quillModules}
                     placeholder='정성스럽게 마음일기를 적어주실 수록 디테일한 AI 감정 솔루션을 받아볼 수 있어요!'
