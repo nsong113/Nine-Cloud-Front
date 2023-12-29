@@ -33,7 +33,7 @@ const NaverLoginHandler = () => {
         navigate('/main');
         window.location.reload();
       } catch (error) {
-        console.error('로그인 실패', error);
+        alert("인터넷 오류입니다.");
       }
     };
     KakaoLogin();

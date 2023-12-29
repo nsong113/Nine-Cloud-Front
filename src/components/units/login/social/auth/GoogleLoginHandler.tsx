@@ -32,7 +32,7 @@ const GoogleLoginHandler = () => {
         navigate('/main');
         window.location.reload();
       } catch (error) {
-        console.error('로그인 실패', error);
+        alert('로그인 실패. 다시 시도해 주세요.');
       }
     };
     GoogleLogin();
