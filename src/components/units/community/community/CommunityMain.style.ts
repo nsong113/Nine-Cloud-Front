@@ -182,6 +182,8 @@ export const ViewAllEachBoxDiv = styled.div`
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(25px);
+
+  cursor: pointer;
 `;
 
 export const ViewAllEachFlex = styled.div`

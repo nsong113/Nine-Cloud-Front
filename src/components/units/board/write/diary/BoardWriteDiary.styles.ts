@@ -256,6 +256,10 @@ export const FortuneP = styled.p`
   font-weight: 300;
 `;
 
+export const AlreadyTookFortune = styled.div`
+  font-size: 10px;
+`;
+
 export const FortuneGoDiv = styled.div`
   width: 90px;
   height: 30px;

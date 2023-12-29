@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
@@ -21,29 +21,22 @@ const BoardWriteDiary = () => {
   let existedSentence: string | null = localStorage.getItem('sentence');
 
   const [validate, setValidate] = useState(true);
-  // const quillRef = useRef();
+  const [alreadyTook, setAlreadyTook] = useState('');
 
   const maxCharacters = 200;
 
   const onChangeContents = (value: string) => {
-    // setContentsToday(value === '<p><br></p>' ? '' : value);
     const strippedValue = value.replace(/<[^>]*>/g, '');
     setContentNow(strippedValue);
 
     if (strippedValue.length <= maxCharacters) {
       setContentsToday(value);
-      console.log('200자 작음');
-    }
-
-    if (strippedValue.length > maxCharacters) {
+    } else {
       setContentsToday((prev) => prev);
       console.log('200자 넘음');
-      alert('200자까지 입력 가능합니다.');
       return;
     }
   };
-
-  // const handleChange = (value: string) => {};
 
   const onClickPrevPage = () => {
     navigate('/post');
@@ -62,7 +55,9 @@ const BoardWriteDiary = () => {
   const onClickOpenFortune = () => {
     setIsModalOpen(true);
     if (existedSentence) {
-      alert('오늘 이미 포춘 클라우드를 뽑았습니다! 내일 다시 뽑아주세요');
+      setAlreadyTook(
+        '오늘 이미 포춘 클라우드를 뽑았습니다! 내일 다시 뽑아주세요'
+      );
     }
   };
 
@@ -124,6 +119,7 @@ const BoardWriteDiary = () => {
                     onChange={(e) => {
                       onChangeContents(e);
                     }}
+                    value={contentsToday.substring(0, 200)}
                     defaultValue={contentsToday}
                     modules={quillModules}
                     placeholder='정성스럽게 마음일기를 적어주실 수록 디테일한 AI 감정 솔루션을 받아볼 수 있어요!'
@@ -136,11 +132,14 @@ const BoardWriteDiary = () => {
               </S.DiaryWriteTitleH3>
               <S.FortuneContainer>
                 <S.FortuneFlexWrapper>
+                  {/* eslint-disable */}
                   <img
                     src={'/fortune_final.png'}
                     alt='fortune cookie'
                     style={cookieStyle}
+                    onClick={onClickOpenFortune}
                   />
+                  {/* eslint-enable */}
                   <S.FortuneBox>
                     <S.FortuneGoDiv onClick={onClickOpenFortune}>
                       열어보기
@@ -157,6 +156,7 @@ const BoardWriteDiary = () => {
                         {todayRandomSaying || existedSentence}
                       </S.FortuneP>
                     )}
+                    <S.AlreadyTookFortune>{alreadyTook}</S.AlreadyTookFortune>
                   </S.FortuneBox>
                 </S.FortuneFlexWrapper>
               </S.FortuneContainer>
