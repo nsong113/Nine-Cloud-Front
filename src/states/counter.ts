@@ -39,3 +39,8 @@ export const isOut = atom({
   key: 'isOut',
   default: true,
 });
+
+export const sentence = atom({
+  key: 'sentence',
+  default: '',
+});

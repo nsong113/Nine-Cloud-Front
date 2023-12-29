@@ -13,6 +13,7 @@ import {
   sleep,
   weather,
   isPublic,
+  sentence,
 } from 'src/states/counter';
 import useMakeEmotionEmoji from 'src/components/commons/hooks/useMakeEmotionEmoji';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
@@ -36,6 +37,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
     useState<IpostDiaryItem | null>(null);
 
   const { emotionPicture } = useMakeEmotionEmoji();
+  const [sentenceAtom, setSentence] = useRecoilState(sentence);
 
   useEffect(() => {
     if (postDiaryItem) {
@@ -44,7 +46,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
         content: contentsToday,
         image: postDiaryItem.image,
         isPublic: isPublicToday,
-        sentence: localStorage.getItem('sentence'),
+        sentence: sentenceAtom,
         weather: weatherToday,
         temperature: temperatureAtom,
         humid: humidAtom,

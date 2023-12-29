@@ -5,16 +5,16 @@ import { ICloudModal } from './FortuneCloudModal.types';
 
 const FortuneCloudModal: React.FC<ICloudModal> = ({
   goBackFortune,
-  todayRandomSaying,
-  setTodayRandomSaying,
+  // todayRandomSaying,
+  // setTodayRandomSaying,
 }) => {
   return (
     <div>
       {ReactDOM.createPortal(
         <FortuneOverlay
           goBackFortune={goBackFortune}
-          todayRandomSaying={todayRandomSaying}
-          setTodayRandomSaying={setTodayRandomSaying}
+          // todayRandomSaying={todayRandomSaying}
+          // setTodayRandomSaying={setTodayRandomSaying}
         />,
         document.getElementById('overlay-root') as HTMLElement
       )}
@@ -23,4 +23,3 @@ const FortuneCloudModal: React.FC<ICloudModal> = ({
 };
 
 export default FortuneCloudModal;
-

@@ -8,7 +8,7 @@ import { FaCheck } from 'react-icons/fa6';
 import ReactQuill from 'react-quill';
 import './Quill.snow.css';
 import { useRecoilState } from 'recoil';
-import { contents } from 'src/states/counter';
+import { contents, sentence } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
 const BoardWriteDiary = () => {
@@ -16,10 +16,7 @@ const BoardWriteDiary = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [contentNow, setContentNow] = useState<string>('');
   const [contentsToday, setContentsToday] = useRecoilState<string>(contents);
-
-  const [todayRandomSaying, setTodayRandomSaying] = useState('');
-  let existedSentence: string | null = localStorage.getItem('sentence');
-
+  const [sentenceAtom, setSentence] = useRecoilState(sentence);
   const [validate, setValidate] = useState(true);
   const [alreadyTook, setAlreadyTook] = useState('');
 
@@ -50,14 +47,13 @@ const BoardWriteDiary = () => {
     }
   };
 
-  localStorage.setItem('sentence', todayRandomSaying);
-
   const onClickOpenFortune = () => {
-    setIsModalOpen(true);
-    if (existedSentence) {
+    if (sentenceAtom) {
       setAlreadyTook(
         '오늘 이미 포춘 클라우드를 뽑았습니다! 내일 다시 뽑아주세요'
       );
+    } else {
+      setIsModalOpen(true);
     }
   };
 
@@ -68,13 +64,7 @@ const BoardWriteDiary = () => {
   return (
     <div>
       <Animation2>
-        {!existedSentence && isModalOpen && (
-          <FortuneCloudModal
-            goBackFortune={goBackFortune}
-            todayRandomSaying={todayRandomSaying}
-            setTodayRandomSaying={setTodayRandomSaying}
-          />
-        )}
+        {isModalOpen && <FortuneCloudModal goBackFortune={goBackFortune} />}
         <S.DiaryContainerDiv>
           <S.DiaryWrapperUPDiv>
             <S.HeaderButtonBoxDiv>
@@ -145,17 +135,13 @@ const BoardWriteDiary = () => {
                       열어보기
                     </S.FortuneGoDiv>
 
-                    {!todayRandomSaying && !existedSentence && (
+                    {!sentenceAtom && (
                       <S.FortuneP>
                         포춘 클라우드는 하루에 한 번만 뽑을 수 있어요.
                       </S.FortuneP>
                     )}
 
-                    {(todayRandomSaying || existedSentence) && (
-                      <S.FortuneP>
-                        {todayRandomSaying || existedSentence}
-                      </S.FortuneP>
-                    )}
+                    {sentenceAtom && <S.FortuneP>{sentenceAtom}</S.FortuneP>}
                     <S.AlreadyTookFortune>{alreadyTook}</S.AlreadyTookFortune>
                   </S.FortuneBox>
                 </S.FortuneFlexWrapper>

@@ -1,47 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ICloudModal } from '../../../fortuneCloud/FortuneCloudModal.types';
 import * as S from './FortuneOverlay.styles';
 import { RandomSaying } from 'src/components/units/board/write/diary/RandomSentences';
+import { useRecoilState } from 'recoil';
+import { sentence } from 'src/states/counter';
 
-const FortuneOverlay: React.FC<ICloudModal> = ({
-  goBackFortune,
-  todayRandomSaying,
-  setTodayRandomSaying,
-}) => {
+const FortuneOverlay: React.FC<ICloudModal> = ({ goBackFortune }) => {
   const [showNote, setShowNote] = useState(false);
+  const [sentenceAtom, setSentence] = useRecoilState(sentence);
 
-  const onClickShowSaying = () => {
+  const onClickShowSaying = (e: React.MouseEvent<HTMLImageElement>) => {
+    e.stopPropagation();
     setShowNote(true);
   };
-  const onClickMakeRandom = () => {
-    const existedSentence = localStorage.getItem('sentence');
-    if (existedSentence) {
-      return alert('오늘의 명언을 이미 뽑으셨습니다. 내일 다시 뽑아보세요!');
-    }
 
+  const onClickMakeRandom = () => {
     const countAverage = Number(localStorage.getItem('countAverage'));
     if (countAverage >= 0 && countAverage < 2) {
       const todayRandom =
         RandomSaying.sad[Math.floor(Math.random() * RandomSaying.sad.length)];
-      setTodayRandomSaying(todayRandom);
+      setSentence(todayRandom);
     } else if (countAverage >= 2 && countAverage < 3) {
       const todayRandom =
         RandomSaying.soso[Math.floor(Math.random() * RandomSaying.soso.length)];
-      setTodayRandomSaying(todayRandom);
+      setSentence(todayRandom);
     } else if (countAverage >= 3 && countAverage < 4) {
       const todayRandom =
         RandomSaying.soso[Math.floor(Math.random() * RandomSaying.soso.length)];
-      setTodayRandomSaying(todayRandom);
+      setSentence(todayRandom);
     } else if (countAverage >= 5) {
       const todayRandom =
         RandomSaying.happy[
           Math.floor(Math.random() * RandomSaying.happy.length)
         ];
-      setTodayRandomSaying(todayRandom);
+      setSentence(todayRandom);
     }
   };
-
-  localStorage.setItem('sentence', todayRandomSaying);
 
   return (
     <S.ContainerDiv
@@ -59,14 +53,14 @@ const FortuneOverlay: React.FC<ICloudModal> = ({
           src='/fortune_break.png'
           alt='쿠키이미지'
           style={imgStyle}
-          onClick={() => {
-            onClickShowSaying();
+          onClick={(e) => {
+            onClickShowSaying(e);
             onClickMakeRandom();
           }}
         />
         {showNote && (
           <div>
-            <S.ShowNoteP>{todayRandomSaying}</S.ShowNoteP>
+            <S.ShowNoteP>{sentenceAtom}</S.ShowNoteP>
             <img
               src='/fortune_box.png'
               alt='포춘쿠키 종이'
