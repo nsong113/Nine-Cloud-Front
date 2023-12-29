@@ -302,6 +302,7 @@ export const NameInput = styled.input`
   border-radius: 2px 10px;
   background: var(--contents-box, #f5f2ff);
   border: 0px;
+  padding-left : 20px;
 `;
 
 export const ChangePasswordSpan = styled.span`

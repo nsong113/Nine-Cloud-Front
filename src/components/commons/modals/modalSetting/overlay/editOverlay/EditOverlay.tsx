@@ -50,6 +50,10 @@ const EditOverlay: React.FC<IEditPost> = ({
   };
 
   const onClickEditBtn = () => {
+    if (contents === '' && isPublic === detailedContent.isPublic) {
+      alert('수정된 사항이 없습니다 다시 확인해주세요');
+      return;
+    }
     const myPost: IMyPost = {};
     if (contents) myPost.contents = contents;
     if (isPublic) myPost.isPublic = isPublic;
@@ -73,10 +77,12 @@ const EditOverlay: React.FC<IEditPost> = ({
   };
 
   const onChangeContents = (value: string) => {
+    console.log('value', value.length);
     setContents(value === '<p><br></p>' ? '' : value);
-    if (contents.length > 205) {
-      alert('200자 이상 입력 불가합니다');
-      return;
+    if (value.length <= 200) {
+      setContents(value);
+    } else {
+      alert('200자가 넘었다');
     }
   };
 

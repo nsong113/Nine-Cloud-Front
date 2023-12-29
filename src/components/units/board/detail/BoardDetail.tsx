@@ -115,7 +115,7 @@ const BoardDetail = () => {
     ? new Date(detailedContent.createdAt)
     : null;
 
-  const text = "123"
+  const text = '123';
 
   if (createdAtDate) {
     createdAtDate.setHours(createdAtDate.getHours() - 9);
@@ -289,13 +289,9 @@ const BoardDetail = () => {
                     <div>
                       {detailedContent.isPublic === true && (
                         <S.ChatBoxDiv>
-                          <S.HeartWrapperDiv>
-                            {isHeart && (
-                              <S.CommentHeartImg onClick={onClickHeart} />
-                            )}
-                            {!isHeart && (
-                              <S.BlankHeartImg onClick={onClickHeart} />
-                            )}
+                          <S.HeartWrapperDiv onClick={onClickHeart}>
+                            {isHeart && <S.CommentHeartImg />}
+                            {!isHeart && <S.BlankHeartImg />}
                             <S.HeartCommentTextSpan
                               public={detailedContent.isPublic}
                             >

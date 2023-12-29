@@ -58,7 +58,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     }
   };
 
-
   useEffect(() => {
     if (imgFile) {
       const reader = new FileReader();
