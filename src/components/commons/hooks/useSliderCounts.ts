@@ -14,7 +14,7 @@ const useSliderCounts = (detailedContent: any) => {
       case detailedContent?.temperature === '5':
         return '열정넘쳐요';
       default:
-        console.log('아무것도 아님');
+        // console.log('아무것도 아님');
         break;
     }
   };
@@ -32,7 +32,7 @@ const useSliderCounts = (detailedContent: any) => {
       case detailedContent?.humid === '5':
         return '상쾌해요';
       default:
-        console.log('아무것도 아님');
+        // console.log('아무것도 아님');
         break;
     }
   };
@@ -50,7 +50,7 @@ const useSliderCounts = (detailedContent: any) => {
       case detailedContent?.sleep === '5':
         return '매우 좋아요';
       default:
-        console.log('아무것도 아님');
+        // console.log('아무것도 아님');
         break;
     }
   };
