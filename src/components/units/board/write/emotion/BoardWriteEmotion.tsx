@@ -4,7 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
-import { happyA, isOut, sadA, sleep, weather } from 'src/states/counter';
+import {
+  countAverage,
+  happyA,
+  isOut,
+  sadA,
+  sleep,
+  weather,
+} from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { useRecoilState } from 'recoil';
 
@@ -12,8 +19,8 @@ const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
-
-  console.log('1', out);
+  const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
+  // console.log('1', out);
 
   const { happy, onChangeCount: onChangeHappyCount } = useSetEmotion({
     emotionKey: 'happy',
@@ -32,6 +39,12 @@ const BoardWriteEmotion = () => {
     emotionKey: 'todaySleep',
     emotionAtom: sleep,
   });
+
+  useEffect(() => {
+    setCountAverageAtom(
+      (parseInt(happy as string) + parseInt(sad as string)) / 2
+    );
+  }, [happy, sad]);
 
   const onClickMoveToMain = () => {
     setIsModalOpen(!isModalOpen);
