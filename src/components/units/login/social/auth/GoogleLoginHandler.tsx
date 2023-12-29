@@ -33,6 +33,7 @@ const GoogleLoginHandler = () => {
         window.location.reload();
       } catch (error) {
         console.error('로그인 실패', error);
+        alert(error);
       }
     };
     GoogleLogin();
