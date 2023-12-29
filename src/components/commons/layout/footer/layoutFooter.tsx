@@ -9,9 +9,12 @@ import { getPosts } from 'src/apis/cheolmin-api/apis';
 import useCalendar from '../../hooks/useCalender';
 import { format, getYear, getDate } from 'date-fns';
 import Swal from 'sweetalert2';
+import { useRecoilState } from 'recoil';
+import { isOut } from 'src/states/counter';
 
 const Footer = () => {
   const { currentDate, currentMonth, currentYear } = useCalendar();
+  const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
 
   const { data } = useQuery(['posts', currentMonth, currentYear], () =>
     getPosts({
@@ -50,7 +53,10 @@ const Footer = () => {
       return;
     }
     navigate('/post');
+    setOut(true);
   };
+
+  console.log('2', out);
 
   const goToCOmmunityHandler = () => {
     navigate('/community');

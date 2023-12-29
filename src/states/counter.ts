@@ -34,3 +34,8 @@ export const isPublic = atom({
   key: 'isPublic',
   default: true,
 });
+
+export const isOut = atom({
+  key: 'isOut',
+  default: true,
+});

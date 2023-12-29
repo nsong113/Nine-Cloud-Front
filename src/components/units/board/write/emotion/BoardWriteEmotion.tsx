@@ -1,32 +1,19 @@
-/* eslint-disable*/
-
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
-import { useRecoilState } from 'recoil';
-import { countAverage, happyA, sadA, sleep, weather } from 'src/states/counter';
+import { happyA, isOut, sadA, sleep, weather } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
-
-// interface EmotionState {
-//   happy: string;
-//   sad: string;
-//   todayWeather: string;
-//   todaySleep: string;
-// }
-
-// interface EmotionHandlers {
-//   onChangeHappyCount: (event: ChangeEvent<HTMLInputElement>) => void;
-//   onChangeSadCount: (event: ChangeEvent<HTMLInputElement>) => void;
-//   onChangeWeatherCount: (event: ChangeEvent<HTMLInputElement>) => void;
-//   onChangeTodaySleep: (event: ChangeEvent<HTMLInputElement>) => void;
-// }
+import { useRecoilState } from 'recoil';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
+
+  console.log('1', out);
 
   const { happy, onChangeCount: onChangeHappyCount } = useSetEmotion({
     emotionKey: 'happy',
@@ -46,42 +33,18 @@ const BoardWriteEmotion = () => {
     emotionAtom: sleep,
   });
 
-  // const typedHappy: EmotionState['happy'] = happy;
-  // const typedSad: EmotionState['sad'] = sad;
-  // const typedTodayWeather: EmotionState['todayWeather'] = todayWeather;
-  // const typedTodaySleep: EmotionState['todaySleep'] = todaySleep;
-
-  // const typedOnChangeHappyCount: EmotionHandlers['onChangeHappyCount'] =
-  //   onChangeHappyCount;
-  // const typedOnChangeSadCount: EmotionHandlers['onChangeSadCount'] =
-  //   onChangeSadCount;
-  // const typedOnChangeWeatherCount: EmotionHandlers['onChangeWeatherCount'] =
-  //   onChangeWeatherCount;
-  // const typedOnChangeTodaySleep: EmotionHandlers['onChangeTodaySleep'] =
-  //   onChangeTodaySleep;
-
-  // type HappyType = string;
-  // type OnChangeHappyCountType = (event: ChangeEvent<HTMLInputElement>) => void;
-
-  // const typedHappy: HappyType = happy;
-  // const typedOnChangeHappyCount: OnChangeHappyCountType = onChangeHappyCount;
-
   const onClickMoveToMain = () => {
     setIsModalOpen(!isModalOpen);
   };
 
   const onClickSubmit = () => {
+    setOut(false);
     navigate('/main');
   };
 
   const onClickNextPage = () => {
     navigate('/post3');
   };
-
-  // console.log('happyAtom', parseInt(happy as string), typeof happy);
-  // console.log('sadAtom', sad);
-  // console.log('weatherToday', todayWeather);
-  // console.log('sleepToday', todaySleep);
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './ModalOverlay.styles';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 
