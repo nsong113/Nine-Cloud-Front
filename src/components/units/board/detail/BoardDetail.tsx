@@ -37,8 +37,6 @@ const BoardDetail = () => {
   const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
-    // 컴포넌트가 마운트될 때 쿼리를 가져오는 로직
-
     return () => {
       // 컴포넌트가 언마운트될 때 쿼리를 삭제하는 로직
       queryClient.removeQueries(['post']);
