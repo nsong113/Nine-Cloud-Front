@@ -51,7 +51,7 @@ const BoardDetailComment: React.FC<IComment> = ({
   });
 
   const onClickSubmitBtn = () => {
-    if (content === '') {
+    if (content.trim() === '') {
       alert('작성하신 내용이 없습니다');
       return;
     }
@@ -148,7 +148,7 @@ const BoardDetailComment: React.FC<IComment> = ({
                 </S.CommentFooterWrapDiv>
               </S.CommentBox>
               {content.length !== 0 && (
-                <S.CountCheckSpan>{content.length}/200</S.CountCheckSpan>
+                <S.CountCheckSpan>{content.length}/20</S.CountCheckSpan>
               )}
             </S.CommentsWrapperDiv>
           )}
