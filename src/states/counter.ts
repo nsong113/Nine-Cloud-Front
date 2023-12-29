@@ -1,18 +1,18 @@
-import { atom, selector } from 'recoil';
+import { atom } from 'recoil';
 
 export const countAverage = atom({
   key: 'countAverage',
-  default: 5,
+  default: 53,
 });
 
 export const happyA = atom({
   key: 'happyA',
-  default: '5',
+  default: '3',
 });
 
 export const sadA = atom({
   key: 'sadA',
-  default: '5',
+  default: '3',
 });
 
 export const weather = atom({
@@ -32,5 +32,10 @@ export const contents = atom({
 
 export const isPublic = atom({
   key: 'isPublic',
+  default: true,
+});
+
+export const isOut = atom({
+  key: 'isOut',
   default: true,
 });

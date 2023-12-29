@@ -543,6 +543,8 @@ export const GPTBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 `;
 
 export const GPTFlexBox = styled.div`

@@ -50,12 +50,15 @@ export const ModalContentDiv = styled.div`
   border-radius: 50px 50px 0 0;
   animation: ${slideIn} 0.5s ease-in-out;
 
+  ////////////////////////////
   border-radius: 5px 20px;
   background: rgba(245, 242, 255, 0.7);
+
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 5px 50px 0px rgba(57, 29, 147, 0.2),
     0px -5px 50px 0px rgba(57, 29, 147, 0.2);
   backdrop-filter: blur(15px);
+  //////////////////////////
 
   margin: 0 auto;
   padding: 20px;
@@ -119,7 +122,7 @@ export const ModalContentDivGo = styled.div`
   animation: ${slideIn} 0.5s ease-in-out;
 
   border-radius: 5px 20px;
-  background: rgba(245, 242, 255, 1);
+  background: #f5f2ff;
 
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 5px 50px 0px rgba(57, 29, 147, 0.2),

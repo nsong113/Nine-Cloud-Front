@@ -1,57 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
-import { useRecoilState } from 'recoil';
-import { countAverage, happyA, sadA, sleep, weather } from 'src/states/counter';
+import { happyA, isOut, sadA, sleep, weather } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
+import { useRecoilState } from 'recoil';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
 
-  const { emotion: happy, handler: onChangeHappyCount } = useSetEmotion();
-  const { emotion: sad, handler: onChangeSadCount } = useSetEmotion();
-  const { emotion: todayWeather, handler: onChangeWeatherCount } =
-    useSetEmotion();
-  const { emotion: todaySleep, handler: onChangeTodaySleep } = useSetEmotion();
+  console.log('1', out);
 
-  const [happyAtom, setHappyAtom] = useRecoilState(happyA);
-  const [sadAtom, setSadAtom] = useRecoilState(sadA);
-  const [countAverageNum, setCountAverage] = useRecoilState(countAverage);
-  const [weatherToday, setWeatherToday] = useRecoilState(weather);
-  const [sleepToday, setSleepToday] = useRecoilState(sleep);
+  const { happy, onChangeCount: onChangeHappyCount } = useSetEmotion({
+    emotionKey: 'happy',
+    emotionAtom: happyA,
+  });
+
+  const { sad, onChangeCount: onChangeSadCount } = useSetEmotion({
+    emotionKey: 'sad',
+    emotionAtom: sadA,
+  });
+  const { todayWeather, onChangeCount: onChangeWeatherCount } = useSetEmotion({
+    emotionKey: 'todayWeather',
+    emotionAtom: weather,
+  });
+  const { todaySleep, onChangeCount: onChangeTodaySleep } = useSetEmotion({
+    emotionKey: 'todaySleep',
+    emotionAtom: sleep,
+  });
 
   const onClickMoveToMain = () => {
     setIsModalOpen(!isModalOpen);
   };
 
   const onClickSubmit = () => {
+    setOut(false);
     navigate('/main');
   };
 
   const onClickNextPage = () => {
     navigate('/post3');
   };
-
-  useEffect(() => {
-    setHappyAtom(happy);
-    setSadAtom(sad);
-    setSleepToday(todaySleep);
-    setWeatherToday(todayWeather);
-    setCountAverage((Number(happy) + Number(sad)) / 2);
-    setSleepToday(todaySleep);
-  }, [
-    happy,
-    sad,
-    todayWeather,
-    todaySleep,
-    setHappyAtom,
-    setSadAtom,
-    setWeatherToday,
-  ]);
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
@@ -117,7 +110,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={5}
-                      value={parseInt(happy) || 1}
+                      value={parseInt(happy as string) || 1}
                       onChange={onChangeHappyCount}
                     />
                     <S.LabelsDiv>
@@ -153,7 +146,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={5}
-                      value={parseInt(sad) || 1}
+                      value={parseInt(sad as string) || 1}
                       onChange={onChangeSadCount}
                     />
                     <S.LabelsDiv>
@@ -190,7 +183,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={5}
-                      value={parseInt(todaySleep) || 1}
+                      value={parseInt(todaySleep as string) || 1}
                       onChange={onChangeTodaySleep}
                     />
                     <S.LabelsDiv>
@@ -224,7 +217,7 @@ const BoardWriteEmotion = () => {
                       type='range'
                       min={1}
                       max={3}
-                      value={parseInt(todayWeather) || 1}
+                      value={parseInt(todayWeather as string) || 1}
                       onChange={onChangeWeatherCount}
                     />
                     <S.LabelsDiv>

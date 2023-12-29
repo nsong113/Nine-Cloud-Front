@@ -123,7 +123,6 @@ export const PencilBtn = styled(LuPencil)`
 
 export const EditTextSpan = styled.span`
   color: #000;
-  text-align: ;
   font-size: 13px;
   font-weight: 300;
   line-height: normal;
@@ -203,3 +202,7 @@ export const NoCommentSpan = styled.span`
 `;
 
 export const CommentSettingDiv = styled.div``;
+
+export const CountCheckSpan = styled.span`
+  margin-left: 20px;
+`;

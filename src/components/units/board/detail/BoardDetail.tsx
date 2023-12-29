@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useState } from 'react';
 import * as S from './BoardDetail.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
@@ -20,10 +21,12 @@ import getEmotion from 'src/components/commons/utills/emotionImage';
 import useSliderCounts from 'src/components/commons/hooks/useSliderCounts';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import DiaryDeleteModal from 'src/components/commons/modals/diaryDelete/diaryDelete';
+import { useRecoilState } from 'recoil';
+import { arrowNavigate } from 'src/states/navigate';
 
 const BoardDetail = () => {
   const queryClient = useQueryClient();
-
+  const [isGoingToMain, setIsGoingToMain] = useRecoilState(arrowNavigate);
   const { currentDate, currentMonth } = useCalendar();
   const [isEdit, setIsEdit] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -32,6 +35,15 @@ const BoardDetail = () => {
   const [isHeart, setIsHeart] = useState(false);
   const [isClickedPencil, setIsClickedPencil] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 쿼리를 가져오는 로직
+
+    return () => {
+      // 컴포넌트가 언마운트될 때 쿼리를 삭제하는 로직
+      queryClient.removeQueries(['post']);
+    };
+  }, []);
 
   const onClickEdit = () => {
     setIsActiveModal((prev) => !prev);
@@ -57,9 +69,13 @@ const BoardDetail = () => {
     },
   });
 
+  console.log('data', data?.data?.likeExist);
+
   useEffect(() => {
     if (data?.like !== null) {
-      setIsHeart(true);
+      if (data?.like?.likeExist === true) {
+        setIsHeart(true);
+      }
     } else {
       setIsHeart(false);
     }
@@ -76,8 +92,14 @@ const BoardDetail = () => {
     return <Loading />;
   }
 
+  console.log('isGoingToMain', isGoingToMain);
+
   const onClickMoveToMain = () => {
-    navigate('/main');
+    if (isGoingToMain === true) {
+      navigate('/main');
+    } else if (isGoingToMain === false) {
+      navigate('/community');
+    }
   };
   const date = new Date(currentDate);
 
@@ -187,13 +209,9 @@ const BoardDetail = () => {
                 </S.EditPencilDiv>
               )}
               {profile?.data?.userId === data?.data?.UserId && (
-                <div style={{ height: '50px' }}>
-                  <S.PencilImg
-                    src='/dotdotdot.png'
-                    alt='수정버튼'
-                    onClick={onClickPencilImg}
-                  />
-                </div>
+                <S.DotWrapperDiv onClick={onClickPencilImg}>
+                  <S.PencilImg src='/dotdotdot.png' alt='수정버튼' />
+                </S.DotWrapperDiv>
               )}
             </S.PencilsBoxDiv>
             <div>
@@ -271,13 +289,13 @@ const BoardDetail = () => {
                     <div>
                       {detailedContent.isPublic === true && (
                         <S.ChatBoxDiv>
-                          <S.HeartWrapperDiv onClick={onClickHeart}>
-                            {/* {isHeart && ( */}
-                            <S.CommentHeartImg />
-                            {/* )} */}
-                            {/* {!isHeart && ( */}
-                            {/* <S.BlankHeartImg onClick={onClickHeart} /> */}
-                            {/* )} */}
+                          <S.HeartWrapperDiv>
+                            {isHeart && (
+                              <S.CommentHeartImg onClick={onClickHeart} />
+                            )}
+                            {!isHeart && (
+                              <S.BlankHeartImg onClick={onClickHeart} />
+                            )}
                             <S.HeartCommentTextSpan
                               public={detailedContent.isPublic}
                             >

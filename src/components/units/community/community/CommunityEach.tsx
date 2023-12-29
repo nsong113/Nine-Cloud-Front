@@ -3,9 +3,12 @@ import * as S from './CommunityMain.style';
 import { useNavigate } from 'react-router-dom';
 import * as DOMPurify from 'dompurify';
 import { VideoCard } from 'src/components/commons/utills/Date/date';
+import { useRecoilState } from 'recoil';
+import { arrowNavigate } from 'src/states/navigate';
 
 const CommunityEach = (props: any) => {
   const createdAtDate = new Date(props.item.createdAt);
+  const [isGoingToMain, setIsGoingToMain] = useRecoilState(arrowNavigate);
   if (createdAtDate) {
     createdAtDate.setHours(createdAtDate.getHours() - 9);
   }
@@ -23,6 +26,7 @@ const CommunityEach = (props: any) => {
 
   const onClickGotoDetailPage = (id: any) => {
     navigate(`/post/${id}`);
+    setIsGoingToMain(false);
   };
 
   const weather = props.item.weather; //string
