@@ -322,8 +322,6 @@ export const HeartImg = styled.img`
 export const PencilImg = styled.img`
   width: 5px;
   height: 24px;
-  margin-top: 6px;
-  margin-right: 10px;
   cursor: pointer;
   /* margin-left: 320px; */
 `;
@@ -598,4 +596,13 @@ export const BlankDiv = styled.div`
   height: 24px;
   margin-top: 6px;
   margin-right: 10px;
+`;
+
+export const DotWrapperDiv = styled.div`
+  height: 50px;
+  width: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

@@ -15,12 +15,9 @@ const BoardDetailComment: React.FC<IComment> = ({
   comment,
 }) => {
   const [content, setContent] = useState('');
-  const [isEdit, setIsEdit] = useState(false);
   const queryClient = useQueryClient();
   const [editingCommentId, setEditingCommentId] = useState(null);
   const params = useParams();
-
-  const [message, setMessage] = useState('');
   const diaryId = params.id;
 
   const createdAtDate: Date | '' = comment?.data?.createdAt
@@ -54,23 +51,29 @@ const BoardDetailComment: React.FC<IComment> = ({
   });
 
   const onClickSubmitBtn = () => {
+    if (content === '') {
+      alert('작성하신 내용이 없습니다');
+      return;
+    }
     commentMutation.mutate({ content, diaryId });
     setContent('');
   };
 
-  const onClickEditComment = (commentId: number) => () => {
-    editMutation.mutate({ message, commentId });
-    setIsEdit((prev) => !prev);
+  const handleOnKeyPress = (event: any) => {
+    if (event.key === 'Enter') {
+      onClickSubmitBtn();
+    }
   };
 
-  const onClickEditBtn = (commentId: any, userId: any) => () => {
+  console.log('댓글', comment?.data?.content);
+  const onClickEditBtn = (commentId: any, userId: any, content: any) => () => {
     setEditingCommentId(commentId);
     Swal.fire({
       width: '400px',
       title:
-        '<span style="font-size: 24px; font-weight : bolder;">수정할 내용을 입력하세요</span>',
+        '<span style="font-size: 24px; font-weight: bolder;">수정할 내용을 입력하세요</span>',
       input: 'text',
-      inputValue: '', // 초기값은 비어있음
+      inputValue: content, // 초기값은 기존내용
       confirmButtonText: '수정하기',
       cancelButtonText: '취소하기',
       showCancelButton: true,
@@ -80,18 +83,29 @@ const BoardDetailComment: React.FC<IComment> = ({
         if (!value) {
           return '수정할 내용을 입력하세요';
         }
+        if (value.length > 20) {
+          return '20자만 입력이 가능합니다.';
+        }
+        // 만약 20자가 넘어가면 입력을 차단하고 에러 메시지를 반환
+        return '';
       },
     }).then((editResult) => {
       if (editResult.isConfirmed) {
         const message = editResult.value;
         // 여기서 editMutation.mutate를 호출하여 댓글을 수정합니다.
-        editMutation.mutate({ message, commentId });
+        if (message && message.length <= 20) {
+          editMutation.mutate({ message, commentId });
+        }
       }
     });
   };
 
   const onChangeComment = (e: ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
+    if (e.target.value.length <= 20) {
+      setContent(e.target.value);
+    } else {
+      alert('댓글은 20자까지만 입력 가능합니다');
+    }
   };
 
   const onClickDeleteBtn = (commentId: any, userId: any) => () => {
@@ -113,13 +127,6 @@ const BoardDetailComment: React.FC<IComment> = ({
     });
   };
 
-  const onClickCancelBtn = () => {
-    setIsEdit((prev) => !prev);
-  };
-
-  const onChangeEditComment = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(event.target.value);
-  };
   return (
     <div>
       {comments.length === 0 && (
@@ -133,12 +140,16 @@ const BoardDetailComment: React.FC<IComment> = ({
                     placeholder='첫 번째 댓글을 등록해보세요'
                     value={content}
                     onChange={onChangeComment}
+                    onKeyDown={handleOnKeyPress}
                   />
                   <S.SubmitButton onClick={onClickSubmitBtn}>
                     등록
                   </S.SubmitButton>
                 </S.CommentFooterWrapDiv>
               </S.CommentBox>
+              {content.length !== 0 && (
+                <S.CountCheckSpan>{content.length}/200</S.CountCheckSpan>
+              )}
             </S.CommentsWrapperDiv>
           )}
           {detailedContent.isPublic === false && (
@@ -169,7 +180,8 @@ const BoardDetailComment: React.FC<IComment> = ({
                               <S.EditTextSpan
                                 onClick={onClickEditBtn(
                                   el.commentId,
-                                  el.UserId
+                                  el.UserId,
+                                  el.content
                                 )}
                               >
                                 수정
@@ -196,16 +208,22 @@ const BoardDetailComment: React.FC<IComment> = ({
             </S.CommentBox>
             <S.CommentFooterWrapDiv>
               {detailedContent.isPublic === true && (
-                <S.BlankDiv>
-                  <S.InputBoxDiv
-                    placeholder='댓글을 작성해보세요.'
-                    value={content}
-                    onChange={onChangeComment}
-                  />
-                  <S.SubmitButton onClick={onClickSubmitBtn}>
-                    등록
-                  </S.SubmitButton>
-                </S.BlankDiv>
+                <div>
+                  <S.BlankDiv>
+                    <S.InputBoxDiv
+                      placeholder='댓글을 작성해보세요.'
+                      value={content}
+                      onChange={onChangeComment}
+                      onKeyDown={handleOnKeyPress}
+                    />
+                    <S.SubmitButton onClick={onClickSubmitBtn}>
+                      등록
+                    </S.SubmitButton>
+                  </S.BlankDiv>
+                  {content.length !== 0 && (
+                    <S.CountCheckSpan>{content.length}/200</S.CountCheckSpan>
+                  )}
+                </div>
               )}
               {detailedContent.isPublic === false && (
                 <div>

@@ -86,7 +86,7 @@ export const ToggleTumbsImg = styled.img`
 `;
 
 export const ContentsContainerDiv = styled.div`
-  width: 100%;
+  width: 430px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -127,6 +127,10 @@ export const ContentTextArea = styled.textarea`
   border: 1px solid black;
   width: 400px;
   height: 200px;
+`;
+
+export const BlankDiv = styled.div`
+  margin-top: 21px;
 `;
 
 export const TrashCanImg = styled(FaRegTrashAlt)`
@@ -285,4 +289,20 @@ export const DeleteTextDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const TextAreaCount = styled.p`
+  margin: 0px;
+  color: #5035a6;
+  font-size: 15px;
+  font-weight: 300;
+  transform: translate(-10px, 40px);
+  z-index: 20;
+  margin-left: 350px;
+`;
+
+export const TextAreaDiv = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: end;
 `;
