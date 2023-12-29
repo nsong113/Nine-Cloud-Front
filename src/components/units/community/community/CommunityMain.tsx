@@ -196,4 +196,5 @@ const profileImgStyle = {
   width: '58px',
   height: '58px',
   borderRadius: '50%',
+  cursor: 'pointer',
 };

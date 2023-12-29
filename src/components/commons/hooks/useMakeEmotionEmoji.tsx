@@ -7,8 +7,6 @@ const useMakeEmotionEmoji = () => {
   const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
   const [emotionPicture, setEmotionPicture] = useState('');
 
-  console.log(countAverageAtom);
-
   switch (true) {
     case weatherAtom === '1' && countAverageAtom <= 1.6:
       if (emotionPicture !== '/rain_sad.png') {
