@@ -53,7 +53,7 @@ const LoginSignin = () => {
       // 이메일 정규식 표현 부분
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const passwordRegex =
-        /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{8,20}$/;
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,20}$/;
 
       if (!emailRegex.test(email)) {
         setEmailValidationMessage('이메일 형식으로 입력해주세요');
@@ -62,7 +62,7 @@ const LoginSignin = () => {
 
       if (!passwordRegex.test(password)) {
         setPasswordValidationMessage(
-          '8~20자의 소문자, 숫자, 특수문자를 포함해야 합니다.'
+          '8~20자의 소문자, 숫자, 특수문자(@, $, !, %, *, ?, #)를 포함해야 합니다.'
         );
         return;
       }
@@ -88,36 +88,6 @@ const LoginSignin = () => {
     } catch (error: any) {
       alert(`${error.response.data.msg}`);
       console.error('네트워크 오류', error.message);
-      // if (error.response) {
-      //   const errorMsg = error.response.data.msg;
-      //   console.error('로그인 실패', errorMsg);
-
-      //   if (error.response.status === 400) {
-      //     try {
-      //       const refreshResponse = await axios.post(`${BASE_URL}/token`, {
-      //         refreshToken: localStorage.getItem('refreshToken'),
-      //       });
-
-      //       const newAccessToken = refreshResponse.headers['authorization'];
-      //       const newRefreshToken = refreshResponse.headers['refreshtoken'];
-      //       const newExpiredTime = refreshResponse.headers['expiredtime'];
-
-      //       localStorage.setItem('accessToken', newAccessToken);
-      //       localStorage.setItem('refreshToken', newRefreshToken);
-      //       localStorage.setItem('expiredTime', newExpiredTime);
-
-      //       return onClickLoginHandler();
-      //     } catch (refreshError: any) {
-      //       console.error('토큰 갱신 실패', refreshError.message);
-      //       alert('토큰 갱신 실패');
-      //     }
-      //   } else {
-      //     alert(errorMsg);
-      //   }
-      // } else {
-      //   console.error('네트워크 오류', error.message);
-      //   alert('네트워크 오류');
-      // }
     }
   };
 
@@ -156,7 +126,7 @@ const LoginSignin = () => {
     } else if (!passwordRegex.test(newPassword)) {
       // 비밀번호 유효성 검사 실패 시 메시지 표시
       setPasswordValidationMessage(
-        '8~20자의 소문자, 숫자, 특수문자를 포함해야 합니다.'
+        '8~20자의 영문자, 숫자, 특수문자(@, $, !, %, *, ?, #)를 포함해야 합니다.'
       );
     } else {
       // 유효한 비밀번호인 경우 완료 메시지 표시
