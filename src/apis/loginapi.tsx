@@ -23,9 +23,8 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    // const navigate = useNavigate();
     const statusCode = error.response.status;
-    if (statusCode === 401 || statusCode === 400) {
+    if (statusCode === 419) {
       // const accessToken = localStorage.getItem('accessToken');
       // const refreshToken = localStorage.getItem('refreshToken');
       try {
