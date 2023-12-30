@@ -8,4 +8,8 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|scss)$': 'identity-obj-proxy',
   },
+  plugins: [
+    '@babel/plugin-proposal-private-methods',
+    '@babel/plugin-proposal-private-property-in-object',
+  ],
 };
