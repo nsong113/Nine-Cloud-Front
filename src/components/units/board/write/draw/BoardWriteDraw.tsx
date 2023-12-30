@@ -17,6 +17,10 @@ import { FaCheck } from 'react-icons/fa6';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 
+export const addAB = (a: number, b: number) => {
+  return a + b;
+};
+
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
