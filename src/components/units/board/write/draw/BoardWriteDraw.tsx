@@ -15,6 +15,7 @@ import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from 'react-icons/fa6';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
+import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -280,11 +281,11 @@ const BoardWriteDraw = () => {
   ];
 
   const thicknessOptions = [
-    { size: 13, handler: EraserThinHandler },
-    { size: 18, handler: EraserMediumThinHandler },
+    { size: 8, handler: EraserThinHandler },
+    { size: 14, handler: EraserMediumThinHandler },
     { size: 23, handler: EraserMediumHandler },
-    { size: 28, handler: EraserBoldMediumHandler },
-    { size: 33, handler: EraserBoldHaneler },
+    { size: 33, handler: EraserBoldMediumHandler },
+    { size: 43, handler: EraserBoldHaneler },
   ];
 
   return (
@@ -339,8 +340,12 @@ const BoardWriteDraw = () => {
                 그림으로 그려볼까요?
               </S.DrawWriteTitleH3>
               <S.DrawTitleFlexIcon>
-                <S.TrashcanDiv onClick={onClickInitToggleHandler} />
-                <S.DownloadDiv onClick={onClickSaveToggleHandler} />
+                <Tooltip message='초기화'>
+                  <S.TrashcanDiv onClick={onClickInitToggleHandler} />
+                </Tooltip>
+                <Tooltip message='다운로드'>
+                  <S.DownloadDiv onClick={onClickSaveToggleHandler} />
+                </Tooltip>
               </S.DrawTitleFlexIcon>
             </S.DrawTitleBox>
             <S.CanvasContainer>
