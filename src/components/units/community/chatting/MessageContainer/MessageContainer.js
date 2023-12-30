@@ -21,7 +21,7 @@ const MessageContainer = ({ messageList, user }) => {
             ) : (
               <div className='your-message-container'>
                 <img
-                  src='/profile.jpeg'
+                  src='/person.png'
                   alt='Profile'
                   className='profile-image'
                   style={
