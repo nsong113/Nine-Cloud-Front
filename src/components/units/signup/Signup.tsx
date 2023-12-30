@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import * as S from './Signup.styles';
 import { useNavigate } from 'react-router-dom';
@@ -28,16 +28,36 @@ const Signup = () => {
     Math.floor(Math.random() * (99999999 - 10000 + 1)) + 10000
   );
 
-  const BASE_URL = process.env.REACT_APP_SERVER_URL;
+  const [timeRemaining, setTimeRemaining] = useState(180);
+
+  useEffect(() => {
+    let timer: any;
+
+    if (isVerificationSent && timeRemaining > 0) {
+      timer = setInterval(() => {
+        setTimeRemaining((prevTime) => prevTime - 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [isVerificationSent, timeRemaining]);
+
+  const formattedTime = () => {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
 
   const onClickSignupHandler = async (e: any) => {
     e.preventDefault();
     try {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const passwordRegex =
-        /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{8,20}$/;
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,20}$/;
       const confirmPasswordRegex =
-        /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[a-z\d!@#$%^&*]{8,20}$/;
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,20}$/;
       const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,8}$/;
 
       if (!emailRegex.test(email)) {
@@ -119,9 +139,9 @@ const Signup = () => {
         setIsVerificationSent(false);
         navigate('/login');
       }
-    } catch (error) {
-      console.error(error);
-      alert('인증 실패. 콘솔을 확인하세요.');
+    } catch (error: any) {
+      console.error(error.response.data.message);
+      alert(error.response.data.message);
     }
   };
 
@@ -191,15 +211,13 @@ const Signup = () => {
     const newNickname = e.target.value;
     setNickname(newNickname);
 
-    const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,8}$/;
+    const nicknameRegex = /^[가-힣a-zA-Z0-9]{2,10}$/;
     if (newNickname.trim() === '') {
       // 닉네임 비어 있다면 메시지 초기화
       setNicknameValidationMessage('');
     } else if (!nicknameRegex.test(newNickname)) {
       // 닉네임 유효성 검사 실패 시 메시지 표시
-      setNicknameValidationMessage(
-        '한글 2~12글자, 영문 2~24글자까지 가능합니다.'
-      );
+      setNicknameValidationMessage('2글자 이상, 10글자 이하만 가능합니다.');
     } else {
       // 유효한 닉네임인 경우 완료 메시지 표시
       setNicknameValidationMessage('완료');
@@ -303,6 +321,9 @@ const Signup = () => {
                       onChange={(e) => setAuthenticationcode(e.target.value)}
                       required
                     />
+                  </S.FlexCenter>
+                  <S.FlexCenter>
+                    <S.Timer>남은 시간: {formattedTime()}</S.Timer>
                   </S.FlexCenter>
                 </S.Height150px>
               </>

@@ -211,6 +211,12 @@ export const Mail4 = styled.div`
   font-size: 18px;
 `;
 
+export const Timer = styled.div`
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+`;
+
 export const NumberButtonSend = styled.div`
   border: 2px solid #8066d1;
   width: 140px;
