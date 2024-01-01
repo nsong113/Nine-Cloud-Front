@@ -19,6 +19,7 @@ import {
 import axios from 'axios';
 import DeleteModal from '../../../delete/DeleteModal';
 import axiosInstance from 'src/apis/loginapi';
+import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
 
 const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const queryClient = useQueryClient();
@@ -48,6 +49,10 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     if (event.target.files !== null) {
       setSelectedImage(event.target.files?.[0]);
       const file: File = event.target.files?.[0];
+      console.log('file', file);
+      if (checkValidationFile(file) === false) {
+        return;
+      }
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file); // 선택된 파일을 데이터 URL로 변환시킨다.
       fileReader.onload = (event) => {

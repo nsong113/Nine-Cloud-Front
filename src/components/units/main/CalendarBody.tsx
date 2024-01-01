@@ -95,15 +95,14 @@ const CalendarBody = (props: any) => {
                   <S.DayWrapperDiv>
                     <S.DateWrapperDiv>
                       <S.DateSpan isToday={isToday}>{cellDate}</S.DateSpan>
-                      {cellDate > new Date().getDate() && (
-                        <S.BlankDiv></S.BlankDiv>
-                      )}
-                      {cellDate <= new Date().getDate() && (
-                        <S.DateImg
-                          src={getEmotion(emotionStatus, weatherStatus)}
-                          alt={`Emotion ${emotionStatus}`}
-                        />
-                      )}
+                      {/* {cellDate > new Date().getDate() && ( */}
+                      {/* <S.BlankDiv></S.BlankDiv> */}
+                      {/* )} */}
+                      {/* {cellDate <= new Date().getDate() && ( */}
+                      <S.DateImg
+                        src={getEmotion(emotionStatus, weatherStatus)}
+                        alt={`Emotion ${emotionStatus}`}
+                      />
                       {/* )} */}
                     </S.DateWrapperDiv>
                   </S.DayWrapperDiv>

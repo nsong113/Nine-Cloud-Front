@@ -52,7 +52,15 @@ const BoardDetailComment: React.FC<IComment> = ({
 
   const onClickSubmitBtn = () => {
     if (content.trim() === '') {
-      alert('작성하신 내용이 없습니다');
+      Swal.fire({
+        icon: 'warning',
+        width: '400px',
+        title:
+          '<span style="font-size: 24px; font-weight: bolder;">댓글을 입력해주세요.</span>',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading(),
+        confirmButtonText: '확인',
+      });
       return;
     }
     commentMutation.mutate({ content, diaryId });
@@ -60,7 +68,13 @@ const BoardDetailComment: React.FC<IComment> = ({
   };
 
   const handleOnKeyPress = (event: any) => {
+    // SweetAlert2가 열려있을 때는 엔터 키 이벤트를 무시
+    if (Swal.isVisible()) {
+      return;
+    }
+
     if (event.key === 'Enter') {
+      event.preventDefault(); // 기본 동작(새 줄 추가) 방지
       onClickSubmitBtn();
     }
   };

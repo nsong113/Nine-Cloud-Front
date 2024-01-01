@@ -560,7 +560,6 @@ export const EditPencilDiv = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
-  margin-right: 10px;
 `;
 
 export const DeleteSpan = styled.span`
