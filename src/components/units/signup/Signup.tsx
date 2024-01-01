@@ -1,10 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import axios from 'axios';
 import * as S from './Signup.styles';
 import { useNavigate } from 'react-router-dom';
-import LoginKakao from '../login/social/LoginKakao';
-import LoginGoogle from '../login/social/LoginGoogle';
-import LoginNaver from '../login/social/LoginNaver';
 import axiosInstance from 'src/apis/loginapi';
 import Swal from 'sweetalert2';
 
