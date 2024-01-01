@@ -139,6 +139,7 @@ const LoginSignin = () => {
       emailValidationMessage === '완료' && passwordValidationMessage === '완료'
     );
   };
+  //테스트
 
   return (
     <>
