@@ -1,15 +1,15 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
-import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import ReactQuill from 'react-quill';
 import './Quill.snow.css';
 import { useRecoilState } from 'recoil';
 import { contents, sentence } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
+import PostUpperWrapper from '../PostUpperWrapper';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
@@ -30,21 +30,15 @@ const BoardWriteDiary = () => {
       setContentsToday(value);
     } else {
       setContentsToday((prev) => prev);
-      console.log('200자 넘음');
       return;
     }
   };
 
-  const onClickPrevPage = () => {
-    navigate('/post');
-  };
+  const onClickPrevPage = () => navigate('/post');
+
   const onClickNextPageBtn = () => {
-    if (contentsToday) {
-      navigate('/post2');
-    }
-    if (!contentsToday) {
-      setValidate(false);
-    }
+    if (contentsToday) navigate('/post2');
+    if (!contentsToday) setValidate(false);
   };
 
   const onClickOpenFortune = () => {
@@ -66,33 +60,15 @@ const BoardWriteDiary = () => {
       <Animation2>
         {isModalOpen && <FortuneCloudModal goBackFortune={goBackFortune} />}
         <S.DiaryContainerDiv>
-          <S.DiaryWrapperUPDiv>
-            <S.HeaderButtonBoxDiv>
-              <S.HeaderLineDone></S.HeaderLineDone>
-              <S.HeaderLine></S.HeaderLine>
-              <S.HeaderFlexBox>
-                <S.SelectBox>
-                  <FaCheck
-                    style={{
-                      position: 'absolute',
-                      zIndex: '17',
-                      color: '#5035A6',
-                    }}
-                  />
-                  <S.OneBlackSpan />
-                  <S.SelectP2>Emotion</S.SelectP2>
-                </S.SelectBox>
-                <S.SelectBox>
-                  <S.ThreeFilledSpan></S.ThreeFilledSpan>
-                  <S.SelectP>Text</S.SelectP>
-                </S.SelectBox>
-                <S.SelectBox>
-                  <S.OneBlackSpan />
-                  <S.SelectP3>Drawing</S.SelectP3>
-                </S.SelectBox>
-              </S.HeaderFlexBox>
-            </S.HeaderButtonBoxDiv>
-          </S.DiaryWrapperUPDiv>
+          <PostUpperWrapper
+            first={'checked'}
+            firstWord={'Emotion'}
+            second={'now'}
+            secondWord={'Text'}
+            third={'yet'}
+            thirdWord={'Drawing'}
+            progress={'75px'}
+          />
           <S.DiaryWrapperDOWNdiv>
             <S.ContentsWrapperDiv>
               <S.InputBoxDiv>

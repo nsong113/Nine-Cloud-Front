@@ -12,12 +12,15 @@ import {
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOverlay';
-import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
+import Tooltip from 'src/components/commons/utills/tooltip/tooltip';
 import DiaryDeleteModal from 'src/components/commons/modals/diaryDelete/diaryDelete';
 import { useRecoilState } from 'recoil';
 import { arrowNavigate } from 'src/states/navigate';
 import BoardDetailContents from './boardDetailContents/BoardDetailContents';
-import { isActiveDeleteModal, isActiveEditModal } from 'src/states/detailedPageModal';
+import {
+  isActiveDeleteModal,
+  isActiveEditModal,
+} from 'src/states/detailedPageModal';
 
 const BoardDetail = () => {
   const queryClient = useQueryClient();
@@ -91,8 +94,6 @@ const BoardDetail = () => {
       })
     : null;
 
-    
-
   return (
     <S.ContainerDiv>
       {isActiveModal && (
@@ -135,7 +136,7 @@ const BoardDetail = () => {
           detailedContent={detailedContent}
           comment={comment}
           data={data}
-          profile = {profile}
+          profile={profile}
         />
       </div>
     </S.ContainerDiv>

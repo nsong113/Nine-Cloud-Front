@@ -49,4 +49,4 @@ const PostBtn = (props: PostBtnPropsI) => {
   );
 };
 
-export default PostBtn;
+export default React.memo(PostBtn);
