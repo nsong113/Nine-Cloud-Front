@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import * as S from './InputField.styles';
 
 const InputField = ({ message, setMessage, sendMessage }) => {
+  const handleSendMessage = (event) => {
+    sendMessage(event);
+    setMessage(''); // 메시지 전송 후에 인풋 필드 초기화
+  };
+
   return (
     <S.InputArea>
-      <S.InputContainer onSubmit={sendMessage}>
+      <S.InputContainer onSubmit={handleSendMessage}>
         <S.Input
           placeholder='Type in here…'
           value={message}
