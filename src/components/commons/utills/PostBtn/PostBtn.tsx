@@ -20,11 +20,10 @@ const PostBtn = (props: PostBtnPropsI) => {
       {props.page === 'draw' && (
         <>
           <S.PrevButton onClick={props.onClickPrevBtn}>이전</S.PrevButton>
-          {props.onClickAddBtn && props.makeImageFile && (
+          {props.onClickAddBtn && (
             <S.NextButton
               onClick={() => {
                 props.onClickAddBtn && props.onClickAddBtn();
-                props.makeImageFile && props.makeImageFile();
               }}
             >
               다음

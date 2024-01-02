@@ -44,3 +44,8 @@ export const sentence = atom({
   key: 'sentence',
   default: '',
 });
+
+export const image = atom({
+  key: 'image',
+  default: '',
+});

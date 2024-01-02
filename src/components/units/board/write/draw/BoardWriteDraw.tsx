@@ -16,10 +16,8 @@ import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from 'react-icons/fa6';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
-
-// export const addAB = (a: number, b: number) => {
-//   return a + b;
-// };
+import { useRecoilState } from 'recoil';
+import { image } from 'src/states/counter';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -37,7 +35,6 @@ const BoardWriteDraw = () => {
   );
   const [penMode, setPenMode] = useState(true);
   const [eraserMode, setEraserMode] = useState(false);
-
   const ClickPenMode = () => {
     setPenMode(!penMode);
   };
@@ -70,7 +67,7 @@ const BoardWriteDraw = () => {
   };
 
   const onClickAddBtn = () => {
-    setIsModalOpen((prev) => !prev);
+    if (postDiaryItem !== null) setIsModalOpen((prev) => !prev);
   };
 
   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
@@ -168,23 +165,42 @@ const BoardWriteDraw = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
-  const makeImageFile = () => {
-    const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
+  const [imageAtom, setImageAtom] = useRecoilState(image);
 
-    if (image) {
-      const byteCharacters = atob(image);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
+  useEffect(() => {
+    const convertImageToBlob = async () => {
+      try {
+        if (!imageAtom) return;
+
+        const base64String = imageAtom;
+
+        const blob = await base64ToBlob(base64String, 'image/png');
+
+        setPostDiaryItem({
+          image: blob,
+        });
+      } catch (error) {
+        console.error('이미지 변환 오류', error);
       }
-      const u8arr = new Uint8Array(byteNumbers);
-      const file = new Blob([u8arr], { type: 'image/png' });
-      const imageUrl = URL.createObjectURL(file);
+    };
 
-      setPostDiaryItem({
-        image: file,
-      });
+    convertImageToBlob();
+  }, [imageAtom]);
+
+  const base64ToBlob = (base64String: string, contentType = 'image/png') => {
+    const pureBase64 = base64String.split(',')[1];
+    const cleanedBase64 = pureBase64.replace(/\s/g, '');
+
+    const byteCharacters = atob(cleanedBase64);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
+
+    const byteArray = new Uint8Array(byteNumbers);
+
+    return new Blob([byteArray], { type: contentType });
   };
 
   const startTouch = useCallback((event: TouchEvent) => {
@@ -410,8 +426,8 @@ const BoardWriteDraw = () => {
             <S.ButtonWrapperDiv>
               <PostBtn
                 onClickPrevBtn={onClickPrevBtn}
+                // makeImageFile={makeImageFile}
                 onClickAddBtn={onClickAddBtn}
-                makeImageFile={makeImageFile}
                 page={'draw'}
               />
             </S.ButtonWrapperDiv>

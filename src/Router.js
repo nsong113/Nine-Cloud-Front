@@ -30,7 +30,7 @@ import Loading from './components/units/loading/Loading';
 export default function Router() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading..</div>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route path='/' element={<OnBoardPage />} />
