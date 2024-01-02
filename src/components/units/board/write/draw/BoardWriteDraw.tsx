@@ -18,21 +18,25 @@ import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import { useRecoilState } from 'recoil';
 import { image } from 'src/states/counter';
+import { colorA } from 'src/states/draw';
+import ColorPalette from './ColorPalette';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const colorPickerRef = useRef<HTMLInputElement>(null);
+  // const colorPickerRef = useRef<HTMLInputElement>(null);
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  const [colorPickerValue, setColorPickerValue] = useState<string>();
+  // const [colorPickerValue, setColorPickerValue] = useState<string>();
   let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
   const [penClickedEmoji, setPenClickedEmoji] = useState('/pen_unclicked.png');
   const [eraserClickedEmoji, setEraserClickedEmoji] = useState(
     '/eraser_unclicked.png'
   );
+  const [colorAtom, setColorAtom] = useRecoilState<string>(colorA);
+
   const [penMode, setPenMode] = useState(true);
   const [eraserMode, setEraserMode] = useState(false);
   const ClickPenMode = () => {
@@ -85,13 +89,13 @@ const BoardWriteDraw = () => {
     color,
     setColor,
     colorHandlerBlack,
-    colorHandlerRed,
-    colorHandlerBlue,
-    colorHandlerGreen,
-    colorHandlerOrange,
-    colorHandlerYellow,
-    colorHandlerPurple,
-    colorHandlerPink,
+    // colorHandlerRed,
+    // colorHandlerBlue,
+    // colorHandlerGreen,
+    // colorHandlerOrange,
+    // colorHandlerYellow,
+    // colorHandlerPurple,
+    // colorHandlerPink,
     colorHandlerWhite,
   } = useSetColor();
 
@@ -107,34 +111,34 @@ const BoardWriteDraw = () => {
   const { startPaint, paint, exitPaint } = usePen(
     canvasRef,
     getCoordinates,
-    color,
+    // color,
     thickness,
     mousePosition,
     setMousePosition
   );
 
-  useEffect(() => {
-    setColorPickerValue(color);
-  }, [
-    colorHandlerBlack,
-    colorHandlerRed,
-    colorHandlerOrange,
-    colorHandlerYellow,
-    colorHandlerGreen,
-    colorHandlerBlue,
-    colorHandlerPurple,
-    colorHandlerPink,
-  ]);
+  // useEffect(() => {
+  //   setColorPickerValue(color);
+  // }, [
+  //   colorHandlerBlack,
+  //   colorHandlerRed,
+  //   colorHandlerOrange,
+  //   colorHandlerYellow,
+  //   colorHandlerGreen,
+  //   colorHandlerBlue,
+  //   colorHandlerPurple,
+  //   colorHandlerPink,
+  // ]);
 
-  const onChangePickColorHandler: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    const colorPicker = colorPickerRef.current;
-    if (colorPicker) {
-      setColor(event.target.value);
-      setColorPickerValue(event.target.value);
-    }
-  };
+  // const onChangePickColorHandler: ChangeEventHandler<HTMLInputElement> = (
+  //   event
+  // ) => {
+  //   const colorPicker = colorPickerRef.current;
+  //   if (colorPicker) {
+  //     setColor(event.target.value);
+  //     setColorPickerValue(event.target.value);
+  //   }
+  // };
 
   const onClickSaveToggleHandler = () => {
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
@@ -289,16 +293,16 @@ const BoardWriteDraw = () => {
     navigate('/main');
   };
 
-  const colors = [
-    { color: 'black', handler: colorHandlerBlack },
-    { color: '#FF2323', handler: colorHandlerRed },
-    { color: '#FFC225', handler: colorHandlerOrange },
-    { color: '#EDFF22', handler: colorHandlerYellow },
-    { color: '#16FF4A', handler: colorHandlerGreen },
-    { color: '#4BA9FF', handler: colorHandlerBlue },
-    { color: '#4E12F6', handler: colorHandlerPurple },
-    { color: '#DB00FF', handler: colorHandlerPink },
-  ];
+  // const colors = [
+  //   { color: 'black', handler: colorHandlerBlack },
+  //   { color: '#FF2323', handler: colorHandlerRed },
+  //   { color: '#FFC225', handler: colorHandlerOrange },
+  //   { color: '#EDFF22', handler: colorHandlerYellow },
+  //   { color: '#16FF4A', handler: colorHandlerGreen },
+  //   { color: '#4BA9FF', handler: colorHandlerBlue },
+  //   { color: '#4E12F6', handler: colorHandlerPurple },
+  //   { color: '#DB00FF', handler: colorHandlerPink },
+  // ];
 
   const thicknessOptions = [
     { size: 8, handler: EraserThinHandler },
@@ -403,8 +407,9 @@ const BoardWriteDraw = () => {
                   </S.ColorEraserSettingDiv>
                 </S.ThicknessBoxDiv>
               </S.ToggleBox>
+              <ColorPalette />
 
-              <S.ColorSettingDiv>
+              {/* <S.ColorSettingDiv>
                 <S.ColorPaletteFlexDiv>
                   {colors.map((palette, index) => (
                     <S.Palette
@@ -421,7 +426,7 @@ const BoardWriteDraw = () => {
                     value={colorPickerValue}
                   ></input>
                 </S.ColorPaletteFlexDiv>
-              </S.ColorSettingDiv>
+              </S.ColorSettingDiv> */}
             </S.CanvasContainer>
             <S.ButtonWrapperDiv>
               <PostBtn
