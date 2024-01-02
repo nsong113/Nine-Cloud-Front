@@ -4,13 +4,11 @@ import { ICoordinate } from 'src/components/units/board/write/draw/BoardWriteDra
 import imageCompression from 'browser-image-compression';
 import { useRecoilState } from 'recoil';
 import { image } from 'src/states/counter';
-import { colorA } from 'src/states/draw';
+import { colorA, thicknessA } from 'src/states/draw';
 
 const usePen = (
   canvasRef: React.RefObject<HTMLCanvasElement>,
   getCoordinates: (event: MouseEvent) => ICoordinate | undefined,
-  // color: string,
-  thickness: number,
   mousePosition: ICoordinate | undefined,
   setMousePosition: React.Dispatch<
     React.SetStateAction<ICoordinate | undefined>
@@ -19,6 +17,9 @@ const usePen = (
   const [isPainting, setIsPainting] = useState<boolean>(false);
   const [imageAtom, setImageAtom] = useRecoilState(image);
   const [colorAtom, setColorAtom] = useRecoilState<string>(colorA);
+  const [thicknessAtom, setThicknessAtom] = useRecoilState(thicknessA);
+
+  console.log(colorAtom);
 
   const drawLine = (
     originalMousePosition: ICoordinate,
@@ -34,7 +35,7 @@ const usePen = (
     if (context) {
       context.strokeStyle = colorAtom;
       context.lineJoin = 'round';
-      context.lineWidth = thickness;
+      context.lineWidth = thicknessAtom;
 
       context.beginPath();
       context.moveTo(originalMousePosition.x, originalMousePosition.y);

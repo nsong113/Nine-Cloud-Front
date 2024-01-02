@@ -2,11 +2,13 @@ import React, { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import * as S from './BoardWriteDraw.styles';
 import useSetColor from 'src/components/commons/hooks/useSetColor';
 import { useRecoilState } from 'recoil';
-import { colorA } from 'src/states/draw';
+import { colorA, eraserModeA, penModeA } from 'src/states/draw';
 
 const ColorPalette = () => {
   const [colorAtom, setColorAtom] = useRecoilState<string>(colorA);
   const colorPickerRef = useRef<HTMLInputElement>(null);
+  const [penMode, setPenMode] = useRecoilState(penModeA);
+  const [eraserMode, setEraserMode] = useRecoilState(eraserModeA);
 
   const {
     color,
@@ -22,7 +24,9 @@ const ColorPalette = () => {
   } = useSetColor();
 
   useEffect(() => {
-    setColorAtom(color);
+    if (penMode && !eraserMode) {
+      setColorAtom(color);
+    }
   }, [
     colorHandlerBlack,
     colorHandlerRed,

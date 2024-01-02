@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const useSetColor = () => {
   const [color, setColor] = useState<string>('black');
+
   const colorHandlerBlack = (): void => {
     setColor('#000000');
   };
@@ -29,8 +30,6 @@ const useSetColor = () => {
   const colorHandlerWhite = (): void => {
     setColor('white');
   };
-
-  const colors = ['#391D93', '#5035A6', '#ECE9F5', '#7E82CC'];
 
   return {
     color,
