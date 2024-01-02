@@ -16,6 +16,7 @@ import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import DiaryDeleteModal from 'src/components/commons/modals/diaryDelete/diaryDelete';
 import { useRecoilState } from 'recoil';
 import { arrowNavigate } from 'src/states/navigate';
+import KakaoShare from '../../kakaoshare/KakaoShare';
 import BoardDetailContents from './boardDetailContents/BoardDetailContents';
 import { isActiveDeleteModal, isActiveEditModal } from 'src/states/detailedPageModal';
 
@@ -113,7 +114,9 @@ const BoardDetail = () => {
               <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
             </S.HeaderLeftBoxDiv>
             <S.HearderRightBoxDiv>
-              <div>공유하기 넣을 곳</div>
+              <div style={{ marginRight: '10px' }}>
+                <KakaoShare />
+              </div>
               <Tooltip message='공개'>
                 {detailedContent?.isPublic === true && (
                   <S.PublicPrivateImg src='/people.png' alt='공개' />

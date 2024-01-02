@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './MessageContainer.css';
 import { Container } from '@mui/system';
 import * as S from './MessageContainer.styles';
 
 const MessageContainer = ({ messageList, user }) => {
+  const messageContainerRef = useRef(null);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때와 messageList가 업데이트될 때 스크롤을 아래로 내립니다.
+    scrollToBottom();
+  }, [messageList]);
+
+  const scrollToBottom = () => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
+    }
+  };
   return (
-    <div>
+    <div
+      ref={messageContainerRef}
+      style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 50px)' }}
+    >
       {messageList.map((message, index) => {
         return (
           <Container key={message._id} className='message-container'>
