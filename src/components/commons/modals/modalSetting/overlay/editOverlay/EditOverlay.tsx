@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { IEditPost } from '../../../editPost/EditPostOverlay.types';
 import * as S from './EditOverlay.styles';
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
@@ -12,7 +12,6 @@ const EditOverlay: React.FC<IEditPost> = ({
   detailedContent,
   content,
   onClose,
-  setIsEdit,
   setIsClickedPencil,
 }) => {
   const [isPublic, setIsPublic] = useState(detailedContent?.isPublic);
@@ -21,7 +20,7 @@ const EditOverlay: React.FC<IEditPost> = ({
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [contents, setContents] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  const onClickModalDiv = (e: any) => {
+  const onClickModalDiv = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
   const params = useParams();
@@ -29,7 +28,7 @@ const EditOverlay: React.FC<IEditPost> = ({
 
   const editMutation = useMutation(updatePost, {
     onSuccess: () => {
-      setIsClickedPencil((prev) => !prev);
+      setIsClickedPencil(false);
       queryClient.invalidateQueries('post');
     },
   });

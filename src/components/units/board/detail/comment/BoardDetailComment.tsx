@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
 import { useMutation, useQueryClient } from 'react-query';
 import {
@@ -8,7 +8,7 @@ import {
 } from 'src/apis/cheolmin-api/apis';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
-import { IComment } from './BoardDetailComment.types';
+import { IComment, ICommentMap } from './BoardDetailComment.types';
 const BoardDetailComment: React.FC<IComment> = ({
   detailedContent,
   profile,
@@ -36,7 +36,6 @@ const BoardDetailComment: React.FC<IComment> = ({
     },
   });
 
-  // console.log('profile', profile);
 
   const deleteMutation = useMutation(deleteComment, {
     onSuccess: () => {
@@ -80,39 +79,40 @@ const BoardDetailComment: React.FC<IComment> = ({
   };
 
   console.log('댓글', comment?.data?.content);
-  const onClickEditBtn = (commentId: any, userId: any, content: any) => () => {
-    setEditingCommentId(commentId);
-    Swal.fire({
-      width: '400px',
-      title:
-        '<span style="font-size: 24px; font-weight: bolder;">수정할 내용을 입력하세요</span>',
-      input: 'text',
-      inputValue: content, // 초기값은 기존내용
-      confirmButtonText: '수정하기',
-      cancelButtonText: '취소하기',
-      showCancelButton: true,
-      reverseButtons: true,
-      inputValidator: (value) => {
-        // 입력값이 유효한지 검사할 수 있는 함수
-        if (!value) {
-          return '수정할 내용을 입력하세요';
+  const onClickEditBtn =
+    (commentId: any, userId: number, content: string) => () => {
+      setEditingCommentId(commentId);
+      Swal.fire({
+        width: '400px',
+        title:
+          '<span style="font-size: 24px; font-weight: bolder;">수정할 내용을 입력하세요</span>',
+        input: 'text',
+        inputValue: content, // 초기값은 기존내용
+        confirmButtonText: '수정하기',
+        cancelButtonText: '취소하기',
+        showCancelButton: true,
+        reverseButtons: true,
+        inputValidator: (value) => {
+          // 입력값이 유효한지 검사할 수 있는 함수
+          if (!value) {
+            return '수정할 내용을 입력하세요';
+          }
+          if (value.length > 20) {
+            return '20자만 입력이 가능합니다.';
+          }
+          // 만약 20자가 넘어가면 입력을 차단하고 에러 메시지를 반환
+          return '';
+        },
+      }).then((editResult) => {
+        if (editResult.isConfirmed) {
+          const message = editResult.value;
+          // 여기서 editMutation.mutate를 호출하여 댓글을 수정합니다.
+          if (message && message.length <= 20) {
+            editMutation.mutate({ message, commentId });
+          }
         }
-        if (value.length > 20) {
-          return '20자만 입력이 가능합니다.';
-        }
-        // 만약 20자가 넘어가면 입력을 차단하고 에러 메시지를 반환
-        return '';
-      },
-    }).then((editResult) => {
-      if (editResult.isConfirmed) {
-        const message = editResult.value;
-        // 여기서 editMutation.mutate를 호출하여 댓글을 수정합니다.
-        if (message && message.length <= 20) {
-          editMutation.mutate({ message, commentId });
-        }
-      }
-    });
-  };
+      });
+    };
 
   const onChangeComment = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 20) {
@@ -122,7 +122,7 @@ const BoardDetailComment: React.FC<IComment> = ({
     }
   };
 
-  const onClickDeleteBtn = (commentId: any, userId: any) => () => {
+  const onClickDeleteBtn = (commentId: any, userId: number) => () => {
     Swal.fire({
       icon: 'error',
       width: '400px',
@@ -180,7 +180,7 @@ const BoardDetailComment: React.FC<IComment> = ({
           <S.CommentsWrapperDiv>
             <S.CommentBox>
               <S.CommentHeaderDiv>
-                {comments?.map((el: any) => (
+                {comments?.map((el: ICommentMap) => (
                   <S.CommentWrapperDiv key={el.commentId}>
                     <S.CommentBoxDiv>
                       <S.ProfileImg src={el?.User?.profileImg} alt='타원' />

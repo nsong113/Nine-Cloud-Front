@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Toggle from 'react-toggle';
-import { IoPeople } from 'react-icons/io5';
+import { IoPeople } from '@react-icons/all-files/io5/IoPeople';
 
 export const ContainerDiv = styled.div`
   position: fixed;

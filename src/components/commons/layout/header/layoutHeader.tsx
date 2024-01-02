@@ -1,15 +1,6 @@
 /* eslint-disable */
-import React, { MouseEvent, useState } from 'react';
+import {useState } from 'react';
 import * as S from './layoutHeader.styles';
-import {
-  addMonths,
-  format,
-  getMonth,
-  getYear,
-  setMonth,
-  subMonths,
-} from 'date-fns';
-import useCalendar from '../../hooks/useCalender';
 import MyPageModal from '../../modals/myPage/myPageModal';
 import { Tooltip } from '../../utills/tooltip/tooltip';
 import { useNavigate } from 'react-router-dom';
@@ -18,13 +9,8 @@ import { getMyInfo } from 'src/apis/cheolmin-api/apis';
 
 const Header = () => {
   const navigate = useNavigate();
-  const { currentDate, setCurrentDate } = useCalendar();
-  const [currentMonth, setCurrentMonth] = useState(new Date());
   const [isActiveModal, setIsActiveModal] = useState(false);
-  const [toggle, setToggle] = useState(true);
-  const [animationDirection, setAnimationDirection] = useState('');
   const { data: profile } = useQuery('myInfo', getMyInfo);
-  const newDate = new Date(currentDate);
 
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);

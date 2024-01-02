@@ -1,50 +1,48 @@
-import React, {
-  ChangeEventHandler,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './BoardWriteDraw.styles';
 import { useNavigate } from 'react-router-dom';
 import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
 import { IpostDiaryItem } from 'src/apis/apiesType';
 import useSetColor from 'src/components/commons/hooks/useSetColor';
-import useThickness from 'src/components/commons/hooks/useThickness';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
-import { FaCheck } from 'react-icons/fa6';
+import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
-
-// export const addAB = (a: number, b: number) => {
-//   return a + b;
-// };
+import { useRecoilState } from 'recoil';
+import { image } from 'src/states/counter';
+import ColorPalette from './ColorPalette';
+import ThicknessPalette from './ThicknessPalette';
+import { colorA, eraserModeA, penModeA } from 'src/states/draw';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const colorPickerRef = useRef<HTMLInputElement>(null);
   const [mousePosition, setMousePosition] = useState<ICoordinate | undefined>(
     undefined
   );
-  const [colorPickerValue, setColorPickerValue] = useState<string>();
   let [postDiaryItem, setPostDiaryItem] = useState<IpostDiaryItem | null>(null);
   const [penClickedEmoji, setPenClickedEmoji] = useState('/pen_unclicked.png');
   const [eraserClickedEmoji, setEraserClickedEmoji] = useState(
     '/eraser_unclicked.png'
   );
-  const [penMode, setPenMode] = useState(true);
-  const [eraserMode, setEraserMode] = useState(false);
+  const [imageAtom, setImageAtom] = useRecoilState(image);
+  const [penMode, setPenMode] = useRecoilState(penModeA);
+  const [eraserMode, setEraserMode] = useRecoilState(eraserModeA);
 
-  const ClickPenMode = () => {
-    setPenMode(!penMode);
-  };
+  const { colorHandlerBlack } = useSetColor();
+  const [colorAtom, setColorAtom] = useRecoilState<string>(colorA);
 
+  const ClickPenMode = () => setPenMode(!penMode);
   const ClickEraserMode = () => {
     setEraserMode(!eraserMode);
+    setColorAtom('white');
   };
+
+  const onClickPrevBtn = () => navigate('/post3');
+  const onClickGotoPost2 = () => setIsModalOpen(!isModalOpen);
+  const onClickGotoMain = () => navigate('/main');
 
   useEffect(() => {
     if (penMode === true) {
@@ -65,12 +63,25 @@ const BoardWriteDraw = () => {
     }
   }, [eraserMode]);
 
-  const onClickPrevBtn = () => {
-    navigate('/post3');
-  };
+  useEffect(() => {
+    const convertImageToBlob = async () => {
+      try {
+        if (!imageAtom) return;
+        const base64String = imageAtom;
+        const blob = await base64ToBlob(base64String, 'image/png');
+
+        setPostDiaryItem({
+          image: blob,
+        });
+      } catch (error) {
+        console.error('이미지 변환 오류', error);
+      }
+    };
+    convertImageToBlob();
+  }, [imageAtom]);
 
   const onClickAddBtn = () => {
-    setIsModalOpen((prev) => !prev);
+    if (postDiaryItem !== null) setIsModalOpen((prev) => !prev);
   };
 
   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
@@ -84,60 +95,12 @@ const BoardWriteDraw = () => {
     };
   };
 
-  const {
-    color,
-    setColor,
-    colorHandlerBlack,
-    colorHandlerRed,
-    colorHandlerBlue,
-    colorHandlerGreen,
-    colorHandlerOrange,
-    colorHandlerYellow,
-    colorHandlerPurple,
-    colorHandlerPink,
-    colorHandlerWhite,
-  } = useSetColor();
-
-  const {
-    thickness,
-    EraserBoldHaneler,
-    EraserBoldMediumHandler,
-    EraserMediumHandler,
-    EraserMediumThinHandler,
-    EraserThinHandler,
-  } = useThickness();
-
   const { startPaint, paint, exitPaint } = usePen(
     canvasRef,
     getCoordinates,
-    color,
-    thickness,
     mousePosition,
     setMousePosition
   );
-
-  useEffect(() => {
-    setColorPickerValue(color);
-  }, [
-    colorHandlerBlack,
-    colorHandlerRed,
-    colorHandlerOrange,
-    colorHandlerYellow,
-    colorHandlerGreen,
-    colorHandlerBlue,
-    colorHandlerPurple,
-    colorHandlerPink,
-  ]);
-
-  const onChangePickColorHandler: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    const colorPicker = colorPickerRef.current;
-    if (colorPicker) {
-      setColor(event.target.value);
-      setColorPickerValue(event.target.value);
-    }
-  };
 
   const onClickSaveToggleHandler = () => {
     const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
@@ -168,23 +131,19 @@ const BoardWriteDraw = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
   };
 
-  const makeImageFile = () => {
-    const image = canvasRef.current?.toDataURL('image/png').split(',')[1];
+  const base64ToBlob = (base64String: string, contentType = 'image/png') => {
+    const pureBase64 = base64String.split(',')[1];
+    const cleanedBase64 = pureBase64.replace(/\s/g, '');
 
-    if (image) {
-      const byteCharacters = atob(image);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const u8arr = new Uint8Array(byteNumbers);
-      const file = new Blob([u8arr], { type: 'image/png' });
-      const imageUrl = URL.createObjectURL(file);
+    const byteCharacters = atob(cleanedBase64);
+    const byteNumbers = new Array(byteCharacters.length);
 
-      setPostDiaryItem({
-        image: file,
-      });
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: contentType });
   };
 
   const startTouch = useCallback((event: TouchEvent) => {
@@ -240,9 +199,7 @@ const BoardWriteDraw = () => {
   }, []);
 
   useEffect(() => {
-    if (!canvasRef.current) {
-      return;
-    }
+    if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current;
 
     canvas.addEventListener('mousedown', startPaint);
@@ -265,33 +222,6 @@ const BoardWriteDraw = () => {
     };
   }, [startPaint, paint, exitPaint]);
 
-  const onClickGotoPost2 = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
-  const onClickGotoMain = () => {
-    navigate('/main');
-  };
-
-  const colors = [
-    { color: 'black', handler: colorHandlerBlack },
-    { color: '#FF2323', handler: colorHandlerRed },
-    { color: '#FFC225', handler: colorHandlerOrange },
-    { color: '#EDFF22', handler: colorHandlerYellow },
-    { color: '#16FF4A', handler: colorHandlerGreen },
-    { color: '#4BA9FF', handler: colorHandlerBlue },
-    { color: '#4E12F6', handler: colorHandlerPurple },
-    { color: '#DB00FF', handler: colorHandlerPink },
-  ];
-
-  const thicknessOptions = [
-    { size: 8, handler: EraserThinHandler },
-    { size: 14, handler: EraserMediumThinHandler },
-    { size: 23, handler: EraserMediumHandler },
-    { size: 33, handler: EraserBoldMediumHandler },
-    { size: 43, handler: EraserBoldHaneler },
-  ];
-
   return (
     <>
       {isModalOpen && (
@@ -304,7 +234,7 @@ const BoardWriteDraw = () => {
       <S.DrawContainerDiv>
         <S.DrawWrapperUPDiv>
           <S.HeaderButtonBoxDiv>
-            <S.HeaderLine></S.HeaderLine>
+            <S.HeaderLine />
             <S.HeaderFlexBox>
               <S.SelectBox>
                 <FaCheck
@@ -368,50 +298,18 @@ const BoardWriteDraw = () => {
                   alt='지우개 클릭하기'
                   onClick={() => {
                     ClickEraserMode();
-                    colorHandlerWhite();
+                    // colorHandlerWhite();
                   }}
                   style={cursor}
                 />
-                <S.ThicknessBoxDiv>
-                  <S.SecondToggle></S.SecondToggle>
-                  <S.ColorEraserSettingDiv>
-                    <S.EraserThicknessDiv>
-                      {thicknessOptions.map((option, index) => (
-                        <S.ThicknessOption
-                          key={index}
-                          size={option.size}
-                          onClick={option.handler}
-                        ></S.ThicknessOption>
-                      ))}
-                    </S.EraserThicknessDiv>
-                  </S.ColorEraserSettingDiv>
-                </S.ThicknessBoxDiv>
+                <ThicknessPalette />
               </S.ToggleBox>
-
-              <S.ColorSettingDiv>
-                <S.ColorPaletteFlexDiv>
-                  {colors.map((palette, index) => (
-                    <S.Palette
-                      key={index}
-                      color={palette.color}
-                      onClick={palette.handler}
-                    ></S.Palette>
-                  ))}
-                  <input
-                    type='color'
-                    id='color'
-                    ref={colorPickerRef}
-                    onChange={onChangePickColorHandler}
-                    value={colorPickerValue}
-                  ></input>
-                </S.ColorPaletteFlexDiv>
-              </S.ColorSettingDiv>
+              <ColorPalette />
             </S.CanvasContainer>
             <S.ButtonWrapperDiv>
               <PostBtn
                 onClickPrevBtn={onClickPrevBtn}
                 onClickAddBtn={onClickAddBtn}
-                makeImageFile={makeImageFile}
                 page={'draw'}
               />
             </S.ButtonWrapperDiv>

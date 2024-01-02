@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
-import { FaCheck } from 'react-icons/fa6';
+import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import ReactQuill from 'react-quill';
 import './Quill.snow.css';
 import { useRecoilState } from 'recoil';

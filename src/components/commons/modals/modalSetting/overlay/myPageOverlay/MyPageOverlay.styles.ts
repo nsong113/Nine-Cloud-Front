@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { IoIosArrowForward } from 'react-icons/io';
+import { IoIosArrowForward } from '@react-icons/all-files/io/IoIosArrowForward';
 import { CheckEdit, ValidationMessageProps } from './MyPageOverlay.types';
 
 export const slideIn = keyframes`
