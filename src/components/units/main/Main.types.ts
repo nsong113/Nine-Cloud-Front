@@ -81,12 +81,10 @@ export interface IViewAllPropsEach {
   isPublic: boolean;
 }
 
-export interface ITableCellProps {
-  isToday?: boolean;
-}
+export interface ITableCellProps {}
 
 export interface IDateSpanProps {
-  isToday?: boolean;
+  istoday?: boolean;
 }
 
 export interface IProps {
@@ -99,16 +97,22 @@ export interface IProps {
   updatedAt: string;
 }
 
-
 export interface IGetPostsData {
-  EmotionStatus : number,
-  UserId : number,
-  content : string,
-  createdAt : string,
-  diaryId : number,
-  humid : string,
-  image : string,
-  isPublic : boolean,
-  likeCount : number,
-  sentence : string, 
+  weekCalendarList: number[][];
+  currentMonth: Date;
+  currentDate: Date;
+  data: any;
+}
+
+export interface IGetId {
+  EmotionStatus: number;
+  UserId: number;
+  content: string;
+  createdAt: string;
+  diaryId: number;
+  humid: string;
+  image: string;
+  isPublic: boolean;
+  likeCount: number;
+  sentence: string;
 }

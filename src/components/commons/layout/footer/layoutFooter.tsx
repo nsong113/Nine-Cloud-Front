@@ -1,8 +1,8 @@
 /*eslint-disable*/
 import './layoutFooter.css';
-import { FaHouseChimney } from 'react-icons/fa6';
-import { IoAddCircle } from 'react-icons/io5';
-import { MdPeopleAlt } from 'react-icons/md';
+import { BsFillHouseDoorFill } from '@react-icons/all-files/bs/BsFillHouseDoorFill';
+import { IoAddCircle } from '@react-icons/all-files/io5/IoAddCircle';
+import { BsPeopleFill } from '@react-icons/all-files/bs/BsPeopleFill';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
@@ -56,8 +56,6 @@ const Footer = () => {
     setOut(true);
   };
 
-  console.log('2', out);
-
   const goToCOmmunityHandler = () => {
     navigate('/community');
   };
@@ -66,7 +64,7 @@ const Footer = () => {
     <div className='FooterContainer'>
       <div className='navbar'>
         <li className='list-item' onClick={goToMainHandler}>
-          <FaHouseChimney style={iconStyle} />
+          <BsFillHouseDoorFill style={iconStyle} />
           <span className='list-item-name'>Main</span>
         </li>
         <li className='list-item' onClick={goToPostHandler}>
@@ -74,7 +72,7 @@ const Footer = () => {
           <span className='list-item-name'>Post</span>
         </li>
         <li className='list-item' onClick={goToCOmmunityHandler}>
-          <MdPeopleAlt style={iconStyle} />
+          <BsPeopleFill style={iconStyle} />
           <span className='list-item-name'>Community</span>
         </li>
       </div>
