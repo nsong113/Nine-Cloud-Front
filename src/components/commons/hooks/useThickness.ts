@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { thicknessA } from 'src/states/draw';
 
 const useThickness = () => {
-  const [thickness, setThickness] = useState<number>(5);
+  const [thicknessAtom, setThicknessAtom] = useRecoilState(thicknessA);
 
   const EraserBoldHaneler = (): void => {
-    setThickness(50);
+    setThicknessAtom(50);
   };
   const EraserBoldMediumHandler = (): void => {
-    setThickness(40);
+    setThicknessAtom(43);
   };
   const EraserMediumHandler = (): void => {
-    setThickness(30);
+    setThicknessAtom(23);
   };
   const EraserMediumThinHandler = (): void => {
-    setThickness(20);
+    setThicknessAtom(16);
   };
   const EraserThinHandler = (): void => {
-    setThickness(10);
+    setThicknessAtom(8);
   };
-  
+
   return {
-    thickness,
     EraserBoldHaneler,
     EraserBoldMediumHandler,
     EraserMediumHandler,

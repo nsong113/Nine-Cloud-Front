@@ -8,7 +8,6 @@ import {
   IGetPosts,
   IUpdatePost,
 } from './apis.types';
-import { IoAlert } from 'react-icons/io5';
 import axiosInstance from '../loginapi';
 import Swal from 'sweetalert2';
 // axios

@@ -28,7 +28,7 @@ const EditOverlay: React.FC<IEditPost> = ({
 
   const editMutation = useMutation(updatePost, {
     onSuccess: () => {
-      setIsClickedPencil((prev) => !prev);
+      setIsClickedPencil(false);
       queryClient.invalidateQueries('post');
     },
   });

@@ -1,40 +1,33 @@
 /* eslint-disable */
 import { useEffect, useState } from 'react';
 import * as S from './BoardDetail.styles';
-import useCalendar from 'src/components/commons/hooks/useCalender';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import * as DOMPurify from 'dompurify';
-
+import { useQuery, useQueryClient } from 'react-query';
 import {
   getComments,
-  getHearts,
   getMyInfo,
   getOnePostInfo,
 } from 'src/apis/cheolmin-api/apis';
-import BoardDetailComment from './comment/BoardDetailComment';
+
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
-import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOverlay';
-import getEmotion from 'src/components/commons/utills/emotionImage';
-import useSliderCounts from 'src/components/commons/hooks/useSliderCounts';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import DiaryDeleteModal from 'src/components/commons/modals/diaryDelete/diaryDelete';
 import { useRecoilState } from 'recoil';
 import { arrowNavigate } from 'src/states/navigate';
+import BoardDetailContents from './boardDetailContents/BoardDetailContents';
+import { isActiveDeleteModal, isActiveEditModal } from 'src/states/detailedPageModal';
 
 const BoardDetail = () => {
   const queryClient = useQueryClient();
   const [isGoingToMain, setIsGoingToMain] = useRecoilState(arrowNavigate);
-  const { currentDate, currentMonth } = useCalendar();
   const [isEdit, setIsEdit] = useState(false);
-  const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
-  const [isActiveModal, setIsActiveModal] = useState(false);
+  const [isActiveModal, setIsActiveModal] = useRecoilState(isActiveEditModal);
   const [isHeart, setIsHeart] = useState(false);
   const [isClickedPencil, setIsClickedPencil] = useState(false);
-  const [isDelete, setIsDelete] = useState(false);
+  const [isDelete, setIsDelete] = useRecoilState(isActiveDeleteModal);
 
   useEffect(() => {
     return () => {
@@ -47,28 +40,13 @@ const BoardDetail = () => {
     setIsActiveModal((prev) => !prev);
   };
 
-  const onClickPencilImg = () => {
-    setIsClickedPencil((prev) => !prev);
-  };
   const { data: comment } = useQuery('comment', () => getComments(params.id));
   const { data: profile } = useQuery('profile', getMyInfo);
   const { data, isLoading } = useQuery(['post'], () =>
     getOnePostInfo(params.id)
   );
-  const profileInfo = profile?.data;
   const detailedContent = data?.data;
-  const { temperatureHandle, humidHandle, sleepHandle } =
-    useSliderCounts(detailedContent);
   const params = useParams();
-  const heartMutation = useMutation(getHearts, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('post');
-      setIsHeart((prev) => !prev);
-    },
-  });
-
-  console.log('data', data?.data?.likeExist);
-
   useEffect(() => {
     if (data?.like !== null) {
       if (data?.like?.likeExist === true) {
@@ -79,18 +57,9 @@ const BoardDetail = () => {
     }
   }, [params.id, detailedContent?.likeExist]);
 
-  const countAverage =
-    (Number(data?.data?.temperature) + Number(data?.data?.humid)) / 2;
-
-  const onClickHeart = () => {
-    heartMutation.mutate(id);
-  };
-
   if (isLoading) {
     return <Loading />;
   }
-
-  console.log('isGoingToMain', isGoingToMain);
 
   const onClickMoveToMain = () => {
     if (isGoingToMain === true) {
@@ -98,11 +67,6 @@ const BoardDetail = () => {
     } else if (isGoingToMain === false) {
       navigate('/community');
     }
-  };
-  const date = new Date(currentDate);
-
-  const onClickToggle = () => {
-    setIsActive((prev) => !prev);
   };
 
   const onClickDeleteBtn = () => {
@@ -112,8 +76,6 @@ const BoardDetail = () => {
   const createdAtDate = detailedContent?.createdAt
     ? new Date(detailedContent.createdAt)
     : null;
-
-  const text = '123';
 
   if (createdAtDate) {
     createdAtDate.setHours(createdAtDate.getHours() - 9);
@@ -128,7 +90,7 @@ const BoardDetail = () => {
       })
     : null;
 
-  const id = params.id;
+    
 
   return (
     <S.ContainerDiv>
@@ -168,171 +130,12 @@ const BoardDetail = () => {
             <S.MainImg src={detailedContent?.image} alt='엑박' />
           </S.ImgBoxDiv>
         </Animation3>
-        <Animation2>
-          <S.ContentsWrapperDiv>
-            <S.ContentsHeaderDiv>
-              <S.CloudImg
-                src={getEmotion(countAverage, data?.data?.weather)}
-                alt='구름'
-              />
-              <S.ConentsHeaderRightDiv>
-                <S.heartBoxDiv>
-                  <div>
-                    <S.CategoryText>마음 온도</S.CategoryText>
-                    <S.StatusBoxDiv>
-                      <S.MindStatusSpan>{temperatureHandle()}</S.MindStatusSpan>
-                    </S.StatusBoxDiv>
-                  </div>
-                  <div>
-                    <S.CategoryText>마음 습도</S.CategoryText>
-                    <S.StatusBoxDiv>
-                      <S.MindStatusSpan>{humidHandle()}</S.MindStatusSpan>
-                    </S.StatusBoxDiv>
-                  </div>
-                  <div>
-                    <S.CategoryText>마음 일출</S.CategoryText>
-                    <S.StatusBoxDiv>
-                      <S.MindStatusSpan>{sleepHandle()}</S.MindStatusSpan>
-                    </S.StatusBoxDiv>
-                  </div>
-                </S.heartBoxDiv>
-              </S.ConentsHeaderRightDiv>
-            </S.ContentsHeaderDiv>
-            <S.PencilsBoxDiv>
-              {isClickedPencil && (
-                <S.EditPencilDiv>
-                  <S.EditSpan onClick={onClickEdit}>일기 수정</S.EditSpan>
-                  <S.DeleteSpan onClick={onClickDeleteBtn}>
-                    일기 삭제
-                  </S.DeleteSpan>
-                </S.EditPencilDiv>
-              )}
-              {profile?.data?.userId === data?.data?.UserId && (
-                <S.DotWrapperDiv onClick={onClickPencilImg}>
-                  <S.PencilImg src='/dotdotdot.png' alt='수정버튼' />
-                </S.DotWrapperDiv>
-              )}
-            </S.PencilsBoxDiv>
-            <div>
-              <S.ContentBoxHeaderDiv>
-                <div></div>
-              </S.ContentBoxHeaderDiv>
-              <S.ContentsBoxDiv>
-                <S.ContentBoxDiv>
-                  <S.ContentSpan
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(
-                        String(detailedContent?.content)
-                      ),
-                    }}
-                  ></S.ContentSpan>
-                </S.ContentBoxDiv>
-              </S.ContentsBoxDiv>
-              <S.ContentsFooterDiv>
-                <S.SentenceSpan>{detailedContent?.sentence}</S.SentenceSpan>
-              </S.ContentsFooterDiv>
-            </div>
-            <div>
-              <S.CategoryBoxDiv>
-                <S.FooterBoxDiv>
-                  {detailedContent.isPublic === true && (
-                    <div>
-                      {!isActive && <S.ToggleOnImg onClick={onClickToggle} />}
-                      {isActive && <S.ToggleOffImg onClick={onClickToggle} />}
-                    </div>
-                  )}
-                  {detailedContent.isPublic === false && (
-                    <div>
-                      {isActive && <S.GrayToggleImg onClick={onClickToggle} />}
-                      {!isActive && (
-                        <S.GrayToggleOffImg onClick={onClickToggle} />
-                      )}
-                    </div>
-                  )}
-                  <S.CommentsBoxDiv>
-                    {detailedContent.isPublic === true && (
-                      <S.ChatBoxDiv onClick={onClickToggle}>
-                        <S.PurpleChatImg
-                          src='/chat_purple.png'
-                          alt='보라색말풍선'
-                        />
-                        <S.HeartCommentTextSpan
-                          public={detailedContent.isPublic}
-                        >
-                          댓글
-                        </S.HeartCommentTextSpan>
-                        <S.HeartCommentTextSpan
-                          public={detailedContent.isPublic}
-                        >
-                          {comment?.data?.length}
-                        </S.HeartCommentTextSpan>
-                      </S.ChatBoxDiv>
-                    )}
-                    {detailedContent.isPublic === false && (
-                      <S.ChatBoxDiv>
-                        <S.GrayChatImg src='/chat_gray.png' alt='회색말풍선' />
-                        <S.HeartCommentTextSpan
-                          public={detailedContent.isPublic}
-                        >
-                          댓글
-                        </S.HeartCommentTextSpan>
-                        <S.HeartCommentTextSpan
-                          public={detailedContent.isPublic}
-                        >
-                          {comment?.data?.length}
-                        </S.HeartCommentTextSpan>
-                      </S.ChatBoxDiv>
-                    )}
-                  </S.CommentsBoxDiv>
-                  <S.HeartBoxDiv>
-                    <div>
-                      {detailedContent.isPublic === true && (
-                        <S.ChatBoxDiv>
-                          <S.HeartWrapperDiv onClick={onClickHeart}>
-                            {isHeart && <S.CommentHeartImg />}
-                            {!isHeart && <S.BlankHeartImg />}
-                            <S.HeartCommentTextSpan
-                              public={detailedContent.isPublic}
-                            >
-                              좋아요
-                            </S.HeartCommentTextSpan>
-                            <S.PurpleHeartCountSpan>
-                              {detailedContent.likeCount}
-                            </S.PurpleHeartCountSpan>
-                          </S.HeartWrapperDiv>
-                        </S.ChatBoxDiv>
-                      )}
-                      {detailedContent.isPublic === false && (
-                        <S.HeartWrapperDiv>
-                          <img src='/grayHeart.png' alt='회색하트' />
-                          <S.HeartCommentTextSpan
-                            public={detailedContent.isPublic}
-                          >
-                            좋아요
-                          </S.HeartCommentTextSpan>
-                          <S.GrayHeartCountSpan>
-                            {detailedContent.likeCount}
-                          </S.GrayHeartCountSpan>
-                        </S.HeartWrapperDiv>
-                      )}
-                    </div>
-                  </S.HeartBoxDiv>
-                </S.FooterBoxDiv>
-              </S.CategoryBoxDiv>
-              {/* comment 영역 => BoardDetailComment (따로 분리시킴) */}
-
-              <Animation3>
-                {isActive && (
-                  <BoardDetailComment
-                    detailedContent={detailedContent}
-                    profile={profile}
-                    comment={comment}
-                  />
-                )}
-              </Animation3>
-            </div>
-          </S.ContentsWrapperDiv>
-        </Animation2>
+        <BoardDetailContents
+          detailedContent={detailedContent}
+          comment={comment}
+          data={data}
+          profile = {profile}
+        />
       </div>
     </S.ContainerDiv>
   );

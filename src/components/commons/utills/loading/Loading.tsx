@@ -17,9 +17,9 @@ const Loading = () => {
       <S.DivCenter>
         <div>
           <S.ImgGroup>
-            <S.ImgStyle1 src='/sun_happy.png' alt='sun' />
-            <S.ImgStyle2 src='/cloud_soso.png' alt='happy' />
-            <S.ImgStyle3 src='/rain_sad.png' alt='rain' />
+            <S.ImgStyle1 src='/sun_happy.webp' alt='sun' />
+            <S.ImgStyle2 src='/cloud_soso.webp' alt='happy' />
+            <S.ImgStyle3 src='/rain_sad.webp' alt='rain' />
           </S.ImgGroup>
           <S.Title>잠시만 기다려주세요{dots}</S.Title>
           <BarLoader color='#36d7b7' height={14} width={380} />

@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import { LuPencil } from 'react-icons/lu';
-import { FaRegTrashAlt } from 'react-icons/fa';
-import { MdOutlineCancel } from 'react-icons/md';
-import { FaRegCircleCheck } from 'react-icons/fa6';
 
 export const CommentsWrapperDiv = styled.div`
   height: 300px;
@@ -115,11 +111,7 @@ export const ButtonWrapperDiv = styled.div`
   width: 300px;
 `;
 
-export const PencilBtn = styled(LuPencil)`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-`;
+
 
 export const EditTextSpan = styled.span`
   color: #000;
@@ -145,37 +137,10 @@ export const DeleteTextSpan = styled.span`
   }
 `;
 
-export const TrashButton = styled(FaRegTrashAlt)`
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-`;
-
-export const ConfrimImg = styled(FaRegCircleCheck)`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-`;
-
-export const CancelImg = styled(MdOutlineCancel)`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-`;
-
-export const CommentTextArea = styled.textarea`
-  width: 200px;
-  height: 50px;
-`;
-
 export const DateBoxDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const DateTextSpan = styled.span`
-  color: gray;
 `;
 
 export const NoCommentBoxDiv = styled.div`

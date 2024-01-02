@@ -38,48 +38,48 @@ const ViewAllInfinite = (props: any) => {
 
   switch (true) {
     case weather === '1' && countAverage <= 1.6:
-      if (emotionPicture !== '/rain_sad.png') {
-        setEmotionPicture('/rain_sad.png');
+      if (emotionPicture !== '/rain_sad.webp') {
+        setEmotionPicture('/rain_sad.webp');
       }
       break;
     case weather === '1' && countAverage > 1.6 && countAverage <= 3.3:
-      if (emotionPicture !== '/rain_soso.png') {
-        setEmotionPicture('/rain_soso.png');
+      if (emotionPicture !== '/rain_soso.webp') {
+        setEmotionPicture('/rain_soso.webp');
       }
       break;
     case weather === '1' && countAverage > 3.3 && countAverage <= 5:
-      if (emotionPicture !== '/rain_happy.png') {
-        setEmotionPicture('/rain_happy.png');
+      if (emotionPicture !== '/rain_happy.webp') {
+        setEmotionPicture('/rain_happy.webp');
       }
       break;
     case weather === '2' && countAverage <= 1.6:
-      if (emotionPicture !== '/cloud_sad.png') {
-        setEmotionPicture('/cloud_sad.png');
+      if (emotionPicture !== '/cloud_sad.webp') {
+        setEmotionPicture('/cloud_sad.webp');
       }
       break;
     case weather === '2' && countAverage > 1.6 && countAverage <= 3.3:
-      if (emotionPicture !== '/cloud_soso.png') {
-        setEmotionPicture('/cloud_soso.png');
+      if (emotionPicture !== '/cloud_soso.webp') {
+        setEmotionPicture('/cloud_soso.webp');
       }
       break;
     case weather === '2' && countAverage > 3.3 && countAverage <= 5:
-      if (emotionPicture !== '/cloud_happy.png') {
-        setEmotionPicture('/cloud_happy.png');
+      if (emotionPicture !== '/cloud_happy.webp') {
+        setEmotionPicture('/cloud_happy.webp');
       }
       break;
     case weather === '3' && countAverage <= 1.6:
-      if (emotionPicture !== '/sun_sad.png') {
-        setEmotionPicture('/sun_sad.png');
+      if (emotionPicture !== '/sun_sad.webp') {
+        setEmotionPicture('/sun_sad.webp');
       }
       break;
     case weather === '3' && countAverage > 1.6 && countAverage <= 3.3:
-      if (emotionPicture !== '/sun_soso.png') {
-        setEmotionPicture('/sun_soso.png');
+      if (emotionPicture !== '/sun_soso.png.webp') {
+        setEmotionPicture('/sun_soso.png.webp');
       }
       break;
     case weather === '3' && countAverage > 3.3 && countAverage <= 5:
-      if (emotionPicture !== '/sun_happy.png') {
-        setEmotionPicture('/sun_happy.png');
+      if (emotionPicture !== '/sun_happy.webp') {
+        setEmotionPicture('/sun_happy.webp');
       }
       break;
     default:
