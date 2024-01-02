@@ -19,8 +19,6 @@ const usePen = (
   const [colorAtom, setColorAtom] = useRecoilState<string>(colorA);
   const [thicknessAtom, setThicknessAtom] = useRecoilState(thicknessA);
 
-  console.log(colorAtom);
-
   const drawLine = (
     originalMousePosition: ICoordinate,
     newMousePosition: ICoordinate
