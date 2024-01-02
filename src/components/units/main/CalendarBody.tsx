@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import getEmotion from 'src/components/commons/utills/emotionImage';
 import { arrowNavigate } from 'src/states/navigate';
+import { IGetId, IGetPostsData } from './Main.types';
 
-const CalendarBody = (props: any) => {
+const CalendarBody = (props: IGetPostsData) => {
   const [isGoingToMain, setIsGoingToMain] = useRecoilState(arrowNavigate);
   const navigate = useNavigate();
   const { weekCalendarList } = useCalendar();
@@ -16,7 +17,7 @@ const CalendarBody = (props: any) => {
 
   const getId = (date: string) => {
     const matchingDay = allData.find(
-      (el: any) =>
+      (el: IGetId) =>
         el?.createdAt &&
         parseInt(el.createdAt.split('.')[2], 10).toString() === date
     );
@@ -34,13 +35,13 @@ const CalendarBody = (props: any) => {
   };
 
   const filteredDayList = useMemo(
-    () => allData.filter((el: any) => el !== null),
+    () => allData.filter((el: IGetId) => el !== null),
     []
   );
 
   const getEmotionStatusForDate = (date: string) => {
     const matchingDay = filteredDayList.find(
-      (el: any) =>
+      (el: IGetId) =>
         //day 일치여부 조회 로직
         el?.createdAt &&
         parseInt(el.createdAt.split('.')[2]).toString() === date
@@ -51,7 +52,7 @@ const CalendarBody = (props: any) => {
 
   const getWeatherData = (date: string) => {
     const weatherData = filteredDayList.find(
-      (el: any) =>
+      (el: IGetId) =>
         //day 일치여부 조회 로직
         el?.createdAt &&
         parseInt(el.createdAt.split('.')[2]).toString() === date
@@ -62,9 +63,9 @@ const CalendarBody = (props: any) => {
 
   return (
     <S.TableBody>
-      {props.weekCalendarList.map((week: any, weekIndex: any) => (
+      {props.weekCalendarList.map((week: number[], weekIndex: number) => (
         <S.DayRoow key={weekIndex}>
-          {week.map((day: any, dayIndex: any) => {
+          {week.map((day: number, dayIndex: number) => {
             const firstDayOfMonth = new Date(
               props.currentMonth.getFullYear(),
               props.currentMonth.getMonth(),
@@ -89,12 +90,11 @@ const CalendarBody = (props: any) => {
               <S.TableCell
                 key={dayIndex}
                 onClick={onClickGoToDetailHandler(id)}
-                isToday={isToday}
               >
                 {day !== 0 ? (
                   <S.DayWrapperDiv>
                     <S.DateWrapperDiv>
-                      <S.DateSpan isToday={isToday}>{cellDate}</S.DateSpan>
+                      <S.DateSpan istoday={isToday}>{cellDate}</S.DateSpan>
                       {/* {cellDate > new Date().getDate() && ( */}
                       {/* <S.BlankDiv></S.BlankDiv> */}
                       {/* )} */}

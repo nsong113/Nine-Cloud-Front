@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { IoCalendarNumberOutline } from 'react-icons/io5';
-import { IoList } from 'react-icons/io5';
+import { FaRegCalendarAlt } from "@react-icons/all-files/fa/FaRegCalendarAlt";
 import { motion } from 'framer-motion';
 import { IDateSpanProps, ITableCellProps } from './Main.types';
-import { IoIosArrowBack } from 'react-icons/io';
-import { MdOutlineArrowForwardIos } from 'react-icons/md';
+import { IoIosArrowBack } from '@react-icons/all-files/io/IoIosArrowBack';
+import { IoIosArrowForward } from '@react-icons/all-files/io/IoIosArrowForward';
 
 export const MainContainerDiv = styled.div`
   width: 100%;
@@ -397,7 +396,7 @@ export const ViewAllContentP = styled.p`
   transform: translateY(-15px);
 `;
 
-export const Calendar = styled(IoCalendarNumberOutline)`
+export const Calendar = styled(FaRegCalendarAlt)`
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -407,7 +406,7 @@ export const Calendar = styled(IoCalendarNumberOutline)`
   }
 `;
 
-export const List = styled(IoList)`
+export const List = styled.img`
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -434,7 +433,7 @@ export const ExcludeImg = styled.img`
   margin-bottom: 12px;
 `;
 
-export const NextMonth = styled(MdOutlineArrowForwardIos)`
+export const NextMonth = styled(IoIosArrowForward)`
   cursor: pointer;
   color: #a294cd;
 `;
@@ -452,8 +451,8 @@ export const DateWrapperDiv = styled.div`
 `;
 
 export const DateSpan = styled.span<IDateSpanProps>`
-  color: ${({ isToday }) => (isToday ? '#391D93' : 'var(--Gray2, #929292);')};
-  background-color: ${({ isToday }) => (isToday ? '#CFC0FF' : 'inherit')};
+  color: ${({ istoday }) => (istoday ? '#391D93' : 'var(--Gray2, #929292);')};
+  background-color: ${({ istoday }) => (istoday ? '#CFC0FF' : 'inherit')};
 
   border-radius: 20px;
   font-size: 15px;

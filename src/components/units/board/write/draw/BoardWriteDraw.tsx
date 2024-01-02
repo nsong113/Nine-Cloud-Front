@@ -13,7 +13,7 @@ import useSetColor from 'src/components/commons/hooks/useSetColor';
 import useThickness from 'src/components/commons/hooks/useThickness';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
-import { FaCheck } from 'react-icons/fa6';
+import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 

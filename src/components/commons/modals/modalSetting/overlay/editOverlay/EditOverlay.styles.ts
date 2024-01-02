@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
-import { FaRegTrashAlt } from 'react-icons/fa';
+import { FaRegTrashAlt } from '@react-icons/all-files/fa/FaRegTrashAlt';
 import ReactQuill from 'react-quill';
 import Toggle from 'react-toggle';
-import { IoPeople } from 'react-icons/io5';
+import { IoPeople } from '@react-icons/all-files/io5/IoPeople';
 
 export const ContainerDiv = styled.div`
   position: fixed;
