@@ -1,11 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import axios from 'axios';
 import * as S from './Signup.styles';
 import { useNavigate } from 'react-router-dom';
-import LoginKakao from '../login/social/LoginKakao';
-import LoginGoogle from '../login/social/LoginGoogle';
-import LoginNaver from '../login/social/LoginNaver';
 import axiosInstance from 'src/apis/loginapi';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -29,6 +26,27 @@ const Signup = () => {
   );
 
   const [timeRemaining, setTimeRemaining] = useState(180);
+
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  useEffect(() => {
+    if (accessToken || refreshToken) {
+      Swal.fire({
+        icon: 'warning',
+        width: '400px',
+        title:
+          '<span style="font-size: 24px; font-weight: bolder;">이미 로그인 된 상태입니다.</span>',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading(),
+        confirmButtonText: '확인',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/main');
+        }
+      });
+    }
+  }, []);
 
   useEffect(() => {
     let timer: any;
@@ -236,6 +254,8 @@ const Signup = () => {
   const returnLoginHandler = () => {
     navigate('/login');
   };
+
+  //테스트
 
   return (
     <>

@@ -4,6 +4,7 @@ import {
   IAddPost,
   IDeleteComment,
   IEditComment,
+  IEditMyInfo,
   IGetPosts,
   IUpdatePost,
 } from './apis.types';
@@ -38,7 +39,7 @@ const refreshToken = localStorage.getItem('refreshToken');
 //   }
 // };
 
-export const deletePost = async (id: any) => {
+export const deletePost = async (id: string | undefined) => {
   try {
     const response = await axiosInstance.delete(`/diary/delete/${id}`, {
       headers: {
@@ -102,7 +103,7 @@ export const getOnePostInfo = async (diaryId: string | undefined) => {
   }
 };
 
-export const getComments = async (diaryId: string | undefined | number) => {
+export const getComments = async (diaryId: string | undefined) => {
   try {
     const response = await axiosInstance.get(
       `/diary/detail/comment/${diaryId}`,
@@ -222,11 +223,11 @@ export const getMyInfo = async () => {
 //   }
 // };
 
-export const editMyInfo = async (target: any) => {
+export const editMyInfo = async (target: IEditMyInfo) => {
   try {
     const formData = new FormData();
-    formData.append('username', target?.username);
-    formData.append('image', target?.selectedImage);
+    formData.append('username', target?.username || '');
+    formData.append('image', target?.selectedImage || '');
     const response = await axiosInstance.patch(`/myInfo/editmyInfo`, formData, {
       headers: {
         Refreshtoken: `${refreshToken}`,
@@ -254,27 +255,6 @@ export const editMyInfo = async (target: any) => {
     //   showLoaderOnConfirm: true,
     //   allowOutsideClick: () => !Swal.isLoading(),
     // });
-  }
-};
-
-export const editPassword = async (target: any) => {
-  try {
-    const response = await axiosInstance.patch(
-      `/myInfo/edit-pw`,
-      {
-        password: target.password,
-        newPassword: target.newPassword,
-      },
-      {
-        headers: {
-          Refreshtoken: `${refreshToken}`,
-          Authorization: `${accessToken}`,
-        },
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.log('에러');
   }
 };
 
@@ -336,7 +316,7 @@ export const updatePost = async (target: IUpdatePost) => {
   }
 };
 
-export const getHearts = async (diaryId: any) => {
+export const getHearts = async (diaryId: string | undefined) => {
   const data = null;
   try {
     const response = await axiosInstance.post(`/feeds/${diaryId}/like`, data, {

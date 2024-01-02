@@ -98,3 +98,17 @@ export interface IProps {
   isPublic: boolean;
   updatedAt: string;
 }
+
+
+export interface IGetPostsData {
+  EmotionStatus : number,
+  UserId : number,
+  content : string,
+  createdAt : string,
+  diaryId : number,
+  humid : string,
+  image : string,
+  isPublic : boolean,
+  likeCount : number,
+  sentence : string, 
+}

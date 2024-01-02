@@ -73,18 +73,25 @@ const getDiary = async () => {
 };
 
 //get- 무한스크롤  `${apiUrl}?page=${pageNumber}
-const getInfiniteDiaries = async (pageParam: number) => {
+const getInfiniteDiaries = async (
+  pageParam: number,
+  formattedTodayDate: string
+) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   try {
-    const res = await axiosInstance.get(`/feeds/mydiaries?page=${pageParam}`, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        Refreshtoken: `${refreshToken}`,
-        Authorization: `${accessToken}`,
-      },
-    });
+    const res = await axiosInstance.get(
+      `/feeds/mydiaries?page=${pageParam}&date=${formattedTodayDate}
+    `,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
     return {
       result: res.data,
       nextPage: pageParam + 1,

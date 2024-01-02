@@ -12,6 +12,8 @@ import LoginKakao from '../social/LoginKakao';
 import LoginGoogle from '../social/LoginGoogle';
 import LoginNaver from '../social/LoginNaver';
 import axiosInstance from 'src/apis/loginapi';
+import { Authorization } from 'src/components/commons/utills/authorization/Authorization';
+import Swal from 'sweetalert2';
 
 const imagePreload = [];
 
@@ -31,6 +33,27 @@ const LoginSignin = () => {
     '/gptCloud.png',
     '/spinner.gif',
   ];
+
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  useEffect(() => {
+    if (accessToken || refreshToken) {
+      Swal.fire({
+        icon: 'warning',
+        width: '400px',
+        title:
+          '<span style="font-size: 24px; font-weight: bolder;">이미 로그인 된 상태입니다.</span>',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading(),
+        confirmButtonText: '확인',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/main');
+        }
+      });
+    }
+  }, []);
 
   useEffect(() => {
     imageUrls.forEach((url) => {
@@ -139,6 +162,7 @@ const LoginSignin = () => {
       emailValidationMessage === '완료' && passwordValidationMessage === '완료'
     );
   };
+  //테스트
 
   return (
     <>

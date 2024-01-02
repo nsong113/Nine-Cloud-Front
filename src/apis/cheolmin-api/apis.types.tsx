@@ -27,6 +27,11 @@ export interface IUpdatePost {
 }
 
 export interface IGetPosts {
-  currentYear: any;
-  currentMonth: any;
+  currentYear: number | string;
+  currentMonth: number | string;
+}
+
+export interface IEditMyInfo {
+  selectedImage?: File | string;
+  username?: string;
 }

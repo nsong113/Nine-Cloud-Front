@@ -14,11 +14,12 @@ import {
   subMonths,
   getDate,
 } from 'date-fns';
-import { useQuery } from 'react-query';
+import { QueryClient, useQuery } from 'react-query';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
 import GPTModal from 'src/components/commons/modals/gpt/GPTModal';
 
 const Calender = () => {
+  const queryClient = new QueryClient();
   const navigate = useNavigate();
   const {
     weekCalendarList,
@@ -43,9 +44,13 @@ const Calender = () => {
     ['posts', currentMonth, currentYear],
     () =>
       getPosts({
-        currentYear: getYear(currentDate),
         currentMonth: format(currentMonth, 'M'),
-      })
+        currentYear: getYear(currentYear),
+      }),
+    {
+      cacheTime: getYear(new Date()) !== getYear(currentYear) ? 0 : undefined,
+      // cacheTime이 0이면 캐시를 비활성화하고, undefined면 기본 동작(캐시 사용)을 따릅니다.
+    }
   );
 
   const today = getDate(currentDate) - 1;
@@ -63,6 +68,8 @@ const Calender = () => {
     navigate('/list');
   };
 
+  console.log('테스트', getYear(newDate));
+
   const onClickNextMonth = async () => {
     const newDate = addMonths(currentMonth, 1);
     await setCurrentMonth(newDate);
@@ -70,9 +77,15 @@ const Calender = () => {
     setAnimationDirection('leftToRight');
     setCurrentYear(newDate);
   };
+  console.log('newDate', newDate);
+  console.log('currentMonth', currentMonth);
+
+  console.log('연도', currentYear);
 
   const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
+
+    console.log('newDate', newDate);
     await setCurrentMonth(newDate);
     setCurrentDate(newDate);
     setAnimationDirection('rightToLeft');

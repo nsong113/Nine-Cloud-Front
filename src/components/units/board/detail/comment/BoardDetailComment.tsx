@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
 import { useMutation, useQueryClient } from 'react-query';
 import {
@@ -8,7 +8,7 @@ import {
 } from 'src/apis/cheolmin-api/apis';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
-import { IComment } from './BoardDetailComment.types';
+import { IComment, ICommentMap } from './BoardDetailComment.types';
 const BoardDetailComment: React.FC<IComment> = ({
   detailedContent,
   profile,
@@ -52,7 +52,15 @@ const BoardDetailComment: React.FC<IComment> = ({
 
   const onClickSubmitBtn = () => {
     if (content.trim() === '') {
-      alert('작성하신 내용이 없습니다');
+      Swal.fire({
+        icon: 'warning',
+        width: '400px',
+        title:
+          '<span style="font-size: 24px; font-weight: bolder;">댓글을 입력해주세요.</span>',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: () => !Swal.isLoading(),
+        confirmButtonText: '확인',
+      });
       return;
     }
     commentMutation.mutate({ content, diaryId });
@@ -60,13 +68,19 @@ const BoardDetailComment: React.FC<IComment> = ({
   };
 
   const handleOnKeyPress = (event: any) => {
+    // SweetAlert2가 열려있을 때는 엔터 키 이벤트를 무시
+    if (Swal.isVisible()) {
+      return;
+    }
+
     if (event.key === 'Enter') {
+      event.preventDefault(); // 기본 동작(새 줄 추가) 방지
       onClickSubmitBtn();
     }
   };
 
   console.log('댓글', comment?.data?.content);
-  const onClickEditBtn = (commentId: any, userId: any, content: any) => () => {
+  const onClickEditBtn = (commentId: any, userId: number, content: string) => () => {
     setEditingCommentId(commentId);
     Swal.fire({
       width: '400px',
@@ -108,7 +122,7 @@ const BoardDetailComment: React.FC<IComment> = ({
     }
   };
 
-  const onClickDeleteBtn = (commentId: any, userId: any) => () => {
+  const onClickDeleteBtn = (commentId: any , userId: number) => () => {
     Swal.fire({
       icon: 'error',
       width: '400px',
@@ -166,7 +180,7 @@ const BoardDetailComment: React.FC<IComment> = ({
           <S.CommentsWrapperDiv>
             <S.CommentBox>
               <S.CommentHeaderDiv>
-                {comments?.map((el: any) => (
+                {comments?.map((el: ICommentMap) => (
                   <S.CommentWrapperDiv key={el.commentId}>
                     <S.CommentBoxDiv>
                       <S.ProfileImg src={el?.User?.profileImg} alt='타원' />
