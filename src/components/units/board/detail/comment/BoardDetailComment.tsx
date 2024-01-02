@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, MouseEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
 import { useMutation, useQueryClient } from 'react-query';
 import {
@@ -8,7 +8,7 @@ import {
 } from 'src/apis/cheolmin-api/apis';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
-import { IComment } from './BoardDetailComment.types';
+import { IComment, ICommentMap } from './BoardDetailComment.types';
 const BoardDetailComment: React.FC<IComment> = ({
   detailedContent,
   profile,
@@ -80,7 +80,7 @@ const BoardDetailComment: React.FC<IComment> = ({
   };
 
   console.log('댓글', comment?.data?.content);
-  const onClickEditBtn = (commentId: any, userId: any, content: any) => () => {
+  const onClickEditBtn = (commentId: any, userId: number, content: string) => () => {
     setEditingCommentId(commentId);
     Swal.fire({
       width: '400px',
@@ -122,7 +122,7 @@ const BoardDetailComment: React.FC<IComment> = ({
     }
   };
 
-  const onClickDeleteBtn = (commentId: any, userId: any) => () => {
+  const onClickDeleteBtn = (commentId: any , userId: number) => () => {
     Swal.fire({
       icon: 'error',
       width: '400px',
@@ -180,7 +180,7 @@ const BoardDetailComment: React.FC<IComment> = ({
           <S.CommentsWrapperDiv>
             <S.CommentBox>
               <S.CommentHeaderDiv>
-                {comments?.map((el: any) => (
+                {comments?.map((el: ICommentMap) => (
                   <S.CommentWrapperDiv key={el.commentId}>
                     <S.CommentBoxDiv>
                       <S.ProfileImg src={el?.User?.profileImg} alt='타원' />

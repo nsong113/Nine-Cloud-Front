@@ -4,6 +4,7 @@ import React, {
   useState,
   MutableRefObject,
   useRef,
+  MouseEvent,
 } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { IMyPage, IMyPost } from './MyPageOverlay.types';
@@ -13,10 +14,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import Swal from 'sweetalert2';
 import {
   editMyInfo,
-  editPassword,
   getMyInfo,
 } from 'src/apis/cheolmin-api/apis';
-import axios from 'axios';
 import DeleteModal from '../../../delete/DeleteModal';
 import axiosInstance from 'src/apis/loginapi';
 import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
@@ -28,7 +27,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const navigate = useNavigate();
   const [imgFile, setImgFile] = useState<File | null>();
   const buttonRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const [preview, setPreview] = useState<string | null>(''); // Default preview state
+  const [preview, setPreview] = useState<string | null>(''); 
   const [selectedImage, setSelectedImage] = useState<string | File>('');
   const [username, setUsername] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -54,9 +53,8 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
         return;
       }
       const fileReader = new FileReader();
-      fileReader.readAsDataURL(file); // 선택된 파일을 데이터 URL로 변환시킨다.
+      fileReader.readAsDataURL(file); 
       fileReader.onload = (event) => {
-        // 파일 읽기 작업 후, state에 url 추가
         if (typeof event.target?.result === 'string')
           setPreview(event.target?.result);
       };
@@ -75,7 +73,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     }
   }, [imgFile]);
 
-  const onClickModalDiv = (e: any) => {
+  const onClickModalDiv = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
 
