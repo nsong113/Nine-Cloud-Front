@@ -1,17 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { IpostDiaryItem } from 'src/apis/apiesType';
 import { ICoordinate } from 'src/components/units/board/write/draw/BoardWriteDraw.types';
+import imageCompression from 'browser-image-compression';
+import { useRecoilState } from 'recoil';
+import { image } from 'src/states/counter';
+import { colorA, thicknessA } from 'src/states/draw';
 
 const usePen = (
   canvasRef: React.RefObject<HTMLCanvasElement>,
   getCoordinates: (event: MouseEvent) => ICoordinate | undefined,
-  color: string,
-  thickness: number,
   mousePosition: ICoordinate | undefined,
   setMousePosition: React.Dispatch<
     React.SetStateAction<ICoordinate | undefined>
   >
 ) => {
   const [isPainting, setIsPainting] = useState<boolean>(false);
+  const [imageAtom, setImageAtom] = useRecoilState(image);
+  const [colorAtom, setColorAtom] = useRecoilState<string>(colorA);
+  const [thicknessAtom, setThicknessAtom] = useRecoilState(thicknessA);
+
   const drawLine = (
     originalMousePosition: ICoordinate,
     newMousePosition: ICoordinate
@@ -19,14 +26,14 @@ const usePen = (
     if (!canvasRef.current) {
       return;
     }
-    
+
     const canvas: HTMLCanvasElement = canvasRef.current;
     const context = canvas.getContext('2d');
 
     if (context) {
-      context.strokeStyle = color;
+      context.strokeStyle = colorAtom;
       context.lineJoin = 'round';
-      context.lineWidth = thickness;
+      context.lineWidth = thicknessAtom;
 
       context.beginPath();
       context.moveTo(originalMousePosition.x, originalMousePosition.y);
@@ -72,6 +79,79 @@ const usePen = (
   const exitPaint = useCallback(() => {
     setIsPainting(false);
   }, []);
+
+  const makeImageFile = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    try {
+      // Canvas에서 Blob을 생성
+      const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, 'image/png')
+      );
+      if (!blob) return;
+
+      // Blob을 File로 변환 (파일 이름은 원하는 대로 설정 가능)
+      const file = new File([blob], 'image.png', { type: 'image/png' });
+
+      // 압축 함수 호출
+      const compressedImage = await compressImage(file);
+
+      // 이미지를 Base64 문자열로 변환
+      const base64String = await imageToBase64(compressedImage);
+
+      setImageAtom(base64String as string);
+    } catch (error) {
+      console.error('이미지 파일 생성 오류', error);
+    }
+  };
+
+  const timerIdRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (isPainting === false) {
+      if (timerIdRef.current) {
+        clearTimeout(timerIdRef.current);
+      }
+
+      timerIdRef.current = setTimeout(() => {
+        makeImageFile();
+      }, 1000) as unknown as number;
+    }
+    return () => {
+      // Cleanup function
+      if (timerIdRef.current) {
+        clearTimeout(timerIdRef.current);
+      }
+    };
+  }, [isPainting]);
+
+  // 이미지를 Base64 문자열로 변환하는 함수
+  const imageToBase64 = async (image: Blob) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(image);
+    });
+  };
+
+  const compressImage = async (image: File): Promise<Blob> => {
+    const options = {
+      maxSizeMB: 0.01,
+      maxWidthOrHeight: 550,
+      useWebWorker: true,
+    };
+
+    try {
+      const compressedBlob = await imageCompression(image, options as any);
+      return new File([compressedBlob], 'compressedImage.png', {
+        type: 'image/png',
+      });
+    } catch (error) {
+      console.error('이미지 압축 오류', error);
+      throw error;
+    }
+  };
 
   return {
     startPaint,

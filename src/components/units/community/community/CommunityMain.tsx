@@ -6,12 +6,11 @@ import CommunityEach from './CommunityEach';
 import { getInfiniteCommunity } from 'src/apis/community';
 import { Link, useNavigate } from 'react-router-dom';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
+import useSetEmotionIcon from 'src/components/commons/hooks/useSetEmotionIcon';
 
 const CommunityMain = () => {
   const navigate = useNavigate();
-
   const [ref, inView] = useInView();
-  const [emotionPicture, setEmotionPicture] = useState('');
   const [profilePicture, setProfilePicture] = useState('/avatar.png');
 
   const todayDate = new Date();
@@ -26,11 +25,11 @@ const CommunityMain = () => {
   );
 
   const todayData = todayOriginData?.data[arrayDate];
-  const [todayEmotion, setTodayEmotion] = useState(
+  const [countAverage, setTodayEmotion] = useState(
     todayData?.EmotionStatus || 0
   );
   const [weather, setWeather] = useState(todayData?.weather || '');
-
+  const { emotionPicture } = useSetEmotionIcon(weather, countAverage);
   useEffect(() => {
     setProfilePicture(todayOriginData?.userProfileImg.profileImg || '');
   }, [todayOriginData]);
@@ -69,40 +68,6 @@ const CommunityMain = () => {
   const goToMain = () => {
     navigate('/main');
   };
-
-  let emotionPath = '';
-
-  if (weather === '1') {
-    if (todayEmotion <= 1.6) {
-      emotionPath = '/rain_sad.png';
-    } else if (todayEmotion <= 3.3) {
-      emotionPath = '/rain_soso.png';
-    } else if (todayEmotion <= 5) {
-      emotionPath = '/rain_happy.png';
-    }
-  } else if (weather === '2') {
-    if (todayEmotion <= 1.6) {
-      emotionPath = '/cloud_sad.png';
-    } else if (todayEmotion <= 3.3) {
-      emotionPath = '/cloud_soso.png';
-    } else if (todayEmotion <= 5) {
-      emotionPath = '/cloud_happy.png';
-    }
-  } else if (weather === '3') {
-    if (todayEmotion <= 1.6) {
-      emotionPath = '/sun_sad.png';
-    } else if (todayEmotion <= 3.3) {
-      emotionPath = '/sun_soso.png';
-    } else if (todayEmotion <= 5) {
-      emotionPath = '/sun_happy.png';
-    }
-  } else {
-    emotionPath = '/community_none.png';
-  }
-
-  if (emotionPath && emotionPath !== emotionPicture) {
-    setEmotionPicture(emotionPath);
-  }
 
   return (
     <S.MainContainer>

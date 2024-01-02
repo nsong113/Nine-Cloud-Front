@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from 'src/components/commons/modals/alert/alertModal';
@@ -20,7 +20,6 @@ const BoardWriteEmotion = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
   const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
-  // console.log('1', out);
 
   const { happy, onChangeCount: onChangeHappyCount } = useSetEmotion({
     emotionKey: 'happy',
