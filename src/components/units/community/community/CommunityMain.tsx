@@ -104,14 +104,16 @@ const CommunityMain = () => {
             </S.MainTitleFlex>
             <S.MainProfileDiv>
               <S.MainHeaderOn>
-                <S.MainChattingRoomFlex onClick={() => alert('준비중 입니다.')}>
-                  <img
-                    src='/chatting_emoji.png'
-                    alt='채팅방 가기'
-                    style={chatting_emoji}
-                  />
-                  <S.MainChattingContent>참여하기</S.MainChattingContent>
-                </S.MainChattingRoomFlex>
+                <Link to='/community/chat'>
+                  <S.MainChattingRoomFlex>
+                    <img
+                      src='/chatting_emoji.png'
+                      alt='채팅방 가기'
+                      style={chatting_emoji}
+                    />
+                    <S.MainChattingContent>참여하기</S.MainChattingContent>
+                  </S.MainChattingRoomFlex>
+                </Link>
               </S.MainHeaderOn>
             </S.MainProfileDiv>
           </S.MainFlexBox>
