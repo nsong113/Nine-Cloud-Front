@@ -59,7 +59,7 @@ const BoardDetail = () => {
     } else {
       setIsHeart(false);
     }
-  }, [params.id, detailedContent?.likeExist]);
+  }, [detailedContent?.likeExist]);
 
   if (isLoading) {
     return <Loading />;

@@ -101,6 +101,7 @@ export interface IGetPostsData {
   weekCalendarList: number[][];
   currentMonth: Date;
   currentDate: Date;
+  currentYear: Date;
   data: any;
 }
 
