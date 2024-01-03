@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const YourMessage = styled.div`
-  background-color: black;
+  background-color: white;
   border-radius: 8px;
   padding: 8px;
   max-width: 200px;

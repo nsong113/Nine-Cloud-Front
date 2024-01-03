@@ -9,22 +9,19 @@ const Chatting = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
-  // const [rooms, setRooms] = useState([]);
+  const userNameServer = UserNameGenerator();
+  sessionStorage.setItem('username', userNameServer);
+  const userNameClient = sessionStorage.getItem('username').split('.')[0];
 
   useEffect(() => {
-    const userNameClient = UserNameGenerator().split('.')[0];
     alert(`당신의 이름은 '${userNameClient}'입니다!`);
     userName();
-    // socket.on('rooms', (res) => {
-    //   setRooms(res);
-    // });
     socket.on('message', (message) => {
       setMessageList((prevState) => prevState.concat(message));
     });
   }, []);
 
   const userName = () => {
-    const userNameServer = UserNameGenerator();
     socket.emit('login', userNameServer, (res) => {
       console.log('Res', res);
       if (res?.ok) {
