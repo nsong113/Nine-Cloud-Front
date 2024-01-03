@@ -1,8 +1,8 @@
 /* eslint-disable */
-import {useState } from 'react';
+import { useState } from 'react';
 import * as S from './layoutHeader.styles';
 import MyPageModal from '../../modals/myPage/myPageModal';
-import { Tooltip } from '../../utills/tooltip/tooltip';
+import Tooltip from '../../utills/tooltip/tooltip';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getMyInfo } from 'src/apis/cheolmin-api/apis';

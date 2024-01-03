@@ -9,16 +9,6 @@ export const EmotionContainerDiv = styled.div`
   height: 960px;
   overflow: hidden;
   background-color: white;
-  /* background-image: url('/bg_final_final.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
-`;
-
-export const EmotionWrapperUPDiv = styled.div`
-  width: 100%;
-  min-height: 100px;
-  position: relative;
 `;
 
 export const EmotionWrapperDOWNdiv = styled.div`
@@ -65,106 +55,6 @@ export const HeaderFlexBox = styled.div`
   align-items: center;
   justify-content: space-between;
   position: absolute;
-`;
-
-export const OneBlackSpan = styled.div`
-  width: 17.862px;
-  height: 18px;
-
-  border-radius: 45px;
-  background: radial-gradient(
-        circle at 100% 100%,
-        #ffffff 0,
-        #ffffff 6px,
-        transparent 6px
-      )
-      0% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
-      100% 0%/8px 8px no-repeat,
-    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
-      0% 100%/8px 8px no-repeat,
-    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
-      100%/8px 8px no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 16px) no-repeat,
-    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
-      calc(100% - 4px) no-repeat,
-    linear-gradient(
-      319deg,
-      rgba(255, 255, 255, 0.7) 51%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    linear-gradient(
-      128deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.77) 100%
-    ),
-    radial-gradient(at 0% 0%, rgba(80, 53, 166, 0.2) 0%, transparent 70%),
-    linear-gradient(
-      44deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(80, 53, 166, 0.2) 100%
-    );
-  box-sizing: border-box;
-
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px);
-`;
-
-export const TwoBlankSpan = styled.div`
-  width: 18px;
-  height: 18px;
-  background-color: #d9d9d9;
-  border-radius: 50%;
-`;
-
-export const SelectBox = styled.div`
-  width: 90px;
-  height: 37px;
-  transform: translateY(8px);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const ThreeFilledSpan = styled.div`
-  width: 17.862px;
-  height: 18px;
-
-  z-index: 10;
-
-  border-radius: 45px;
-  border: 1px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77));
-
-  background: var(--1, #5035a6);
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px);
-`;
-
-export const SelectP = styled.div`
-  color: var(--1, #5035a6);
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: 2px;
-`;
-
-export const SelectP2 = styled.div`
-  color: var(--1-1, #ece9f5);
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: 2px;
-`;
-
-export const SelectP3 = styled.div`
-  color: var(--1-1, #ece9f5);
-  font-size: 15px;
-  font-weight: 700;
 `;
 
 const colors = {

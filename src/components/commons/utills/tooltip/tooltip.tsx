@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import * as S from './tooltip.styles';
 import { TooltipProps } from './tooltip.types';
 
-export const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
+const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
   return (
     <S.Container>
       {children}
@@ -10,3 +10,5 @@ export const Tooltip: React.FC<TooltipProps> = ({ children, message }) => {
     </S.Container>
   );
 };
+
+export default React.memo(Tooltip);
