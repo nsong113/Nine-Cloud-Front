@@ -5,7 +5,6 @@ import { addMonths, format, getYear, subMonths } from 'date-fns';
 import ViewAllInfinite from './ViewAllInfinite';
 import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import { useNavigate } from 'react-router-dom';
-import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import { useInfiniteQuery } from 'react-query';
 import { getInfiniteDiaries } from 'src/apis/diary';

@@ -81,4 +81,4 @@ const ColorPalette = () => {
   );
 };
 
-export default ColorPalette;
+export default React.memo(ColorPalette);

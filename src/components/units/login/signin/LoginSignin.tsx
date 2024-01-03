@@ -26,7 +26,7 @@ const LoginSignin = () => {
   const navigate = useNavigate();
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
   const imageUrls = [
-    '/avatar.png',
+    'https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png',
     '/exclude.png',
     'blank_circle.png',
     '/logo_final.png',
@@ -106,10 +106,10 @@ const LoginSignin = () => {
       const refreshToken = response.headers['refreshtoken'];
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
-      alert(`${response.data.msg}`);
+      alert(`${response.data.message}`);
       navigate('/loading');
     } catch (error: any) {
-      alert(`${error.response.data.msg}`);
+      alert(`${error.response.data.message}`);
       console.error('네트워크 오류', error.message);
     }
   };

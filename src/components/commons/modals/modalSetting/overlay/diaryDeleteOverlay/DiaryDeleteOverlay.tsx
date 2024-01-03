@@ -4,8 +4,11 @@ import { IDiaryDelete } from './DiatyDeleteOverlay.types';
 import { deletePost } from 'src/apis/cheolmin-api/apis';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { isActiveDeleteModal } from 'src/states/detailedPageModal';
+import { useRecoilState } from 'recoil';
 
 const DiaryDeleteOverlay: React.FC<IDiaryDelete> = ({ onOk, onClose }) => {
+  const [isDelete, setIsDelete] = useRecoilState(isActiveDeleteModal);
   const navigate = useNavigate();
   const params = useParams();
   const queryClient = useQueryClient();
@@ -13,6 +16,7 @@ const DiaryDeleteOverlay: React.FC<IDiaryDelete> = ({ onOk, onClose }) => {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
       navigate('/main');
+      setIsDelete(false);
     },
   });
 

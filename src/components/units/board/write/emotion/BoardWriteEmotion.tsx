@@ -14,6 +14,7 @@ import {
 } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { useRecoilState } from 'recoil';
+import PostUpperWrapper from '../PostUpperWrapper';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
@@ -54,9 +55,7 @@ const BoardWriteEmotion = () => {
     navigate('/main');
   };
 
-  const onClickNextPage = () => {
-    navigate('/post3');
-  };
+  const onClickNextPage = () => navigate('/post3');
 
   const labels = ['bad', '', 'good'].map((label, index) => (
     <S.Label key={index}>{label}</S.Label>
@@ -65,25 +64,15 @@ const BoardWriteEmotion = () => {
   return (
     <Animation2>
       <S.EmotionContainerDiv>
-        <S.EmotionWrapperUPDiv>
-          <S.HeaderButtonBoxDiv>
-            <S.HeaderLine></S.HeaderLine>
-            <S.HeaderFlexBox>
-              <S.SelectBox>
-                <S.ThreeFilledSpan></S.ThreeFilledSpan>
-                <S.SelectP>Emotion</S.SelectP>
-              </S.SelectBox>
-              <S.SelectBox>
-                <S.OneBlackSpan />
-                <S.SelectP2>Text</S.SelectP2>
-              </S.SelectBox>
-              <S.SelectBox>
-                <S.OneBlackSpan />
-                <S.SelectP3>Drawing</S.SelectP3>
-              </S.SelectBox>
-            </S.HeaderFlexBox>
-          </S.HeaderButtonBoxDiv>
-        </S.EmotionWrapperUPDiv>
+        <PostUpperWrapper
+          first={'now'}
+          firstWord={'Emotion'}
+          second={'yet'}
+          secondWord={'Text'}
+          third={'yet'}
+          thirdWord={'Drawing'}
+          progress={'0px'}
+        />
         <S.EmotionWrapperDOWNdiv>
           <S.ContainerDiv>
             {isModalOpen && (
