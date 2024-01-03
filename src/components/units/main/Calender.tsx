@@ -75,7 +75,6 @@ const Calender = () => {
     setCurrentYear(newDate);
   };
 
-
   const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
     await setCurrentMonth(newDate);
@@ -100,11 +99,11 @@ const Calender = () => {
       <S.CalendarContainerDiv>
         <S.HeaderWrapperDiv>
           <S.DateBoxDiv>
-            <S.ExcludeImg src='/exclude.png' alt='이미지' />
+            <S.ExcludeImg src='/exclude.webp' alt='이미지' />
             <S.YearMonthChangeBoxDiv>
               <S.PrevMonth onClick={onClickPrevMonth} size={30} />
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
-              <S.NextMonth onClick={onClickNextMonth} size={26} />
+              <S.NextMonth onClick={onClickNextMonth} size={30} />
             </S.YearMonthChangeBoxDiv>
             <S.PrevNextMonthBoxDiv>
               <S.YearTextSpan>{year}</S.YearTextSpan>

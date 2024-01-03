@@ -26,7 +26,7 @@ const LoginSignin = () => {
   const navigate = useNavigate();
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
   const imageUrls = [
-    '/avatar.png',
+    'https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png',
     '/exclude.png',
     'blank_circle.png',
     '/logo_final.png',
