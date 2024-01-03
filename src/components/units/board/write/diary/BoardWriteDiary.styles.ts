@@ -6,6 +6,10 @@ interface BoardWriteDiaryProps {
   fontColor: boolean;
 }
 
+interface WidthProps {
+  width: string;
+}
+
 export const DiaryContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,10 +18,6 @@ export const DiaryContainerDiv = styled.div`
   height: 960px;
   overflow: hidden;
   background-color: white;
-  /* background-image: url('/bg_final_final.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
 `;
 
 export const DiaryWrapperUPDiv = styled.div`
@@ -54,15 +54,16 @@ export const HeaderButtonBoxDiv = styled.div`
   bottom: 50px;
 `;
 
-export const HeaderLineDone = styled.div`
-  width: 75px;
+export const HeaderLineDone = styled.div<WidthProps>`
+  width: ${(props) => props.width};
   height: 2px;
   background-color: rgba(57, 29, 147, 0.5);
   margin: 0 auto;
   position: absolute;
   z-index: 5;
-  transform: translateX(-35px);
+  transform: ${(props) => (props.width === '75px' ? 'translateX(-35px)' : '')};
 `;
+
 export const HeaderLine = styled.div`
   width: 150px;
   height: 2px;
@@ -160,7 +161,7 @@ export const ThreeFilledSpan = styled.div`
 
   z-index: 10;
 
-  border-radius: 45px;
+  border-radius: 50%;
   border: 1px solid var(--glassmorphism-line, rgba(80, 53, 166, 0.77));
 
   background: var(--1, #5035a6);
@@ -171,25 +172,11 @@ export const ThreeFilledSpan = styled.div`
 `;
 
 export const SelectP = styled.div`
-  color: var(--1, #5035a6);
+  color: ${(props) => (props.color === 'now' ? '#5035a6' : '#ece9f5')};
   font-size: 15px;
   font-weight: 700;
   margin-top: 2px;
-`;
-
-export const SelectP2 = styled.div`
-  color: var(--1-1, #ece9f5);
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: 2px;
-  transform: translateY(100%);
-`;
-
-export const SelectP3 = styled.div`
-  color: var(--1-1, #ece9f5);
-  font-size: 15px;
-  font-weight: 700;
-  transform: translateY(100%);
+  transform: ${(props) => (props.color === 'now' ? '' : 'translateY(100%)')};
 `;
 
 export const DiaryTitleDiv = styled.div`

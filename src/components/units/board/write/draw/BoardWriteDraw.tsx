@@ -8,12 +8,13 @@ import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
 import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
-import { Tooltip } from 'src/components/commons/utills/tooltip/tooltip';
+import Tooltip from 'src/components/commons/utills/tooltip/tooltip';
 import { useRecoilState } from 'recoil';
 import { image } from 'src/states/counter';
 import ColorPalette from './ColorPalette';
 import ThicknessPalette from './ThicknessPalette';
 import { colorA, eraserModeA, penModeA } from 'src/states/draw';
+import PostUpperWrapper from '../PostUpperWrapper';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -232,39 +233,15 @@ const BoardWriteDraw = () => {
         />
       )}
       <S.DrawContainerDiv>
-        <S.DrawWrapperUPDiv>
-          <S.HeaderButtonBoxDiv>
-            <S.HeaderLine />
-            <S.HeaderFlexBox>
-              <S.SelectBox>
-                <FaCheck
-                  style={{
-                    position: 'absolute',
-                    zIndex: '17',
-                    color: '#5035A6',
-                  }}
-                />
-                <S.OneBlackSpan />
-                <S.SelectP2>Emotion</S.SelectP2>
-              </S.SelectBox>
-              <S.SelectBox>
-                <FaCheck
-                  style={{
-                    position: 'absolute',
-                    zIndex: '17',
-                    color: '#5035A6',
-                  }}
-                />
-                <S.OneBlackSpan />
-                <S.SelectP2>Text</S.SelectP2>
-              </S.SelectBox>
-              <S.SelectBox>
-                <S.ThreeFilledSpan></S.ThreeFilledSpan>
-                <S.SelectP>Drawing</S.SelectP>
-              </S.SelectBox>
-            </S.HeaderFlexBox>
-          </S.HeaderButtonBoxDiv>
-        </S.DrawWrapperUPDiv>
+        <PostUpperWrapper
+          first={'checked'}
+          firstWord={'Emotion'}
+          second={'checked'}
+          secondWord={'Text'}
+          third={'now'}
+          thirdWord={'Drawing'}
+          progress={'150px'}
+        />
         <S.DrawWrapperDOWNdiv>
           <S.ContainerDiv>
             <S.DrawTitleBox>

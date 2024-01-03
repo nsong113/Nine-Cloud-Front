@@ -37,4 +37,4 @@ const ThicknessPalette = () => {
   );
 };
 
-export default ThicknessPalette;
+export default React.memo(ThicknessPalette);

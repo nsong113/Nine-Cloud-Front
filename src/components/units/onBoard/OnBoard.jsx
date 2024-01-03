@@ -126,7 +126,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard001.png)',
+            backgroundImage: 'url(/OnBoard001.webp)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -136,7 +136,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard002.png)',
+            backgroundImage: 'url(/OnBoard002.webp)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -146,7 +146,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard003.png)',
+            backgroundImage: 'url(/OnBoard003.webp)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -156,7 +156,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard004.png)',
+            backgroundImage: 'url(/OnBoard004.webp)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',

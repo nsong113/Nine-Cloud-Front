@@ -106,10 +106,10 @@ const LoginSignin = () => {
       const refreshToken = response.headers['refreshtoken'];
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
-      alert(`${response.data.msg}`);
+      alert(`${response.data.message}`);
       navigate('/loading');
     } catch (error: any) {
-      alert(`${error.response.data.msg}`);
+      alert(`${error.response.data.message}`);
       console.error('네트워크 오류', error.message);
     }
   };
