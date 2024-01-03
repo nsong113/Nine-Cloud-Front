@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './BoardDetailFooter.styles';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getHearts, getMyInfo } from 'src/apis/cheolmin-api/apis';
@@ -10,6 +10,7 @@ import BoardDetailComment from '../comment/BoardDetailComment';
 const BoardDetailFooter: React.FC<IDetailFooter> = ({
   detailedContent,
   comment,
+  data,
 }) => {
   const params = useParams();
   const queryClient = useQueryClient();
@@ -30,6 +31,16 @@ const BoardDetailFooter: React.FC<IDetailFooter> = ({
   const onClickHeart = () => {
     heartMutation.mutate(params.id);
   };
+
+  useEffect(() => {
+    if (data?.like !== null) {
+      if (data?.like?.likeExist === true) {
+        setIsHeart(true);
+      }
+    } else {
+      setIsHeart(false);
+    }
+  }, [params.id, detailedContent?.likeExist]);
 
   return (
     <div>

@@ -49,15 +49,6 @@ const BoardDetail = () => {
   );
   const detailedContent = data?.data;
   const params = useParams();
-  useEffect(() => {
-    if (data?.like !== null) {
-      if (data?.like?.likeExist === true) {
-        setIsHeart(true);
-      }
-    } else {
-      setIsHeart(false);
-    }
-  }, [params.id, detailedContent?.likeExist]);
 
   if (isLoading) {
     return <Loading />;

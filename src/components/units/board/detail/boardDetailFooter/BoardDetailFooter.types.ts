@@ -1,4 +1,5 @@
 export interface IDetailFooter {
   detailedContent : any,
-  comment : any
+  comment : any,
+  data : any,
 }
