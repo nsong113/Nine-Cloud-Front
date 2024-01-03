@@ -5,10 +5,16 @@ import * as DOMPurify from 'dompurify';
 import { VideoCard } from 'src/components/commons/utills/Date/date';
 import { useRecoilState } from 'recoil';
 import { arrowNavigate } from 'src/states/navigate';
+import useSetEmotionIcon from 'src/components/commons/hooks/useSetEmotionIcon';
+import imageCompression from 'browser-image-compression';
 
 const CommunityEach = (props: any) => {
   const createdAtDate = new Date(props.item.createdAt);
   const [isGoingToMain, setIsGoingToMain] = useRecoilState(arrowNavigate);
+  const weather = props.item.weather;
+  const countAverage = props.item.EmotionStatus;
+  const { emotionPicture } = useSetEmotionIcon(weather, countAverage);
+
   if (createdAtDate) {
     createdAtDate.setHours(createdAtDate.getHours() - 9);
   }
@@ -29,61 +35,6 @@ const CommunityEach = (props: any) => {
     setIsGoingToMain(false);
   };
 
-  const weather = props.item.weather; //string
-  const countAverage = props.item.EmotionStatus; //number
-  const [emotionPicture, setEmotionPicture] = useState('');
-
-  switch (true) {
-    case weather === '1' && countAverage <= 1.6:
-      if (emotionPicture !== '/rain_sad.png') {
-        setEmotionPicture('/rain_sad.png');
-      }
-      break;
-    case weather === '1' && countAverage > 1.6 && countAverage <= 3.3:
-      if (emotionPicture !== '/rain_soso.png') {
-        setEmotionPicture('/rain_soso.png');
-      }
-      break;
-    case weather === '1' && countAverage > 3.3 && countAverage <= 5:
-      if (emotionPicture !== '/rain_happy.png') {
-        setEmotionPicture('/rain_happy.png');
-      }
-      break;
-    case weather === '2' && countAverage <= 1.6:
-      if (emotionPicture !== '/cloud_sad.png') {
-        setEmotionPicture('/cloud_sad.png');
-      }
-      break;
-    case weather === '2' && countAverage > 1.6 && countAverage <= 3.3:
-      if (emotionPicture !== '/cloud_soso.png') {
-        setEmotionPicture('/cloud_soso.png');
-      }
-      break;
-    case weather === '2' && countAverage > 3.3 && countAverage <= 5:
-      if (emotionPicture !== '/cloud_happy.png') {
-        setEmotionPicture('/cloud_happy.png');
-      }
-      break;
-    case weather === '3' && countAverage <= 1.6:
-      if (emotionPicture !== '/sun_sad.png') {
-        setEmotionPicture('/sun_sad.png');
-      }
-      break;
-    case weather === '3' && countAverage > 1.6 && countAverage <= 3.3:
-      if (emotionPicture !== '/sun_soso.png') {
-        setEmotionPicture('/sun_soso.png');
-      }
-      break;
-    case weather === '3' && countAverage > 3.3 && countAverage <= 5:
-      if (emotionPicture !== '/sun_happy.png') {
-        setEmotionPicture('/sun_happy.png');
-      }
-      break;
-    default:
-      // console.log('아무것도 아님');
-      break;
-  }
-
   return (
     <>
       <S.ViewAllEachBoxDiv
@@ -91,7 +42,7 @@ const CommunityEach = (props: any) => {
       >
         <S.ViewAllEachFlex>
           <S.ViewAllIMGbox>
-            <img src={props.item.image} alt='그림일기' style={mainInageStyle} />
+            <img src={props.item.image} alt='그림일기' style={mainImageStyle} />
           </S.ViewAllIMGbox>
           <S.ViewAllRightContentDiv>
             <S.ViewAllRightFlexDiv>
@@ -122,7 +73,7 @@ const imgstyle = {
   height: '50px,',
 };
 
-const mainInageStyle = {
+const mainImageStyle = {
   width: '90%',
   height: '90%',
 };

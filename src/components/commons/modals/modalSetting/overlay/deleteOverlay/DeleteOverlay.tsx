@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import * as S from './DeleteOverlay.styles';
 
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
@@ -9,7 +9,7 @@ const DeleteOverlay: React.FC<IDelete> = ({ onOk, onClose }) => {
   const onClickCancel = () => {
     onClose();
   };
-  const onClickModalDiv = (e: any) => {
+  const onClickModalDiv = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
 

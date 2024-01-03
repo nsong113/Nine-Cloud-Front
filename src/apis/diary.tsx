@@ -1,15 +1,14 @@
 //다이어리 관련 CRUD
 import { IpostDiaryItem } from './apiesType';
-import { useRecoilState } from 'recoil';
 import axiosInstance from './loginapi';
-import { countAverage, happyA, sadA, sleep } from 'src/states/counter';
 
 // create (post)
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
 
-  // console.log('POSTpostDiaryItem', postDiaryItem);
+  console.log('post postDiary', postDiaryItem);
+
   try {
     const formData = new FormData();
 
@@ -39,12 +38,6 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
         Authorization: `${accessToken}`,
       },
     });
-    localStorage.removeItem('sentence');
-    localStorage.removeItem('weather');
-    // localStorage.removeItem('countAverage');
-    localStorage.removeItem('image');
-    localStorage.removeItem('content');
-    localStorage.removeItem('isPublic');
     return res.data;
   } catch (error) {
     console.log('postDiary error', error);
@@ -60,7 +53,6 @@ const getDiary = async () => {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
-        // 'Content-Type': 'multipart/form-data',
         Refreshtoken: `${refreshToken}`,
         Authorization: `${accessToken}`,
       },
@@ -73,18 +65,25 @@ const getDiary = async () => {
 };
 
 //get- 무한스크롤  `${apiUrl}?page=${pageNumber}
-const getInfiniteDiaries = async (pageParam: number) => {
+const getInfiniteDiaries = async (
+  pageParam: number,
+  formattedTodayDate: string
+) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   try {
-    const res = await axiosInstance.get(`/feeds/mydiaries?page=${pageParam}`, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        Refreshtoken: `${refreshToken}`,
-        Authorization: `${accessToken}`,
-      },
-    });
+    const res = await axiosInstance.get(
+      `/feeds/mydiaries?page=${pageParam}&date=${formattedTodayDate}
+    `,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+          Refreshtoken: `${refreshToken}`,
+          Authorization: `${accessToken}`,
+        },
+      }
+    );
     return {
       result: res.data,
       nextPage: pageParam + 1,

@@ -19,17 +19,16 @@ const ViewAll = () => {
   const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
     useCalendar();
   const navigate = useNavigate();
-  const [animationClass, setAnimationClass] = useState('');
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const formattedMonth = format(currentMonth, 'MMMM');
-  const [isToggle, setIsToggle] = useState(false);
-  const profileImg = localStorage.getItem('image'); //나중에 db에서 get하기
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [ref, inView] = useInView();
 
   const month = getMonth(newDate) + 1;
+  const today = new Date();
+  const formattedTodayDate = today.toISOString();
 
   const onClickMyProfile = () => {
     setIsActiveModal((prev) => !prev);
@@ -55,7 +54,7 @@ const ViewAll = () => {
     fetchNextPage, //다음 페이지를 가져오기 위해 호출할 함수입니다. 이 함수를 호출하면 다음 페이지의 데이터를 가져옵니다.
   } = useInfiniteQuery(
     'getInfiniteDiary',
-    ({ pageParam = 1 }) => getInfiniteDiaries(pageParam),
+    ({ pageParam = 1 }) => getInfiniteDiaries(pageParam, formattedTodayDate),
     {
       //다음 페이지의 pageParam 값을 결정하는 데 사용
       getNextPageParam: (_lastPage) => {

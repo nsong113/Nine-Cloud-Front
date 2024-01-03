@@ -11,6 +11,6 @@ export interface CheckEdit {
 }
 
 export interface IMyPost {
-  selectedImage?: any;
+  selectedImage?: File | string;
   username?: string;
 }

@@ -19,7 +19,6 @@ import { getPosts } from 'src/apis/cheolmin-api/apis';
 import GPTModal from 'src/components/commons/modals/gpt/GPTModal';
 
 const Calender = () => {
-  const queryClient = new QueryClient();
   const navigate = useNavigate();
   const {
     weekCalendarList,
@@ -68,8 +67,6 @@ const Calender = () => {
     navigate('/list');
   };
 
-  console.log('테스트', getYear(newDate));
-
   const onClickNextMonth = async () => {
     const newDate = addMonths(currentMonth, 1);
     await setCurrentMonth(newDate);
@@ -77,15 +74,10 @@ const Calender = () => {
     setAnimationDirection('leftToRight');
     setCurrentYear(newDate);
   };
-  console.log('newDate', newDate);
-  console.log('currentMonth', currentMonth);
 
-  console.log('연도', currentYear);
 
   const onClickPrevMonth = async () => {
     const newDate = subMonths(currentMonth, 1);
-
-    console.log('newDate', newDate);
     await setCurrentMonth(newDate);
     setCurrentDate(newDate);
     setAnimationDirection('rightToLeft');
@@ -127,7 +119,7 @@ const Calender = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={onClickListBtn}
               >
-                <S.List />
+                <S.List src='/list.png' alt='리스트' />
               </S.StyledHoverTapButton>
               {/* </Tooltip> */}
             </S.ButtonWrapperDiv>
