@@ -16,7 +16,7 @@ export const InputContainer = styled.form`
 `;
 
 export const Input = styled.input`
-  color: blue;
+  color: black;
   width: 100%;
   border-radius: 20px;
 `;
@@ -36,4 +36,3 @@ export const SendButton = styled.button`
     cursor: pointer;
   }
 `;
-
