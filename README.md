@@ -78,7 +78,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 ## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
 
-|                                           주철민                                            |                                        (VL) 송지우                                         |                                        (VL) 한덕용                                         |
+|                                           주철민                                            |                                     송지우                                         |                                         한덕용                                         |
 | :-----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/138233242?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> |
 |                        [cheolminJOO](https://github.com/cheolminJOO)                        |                          [nsong113](https://github.com/nsong113)                           |                        [HyperQuanx](https://github.com/HyperQuanx)                         |
@@ -110,7 +110,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
       - 개인 글 보기 피드 (infinite-scroll)<br />
       - gpt open api 연결 및 prompt 작성 <br />
     </td>
-com    <td align="center">nsong113@gmail</td>
+com    <td align="center">nsong113@gmail.com</td>
   </tr>
   <tr>
     <td align="center">한덕용</td>
