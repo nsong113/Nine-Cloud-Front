@@ -154,6 +154,7 @@ const Calender = () => {
                   weekCalendarList={weekCalendarList}
                   currentMonth={currentMonth}
                   currentDate={currentDate}
+                  currentYear={currentYear}
                   data={data}
                 />
               </S.CalendarTable>
