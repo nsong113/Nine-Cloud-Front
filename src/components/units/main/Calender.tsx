@@ -152,6 +152,7 @@ const Calender = () => {
                 {/* 캘린더 바디 컴포넌트 */}
                 <CalendarBody
                   weekCalendarList={weekCalendarList}
+                  currentYear={currentYear}
                   currentMonth={currentMonth}
                   currentDate={currentDate}
                   currentYear={currentYear}

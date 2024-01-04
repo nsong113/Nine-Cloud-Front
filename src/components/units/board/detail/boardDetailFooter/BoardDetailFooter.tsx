@@ -21,6 +21,16 @@ const BoardDetailFooter: React.FC<IDetailFooter> = ({
     setIsActive((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (data?.like !== null) {
+      if (data?.like?.likeExist === true) {
+        setIsHeart(true);
+      }
+    } else {
+      setIsHeart(false);
+    }
+  }, [detailedContent?.likeExist]);
+
   const heartMutation = useMutation(getHearts, {
     onSuccess: () => {
       queryClient.invalidateQueries('post');
@@ -114,7 +124,7 @@ const BoardDetailFooter: React.FC<IDetailFooter> = ({
         </S.FooterBoxDiv>
       </S.CategoryBoxDiv>
       <Animation3>
-        {isActive && (
+        {!isActive && (
           <BoardDetailComment
             detailedContent={detailedContent}
             profile={profile}
