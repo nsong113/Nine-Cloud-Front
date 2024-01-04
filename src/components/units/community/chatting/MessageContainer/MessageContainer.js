@@ -18,6 +18,7 @@ const MessageContainer = ({ messageList, user }) => {
         messageContainerRef.current.scrollHeight;
     }
   };
+
   return (
     <div
       ref={messageContainerRef}
@@ -27,30 +28,24 @@ const MessageContainer = ({ messageList, user }) => {
         return (
           <Container key={message._id} className='message-container'>
             {message.user.name === 'system' ? (
-              <div className='system-message-container'>
-                <p className='system-message'>{message.chat}</p>
-              </div>
+              <S.SystemMessageContainer>
+                <S.SystemMessage>{message.chat}</S.SystemMessage>
+              </S.SystemMessageContainer>
             ) : message.user.name === user.name ? (
-              <div className='my-message-container'>
-                <div className='my-message'>{message.chat}</div>
-              </div>
+              <S.MyMessageContainer>
+                <S.MyMessage>
+                  <div>{message.chat}</div>
+                </S.MyMessage>
+              </S.MyMessageContainer>
             ) : (
-              <div className='your-message-container'>
-                <img
-                  src='/person.png'
-                  alt='Profile'
-                  className='profile-image'
-                  style={
-                    (index === 0
-                      ? { visibility: 'visible' }
-                      : messageList[index - 1].user.name === user.name) ||
-                    messageList[index - 1].user.name === 'system'
-                      ? { visibility: 'visible' }
-                      : { visibility: 'hidden' }
-                  }
-                />
-                <S.YourMessage>{message.chat}</S.YourMessage>
-              </div>
+              <S.YourMessageContainer>
+                <S.YourMessage>
+                  <S.YourMessageTitle>
+                    {message.user.name.split('.')[0]}
+                  </S.YourMessageTitle>
+                  <S.YourMessageContent>{message.chat}</S.YourMessageContent>
+                </S.YourMessage>
+              </S.YourMessageContainer>
             )}
           </Container>
         );
