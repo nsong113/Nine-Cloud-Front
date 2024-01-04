@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import * as S from './CommunityMain.style';
 import { useNavigate } from 'react-router-dom';
 import * as DOMPurify from 'dompurify';

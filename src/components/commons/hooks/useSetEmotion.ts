@@ -13,7 +13,6 @@ const useSetEmotion = ({ emotionKey, emotionAtom }: IuseSetEmotion) => {
   const [emotion, setEmotion] = useState<string>('3');
   const [emotionAtomState, setEmotionAtom] =
     useRecoilState<string>(emotionAtom);
-  const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
 
   const onChangeCount = (event: ChangeEvent<HTMLInputElement>): void => {
     setEmotionAtom(event.target.value);
@@ -21,14 +20,7 @@ const useSetEmotion = ({ emotionKey, emotionAtom }: IuseSetEmotion) => {
 
   useEffect(() => {
     setEmotion(emotionAtomState);
-    // setEmotionAtom((prev) => prev || '3');
   }, [emotionAtomState]);
-
-  // useEffect(() => {
-  //   if (out === true) {
-  //     setEmotionAtom('3');
-  //   }
-  // }, []);
 
   return {
     [emotionKey]: emotion,

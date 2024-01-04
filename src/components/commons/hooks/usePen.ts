@@ -85,21 +85,13 @@ const usePen = (
     if (!canvas) return;
 
     try {
-      // Canvas에서 Blob을 생성
       const blob = await new Promise<Blob | null>((resolve) =>
         canvas.toBlob(resolve, 'image/png')
       );
       if (!blob) return;
-
-      // Blob을 File로 변환 (파일 이름은 원하는 대로 설정 가능)
       const file = new File([blob], 'image.png', { type: 'image/png' });
-
-      // 압축 함수 호출
       const compressedImage = await compressImage(file);
-
-      // 이미지를 Base64 문자열로 변환
       const base64String = await imageToBase64(compressedImage);
-
       setImageAtom(base64String as string);
     } catch (error) {
       console.error('이미지 파일 생성 오류', error);
@@ -118,14 +110,12 @@ const usePen = (
       }, 1000) as unknown as number;
     }
     return () => {
-      // Cleanup function
       if (timerIdRef.current) {
         clearTimeout(timerIdRef.current);
       }
     };
   }, [isPainting]);
 
-  // 이미지를 Base64 문자열로 변환하는 함수
   const imageToBase64 = async (image: Blob) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();

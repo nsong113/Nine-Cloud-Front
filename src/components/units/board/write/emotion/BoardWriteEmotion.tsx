@@ -156,7 +156,6 @@ const BoardWriteEmotion = () => {
                   </S.ContentInputBoxDiv>
                 </S.ContentsBoxDiv>
               </S.SliderBoxDiv>
-
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentFlexDivBox>
