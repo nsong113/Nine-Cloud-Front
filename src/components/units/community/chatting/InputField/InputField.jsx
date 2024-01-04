@@ -12,12 +12,11 @@ const InputField = ({ message, setMessage, sendMessage }) => {
     <S.InputArea>
       <S.InputContainer onSubmit={handleSendMessage}>
         <S.Input
-          placeholder='Type in here…'
+          placeholder='   채팅을 입력하세요'
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           rows={1}
         />
-
         <S.SendButton disabled={message === ''} type='submit'>
           전송
         </S.SendButton>

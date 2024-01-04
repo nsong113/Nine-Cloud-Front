@@ -38,14 +38,16 @@ const Chatting = () => {
   };
 
   return (
-    <S.Background>
-      <MessageContainer messageList={messageList} user={user} />
-      <InputField
-        message={message}
-        setMessage={setMessage}
-        sendMessage={sendMessage}
-      />
-    </S.Background>
+    <>
+      <S.Background>
+        <MessageContainer messageList={messageList} user={user} />
+        <InputField
+          message={message}
+          setMessage={setMessage}
+          sendMessage={sendMessage}
+        />
+      </S.Background>
+    </>
   );
 };
 

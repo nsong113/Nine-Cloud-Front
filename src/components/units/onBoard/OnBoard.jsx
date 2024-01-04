@@ -71,8 +71,6 @@ export default function OnBoard() {
     setContent1(contentList1[swiper.activeIndex]);
     setContent2(contentList2[swiper.activeIndex]);
 
-    // 활성 슬라이드의 인덱스를 기반으로 UnderBall 엘리먼트의 스타일 업데이트
-    // 이 부분에서 충돌나시면 그대로 추가하시면 됩니다.
     const underBalls = document.querySelectorAll('.under-ball');
 
     underBalls.forEach((underBall, index) => {
@@ -126,7 +124,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard001.webp)',
+            backgroundImage: 'url(/onboard1.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -136,7 +134,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard002.webp)',
+            backgroundImage: 'url(/onboard2.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -146,7 +144,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard003.webp)',
+            backgroundImage: 'url(/onboard3.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
@@ -156,7 +154,7 @@ export default function OnBoard() {
           style={{
             borderRadius: '10px',
             height: '57.92vh',
-            backgroundImage: 'url(/OnBoard004.webp)',
+            backgroundImage: 'url(/onboard4.png)',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: '100% 100%',
