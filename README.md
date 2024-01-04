@@ -1,8 +1,9 @@
 # **🏡 Local Mingle - FE**
+
 ![로컬밍글 브로셔](https://github.com/LocalMingle/LocalMingle-FE/assets/93027502/4a4fd6d4-cded-4ef3-af10-0f84fa26785e)
 
-> 로컬밍글은 소셜 커뮤니티 서비스입니다.</br>
-쉽고 빠르게 함께 할 수 있는 활동을 만들고 참여해보세요!
+> 로컬밍글은 소셜 커뮤니티 서비스입니다.</br> 쉽고 빠르게 함께 할 수 있는 활동을
+> 만들고 참여해보세요!
 
 </br>
 
@@ -69,14 +70,15 @@
 
 ## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
 
-|김태현|(VL) 장소영|
-|:---:|:---:|
-|<img src="https://avatars.githubusercontent.com/u/138233242?v=4" width="200" height="200"/>|<img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/>|
-|[ted0729](https://github.com/ted0729)|[ddoddiworld](https://github.com/ddoddiworld?tab=repositories)|
+|                                           김태현                                            |                                        (VL) 장소영                                         |
+| :-----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+| <img src="https://avatars.githubusercontent.com/u/138233242?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> |
+|                            [ted0729](https://github.com/ted0729)                            |               [ddoddiworld](https://github.com/ddoddiworld?tab=repositories)               |
 
 </br>
 
 ## **💻 역할 담당**
+
 <table>
   <tr>
     <td align="center">김태현</td>
@@ -100,6 +102,18 @@
       - Figma 관리
     </td>
     <td align="center">emily_jang@kakao.com</td>
+  </tr>
+  <tr>
+    <td align="center">김태현</td>
+    <td style="padding: 15px 10px;">
+      - 일반회원가입 / 로그인페이지<br />
+      - 소셜 로그인<br />
+      - 다국어기능<br />
+      - 실시간 채팅<br />
+      - 게시글 상세 페이지<br />
+      - 마이페이지(회원정보 수정, 작성 이벤트 관리, 참여 이벤트 관리, 회원탈퇴) CRUD<br />
+    </td>
+    <td align="center">tutu72933@gmail.com</td>
   </tr>
 </table>
 
@@ -340,11 +354,13 @@ api를 하나로 통일하면서 && 조건도 같이 탈 수 있도록 로직 �
 </br>
 
 ## **🗣️ 유지 피드백 & 반영**
-마지막으로 유저 피드백 입니다.<br/>
-프로젝트에서 좋게 평가해주신 부분은 디자인과 성능이 부분이며<br/>
-불편하게 느끼신 상당 부분은 유저 편의성이 좋지 않다는 것 이였습니다.<br/>
-그래서 짧게 남은 프로젝트 기간 동안 피드백을 최대한 반영할 수 있는 부분이 유저 편의성 부분이라고 판단하여,<br/>
-이 부분을 중점으로 피드백을 반영 하였습니다.<br/>
+
+마지막으로 유저 피드백 입니다.<br/> 프로젝트에서 좋게 평가해주신 부분은 디자인과
+성능이 부분이며<br/> 불편하게 느끼신 상당 부분은 유저 편의성이 좋지 않다는 것 이
+였습니다.<br/> 그래서 짧게 남은 프로젝트 기간 동안 피드백을 최대한 반영할 수 있
+는 부분이 유저 편의성 부분이라고 판단하여,<br/> 이 부분을 중점으로 피드백을 반영
+하였습니다.<br/>
+
 <table>
   <tr>
     <th align="center">Before</td>
@@ -418,5 +434,3 @@ api를 하나로 통일하면서 && 조건도 같이 탈 수 있도록 로직 �
 </table>
 
 </br>
-
-
