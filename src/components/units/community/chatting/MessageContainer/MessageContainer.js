@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import './MessageContainer.css';
 import { Container } from '@mui/system';
 import * as S from './MessageContainer.styles';
 
@@ -18,39 +17,38 @@ const MessageContainer = ({ messageList, user }) => {
         messageContainerRef.current.scrollHeight;
     }
   };
+
   return (
     <div
       ref={messageContainerRef}
-      style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 50px)' }}
+      style={{ overflowY: 'auto', maxHeight: 'calc(90vh - 50px)' }}
     >
       {messageList.map((message, index) => {
         return (
           <Container key={message._id} className='message-container'>
             {message.user.name === 'system' ? (
-              <div className='system-message-container'>
-                <p className='system-message'>{message.chat}</p>
-              </div>
+              <S.SystemMessageContainer>
+                <S.SystemMessage>{message.chat}</S.SystemMessage>
+              </S.SystemMessageContainer>
             ) : message.user.name === user.name ? (
-              <div className='my-message-container'>
-                <div className='my-message'>{message.chat}</div>
-              </div>
+              <S.MyMessageContainer>
+                <S.MyMessage>
+                  <div>{message.chat}</div>
+                </S.MyMessage>
+              </S.MyMessageContainer>
             ) : (
-              <div className='your-message-container'>
-                <img
-                  src='/person.png'
-                  alt='Profile'
-                  className='profile-image'
-                  style={
-                    (index === 0
-                      ? { visibility: 'visible' }
-                      : messageList[index - 1].user.name === user.name) ||
-                    messageList[index - 1].user.name === 'system'
-                      ? { visibility: 'visible' }
-                      : { visibility: 'hidden' }
-                  }
-                />
-                <S.YourMessage>{message.chat}</S.YourMessage>
-              </div>
+              <S.YourMessageContainer>
+                <div>
+                  <S.YourMessageTitle>
+                    {message.user.name.split('.')[0]}
+                  </S.YourMessageTitle>
+                </div>
+                <div>
+                  <S.YourMessage>
+                    <S.YourMessageContent>{message.chat}</S.YourMessageContent>
+                  </S.YourMessage>
+                </div>
+              </S.YourMessageContainer>
             )}
           </Container>
         );

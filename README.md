@@ -1,0 +1,461 @@
+# **🏡 Cloud Nine - FE**
+
+![클라우드나인 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
+
+> 클라우드 나인은 AI 감정 솔루션 그림일기 서비스 입니다.</br> 하루의 일과를 그림
+> 과 글로 정리하여 그날의 감정 이모티콘과 함께 기록해보세요.
+
+</br>
+
+## **☁️ Cloud Nine**
+
+cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복한 감정을 기록
+(cloud), 9가지의 감정 표현 이라는 점에서 저희 서비스에 어울리는 속담 같아 나인클
+라우드라고 설정해 보았습니다.
+
+</br>
+
+<table width="80%;">
+  <tr align="center">
+    <td><strong>구분</strong></td>
+    <td><strong>링크</strong></td>
+    <td><strong>구분</strong></td>
+    <td><strong>링크</strong></td>
+  </tr>
+  <tr align="center">
+    <td><img src="/favicon.png" alt="클라우드나인 아이콘" style="width: 25px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://localmingle.store/">Cloud Nine</a></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.notion.so/totobon6125/Local-Mingle-0ceb08bc63674e28a3ee8d458ba2baaf">브로슈어</a></td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://user-images.githubusercontent.com/389021/165723723-c93929a5-01d9-49e1-907b-43669d8089e6.png" alt="리액트 아이콘" style="width: 25px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/final-project-hh99/front.git">FE Github</a></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://hypnotic-wheel-d62.notion.site/2b72a1883a1a4e719f5d6ef98ae4c998?pvs=4">팀 SA</a></td>
+  </tr>
+  <tr align="center">
+    <td><img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png" alt="노드js 아이콘" style="width: 20px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/Lee-chan0/final_project_back/tree/dev">BE Github</a></td>
+    <td><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="피그마 아이콘" style="width: 20px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.figma.com/file/xMqhB1UU2JEtAmw4z6VJAM/%ED%95%AD%ED%95%B4-99?type=design&node-id=1816%3A4131&mode=design&t=GwsmVNb46SNoz2lO-1">Figma</a></td>
+  </tr>
+</table>
+
+</br>
+
+## **🎈 주요기능 소개**
+
+<table>
+  <tr align="center">
+    <td><strong>소셜 로그인</strong></td>
+    <td><strong>다국어</strong></td>
+    <td><strong>채팅방</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/e7925ad3-c01b-4a92-b55c-85af5c0ee943" alt="소셜 로그인" style="height:500px"/></td>
+    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/5e4219ef-f591-424f-8c9d-3a71566f4510" alt="다국어" style="height:500px"/></td>
+    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/f9855b2f-5e4e-468b-a14b-56136a1e7a08" alt="채팅방" style="height:500px"/></td>
+  </tr>
+</table>
+
+</br>
+
+<table>
+  <tr align="center">
+    <td><strong>게시글 검색</strong></td>
+    <td><strong>게시글 필터링</strong></td>
+    <td><strong>인피니티 스크롤</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/e8eb91f1-340d-4b19-a32c-4cce8ff83fee" alt="게시글 검색" style="height:500px"/></td>
+    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/92aa2dc2-0865-4b98-9a7c-fdd70af87bb1" alt="게시글 필터링" style="height:500px"/></td>
+    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/66e20e95-5784-4d25-9a4a-3766a227d907" alt="인피니티 스크롤" style="height:500px"/></td>
+  </tr>
+</table>
+
+</br>
+
+## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
+
+|                                           주철민                                            |                                           송지우                                           |                                           한덕용                                           |
+| :-----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+| <img src="https://avatars.githubusercontent.com/u/138233242?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> |
+|                        [cheolminJOO](https://github.com/cheolminJOO)                        |                          [nsong113](https://github.com/nsong113)                           |                        [HyperQuanx](https://github.com/HyperQuanx)                         |
+
+</br>
+
+## **💻 역할 담당**
+
+<table>
+  <tr>
+    <td align="center">주철민</td>
+    <td style="padding: 15px 10px;">
+      - 달력 디자인 커스텀 <br />
+      - 일기 상세페이지, 수정페이지 <br />
+      - 마이페이지 기능 구현   <br />
+      - 전반적인 alert 창 관리 (sweetAlert2) <br />
+      - 댓글, 좋아요 기능 구현<br />
+      - 페이지 전환 애니메이션 (framer-motion)<br />
+      - 배포 관리(vercel), 이미지 관리(AWS S3) <br />
+    </td>
+    <td align="center">cheolmin.joo@gamil.com</td>
+  </tr>
+    <tr>
+    <td align="center">송지우</td>
+    <td style="padding: 15px 10px;">
+      - 글 작성 페이지 (슬라이드 바, react-quill) <br />
+      - 그림그리기 기능 (canvas) <br />
+      - gpt open api 연결 및 prompt 작성 <br />
+      - 커뮤니티 페이지 (infinite-scroll) <br />
+      - 개인 글 보기 피드 (infinite-scroll)<br />
+      - 모달 (react-portal) <br />
+    </td>
+com    <td align="center">nsong113@gmail.com</td>
+  </tr>
+  <tr>
+    <td align="center">한덕용</td>
+    <td style="padding: 15px 10px;">
+      - Onboarding 페이지<br />
+      - Sign in / Sign Up 페이지<br />
+      - OAuth 2.0 Social Login (Kakao, Google, Naver)<br />
+      - Kakao 공유하기<br />
+      - Socket.io를 사용한 실시간 채팅<br />
+      - Axios intercepter<br />
+    </td>
+    <td align="center">qbixroqkfwk@gmail.com</td>
+  </tr>
+</table>
+
+</br>
+
+## **🗂️ 서비스 아키텍처**
+
+<img src="https://github.com/LocalMingle/LocalMingle-FE/assets/93027502/b1dab7b7-d0cd-46bc-9736-925d67494595" alt="서비스아키텍처" style="width:850"/>
+
+</br>
+
+## **⛳️ FE 기술 선정**
+
+<div align="center">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=efefee"/>
+</div>
+<div align="center">
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
+  <img src="https://img.shields.io/badge/react--query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
+  <img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=efefee"/>
+  <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=efefee"/>
+</div>
+<div align="center">
+ <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=efefee"/>
+</div>
+<div align="center">
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+</div>
+
+</br>
+
+## **🌟 기술적 의사결정**
+
+<table>
+  <tr>
+    <td><strong>TypeScript</strong></td>
+    <td>
+      타입스크립트는 정적 타이핑을 지원하며, 코드 작성 시 변수의 타입을 명시적으로 지정할 수 있습니다.</br>
+      이는 컴파일러가 코드를 분석하여 타입 에러를 사전에 찾아내고 예방할 수 있게 해 주기 때문에 코드의 일관성을 유지할 수 있다는 장점이 있습니다.
+      실제 연구에 따르면 모든 JavaScript 버그의 15%가 사전에 TypeScript로 감지할 수 있다는 결과를 보고 채택했습니다.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Axios</strong></td>
+    <td>
+      직관적인 API를 제공하여 HTTP 요청을 손쉽게 처리할 수 있습니다.</br>
+      또한 요청과 응답을 가로채는 인터셉터(interceptor)를 제공하여 요청 또는 응답을 수정하거나</br>
+      에러를 처리하는 등의 다양한 기능을 제공 받을 수 있으며 사용이 간편하여 채택했습니다.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>React Router</strong></td>
+    <td>
+      React Router는 SPA(Single Page Application)에서 클라이언트 사이드 라우팅을 관리합니다.</br>
+      페이지 리로드 없이 URL을 변경하고, 적절한 컴포넌트를 렌더링하여 사용자에게 매끄러운 페이지 전환 경험을 제공하기에 채택했습니다.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>React Query</strong></td>
+    <td>
+      간편한 API 및 자동화된 캐싱, 재시도, 상태 관리를 재공하여 데이터 요청 및</br>
+      관리를 간소화하며, UI와 상태를 효율적으로 동기화할 수 있어 선택했습니다.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Recoil</strong></td>
+    <td>
+      Recoil은 Redux와 다르게 설정이 비교적 간단하며, 컴포넌트 간에 필요한 상태를 손쉽게 공유할 수 있습니다. </br>
+      Redux와 다르게 직접 상태관리를 변경할 수 있어 여러 컴포넌트에서 같은 상태를 쓰거나 수정할 때 편리하여 채택했습니다.</br>
+ </td>
+  </tr>
+  <tr>
+    <td><strong>Styled Components</strong></td>
+    <td>
+      각 컴포넌트에 고유한 스타일을 적용할 수 있게 해주어 전체 애플리케이션의 스타일링이 더욱 모듈화되고 관리하기 쉬워집니다.</br>
+      또한 개발 효율성을 높여주며 동적 스타일링에 용이하여 채택했습니다.
+    </td>
+  </tr>
+  <tr>
+  <tr>
+    <td><strong>Socket.io</strong></td>
+    <td>
+      웹 소켓(WebSocket)기반으로 동작하는 JS 라이브러리입니다.</br>
+      양방향 통신을 가능하게 해서버와 클라이언트간에 데이터를 실시간으로 주고받을 수 있습니다.
+      특히 자동으로 브라우저의 종류에 맞춰 호환되는 기술을 자동으로 선택하여 실시간 통신이 가능하게
+      만들어 주기 때문에 채택했습니다.
+      </td>
+  </tr>
+  <tr>
+    <td><strong>Intersection observer</strong></td>
+    <td>
+      인피니티 스크롤 구현을 위해 사용했습니다.</br>
+      스크롤 이벤트를 사용하면 매 스크롤마다 이벤트 핸들러가 호출되어 성능에 부담이 될 수 있는데,</br>
+      이 API를 사용하면 비동기적으로 작동하며, 뷰포트와 대상 요소 간의 교차 여부를 비동기적으로 감지합니다.</br>
+      스크롤 위치와 상관 없이 요소가 화면에 나타나거나 사라질 때 이를 감지할 수 있어 웹 페이지의 부하를 감소시킬 수 있습니다.
+    </td>
+  </tr>
+    <tr>
+   <td><strong>Jest</strong></td>
+    <td>     
+      Jest는 스냅샷 테스팅을 지원하여 컴포넌트나 데이터 구조의 변화를 캡처하고 향후 변경 사항을 감지할 수 있습니다.<br/>
+      데이터 가공이 많은 나인 클라우드에 잘 어울릴 것 같아 채택했습니다.
+  </td>
+  </tr>
+   <tr>
+    <td><strong>sweetAlert2</strong></td>
+    <td>
+      기존의 딱딱한 alert창 대신에, 애니메이션이 들어가고 부드러운 디자인의 alert 창을 띄우기 위해 사용했습니다</br>
+      간단하게 다양한 커스텀을 alert창에 적용할 수 있어서 본 프로젝트에 적용했습니다.
+    </td>
+  </tr>
+   <tr>
+    <td><strong>browser-image-compression</strong></td>
+    <td>
+      이미지를 압축하여 웹 페이지의 성능을 향상시키고 사용자 경험을 최적화하기 위해 적용했습니다. <br/>
+      해당 라이브러리는 압축을 진행하며 상당한 품질을 유지하고 압축률을 조절할 수 있습니다. 
+    </td>
+  </tr>
+</table>
+
+</br>
+
+## **🛠️ 트러블슈팅**
+
+<details>
+<summary> 달력 월 변경 시, 달력 데이터 표기 오류 에러 [철민]</summary>
+- 문제의 디테일
+  <br>
+오늘이 2024년 1월 4일이라면 2023년의 모든 달력은 데이터가 다 나타나지 않고, 모든 달력이 4일, 즉 오늘 날짜까지만 데이터가 등장합니다.
+  <br>
+  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
+  <br>
+- 해결을 위한 노력
+  <br>
+조건부 렌더링을 어떻게 줘야 제가 원하는 대로 구현이 될까 손코딩으로 메모장에 여러가지 경우의 수를 적어놓고 정리한 다음, 하나하나 적용했습니다.
+  <br>
+- 해결 방법
+  <br>
+오늘 일,월,년도의 데이터와, 달력이 바뀔 때 일,월,년도의 데이터를 변수로 정리하고 
+이 변수들을 이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const에 대입시켜 만들고, 이들을 조건부 렌더링에 적용해 해결했습니다.
+  <br>
+  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
+</details>
+
+<details>
+<summary> ReactQuill 보안 에러 [철민]</summary>
+- 문제의 디테일
+  <br>
+ ReactQuill은 글자를 입력하고 출력하면 태그가 같이 붙어서 출력되는 문제가 있습니다.
+ 그래서 이를 막기 위해서 dangerouslySetInnerHTML으 세팅을 해야 태그는 빠지고 글자들만 출력됩니다. 근데 이렇게 되면 문제가 DOM에 HTML을 추가할 때 사이트간 스크립팅 공격(XSS)에 취약해집니다. 그래서 관리자가 아닌 악성 유저가 페이지에 악성 스크립트를 삽입하는 등 비정상적인 기능을 수행할 수 있는 보안 구멍이 생깁니다.
+  <br>
+  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
+  <br>
+- 해결을 위한 노력
+  <br>
+ dangerouslySetInnerHTML을 쓰지 않고, 태그 없이 글자를 출력할 수 있는 방법이 없을까? 라고 구상을 해봤는데 딱히 보이지 않아, dangerouslySetInnerHTML은 쓰는데 보안을 강화할 방법을 찾아보려고 노력했습니다.
+  <br>
+- 해결 방법
+  <br>
+  DOMPurify라는 HTML을 sanitize 해주는 라이브러리를 활용했습니다.
+  그래서 DOMPurifiy에 내부함수인 sanitize 안에 인자로 출력할 글자를 넣으면 XSS 공격을 막게끔 할 수 있었습니다.
+  <br>
+  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
+</details>
+
+<details>
+<summary> 이미지 압축 후 서버에 전달 할 때 '다음'을 두번 클릭해야 하는 이슈 [지우]</summary>
+- 문제의 디테일
+  <br>
+이미지를 압축 후 서버에 전달하는 버튼을 두번 눌러야 전달이 되었습니다. 첫번째 클릭에서는 압축이 되고 두번째 클리에서 전송이 되는 것을 확인했습니다.
+  <br>
+- 해결을 위한 노력
+  <br>
+버튼을 두개를 만들거나 유저한테 더블클릭 해달라고 메시지를 전달해야 하나 고민을 했습니다. 주로 유저에게 어떻게 이 것을 덜 불편감으로 다가오게 전달할까 고민을 했습니다. 하지만 직접적으로 유저에게 요청을 하는 것은 큰 불편감으로 초래한다는 생각이 들어 어떻게 하면 자동화 할까 고민을 시작하였습니다.
+  <br>
+- 해결 방법
+  <br>
+그림을 그릴 때 마우스를 때고 1000ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 1초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 1초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다.
+</details>
+
+<details>
+<summary> 무한으로 api 요청이 가는 무한스크로 [지우]</summary>
+- 문제의 디테일
+  <br>
+'무한정'스크롤이 되어 계속 통신 요청을 하고, 처음 요청을 하고 더 요청을 안하기도 하고, 혹은 Null로 요청을 하는 사태가 발생했습니다.
+  <br>
+- 해결을 위한 노력
+  <br>
+1. InfiniteScroll 라이브러리를 다운받고 useInfiniteQuey를 같이 사용해 보았습니다. 결과로는 무한
+get 요청이 보내졌습니다.  <br>
+2. InfiniteScoll을 사용하지 않고 useInfiniateQuery의 getNextPageParam부분을 수정해 보았습니다. 결과로는 바닥을 인식하지 못했는지 첫번째 로딩만 하고 두번째 페이지는 로딩을 하지 않았습니다. <br>
+3. api의 return 부분을 수정했습니다. return에서 data이외에도 nextPage와 isLast를 리턴했습니다. 그리고 이것을 getNextPageParam에 적용했습니다.
+ <br>
+- 해결 방법
+ <br>
+ api부분에서 data이외에도 nextPage와 isLast를 리턴하여 useInfiniteQuery의 getNextPageParam부분에 적용했습니다. react-intersection-observer 라이브러리를 도입하였습니다. 관찰하는 객체 하나를 ref로 설정한 후 해당하느 객체가 화면에 보이면 inView를 true로 값을 바꿔줍니다. 저의 경우 가장 마지막 부분에 div를 만들고 color를 투명하게 주었습니다. useInfiniteQuery를 사용하였습니다. 특히 fetchNextPage메서드를 사용하여 inView가 true이고 hasNextPage가 true이면 fetchNextPage를 하도록 useEffect에 의존성을 추가하여 주었습니다.
+<br>
+</details>
+
+<details>
+<summary>토큰 재발급 관련 [덕용]</summary>
+- 문제 -
+  <br>
+  1. 토큰 재발급 로직 작성 중에토큰 재발급을 위한 알고리즘 구축
+  토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
+  토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
+  2. 토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 Server와 안 맞는 오류.
+  <br>
+- 해결을 위한 노력 -
+  <br>
+  1. 처음에는 Server에서 empireTime(만료시간)이라는 객체를 보내주도록 요청하였다.
+  Server에서는 만료시간이 Unix time으로 설정되어 있다고 해서 Front에서 현재시간을 Unix time으로 바꿔주는 로직을 만들고 만료시간 - 현재시간을 해주고 setTimeout()을 사용해서 Front에서 시간을 재서 시간이 끝나면 자동적으로 재발급 요청을 하도록 로직을 생각해 보았었다.
+  내 생각이 맞는지 찾아보았었는데 실제 현업에서는 Axios intercepter를 사용한다는 글들이 대다수였다. 실제로 Axios intercepter를 사용하면 서버 통신을 한곳에서 관리할 수 있다는 장점도 있고 인증처리 과정에서 매번 헤더에 Token을 넣어 줄 필요도 없어져서 Axios intercepter를 채택하였다.
+  <br>
+  2. 일단 실험을 위해 Token 만료시간을 극단적으로 짧게 설정해놓았다.
+  Token이 만료된다면 대체적으로 서버에서 401번이나 419번 에러코드를 보내준다는 여러 레퍼런스들을 참고해서 Server와 에러코드를 맞춰보았습니다.
+  401번은 다른곳에서도 사용한다는 얘기를 듣고 Token 만료 에러 코드를 419번으로 통일하였습니다.
+  인터셉터 로직에는 419번 에러코드가 뜬다면 /token으로 이동되도록 설정해주고 헤더에 RefreshToken을 담아서 Server에 토큰 재발급을 요청하였다.
+  <br>
+- 결과 -
+  <br>
+토큰이 만료되면 419번 에러코드가 뜨고 자동으로 /token으로 넘어가서 RefreshToken을 대조한 후 새로운 AccessToken을 발급해줌.
+</details>
+
+<details>
+
+<summary>Socket.io  [덕용]</summary>
+- 문제 -
+  <br>
+  서버에서 지정해준 URL로 접근하지 못하는 현상.
+  <br>
+  <img width="600" alt="socket 해결 과정" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <br>
+  서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았습니다.
+  <br>
+  <img width="600" alt="개발자 도구" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <br>
+  분명 엔드포인트를 /community/chat/socket.io로 설정해놓았는데 막상 개발자 도구를 보면 설정한 엔드포인트로 접근하지 못했습니다.
+  <br>
+- 해결을 위한 노력 -
+  <br>
+  <img width="600" alt="socket 해결 완료" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
+  그리고 CORS(Cross-Origin Resource Sharing) 설정을 모든 도메인에서 서버로의 요청을 허용시키는 걸로 변경해서 연결에 성공하였습니다.
+  <br>
+- 결과 -
+  <br>
+  결국 Server와 연결에 성공하였고 채팅 기능까지도 성공했습니다.
+  <img width="600" alt="스크린샷 2023-11-13 오후 11 02 21 복사본" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+</details>
+
+</br>
+
+## **🗣️ 유저 피드백 & 반영**
+
+마지막으로 유저 피드백 입니다.<br/> 프로젝트에서 좋게 평가해주신 부분은 컨텐츠의
+재미와 타 서비스와의 차별점입니다. <br/> 불편하게 느끼신 상당 부분은 유저 편의성
+이 좋지 않다는 것 이였습니다.<br/> 그래서 짧게 남은 프로젝트 기간 동안 피드백을
+최대한 반영할 수 있는 부분이 유저 편의성 부분이라고 판단하여,<br/> 이 부분을 중
+점으로 피드백을 반영하였습니다.<br/>
+
+<table>
+  <tr>
+    <th align="center">Before</td>
+    <th align="center">After</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img width="400" height="300" alt="작성자 참여 비포" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/51ed028a-fe1c-4705-9c71-df4b0d142a3b">
+    </td>
+    <td align="center">
+      <img width="400" height="300" alt="작성자 참여 애프터" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/712da9f9-7536-409e-aab8-e96520f20e95">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      참여자 리스트에 작성자 본인도 포함되었으면 좋겠다는 의견
+    </td>
+    <td>
+      기존에는 작성자가 게시글 생성시 참여자리스트에<br/>
+      포함되지 않았지만 피드백 이후 포함 되도록 수정
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th align="center">Before</td>
+    <th align="center">After</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img width="400" height="200" alt="헤더변경 비포" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/0b6766fe-1281-4682-9b24-3d7e6ae1c57f">
+    </td>
+    <td align="center">
+      <img width="400" height="200" alt="해더변경 애프터" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/8000ae7c-fef0-4b86-8871-2545b38d3580">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      헤더에 텍스트로 이루어진 부분 때문에 화면이<br/>
+      다소 정신없고 꽉 차보인다는 의견
+    </td>
+    <td>
+      아이콘으로 대체하여 드롭다운으로 피드백을 반영
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th align="center">Before</td>
+    <th align="center">After</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img width="400" height="700" alt="placeholder before" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/f9e542f6-2c3a-4f13-ae4c-4946e5dcc30c">
+    </td>
+    <td align="center">
+      <img width="400" height="700" alt="placeholder after" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b90b78f2-a0a2-4857-9dff-842f7c5c746f">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      게시글 작성 시 제목과 본문에 대해 몇 글자까지<br/>
+      작성할 수 있는지 알려주면 좋겠다는 의견
+    </td>
+    <td>
+      Placeholder를 활용하여 글자 제한 안내 문구 추가
+    </td>
+  </tr>
+</table>
+
+</br>
