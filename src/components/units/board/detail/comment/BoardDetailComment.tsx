@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import * as S from './BoardDetailComment.styles';
 import { useMutation, useQueryClient } from 'react-query';
 import {
@@ -36,7 +36,6 @@ const BoardDetailComment: React.FC<IComment> = ({
     },
   });
 
-
   const deleteMutation = useMutation(deleteComment, {
     onSuccess: () => {
       queryClient.invalidateQueries('comment');
@@ -67,18 +66,16 @@ const BoardDetailComment: React.FC<IComment> = ({
   };
 
   const handleOnKeyPress = (event: any) => {
-    // SweetAlert2가 열려있을 때는 엔터 키 이벤트를 무시
     if (Swal.isVisible()) {
       return;
     }
 
     if (event.key === 'Enter') {
-      event.preventDefault(); // 기본 동작(새 줄 추가) 방지
+      event.preventDefault();
       onClickSubmitBtn();
     }
   };
 
-  console.log('댓글', comment?.data?.content);
   const onClickEditBtn =
     (commentId: any, userId: number, content: string) => () => {
       setEditingCommentId(commentId);
@@ -87,26 +84,23 @@ const BoardDetailComment: React.FC<IComment> = ({
         title:
           '<span style="font-size: 24px; font-weight: bolder;">수정할 내용을 입력하세요</span>',
         input: 'text',
-        inputValue: content, // 초기값은 기존내용
+        inputValue: content,
         confirmButtonText: '수정하기',
         cancelButtonText: '취소하기',
         showCancelButton: true,
         reverseButtons: true,
         inputValidator: (value) => {
-          // 입력값이 유효한지 검사할 수 있는 함수
           if (!value) {
             return '수정할 내용을 입력하세요';
           }
           if (value.length > 20) {
             return '20자만 입력이 가능합니다.';
           }
-          // 만약 20자가 넘어가면 입력을 차단하고 에러 메시지를 반환
           return '';
         },
       }).then((editResult) => {
         if (editResult.isConfirmed) {
           const message = editResult.value;
-          // 여기서 editMutation.mutate를 호출하여 댓글을 수정합니다.
           if (message && message.length <= 20) {
             editMutation.mutate({ message, commentId });
           }

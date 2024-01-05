@@ -14,7 +14,7 @@ const useSliderCounts = (detailedContent: any) => {
       case detailedContent?.temperature === '5':
         return '열정넘쳐요';
       default:
-        // console.log('아무것도 아님');
+        // console.log('');
         break;
     }
   };

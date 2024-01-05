@@ -33,7 +33,7 @@ const renderComponent = (type: string, word: string): JSX.Element => {
         </>
       );
     default:
-      return <></>; // 기본값에 대한 처리
+      return <></>;
   }
 };
 

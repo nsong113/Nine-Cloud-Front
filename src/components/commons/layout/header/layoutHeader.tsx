@@ -57,7 +57,6 @@ const Header = () => {
             style={{
               display: 'flex',
               flexDirection: 'row',
-              // alignItems: 'center',
             }}
           ></div>
         </S.CalenderHeaderDiv>

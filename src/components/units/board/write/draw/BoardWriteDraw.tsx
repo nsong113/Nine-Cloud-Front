@@ -6,7 +6,6 @@ import { IpostDiaryItem } from 'src/apis/apiesType';
 import useSetColor from 'src/components/commons/hooks/useSetColor';
 import usePen from 'src/components/commons/hooks/usePen';
 import { ICoordinate } from './BoardWriteDraw.types';
-import { FaCheck } from '@react-icons/all-files/fa/FaCheck';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import Tooltip from 'src/components/commons/utills/tooltip/tooltip';
 import { useRecoilState } from 'recoil';
@@ -212,7 +211,6 @@ const BoardWriteDraw = () => {
     canvas.addEventListener('touchend', endTouch);
 
     return () => {
-      // Unmount 시 이벤트 리스너 제거
       canvas.removeEventListener('mousedown', startPaint);
       canvas.removeEventListener('mousemove', paint);
       canvas.removeEventListener('mouseup', exitPaint);
@@ -275,7 +273,6 @@ const BoardWriteDraw = () => {
                   alt='지우개 클릭하기'
                   onClick={() => {
                     ClickEraserMode();
-                    // colorHandlerWhite();
                   }}
                   style={cursor}
                 />

@@ -19,7 +19,7 @@ import PostUpperWrapper from '../PostUpperWrapper';
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
+  const [out, setOut] = useRecoilState(isOut);
   const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
 
   const { happy, onChangeCount: onChangeHappyCount } = useSetEmotion({
@@ -156,7 +156,6 @@ const BoardWriteEmotion = () => {
                   </S.ContentInputBoxDiv>
                 </S.ContentsBoxDiv>
               </S.SliderBoxDiv>
-
               <S.SliderBoxDiv>
                 <S.ContentsBoxDiv>
                   <S.ContentFlexDivBox>

@@ -1,5 +1,3 @@
-//이동;
-
 export const moveEffect = {
   initial: {
     x: -100,
@@ -15,23 +13,6 @@ export const moveEffect = {
   },
 };
 
-// //회전
-// export const pageEffect = {
-//   initial: {
-//     rotate: -90,
-//     opacity: 0,
-//   },
-//   in: {
-//     rotate: 0,
-//     opacity: 1,
-//   },
-//   out: {
-//     rotate: 90,
-//     opacity: 0,
-//   },
-// };
-
-//스케일
 export const pageEffect = {
   initial: {
     scale: 0.8,

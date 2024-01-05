@@ -1,13 +1,9 @@
-//다이어리 관련 CRUD
 import { IpostDiaryItem } from './apiesType';
 import axiosInstance from './loginapi';
 
-// create (post)
 const postDiary = async (postDiaryItem: IpostDiaryItem) => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
-
-  console.log('post postDiary', postDiaryItem);
 
   try {
     const formData = new FormData();
@@ -27,7 +23,7 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
 
     let values: any = formData.values();
     for (const pair of values) {
-      // console.log('pair', pair);
+      // console.log('pair', pair)
     }
 
     const res = await axiosInstance.post(`/diary/posting`, formData, {
@@ -44,7 +40,6 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
   }
 };
 
-//read
 const getDiary = async () => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
@@ -57,14 +52,12 @@ const getDiary = async () => {
         Authorization: `${accessToken}`,
       },
     });
-    console.log(res.data);
     return res.data;
   } catch (error) {
     console.log('getDiary error', error);
   }
 };
 
-//get- 무한스크롤  `${apiUrl}?page=${pageNumber}
 const getInfiniteDiaries = async (
   pageParam: number,
   formattedTodayDate: string

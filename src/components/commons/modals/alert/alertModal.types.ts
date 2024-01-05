@@ -5,6 +5,4 @@ interface Props {
   onConfirm?: () => void;
   onClickMoveToMain?: () => void;
   onClickSubmit?: () => void;
-
-  // onClickMoveToMain?: (e: React.FormEvent<HTMLButtonElement>) => void;
 }

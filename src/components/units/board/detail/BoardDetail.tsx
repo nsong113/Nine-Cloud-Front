@@ -35,7 +35,6 @@ const BoardDetail = () => {
 
   useEffect(() => {
     return () => {
-      // 컴포넌트가 언마운트될 때 쿼리를 삭제하는 로직
       queryClient.removeQueries(['post']);
     };
   }, []);

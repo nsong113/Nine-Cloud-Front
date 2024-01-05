@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import MyPageOverlay from '../modalSetting/overlay/myPageOverlay/MyPageOverlay';
 import { IConfirm } from './myPageModal.types';

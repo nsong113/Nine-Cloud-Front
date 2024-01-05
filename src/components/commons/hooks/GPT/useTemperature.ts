@@ -26,7 +26,6 @@ const useTemperature = (): TemperatureHookResult => {
     }
   }, [happyAtom]);
 
-  //지금 내가 필요한게,, 만약 3점이면 이거 2점이면 이거 하는 리턴값이 필요한것..
   return { happyEmotion };
 };
 

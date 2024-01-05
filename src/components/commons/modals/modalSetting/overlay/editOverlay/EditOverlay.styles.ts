@@ -168,27 +168,21 @@ export const HeaderWrapperDiv = styled.div`
 
 export const CustomToggle = styled(Toggle)`
   .react-toggle-track {
-    //배경색 - 체크여부 확인하고 초기값은 gray
     background-color: ${(props) => (props.checked ? '#8066D1' : '#CFC0FF')};
     width: 130px;
     height: 38px;
     border: 2px solid var(--main, #391d93);
     margin-top: 10px;
-    /* transform: translateX(15px); */
   }
 
-  //thumb의 스타일 지정
   .react-toggle-thumb {
     background-color: ${(props) => (props.checked ? '#391D93' : '#391D93')};
     width: 50px;
     height: 50px;
     border-radius: 100px;
     transform: translate(${(props) => (props.checked ? '60px' : '0px')}, 4px);
-    /* margin-top: px; 수정된 부분 */
-    /* transform: translateY(22px); */
   }
 
-  //토글이 켜진 상태
   &.react-toggle--checked {
     .react-toggle-track {
       background-color: #8066d1;
@@ -238,7 +232,6 @@ export const PrivateTextDiv = styled.div`
 
 export const OpenToggleTitleSpan = styled.span`
   color: var(--main, #391d93);
-  font-family: Spoqa Han Sans Neo;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -248,7 +241,6 @@ export const OpenToggleTitleSpan = styled.span`
 export const SubTitleSpan = styled.span`
   color: var(--sub, #8066d1);
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
   font-style: normal;
   font-weight: 300;
@@ -265,7 +257,6 @@ export const PublicImg = styled(IoPeople)`
 export const DeleteTextSpan = styled.span`
   flex-shrink: 0;
   color: var(--Gray3, #bbb);
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -275,7 +266,6 @@ export const DeleteTextSpan = styled.span`
   margin-top: 10px;
   &:hover {
     color: var(--Gray2, #929292);
-    font-family: Spoqa Han Sans Neo;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;

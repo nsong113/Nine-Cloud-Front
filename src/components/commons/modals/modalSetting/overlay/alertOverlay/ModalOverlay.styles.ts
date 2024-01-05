@@ -38,7 +38,6 @@ export const Div = styled.div`
 
 export const TitleBoxDiv = styled.div`
   width: 90%;
-  /* height: 100px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,13 +69,11 @@ export const TextStyleSpanH5 = styled.h5`
 export const TextStyleSpanP = styled.p`
   width: 100%;
   color: #646464;
-
   text-align: center;
   font-size: 17.063px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
   transform: translateY(-30px);
 `;
 
@@ -92,9 +89,7 @@ export const StyleButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: #5035a6;
-
   text-align: center;
   font-size: 20px;
   font-weight: 500;
@@ -121,7 +116,6 @@ export const CancelButton = styled.button`
   border-radius: 22px 0 22px 0;
   border: 0px;
   margin-left: 10px;
-
   cursor: pointer;
 `;
 
@@ -132,6 +126,5 @@ export const OkButton = styled.button`
   color: #5035a6;
   border-radius: 0 20px 0 20px;
   border: 0px;
-
   cursor: pointer;
 `;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { IoIosArrowBack } from '@react-icons/all-files/io/IoIosArrowBack';
 
-
 export const ContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,7 +33,6 @@ export const BackImg = styled(IoIosArrowBack)`
 export const TitleTextSpan = styled.span`
   color: var(--main, #391d93);
   text-align: right;
-  font-family: Spoqa Han Sans Neo;
   font-size: 25px;
   font-style: normal;
   font-weight: 500;

@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ModalOverlay from '../modalSetting/overlay/alertOverlay/ModalOverlay';
 const AlertModal: React.FC<Props> = ({ onClickSubmit, onClickMoveToMain }) => {

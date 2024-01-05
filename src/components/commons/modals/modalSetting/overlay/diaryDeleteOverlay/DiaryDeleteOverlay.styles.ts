@@ -60,9 +60,7 @@ export const TextStyleSpanH5 = styled.h5`
   width: 100%;
   text-align: center;
   font-size: 23px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const TextStyleSpanP = styled.p`
@@ -95,26 +93,20 @@ export const StyleButton = styled.div`
 
   text-align: center;
   font-size: 20px;
-  font-style: normal;
+
   font-weight: 500;
-  line-height: normal;
 `;
 
 export const TitleSpan = styled.span`
   color: #5035a6;
-
-  font-family: Spoqa Han Sans Neo;
   font-size: 23px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   margin-top: 15px;
 `;
 
 export const SubTitleSpan = styled.span`
   color: #646464;
 
-  font-family: Spoqa Han Sans Neo;
   font-size: 17.063px;
   font-style: normal;
   font-weight: 400;
@@ -125,11 +117,10 @@ export const CancelButton = styled.button`
   width: 182px;
   height: 48px;
   color: white;
-  font-family: Spoqa Han Sans Neo;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 31px; /* 172.222% */
+  line-height: 31px;
   letter-spacing: 0.18px;
   border-radius: 5px 20px;
   background: #8066d1;
@@ -141,11 +132,10 @@ export const CancelButton = styled.button`
 
 export const OkButton = styled.button`
   color: #fff;
-  font-family: Spoqa Han Sans Neo;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 31px; /* 172.222% */
+  line-height: 31px;
   letter-spacing: 0.18px;
   width: 186px;
   height: 48px;
