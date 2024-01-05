@@ -22,25 +22,23 @@ export const MyMessageContainer = styled.div`
 `;
 
 export const MyMessage = styled.div`
-  background-color: #f7e600;
+  background-color: rgba(57, 29, 147, 0.7);
   border-radius: 8px;
   padding: 8px;
   max-width: 200px;
   font-size: 12px;
+  color: white;
 `;
 
-export const YourMessageContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
+export const YourMessageContainer = styled.div``;
 
 export const YourMessage = styled.div`
   background-color: rgba(57, 29, 147, 0.3);
   border-radius: 8px;
-  padding: 8px;
+  padding: 12px;
   max-width: 200px;
   font-size: 12px;
+  color: white;
 `;
 
 export const ProfileImage = styled.img`
@@ -53,6 +51,8 @@ export const ProfileImage = styled.img`
 export const YourMessageTitle = styled.div`
   color: RGB(100, 100, 100);
   font-size: 13px;
+  margin-top: 10px;
+  margin-bottom: 3px;
 `;
 
 export const YourMessageContent = styled.div`
