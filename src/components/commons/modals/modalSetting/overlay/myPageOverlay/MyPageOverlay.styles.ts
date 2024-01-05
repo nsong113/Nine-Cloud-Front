@@ -46,9 +46,7 @@ export const HiddenInput = styled.input`
 
 export const ImageButton = styled.button`
   color: var(--sub, #8066d1);
-  font-family: Spoqa Han Sans Neo;
   font-size: 18px;
-  font-style: normal;
   font-weight: 700;
   line-height: 29px;
   border-radius: 2px 10px;
@@ -178,17 +176,13 @@ export const MyinfoBoxDiv = styled.div`
 
 export const NicknameSpan = styled.span`
   color: var(--main, #391d93);
-  font-family: Spoqa Han Sans Neo;
   font-size: 30px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
 `;
+
 export const EmailSpan = styled.span`
   color: var(--Gray2, #929292);
-  font-family: Spoqa Han Sans Neo;
   font-size: 20px;
-  font-style: normal;
   font-weight: 400;
   line-height: 29px;
 `;
@@ -200,9 +194,7 @@ export const EditButton = styled.button`
   border-radius: 10px 2px;
   border: 2px solid var(--sub, #8066d1);
   color: var(--sub, #8066d1);
-  font-family: Spoqa Han Sans Neo;
   font-size: 18px;
-  font-style: normal;
   font-weight: 700;
   line-height: 29px;
   margin-left: 20px;
@@ -219,9 +211,7 @@ export const SignText = styled.div`
   height: 22px;
   flex-shrink: 0;
   color: var(--Gray3, #bbb);
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
-  font-style: normal;
   font-weight: 400;
   line-height: 29px;
   cursor: pointer;
@@ -229,9 +219,7 @@ export const SignText = styled.div`
   margin-top: 10px;
   &:hover {
     color: var(--Gray2, #929292);
-    font-family: Spoqa Han Sans Neo;
     font-size: 15px;
-    font-style: normal;
     font-weight: 400;
     line-height: 29px;
     border-bottom: 1px solid gray;
@@ -273,11 +261,10 @@ export const UploadBoxDiv = styled.div`
 
 export const PictureDeleteSpan = styled.span`
   color: var(--Gray3, #bbb);
-  font-family: Spoqa Han Sans Neo;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 29px; /* 181.25% */
+  line-height: 29px;
   cursor: pointer;
 `;
 
@@ -302,7 +289,7 @@ export const NameInput = styled.input`
   border-radius: 2px 10px;
   background: var(--contents-box, #f5f2ff);
   border: 0px;
-  padding-left : 20px;
+  padding-left: 20px;
 `;
 
 export const ChangePasswordSpan = styled.span`

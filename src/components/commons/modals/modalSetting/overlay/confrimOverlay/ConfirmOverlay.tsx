@@ -31,7 +31,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   const [humidAtom, setHumid] = useRecoilState<string>(sadA);
   const [sleepAtom, setSleep] = useRecoilState<string>(sleep);
   const [isPublicToday, setIsPublicToday] = useRecoilState<boolean>(isPublic);
-  const [isChecked, setIsChecked] = useState(true); //토글 체크 여부
+  const [isChecked, setIsChecked] = useState(true);
 
   let [postDiaryEveryItem, setPostDiaryEveryItem] =
     useState<IpostDiaryItem | null>(null);
@@ -93,7 +93,6 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
     <S.ContainerDiv className='modal' onClick={onClickGotoPost2}>
       <S.ModalContentDiv onClick={stopPropogate}>
         <S.ToggleDiv>
-          {/* <S.ToggleFlexDiv> */}
           <S.DiaryToggleTitleDiv>
             <S.CustomToggle
               id='customToggle'
@@ -121,7 +120,6 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
               </S.PublicTextDiv>
             )
           )}
-          {/* </S.ToggleFlexDiv> */}
         </S.ToggleDiv>
         <S.emojiImgBox>
           <img
@@ -139,7 +137,6 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
               </S.TextStyleSpanH5>
             </S.TextStyleSpan>
           </S.TitleBoxDiv>
-
           <S.BoxButton>
             <PostBtn
               page={'confirm'}

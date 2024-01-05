@@ -14,7 +14,7 @@ import { isOut } from 'src/states/counter';
 
 const Footer = () => {
   const { currentDate, currentMonth, currentYear } = useCalendar();
-  const [out, setOut] = useRecoilState(isOut); //밖으로 나가면 false
+  const [out, setOut] = useRecoilState(isOut);
 
   const { data } = useQuery(['posts', currentMonth, currentYear], () =>
     getPosts({

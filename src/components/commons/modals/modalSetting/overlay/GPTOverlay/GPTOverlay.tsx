@@ -6,10 +6,6 @@ import { useRecoilState } from 'recoil';
 import {
   contents,
   countAverage,
-  happyA,
-  sadA,
-  sleep,
-  weather,
 } from 'src/states/counter';
 import useTemperature from 'src/components/commons/hooks/GPT/useTemperature';
 import useHumid from 'src/components/commons/hooks/GPT/useHumid';
@@ -44,7 +40,6 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
         weather: weatherToday,
         sleep: sleepToday,
       });
-      // console.log('JSON parse', JSON.parse(message));
       setData(JSON.parse(message));
     } catch (error) {
       console.log('onClickAPIcallHandler error', error);

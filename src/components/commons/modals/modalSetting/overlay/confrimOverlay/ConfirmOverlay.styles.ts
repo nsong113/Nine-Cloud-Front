@@ -24,7 +24,6 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* transform: translateY(-150px); */
 `;
 
 export const ModalContentDiv = styled.div`
@@ -37,7 +36,6 @@ export const ModalContentDiv = styled.div`
 
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(15px);
-  /* align-items: center; */
   justify-content: center;
 
   background-image: url('/post_confirm_modal.png');
@@ -54,8 +52,6 @@ export const Div = styled.div`
 `;
 
 export const TitleBoxDiv = styled.div`
-  /* width: 20rem; */
-  /* height: 70px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,24 +68,18 @@ export const TextStyleSpanH5 = styled.div`
 
 export const TextStyleSpanP = styled.p`
   color: #646464;
-
   text-align: center;
   font-size: 17.063px;
   font-weight: 400;
-
-  /* background-color: red;
-  transform: translateY(-30px); */
 `;
 
 export const BoxButton = styled.div`
   width: 100%;
-  /* height: 65px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   transform: translateY(20px);
-  /* background-color: #f9f7ff; */
 `;
 
 export const TextStyleSpan = styled.span`
@@ -100,19 +90,7 @@ export const ToggleDiv = styled.div`
   width: 100%;
   height: 70px;
   transform: translateY(-25px);
-  /* background-color: red; */
 `;
-
-// export const ToggleFlexDiv = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   margin: 0 auto;
-//   /* display: flex;
-//   align-items: center;
-//   justify-content: space-between; */
-
-//   background-color: #f9f7ff;
-// `;
 
 export const ToggleP = styled.p`
   width: 60%;
@@ -130,8 +108,6 @@ export const DiaryToggleTitleDiv = styled.div`
   height: 70%;
   text-align: center;
   transform: translateX(127px);
-  /* background-color: blue; */
-  /* margin-bottom: 20px; */
 `;
 
 export const CustomToggle = styled(Toggle)`
@@ -152,7 +128,6 @@ export const CustomToggle = styled(Toggle)`
     transform: translate(${(props) => (props.checked ? '30px' : '0px')}, 4px);
   }
 
-  //토글이 켜진 상태
   &.react-toggle--checked {
     .react-toggle-track {
       background-color: #8066d1;
@@ -200,8 +175,6 @@ export const SubTitleSpan = styled.span`
 export const PublicTextDiv = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin-left: 15px; */
-  /* margin-top: 15px; */
 `;
 
 export const emojiImgBox = styled.div`

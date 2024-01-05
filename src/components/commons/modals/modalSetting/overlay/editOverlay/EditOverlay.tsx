@@ -62,13 +62,7 @@ const EditOverlay: React.FC<IEditPost> = ({
   };
 
   const quillModules = {
-    toolbar: [
-      ['italic', 'underline', 'strike'],
-      [
-        // 글자 스타일
-        { align: [] },
-      ], // 정렬
-    ],
+    toolbar: [['italic', 'underline', 'strike'], [{ align: [] }]],
   };
 
   const onClickTrashCan = () => {

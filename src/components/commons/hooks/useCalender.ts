@@ -6,7 +6,6 @@ const DAY_OF_WEEK = 7;
 const DAY_LIST = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 const useCalendar = () => {
-  //현재 날짜 상태관리
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currentYear, setCurrentYear] = useState(new Date());

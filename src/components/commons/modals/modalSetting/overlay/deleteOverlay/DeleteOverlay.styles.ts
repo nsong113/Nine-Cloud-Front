@@ -46,9 +46,7 @@ export const ModalContentDiv = styled.div`
 export const TitleSpan = styled.span`
   color: var(--main, #391d93);
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 22px;
-  font-style: normal;
   font-weight: 500;
   line-height: 26px;
 `;
@@ -56,20 +54,15 @@ export const TitleSpan = styled.span`
 export const SubTitleSpan = styled.span`
   color: var(--Gray2, #929292);
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 20px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 `;
 
 export const CancleButton = styled.button`
   color: #fff;
-  font-family: Spoqa Han Sans Neo;
   font-size: 18px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 31px; /* 172.222% */
+  line-height: 31px;
   letter-spacing: 0.18px;
   width: 186px;
   height: 48px;
@@ -84,11 +77,9 @@ export const OkButton = styled.button`
   width: 182px;
   height: 48px;
   color: var(--sub, #8066d1);
-  font-family: Spoqa Han Sans Neo;
   font-size: 18px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 31px; /* 172.222% */
+  line-height: 31px;
   letter-spacing: 0.18px;
   border-radius: 5px 20px;
   background: rgba(255, 255, 255, 0.7);
