@@ -27,11 +27,11 @@ const LoginSignin = () => {
   const BASE_URL = process.env.REACT_APP_SERVER_URL;
   const imageUrls = [
     'https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png',
-    '/exclude.png',
-    'blank_circle.png',
-    '/logo_final.png',
-    '/gptCloud.png',
-    '/spinner.gif',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/blank_circle.png',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/gptCloud.png',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/logo_final.png',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/avatar.png',
+    '/blank_circle.png',
   ];
 
   const accessToken = localStorage.getItem('accessToken');

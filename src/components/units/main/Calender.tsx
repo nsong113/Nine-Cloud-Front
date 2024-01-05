@@ -99,7 +99,11 @@ const Calender = () => {
       <S.CalendarContainerDiv>
         <S.HeaderWrapperDiv>
           <S.DateBoxDiv>
-            <S.ExcludeImg src='/exclude.webp' alt='이미지' />
+            <S.ExcludeImg
+              src='https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png'
+              rel='preload'
+              alt='이미지'
+            />
             <S.YearMonthChangeBoxDiv>
               <S.PrevMonth onClick={onClickPrevMonth} size={30} />
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
@@ -152,6 +156,7 @@ const Calender = () => {
                 {/* 캘린더 바디 컴포넌트 */}
                 <CalendarBody
                   weekCalendarList={weekCalendarList}
+                  currentYear={currentYear}
                   currentMonth={currentMonth}
                   currentDate={currentDate}
                   data={data}

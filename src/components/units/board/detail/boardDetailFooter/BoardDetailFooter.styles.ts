@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { IoIosArrowDown } from '@react-icons/all-files/io/IoIosArrowDown';
-import { IoIosArrowUp } from '@react-icons/all-files/io/IoIosArrowUp';
 import { IComment } from '../BoardDetail.types';
-import { BsHeartFill } from '@react-icons/all-files/bs/BsHeartFill';
-import { AiOutlineHeart } from '@react-icons/all-files/ai/AiOutlineHeart';
+import { IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowUp } from 'react-icons/io';
+import { BsHeartFill } from 'react-icons/bs';
+import { AiOutlineHeart } from 'react-icons/ai';
 
 export const CategoryBoxDiv = styled.div`
   height: 50px;

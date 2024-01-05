@@ -61,6 +61,15 @@ const CalendarBody = (props: IGetPostsData) => {
     return weatherData ? weatherData.weather : 0;
   };
 
+  const changedMonth = props.currentMonth.getMonth();
+  const fixedMonth = new Date().getMonth();
+  const changedYear = props.currentYear.getFullYear() * 10;
+  const fixedYear = new Date().getFullYear() * 10;
+
+  const isPastMonth = changedYear + changedMonth < fixedYear + fixedMonth;
+  const isFutureMonth = changedYear + changedMonth > fixedYear + fixedMonth;
+  const isCurrentMonth = changedYear + changedMonth <= fixedYear + fixedMonth;
+
   return (
     <S.TableBody>
       {props.weekCalendarList.map((week: number[], weekIndex: number) => (
@@ -95,15 +104,19 @@ const CalendarBody = (props: IGetPostsData) => {
                   <S.DayWrapperDiv>
                     <S.DateWrapperDiv>
                       <S.DateSpan istoday={isToday}>{cellDate}</S.DateSpan>
-                      {/* {cellDate > new Date().getDate() && ( */}
-                      {/* <S.BlankDiv></S.BlankDiv> */}
-                      {/* )} */}
-                      {/* {cellDate <= new Date().getDate() && ( */}
-                      <S.DateImg
-                        src={getEmotion(emotionStatus, weatherStatus)}
-                        alt={`Emotion ${emotionStatus}`}
-                      />
-                      {/* )} */}
+                      <div>
+                        {(props.currentMonth.getMonth() === 11 ||
+                          isCurrentMonth ||
+                          isPastMonth) && (
+                          <S.DateImg
+                            src={getEmotion(emotionStatus, weatherStatus)}
+                            alt={`Emotion ${emotionStatus}`}
+                            rel='preload'
+                          />
+                        )}
+                        {props.currentMonth.getMonth() === 11 ||
+                          (isFutureMonth && <S.BlankDiv></S.BlankDiv>)}
+                      </div>
                     </S.DateWrapperDiv>
                   </S.DayWrapperDiv>
                 ) : (

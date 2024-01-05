@@ -29,7 +29,7 @@ const getEmotion = (emotionStatus: number, weatherStatus: string) => {
       return '/sun_happy.webp';
 
     default:
-      return '/blank_circle.png';
+      return 'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/blank_circle.png';
   }
 };
 

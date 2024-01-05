@@ -12,10 +12,7 @@ import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import Swal from 'sweetalert2';
-import {
-  editMyInfo,
-  getMyInfo,
-} from 'src/apis/cheolmin-api/apis';
+import { editMyInfo, getMyInfo } from 'src/apis/cheolmin-api/apis';
 import DeleteModal from '../../../delete/DeleteModal';
 import axiosInstance from 'src/apis/loginapi';
 import { checkValidationFile } from 'src/components/commons/utills/imageValidation';
@@ -27,7 +24,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   const navigate = useNavigate();
   const [imgFile, setImgFile] = useState<File | null>();
   const buttonRef = useRef() as MutableRefObject<HTMLInputElement>;
-  const [preview, setPreview] = useState<string | null>(''); 
+  const [preview, setPreview] = useState<string | null>('');
   const [selectedImage, setSelectedImage] = useState<string | File>('');
   const [username, setUsername] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -53,7 +50,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
         return;
       }
       const fileReader = new FileReader();
-      fileReader.readAsDataURL(file); 
+      fileReader.readAsDataURL(file);
       fileReader.onload = (event) => {
         if (typeof event.target?.result === 'string')
           setPreview(event.target?.result);
@@ -92,8 +89,10 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
   });
 
   const onClickEditBtn = () => {
-    if (username === '') {
-      alert('바꿀 닉네임을 입력하세요');
+    const nameCheck = /^[가-힣a-zA-Z0-9]{2,10}$/;
+
+    if (!nameCheck.test(username)) {
+      alert('유효하지 않은 양식입니다.');
       return;
     }
     const myPost: IMyPost = {};
@@ -222,7 +221,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
                       <S.NameInput
                         onChange={onChangeUsername}
                         type='text'
-                        placeholder={data?.data.username}
+                        defaultValue={data?.data.username}
                       />
                     </div>
                   </S.NewNameWrapperDiv>

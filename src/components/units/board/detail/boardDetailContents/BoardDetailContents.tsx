@@ -107,6 +107,7 @@ const BoardDetailContents: React.FC<IBoardDetailContents> = ({
           <BoardDetailFooter
             detailedContent={detailedContent}
             comment={comment}
+            data={data}
           />
         </div>
       </S.ContentsWrapperDiv>
