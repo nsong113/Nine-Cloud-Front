@@ -1,4 +1,4 @@
-# **🏡 Local Mingle - FE**
+# **🏡 Cloud Nine - FE**
 
 ![클라우드나인 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
 
@@ -78,7 +78,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 ## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
 
-|                                           주철민                                            |                                        (VL) 송지우                                         |                                        (VL) 한덕용                                         |
+|                                           주철민                                            |                                           송지우                                           |                                           한덕용                                           |
 | :-----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/138233242?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> |
 |                        [cheolminJOO](https://github.com/cheolminJOO)                        |                          [nsong113](https://github.com/nsong113)                           |                        [HyperQuanx](https://github.com/HyperQuanx)                         |
@@ -96,6 +96,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
       - 마이페이지 기능 구현   <br />
       - 전반적인 alert 창 관리 (sweetAlert2) <br />
       - 댓글, 좋아요 기능 구현<br />
+      - 페이지 전환 애니메이션 (framer-motion)<br />
       - 배포 관리(vercel), 이미지 관리(AWS S3) <br />
     </td>
     <td align="center">cheolmin.joo@gamil.com</td>
@@ -105,12 +106,12 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
     <td style="padding: 15px 10px;">
       - 글 작성 페이지 (슬라이드 바, react-quill) <br />
       - 그림그리기 기능 (canvas) <br />
-      - 모달 (react-portal) prompt 작성 <br />
+      - gpt open api 연결 및 prompt 작성 <br />
       - 커뮤니티 페이지 (infinite-scroll) <br />
       - 개인 글 보기 피드 (infinite-scroll)<br />
-      - gpt open api 연결 및 prompt 작성 <br />
+      - 모달 (react-portal) <br />
     </td>
-com    <td align="center">nsong113@gmail</td>
+com    <td align="center">nsong113@gmail.com</td>
   </tr>
   <tr>
     <td align="center">한덕용</td>
@@ -252,117 +253,132 @@ com    <td align="center">nsong113@gmail</td>
 <summary> 달력 월 변경 시, 달력 데이터 표기 오류 에러 [철민]</summary>
 - 문제의 디테일
   <br>
-오늘이 2024년 1월 4일이라면 2023년의 모든 달력은 데이터가 다 나타나지 않고, 모든 달력이 4일까지만 데이터가 등장한다
+오늘이 2024년 1월 4일이라면 2023년의 모든 달력은 데이터가 다 나타나지 않고, 모든 달력이 4일, 즉 오늘 날짜까지만 데이터가 등장합니다.
   <br>
   <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
   <br>
 - 해결을 위한 노력
   <br>
-이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const를 만들어, 이들을 조건부 렌더링에 적용해 해결
+조건부 렌더링을 어떻게 줘야 제가 원하는 대로 구현이 될까 손코딩으로 메모장에 여러가지 경우의 수를 적어놓고 정리한 다음, 하나하나 적용했습니다.
   <br>
 - 해결 방법
   <br>
 오늘 일,월,년도의 데이터와, 달력이 바뀔 때 일,월,년도의 데이터를 변수로 정리하고 
-이 변수들을 이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const에 대입시켜 만들고, 이들을 조건부 렌더링에 적용해 해결
+이 변수들을 이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const에 대입시켜 만들고, 이들을 조건부 렌더링에 적용해 해결했습니다.
   <br>
   <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
 </details>
 
 <details>
-<summary> 이미지 압축 후 서버에 전달 할 때 '다음'을 두번 클릭해야  하는 이슈 [지우]</summary>
+<summary> ReactQuill 보안 에러 [철민]</summary>
+- 문제의 디테일
+  <br>
+ ReactQuill은 글자를 입력하고 출력하면 태그가 같이 붙어서 출력되는 문제가 있습니다.
+ 그래서 이를 막기 위해서 dangerouslySetInnerHTML으 세팅을 해야 태그는 빠지고 글자들만 출력됩니다. 근데 이렇게 되면 문제가 DOM에 HTML을 추가할 때 사이트간 스크립팅 공격(XSS)에 취약해집니다. 그래서 관리자가 아닌 악성 유저가 페이지에 악성 스크립트를 삽입하는 등 비정상적인 기능을 수행할 수 있는 보안 구멍이 생깁니다.
+  <br>
+  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
+  <br>
+- 해결을 위한 노력
+  <br>
+ dangerouslySetInnerHTML을 쓰지 않고, 태그 없이 글자를 출력할 수 있는 방법이 없을까? 라고 구상을 해봤는데 딱히 보이지 않아, dangerouslySetInnerHTML은 쓰는데 보안을 강화할 방법을 찾아보려고 노력했습니다.
+  <br>
+- 해결 방법
+  <br>
+  DOMPurify라는 HTML을 sanitize 해주는 라이브러리를 활용했습니다.
+  그래서 DOMPurifiy에 내부함수인 sanitize 안에 인자로 출력할 글자를 넣으면 XSS 공격을 막게끔 할 수 있었습니다.
+  <br>
+  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
+</details>
+
+<details>
+<summary> 이미지 압축 후 서버에 전달 할 때 '다음'을 두번 클릭해야 하는 이슈 [지우]</summary>
 - 문제의 디테일
   <br>
 이미지를 압축 후 서버에 전달하는 버튼을 두번 눌러야 전달이 되었습니다. 첫번째 클릭에서는 압축이 되고 두번째 클리에서 전송이 되는 것을 확인했습니다.
   <br>
 - 해결을 위한 노력
   <br>
-버튼을 두개를 만들거나 유저한테 더블클릭 해달라고 메시지를 전달해야 하나 고민을 했습니다.
+버튼을 두개를 만들거나 유저한테 더블클릭 해달라고 메시지를 전달해야 하나 고민을 했습니다. 주로 유저에게 어떻게 이 것을 덜 불편감으로 다가오게 전달할까 고민을 했습니다. 하지만 직접적으로 유저에게 요청을 하는 것은 큰 불편감으로 초래한다는 생각이 들어 어떻게 하면 자동화 할까 고민을 시작하였습니다.
   <br>
 - 해결 방법
   <br>
-그림을 그릴 때 마우스를 때고 1000ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 1초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 1초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다. 
+그림을 그릴 때 마우스를 때고 1000ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 1초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 1초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다.
+</details>
+
+<details>
+<summary> 무한으로 api 요청이 가는 무한스크로 [지우]</summary>
+- 문제의 디테일
+  <br>
+'무한정'스크롤이 되어 계속 통신 요청을 하고, 처음 요청을 하고 더 요청을 안하기도 하고, 혹은 Null로 요청을 하는 사태가 발생했습니다.
+  <br>
+- 해결을 위한 노력
+  <br>
+1. InfiniteScroll 라이브러리를 다운받고 useInfiniteQuey를 같이 사용해 보았습니다. 결과로는 무한
+get 요청이 보내졌습니다.  <br>
+2. InfiniteScoll을 사용하지 않고 useInfiniateQuery의 getNextPageParam부분을 수정해 보았습니다. 결과로는 바닥을 인식하지 못했는지 첫번째 로딩만 하고 두번째 페이지는 로딩을 하지 않았습니다. <br>
+3. api의 return 부분을 수정했습니다. return에서 data이외에도 nextPage와 isLast를 리턴했습니다. 그리고 이것을 getNextPageParam에 적용했습니다.
+ <br>
+- 해결 방법
+ <br>
+ api부분에서 data이외에도 nextPage와 isLast를 리턴하여 useInfiniteQuery의 getNextPageParam부분에 적용했습니다. react-intersection-observer 라이브러리를 도입하였습니다. 관찰하는 객체 하나를 ref로 설정한 후 해당하느 객체가 화면에 보이면 inView를 true로 값을 바꿔줍니다. 저의 경우 가장 마지막 부분에 div를 만들고 color를 투명하게 주었습니다. useInfiniteQuery를 사용하였습니다. 특히 fetchNextPage메서드를 사용하여 inView가 true이고 hasNextPage가 true이면 fetchNextPage를 하도록 useEffect에 의존성을 추가하여 주었습니다.
+<br>
 </details>
 
 <details>
 <summary>토큰 재발급 관련 [덕용]</summary>
 - 문제 -
   <br>
-서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았다. 분명 서버에서 지정해준 URL로 지정했는데 엔드포인트가 없다는 404오류만 뜰 뿐이었다.
+  1. 토큰 재발급 로직 작성 중에토큰 재발급을 위한 알고리즘 구축
+  토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
+  토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
+  2. 토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 Server와 안 맞는 오류.
   <br>
 - 해결을 위한 노력 -
   <br>
-api호출을 최소화 하기위한 방법을 구상했고, 캐시유지를 해야겠다고 생각하고 로직을 구현하려고 했습니다.
+  1. 처음에는 Server에서 empireTime(만료시간)이라는 객체를 보내주도록 요청하였다.
+  Server에서는 만료시간이 Unix time으로 설정되어 있다고 해서 Front에서 현재시간을 Unix time으로 바꿔주는 로직을 만들고 만료시간 - 현재시간을 해주고 setTimeout()을 사용해서 Front에서 시간을 재서 시간이 끝나면 자동적으로 재발급 요청을 하도록 로직을 생각해 보았었다.
+  내 생각이 맞는지 찾아보았었는데 실제 현업에서는 Axios intercepter를 사용한다는 글들이 대다수였다. 실제로 Axios intercepter를 사용하면 서버 통신을 한곳에서 관리할 수 있다는 장점도 있고 인증처리 과정에서 매번 헤더에 Token을 넣어 줄 필요도 없어져서 Axios intercepter를 채택하였다.
   <br>
-- 해결 방법
+  2. 일단 실험을 위해 Token 만료시간을 극단적으로 짧게 설정해놓았다.
+  Token이 만료된다면 대체적으로 서버에서 401번이나 419번 에러코드를 보내준다는 여러 레퍼런스들을 참고해서 Server와 에러코드를 맞춰보았습니다.
+  401번은 다른곳에서도 사용한다는 얘기를 듣고 Token 만료 에러 코드를 419번으로 통일하였습니다.
+  인터셉터 로직에는 419번 에러코드가 뜬다면 /token으로 이동되도록 설정해주고 헤더에 RefreshToken을 담아서 Server에 토큰 재발급을 요청하였다.
   <br>
-API 호출 최소화: staleTime이 Infinity로 설정되면, 데이터가 절대로 'stale'(오래된 데이터)로 간주되지 않아서, 언어가 변경될 때마다 같은 API를 다시 호출하는 일이 없게 됩니다. 즉, 같은 데이터를 여러 번 불러오는 것을 피할 수 있었습니다.
+- 결과 -
   <br>
-캐시 유지: cacheTime을 Infinity로 설정하면, API로부터 받아온 데이터가 캐시에서 지워지지 않습니다. 이렇게 하면 사용자가 다시 같은 페이지나 데이터를 요청할 때 빠르게 응답할 수 있습니다.
+토큰이 만료되면 419번 에러코드가 뜨고 자동으로 /token으로 넘어가서 RefreshToken을 대조한 후 새로운 AccessToken을 발급해줌.
 </details>
 
 <details>
+
 <summary>Socket.io  [덕용]</summary>
 - 문제 -
   <br>
-- 서버에서 지정해준 URL로 접근하지 못하는 현상.
+  서버에서 지정해준 URL로 접근하지 못하는 현상.
   <br>
-서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았다.
-분명 서버에서 지정해준 URL로 지정했는데 엔드포인트가
-없다는 404오류만 뜰 뿐이었다.
+  <img width="600" alt="socket 해결 과정" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
   <br>
-  로그인이 되는 유저는 토큰값이 잘 받아졌는데 로그인이 되지않는 유저들은 받아지지 않았습니다.
+  서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았습니다.
   <br>
-- 해결을 위한 노력
+  <img width="600" alt="개발자 도구" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
   <br>
-모바일과 pc을 연결해서 모바일 디버깅을 통해서 계속 해서 console값을 찍어보며 로그인이 되는 모바일과 안되는모바일을 비교해 가며 문제를 찾아봤습니다.
+  분명 엔드포인트를 /community/chat/socket.io로 설정해놓았는데 막상 개발자 도구를 보면 설정한 엔드포인트로 접근하지 못했습니다.
   <br>
-- 해결 방법
+- 해결을 위한 노력 -
   <br>
-백엔드에서 소셜로그인시 Params값으로 토큰을 넘겨줘서, 그에 맞게 get을 하고 if문을 통해서
-urlParams.Size ! == null 인경우을 넣었었는데, 당연히 그냥 Params에 값이 없을 경우에 실행되지않도록 넣었던 조건문이었습니다.
+  <img width="600" alt="socket 해결 완료" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
+  그리고 CORS(Cross-Origin Resource Sharing) 설정을 모든 도메인에서 서버로의 요청을 허용시키는 걸로 변경해서 연결에 성공하였습니다.
   <br>
-알고보니 https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/size 해당 사이트에서 확인해본 결과,
+- 결과 -
   <br>
-size를 조건에 넣으려면 각 모바일의 브라우저 버전이 가장 최신형이어야만 조건문이 통할 수 있었던것입니다.
-  <br>
-그래서 브라우저 업데이트가 되지않은 모바일은 로그인이 되지않았던 것이었습니다.
-결과적으로 최신화 되어있지않은 모바일 브라우저 환경에서는 urlParams.Size를 지원하지 않는데 사용하려 해서 발생한 문제로 크로스 브라우징을 위해 해당 변수 없이도 원하는 조건 필터링을 할 수 있어서 제거했습니다.
-  <br>
+  결국 Server와 연결에 성공하였고 채팅 기능까지도 성공했습니다.
   <img width="600" alt="스크린샷 2023-11-13 오후 11 02 21 복사본" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
-  <br>
-  <img width="524" alt="스크린샷 2023-11-16 오후 8 01 02" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/6b78f3df-cff7-4e1b-af18-bc1868e6f68d">
-</details>
-
-<details>
-<summary>게시글 필터링, 검색 안되는 이슈 [소영]</summary>
-- 문제의 디테일
-  <br>
-카드에 들어가는 API 조회 시 event, guestList, hostUser에 대한 정보들이 있고
-아래 데이터 값들이 카드에 사용되고 있습니다. (아래 콘솔 내용 사진 참조)
-  <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/ed63a4eb-6281-4d05-a432-b3a664762ad9" width="700" height="600">
-  <br>
-하지만 필터링관련 API들은 event에 대한 정보들만 있기 때문에
-카드에 들어가야할 나머지 값들을 확인할 수 있는 방법이 없습니다. (아래 스웨거 사진 참조)
-  <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/80dd90e2-b25a-4c33-827c-6e16b535701f" width="500" height="600">
-  <br>
-event를 제외한 나머지 데이터 값이 없으므로 카드에 필요한 데이터 값을 찾을 수 없어
-필터링을 할 때마다 빈 페이지 상태로 에러가 발생합니다.
-  <br>
-- 해결을 위한 노력
-  <br>
-백엔드측에서 적극적으로 필터에 대한 api 레이아웃을  맞춤 작업 해 주셔서 해결 완료 했습니다.
-하지만 분리된 api에서는 개별적으로 컨트롤만 가능하지 &&조건으로는 연속적인 필터링은 불가능했습니다.
-  <br>
-- 해결 방법
-  <br>
-api를 하나로 통일하면서 && 조건도 같이 탈 수 있도록 로직 변경이 필요합니다.
 </details>
 
 </br>
 
-## **🗣️ 유지 피드백 & 반영**
+## **🗣️ 유저 피드백 & 반영**
 
 마지막으로 유저 피드백 입니다.<br/> 프로젝트에서 좋게 평가해주신 부분은 컨텐츠의
 재미와 타 서비스와의 차별점입니다. <br/> 불편하게 느끼신 상당 부분은 유저 편의성

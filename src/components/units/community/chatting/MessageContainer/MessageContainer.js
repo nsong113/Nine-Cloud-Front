@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import './MessageContainer.css';
 import { Container } from '@mui/system';
 import * as S from './MessageContainer.styles';
 
@@ -22,7 +21,7 @@ const MessageContainer = ({ messageList, user }) => {
   return (
     <div
       ref={messageContainerRef}
-      style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 50px)' }}
+      style={{ overflowY: 'auto', maxHeight: 'calc(90vh - 50px)' }}
     >
       {messageList.map((message, index) => {
         return (
@@ -39,12 +38,16 @@ const MessageContainer = ({ messageList, user }) => {
               </S.MyMessageContainer>
             ) : (
               <S.YourMessageContainer>
-                <S.YourMessage>
+                <div>
                   <S.YourMessageTitle>
                     {message.user.name.split('.')[0]}
                   </S.YourMessageTitle>
-                  <S.YourMessageContent>{message.chat}</S.YourMessageContent>
-                </S.YourMessage>
+                </div>
+                <div>
+                  <S.YourMessage>
+                    <S.YourMessageContent>{message.chat}</S.YourMessageContent>
+                  </S.YourMessage>
+                </div>
               </S.YourMessageContainer>
             )}
           </Container>
