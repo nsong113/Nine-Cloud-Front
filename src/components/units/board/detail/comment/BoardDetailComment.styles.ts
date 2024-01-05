@@ -111,8 +111,6 @@ export const ButtonWrapperDiv = styled.div`
   width: 300px;
 `;
 
-
-
 export const EditTextSpan = styled.span`
   color: #000;
   font-size: 13px;
@@ -158,8 +156,6 @@ export const NoCommentBoxDiv = styled.div`
 
 export const NoCommentSpan = styled.span`
   color: #aeaeae;
-
-  font-family: Spoqa Han Sans Neo;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

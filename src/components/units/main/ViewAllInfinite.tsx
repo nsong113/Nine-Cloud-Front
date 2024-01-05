@@ -3,7 +3,6 @@ import * as S from './Main.styles';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import * as DOMPurify from 'dompurify';
-import ConfirmOverlay from 'src/components/commons/modals/modalSetting/overlay/confrimOverlay/ConfirmOverlay';
 
 const ViewAllInfinite = (props: any) => {
   const formattedDate = format(new Date(props.item.createdAt), 'yyyy. MM. dd');
@@ -13,10 +12,9 @@ const ViewAllInfinite = (props: any) => {
     navigate(`/post/${id}`);
   };
 
-  const weather = props.item.weather; //string
-  const countAverage = props.item.EmotionStatus; //number
+  const weather = props.item.weather;
+  const countAverage = props.item.EmotionStatus;
   const isPublic = props.item.isPublic;
-  // console.log('isPublic', isPublic);
   const [emotionPicture, setEmotionPicture] = useState('');
   const [isPublicPicture, setIsPublicPicture] = useState('');
 

@@ -51,7 +51,6 @@ export const PurpleChatImg = styled.img`
 
 export const HeartCommentTextSpan = styled.span<IComment>`
   color: ${(props) => (props.public ? 'rgba(80, 53, 166, 1)' : '#BBBBBB')};
-  font-family: Pretendard;
   font-size: 16.677px;
   font-style: normal;
   font-weight: 500;
@@ -106,7 +105,6 @@ export const BlankHeartImg = styled(AiOutlineHeart)`
 
 export const PurpleHeartCountSpan = styled.span`
   color: var(--sub, #8066d1);
-  font-family: Spoqa Han Sans Neo;
   font-size: 16.867px;
   font-style: normal;
   font-weight: 400;
@@ -115,7 +113,6 @@ export const PurpleHeartCountSpan = styled.span`
 
 export const GrayHeartCountSpan = styled.span`
   color: #bbbbbb;
-  font-family: Spoqa Han Sans Neo;
   font-size: 16.867px;
   font-style: normal;
   font-weight: 400;

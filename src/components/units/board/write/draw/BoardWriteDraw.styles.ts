@@ -15,12 +15,9 @@ export const DrawWrapperDOWNdiv = styled.div`
   width: 90%;
   margin: 0 auto;
   background-color: white;
-
   height: 775px;
-
   border-radius: 5px 20px 5px 5px;
   background: rgba(245, 242, 255, 0.3);
-
   box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
     0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
@@ -37,7 +34,6 @@ export const HeaderButtonBoxDiv = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
   margin-top: 50px;
   position: absolute;
   bottom: 50px;
@@ -107,21 +103,17 @@ export const CanvasContainer = styled.div``;
 
 export const DrawCanvas = styled.canvas`
   margin: 5px auto;
-
   border-radius: 10px;
   border: 1px solid var(--line, #cfc0ff);
   background: #fff;
-
   padding: 6px;
   box-sizing: border-box;
-
   cursor: pointer;
 `;
 
 export const DrawWriteTitleH3 = styled.h3`
   text-align: left;
   margin: 30px 0 10px 0;
-
   color: var(--Black, #222122);
   font-size: 18px;
   font-weight: 300;
@@ -187,11 +179,9 @@ export const ColorSettingDiv = styled.div`
   justify-content: space-between;
   padding: 0 21px;
   margin: 20px auto;
-
   border-radius: 10px;
   border: 1px solid var(--line, #cfc0ff);
   background: rgba(245, 242, 255, 0.5);
-
   backdrop-filter: blur(15px);
 `;
 
@@ -288,17 +278,14 @@ export const ThicknessBoxDiv = styled.div`
 export const FirstPenToggle = styled.div`
   width: 37px;
   height: 37px;
-
   border-radius: 71px;
   border: 1px solid var(--main, #391d93);
   background: #f5f2ff;
-
   display: flex;
   font-size: 13px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
   color: var(--1, #5035a6);
   font-size: 10px;
   font-weight: 300;
@@ -306,7 +293,6 @@ export const FirstPenToggle = styled.div`
   &:active {
     border-radius: 71px;
     background: #5035a6;
-
     color: white;
     transition: 0.3s;
     transform: scale(1.3);
@@ -316,31 +302,25 @@ export const FirstPenToggle = styled.div`
 export const FirstEraserToggle = styled.div`
   width: 37px;
   height: 37px;
-
   border-radius: 71px;
   border: 1px solid var(--main, #391d93);
   background: #f5f2ff;
-
   display: flex;
   font-size: 13px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
   color: var(--1, #5035a6);
   font-size: 10px;
   font-weight: 300;
-
   background-image: url('/eraser.png');
   background-size: 60%;
-
   background-position: center;
   background-repeat: no-repeat;
 
   &:active {
     border-radius: 71px;
     background: #5035a6;
-
     color: white;
     transition: 0.3s;
     transform: scale(1.3);
@@ -358,28 +338,23 @@ export const ColorEraserSettingDiv = styled.div`
 export const SecondToggle = styled.div`
   width: 37px;
   height: 37px;
-
   display: flex;
   font-size: 13px;
   align-items: center;
   justify-content: center;
-
   border-radius: 71px;
   border: 1px solid var(--main, #391d93);
   background: #f5f2ff;
-
   color: var(--1, #5035a6);
   font-size: 10px;
   font-weight: 300;
-
   background-image: url('/thickness.png');
   background-size: 50%;
-
   background-position: center;
   background-repeat: no-repeat;
 `;
 
-//////////eraser
+
 export const EraserArrowDiv = styled.div`
   width: 0px;
   height: 0px;
@@ -396,7 +371,6 @@ export const EraserArrowDiv = styled.div`
     height: 50px;
     background-color: #5035a6;
     color: white;
-
     transition: 0.3s;
   }
 `;

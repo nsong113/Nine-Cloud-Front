@@ -39,8 +39,6 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   const { emotionPicture } = useMakeEmotionEmoji();
   const [sentenceAtom, setSentence] = useRecoilState(sentence);
 
-  console.log('modal postDiary', postDiaryItem);
-
   useEffect(() => {
     if (postDiaryItem) {
       setPostDiaryEveryItem({

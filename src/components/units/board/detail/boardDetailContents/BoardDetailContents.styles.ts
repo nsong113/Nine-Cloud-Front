@@ -31,7 +31,6 @@ export const heartBoxDiv = styled.div`
 export const CategoryText = styled.span`
   color: var(--sub, #8066d1);
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 18px;
   font-style: normal;
   font-weight: 300;
@@ -61,7 +60,6 @@ export const MindStatusSpan = styled.span`
   flex-shrink: 0;
   color: var(--main, #391d93);
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -70,7 +68,6 @@ export const MindStatusSpan = styled.span`
 
 export const SentenceSpan = styled.span`
   color: var(--sub, #8066d1);
-  font-family: Spoqa Han Sans Neo;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -148,7 +145,6 @@ export const PencilImg = styled.img`
   width: 5px;
   height: 24px;
   cursor: pointer;
-  /* margin-left: 320px; */
 `;
 
 export const ContentBoxHeaderDiv = styled.div`
@@ -174,7 +170,6 @@ export const ContentBoxDiv = styled.div`
 
 export const ContentSpan = styled.span`
   color: rgba(43, 23, 107, 1);
-  font-family: Spoqa Han Sans Neo;
   font-size: 18.012px;
   font-style: normal;
   font-weight: 400;

@@ -295,9 +295,7 @@ export const NameInput = styled.input`
 export const ChangePasswordSpan = styled.span`
   color: var(--Gray3, #bbb);
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: 29px;
   cursor: pointer;
@@ -310,11 +308,8 @@ export const CancelButton = styled.button`
   color: #5035a6;
   background-color: #ffffff;
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 20px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   border-radius: 5px 20px;
   border: 1px solid #ece9f5;
   cursor: pointer;
@@ -332,11 +327,8 @@ export const SubmitButton = styled.button`
   color: #5035a6;
   cursor: pointer;
   text-align: center;
-  font-family: Spoqa Han Sans Neo;
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   border-radius: 5px 20px;
   border: 1px solid #ece9f5;
   background: #ece9f5;
@@ -349,11 +341,8 @@ export const SubmitButton = styled.button`
 
 export const PasswordTitleSpan = styled.span`
   color: var(--main, #391d93);
-  font-family: Spoqa Han Sans Neo;
   font-size: 24px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   text-align: center;
   cursor: pointer;
 `;
@@ -365,7 +354,6 @@ export const PasswordWrapperDiv = styled.div`
 
 export const PasswordSpan = styled.span`
   color: var(--main, #391d93);
-  font-family: Spoqa Han Sans Neo;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -393,13 +381,12 @@ export const PasswordConfirmDiv = styled.div`
 export const ValidationMessage = styled.div<ValidationMessageProps>`
   font-size: 14px;
   height: 14px;
-  margin-top: 5px; /* 적절한 여백 설정 */
+  margin-top: 5px; 
   color: ${(props) => (props.isError ? 'red' : 'blue')};
 `;
 
 export const ProfileTitleSpan = styled.span`
   color: var(--main, #391d93);
-  font-family: Spoqa Han Sans Neo;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;

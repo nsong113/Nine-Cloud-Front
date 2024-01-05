@@ -6,7 +6,6 @@ import React, {
   useRef,
   MouseEvent,
 } from 'react';
-import styled, { keyframes } from 'styled-components';
 import { IMyPage, IMyPost } from './MyPageOverlay.types';
 import * as S from './MyPageOverlay.styles';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +47,6 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk }) => {
     if (event.target.files !== null) {
       setSelectedImage(event.target.files?.[0]);
       const file: File = event.target.files?.[0];
-      console.log('file', file);
       if (checkValidationFile(file) === false) {
         return;
       }

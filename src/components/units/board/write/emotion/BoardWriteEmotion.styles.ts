@@ -16,11 +16,9 @@ export const EmotionWrapperDOWNdiv = styled.div`
   margin: 0 auto;
   background-color: white;
   border-radius: 50px 0 0 0;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 775px;
   border-radius: 22.583px 5.646px 5.646px 5.646px;
   background: rgba(245, 242, 255, 0.3);
@@ -40,6 +38,7 @@ export const HeaderButtonBoxDiv = styled.div`
   position: absolute;
   bottom: 50px;
 `;
+
 export const HeaderLine = styled.div`
   width: 150px;
   height: 2px;
@@ -61,7 +60,7 @@ const colors = {
   mainColor: 'blue',
   grey: {
     100: 'grey',
-    300: 'lightgrey', // 회색 계열 중 300
+    300: 'lightgrey', 
   },
   white: 'white',
 };
@@ -70,10 +69,8 @@ export const ContentInputBoxDiv = styled.div`
   width: 100%;
   height: 100px;
   padding: 5px;
-
   border-radius: 10px 0px;
   background: #f5f2ff;
-
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 2px 10px 0px rgba(80, 53, 166, 0.15);
   backdrop-filter: blur(15px);
@@ -97,13 +94,11 @@ export const ContentSpan = styled.span`
 
 export const SliderInput = styled.input<ISliderInputProps>`
   -webkit-appearance: none;
-
   width: 90%;
   height: 5px;
   background: transparent;
   transform: translate(17px, 25px);
   border-radius: 14px;
-
   background: ${(props) => {
     const percentage =
       ((props.value - props.min) / (props.max - props.min)) * 100;
@@ -143,14 +138,12 @@ export const LabelsDiv = styled.div`
   font-weight: 100;
 `;
 
-// 각 label의 컨테이너 스타일 정의
 export const Labels = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
 `;
 
-// 각 label 스타일 정의
 export const Label = styled.span`
   position: relative;
   cursor: pointer;

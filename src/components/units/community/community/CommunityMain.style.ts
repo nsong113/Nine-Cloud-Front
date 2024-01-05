@@ -7,7 +7,6 @@ export const MainContainer = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   border: 1px solid transparent;
 `;
 
@@ -37,11 +36,9 @@ export const ChatTitleSpan = styled.div`
 export const MainChatTitle = styled.div`
   width: 190px;
   height: 60px;
-
   color: var(--Gray1, #3d3d3d);
   font-size: 15px;
   font-weight: 400;
-
   transform: translateY(10px);
 `;
 
@@ -74,7 +71,6 @@ export const MainSectionHeaderWrapper = styled.div`
   height: 120px;
   position: absolute;
   padding: 20px;
-  /* background-color: red; */
 `;
 
 export const MainLine = styled.div`
@@ -175,10 +171,8 @@ export const ViewAllEachBoxDiv = styled.div`
   margin: 0 auto;
   height: 130px;
   margin-top: 20px;
-
   border-radius: 10px 2px;
   background: rgba(245, 242, 255, 0.3);
-
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(25px);

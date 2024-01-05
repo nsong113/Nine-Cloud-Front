@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { Iprops } from './apiesType';
 
 export const CallGPT = async ({
-  countAverage,
   contents,
   temperature,
   humid,
@@ -62,10 +60,8 @@ export const CallGPT = async ({
     );
 
     const responseData = await res.data;
-    // console.log('responseData', responseData);
 
     const message = responseData.choices[0].message.content;
-    // console.log('message', message);
 
     return message;
   } catch (error) {

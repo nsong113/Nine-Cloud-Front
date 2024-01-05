@@ -14,9 +14,9 @@ const CommunityMain = () => {
   const [profilePicture, setProfilePicture] = useState('/avatar.png');
 
   const todayDate = new Date();
-  const currentYear = todayDate.getFullYear(); //2023
-  const currentMonth = todayDate.getMonth() + 1; //12
-  const currentDate = todayDate.getDate(); //12
+  const currentYear = todayDate.getFullYear();
+  const currentMonth = todayDate.getMonth() + 1;
+  const currentDate = todayDate.getDate();
   const arrayDate = currentDate - 1;
 
   const { data: todayOriginData, isSuccess } = useQuery(
@@ -97,7 +97,6 @@ const CommunityMain = () => {
                 />
               </S.MainTodayEmoji>
               <S.MainChatTitle>
-                {/* <S.ChatTitleSpan>탕수육</S.ChatTitleSpan> 님! <br />  */}
                 오늘 같은 감정인 사람들과 <br />
                 대화를 나눠보세요!
               </S.MainChatTitle>

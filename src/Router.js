@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// Route-based Code Splitting
 const DetailedPage = React.lazy(() => import('src/pages/boards/detail'));
 const NewPostPage = React.lazy(() => import('src/pages/boards/new'));
 const SigninPage = React.lazy(() => import('src/pages/login/signin'));

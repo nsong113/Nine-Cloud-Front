@@ -5,7 +5,6 @@ import { VideoCard } from 'src/components/commons/utills/Date/date';
 import { useRecoilState } from 'recoil';
 import { arrowNavigate } from 'src/states/navigate';
 import useSetEmotionIcon from 'src/components/commons/hooks/useSetEmotionIcon';
-import imageCompression from 'browser-image-compression';
 
 const CommunityEach = (props: any) => {
   const createdAtDate = new Date(props.item.createdAt);
