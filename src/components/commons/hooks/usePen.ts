@@ -100,7 +100,7 @@ const usePen = (
 
       timerIdRef.current = setTimeout(() => {
         makeImageFile();
-      }, 1000) as unknown as number;
+      }, 500) as unknown as number;
     }
     return () => {
       if (timerIdRef.current) {
