@@ -99,7 +99,11 @@ const Calender = () => {
       <S.CalendarContainerDiv>
         <S.HeaderWrapperDiv>
           <S.DateBoxDiv>
-            <S.ExcludeImg src='/exclude.webp' alt='이미지' />
+            <S.ExcludeImg
+              src='https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png'
+              rel='preload'
+              alt='이미지'
+            />
             <S.YearMonthChangeBoxDiv>
               <S.PrevMonth onClick={onClickPrevMonth} size={30} />
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
@@ -155,7 +159,6 @@ const Calender = () => {
                   currentYear={currentYear}
                   currentMonth={currentMonth}
                   currentDate={currentDate}
-                  currentYear={currentYear}
                   data={data}
                 />
               </S.CalendarTable>

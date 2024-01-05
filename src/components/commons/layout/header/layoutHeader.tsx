@@ -29,7 +29,8 @@ const Header = () => {
             <div style={{ display: 'flex' }}>
               <S.LogoImg
                 onClick={onClickLogo}
-                src='/logo_final.png'
+                src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/logo_final.png'
+                rel='preload'
                 alt='로고'
               />
             </div>
@@ -43,7 +44,11 @@ const Header = () => {
                   <S.AvatarSizeImg src={profile?.data?.profileImg} alt='기본' />
                 )}
                 {!profile?.data?.profileImg && (
-                  <S.AvatarSizeImg src='/avatar.png' alt='기본' />
+                  <S.AvatarSizeImg
+                    src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/avatar.png'
+                    alt='기본'
+                    rel='preload'
+                  />
                 )}
               </S.StyledHoverTapButton>
             </Tooltip>

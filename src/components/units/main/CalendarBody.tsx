@@ -62,28 +62,13 @@ const CalendarBody = (props: IGetPostsData) => {
   };
 
   const changedMonth = props.currentMonth.getMonth();
-
   const fixedMonth = new Date().getMonth();
-
   const changedYear = props.currentYear.getFullYear() * 10;
-
   const fixedYear = new Date().getFullYear() * 10;
-
-  const changedDate = props.currentDate.getDate();
-
-  const fixedDate = new Date().getDate();
 
   const isPastMonth = changedYear + changedMonth < fixedYear + fixedMonth;
   const isFutureMonth = changedYear + changedMonth > fixedYear + fixedMonth;
-  const isCurrentMonth = changedYear + changedMonth === fixedYear + fixedMonth;
-  const isToday =
-    changedYear === fixedYear &&
-    changedMonth === fixedMonth &&
-    changedDate === fixedDate;
-
-  console.log('thisMonth', fixedMonth);
-  console.log('month', new Date().getDate() + fixedMonth + fixedYear);
-  console.log('');
+  const isCurrentMonth = changedYear + changedMonth <= fixedYear + fixedMonth;
 
   return (
     <S.TableBody>
@@ -126,6 +111,7 @@ const CalendarBody = (props: IGetPostsData) => {
                           <S.DateImg
                             src={getEmotion(emotionStatus, weatherStatus)}
                             alt={`Emotion ${emotionStatus}`}
+                            rel='preload'
                           />
                         )}
                         {props.currentMonth.getMonth() === 11 ||
