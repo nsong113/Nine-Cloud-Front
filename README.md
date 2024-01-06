@@ -1,4 +1,4 @@
-# **🏡 Cloud Nine - FE**
+# **🏡 Nine Cloud - FE**
 
 ![나인 클라우드 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
 
@@ -7,7 +7,7 @@
 
 </br>
 
-## **☁️ Cloud Nine**
+## **☁️ Nine Cloud**
 
 cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복한 감정을 기록
 (cloud), 9가지의 감정 표현 이라는 점에서 저희 서비스에 어울리는 속담 같아 나인클
@@ -24,7 +24,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
   </tr>
   <tr align="center">
     <td><img src="/favicon.png" alt="클라우드나인 아이콘" style="width: 25px;"></td>
-    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://localmingle.store/">Cloud Nine</a></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://localmingle.store/">Nine Cloud</a></td>
     <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
 <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.notion.so/Nine-Cloud-AI-77cb46db65bd44cd92fe2b8a51902708">브로슈어</a></td>
   </tr>
@@ -50,7 +50,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
   <tr align="center">
     <td><strong>소셜 로그인</strong></td>
     <td><strong>달력 페이지</strong></td>
-    <td><strong>일기 추가하기</strong></td>
+    <td><strong>그림 그리기</strong></td>
   </tr>
    <tr align="center">
     <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_loginpage.gif" alt="소셜 로그인" style="height:500px"/></td>
@@ -63,8 +63,8 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 <table>
   <tr align="center">
-    <td><strong>AI</strong></td>
-    <td><strong>커뮤니티</strong></td>
+    <td><strong>AI open api</strong></td>
+    <td><strong>무한스크롤</strong></td>
     <td><strong>채팅방</strong></td>
   </tr>
    <tr align="center">
@@ -78,10 +78,10 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 ## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
 
-|                                           주철민                                            |                                           송지우                                           |                                           한덕용                                           |
-| :-----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
+|                                                   주철민                                                    |                                                   송지우                                                   |                                                   한덕용                                                   |
+| :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
 | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/profile.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JWface.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/DYface.jpg" width="200" height="200"/> |
-|                        [cheolminJOO](https://github.com/cheolminJOO)                        |                          [nsong113](https://github.com/nsong113)                           |                        [HyperQuanx](https://github.com/HyperQuanx)                         |
+|                                [cheolminJOO](https://github.com/cheolminJOO)                                |                                  [nsong113](https://github.com/nsong113)                                   |                                [HyperQuanx](https://github.com/HyperQuanx)                                 |
 
 </br>
 
@@ -302,9 +302,10 @@ com    <td align="center">nsong113@gmail.com</td>
   <br>  <br>
 - 해결 방법
   <br>
-그림을 그릴 때 마우스를 때고 1000ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 1초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 1초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다.
-<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JW_troubleshooting1.png" width="500" height="80">
-<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JW_troubleshooting2.png" width="500" height="80">
+그림을 그릴 때 마우스를 때고 450ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 0.5초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 0.5초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다.
+<br>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JW_troubleshooting1.png" width="500" height="400">
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JW_troubleshooting2.png" width="500" height="300">
 </details>
 
 <details>
@@ -324,8 +325,6 @@ get 요청이 보내졌습니다.  <br>
  <br>
  api부분에서 data이외에도 nextPage와 isLast를 리턴하여 useInfiniteQuery의 getNextPageParam부분에 적용했습니다. react-intersection-observer 라이브러리를 도입하였습니다. 관찰하는 객체 하나를 ref로 설정한 후 해당하느 객체가 화면에 보이면 inView를 true로 값을 바꿔줍니다. 저의 경우 가장 마지막 부분에 div를 만들고 color를 투명하게 주었습니다. useInfiniteQuery를 사용하였습니다. 특히 fetchNextPage메서드를 사용하여 inView가 true이고 hasNextPage가 true이면 fetchNextPage를 하도록 useEffect에 의존성을 추가하여 주었습니다.
 <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
-    <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
 </details>
 
 <details>
@@ -352,6 +351,9 @@ get 요청이 보내졌습니다.  <br>
 - 결과 -
   <br>
 토큰이 만료되면 419번 에러코드가 뜨고 자동으로 /token으로 넘어가서 RefreshToken을 대조한 후 새로운 AccessToken을 발급해줌.
+<br>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode2.png" width="779" height="652">
+
 </details>
 
 <details>
@@ -361,33 +363,32 @@ get 요청이 보내졌습니다.  <br>
   <br>
   서버에서 지정해준 URL로 접근하지 못하는 현상.
   <br>
-  <img width="600" alt="socket 해결 과정" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError2.png" width="1062" height="173">
   <br>
   서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았습니다.
   <br>
-  <img width="600" alt="개발자 도구" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError3.png" width="772" height="170">
   <br>
   분명 엔드포인트를 /community/chat/socket.io로 설정해놓았는데 막상 개발자 도구를 보면 설정한 엔드포인트로 접근하지 못했습니다.
   <br>
 - 해결을 위한 노력 -
   <br>
-  <img width="600" alt="socket 해결 완료" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode.png" width="804" height="255">
   혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
   그리고 CORS(Cross-Origin Resource Sharing) 설정을 모든 도메인에서 서버로의 요청을 허용시키는 걸로 변경해서 연결에 성공하였습니다.
   <br>
 - 결과 -
   <br>
   결국 Server와 연결에 성공하였고 채팅 기능까지도 성공했습니다.
-  <img width="600" alt="스크린샷 2023-11-13 오후 11 02 21 복사본" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/chattingsuccess.png" width="375" height="90">
 </details>
 
 ## **🛠️ 최적화**
 
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/result.jpg" width="500" height="280">
 <details>
-<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/result.jpg" width="250" height="400">
-
 <summary> 1. 번들 크기 최적화 </summary>
-<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process1.jpg" width="250" height="400">
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process1.jpg" width="500" height="280">
   <br>
 react-icons는 종류별로 js파일을 하나씩 가지고 있어서, 하나의 아이콘을 실행하면 그 아이콘이 속한 js 파일이 실행돼서 관련 없는 불필요한 파일들도 함께 빌딩 돼 번들 크기가 커집니다.
 그래서  @react-icons/all-files를 설치했고, 이 라이브러리는 아이콘마다 js 파일을 가지고 있어서 빌딩 시 필요한 파일만 실행 돼 번들 크기 최적화를 시킬 수 있었습니다.
@@ -396,20 +397,20 @@ react-icons는 종류별로 js파일을 하나씩 가지고 있어서, 하나의
 
 <details>
 <summary> 2. React.lazy를 이용하여 라우팅 code splitting /  webP확장자로 변경</summary>
-<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process2.jpg" width="250" height="400">
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process2.jpg" width="500" height="280">
   <br>
 - React.lazy는 React에서 코드 스플리팅을 구현하기 위한 기능 중 하나입니다. 코드 스플리팅은 애플리케이션을 더 작은 청크(chunk)로 나누어 각 청크가 필요할 때만 로드되도록 하는 기술입니다. 이를 통해 초기 로딩 시간을 줄이고 성능을 최적화할 수 있습니다. 전체 애플리케이션을 로드하는 대신 현재 사용자가 방문한 페이지에 필요한 코드만 로드하는 것을 의미하여 더 빠른 로딩을 가능하게 합니다. 
-<br>
+<br>  <br>
 - WebP 이미지는 일반적으로 JPEG 및 PNG보다 더 효율적인 압축을 제공하면서도 높은 품질을 유지합니다. 자주 사용되는 이미지를 효율적으로 압축하기 위해 webP로 변경하였습니다.
   <br>  
 </details>
 
 <details>
 <summary> 3. Profiler를 활용해서 불필요한 렌더링 최적화 / compressor.js로 이미지 압축  </summary>
-<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process3.jpg" width="250" height="400">
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process3.jpg" width="500" height="280">
   <br>
  - 프로파일러를 사용하여 컴포넌트 렌더링 최적화를 진행했습니다. 특히 글쓰는 곳이나 그림을 그리는 부분은 마우스를 움직이거나 글자를 입력할 때 마다 헤더나 모든 레이아웃이 리렌더링이 되는 것을 알 수 있었습니다. 따라서 React.memo를 사용하여 컴포넌트를 캐싱했습니다. 
-<br>
+<br>  <br>
 - 마지막으로 compressor.js를 사용하여 0.02mB로 압축 후 서버에 보내니 하나의 이미지 로딩시간이 최대 50% (6ms->3ms)단축되었습니다.
   <br>
 </details>
@@ -424,7 +425,7 @@ react-icons는 종류별로 js파일을 하나씩 가지고 있어서, 하나의
   <br>
   메인페이지와 커뮤니티 페이지에서 상세페이지로 이동이 되는데, 상세페이지에서 뒤로가기를 눌렀을 때 무조건 메인으로 가서 커뮤니티 페이지에서 이동한 사용자는<br>
   다시 커뮤니티 페이지를 클릭해야 하는 불편함이 발생했습니다.
-  <br>
+  <br>  <br>
 - 해결 -
   <br>
   boolean 값을 가지는 전역 state를 만들어, 메인페이지에서 상세페이지로 이동되면 값을 false로 바꾸고 커뮤니티 페이지에서 이동되면 값을 true로 바꾸는 로직을 구성했습니다<br>
@@ -448,10 +449,12 @@ input range의 value값을 전역 상태 라이브러리인 recoil을 사용하�
 - 피드백 -
   <br>
   "나의 감정 일기를 인스타나 카카오로 공유 할 수 있으면 좋을 것 같습니다"
-  <br>
+  <br>  <br>
 - 해결 -
   <br>
-  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/shareCode.png" width="200" height="400">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/kakaoshare.png" width="921" height="394">
+  <br>
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/shareCode.png" width="783" height="987">
   <br>
 Kakao develop에서 공유하기를 위한 세팅을 해주었고 공식문서에 따라 공유하기 기능을 만들었다.
 </details>
