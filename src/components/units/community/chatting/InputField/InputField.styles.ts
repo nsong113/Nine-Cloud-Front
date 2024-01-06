@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const InputArea = styled.div`
   background-color: #391d93;
-  height: 12.5%;
+  height: 10.5%;
   min-height: 50px;
   display: flex;
+  justify-content: center;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -12,10 +13,11 @@ export const InputArea = styled.div`
 
 export const InputContainer = styled.form`
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  align-items: center;
+  width: 90%;
   height: 63px;
   background-color: white;
+  border-radius: 5px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
 `;
@@ -23,17 +25,27 @@ export const InputContainer = styled.form`
 export const Input = styled.input`
   color: black;
   width: 80%;
-
   border: none;
   border-radius: 5px;
+  padding-left: 20px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const SendButton = styled.button`
+  margin-right: 10px;
   min-width: 70px;
-  border-radius: 10px;
-  background-color: #926fff;
+  width: 80px;
+  height: 50px;
+  border-radius: 12px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #8066d1;
   border: none;
-  color: black;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
   &:active {
     background-color: #926fff;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1); /* 버튼 안으로 그림자 효과 추가 */
