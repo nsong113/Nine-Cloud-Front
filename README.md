@@ -309,7 +309,7 @@ com    <td align="center">nsong113@gmail.com</td>
 </details>
 
 <details>
-<summary> 무한으로 api 요청이 가는 무한스크로 [지우]</summary>
+<summary> 무한으로 api 요청이 가는 무한스크롤 [지우]</summary>
 - 문제의 디테일
   <br>
 '무한정'스크롤이 되어 계속 통신 요청을 하고, 처음 요청을 하고 더 요청을 안하기도 하고, 혹은 Null로 요청을 하는 사태가 발생했습니다.
@@ -361,23 +361,32 @@ get 요청이 보내졌습니다.  <br>
 <summary>Socket.io  [덕용]</summary>
 - 문제 -
   <br>
+  <br>
   서버에서 지정해준 URL로 접근하지 못하는 현상.
+  <br>
   <br>
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError2.png" width="1062" height="173">
   <br>
+  <br>
   서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았습니다.
+  <br>
   <br>
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError3.png" width="772" height="170">
   <br>
+  <br>
   분명 엔드포인트를 /community/chat/socket.io로 설정해놓았는데 막상 개발자 도구를 보면 설정한 엔드포인트로 접근하지 못했습니다.
   <br>
+  <br>
 - 해결을 위한 노력 -
+  <br>
   <br>
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode.png" width="804" height="255">
   혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
   그리고 CORS(Cross-Origin Resource Sharing) 설정을 모든 도메인에서 서버로의 요청을 허용시키는 걸로 변경해서 연결에 성공하였습니다.
   <br>
+  <br>
 - 결과 -
+  <br>
   <br>
   결국 Server와 연결에 성공하였고 채팅 기능까지도 성공했습니다.
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/chattingsuccess.png" width="375" height="90">
@@ -454,7 +463,9 @@ input range의 value값을 전역 상태 라이브러리인 recoil을 사용하�
   <br>
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/kakaoshare.png" width="921" height="394">
   <br>
+  <br>
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/shareCode.png" width="783" height="987">
+  <br>
   <br>
 Kakao develop에서 공유하기를 위한 세팅을 해주었고 공식문서에 따라 공유하기 기능을 만들었다.
 </details>
