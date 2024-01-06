@@ -68,7 +68,7 @@ const CalendarBody = (props: IGetPostsData) => {
 
   const isPastMonth = changedYear + changedMonth < fixedYear + fixedMonth;
   const isFutureMonth = changedYear + changedMonth > fixedYear + fixedMonth;
-  const isCurrentMonth = changedYear + changedMonth <= fixedYear + fixedMonth;
+  const isCurrentMonth = changedYear + changedMonth === fixedYear + fixedMonth;
 
   return (
     <S.TableBody>
