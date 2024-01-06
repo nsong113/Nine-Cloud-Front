@@ -267,7 +267,7 @@ com    <td align="center">nsong113@gmail.com</td>
 오늘 일,월,년도의 데이터와, 달력이 바뀔 때 일,월,년도의 데이터를 변수로 정리하고 
 이 변수들을 이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const에 대입시켜 만들고, 이들을 조건부 렌더링에 적용해 해결했습니다.
   <br>
-    <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_result.png" width="438" height="726">
+    <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_result.png" width="270" height="435">
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/nextCode.png" width="483" height="416">
 </details>
 
@@ -364,7 +364,7 @@ get 요청이 보내졌습니다.  <br>
   서버에서 지정해준 URL로 접근하지 못하는 현상.
   <br>
   <br>
-  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError2.png" width="1062" height="173">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError2.png" width="1062" height="300">
   <br>
   <br>
   서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았습니다.
