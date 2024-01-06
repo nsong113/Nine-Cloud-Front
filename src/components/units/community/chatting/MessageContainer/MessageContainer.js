@@ -19,22 +19,28 @@ const MessageContainer = ({ messageList, user }) => {
   };
 
   return (
-    <div
-      ref={messageContainerRef}
-      style={{ overflowY: 'auto', maxHeight: 'calc(90vh - 50px)' }}
-    >
+    <S.BaseMessage ref={messageContainerRef}>
       {messageList.map((message, index) => {
         return (
-          <Container key={message._id} className='message-container'>
+          <Container key={message._id}>
             {message.user.name === 'system' ? (
               <S.SystemMessageContainer>
                 <S.SystemMessage>{message.chat}</S.SystemMessage>
               </S.SystemMessageContainer>
             ) : message.user.name === user.name ? (
               <S.MyMessageContainer>
-                <S.MyMessage>
-                  <div>{message.chat}</div>
-                </S.MyMessage>
+                <div>
+                  <div>
+                    <S.MyMessageTitle>
+                      {message.user.name.split('.')[0]}
+                    </S.MyMessageTitle>
+                  </div>
+                  <div>
+                    <S.MyMessageContent>
+                      <S.MyMessage>{message.chat}</S.MyMessage>
+                    </S.MyMessageContent>
+                  </div>
+                </div>
               </S.MyMessageContainer>
             ) : (
               <S.YourMessageContainer>
@@ -44,16 +50,16 @@ const MessageContainer = ({ messageList, user }) => {
                   </S.YourMessageTitle>
                 </div>
                 <div>
-                  <S.YourMessage>
-                    <S.YourMessageContent>{message.chat}</S.YourMessageContent>
-                  </S.YourMessage>
+                  <S.YourMessageContent>
+                    <S.YourMessage>{message.chat}</S.YourMessage>
+                  </S.YourMessageContent>
                 </div>
               </S.YourMessageContainer>
             )}
           </Container>
         );
       })}
-    </div>
+    </S.BaseMessage>
   );
 };
 

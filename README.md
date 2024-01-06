@@ -1,8 +1,8 @@
 # **🏡 Cloud Nine - FE**
 
-![클라우드나인 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
+![나인 클라우드 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
 
-> 클라우드 나인은 AI 감정 솔루션 그림일기 서비스 입니다.</br> 하루의 일과를 그림
+> 나인 클라우드은 AI 감정 솔루션 그림일기 서비스 입니다.</br> 하루의 일과를 그림
 > 과 글로 정리하여 그날의 감정 이모티콘과 함께 기록해보세요.
 
 </br>
@@ -295,11 +295,11 @@ com    <td align="center">nsong113@gmail.com</td>
 - 문제의 디테일
   <br>
 이미지를 압축 후 서버에 전달하는 버튼을 두번 눌러야 전달이 되었습니다. 첫번째 클릭에서는 압축이 되고 두번째 클리에서 전송이 되는 것을 확인했습니다.
-  <br>
+  <br>  <br>
 - 해결을 위한 노력
   <br>
 버튼을 두개를 만들거나 유저한테 더블클릭 해달라고 메시지를 전달해야 하나 고민을 했습니다. 주로 유저에게 어떻게 이 것을 덜 불편감으로 다가오게 전달할까 고민을 했습니다. 하지만 직접적으로 유저에게 요청을 하는 것은 큰 불편감으로 초래한다는 생각이 들어 어떻게 하면 자동화 할까 고민을 시작하였습니다.
-  <br>
+  <br>  <br>
 - 해결 방법
   <br>
 그림을 그릴 때 마우스를 때고 1000ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 1초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 1초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다.
@@ -310,14 +310,14 @@ com    <td align="center">nsong113@gmail.com</td>
 - 문제의 디테일
   <br>
 '무한정'스크롤이 되어 계속 통신 요청을 하고, 처음 요청을 하고 더 요청을 안하기도 하고, 혹은 Null로 요청을 하는 사태가 발생했습니다.
-  <br>
+  <br>  <br>
 - 해결을 위한 노력
   <br>
 1. InfiniteScroll 라이브러리를 다운받고 useInfiniteQuey를 같이 사용해 보았습니다. 결과로는 무한
 get 요청이 보내졌습니다.  <br>
 2. InfiniteScoll을 사용하지 않고 useInfiniateQuery의 getNextPageParam부분을 수정해 보았습니다. 결과로는 바닥을 인식하지 못했는지 첫번째 로딩만 하고 두번째 페이지는 로딩을 하지 않았습니다. <br>
 3. api의 return 부분을 수정했습니다. return에서 data이외에도 nextPage와 isLast를 리턴했습니다. 그리고 이것을 getNextPageParam에 적용했습니다.
- <br>
+ <br>  <br>
 - 해결 방법
  <br>
  api부분에서 data이외에도 nextPage와 isLast를 리턴하여 useInfiniteQuery의 getNextPageParam부분에 적용했습니다. react-intersection-observer 라이브러리를 도입하였습니다. 관찰하는 객체 하나를 ref로 설정한 후 해당하느 객체가 화면에 보이면 inView를 true로 값을 바꿔줍니다. 저의 경우 가장 마지막 부분에 div를 만들고 color를 투명하게 주었습니다. useInfiniteQuery를 사용하였습니다. 특히 fetchNextPage메서드를 사용하여 inView가 true이고 hasNextPage가 true이면 fetchNextPage를 하도록 useEffect에 의존성을 추가하여 주었습니다.
@@ -329,6 +329,7 @@ get 요청이 보내졌습니다.  <br>
 - 문제 -
   <br>
   1. 토큰 재발급 로직 작성 중에토큰 재발급을 위한 알고리즘 구축
+  <br>
   토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
   토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
   2. 토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 Server와 안 맞는 오류.
