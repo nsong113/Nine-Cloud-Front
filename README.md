@@ -451,7 +451,7 @@ input range의 value값을 전역 상태 라이브러리인 recoil을 사용하�
   <br>
 - 해결 -
   <br>
-  사진이 들어갈 곳
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/shareCode.png" width="200" height="400">
   <br>
 Kakao develop에서 공유하기를 위한 세팅을 해주었고 공식문서에 따라 공유하기 기능을 만들었다.
 </details>
