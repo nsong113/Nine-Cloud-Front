@@ -23,8 +23,8 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
     <td><strong>링크</strong></td>
   </tr>
   <tr align="center">
-    <td><img src="/favicon.png" alt="클라우드나인 아이콘" style="width: 25px;"></td>
-    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://localmingle.store/">Nine Cloud</a></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/favicon.png" alt="클라우드나인 아이콘" style="width: 25px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://nine-cloud9.vercel.app/">Nine Cloud</a></td>
     <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
 <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.notion.so/Nine-Cloud-AI-77cb46db65bd44cd92fe2b8a51902708">브로슈어</a></td>
   </tr>
@@ -38,7 +38,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
     <td><img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png" alt="노드js 아이콘" style="width: 20px;"></td>
     <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/Lee-chan0/final_project_back/tree/dev">BE Github</a></td>
     <td><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="피그마 아이콘" style="width: 20px;"></td>
-    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.figma.com/file/xMqhB1UU2JEtAmw4z6VJAM/%ED%95%AD%ED%95%B4-99?type=design&node-id=1816%3A4131&mode=design&t=GwsmVNb46SNoz2lO-1">Figma</a></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.figma.com/file/xMqhB1UU2JEtAmw4z6VJAM/%ED%95%AD%ED%95%B4-99?type=design&node-id=2031%3A228&mode=design&t=6V1tbbdafANbxBkp-1">Figma</a></td>
   </tr>
 </table>
 
@@ -255,8 +255,8 @@ com    <td align="center">nsong113@gmail.com</td>
   <br>
 오늘이 2024년 1월 4일이라면 2023년의 모든 달력은 데이터가 다 나타나지 않고, 모든 달력이 4일, 즉 오늘 날짜까지만 데이터가 등장합니다.
   <br>
-  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_troubleshooting1.png" width="500" height="80">
-  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/prevCode.png" width="500" height="80">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_troubleshooting1.png" width="270" height="436">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/prevCode.png" width="474" height="242">
   <br>
 - 해결을 위한 노력
   <br>
@@ -267,8 +267,8 @@ com    <td align="center">nsong113@gmail.com</td>
 오늘 일,월,년도의 데이터와, 달력이 바뀔 때 일,월,년도의 데이터를 변수로 정리하고 
 이 변수들을 이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const에 대입시켜 만들고, 이들을 조건부 렌더링에 적용해 해결했습니다.
   <br>
-    <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_result.png" width="500" height="80">
-  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/nextCode.png" width="500" height="80">
+    <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_result.png" width="438" height="726">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/nextCode.png" width="483" height="416">
 </details>
 
 <details>
