@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  background-image: url('/shareIcon.png');
+  background-image: url('/kakaoicon.png');
   background-color: white;
   background-size: cover;
   background-position: center;

@@ -13,7 +13,7 @@ const KakaoShare = () => {
   }, []);
 
   const handleKakaoShare = () => {
-    const imageUrl = `https://nine-cloud9.vercel.app/onboard01.png`;
+    const imageUrl = `https://nine-cloud9.vercel.app/onboard1.png`;
     Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
