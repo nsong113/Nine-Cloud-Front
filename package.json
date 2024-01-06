@@ -30,7 +30,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
-    "react-icons": "^4.12.0",
     "react-intersection-observer": "^9.5.3",
     "react-portal": "^4.2.2",
     "react-query": "^3.39.3",

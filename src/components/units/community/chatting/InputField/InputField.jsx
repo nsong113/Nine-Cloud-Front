@@ -4,20 +4,24 @@ import * as S from './InputField.styles';
 
 const InputField = ({ message, setMessage, sendMessage }) => {
   const handleSendMessage = (event) => {
-    sendMessage(event);
-    setMessage(''); // 메시지 전송 후에 인풋 필드 초기화
+    event.preventDefault();
+
+    if (message.trim().length > 0) {
+      sendMessage(event);
+      setMessage('');
+    }
   };
 
   return (
     <S.InputArea>
       <S.InputContainer onSubmit={handleSendMessage}>
         <S.Input
-          placeholder='   채팅을 입력하세요'
+          placeholder='채팅을 입력하세요'
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           rows={1}
         />
-        <S.SendButton disabled={message === ''} type='submit'>
+        <S.SendButton disabled={message.trim().length === 0} type='submit'>
           전송
         </S.SendButton>
       </S.InputContainer>
@@ -25,7 +29,7 @@ const InputField = ({ message, setMessage, sendMessage }) => {
   );
 };
 
-// 추가: PropTypes 정의
+// PropTypes 정의
 InputField.propTypes = {
   message: PropTypes.string.isRequired,
   setMessage: PropTypes.func.isRequired,
