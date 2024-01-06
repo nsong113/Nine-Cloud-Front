@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import { IoIosArrowDown } from '@react-icons/all-files/io/IoIosArrowDown';
+import { IoIosArrowUp } from '@react-icons/all-files/io/IoIosArrowUp';
 import { IComment } from '../BoardDetail.types';
-import { IoIosArrowDown } from 'react-icons/io';
-import { IoIosArrowUp } from 'react-icons/io';
-import { BsHeartFill } from 'react-icons/bs';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { BsHeartFill } from '@react-icons/all-files/bs/BsHeartFill';
+import { AiOutlineHeart } from '@react-icons/all-files/ai/AiOutlineHeart';
 
 export const CategoryBoxDiv = styled.div`
   height: 50px;
@@ -51,6 +51,7 @@ export const PurpleChatImg = styled.img`
 
 export const HeartCommentTextSpan = styled.span<IComment>`
   color: ${(props) => (props.public ? 'rgba(80, 53, 166, 1)' : '#BBBBBB')};
+  font-family: Pretendard;
   font-size: 16.677px;
   font-style: normal;
   font-weight: 500;
@@ -105,6 +106,7 @@ export const BlankHeartImg = styled(AiOutlineHeart)`
 
 export const PurpleHeartCountSpan = styled.span`
   color: var(--sub, #8066d1);
+  font-family: Spoqa Han Sans Neo;
   font-size: 16.867px;
   font-style: normal;
   font-weight: 400;
@@ -113,6 +115,7 @@ export const PurpleHeartCountSpan = styled.span`
 
 export const GrayHeartCountSpan = styled.span`
   color: #bbbbbb;
+  font-family: Spoqa Han Sans Neo;
   font-size: 16.867px;
   font-style: normal;
   font-weight: 400;

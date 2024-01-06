@@ -8,6 +8,8 @@ const useSleep = () => {
   const [sleepAtom, setSleepAtom] = useRecoilState(sleep);
   const [sleepToday, setSleepToday] = useState<string>('');
 
+  console.log('sleepToday', sleepToday);
+
   useEffect(() => {
     if (sleepAtom === '1') {
       setSleepToday('매우 나빠요');

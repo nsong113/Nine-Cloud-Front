@@ -3,10 +3,7 @@ import { IGPTprops } from '../../../gpt/GPTModal.types';
 import * as S from './GPTOverlay.style';
 import { CallGPT } from 'src/apis/gpt';
 import { useRecoilState } from 'recoil';
-import {
-  contents,
-  countAverage,
-} from 'src/states/counter';
+import { contents, countAverage } from 'src/states/counter';
 import useTemperature from 'src/components/commons/hooks/GPT/useTemperature';
 import useHumid from 'src/components/commons/hooks/GPT/useHumid';
 import useWeather from 'src/components/commons/hooks/GPT/useWeather';
@@ -29,18 +26,47 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
   const { weatherToday } = useWeather();
   const { sleepToday } = useSleep();
 
+  console.log('happyEmotion');
+
+  // const fetchData = async () => {
+  //   try {
+  //     // 여기에 데이터를 다시 받아오는 로직을 추가
+  //     const newHappyEmotion = 0;
+  //     const newHumidEmotion = 0;
+  //     const newWeatherToday = 0;
+  //     const newSleepToday = 0;
+
+  //     const message = await CallGPT({
+  //       countAverage: countAverageAtom,
+  //       contents: contentsAtom,
+  //       temperature: newHappyEmotion,
+  //       humid: newHumidEmotion,
+  //       weather: newWeatherToday,
+  //       sleep: newSleepToday,
+  //     });
+
+  //     setData(JSON.parse(message));
+  //   } catch (error) {
+  //     console.log('Error while fetching new data:', error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const onClickAPIcallHandler = async () => {
     try {
       setIsLoading(true);
-      const message = await CallGPT({
-        countAverage: countAverageAtom,
-        contents: contentsAtom,
-        temperature: happyEmotion,
-        humid: humidEmotion,
-        weather: weatherToday,
-        sleep: sleepToday,
-      });
-      setData(JSON.parse(message));
+      if (happyEmotion && humidEmotion && weatherToday && sleepToday) {
+        const message = await CallGPT({
+          countAverage: countAverageAtom,
+          contents: contentsAtom,
+          temperature: happyEmotion,
+          humid: humidEmotion,
+          weather: weatherToday,
+          sleep: sleepToday,
+        });
+        setData(JSON.parse(message));
+      }
     } catch (error) {
       console.log('onClickAPIcallHandler error', error);
     } finally {

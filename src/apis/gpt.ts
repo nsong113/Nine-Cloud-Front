@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const CallGPT = async ({
+  countAverage,
   contents,
   temperature,
   humid,
@@ -14,6 +15,12 @@ export const CallGPT = async ({
   weather: string;
   sleep: string;
 }) => {
+  console.log('countAverage', countAverage);
+  console.log('contents', contents);
+  console.log('temperature', temperature);
+  console.log('humid', humid);
+  console.log('weather', weather);
+  console.log('sleep', sleep);
   try {
     const messages = [
       {
