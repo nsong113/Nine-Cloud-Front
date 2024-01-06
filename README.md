@@ -1,8 +1,8 @@
 # **🏡 Cloud Nine - FE**
 
-![클라우드나인 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
+![나인 클라우드 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
 
-> 클라우드 나인은 AI 감정 솔루션 그림일기 서비스 입니다.</br> 하루의 일과를 그림
+> 나인 클라우드은 AI 감정 솔루션 그림일기 서비스 입니다.</br> 하루의 일과를 그림
 > 과 글로 정리하여 그날의 감정 이모티콘과 함께 기록해보세요.
 
 </br>
