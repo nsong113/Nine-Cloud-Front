@@ -364,7 +364,7 @@ get 요청이 보내졌습니다.  <br>
   서버에서 지정해준 URL로 접근하지 못하는 현상.
   <br>
   <br>
-  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError2.png" width="1062" height="300">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError2.png" width="900" height="150">
   <br>
   <br>
   서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았습니다.
