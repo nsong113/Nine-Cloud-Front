@@ -122,7 +122,11 @@ const Calender = () => {
                 whileTap={{ scale: 0.9 }}
                 onClick={onClickListBtn}
               >
-                <S.List src='/list.png' alt='리스트' />
+                <S.List
+                  src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/list.png'
+                  alt='리스트'
+                  rel='preload'
+                />
               </S.StyledHoverTapButton>
               {/* </Tooltip> */}
             </S.ButtonWrapperDiv>
