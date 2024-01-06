@@ -31,7 +31,16 @@ const LoginSignin = () => {
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/gptCloud.png',
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/logo_final.png',
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/avatar.png',
-    '/blank_circle.png',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/list.png',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/cloud_soso.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/cloud_happy.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/cloud_sad.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/sun_soso.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/sun_sad.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/sun_happy.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_sad.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_happy.webp',
+    'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_soso.webp',
   ];
 
   const accessToken = localStorage.getItem('accessToken');
