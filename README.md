@@ -255,7 +255,8 @@ com    <td align="center">nsong113@gmail.com</td>
   <br>
 오늘이 2024년 1월 4일이라면 2023년의 모든 달력은 데이터가 다 나타나지 않고, 모든 달력이 4일, 즉 오늘 날짜까지만 데이터가 등장합니다.
   <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_troubleshooting1.png" width="500" height="80">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/prevCode.png" width="500" height="80">
   <br>
 - 해결을 위한 노력
   <br>
@@ -266,7 +267,8 @@ com    <td align="center">nsong113@gmail.com</td>
 오늘 일,월,년도의 데이터와, 달력이 바뀔 때 일,월,년도의 데이터를 변수로 정리하고 
 이 변수들을 이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const에 대입시켜 만들고, 이들을 조건부 렌더링에 적용해 해결했습니다.
   <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
+    <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_result.png" width="500" height="80">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/nextCode.png" width="500" height="80">
 </details>
 
 <details>
@@ -275,8 +277,6 @@ com    <td align="center">nsong113@gmail.com</td>
   <br>
  ReactQuill은 글자를 입력하고 출력하면 태그가 같이 붙어서 출력되는 문제가 있습니다.
  그래서 이를 막기 위해서 dangerouslySetInnerHTML으 세팅을 해야 태그는 빠지고 글자들만 출력됩니다. 근데 이렇게 되면 문제가 DOM에 HTML을 추가할 때 사이트간 스크립팅 공격(XSS)에 취약해집니다. 그래서 관리자가 아닌 악성 유저가 페이지에 악성 스크립트를 삽입하는 등 비정상적인 기능을 수행할 수 있는 보안 구멍이 생깁니다.
-  <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
   <br>
 - 해결을 위한 노력
   <br>
@@ -287,7 +287,6 @@ com    <td align="center">nsong113@gmail.com</td>
   DOMPurify라는 HTML을 sanitize 해주는 라이브러리를 활용했습니다.
   그래서 DOMPurifiy에 내부함수인 sanitize 안에 인자로 출력할 글자를 넣으면 XSS 공격을 막게끔 할 수 있었습니다.
   <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
 </details>
 
 <details>
@@ -309,7 +308,7 @@ com    <td align="center">nsong113@gmail.com</td>
 </details>
 
 <details>
-<summary> 무한으로 api 요청이 가는 무한스크롤 [지우]</summary>
+<summary> 무한으로 api 요청이 가는 무한스크롤롤 [지우]</summary>
 - 문제의 디테일
   <br>
 '무한정'스크롤이 되어 계속 통신 요청을 하고, 처음 요청을 하고 더 요청을 안하기도 하고, 혹은 Null로 요청을 하는 사태가 발생했습니다.
