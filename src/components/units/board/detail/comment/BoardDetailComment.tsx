@@ -9,6 +9,7 @@ import {
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
 import { IComment, ICommentMap } from './BoardDetailComment.types';
+import alertUnit from 'src/components/commons/utills/Alert/alertUnit';
 const BoardDetailComment: React.FC<IComment> = ({
   detailedContent,
   profile,
@@ -50,15 +51,9 @@ const BoardDetailComment: React.FC<IComment> = ({
 
   const onClickSubmitBtn = () => {
     if (content.trim() === '') {
-      Swal.fire({
-        icon: 'warning',
-        width: '400px',
-        title:
-          '<span style="font-size: 24px; font-weight: bolder;">댓글을 입력해주세요.</span>',
-        showLoaderOnConfirm: true,
-        allowOutsideClick: () => !Swal.isLoading(),
-        confirmButtonText: '확인',
-      });
+      alertUnit(
+        '<span style="font-size: 24px; font-weight: bolder;">댓글을 입력해주세요.</span>'
+      );
       return;
     }
     commentMutation.mutate({ content, diaryId });

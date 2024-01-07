@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IoIosArrowBack } from '@react-icons/all-files/io/IoIosArrowBack';
+import { motion } from 'framer-motion';
 
 export const ContainerDiv = styled.div`
   display: flex;
@@ -13,6 +14,13 @@ export const HeaderWrapperDiv = styled.div`
   margin-bottom: 30px;
   margin-top: 10px;
   margin-top: 40px;
+`;
+
+export const StyledHoverTapButton = styled(motion.button)`
+  background: rgba(239, 170, 173, 0);
+  display: flex;
+
+  border: 0;
 `;
 
 export const HeaderLeftBoxDiv = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const ContentsWrapperDiv = styled.div`
   display: flex;
@@ -132,7 +133,7 @@ export const DeleteSpan = styled.span`
   }
 `;
 
-export const DotWrapperDiv = styled.div`
+export const DotWrapperDiv = styled(motion.div)`
   height: 50px;
   width: 30px;
   cursor: pointer;
@@ -141,7 +142,7 @@ export const DotWrapperDiv = styled.div`
   align-items: center;
 `;
 
-export const PencilImg = styled.img`
+export const PencilImg = styled(motion.img)`
   width: 5px;
   height: 24px;
   cursor: pointer;
@@ -175,4 +176,3 @@ export const ContentSpan = styled.span`
   font-weight: 400;
   line-height: normal;
 `;
-

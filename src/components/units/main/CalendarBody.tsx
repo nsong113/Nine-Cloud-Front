@@ -102,7 +102,10 @@ const CalendarBody = (props: IGetPostsData) => {
               >
                 {day !== 0 ? (
                   <S.DayWrapperDiv>
-                    <S.DateWrapperDiv>
+                    <S.DateWrapperDiv
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1 }}
+                    >
                       <S.DateSpan istoday={isToday}>{cellDate}</S.DateSpan>
                       <div>
                         {(props.currentMonth.getMonth() === 11 ||

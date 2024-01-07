@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
-import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import CalendarBody from './CalendarBody';
@@ -14,9 +13,9 @@ import {
   subMonths,
   getDate,
 } from 'date-fns';
-import { QueryClient, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
-import GPTModal from 'src/components/commons/modals/gpt/GPTModal';
+import GPTOverlay from 'src/components/commons/modals/modalSetting/overlay/GPTOverlay/GPTOverlay';
 
 const Calender = () => {
   const navigate = useNavigate();
@@ -58,10 +57,6 @@ const Calender = () => {
   if (isLoading) {
     return <Loading />;
   }
-
-  const onClickMyProfile = () => {
-    setIsActiveModal((prev) => !prev);
-  };
 
   const onClickListBtn = () => {
     navigate('/list');
@@ -105,9 +100,19 @@ const Calender = () => {
               alt='이미지'
             />
             <S.YearMonthChangeBoxDiv>
-              <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+              <S.StyledHoverTapButton
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 1 }}
+              >
+                <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+              </S.StyledHoverTapButton>
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
-              <S.NextMonth onClick={onClickNextMonth} size={30} />
+              <S.StyledHoverTapButton
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 1 }}
+              >
+                <S.NextMonth onClick={onClickNextMonth} size={30} />
+              </S.StyledHoverTapButton>
             </S.YearMonthChangeBoxDiv>
             <S.PrevNextMonthBoxDiv>
               <S.YearTextSpan>{year}</S.YearTextSpan>
@@ -117,17 +122,15 @@ const Calender = () => {
           <S.RightProfile>
             <S.ButtonWrapperDiv>
               {/* <Tooltip message='리스트'> */}
-              <S.StyledHoverTapButton
+              <S.List
+                src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/list.png'
+                alt='리스트'
+                rel='preload'
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={onClickListBtn}
-              >
-                <S.List
-                  src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/list.png'
-                  alt='리스트'
-                  rel='preload'
-                />
-              </S.StyledHoverTapButton>
+              />
+
               {/* </Tooltip> */}
             </S.ButtonWrapperDiv>
           </S.RightProfile>
@@ -135,7 +138,6 @@ const Calender = () => {
 
         <S.Test>
           <Animation>
-            {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
             <S.LeftRightAnimeButton
               key={currentMonth.toString()}
               initial={{
@@ -169,7 +171,7 @@ const Calender = () => {
             </S.LeftRightAnimeButton>
           </Animation>
           {isGPTModal && (
-            <GPTModal
+            <GPTOverlay
               onOk={onClickConfirm}
               onGo={onClickGotoPost}
               diaryCheck={diaryCheck}
