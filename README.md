@@ -1,4 +1,4 @@
-# **🏡 Cloud Nine - FE**
+# **🏡 Nine Cloud - FE**
 
 ![나인 클라우드 브로셔](https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/17%EA%B8%B0+1%EC%A1%B0+%EC%86%8C%EA%B0%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png)
 
@@ -7,7 +7,7 @@
 
 </br>
 
-## **☁️ Cloud Nine**
+## **☁️ Nine Cloud**
 
 cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복한 감정을 기록
 (cloud), 9가지의 감정 표현 이라는 점에서 저희 서비스에 어울리는 속담 같아 나인클
@@ -23,10 +23,10 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
     <td><strong>링크</strong></td>
   </tr>
   <tr align="center">
-    <td><img src="/favicon.png" alt="클라우드나인 아이콘" style="width: 25px;"></td>
-    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://localmingle.store/">Cloud Nine</a></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/favicon.png" alt="클라우드나인 아이콘" style="width: 25px;"></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://nine-cloud9.vercel.app/">Nine Cloud</a></td>
     <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/1024px-Notion-logo.svg.png" alt="노션 아이콘" style="width: 20px;"></td>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.notion.so/totobon6125/Local-Mingle-0ceb08bc63674e28a3ee8d458ba2baaf">브로슈어</a></td>
+<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.notion.so/Nine-Cloud-AI-77cb46db65bd44cd92fe2b8a51902708">브로슈어</a></td>
   </tr>
   <tr align="center">
     <td><img src="https://user-images.githubusercontent.com/389021/165723723-c93929a5-01d9-49e1-907b-43669d8089e6.png" alt="리액트 아이콘" style="width: 25px;"></td>
@@ -38,7 +38,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
     <td><img src="https://static-00.iconduck.com/assets.00/node-js-icon-454x512-nztofx17.png" alt="노드js 아이콘" style="width: 20px;"></td>
     <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://github.com/Lee-chan0/final_project_back/tree/dev">BE Github</a></td>
     <td><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png" alt="피그마 아이콘" style="width: 20px;"></td>
-    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.figma.com/file/xMqhB1UU2JEtAmw4z6VJAM/%ED%95%AD%ED%95%B4-99?type=design&node-id=1816%3A4131&mode=design&t=GwsmVNb46SNoz2lO-1">Figma</a></td>
+    <td><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.figma.com/file/xMqhB1UU2JEtAmw4z6VJAM/%ED%95%AD%ED%95%B4-99?type=design&node-id=2031%3A228&mode=design&t=6V1tbbdafANbxBkp-1">Figma</a></td>
   </tr>
 </table>
 
@@ -49,13 +49,13 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 <table>
   <tr align="center">
     <td><strong>소셜 로그인</strong></td>
-    <td><strong>다국어</strong></td>
-    <td><strong>채팅방</strong></td>
+    <td><strong>달력 페이지</strong></td>
+    <td><strong>그림 그리기</strong></td>
   </tr>
    <tr align="center">
-    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/e7925ad3-c01b-4a92-b55c-85af5c0ee943" alt="소셜 로그인" style="height:500px"/></td>
-    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/5e4219ef-f591-424f-8c9d-3a71566f4510" alt="다국어" style="height:500px"/></td>
-    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/f9855b2f-5e4e-468b-a14b-56136a1e7a08" alt="채팅방" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_loginpage.gif" alt="소셜 로그인" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_mainpage.gif" alt="메인" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_postpage.gif" alt="일기 추가하기" style="height:500px"/></td>
   </tr>
 </table>
 
@@ -63,14 +63,14 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 <table>
   <tr align="center">
-    <td><strong>게시글 검색</strong></td>
-    <td><strong>게시글 필터링</strong></td>
-    <td><strong>인피니티 스크롤</strong></td>
+    <td><strong>AI open api</strong></td>
+    <td><strong>무한스크롤</strong></td>
+    <td><strong>채팅방</strong></td>
   </tr>
    <tr align="center">
-    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/e8eb91f1-340d-4b19-a32c-4cce8ff83fee" alt="게시글 검색" style="height:500px"/></td>
-    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/92aa2dc2-0865-4b98-9a7c-fdd70af87bb1" alt="게시글 필터링" style="height:500px"/></td>
-    <td><img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/66e20e95-5784-4d25-9a4a-3766a227d907" alt="인피니티 스크롤" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_gptpage.gif" alt="AI" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_communitypage.gif" alt="커뮤니티" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_chatting.gif" alt="채팅방" style="height:500px"/></td>
   </tr>
 </table>
 
@@ -78,10 +78,10 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 ## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
 
-|                                           주철민                                            |                                           송지우                                           |                                           한덕용                                           |
-| :-----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
-| <img src="https://avatars.githubusercontent.com/u/138233242?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> | <img src="https://avatars.githubusercontent.com/u/93027502?v=4" width="200" height="200"/> |
-|                        [cheolminJOO](https://github.com/cheolminJOO)                        |                          [nsong113](https://github.com/nsong113)                           |                        [HyperQuanx](https://github.com/HyperQuanx)                         |
+|                                                   주철민                                                    |                                                   송지우                                                   |                                                   한덕용                                                   |
+| :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/profile.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JWface.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/DYface.jpg" width="200" height="200"/> |
+|                                [cheolminJOO](https://github.com/cheolminJOO)                                |                                  [nsong113](https://github.com/nsong113)                                   |                                [HyperQuanx](https://github.com/HyperQuanx)                                 |
 
 </br>
 
@@ -131,7 +131,7 @@ com    <td align="center">nsong113@gmail.com</td>
 
 ## **🗂️ 서비스 아키텍처**
 
-<img src="https://github.com/LocalMingle/LocalMingle-FE/assets/93027502/b1dab7b7-d0cd-46bc-9736-925d67494595" alt="서비스아키텍처" style="width:850"/>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/architecture.png" alt="서비스아키텍처" style="width:850"/>
 
 </br>
 
@@ -255,7 +255,8 @@ com    <td align="center">nsong113@gmail.com</td>
   <br>
 오늘이 2024년 1월 4일이라면 2023년의 모든 달력은 데이터가 다 나타나지 않고, 모든 달력이 4일, 즉 오늘 날짜까지만 데이터가 등장합니다.
   <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_troubleshooting1.png" width="270" height="436">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/prevCode.png" width="474" height="242">
   <br>
 - 해결을 위한 노력
   <br>
@@ -266,7 +267,8 @@ com    <td align="center">nsong113@gmail.com</td>
 오늘 일,월,년도의 데이터와, 달력이 바뀔 때 일,월,년도의 데이터를 변수로 정리하고 
 이 변수들을 이전 달, 이번 달,이후 달들에 대해 구분을 할 수 있는 const에 대입시켜 만들고, 이들을 조건부 렌더링에 적용해 해결했습니다.
   <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
+    <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/cm_result.png" width="270" height="435">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/nextCode.png" width="483" height="416">
 </details>
 
 <details>
@@ -275,8 +277,6 @@ com    <td align="center">nsong113@gmail.com</td>
   <br>
  ReactQuill은 글자를 입력하고 출력하면 태그가 같이 붙어서 출력되는 문제가 있습니다.
  그래서 이를 막기 위해서 dangerouslySetInnerHTML으 세팅을 해야 태그는 빠지고 글자들만 출력됩니다. 근데 이렇게 되면 문제가 DOM에 HTML을 추가할 때 사이트간 스크립팅 공격(XSS)에 취약해집니다. 그래서 관리자가 아닌 악성 유저가 페이지에 악성 스크립트를 삽입하는 등 비정상적인 기능을 수행할 수 있는 보안 구멍이 생깁니다.
-  <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b9fdbe93-ba6b-4435-99d9-d2b963a94367" width="250" height="400">
   <br>
 - 해결을 위한 노력
   <br>
@@ -287,7 +287,6 @@ com    <td align="center">nsong113@gmail.com</td>
   DOMPurify라는 HTML을 sanitize 해주는 라이브러리를 활용했습니다.
   그래서 DOMPurifiy에 내부함수인 sanitize 안에 인자로 출력할 글자를 넣으면 XSS 공격을 막게끔 할 수 있었습니다.
   <br>
-  <img src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/180903b1-c817-4ad2-ad88-2693089093e5" width="500" height="80">
 </details>
 
 <details>
@@ -302,11 +301,14 @@ com    <td align="center">nsong113@gmail.com</td>
   <br>  <br>
 - 해결 방법
   <br>
-그림을 그릴 때 마우스를 때고 1000ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 1초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 1초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다.
+그림을 그릴 때 마우스를 때고 450ms 있다가 자동으로 이미지 압축 함수가 실행되는 debounce를 하는 함수를 만들었습니다. 사용자가 다른 그림그리기 기능을 클릭하기 위해서 움직이는 속도가 평균 0.5초 미만이고 그림 그린 후 '다음'버튼을 누르기까지 0.5초 이상이 걸린 다는 데에서 착안했습니다. 결과로, '다음'버튼을 한번만 눌러도 압축이 진행된 파일과 함께 post요청을 보낼 수 있었습니다.
+<br>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JW_troubleshooting1.png" width="500" height="400">
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JW_troubleshooting2.png" width="500" height="300">
 </details>
 
 <details>
-<summary> 무한으로 api 요청이 가는 무한스크로 [지우]</summary>
+<summary> 무한으로 api 요청이 가는 무한스크롤롤 [지우]</summary>
 - 문제의 디테일
   <br>
 '무한정'스크롤이 되어 계속 통신 요청을 하고, 처음 요청을 하고 더 요청을 안하기도 하고, 혹은 Null로 요청을 하는 사태가 발생했습니다.
@@ -328,26 +330,29 @@ get 요청이 보내졌습니다.  <br>
 <summary>토큰 재발급 관련 [덕용]</summary>
 - 문제 -
   <br>
-  1. 토큰 재발급 로직 작성 중에토큰 재발급을 위한 알고리즘 구축
+  1. 서버에서 지정한 만료시간과 클라이언트에서 계산한 만료시간이 다름
   <br>
-  토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
-  토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 서버와 안 맞는 오류.
   2. 토큰 재발급 로직 작성 중에 모든 에러 사항에서 Token 재발급으로 들어가버리는 오류와 에러코드가 Server와 안 맞는 오류.
   <br>
 - 해결을 위한 노력 -
   <br>
-  1. 처음에는 Server에서 empireTime(만료시간)이라는 객체를 보내주도록 요청하였다.
-  Server에서는 만료시간이 Unix time으로 설정되어 있다고 해서 Front에서 현재시간을 Unix time으로 바꿔주는 로직을 만들고 만료시간 - 현재시간을 해주고 setTimeout()을 사용해서 Front에서 시간을 재서 시간이 끝나면 자동적으로 재발급 요청을 하도록 로직을 생각해 보았었다.
-  내 생각이 맞는지 찾아보았었는데 실제 현업에서는 Axios intercepter를 사용한다는 글들이 대다수였다. 실제로 Axios intercepter를 사용하면 서버 통신을 한곳에서 관리할 수 있다는 장점도 있고 인증처리 과정에서 매번 헤더에 Token을 넣어 줄 필요도 없어져서 Axios intercepter를 채택하였다.
+  1. 처음에는 Server에서 empireTime(만료시간)이라는 값을 보내주도록 요청하였습니다.
+  Server에서는 만료시간이 Unix time으로 설정되어 있다고 해서 Front에서 현재시간을 Unix time으로 바꿔주는 로직을 만들고 (만료시간 - 현재시간)으로 유효기간을 계산하고
+  setTimeout()을 사용해서 Front에서 시간을 재서 시간이 끝나면 자동적으로 재발급 요청을 하도록 로직을 생각해 보았습니다.
+  하지만 서버에서 지정한 만료시간과 클라이언트에서 계산한 만료시간이 다른 오류가 생겼고 이 뿐만 아니라 토큰 관리가 복잡해지고, 불필요한 서버요청이 계속 생기며
+  만료시간을 프론트에서 저장하면 보안에도 취약할 것 같아서 이 방법을 버리고 만료가 된 이후에 서버 요청을 한다면 자동적으로 토큰 재발급 URL로 접근할수 있도록 하기 위해 Axios intercepter를 사용했습니다.
   <br>
-  2. 일단 실험을 위해 Token 만료시간을 극단적으로 짧게 설정해놓았다.
+  2. 일단 실험을 위해 Token 만료시간을 극단적으로 짧게 설정해놓았습니다.
   Token이 만료된다면 대체적으로 서버에서 401번이나 419번 에러코드를 보내준다는 여러 레퍼런스들을 참고해서 Server와 에러코드를 맞춰보았습니다.
   401번은 다른곳에서도 사용한다는 얘기를 듣고 Token 만료 에러 코드를 419번으로 통일하였습니다.
-  인터셉터 로직에는 419번 에러코드가 뜬다면 /token으로 이동되도록 설정해주고 헤더에 RefreshToken을 담아서 Server에 토큰 재발급을 요청하였다.
+  인터셉터 로직에는 419번 에러코드가 뜬다면 /token으로 이동되도록 설정해주고 헤더에 RefreshToken을 담아서 Server에 토큰 재발급을 요청하였습니다.
   <br>
 - 결과 -
   <br>
 토큰이 만료되면 419번 에러코드가 뜨고 자동으로 /token으로 넘어가서 RefreshToken을 대조한 후 새로운 AccessToken을 발급해줌.
+<br>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode2.png" width="779" height="652">
+
 </details>
 
 <details>
@@ -355,108 +360,114 @@ get 요청이 보내졌습니다.  <br>
 <summary>Socket.io  [덕용]</summary>
 - 문제 -
   <br>
+  <br>
   서버에서 지정해준 URL로 접근하지 못하는 현상.
   <br>
-  <img width="600" alt="socket 해결 과정" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <br>
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError2.png" width="900" height="150">
+  <br>
   <br>
   서버에서 설정해준 URL로 접근하는 과정이 쉽지 않았습니다.
   <br>
-  <img width="600" alt="개발자 도구" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <br>
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketError3.png" width="772" height="170">
+  <br>
   <br>
   분명 엔드포인트를 /community/chat/socket.io로 설정해놓았는데 막상 개발자 도구를 보면 설정한 엔드포인트로 접근하지 못했습니다.
   <br>
+  <br>
 - 해결을 위한 노력 -
   <br>
-  <img width="600" alt="socket 해결 완료" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <br>
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode.png" width="804" height="255">
   혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
   그리고 CORS(Cross-Origin Resource Sharing) 설정을 모든 도메인에서 서버로의 요청을 허용시키는 걸로 변경해서 연결에 성공하였습니다.
   <br>
+  <br>
 - 결과 -
   <br>
+  <br>
   결국 Server와 연결에 성공하였고 채팅 기능까지도 성공했습니다.
-  <img width="600" alt="스크린샷 2023-11-13 오후 11 02 21 복사본" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b57d9e2c-38f1-4bcb-8455-064c6dfc8877">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/chattingsuccess.png" width="375" height="90">
+</details>
+
+## **🛠️ 최적화**
+
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/result.jpg" width="500" height="280">
+<details>
+<summary> 1. 번들 크기 최적화 </summary>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process1.jpg" width="500" height="280">
+  <br>
+react-icons는 종류별로 js파일을 하나씩 가지고 있어서, 하나의 아이콘을 실행하면 그 아이콘이 속한 js 파일이 실행돼서 관련 없는 불필요한 파일들도 함께 빌딩 돼 번들 크기가 커집니다.
+그래서  @react-icons/all-files를 설치했고, 이 라이브러리는 아이콘마다 js 파일을 가지고 있어서 빌딩 시 필요한 파일만 실행 돼 번들 크기 최적화를 시킬 수 있었습니다.
+  <br>
+</details>
+
+<details>
+<summary> 2. React.lazy를 이용하여 라우팅 code splitting /  webP확장자로 변경</summary>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process2.jpg" width="500" height="280">
+  <br>
+- React.lazy는 React에서 코드 스플리팅을 구현하기 위한 기능 중 하나입니다. 코드 스플리팅은 애플리케이션을 더 작은 청크(chunk)로 나누어 각 청크가 필요할 때만 로드되도록 하는 기술입니다. 이를 통해 초기 로딩 시간을 줄이고 성능을 최적화할 수 있습니다. 전체 애플리케이션을 로드하는 대신 현재 사용자가 방문한 페이지에 필요한 코드만 로드하는 것을 의미하여 더 빠른 로딩을 가능하게 합니다. 
+<br>  <br>
+- WebP 이미지는 일반적으로 JPEG 및 PNG보다 더 효율적인 압축을 제공하면서도 높은 품질을 유지합니다. 자주 사용되는 이미지를 효율적으로 압축하기 위해 webP로 변경하였습니다.
+  <br>  
+</details>
+
+<details>
+<summary> 3. Profiler를 활용해서 불필요한 렌더링 최적화 / compressor.js로 이미지 압축  </summary>
+<img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/process3.jpg" width="500" height="280">
+  <br>
+ - 프로파일러를 사용하여 컴포넌트 렌더링 최적화를 진행했습니다. 특히 글쓰는 곳이나 그림을 그리는 부분은 마우스를 움직이거나 글자를 입력할 때 마다 헤더나 모든 레이아웃이 리렌더링이 되는 것을 알 수 있었습니다. 따라서 React.memo를 사용하여 컴포넌트를 캐싱했습니다. 
+<br>  <br>
+- 마지막으로 compressor.js를 사용하여 0.02mB로 압축 후 서버에 보내니 하나의 이미지 로딩시간이 최대 50% (6ms->3ms)단축되었습니다.
+  <br>
 </details>
 
 </br>
 
 ## **🗣️ 유저 피드백 & 반영**
 
-마지막으로 유저 피드백 입니다.<br/> 프로젝트에서 좋게 평가해주신 부분은 컨텐츠의
-재미와 타 서비스와의 차별점입니다. <br/> 불편하게 느끼신 상당 부분은 유저 편의성
-이 좋지 않다는 것 이였습니다.<br/> 그래서 짧게 남은 프로젝트 기간 동안 피드백을
-최대한 반영할 수 있는 부분이 유저 편의성 부분이라고 판단하여,<br/> 이 부분을 중
-점으로 피드백을 반영하였습니다.<br/>
+<details>
+<summary>페이지 이동 개선 [철민]</summary>
+- 문제 -
+  <br>
+  메인페이지와 커뮤니티 페이지에서 상세페이지로 이동이 되는데, 상세페이지에서 뒤로가기를 눌렀을 때 무조건 메인으로 가서 커뮤니티 페이지에서 이동한 사용자는<br>
+  다시 커뮤니티 페이지를 클릭해야 하는 불편함이 발생했습니다.
+  <br>  <br>
+- 해결 -
+  <br>
+  boolean 값을 가지는 전역 state를 만들어, 메인페이지에서 상세페이지로 이동되면 값을 false로 바꾸고 커뮤니티 페이지에서 이동되면 값을 true로 바꾸는 로직을 구성했습니다<br>
+  상세페이지에서 만약 이 값이 true면 뒤로가기를 눌렀을 때 커뮤니티 페이지로 가게끔 하고, false면 메인페이지로 가게끔 로직을 재구성 했습니다.
+</details>
 
-<table>
-  <tr>
-    <th align="center">Before</td>
-    <th align="center">After</td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img width="400" height="300" alt="작성자 참여 비포" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/51ed028a-fe1c-4705-9c71-df4b0d142a3b">
-    </td>
-    <td align="center">
-      <img width="400" height="300" alt="작성자 참여 애프터" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/712da9f9-7536-409e-aab8-e96520f20e95">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      참여자 리스트에 작성자 본인도 포함되었으면 좋겠다는 의견
-    </td>
-    <td>
-      기존에는 작성자가 게시글 생성시 참여자리스트에<br/>
-      포함되지 않았지만 피드백 이후 포함 되도록 수정
-    </td>
-  </tr>
-</table>
+<details>
+<summary> input range 사용자 경험 개선 [지우]</summary>
+- 문제 -
+  <br>
+  input range를 통해 자신의 감정을 선택하고 다음 페이지로 이동했다가 다시 뒤로가기를 누르면 input range의 값이 초기화되어어서 사용자에게 불편감을 초래 
+  <br>
+  <br>
+- 해결 -
+  <br>
+input range의 value값을 전역 상태 라이브러리인 recoil을 사용하여 상태를 저장하니 페이지 이동 후 다시 돌아와도 value값이 변하지 않았습니다. 
+</details>
 
-<table>
-  <tr>
-    <th align="center">Before</td>
-    <th align="center">After</td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img width="400" height="200" alt="헤더변경 비포" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/0b6766fe-1281-4682-9b24-3d7e6ae1c57f">
-    </td>
-    <td align="center">
-      <img width="400" height="200" alt="해더변경 애프터" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/8000ae7c-fef0-4b86-8871-2545b38d3580">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      헤더에 텍스트로 이루어진 부분 때문에 화면이<br/>
-      다소 정신없고 꽉 차보인다는 의견
-    </td>
-    <td>
-      아이콘으로 대체하여 드롭다운으로 피드백을 반영
-    </td>
-  </tr>
-</table>
+<details>
+<summary>카카오 공유하기 기능 추가 [덕용]</summary>
+- 피드백 -
+  <br>
+  "나의 감정 일기를 인스타나 카카오로 공유 할 수 있으면 좋을 것 같습니다"
+  <br>  <br>
+- 해결 -
+  <br>
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/kakaoshare.png" width="921" height="394">
+  <br>
+  <br>
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/shareCode.png" width="783" height="987">
+  <br>
+  <br>
+Kakao develop에서 공유하기를 위한 세팅을 해주었고 공식문서에 따라 공유하기 기능을 만들었다.
+</details>
 
-<table>
-  <tr>
-    <th align="center">Before</td>
-    <th align="center">After</td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img width="400" height="700" alt="placeholder before" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/f9e542f6-2c3a-4f13-ae4c-4946e5dcc30c">
-    </td>
-    <td align="center">
-      <img width="400" height="700" alt="placeholder after" src="https://github.com/LocalMingle/LocalMingle-FE/assets/138233242/b90b78f2-a0a2-4857-9dff-842f7c5c746f">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      게시글 작성 시 제목과 본문에 대해 몇 글자까지<br/>
-      작성할 수 있는지 알려주면 좋겠다는 의견
-    </td>
-    <td>
-      Placeholder를 활용하여 글자 제한 안내 문구 추가
-    </td>
-  </tr>
-</table>
-
+</br>
 </br>
