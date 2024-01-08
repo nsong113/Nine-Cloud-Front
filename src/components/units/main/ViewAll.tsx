@@ -73,8 +73,7 @@ const ViewAll = () => {
       <S.LargeContainer>
         <S.CalendarContainerDiv>
           <S.HeaderWrapperDiv>
-            <S.DateBoxDiv>
-              <S.ExcludeImg src='/exclude.png' alt='이미지' />
+            <S.DayBoxDiv>
               <S.YearMonthChangeBoxDiv>
                 <div></div>
                 <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
@@ -83,7 +82,7 @@ const ViewAll = () => {
                 <S.YearTextSpan>{year}</S.YearTextSpan>
                 <S.MonthTextSpan>{formattedMonth}</S.MonthTextSpan>
               </S.PrevNextMonthBoxDiv>
-            </S.DateBoxDiv>
+            </S.DayBoxDiv>
             <S.ViewAllRightProfile>
               <S.ButtonWrapperDiv>
                 <S.RightProfile>

@@ -133,11 +133,11 @@ const Calender = () => {
       <S.CalendarContainerDiv>
         <S.HeaderWrapperDiv>
           <S.DateBoxDiv>
-            <S.ExcludeImg
+            {/* <S.ExcludeImg
               src='https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png'
               rel='preload'
               alt='이미지'
-            />
+            /> */}
             <S.YearMonthChangeBoxDiv>
               <S.StyledHoverTapButton
                 whileHover={{ scale: 1.3 }}

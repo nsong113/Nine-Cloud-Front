@@ -71,20 +71,6 @@ const CommunityMain = () => {
 
   return (
     <S.MainContainer>
-      <S.MainHeader>
-        <S.MainFlexBoxDiv>
-          <S.Div onClick={goToMain}>
-            <img alt='logo' src='/logo_final.png' />
-          </S.Div>
-          <S.MainProfileFlexDiv>
-            <img
-              alt='프로필이미지'
-              src={profilePicture}
-              style={profileImgStyle}
-            />
-          </S.MainProfileFlexDiv>
-        </S.MainFlexBoxDiv>
-      </S.MainHeader>
       <S.MainSectionContainer>
         <S.MainSectionHeaderWrapper>
           <S.MainFlexBox style={iconStyle}>
