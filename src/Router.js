@@ -21,7 +21,6 @@ const Chatting = React.lazy(() =>
 import LoginKakao from './components/units/login/social/LoginKakao';
 import KakaoLoginHandler from './components/units/login/social/auth/KakaoLoginHandler';
 import GoogleLoginHandler from './components/units/login/social/auth/GoogleLoginHandler';
-import TestPage from './components/units/login/TestPage';
 import NaverLoginHandler from './components/units/login/social/auth/NaverLoginHandler';
 
 import Loading from './components/units/loading/Loading';
@@ -58,7 +57,6 @@ export default function Router() {
             {/* 상세 페이지 */}
             <Route path='/post/:id' element={<DetailedPage />} />
             <Route path='/list' element={<ViewAll />} />
-            <Route path='/test' element={<TestPage />} />
             {/* community 페이지 */}
             <Route path='/community' element={<Community />} />
             <Route path='/community/chat' element={<Chatting />} />
