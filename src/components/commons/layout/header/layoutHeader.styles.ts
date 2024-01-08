@@ -35,9 +35,9 @@ export const StyledHoverTapButton = styled(motion.button)`
   border: 0;
 `;
 
-export const AvatarSizeImg = styled.img`
-  width: 58px;
-  height: 58px;
+export const AvatarSizeImg = styled(motion.img)`
+  width: 70px;
+  height: 70px;
   flex-shrink: 0;
   cursor: pointer;
   border-radius: 159px;
@@ -50,7 +50,7 @@ export const AvatarSizeImg = styled.img`
   }
 `;
 
-export const LogoImg = styled.img`
+export const LogoImg = styled(motion.img)`
   width: 200.25px;
   height: 50.516px;
   margin-bottom: 10px;

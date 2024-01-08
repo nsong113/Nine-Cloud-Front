@@ -11,12 +11,16 @@ import {
   isActiveDeleteModal,
   isActiveEditModal,
 } from 'src/states/detailedPageModal';
+import Animation3 from 'src/components/commons/utills/Animation/Animation3';
+import DiaryDeleteOverlay from 'src/components/commons/modals/modalSetting/overlay/diaryDeleteOverlay/DiaryDeleteOverlay';
+import EditOverlay from 'src/components/commons/modals/modalSetting/overlay/editOverlay/EditOverlay';
 
 const BoardDetailContents: React.FC<IBoardDetailContents> = ({
   detailedContent,
   comment,
   data,
   profile,
+  setIsEdit,
 }) => {
   const [isActiveModal, setIsActiveModal] = useRecoilState(isActiveEditModal);
   const [isDelete, setIsDelete] = useRecoilState(isActiveDeleteModal);
@@ -44,7 +48,17 @@ const BoardDetailContents: React.FC<IBoardDetailContents> = ({
 
   return (
     <Animation2>
+      {isActiveModal && (
+        <EditOverlay
+          content={detailedContent?.content}
+          onClose={onClickEdit}
+          detailedContent={detailedContent}
+          setIsEdit={setIsEdit}
+          setIsClickedPencil={setIsClickedPencil}
+        />
+      )}
       <S.ContentsWrapperDiv>
+        {isDelete && <DiaryDeleteOverlay onClose={onClickDeleteBtn} />}
         <S.ContentsHeaderDiv>
           <S.CloudImg
             src={getEmotion(countAverage, data?.data?.weather)}
@@ -75,13 +89,21 @@ const BoardDetailContents: React.FC<IBoardDetailContents> = ({
         </S.ContentsHeaderDiv>
         <S.PencilsBoxDiv>
           {isClickedPencil && (
-            <S.EditPencilDiv>
-              <S.EditSpan onClick={onClickEdit}>일기 수정</S.EditSpan>
-              <S.DeleteSpan onClick={onClickDeleteBtn}>일기 삭제</S.DeleteSpan>
-            </S.EditPencilDiv>
+            <Animation3>
+              <S.EditPencilDiv>
+                <S.EditSpan onClick={onClickEdit}>일기 수정</S.EditSpan>
+                <S.DeleteSpan onClick={onClickDeleteBtn}>
+                  일기 삭제
+                </S.DeleteSpan>
+              </S.EditPencilDiv>
+            </Animation3>
           )}
           {profile?.data?.userId === data?.data?.UserId && (
-            <S.DotWrapperDiv onClick={onClickPencilImg}>
+            <S.DotWrapperDiv
+              whileHover={{ scale: 1.3 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={onClickPencilImg}
+            >
               <S.PencilImg src='/dotdotdot.png' alt='수정버튼' />
             </S.DotWrapperDiv>
           )}

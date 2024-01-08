@@ -68,7 +68,7 @@ const CalendarBody = (props: IGetPostsData) => {
 
   const isPastMonth = changedYear + changedMonth < fixedYear + fixedMonth;
   const isFutureMonth = changedYear + changedMonth > fixedYear + fixedMonth;
-  const isCurrentMonth = changedYear + changedMonth <= fixedYear + fixedMonth;
+  const isCurrentMonth = changedYear + changedMonth === fixedYear + fixedMonth;
 
   return (
     <S.TableBody>
@@ -101,8 +101,11 @@ const CalendarBody = (props: IGetPostsData) => {
                 onClick={onClickGoToDetailHandler(id)}
               >
                 {day !== 0 ? (
-                  <S.DayWrapperDiv>
-                    <S.DateWrapperDiv>
+                  <S.DayWrapperDiv istoday={isToday}>
+                    <S.DateWrapperDiv
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 1 }}
+                    >
                       <S.DateSpan istoday={isToday}>{cellDate}</S.DateSpan>
                       <div>
                         {(props.currentMonth.getMonth() === 11 ||

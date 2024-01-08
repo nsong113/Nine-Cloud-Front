@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './BoardWriteDraw.styles';
 import { useNavigate } from 'react-router-dom';
-import ConfrimModal from 'src/components/commons/modals/confirm/confirmModal';
 import { IpostDiaryItem } from 'src/apis/apiesType';
 import useSetColor from 'src/components/commons/hooks/useSetColor';
 import usePen from 'src/components/commons/hooks/usePen';
@@ -14,6 +13,7 @@ import ColorPalette from './ColorPalette';
 import ThicknessPalette from './ThicknessPalette';
 import { colorA, eraserModeA, penModeA } from 'src/states/draw';
 import PostUpperWrapper from '../PostUpperWrapper';
+import ConfirmOverlay from 'src/components/commons/modals/modalSetting/overlay/confrimOverlay/ConfirmOverlay';
 
 const BoardWriteDraw = () => {
   const navigate = useNavigate();
@@ -224,7 +224,7 @@ const BoardWriteDraw = () => {
   return (
     <>
       {isModalOpen && (
-        <ConfrimModal
+        <ConfirmOverlay
           onClickGotoMain={onClickGotoMain}
           onClickGotoPost2={onClickGotoPost2}
           postDiaryItem={postDiaryItem}

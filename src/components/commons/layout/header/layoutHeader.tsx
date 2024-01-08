@@ -1,11 +1,11 @@
 /* eslint-disable */
 import { useState } from 'react';
 import * as S from './layoutHeader.styles';
-import MyPageModal from '../../modals/myPage/myPageModal';
 import Tooltip from '../../utills/tooltip/tooltip';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getMyInfo } from 'src/apis/cheolmin-api/apis';
+import MyPageOverlay from '../../modals/modalSetting/overlay/myPageOverlay/MyPageOverlay';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,11 +23,18 @@ const Header = () => {
   return (
     <S.CalendarContainerDiv>
       <S.HeaderContainerDiv>
-        {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
+        {isActiveModal && (
+          <MyPageOverlay
+            onOk={onClickMyProfile}
+            isActiveModal={isActiveModal}
+          />
+        )}
         <S.CalenderHeaderDiv>
           <S.LogoBoxDiv>
             <div style={{ display: 'flex' }}>
               <S.LogoImg
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={onClickLogo}
                 src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/logo_final.png'
                 rel='preload'
@@ -35,22 +42,23 @@ const Header = () => {
               />
             </div>
             <Tooltip message='마이페이지'>
-              <S.StyledHoverTapButton
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={onClickMyProfile}
-              >
-                {profile?.data?.profileImg && (
-                  <S.AvatarSizeImg src={profile?.data?.profileImg} alt='기본' />
-                )}
-                {!profile?.data?.profileImg && (
-                  <S.AvatarSizeImg
-                    src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/avatar.png'
-                    alt='기본'
-                    rel='preload'
-                  />
-                )}
-              </S.StyledHoverTapButton>
+              {profile?.data?.profileImg && (
+                <S.AvatarSizeImg
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  src={profile?.data?.profileImg}
+                  alt='기본'
+                  onClick={onClickMyProfile}
+                />
+              )}
+              {!profile?.data?.profileImg && (
+                <S.AvatarSizeImg
+                  src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/avatar.png'
+                  alt='기본'
+                  rel='preload'
+                  onClick={onClickMyProfile}
+                />
+              )}
             </Tooltip>
           </S.LogoBoxDiv>
           <div
