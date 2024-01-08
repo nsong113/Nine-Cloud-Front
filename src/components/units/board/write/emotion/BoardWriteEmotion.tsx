@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './BoardWriteEmotion.styles';
 import { useNavigate } from 'react-router-dom';
-import AlertModal from 'src/components/commons/modals/alert/alertModal';
 import useSetEmotion from 'src/components/commons/hooks/useSetEmotion';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import {
@@ -15,6 +14,7 @@ import {
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import { useRecoilState } from 'recoil';
 import PostUpperWrapper from '../PostUpperWrapper';
+import ModalOverlay from 'src/components/commons/modals/modalSetting/overlay/alertOverlay/ModalOverlay';
 
 const BoardWriteEmotion = () => {
   const navigate = useNavigate();
@@ -76,9 +76,9 @@ const BoardWriteEmotion = () => {
         <S.EmotionWrapperDOWNdiv>
           <S.ContainerDiv>
             {isModalOpen && (
-              <AlertModal
-                onClickMoveToMain={onClickMoveToMain} //onClose
-                onClickSubmit={onClickSubmit} //onOk
+              <ModalOverlay
+                onClose={onClickMoveToMain} //onClose
+                onOk={onClickSubmit} //onOk
               />
             )}
 
