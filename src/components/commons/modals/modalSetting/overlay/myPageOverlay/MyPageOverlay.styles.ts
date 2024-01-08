@@ -38,7 +38,7 @@ export const ModalContentDiv = styled.div<ActiveModal>`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-radius: 50px 50px 0 0;
+  border-radius: 0 50px 0 0;
   animation: ${(props) =>
     props.isActiveModal
       ? css`
@@ -64,7 +64,7 @@ export const ImageBoxDiv = styled.div`
 export const PicutureImg = styled.img<CheckEdit>`
   width: ${(props) => (props.isEdit ? '170px' : '200px')};
   height: ${(props) => (props.isEdit ? '170px' : '200px')};
-  border-radius: 50px;
+  border-radius: 100px;
   border: 1px solid black;
   margin-top: ${(props) => (props.isEdit ? '0px' : '30px')};
 `;
