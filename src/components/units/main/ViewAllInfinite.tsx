@@ -34,6 +34,7 @@ const ViewAllInfinite = (props: any) => {
       break;
   }
 
+  ///퍼블릭, ture
   switch (true) {
     case weather === '1' && countAverage <= 1.6:
       if (emotionPicture !== '/rain_sad.webp') {
