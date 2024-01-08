@@ -233,6 +233,14 @@ export const DateBoxDiv = styled.div`
   height: 60px;
 `;
 
+export const DayBoxDiv = styled.div`
+  display: flex;
+  width: 100px;
+  align-items: center;
+  height: 60px;
+  margin-left: 40px;
+`;
+
 export const HeaderLeftWrapperDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -447,6 +455,7 @@ export const PrevMonth = styled(IoIosArrowBack)`
   margin-top: 7px;
   cursor: pointer;
   color: #a294cd;
+  margin-left: 30px;
 `;
 
 export const ExcludeImg = styled.img`
