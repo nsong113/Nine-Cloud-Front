@@ -67,6 +67,7 @@ export const MainSectionHeaderWrapper = styled.div`
   width: 100%;
   height: 120px;
   position: absolute;
+  transform: translateY(40px);
   padding: 20px;
 `;
 
@@ -76,7 +77,7 @@ export const MainLine = styled.div`
   margin: 0 auto;
   background: #391d93;
   z-index: 1000;
-  transform: translateY(120px);
+  transform: translateY(160px);
   margin-bottom: 10px;
 `;
 
@@ -127,7 +128,7 @@ export const MainSlideBox = styled.div`
   width: 100%;
   height: 765px;
   border-radius: 50px 0 0 0;
-  transform: translateY(105px);
+  transform: translateY(150px);
   overflow: hidden;
 `;
 
