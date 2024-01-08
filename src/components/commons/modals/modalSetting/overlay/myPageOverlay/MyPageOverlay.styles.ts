@@ -38,7 +38,7 @@ export const ModalContentDiv = styled.div<ActiveModal>`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-radius: 50px 50px 0 0;
+  border-radius: 0px 50px 0 0;
   animation: ${(props) =>
     props.isActiveModal
       ? css`
