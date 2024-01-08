@@ -27,8 +27,8 @@ const ViewAll = () => {
   const today = new Date();
   const formattedTodayDate = today.toISOString();
 
-  const onClickMyProfile = () => {
-    setIsActiveModal((prev) => !prev);
+  const onClickGotoMain = () => {
+    navigate('/main');
   };
 
   const {
@@ -89,6 +89,7 @@ const ViewAll = () => {
                   <S.StyledHoverTapButton
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={onClickGotoMain}
                   >
                     <S.Calendar />
                   </S.StyledHoverTapButton>

@@ -183,7 +183,6 @@ export const DayWrapperDiv = styled.div<IDateSpanProps>`
 
 export const ThCell = styled.th`
   color: #5035a6;
-  font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
@@ -340,10 +339,6 @@ export const LargeContainer = styled.div`
   width: 100%;
   height: 100vh;
   background-color: white;
-  /* background-image: url('/bg_final_final.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
 `;
 
 export const ViewAllWrapperDiv = styled.div`
@@ -425,12 +420,10 @@ export const ViewAllContentP = styled.p`
 
 export const Calendar = styled(FaRegCalendarAlt)`
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   color: #391d93;
-  &:hover {
-    color: purple;
-  }
+  transform: translateX(5px);
 `;
 
 export const List = styled(motion.img)`
@@ -505,12 +498,17 @@ export const StyledHoverTapButton = styled(motion.button)`
   background: rgba(239, 170, 173, 0);
   padding: 0px;
   border: 0;
+
+  &:hover {
+    color: #8066d1;
+  }
 `;
 
 export const LeftRightAnimeButton = styled(motion.div)`
   opacity: 0;
   transition: opacity 0.35s ease-out, x 0.35s ease-out;
 `;
+
 export const YearMonthChangeBoxDiv = styled.div`
   display: flex;
   align-items: center;
