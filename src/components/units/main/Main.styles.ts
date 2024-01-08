@@ -348,7 +348,7 @@ export const ViewAllWrapperDiv = styled.div`
   overflow: auto;
 `;
 
-export const ViewAllEachBoxDiv = styled.div`
+export const ViewAllEachBoxDiv = styled(motion.div)`
   width: 95%;
   margin: 0 auto;
   height: 130px;
@@ -361,6 +361,12 @@ export const ViewAllEachBoxDiv = styled.div`
   box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
     0px 4px 20px 0px rgba(80, 53, 166, 0.2);
   backdrop-filter: blur(25px);
+
+  &:hover {
+    transition: 0.2s;
+    box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+      0px 4px 20px 0px rgba(80, 53, 166, 0.3);
+  }
 `;
 
 export const ViewAllEachFlex = styled.div`

@@ -175,6 +175,12 @@ export const ViewAllEachBoxDiv = styled(motion.div)`
   backdrop-filter: blur(25px);
 
   cursor: pointer;
+
+  &:hover {
+    transition: 0.2s;
+    box-shadow: 0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+      0px 4px 20px 0px rgba(80, 53, 166, 0.3);
+  }
 `;
 
 export const ViewAllEachFlex = styled.div`
