@@ -13,7 +13,7 @@ const postDiary = async (postDiaryItem: IpostDiaryItem) => {
       postDiaryItem.EmotionalStatus?.toString() || ''
     );
     formData.append('content', postDiaryItem.content || '');
-    formData.append('isPublic', postDiaryItem.isPublic ? 'true' : '');
+    formData.append('isPublic', postDiaryItem.isPublic ? 'true' : 'false');
     formData.append('image', postDiaryItem.image || '');
     formData.append('sentence', postDiaryItem.sentence || '');
     formData.append('weather', postDiaryItem.weather || '');
