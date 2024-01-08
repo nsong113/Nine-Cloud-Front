@@ -32,6 +32,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   const [humidAtom, setHumid] = useRecoilState<string>(sadA);
   const [sleepAtom, setSleep] = useRecoilState<string>(sleep);
   const [isPublicToday, setIsPublicToday] = useRecoilState<boolean>(isPublic);
+  console.log('isPublicToday', isPublicToday);
   const [isAcriveFireWork, setIsActiveFireWork] =
     useRecoilState<boolean>(isFireWork);
   const [isChecked, setIsChecked] = useState(true);
