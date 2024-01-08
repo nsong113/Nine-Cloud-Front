@@ -5,6 +5,7 @@ import { VideoCard } from 'src/components/commons/utills/Date/date';
 import { useRecoilState } from 'recoil';
 import { arrowNavigate } from 'src/states/navigate';
 import useSetEmotionIcon from 'src/components/commons/hooks/useSetEmotionIcon';
+import { useState } from 'react';
 
 const CommunityEach = (props: any) => {
   const createdAtDate = new Date(props.item.createdAt);
@@ -12,6 +13,7 @@ const CommunityEach = (props: any) => {
   const weather = props.item.weather;
   const countAverage = props.item.EmotionStatus;
   const { emotionPicture } = useSetEmotionIcon(weather, countAverage);
+  const [hover, setHover] = useState(false);
 
   if (createdAtDate) {
     createdAtDate.setHours(createdAtDate.getHours() - 9);
@@ -32,6 +34,8 @@ const CommunityEach = (props: any) => {
     navigate(`/post/${id}`);
     setIsGoingToMain(false);
   };
+
+  // const whileHoverFunc = () => {};
 
   return (
     <>

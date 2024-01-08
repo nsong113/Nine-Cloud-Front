@@ -5,6 +5,7 @@ import { countAverage, weather } from 'src/states/counter';
 const useMakeEmotionEmoji = () => {
   const [weatherAtom, setWeatherAtom] = useRecoilState(weather);
   const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
+
   const [emotionPicture, setEmotionPicture] = useState('');
 
   switch (true) {

@@ -3,11 +3,14 @@ import { ICloudModal } from './FortuneOverlay.types';
 import * as S from './FortuneOverlay.styles';
 import { RandomSaying } from 'src/components/units/board/write/diary/RandomSentences';
 import { useRecoilState } from 'recoil';
-import { sentence } from 'src/states/counter';
+import { cloudValidate, countAverage, sentence } from 'src/states/counter';
 
 const FortuneOverlay: React.FC<ICloudModal> = ({ goBackFortune }) => {
   const [showNote, setShowNote] = useState(false);
   const [sentenceAtom, setSentence] = useRecoilState(sentence);
+  const [cloudValidateAtom, setCloudValidateAtom] =
+    useRecoilState(cloudValidate);
+  const [countAverageAtom, setCountAverage] = useRecoilState(countAverage);
 
   const onClickShowSaying = (e: React.MouseEvent<HTMLImageElement>) => {
     e.stopPropagation();
@@ -15,28 +18,36 @@ const FortuneOverlay: React.FC<ICloudModal> = ({ goBackFortune }) => {
   };
 
   const onClickMakeRandom = () => {
-    const countAverage = Number(localStorage.getItem('countAverage'));
-    if (countAverage >= 0 && countAverage < 2) {
-      const todayRandom =
-        RandomSaying.sad[Math.floor(Math.random() * RandomSaying.sad.length)];
-      setSentence(todayRandom);
-    } else if (countAverage >= 2 && countAverage < 3) {
-      const todayRandom =
-        RandomSaying.soso[Math.floor(Math.random() * RandomSaying.soso.length)];
-      setSentence(todayRandom);
-    } else if (countAverage >= 3 && countAverage < 4) {
-      const todayRandom =
-        RandomSaying.soso[Math.floor(Math.random() * RandomSaying.soso.length)];
-      setSentence(todayRandom);
-    } else if (countAverage >= 5) {
-      const todayRandom =
-        RandomSaying.happy[
-          Math.floor(Math.random() * RandomSaying.happy.length)
-        ];
-      setSentence(todayRandom);
+    if (sentenceAtom === '') {
+      if (countAverageAtom >= 0 && countAverageAtom < 2) {
+        const todayRandom =
+          RandomSaying.sad[Math.floor(Math.random() * RandomSaying.sad.length)];
+        setSentence(todayRandom);
+      } else if (countAverageAtom >= 2 && countAverageAtom < 3) {
+        const todayRandom =
+          RandomSaying.soso[
+            Math.floor(Math.random() * RandomSaying.soso.length)
+          ];
+        setSentence(todayRandom);
+      } else if (countAverageAtom >= 3 && countAverageAtom < 4) {
+        const todayRandom =
+          RandomSaying.soso[
+            Math.floor(Math.random() * RandomSaying.soso.length)
+          ];
+        setSentence(todayRandom);
+      } else if (countAverageAtom >= 4 && countAverageAtom <= 5) {
+        const todayRandom =
+          RandomSaying.happy[
+            Math.floor(Math.random() * RandomSaying.happy.length)
+          ];
+        setSentence(todayRandom);
+      }
     }
+
+    setCloudValidateAtom(true);
   };
 
+  console.log(sentenceAtom);
   return (
     <S.ContainerDiv
       className='modal'

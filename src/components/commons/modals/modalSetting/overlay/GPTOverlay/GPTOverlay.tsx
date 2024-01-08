@@ -1,12 +1,10 @@
+/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { IGPTprops } from './GPTOverlay.types';
 import * as S from './GPTOverlay.style';
 import { CallGPT } from 'src/apis/gpt';
 import { useRecoilState } from 'recoil';
-import {
-  contents,
-  countAverage,
-} from 'src/states/counter';
+import { contents, countAverage } from 'src/states/counter';
 import useTemperature from 'src/components/commons/hooks/GPT/useTemperature';
 import useHumid from 'src/components/commons/hooks/GPT/useHumid';
 import useWeather from 'src/components/commons/hooks/GPT/useWeather';
@@ -24,14 +22,25 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
 
   const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
   const [contentsAtom, setContentsAtom] = useRecoilState(contents);
-  const { happyEmotion } = useTemperature();
-  const { humidEmotion } = useHumid();
-  const { weatherToday } = useWeather();
-  const { sleepToday } = useSleep();
+  let { happyEmotion } = useTemperature();
+  let { humidEmotion } = useHumid();
+  let { weatherToday } = useWeather();
+  let { sleepToday } = useSleep();
 
   const onClickAPIcallHandler = async () => {
     try {
       setIsLoading(true);
+      if (!happyEmotion || !humidEmotion || !weatherToday || !sleepToday) {
+        const { happyEmotion: updatedHappyEmotion } = await useTemperature();
+        const { humidEmotion: updatedHumidEmotion } = await useHumid();
+        const { weatherToday: updateWeatherToday } = await useWeather();
+        const { sleepToday: updateSleepToday } = await useSleep();
+        happyEmotion = updatedHappyEmotion;
+        humidEmotion = updatedHumidEmotion;
+        weatherToday = updateWeatherToday;
+        sleepToday = updateSleepToday;
+      }
+
       const message = await CallGPT({
         countAverage: countAverageAtom,
         contents: contentsAtom,
@@ -49,14 +58,12 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
   };
 
   useEffect(() => {
-    if (diaryCheck !== null) {
+    if (diaryCheck !== null && diaryCheck !== undefined) {
       onClickAPIcallHandler();
     }
-  }, []);
+  }, [sleepToday]);
 
-  const onClickGotoPost = () => {
-    navigate('/post');
-  };
+  const onClickGotoPost = () => navigate('/post');
 
   const onClickGptReload = (e: React.MouseEvent) => {
     e.stopPropagation();

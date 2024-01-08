@@ -160,7 +160,9 @@ export const GptX = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  cursor: pointer;
 `;
+
 export const GptH3 = styled.div`
   color: var(--main, #391d93);
   text-align: center;
@@ -197,8 +199,9 @@ export const GPTBtnDivGo = styled.div`
   letter-spacing: 0.18px;
 
   margin: 0 auto;
-
   margin-top: 30px;
+
+  cursor: pointer;
 `;
 
 export const GptReloadingBox = styled.div`
