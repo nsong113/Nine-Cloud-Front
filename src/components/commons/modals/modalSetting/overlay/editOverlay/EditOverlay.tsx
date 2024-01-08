@@ -1,12 +1,12 @@
 import React, { MouseEvent, useState } from 'react';
-import { IEditPost } from '../../../editPost/EditPostOverlay.types';
 import * as S from './EditOverlay.styles';
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
-import DeleteModal from '../../../delete/DeleteModal';
 import { useMutation, useQueryClient } from 'react-query';
 import { deletePost, updatePost } from 'src/apis/cheolmin-api/apis';
 import { useNavigate, useParams } from 'react-router-dom';
-import { IMyPost } from './EditOverlay.types';
+import { IEditPost, IMyPost } from './EditOverlay.types';
+import Portal from 'src/components/commons/utills/Portal/Portal';
+import DeleteOverlay from '../deleteOverlay/DeleteOverlay';
 
 const EditOverlay: React.FC<IEditPost> = ({
   detailedContent,
@@ -80,74 +80,81 @@ const EditOverlay: React.FC<IEditPost> = ({
   };
 
   return (
-    <S.ContainerDiv onClick={onClose} className='modal'>
-      <Animation3>
-        <S.ModalContentDiv onClick={onClickModalDiv}>
-          {isDeleteModal && (
-            <DeleteModal onOk={onClickDeleteBtn} onClose={onClickTrashCan} />
-          )}
-          <S.ContentsWrapperDiv>
-            <S.HeaderWrapperDiv>
-              <S.TitleBoxDiv>마음 일기 수정</S.TitleBoxDiv>
-              <S.CancelImg onClick={onClose} src='/cancel.png' alt='취소' />
-            </S.HeaderWrapperDiv>
-            <div>
-              <S.ContentsContainerDiv>
-                {contents?.length === 0 && <S.BlankDiv></S.BlankDiv>}
-                {contents?.length !== 0 && (
-                  <S.TextAreaCount>{contents.length - 7}/200</S.TextAreaCount>
-                )}
-                <S.DiarySpace
-                  theme='snow'
-                  modules={quillModules}
-                  onChange={onChangeContents}
-                  defaultValue={content}
-                />
-                <S.ToggleWrapperDiv>
-                  <S.OpenToggleTitleSpan>공개여부</S.OpenToggleTitleSpan>
-                  <S.ToggleContainerDiv>
-                    <S.CustomToggle
-                      id='customToggle'
-                      checked={isPublic}
-                      icons={{
-                        unchecked: (
-                          <S.ToggleTumbsImg
-                            src='/private_person.png'
-                            alt='사람들'
-                          />
-                        ),
-                        checked: <S.PublicImg />,
-                      }}
-                      onChange={onChangeIsPublicHandler}
-                    />
-                    {!isPublic && (
-                      <S.PrivateTextDiv>
-                        <S.SubTitleSpan>
-                          나만 일기를 확인할 수 있어요.
-                        </S.SubTitleSpan>
-                      </S.PrivateTextDiv>
-                    )}
-                    {!isPublic && <div style={{ width: '50px' }}></div>}
-                    {isPublic && (
-                      <S.PublicTextDiv>
-                        <S.SubTitleSpan>
-                          다른 사람들과 공유할 수 있습니다.
-                        </S.SubTitleSpan>
-                      </S.PublicTextDiv>
-                    )}
-                  </S.ToggleContainerDiv>
-                </S.ToggleWrapperDiv>
-              </S.ContentsContainerDiv>
-              <S.FooterBoxDiv>
-                <S.ButtonBoxDiv>
-                  <S.EditButton onClick={onClickEditBtn}>수정하기</S.EditButton>
-                </S.ButtonBoxDiv>
-              </S.FooterBoxDiv>
-            </div>
-          </S.ContentsWrapperDiv>
-        </S.ModalContentDiv>
-      </Animation3>
-    </S.ContainerDiv>
+    <Portal>
+      <S.ContainerDiv onClick={onClose} className='modal'>
+        <Animation3>
+          <S.ModalContentDiv onClick={onClickModalDiv}>
+            {isDeleteModal && (
+              <DeleteOverlay
+                onOk={onClickDeleteBtn}
+                onClose={onClickTrashCan}
+              />
+            )}
+            <S.ContentsWrapperDiv>
+              <S.HeaderWrapperDiv>
+                <S.TitleBoxDiv>마음 일기 수정</S.TitleBoxDiv>
+                <S.CancelImg onClick={onClose} src='/cancel.png' alt='취소' />
+              </S.HeaderWrapperDiv>
+              <div>
+                <S.ContentsContainerDiv>
+                  {contents?.length === 0 && <S.BlankDiv></S.BlankDiv>}
+                  {contents?.length !== 0 && (
+                    <S.TextAreaCount>{contents.length - 7}/200</S.TextAreaCount>
+                  )}
+                  <S.DiarySpace
+                    theme='snow'
+                    modules={quillModules}
+                    onChange={onChangeContents}
+                    defaultValue={content}
+                  />
+                  <S.ToggleWrapperDiv>
+                    <S.OpenToggleTitleSpan>공개여부</S.OpenToggleTitleSpan>
+                    <S.ToggleContainerDiv>
+                      <S.CustomToggle
+                        id='customToggle'
+                        checked={isPublic}
+                        icons={{
+                          unchecked: (
+                            <S.ToggleTumbsImg
+                              src='/private_person.png'
+                              alt='사람들'
+                            />
+                          ),
+                          checked: <S.PublicImg />,
+                        }}
+                        onChange={onChangeIsPublicHandler}
+                      />
+                      {!isPublic && (
+                        <S.PrivateTextDiv>
+                          <S.SubTitleSpan>
+                            나만 일기를 확인할 수 있어요.
+                          </S.SubTitleSpan>
+                        </S.PrivateTextDiv>
+                      )}
+                      {!isPublic && <div style={{ width: '50px' }}></div>}
+                      {isPublic && (
+                        <S.PublicTextDiv>
+                          <S.SubTitleSpan>
+                            다른 사람들과 공유할 수 있습니다.
+                          </S.SubTitleSpan>
+                        </S.PublicTextDiv>
+                      )}
+                    </S.ToggleContainerDiv>
+                  </S.ToggleWrapperDiv>
+                </S.ContentsContainerDiv>
+                <S.FooterBoxDiv>
+                  <S.ButtonBoxDiv>
+                    <S.EditButton onClick={onClickEditBtn}>
+                      수정하기
+                    </S.EditButton>
+                  </S.ButtonBoxDiv>
+                </S.FooterBoxDiv>
+              </div>
+            </S.ContentsWrapperDiv>
+          </S.ModalContentDiv>
+        </Animation3>
+      </S.ContainerDiv>
+    </Portal>
   );
 };
 

@@ -3,7 +3,6 @@ import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import { format, getYear, subMonths } from 'date-fns';
 import ViewAllInfinite from './ViewAllInfinite';
-import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import { useNavigate } from 'react-router-dom';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import { useInfiniteQuery } from 'react-query';
@@ -73,7 +72,6 @@ const ViewAll = () => {
     <>
       <S.LargeContainer>
         <S.CalendarContainerDiv>
-          {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
           <S.HeaderWrapperDiv>
             <S.DateBoxDiv>
               <S.ExcludeImg src='/exclude.png' alt='이미지' />

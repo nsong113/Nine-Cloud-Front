@@ -1,5 +1,6 @@
 export interface IMyPage {
   onOk: () => void;
+  isActiveModal?: boolean;
 }
 
 export interface ValidationMessageProps {
@@ -13,4 +14,8 @@ export interface CheckEdit {
 export interface IMyPost {
   selectedImage?: File | string;
   username?: string;
+}
+
+export interface ActiveModal {
+  isActiveModal?: boolean;
 }

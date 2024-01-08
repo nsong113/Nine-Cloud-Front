@@ -22,7 +22,7 @@ export const CommentBoxDiv = styled.div`
 `;
 
 export const CommentWriterSpan = styled.span`
-  color: #f00;
+  color: black;
   font-size: 11px;
   font-style: normal;
   font-weight: 400;

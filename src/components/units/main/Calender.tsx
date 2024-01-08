@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useCalendar from 'src/components/commons/hooks/useCalender';
 import * as S from './Main.styles';
-import MyPageModal from 'src/components/commons/modals/myPage/myPageModal';
 import Animation from 'src/components/commons/utills/Animation/Animation';
 import Loading from 'src/components/commons/utills/loading/Loading';
 import CalendarBody from './CalendarBody';
+import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
 import { useNavigate } from 'react-router-dom';
 import {
   addMonths,
@@ -14,9 +14,20 @@ import {
   subMonths,
   getDate,
 } from 'date-fns';
-import { QueryClient, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import { getPosts } from 'src/apis/cheolmin-api/apis';
-import GPTModal from 'src/components/commons/modals/gpt/GPTModal';
+import GPTOverlay from 'src/components/commons/modals/modalSetting/overlay/GPTOverlay/GPTOverlay';
+import { useRecoilState } from 'recoil';
+import { isFireWork } from 'src/states/firework';
+
+const canvasStyles: React.CSSProperties = {
+  position: 'fixed',
+  width: '430px',
+  height: '100%',
+  marginRight: '400px',
+  marginTop: '500px',
+  zIndex: '3',
+};
 
 const Calender = () => {
   const navigate = useNavigate();
@@ -31,6 +42,8 @@ const Calender = () => {
     DAY_LIST,
   } = useCalendar();
 
+  const [isAcriveFireWork, setIsActiveFireWork] =
+    useRecoilState<boolean>(isFireWork);
   const [isActiveModal, setIsActiveModal] = useState(false);
   const [animationDirection, setAnimationDirection] = useState('');
   const formattedMonth = format(currentMonth, 'MMMM');
@@ -52,16 +65,24 @@ const Calender = () => {
     }
   );
 
+  useEffect(() => {
+    if (isAcriveFireWork) {
+      // Fireworks가 끝난 후에 isFireWork를 false로 변경
+      const timeoutId = setTimeout(() => {
+        setIsActiveFireWork(false);
+      }, 1000); // duration 값에 맞춰서 설정 (여기서는 4초로 설정)
+
+      // 컴포넌트가 언마운트되거나 다시 렌더링될 때 clearTimeout
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isAcriveFireWork]);
+
   const today = getDate(currentDate) - 1;
   const diaryCheck = data?.data[today];
 
   if (isLoading) {
     return <Loading />;
   }
-
-  const onClickMyProfile = () => {
-    setIsActiveModal((prev) => !prev);
-  };
 
   const onClickListBtn = () => {
     navigate('/list');
@@ -94,6 +115,19 @@ const Calender = () => {
     navigate('/post');
   };
 
+  const decorateOptions = (originalOptions: any) => {
+    return {
+      ...originalOptions,
+      particleCount: 100, // 조각 개수 설정
+      spread: 80, // 퍼짐 정도 설정
+      startVelocity: 50, // 초기 속도 설정
+      ticks: 100, // 애니메이션 지속 시간 설정
+      origin: { x: 0.5, y: 0.8 }, // 발사 위치 설정
+      shapes: ['circle', 'circle', 'square'], // 이미지 배열을 shapes로 설정
+      gravity: 2, // 중력 설정
+    };
+  };
+
   return (
     <>
       <S.CalendarContainerDiv>
@@ -105,9 +139,19 @@ const Calender = () => {
               alt='이미지'
             />
             <S.YearMonthChangeBoxDiv>
-              <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+              <S.StyledHoverTapButton
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 1 }}
+              >
+                <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+              </S.StyledHoverTapButton>
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
-              <S.NextMonth onClick={onClickNextMonth} size={30} />
+              <S.StyledHoverTapButton
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 1 }}
+              >
+                <S.NextMonth onClick={onClickNextMonth} size={30} />
+              </S.StyledHoverTapButton>
             </S.YearMonthChangeBoxDiv>
             <S.PrevNextMonthBoxDiv>
               <S.YearTextSpan>{year}</S.YearTextSpan>
@@ -117,17 +161,22 @@ const Calender = () => {
           <S.RightProfile>
             <S.ButtonWrapperDiv>
               {/* <Tooltip message='리스트'> */}
-              <S.StyledHoverTapButton
+              <S.List
+                src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/list.png'
+                alt='리스트'
+                rel='preload'
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={onClickListBtn}
-              >
-                <S.List
-                  src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/list.png'
-                  alt='리스트'
-                  rel='preload'
+              />
+              {isAcriveFireWork && (
+                <Fireworks
+                  autorun={{ speed: 0.5, duration: 3 }}
+                  style={canvasStyles}
+                  decorateOptions={decorateOptions} // 함수 실행을 위해 괄호를 추가
                 />
-              </S.StyledHoverTapButton>
+              )}
+
               {/* </Tooltip> */}
             </S.ButtonWrapperDiv>
           </S.RightProfile>
@@ -135,7 +184,6 @@ const Calender = () => {
 
         <S.Test>
           <Animation>
-            {isActiveModal && <MyPageModal onClick={onClickMyProfile} />}
             <S.LeftRightAnimeButton
               key={currentMonth.toString()}
               initial={{
@@ -169,7 +217,7 @@ const Calender = () => {
             </S.LeftRightAnimeButton>
           </Animation>
           {isGPTModal && (
-            <GPTModal
+            <GPTOverlay
               onOk={onClickConfirm}
               onGo={onClickGotoPost}
               diaryCheck={diaryCheck}

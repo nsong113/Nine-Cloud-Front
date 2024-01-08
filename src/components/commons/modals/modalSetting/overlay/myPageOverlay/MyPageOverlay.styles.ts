@@ -1,24 +1,52 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { IoIosArrowForward } from '@react-icons/all-files/io/IoIosArrowForward';
-import { CheckEdit, ValidationMessageProps } from './MyPageOverlay.types';
+import {
+  ActiveModal,
+  CheckEdit,
+  ValidationMessageProps,
+} from './MyPageOverlay.types';
+import { motion } from 'framer-motion';
 
 export const slideIn = keyframes`
   from {
-    transform: translateY(100%)
+    transform: translateY(100%);
   }
   to {
-    transform: translateY(0) 
+    transform: translateY(0);
   }
 `;
 
-export const ModalContentDiv = styled.div`
+export const slideOut = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+`;
+
+export const StyledHoverTapButton = styled(motion.button)`
+  background: rgba(239, 170, 173, 0);
+  display: flex;
+
+  border: 0;
+`;
+
+export const ModalContentDiv = styled.div<ActiveModal>`
   width: 443px;
   height: 50%;
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 50px 50px 0 0;
-  animation: ${slideIn} 0.5s ease-in-out;
+  animation: ${(props) =>
+    props.isActiveModal
+      ? css`
+          ${slideIn} 0.5s ease-in-out
+        `
+      : css`
+          ${slideOut} 0.5s ease-in-out
+        `};
 `;
 
 export const MainContainerDiv = styled.div`
@@ -34,9 +62,9 @@ export const ImageBoxDiv = styled.div`
 `;
 
 export const PicutureImg = styled.img<CheckEdit>`
-  width: ${(props) => (props.isEdit ? '170px' : '210px')};
-  height: ${(props) => (props.isEdit ? '170px' : '210px')};
-  border-radius: 150px;
+  width: ${(props) => (props.isEdit ? '170px' : '200px')};
+  height: ${(props) => (props.isEdit ? '170px' : '200px')};
+  border-radius: 50px;
   border: 1px solid black;
   margin-top: ${(props) => (props.isEdit ? '0px' : '30px')};
 `;
@@ -52,10 +80,6 @@ export const ImageButton = styled.button`
   border-radius: 2px 10px;
   border: 2px solid var(--sub, #8066d1);
   cursor: pointer;
-  &:hover {
-    background-color: #391d93;
-    color: #fff;
-  }
   margin-top: 10px;
 `;
 
@@ -203,6 +227,7 @@ export const EditButton = styled.button`
   &:hover {
     background-color: #391d93;
     color: #fff;
+    scale: 110%;
   }
 `;
 
@@ -317,6 +342,7 @@ export const CancelButton = styled.button`
   &:hover {
     background-color: #391d93;
     color: #fff;
+    scale: 110%;
   }
 `;
 
@@ -381,7 +407,7 @@ export const PasswordConfirmDiv = styled.div`
 export const ValidationMessage = styled.div<ValidationMessageProps>`
   font-size: 14px;
   height: 14px;
-  margin-top: 5px; 
+  margin-top: 5px;
   color: ${(props) => (props.isError ? 'red' : 'blue')};
 `;
 

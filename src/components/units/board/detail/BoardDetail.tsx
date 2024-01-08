@@ -11,9 +11,7 @@ import {
 
 import Animation3 from 'src/components/commons/utills/Animation/Animation3';
 import Loading from 'src/components/commons/utills/loading/Loading';
-import EditPostOverlay from 'src/components/commons/modals/editPost/EditPostOverlay';
 import Tooltip from 'src/components/commons/utills/tooltip/tooltip';
-import DiaryDeleteModal from 'src/components/commons/modals/diaryDelete/diaryDelete';
 import { useRecoilState } from 'recoil';
 import { arrowNavigate } from 'src/states/navigate';
 import KakaoShare from '../../kakaoshare/KakaoShare';
@@ -95,22 +93,16 @@ const BoardDetail = () => {
 
   return (
     <S.ContainerDiv>
-      {isActiveModal && (
-        <EditPostOverlay
-          content={detailedContent?.content}
-          onClose={onClickEdit}
-          detailedContent={detailedContent}
-          setIsEdit={setIsEdit}
-          setIsClickedPencil={setIsClickedPencil}
-        />
-      )}
-
       <div key={data?.id}>
-        {isDelete && <DiaryDeleteModal onClose={onClickDeleteBtn} />}
         <Animation3>
           <S.HeaderWrapperDiv>
             <S.HeaderLeftBoxDiv>
-              <S.BackImg onClick={onClickMoveToMain} />
+              <S.StyledHoverTapButton
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <S.BackImg onClick={onClickMoveToMain} />
+              </S.StyledHoverTapButton>
               <S.TitleTextSpan>{formattedDate}</S.TitleTextSpan>
             </S.HeaderLeftBoxDiv>
             <S.HearderRightBoxDiv>
@@ -138,6 +130,7 @@ const BoardDetail = () => {
           comment={comment}
           data={data}
           profile={profile}
+          setIsEdit={setIsEdit}
         />
       </div>
     </S.ContainerDiv>

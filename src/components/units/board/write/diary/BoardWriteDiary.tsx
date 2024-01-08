@@ -3,13 +3,13 @@ import * as S from './BoardWriteDiary.styles';
 import { useNavigate } from 'react-router-dom';
 import 'react-toggle/style.css';
 import Animation2 from 'src/components/commons/utills/Animation/Animation2';
-import FortuneCloudModal from 'src/components/commons/modals/fortuneCloud/FortuneCloudModal';
 import ReactQuill from 'react-quill';
 import './Quill.snow.css';
 import { useRecoilState } from 'recoil';
 import { contents, sentence } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import PostUpperWrapper from '../PostUpperWrapper';
+import FortuneOverlay from 'src/components/commons/modals/modalSetting/overlay/fortuneOverlay/FortuneOverlay';
 
 const BoardWriteDiary = () => {
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ const BoardWriteDiary = () => {
   return (
     <div>
       <Animation2>
-        {isModalOpen && <FortuneCloudModal goBackFortune={goBackFortune} />}
+        {isModalOpen && <FortuneOverlay goBackFortune={goBackFortune} />}
         <S.DiaryContainerDiv>
           <PostUpperWrapper
             first={'checked'}

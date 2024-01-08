@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ICloudModal } from '../../../fortuneCloud/FortuneCloudModal.types';
+import { ICloudModal } from './FortuneOverlay.types';
 import * as S from './FortuneOverlay.styles';
 import { RandomSaying } from 'src/components/units/board/write/diary/RandomSentences';
 import { useRecoilState } from 'recoil';

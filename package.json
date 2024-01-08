@@ -28,6 +28,7 @@
     "prop-types": "^15.8.1",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
+    "react-canvas-confetti": "^2.0.1",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-intersection-observer": "^9.5.3",

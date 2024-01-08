@@ -17,6 +17,7 @@ import {
 } from 'src/states/counter';
 import useMakeEmotionEmoji from 'src/components/commons/hooks/useMakeEmotionEmoji';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
+import { isFireWork } from 'src/states/firework';
 
 const ConfirmOverlay: React.FC<IConfirmMod> = ({
   onClickGotoMain,
@@ -31,6 +32,8 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
   const [humidAtom, setHumid] = useRecoilState<string>(sadA);
   const [sleepAtom, setSleep] = useRecoilState<string>(sleep);
   const [isPublicToday, setIsPublicToday] = useRecoilState<boolean>(isPublic);
+  const [isAcriveFireWork, setIsActiveFireWork] =
+    useRecoilState<boolean>(isFireWork);
   const [isChecked, setIsChecked] = useState(true);
 
   let [postDiaryEveryItem, setPostDiaryEveryItem] =
@@ -76,6 +79,7 @@ const ConfirmOverlay: React.FC<IConfirmMod> = ({
     if (postDiaryEveryItem) {
       postDiaryMutation.mutate(postDiaryEveryItem);
     }
+    setIsActiveFireWork(true);
   };
 
   const onChangeIsPublicHandler = () => {

@@ -41,6 +41,7 @@ const LoginSignin = () => {
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_sad.webp',
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_happy.webp',
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_soso.webp',
+    'https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/alert.png'
   ];
 
   const accessToken = localStorage.getItem('accessToken');

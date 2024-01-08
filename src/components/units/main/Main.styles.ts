@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaRegCalendarAlt } from "@react-icons/all-files/fa/FaRegCalendarAlt";
+import { FaRegCalendarAlt } from '@react-icons/all-files/fa/FaRegCalendarAlt';
 import { motion } from 'framer-motion';
 import { IDateSpanProps, ITableCellProps } from './Main.types';
 import { IoIosArrowBack } from '@react-icons/all-files/io/IoIosArrowBack';
@@ -157,9 +157,28 @@ export const TableCell = styled.td<ITableCellProps>`
   backdrop-filter: blur(15px);
 `;
 
-export const DayWrapperDiv = styled.div`
+export const DateSpan = styled.span<IDateSpanProps>`
+  color: ${({ istoday }) => (istoday ? '#391D93' : 'var(--Gray2, #929292);')};
+  background-color: ${({ istoday }) => (istoday ? '#CFC0FF' : 'inherit')};
+
+  border-radius: 20px;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 10px;
+  width: 30px;
+  &:hover {
+    color: white;
+  }
+`;
+
+export const DayWrapperDiv = styled.div<IDateSpanProps>`
   display: flex;
   flex-direction: column;
+  &:hover ${DateSpan} {
+    color: ${({ istoday }) => (istoday ? '#391D93' : 'white')};
+  }
 `;
 
 export const ThCell = styled.th`
@@ -406,7 +425,7 @@ export const Calendar = styled(FaRegCalendarAlt)`
   }
 `;
 
-export const List = styled.img`
+export const List = styled(motion.img)`
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -425,6 +444,7 @@ export const ButtonWrapperDiv = styled.div`
 `;
 
 export const PrevMonth = styled(IoIosArrowBack)`
+  margin-top: 7px;
   cursor: pointer;
   color: #a294cd;
 `;
@@ -434,6 +454,7 @@ export const ExcludeImg = styled.img`
 `;
 
 export const NextMonth = styled(IoIosArrowForward)`
+  margin-top: 7px;
   cursor: pointer;
   color: #a294cd;
 `;
@@ -443,25 +464,14 @@ export const YearWrapperDIv = styled.div`
   align-items: center;
 `;
 
-export const DateWrapperDiv = styled.div`
+export const DateWrapperDiv = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-export const DateSpan = styled.span<IDateSpanProps>`
-  color: ${({ istoday }) => (istoday ? '#391D93' : 'var(--Gray2, #929292);')};
-  background-color: ${({ istoday }) => (istoday ? '#CFC0FF' : 'inherit')};
-
-  border-radius: 20px;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  /* line-height: 22px; */
+  &:hover {
+    color: white;
+  }
 `;
 
 export const ImgBoxDiv = styled.div`
@@ -477,15 +487,14 @@ export const ImgBoxDiv = styled.div`
   justify-content: center;
 `;
 
-export const DateImg = styled.img`
+export const DateImg = styled(motion.img)`
   width: 50px;
   height: 50px;
 `;
 
 export const StyledHoverTapButton = styled(motion.button)`
   background: rgba(239, 170, 173, 0);
-  display: flex;
-
+  padding: 0px;
   border: 0;
 `;
 

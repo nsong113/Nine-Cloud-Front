@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IGPTprops } from '../../../gpt/GPTModal.types';
+import { IGPTprops } from './GPTOverlay.types';
 import * as S from './GPTOverlay.style';
 import { CallGPT } from 'src/apis/gpt';
 import { useRecoilState } from 'recoil';
