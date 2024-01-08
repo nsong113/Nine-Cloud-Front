@@ -101,7 +101,7 @@ const CalendarBody = (props: IGetPostsData) => {
                 onClick={onClickGoToDetailHandler(id)}
               >
                 {day !== 0 ? (
-                  <S.DayWrapperDiv>
+                  <S.DayWrapperDiv istoday={isToday}>
                     <S.DateWrapperDiv
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 1 }}

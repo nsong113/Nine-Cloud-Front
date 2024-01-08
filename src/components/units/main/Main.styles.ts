@@ -166,18 +166,18 @@ export const DateSpan = styled.span<IDateSpanProps>`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 30px;
   &:hover {
     color: white;
   }
 `;
 
-export const DayWrapperDiv = styled.div`
+export const DayWrapperDiv = styled.div<IDateSpanProps>`
   display: flex;
   flex-direction: column;
   &:hover ${DateSpan} {
-    color: white;
+    color: ${({ istoday }) => (istoday ? '#391D93' : 'white')};
   }
 `;
 
@@ -494,7 +494,7 @@ export const DateImg = styled(motion.img)`
 
 export const StyledHoverTapButton = styled(motion.button)`
   background: rgba(239, 170, 173, 0);
-
+  padding: 0px;
   border: 0;
 `;
 
