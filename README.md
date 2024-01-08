@@ -54,8 +54,8 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
   </tr>
    <tr align="center">
     <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_loginpage.gif" alt="소셜 로그인" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_mainpage.gif" alt="메인" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_postpage.gif" alt="일기 추가하기" style="height:500px"/></td>
+    <td><img src="https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/main.gif" alt="메인" style="height:500px"/></td>
+    <td><img src="https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/post.gif" alt="일기 추가하기" style="height:500px"/></td>
   </tr>
 </table>
 
