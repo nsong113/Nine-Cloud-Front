@@ -36,6 +36,8 @@ const CommunityEach = (props: any) => {
   return (
     <>
       <S.ViewAllEachBoxDiv
+        whileHover={{ scale: 1.025 }}
+        whileTap={{ scale: 1 }}
         onClick={() => onClickGotoDetailPage(props.item.diaryId)}
       >
         <S.ViewAllEachFlex>
