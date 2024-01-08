@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const MainContainer = styled.div`
   width: 100%;
@@ -166,7 +167,7 @@ export const MainMapContainer = styled.div`
   overflow: auto;
 `;
 
-export const ViewAllEachBoxDiv = styled.div`
+export const ViewAllEachBoxDiv = styled(motion.div)`
   width: 95%;
   margin: 0 auto;
   height: 130px;

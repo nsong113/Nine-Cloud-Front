@@ -49,3 +49,8 @@ export const image = atom({
   key: 'image',
   default: '',
 });
+
+export const cloudValidate = atom({
+  key: 'cloudValidate',
+  default: true,
+});

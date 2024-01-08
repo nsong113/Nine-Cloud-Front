@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { IGPTprops } from './GPTOverlay.types';
 import * as S from './GPTOverlay.style';
@@ -21,52 +22,34 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
 
   const [countAverageAtom, setCountAverageAtom] = useRecoilState(countAverage);
   const [contentsAtom, setContentsAtom] = useRecoilState(contents);
-  const { happyEmotion } = useTemperature();
-  const { humidEmotion } = useHumid();
-  const { weatherToday } = useWeather();
-  const { sleepToday } = useSleep();
-
-  console.log('happyEmotion');
-
-  // const fetchData = async () => {
-  //   try {
-  //     // 여기에 데이터를 다시 받아오는 로직을 추가
-  //     const newHappyEmotion = 0;
-  //     const newHumidEmotion = 0;
-  //     const newWeatherToday = 0;
-  //     const newSleepToday = 0;
-
-  //     const message = await CallGPT({
-  //       countAverage: countAverageAtom,
-  //       contents: contentsAtom,
-  //       temperature: newHappyEmotion,
-  //       humid: newHumidEmotion,
-  //       weather: newWeatherToday,
-  //       sleep: newSleepToday,
-  //     });
-
-  //     setData(JSON.parse(message));
-  //   } catch (error) {
-  //     console.log('Error while fetching new data:', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  let { happyEmotion } = useTemperature();
+  let { humidEmotion } = useHumid();
+  let { weatherToday } = useWeather();
+  let { sleepToday } = useSleep();
 
   const onClickAPIcallHandler = async () => {
     try {
       setIsLoading(true);
-      if (happyEmotion && humidEmotion && weatherToday && sleepToday) {
-        const message = await CallGPT({
-          countAverage: countAverageAtom,
-          contents: contentsAtom,
-          temperature: happyEmotion,
-          humid: humidEmotion,
-          weather: weatherToday,
-          sleep: sleepToday,
-        });
-        setData(JSON.parse(message));
+      if (!happyEmotion || !humidEmotion || !weatherToday || !sleepToday) {
+        const { happyEmotion: updatedHappyEmotion } = await useTemperature();
+        const { humidEmotion: updatedHumidEmotion } = await useHumid();
+        const { weatherToday: updateWeatherToday } = await useWeather();
+        const { sleepToday: updateSleepToday } = await useSleep();
+        happyEmotion = updatedHappyEmotion;
+        humidEmotion = updatedHumidEmotion;
+        weatherToday = updateWeatherToday;
+        sleepToday = updateSleepToday;
       }
+
+      const message = await CallGPT({
+        countAverage: countAverageAtom,
+        contents: contentsAtom,
+        temperature: happyEmotion,
+        humid: humidEmotion,
+        weather: weatherToday,
+        sleep: sleepToday,
+      });
+      setData(JSON.parse(message));
     } catch (error) {
       console.log('onClickAPIcallHandler error', error);
     } finally {
@@ -75,14 +58,12 @@ const GPTOverlay: React.FC<IGPTprops> = ({ onOk, onGo, diaryCheck }) => {
   };
 
   useEffect(() => {
-    if (diaryCheck !== null) {
+    if (diaryCheck !== null && diaryCheck !== undefined) {
       onClickAPIcallHandler();
     }
-  }, []);
+  }, [sleepToday]);
 
-  const onClickGotoPost = () => {
-    navigate('/post');
-  };
+  const onClickGotoPost = () => navigate('/post');
 
   const onClickGptReload = (e: React.MouseEvent) => {
     e.stopPropagation();
