@@ -4,10 +4,6 @@ import { motion } from 'framer-motion';
 export const MainContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url('/bg_community.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   border: 1px solid transparent;
 `;
 
