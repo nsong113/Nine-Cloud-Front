@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const CallGPT = async ({
+  countAverage,
   contents,
   temperature,
   humid,

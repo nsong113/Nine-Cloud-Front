@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Main.styles';
 import useCalendar from 'src/components/commons/hooks/useCalender';
-import { format, getYear, subMonths } from 'date-fns';
+import { format, getYear } from 'date-fns';
 import ViewAllInfinite from './ViewAllInfinite';
 import { useNavigate } from 'react-router-dom';
 import Animation from 'src/components/commons/utills/Animation/Animation';
@@ -12,24 +12,19 @@ import { getMonth } from 'date-fns';
 import { useInView } from 'react-intersection-observer';
 
 const ViewAll = () => {
-  const animationDuration = 300;
-  const { weekCalendarList, currentDate, setCurrentDate, DAY_LIST } =
-    useCalendar();
+  const { currentDate } = useCalendar();
   const navigate = useNavigate();
   const newDate = new Date(currentDate);
   const year = getYear(newDate);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const formattedMonth = format(currentMonth, 'MMMM');
-  const [isActiveModal, setIsActiveModal] = useState(false);
   const [ref, inView] = useInView();
 
   const month = getMonth(newDate) + 1;
   const today = new Date();
   const formattedTodayDate = today.toISOString();
 
-  const onClickMyProfile = () => {
-    setIsActiveModal((prev) => !prev);
-  };
+  const onClickGotoMain = () => navigate('/main');
 
   const {
     data: viewAllData,
@@ -89,6 +84,7 @@ const ViewAll = () => {
                   <S.StyledHoverTapButton
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={onClickGotoMain}
                   >
                     <S.Calendar />
                   </S.StyledHoverTapButton>

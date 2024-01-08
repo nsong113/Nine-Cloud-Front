@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 export const countAverage = atom({
   key: 'countAverage',
-  default: 53,
+  default: 3,
 });
 
 export const happyA = atom({
@@ -48,4 +48,9 @@ export const sentence = atom({
 export const image = atom({
   key: 'image',
   default: '',
+});
+
+export const cloudValidate = atom({
+  key: 'cloudValidate',
+  default: true,
 });

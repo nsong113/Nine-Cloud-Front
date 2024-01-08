@@ -6,7 +6,7 @@ import Animation2 from 'src/components/commons/utills/Animation/Animation2';
 import ReactQuill from 'react-quill';
 import './Quill.snow.css';
 import { useRecoilState } from 'recoil';
-import { contents, sentence } from 'src/states/counter';
+import { cloudValidate, contents, sentence } from 'src/states/counter';
 import PostBtn from 'src/components/commons/utills/PostBtn/PostBtn';
 import PostUpperWrapper from '../PostUpperWrapper';
 import FortuneOverlay from 'src/components/commons/modals/modalSetting/overlay/fortuneOverlay/FortuneOverlay';
@@ -18,6 +18,8 @@ const BoardWriteDiary = () => {
   const [contentsToday, setContentsToday] = useRecoilState<string>(contents);
   const [sentenceAtom, setSentence] = useRecoilState(sentence);
   const [validate, setValidate] = useState(true);
+  const [cloudValidateAtom, setCloudValidateAtom] =
+    useRecoilState(cloudValidate);
   const [alreadyTook, setAlreadyTook] = useState('');
 
   const maxCharacters = 200;
@@ -37,8 +39,9 @@ const BoardWriteDiary = () => {
   const onClickPrevPage = () => navigate('/post');
 
   const onClickNextPageBtn = () => {
-    if (contentsToday) navigate('/post2');
+    if (contentsToday && sentenceAtom) navigate('/post2');
     if (!contentsToday) setValidate(false);
+    if (!sentenceAtom) setCloudValidateAtom(false);
   };
 
   const onClickOpenFortune = () => {
@@ -99,12 +102,24 @@ const BoardWriteDiary = () => {
               <S.FortuneContainer>
                 <S.FortuneFlexWrapper>
                   {/* eslint-disable */}
-                  <img
-                    src={'/fortune_final.png'}
-                    alt='fortune cookie'
-                    style={cookieStyle}
-                    onClick={onClickOpenFortune}
-                  />
+                  {cloudValidateAtom && (
+                    <img
+                      src={'/fortune_final.png'}
+                      alt='fortune cookie'
+                      style={cookieStyle}
+                      onClick={onClickOpenFortune}
+                    />
+                  )}
+                  {!cloudValidateAtom && (
+                    <>
+                      <S.FalseCloudP>클릭!</S.FalseCloudP>
+                      <S.FalseCookieImage
+                        src={'/fortune_final.png'}
+                        alt='fortune cookie'
+                        onClick={onClickOpenFortune}
+                      />
+                    </>
+                  )}
                   {/* eslint-enable */}
                   <S.FortuneBox>
                     <S.FortuneGoDiv onClick={onClickOpenFortune}>

@@ -100,7 +100,7 @@ const usePen = (
 
       timerIdRef.current = setTimeout(() => {
         makeImageFile();
-      }, 500) as unknown as number;
+      }, 450) as unknown as number;
     }
     return () => {
       if (timerIdRef.current) {
@@ -120,7 +120,7 @@ const usePen = (
 
   const compressImage = async (image: File): Promise<Blob> => {
     const options = {
-      maxSizeMB: 0.01,
+      maxSizeMB: 0.02,
       maxWidthOrHeight: 550,
       useWebWorker: true,
     };

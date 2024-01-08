@@ -1,5 +1,5 @@
 /* eslint-disable */
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface BoardWriteDiaryProps {
   color: string;
@@ -219,6 +219,8 @@ export const FortuneContainer = styled.div`
 
   box-shadow: 0px 4px 20px 0px rgba(80, 53, 166, 0.1) inset;
   backdrop-filter: blur(15px);
+
+  position: relative;
 `;
 
 export const FortuneFlexWrapper = styled.div`
@@ -234,6 +236,8 @@ export const FortuneBox = styled.div`
   width: 60%;
   text-align: center;
   margin-right: 20px;
+  position: absolute;
+  right: 0;
 `;
 
 export const FortuneP = styled.p`
@@ -392,4 +396,30 @@ export const Validate = styled.div<BoardWriteDiaryProps>`
   font-weight: ${(props) =>
     !props.color ? (!props.fontColor ? '500' : '400') : ''};
   transform: translateY(50px);
+`;
+
+const gelatineAnimation = keyframes`
+from, to { transform: scale(0.9, 0.9); }
+25% { transform: scale(0.9, 1); }
+50% { transform: scale(1, 0.9); }
+75% { transform: scale(0.95, 1); }
+`;
+
+export const FalseCookieImage = styled.img`
+  width: 30%;
+  transform: scale(0.8);
+  animation: ${gelatineAnimation} 1s infinite;
+  position: absolute;
+  left: 12px;
+  cursor: pointer;
+`;
+
+export const FalseCloudP = styled.p`
+  position: absolute;
+  left: 43px;
+  z-index: 20;
+  color: white;
+  transition: color 0.3s;
+  font-weight: 500;
+  cursor: pointer;
 `;
