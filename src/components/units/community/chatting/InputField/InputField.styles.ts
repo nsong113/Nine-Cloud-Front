@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InputArea = styled.div`
-  background-color: #391d93;
+  background-color: #8066D1;
   height: 10.5%;
   min-height: 50px;
   display: flex;

@@ -7,7 +7,6 @@ const MessageContainer = ({ messageList, user }) => {
   const messageContainerRef = useRef(null);
 
   useEffect(() => {
-    // 컴포넌트가 마운트될 때와 messageList가 업데이트될 때 스크롤을 아래로 내립니다.
     scrollToBottom();
   }, [messageList]);
 

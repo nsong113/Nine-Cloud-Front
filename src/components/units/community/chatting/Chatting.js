@@ -63,7 +63,7 @@ const Chatting = () => {
       <S.Background>
         <S.Header>
           <S.HeaderContent>
-            <S.ButtonLeftArrow onClick={goBack}>&lt;</S.ButtonLeftArrow>
+            <S.ButtonLeftArrow onClick={goBack}>┏</S.ButtonLeftArrow>
             <S.ButtonRightContent>익명으로 진행돼요!</S.ButtonRightContent>
           </S.HeaderContent>
           <S.ImgRandom src={randomImage} alt='감정' />

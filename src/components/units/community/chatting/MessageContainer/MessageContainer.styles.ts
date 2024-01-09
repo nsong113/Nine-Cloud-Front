@@ -34,9 +34,9 @@ export const MyMessageContainer = styled.div`
 export const MyMessage = styled.div`
   background-color: rgba(57, 29, 147, 0.7);
   border-radius: 8px;
-  padding: 8px;
+  padding: 12px;
   max-width: 200px;
-  font-size: 15px;
+  font-size: 18px;
   color: white;
 `;
 

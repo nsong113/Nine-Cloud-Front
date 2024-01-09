@@ -29,7 +29,6 @@ const InputField = ({ message, setMessage, sendMessage }) => {
   );
 };
 
-// PropTypes 정의
 InputField.propTypes = {
   message: PropTypes.string.isRequired,
   setMessage: PropTypes.func.isRequired,
