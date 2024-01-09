@@ -83,7 +83,6 @@ const LoginSignin = () => {
 
   const onClickLoginHandler = async (): Promise<void> => {
     try {
-      // 이메일 정규식 표현 부분
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const passwordRegex =
         /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,20}$/;

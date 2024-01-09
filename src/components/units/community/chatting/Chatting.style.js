@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Background = styled.div`
   width: 100%;
   height: 100vh;
-  background: linear-gradient(to bottom, white 50%, #391d93 50%);
+  background: linear-gradient(to bottom, white 50%, #8066d1 50%);
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -24,9 +24,11 @@ export const HeaderContent = styled.div`
 
 export const ButtonLeftArrow = styled.span`
   color: #391d93;
-  font-size: 60px;
+  font-size: 40px;
   cursor: pointer;
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
+  font-weight: 300;
+  transform: rotate(-45deg);
 `;
 
 export const ButtonRightContent = styled.span`
@@ -34,6 +36,7 @@ export const ButtonRightContent = styled.span`
   font-size: 22px;
   margin-left: 10px;
   margin-top: 1.5rem;
+  text-align: center;
 `;
 
 export const ImgRandom = styled.img`

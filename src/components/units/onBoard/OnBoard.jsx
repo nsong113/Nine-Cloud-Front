@@ -4,7 +4,7 @@ import { Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { useNavigate } from 'react-router-dom'; // 추가된 부분
+import { useNavigate } from 'react-router-dom';
 import * as S from './OnBoard.styles';
 
 export default function OnBoard() {
@@ -43,10 +43,7 @@ export default function OnBoard() {
 
   useEffect(() => {
     if (swiperRef.current) {
-      // Check if swiperRef has been assigned
       const swiperInstance = swiperRef.current.swiper;
-
-      // Add event listener for when the Swiper instance is ready
       swiperInstance.on('init', () => {
         setIsLastSlide(swiperInstance.isEnd);
       });

@@ -22,16 +22,11 @@ axiosInstance.interceptors.response.use(
           },
         });
         const newAccessToken = response.headers['authorization'];
-        // const newRefreshToken = response.headers['refreshtoken'];
         localStorage.setItem('accessToken', newAccessToken);
-        // localStorage.setItem('refreshToken', newRefreshToken);
         console.log('재발급 성공');
-        // navigate('/loading');
         window.location.reload();
       } catch (err) {
         console.log(err);
-        // alert(`${error.response.msg}`);
-        // navigate('/main');
       }
     }
     return Promise.reject(error);
