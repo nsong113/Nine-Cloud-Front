@@ -38,7 +38,7 @@ export const ModalContentDiv = styled.div<ActiveModal>`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-radius: 50px 50px 0 0;
+  border-radius: 0px 50px 0 0;
   animation: ${(props) =>
     props.isActiveModal
       ? css`
@@ -62,9 +62,9 @@ export const ImageBoxDiv = styled.div`
 `;
 
 export const PicutureImg = styled.img<CheckEdit>`
-  width: ${(props) => (props.isEdit ? '170px' : '200px')};
-  height: ${(props) => (props.isEdit ? '170px' : '200px')};
-  border-radius: 50px;
+  width: ${(props) => (props.isEdit ? '162px' : '200px')};
+  height: ${(props) => (props.isEdit ? '162px' : '200px')};
+  border-radius: 159px;
   border: 1px solid black;
   margin-top: ${(props) => (props.isEdit ? '0px' : '30px')};
 `;
@@ -81,6 +81,9 @@ export const ImageButton = styled.button`
   border: 2px solid var(--sub, #8066d1);
   cursor: pointer;
   margin-top: 10px;
+  width: 144px;
+  height: 35px;
+  background-color: white;
 `;
 
 export const ImagePlustButtonBox = styled.div``;
@@ -262,8 +265,8 @@ export const SignButtonDiv = styled.div`
 `;
 
 export const CancelImg = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
   margin: 20px;
   cursor: pointer;
@@ -315,6 +318,10 @@ export const NameInput = styled.input`
   background: var(--contents-box, #f5f2ff);
   border: 0px;
   padding-left: 20px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--main, #391d93);
 `;
 
 export const ChangePasswordSpan = styled.span`
@@ -340,9 +347,7 @@ export const CancelButton = styled.button`
   cursor: pointer;
   background: #fff;
   &:hover {
-    background-color: #391d93;
-    color: #fff;
-    scale: 110%;
+    border: 2px solid #5035a6;
   }
 `;
 
@@ -355,7 +360,7 @@ export const SubmitButton = styled.button`
   text-align: center;
   font-size: 20px;
   font-weight: 500;
-  border-radius: 5px 20px;
+  border-radius: 20px 5px;
   border: 1px solid #ece9f5;
   background: #ece9f5;
   margin-left: 20px;

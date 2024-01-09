@@ -140,17 +140,17 @@ const Calender = () => {
             /> */}
             <S.YearMonthChangeBoxDiv>
               <S.StyledHoverTapButton
-                whileHover={{ scale: 1.3 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 1 }}
               >
-                <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+                <S.PrevMonth onClick={onClickPrevMonth} size={28} />
               </S.StyledHoverTapButton>
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
               <S.StyledHoverTapButton
-                whileHover={{ scale: 1.3 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 1 }}
               >
-                <S.NextMonth onClick={onClickNextMonth} size={30} />
+                <S.NextMonth onClick={onClickNextMonth} size={28} />
               </S.StyledHoverTapButton>
             </S.YearMonthChangeBoxDiv>
             <S.PrevNextMonthBoxDiv>

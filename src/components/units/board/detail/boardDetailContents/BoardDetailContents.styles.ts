@@ -30,7 +30,7 @@ export const heartBoxDiv = styled.div`
 `;
 
 export const CategoryText = styled.span`
-  color: var(--sub, #8066d1);
+  color: var(--Gray1, #3d3d3d);
   text-align: center;
   font-size: 18px;
   font-style: normal;
@@ -59,12 +59,13 @@ export const MindStatusSpan = styled.span`
   width: 77px;
   height: 30px;
   flex-shrink: 0;
-  color: var(--main, #391d93);
+  color: var(--sub, #8066d1);
   text-align: center;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 28px;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 5px;
 `;
 
 export const SentenceSpan = styled.span`

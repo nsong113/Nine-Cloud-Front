@@ -33,8 +33,6 @@ const Header = () => {
           <S.LogoBoxDiv>
             <div style={{ display: 'flex' }}>
               <S.LogoImg
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
                 onClick={onClickLogo}
                 src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/logo_final.png'
                 rel='preload'

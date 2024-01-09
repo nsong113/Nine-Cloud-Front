@@ -24,7 +24,7 @@ const DeleteOverlay: React.FC<IDelete> = ({ onOk, onClose }) => {
             <S.ContentsDiv>
               <S.TitleSpan>나인 클라우드를 정말 떠나시겠어요?</S.TitleSpan>
               <S.SubTitleSpan>
-                떠나시면 작성하신 마음 일기는 모두 사라져요!
+                회원 탈퇴 시 작성하신 마음 일기는 모두 사라져요!
               </S.SubTitleSpan>
             </S.ContentsDiv>
             <S.ButtonWrapperDiv>
