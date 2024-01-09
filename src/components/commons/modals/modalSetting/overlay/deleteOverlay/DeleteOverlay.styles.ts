@@ -41,9 +41,11 @@ export const ModalContentDiv = styled.div`
   align-items: center;
   justify-content: center;
   opacity: 0.97;
+  margin-bottom: 50px;
 `;
 
 export const TitleSpan = styled.span`
+  margin-top: 10px;
   color: var(--main, #391d93);
   text-align: center;
   font-size: 22px;
@@ -52,9 +54,10 @@ export const TitleSpan = styled.span`
 `;
 
 export const SubTitleSpan = styled.span`
+  margin-top: 5px;
   color: var(--Gray2, #929292);
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
 `;
 

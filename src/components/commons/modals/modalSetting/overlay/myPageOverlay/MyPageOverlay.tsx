@@ -172,7 +172,10 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk, isActiveModal }) => {
           isActiveModal={isActiveModal}
         >
           {isOpenModal && (
-            <DeleteOverlay onOk={onClickUnRegister} onClose={onClickOpenModal} />
+            <DeleteOverlay
+              onOk={onClickUnRegister}
+              onClose={onClickOpenModal}
+            />
           )}
           <S.CancelImgBox>
             <S.StyledHoverTapButton
@@ -266,9 +269,7 @@ const MyPageOverlay: React.FC<IMyPage> = ({ onOk, isActiveModal }) => {
               )}
               {isEdit && (
                 <S.ButtonDiv>
-                  <S.CancelButton onClick={onClickToggle}>
-                    취소하기
-                  </S.CancelButton>
+                  <S.CancelButton onClick={onClickToggle}>취소</S.CancelButton>
                   <S.SubmitButton onClick={onClickEditBtn}>
                     등록하기
                   </S.SubmitButton>
