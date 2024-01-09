@@ -28,18 +28,12 @@ const BoardDetail = () => {
   const navigate = useNavigate();
   const [isActiveModal, setIsActiveModal] = useRecoilState(isActiveEditModal);
   const [isHeart, setIsHeart] = useState(false);
-  const [isClickedPencil, setIsClickedPencil] = useState(false);
-  const [isDelete, setIsDelete] = useRecoilState(isActiveDeleteModal);
 
   useEffect(() => {
     return () => {
       queryClient.removeQueries(['post']);
     };
   }, []);
-
-  const onClickEdit = () => {
-    setIsActiveModal((prev) => !prev);
-  };
 
   const { data: comment } = useQuery('comment', () => getComments(params.id));
   const { data: profile } = useQuery('profile', getMyInfo);
@@ -70,9 +64,6 @@ const BoardDetail = () => {
     }
   };
 
-  const onClickDeleteBtn = () => {
-    setIsDelete((prev) => !prev);
-  };
 
   const createdAtDate = detailedContent?.createdAt
     ? new Date(detailedContent.createdAt)
