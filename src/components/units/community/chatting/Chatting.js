@@ -5,6 +5,7 @@ import * as S from './Chatting.style';
 import MessageContainer from './MessageContainer/MessageContainer';
 import UserNameGenerator from './UserNameGenerator';
 import { useNavigate } from 'react-router-dom';
+import alertUnit from 'src/components/commons/utills/Alert/alertUnit';
 
 const Chatting = () => {
   const [user, setUser] = useState(null);
@@ -29,7 +30,9 @@ const Chatting = () => {
   ];
 
   useEffect(() => {
-    alert(`당신의 이름은 '${userNameClient}'입니다!`);
+    alertUnit(
+      `<span style="font-size: 20px; font-weight : bolder;">당신의 이름은</span></br><span style="font-size: 20px; font-weight : bolder;">"${userNameClient}"</span>`
+    );
     userName();
     socket.on('message', (message) => {
       setMessageList((prevState) => prevState.concat(message));

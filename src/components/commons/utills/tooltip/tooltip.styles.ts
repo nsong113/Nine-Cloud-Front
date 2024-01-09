@@ -5,11 +5,16 @@ export const Container = styled.div`
   display: inline-block;
 `;
 
-export const tooltip = keyframes`
-  0% { opacity: 0; }
-  40% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 1; }
+const floatingAnimation = keyframes`
+  0% {
+    transform: translate(-50%,-100%);
+  }
+  50% {
+    transform: translate(-50%, -110%);
+  }
+  100% {
+    transform: translate(-50%,-100%);
+  }
 `;
 
 export const Content = styled.div`
@@ -20,12 +25,13 @@ export const Content = styled.div`
   left: 50%;
   transform: translate(-50%, -100%);
   width: 80px;
-  background-color: orange;
+  background-color: #391d93;
   border-radius: 20px;
   height: 30px;
   text-align: center;
   line-height: 30px;
-  animation: ${tooltip} 0.3s ease-in-out;
+  animation: ${floatingAnimation} 1.5s ease-in-out infinite; /* 떠다니는 애니메이션 추가 */
+  color: white;
 
   ${Container}:hover &,
   ${Container}:active & {

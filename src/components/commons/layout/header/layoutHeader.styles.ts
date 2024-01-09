@@ -11,7 +11,7 @@ export const HeaderContainerDiv = styled.div`
   height: 115px;
   flex-shrink: 0;
   border-radius: 0px 0px 40px 0px;
-  background: #391d93;
+  background: #8066d1;
   box-shadow: 0px 4px 4px 0px rgba(57, 29, 147, 0.2);
 `;
 export const CalenderHeaderDiv = styled.div`
@@ -36,8 +36,8 @@ export const StyledHoverTapButton = styled(motion.button)`
 `;
 
 export const AvatarSizeImg = styled(motion.img)`
-  width: 70px;
-  height: 70px;
+  width: 58px;
+  height: 58px;
   flex-shrink: 0;
   cursor: pointer;
   border-radius: 159px;

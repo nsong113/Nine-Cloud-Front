@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 
 const alertUnit = (title: string) => {
   Swal.fire({
-    icon: 'warning',
+    icon: 'info',
     width: '400px',
     title: ` ${title}`,
     confirmButtonText: '확인',
