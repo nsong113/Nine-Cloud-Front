@@ -36,7 +36,7 @@ export const MyMessage = styled.div`
   border-radius: 8px;
   padding: 12px;
   max-width: 200px;
-  font-size: 18px;
+  font-size: 15px;
   color: white;
 `;
 
