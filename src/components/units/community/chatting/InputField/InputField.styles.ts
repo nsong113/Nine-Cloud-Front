@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const InputArea = styled.div`
-  background-color: #8066D1;
-  height: 10.5%;
+  background-color: #8066d1;
+  height: 10%;
   min-height: 50px;
   display: flex;
   justify-content: center;
