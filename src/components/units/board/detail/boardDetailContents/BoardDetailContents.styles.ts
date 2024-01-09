@@ -144,8 +144,8 @@ export const DotWrapperDiv = styled(motion.div)`
 `;
 
 export const PencilImg = styled(motion.img)`
-  width: 5px;
-  height: 24px;
+  width: 20px;
+  height: 5px;
   cursor: pointer;
 `;
 

@@ -91,9 +91,7 @@ const CalendarBody = (props: IGetPostsData) => {
             const weatherStatus = getWeatherData(String(cellDate));
             const id = getId(String(cellDate));
 
-            const isToday =
-              cellDate === new Date().getDate() &&
-              props.currentMonth.getMonth() === new Date().getMonth();
+            const isToday = cellDate === new Date().getDate() && isCurrentMonth;
 
             return (
               <S.TableCell
