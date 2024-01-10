@@ -211,8 +211,8 @@ const BoardDetailComment: React.FC<IComment> = ({
                 ))}
               </S.CommentHeaderDiv>
             </S.CommentBox>
-            <S.CommentFooterWrapDiv>
-              {detailedContent.isPublic === true && (
+            {detailedContent.isPublic === true && (
+              <S.CommentFooterWrapDiv>
                 <div>
                   <S.BlankDiv>
                     <S.InputBoxDiv
@@ -229,18 +229,18 @@ const BoardDetailComment: React.FC<IComment> = ({
                     <S.CountCheckSpan>{content.length}/200</S.CountCheckSpan>
                   )}
                 </div>
-              )}
-              {detailedContent.isPublic === false && (
-                <div>
-                  <S.BlankInput
-                    placeholder='공개로 전환하면 다른 사용자가 댓글을 달 수 있어요'
-                    value={content}
-                    onChange={onChangeComment}
-                    disabled
-                  />
-                </div>
-              )}
-            </S.CommentFooterWrapDiv>
+              </S.CommentFooterWrapDiv>
+            )}
+            {detailedContent.isPublic === false && (
+              <div>
+                <S.BlankInput
+                  placeholder='공개로 전환하면 다른 사용자가 댓글을 달 수 있어요'
+                  value={content}
+                  onChange={onChangeComment}
+                  disabled
+                />
+              </div>
+            )}
           </S.CommentsWrapperDiv>
         </div>
       )}
