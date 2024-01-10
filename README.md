@@ -44,47 +44,6 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 </br>
 
-## **🎈 주요기능 소개**
-
-<table>
-  <tr align="center">
-    <td><strong>소셜 로그인</strong></td>
-    <td><strong>달력 페이지</strong></td>
-    <td><strong>그림 그리기</strong></td>
-  </tr>
-   <tr align="center">
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_loginpage.gif" alt="소셜 로그인" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_mainpage.gif" alt="메인" style="height:500px"/></td>
-    <td><img src="https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/post.gif" alt="일기 추가하기" style="height:500px"/></td>
-  </tr>
-</table>
-
-</br>
-
-<table>
-  <tr align="center">
-    <td><strong>AI open api</strong></td>
-    <td><strong>무한스크롤</strong></td>
-    <td><strong>채팅방</strong></td>
-  </tr>
-   <tr align="center">
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_gptpage.gif" alt="AI" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_communitypage.gif" alt="커뮤니티" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_chatting.gif" alt="채팅방" style="height:500px"/></td>
-  </tr>
-</table>
-
-</br>
-
-## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
-
-|                                                   주철민                                                    |                                                   송지우                                                   |                                                   한덕용                                                   |
-| :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
-| <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/profile.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JWface.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/DYface.jpg" width="200" height="200"/> |
-|                                [cheolminJOO](https://github.com/cheolminJOO)                                |                                  [nsong113](https://github.com/nsong113)                                   |                                [HyperQuanx](https://github.com/HyperQuanx)                                 |
-
-</br>
-
 ## **💻 역할 담당**
 
 <table>
@@ -126,6 +85,47 @@ com    <td align="center">nsong113@gmail.com</td>
     <td align="center">qbixroqkfwk@gmail.com</td>
   </tr>
 </table>
+
+</br>
+
+## **🎈 주요기능 소개**
+
+<table>
+  <tr align="center">
+    <td><strong>소셜 로그인</strong></td>
+    <td><strong>달력 페이지</strong></td>
+    <td><strong>그림 그리기</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_loginpage.gif" alt="소셜 로그인" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_mainpage.gif" alt="메인" style="height:500px"/></td>
+    <td><img src="https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/post.gif" alt="일기 추가하기" style="height:500px"/></td>
+  </tr>
+</table>
+
+</br>
+
+<table>
+  <tr align="center">
+    <td><strong>AI open api</strong></td>
+    <td><strong>무한스크롤</strong></td>
+    <td><strong>채팅방</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_gptpage.gif" alt="AI" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_communitypage.gif" alt="커뮤니티" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_chatting.gif" alt="채팅방" style="height:500px"/></td>
+  </tr>
+</table>
+
+</br>
+
+## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
+
+|                                                   주철민                                                    |                                                   송지우                                                   |                                                   한덕용                                                   |
+| :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/profile.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JWface.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/DYface.jpg" width="200" height="200"/> |
+|                                [cheolminJOO](https://github.com/cheolminJOO)                                |                                  [nsong113](https://github.com/nsong113)                                   |                                [HyperQuanx](https://github.com/HyperQuanx)                                 |
 
 </br>
 
@@ -371,7 +371,6 @@ get 요청이 보내졌습니다.  <br>
   <br>
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode.png" width="804" height="255">
   혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
-  그리고 CORS(Cross-Origin Resource Sharing) 설정을 모든 도메인에서 서버로의 요청을 허용시키는 걸로 변경해서 연결에 성공하였습니다.
   <br>
   <br>
 - 결과 -
