@@ -119,10 +119,8 @@ const Signup = () => {
     } catch (error: any) {
       if (error.response) {
         const errorMsg = error.response.data.message;
-        console.error('로그인 실패', errorMsg);
         alert(errorMsg);
       } else {
-        console.error('네트워크 오류', error.message);
         alert('네트워크 오류');
       }
     }
@@ -147,7 +145,6 @@ const Signup = () => {
         navigate('/login');
       }
     } catch (error: any) {
-      console.error(error.response.data.message);
       alert(error.response.data.message);
     }
   };

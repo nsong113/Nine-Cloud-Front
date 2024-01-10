@@ -41,7 +41,6 @@ const Chatting = () => {
 
   const userName = () => {
     socket.emit('login', userNameServer, (res: any) => {
-      console.log('Res', res);
       if (res?.ok) {
         setUser(res.data);
       }
