@@ -44,6 +44,15 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 </br>
 
+## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
+
+|                                                   주철민                                                    |                                                   송지우                                                   |                                                   한덕용                                                   |
+| :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/profile.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JWface.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/DYface.jpg" width="200" height="200"/> |
+|                                [cheolminJOO](https://github.com/cheolminJOO)                                |                                  [nsong113](https://github.com/nsong113)                                   |                                [HyperQuanx](https://github.com/HyperQuanx)                                 |
+
+</br>
+
 ## **💻 역할 담당**
 
 <table>
@@ -117,15 +126,6 @@ com    <td align="center">nsong113@gmail.com</td>
     <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_chatting.gif" alt="채팅방" style="height:500px"/></td>
   </tr>
 </table>
-
-</br>
-
-## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
-
-|                                                   주철민                                                    |                                                   송지우                                                   |                                                   한덕용                                                   |
-| :---------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
-| <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/profile.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/JWface.jpg" width="200" height="200"/> | <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/DYface.jpg" width="200" height="200"/> |
-|                                [cheolminJOO](https://github.com/cheolminJOO)                                |                                  [nsong113](https://github.com/nsong113)                                   |                                [HyperQuanx](https://github.com/HyperQuanx)                                 |
 
 </br>
 
