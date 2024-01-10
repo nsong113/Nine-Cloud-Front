@@ -222,13 +222,6 @@ com    <td align="center">nsong113@gmail.com</td>
       스크롤 위치와 상관 없이 요소가 화면에 나타나거나 사라질 때 이를 감지할 수 있어 웹 페이지의 부하를 감소시킬 수 있습니다.
     </td>
   </tr>
-    <tr>
-   <td><strong>Jest</strong></td>
-    <td>     
-      Jest는 스냅샷 테스팅을 지원하여 컴포넌트나 데이터 구조의 변화를 캡처하고 향후 변경 사항을 감지할 수 있습니다.<br/>
-      데이터 가공이 많은 나인 클라우드에 잘 어울릴 것 같아 채택했습니다.
-  </td>
-  </tr>
    <tr>
     <td><strong>sweetAlert2</strong></td>
     <td>
