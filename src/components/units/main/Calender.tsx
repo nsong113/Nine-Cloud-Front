@@ -171,39 +171,37 @@ const Calender = () => {
         </S.HeaderWrapperDiv>
 
         <S.Test>
-          <Animation>
-            <S.LeftRightAnimeButton
-              key={currentMonth.toString()}
-              initial={{
-                opacity: 0,
-                x: animationDirection === 'leftToRight' ? '-75%' : '75%',
-              }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{
-                opacity: 0,
-                x: animationDirection === 'leftToRight' ? '75%' : '-75%',
-              }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-            >
-              <S.CalendarTable>
-                <S.TableHead>
-                  <S.TableRow>
-                    {DAY_LIST.map((day, index) => (
-                      <S.ThCell key={index}>{day}</S.ThCell>
-                    ))}
-                  </S.TableRow>
-                </S.TableHead>
-                {/* 캘린더 바디 컴포넌트 */}
-                <CalendarBody
-                  weekCalendarList={weekCalendarList}
-                  currentYear={currentYear}
-                  currentMonth={currentMonth}
-                  currentDate={currentDate}
-                  data={data}
-                />
-              </S.CalendarTable>
-            </S.LeftRightAnimeButton>
-          </Animation>
+          <S.LeftRightAnimeButton
+            key={currentMonth.toString()}
+            initial={{
+              opacity: 0,
+              x: animationDirection === 'leftToRight' ? '-75%' : '75%',
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{
+              opacity: 0,
+              x: animationDirection === 'leftToRight' ? '75%' : '-75%',
+            }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+          >
+            <S.CalendarTable>
+              <S.TableHead>
+                <S.TableRow>
+                  {DAY_LIST.map((day, index) => (
+                    <S.ThCell key={index}>{day}</S.ThCell>
+                  ))}
+                </S.TableRow>
+              </S.TableHead>
+              {/* 캘린더 바디 컴포넌트 */}
+              <CalendarBody
+                weekCalendarList={weekCalendarList}
+                currentYear={currentYear}
+                currentMonth={currentMonth}
+                currentDate={currentDate}
+                data={data}
+              />
+            </S.CalendarTable>
+          </S.LeftRightAnimeButton>
           {isGPTModal && (
             <GPTOverlay
               onOk={onClickConfirm}

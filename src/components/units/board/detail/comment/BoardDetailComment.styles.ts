@@ -59,7 +59,7 @@ export const CommentFooterWrapDiv = styled.div`
   border-radius: 4px 15px;
   background: #fff;
   margin-left: 5px;
-  border: 1px solid purple;
+  border: 3px solid rgba(245, 242, 255, 1);
 `;
 
 export const BlankDiv = styled.div`
@@ -69,7 +69,7 @@ export const BlankDiv = styled.div`
 export const InputBoxDiv = styled.input`
   background-color: white;
   width: 290px;
-  height: 47px;
+  height: 40px;
   margin-left: 10px;
   border: 0px;
   padding-left: 10px;
