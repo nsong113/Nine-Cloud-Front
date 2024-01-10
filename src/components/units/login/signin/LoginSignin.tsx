@@ -1,18 +1,10 @@
-import React, {
-  ChangeEvent,
-  KeyboardEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import axios, { AxiosError } from 'axios';
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import * as S from './LoginSignin.styles';
 import { useNavigate } from 'react-router-dom';
 import LoginKakao from '../social/LoginKakao';
 import LoginGoogle from '../social/LoginGoogle';
 import LoginNaver from '../social/LoginNaver';
 import axiosInstance from 'src/apis/loginapi';
-import { Authorization } from 'src/components/commons/utills/authorization/Authorization';
 import Swal from 'sweetalert2';
 
 const imagePreload = [];
@@ -24,7 +16,6 @@ const LoginSignin = () => {
   const [passwordValidationMessage, setPasswordValidationMessage] =
     useState('');
   const navigate = useNavigate();
-  const BASE_URL = process.env.REACT_APP_SERVER_URL;
   const imageUrls = [
     'https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png',
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/blank_circle.png',
@@ -41,7 +32,7 @@ const LoginSignin = () => {
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_sad.webp',
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_happy.webp',
     'https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/rain_soso.webp',
-    'https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/alert.png'
+    'https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/alert.png',
   ];
 
   const accessToken = localStorage.getItem('accessToken');
@@ -118,8 +109,22 @@ const LoginSignin = () => {
       alert(`${response.data.message}`);
       navigate('/loading');
     } catch (error: any) {
-      alert(`${error.response.data.message}`);
-      console.error('네트워크 오류', error.message);
+      if (error.response && error.response.status === 403) {
+        const userResponse = confirm(`${error.response.data.message}`);
+        if (userResponse) {
+          const response = await axiosInstance.post(`/cancel-signoff`, {
+            email: email,
+          });
+          alert(`${response.data.message} 다시 로그인 해주세요.`);
+        } else {
+          const response = await axiosInstance.post(`/signoffInProgress`, {
+            email: email,
+          });
+          alert(`${response.data.message}`);
+        }
+      } else {
+        alert(`${error.response.data.message}`);
+      }
     }
   };
 
@@ -127,21 +132,16 @@ const LoginSignin = () => {
     navigate('/signup');
   };
 
-  // 유효성 검사 부분
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
 
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,3}$/;
     if (newEmail.trim() === '') {
-      // 이메일이 비어 있다면 메시지 초기화
       setEmailValidationMessage('');
     } else if (!emailRegex.test(newEmail)) {
-      // 이메일 형식이 유효하지 않은 경우 메시지 표시
-
       setEmailValidationMessage('이메일 형식으로 입력해주세요');
     } else {
-      // 유효한 이메일 형식인 경우 완료 메시지 표시
       setEmailValidationMessage('완료');
     }
   };
@@ -153,15 +153,12 @@ const LoginSignin = () => {
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,20}$/;
     if (newPassword.trim() === '') {
-      // 비밀번호가 비어 있다면 메시지 초기화
       setPasswordValidationMessage('');
     } else if (!passwordRegex.test(newPassword)) {
-      // 비밀번호 유효성 검사 실패 시 메시지 표시
       setPasswordValidationMessage(
         '8~20자의 영문자, 숫자, 특수문자(@, $, !, %, *, ?, #)를 포함해야 합니다.'
       );
     } else {
-      // 유효한 비밀번호인 경우 완료 메시지 표시
       setPasswordValidationMessage('완료');
     }
   };
@@ -171,7 +168,6 @@ const LoginSignin = () => {
       emailValidationMessage === '완료' && passwordValidationMessage === '완료'
     );
   };
-  //테스트
 
   return (
     <>
@@ -182,7 +178,7 @@ const LoginSignin = () => {
         <S.LoginTitle>Login</S.LoginTitle>
         <S.LoginContainer>
           <S.InputBox>
-            <div style={{ display: 'flex' }}>
+            <S.FlexBox>
               <S.Input
                 type='text'
                 value={email}
@@ -190,7 +186,7 @@ const LoginSignin = () => {
                 onKeyDown={handleKeyPress}
                 placeholder='Email'
               />
-            </div>
+            </S.FlexBox>
             <S.ValidationMessage isError={emailValidationMessage !== '완료'}>
               {emailValidationMessage}
             </S.ValidationMessage>
@@ -234,7 +230,3 @@ const LoginSignin = () => {
 };
 
 export default LoginSignin;
-
-// 버튼 스타일 props
-// 비동기통신 apis 폴더로 빼놓기, 이름
-// 인터셉터

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState, FormEvent } from 'react';
 import socket from './server';
 import InputField from './InputField/InputField';
 import * as S from './Chatting.style';
@@ -14,7 +14,8 @@ const Chatting = () => {
   const [randomImage, setRandomImage] = useState('');
   const userNameServer = UserNameGenerator();
   sessionStorage.setItem('username', userNameServer);
-  const userNameClient = sessionStorage.getItem('username').split('.')[0];
+  const userNameClient =
+    sessionStorage.getItem('username')?.split('.')[0] || '';
   const navigate = useNavigate();
 
   const images = [
@@ -34,7 +35,7 @@ const Chatting = () => {
       `<span style="font-size: 20px; font-weight : bolder;">당신의 이름은</span></br><span style="font-size: 20px; font-weight : bolder;">"${userNameClient}"</span>`
     );
     userName();
-    socket.on('message', (message) => {
+    socket.on('message', (message: any) => {
       setMessageList((prevState) => prevState.concat(message));
     });
     const randomIndex = Math.floor(Math.random() * images.length);
@@ -42,17 +43,16 @@ const Chatting = () => {
   }, []);
 
   const userName = () => {
-    socket.emit('login', userNameServer, (res) => {
-      console.log('Res', res);
+    socket.emit('login', userNameServer, (res: any) => {
       if (res?.ok) {
         setUser(res.data);
       }
     });
   };
 
-  const sendMessage = (event) => {
+  const sendMessage = (event: FormEvent) => {
     event.preventDefault();
-    socket.emit('sendMessage', message, (res) => {
+    socket.emit('sendMessage', message, (res: any) => {
       console.log(res);
     });
   };
@@ -71,7 +71,7 @@ const Chatting = () => {
           </S.HeaderContent>
           <S.ImgRandom src={randomImage} alt='감정' />
         </S.Header>
-        <MessageContainer messageList={messageList} user={user} />
+        {user && <MessageContainer messageList={messageList} user={user} />}
         <InputField
           message={message}
           setMessage={setMessage}

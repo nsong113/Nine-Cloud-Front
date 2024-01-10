@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosInstance from 'src/apis/loginapi';
-import Loading from 'src/components/units/loading/Loading';
 
 const KakaoLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
-  // const code = window.location.href;
   const navigate = useNavigate();
   const [dots, setDots] = useState('.');
 
@@ -40,7 +38,7 @@ const KakaoLoginHandler = () => {
     return () => clearInterval(intervalId);
   }, [code, navigate]);
 
-  return <>{/* <Loading /> */}</>;
+  return <></>;
 };
 
 export default KakaoLoginHandler;

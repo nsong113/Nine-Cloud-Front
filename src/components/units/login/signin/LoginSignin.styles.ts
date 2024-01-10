@@ -69,8 +69,8 @@ export const Input = styled.input`
   background-color: inherit;
   border-bottom: 3px solid #391d93;
   &:focus {
-    outline: none; /* 클릭 시 포커스 효과 제거 */
-    border-bottom: 3px solid #391d93; /* 클릭 시 하단 border 추가 */
+    outline: none;
+    border-bottom: 3px solid #391d93;
   }
 `;
 
@@ -115,11 +115,11 @@ export const Circle = styled.button`
   height: 50px;
   border-radius: 50%;
   background: #ccc;
-  background-size: cover; /* 이미지 크기 조절 */
+  background-size: cover;
   background-position: center;
   background-color: white;
   border: none;
-  transition: transform 0.2s ease-in-out; /* 클릭 시 애니메이션 효과 */
+  transition: transform 0.2s ease-in-out;
 
   &:active {
     transform: scale(0.95);
@@ -141,7 +141,7 @@ export const FlexBox = styled.div`
 export const ValidationMessage = styled.div<ValidationMessageProps>`
   font-size: 14px;
   height: 14px;
-  margin-top: 5px; /* 적절한 여백 설정 */
+  margin-top: 5px;
 
   ${({ isError }) =>
     isError
