@@ -23,7 +23,6 @@ axiosInstance.interceptors.response.use(
         });
         const newAccessToken = response.headers['authorization'];
         localStorage.setItem('accessToken', newAccessToken);
-        console.log('재발급 성공');
         window.location.reload();
       } catch (err) {
         console.log(err);

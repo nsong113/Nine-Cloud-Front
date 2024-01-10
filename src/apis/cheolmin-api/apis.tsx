@@ -14,30 +14,6 @@ import Swal from 'sweetalert2';
 const accessToken = localStorage.getItem('accessToken');
 const refreshToken = localStorage.getItem('refreshToken');
 
-// export const addPost = async (target: IAddPost) => {
-//   try {
-//     const formData = new FormData();
-//     formData.append('image', target.image);
-//     formData.append('content', target.content);
-//     // formData.append('EmotionStatus', target.EmotionStatus);
-//     const response = await axios.post(
-//       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
-//       formData,
-//       {
-//         withCredentials: true,
-//         headers: {
-//           Refreshtoken: `${refreshToken}`,
-//           Authorization: `${accessToken}`,
-//         },
-//       }
-//     );
-//     console.log(response);
-//     return response.data;
-//   } catch (error) {
-//     console.log('다시 시도하세요');
-//   }
-// };
-
 export const deletePost = async (id: string | undefined) => {
   try {
     const response = await axiosInstance.delete(`/diary/delete/${id}`, {
@@ -69,8 +45,6 @@ export const deletePost = async (id: string | undefined) => {
 
 export const getPosts = async (target: IGetPosts) => {
   try {
-    // console.log(accessToken);
-    // console.log(refreshToken);
     const response = await axiosInstance.get(
       `/diary/calendar/${target.currentYear}/${target.currentMonth}`,
       {
@@ -82,7 +56,7 @@ export const getPosts = async (target: IGetPosts) => {
     );
     return response.data;
   } catch (error) {
-    console.log('다시 시도하세요');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -94,11 +68,9 @@ export const getOnePostInfo = async (diaryId: string | undefined) => {
         Authorization: `${accessToken}`,
       },
     });
-    // console.log('게시글 상세조회에 성공하셨습니다.');
-
     return response.data;
   } catch (error) {
-    console.log('테스트');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -116,7 +88,7 @@ export const getComments = async (diaryId: string | undefined) => {
 
     return response.data;
   } catch (error) {
-    console.log('테스트');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -136,7 +108,7 @@ export const addComment = async (target: IAddComment) => {
     );
     return response.data;
   } catch (error) {
-    console.log('테스트');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -156,7 +128,7 @@ export const editComment = async (target: IEditComment) => {
     );
     return response.data;
   } catch (error) {
-    console.log('잘못된 접근입니다.');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -191,36 +163,11 @@ export const getMyInfo = async () => {
         Refreshtoken: `${refreshToken}`,
       },
     });
-    // console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log('error');
+    alert("잘못된 요청입니다.")
   }
 };
-
-// export const addPost = async (target: IAddPost) => {
-//   try {
-//     const formData = new FormData();
-//     formData.append('image', target.image);
-//     formData.append('content', target.content);
-//     // formData.append('EmotionStatus', target.EmotionStatus);
-//     const response = await axios.post(
-//       `${process.env.REACT_APP_SERVER_URL}/diary/posting`,
-//       formData,
-//       {
-//         withCredentials: true,
-//         headers: {
-//           Refreshtoken: `${refreshToken}`,
-//           Authorization: `${accessToken}`,
-//         },
-//       }
-//     );
-//     console.log(response);
-//     return response.data;
-//   } catch (error) {
-//     console.log('다시 시도하세요');
-//   }
-// };
 
 export const editMyInfo = async (target: IEditMyInfo) => {
   try {
@@ -243,17 +190,9 @@ export const editMyInfo = async (target: IEditMyInfo) => {
       showLoaderOnConfirm: true,
       allowOutsideClick: () => !Swal.isLoading(),
     });
-    // console.log('formData', formData);
     return response.data;
   } catch (error) {
-    // Swal.fire({
-    //   icon: 'error',
-    //   width: '400px',
-    //   title: '이미지와 닉네임을 다시 확인하세요.',
-    //   confirmButtonText: '확인',
-    //   showLoaderOnConfirm: true,
-    //   allowOutsideClick: () => !Swal.isLoading(),
-    // });
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -267,7 +206,7 @@ export const getPrevMonthPosts = async () => {
     });
     return response.data;
   } catch (error) {
-    console.log('error');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -281,7 +220,7 @@ export const getNextMonthPosts = async () => {
     });
     return response.data;
   } catch (error) {
-    console.log('error');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -311,7 +250,7 @@ export const updatePost = async (target: IUpdatePost) => {
     });
     return response.data;
   } catch (error) {
-    console.log('error');
+    alert("잘못된 요청입니다.")
   }
 };
 
@@ -327,6 +266,6 @@ export const getHearts = async (diaryId: string | undefined) => {
 
     return response.data;
   } catch (error) {
-    console.log('에러');
+    alert("잘못된 요청입니다.")
   }
 };

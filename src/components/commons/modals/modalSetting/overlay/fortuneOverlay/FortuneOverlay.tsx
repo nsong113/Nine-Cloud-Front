@@ -47,7 +47,6 @@ const FortuneOverlay: React.FC<ICloudModal> = ({ goBackFortune }) => {
     setCloudValidateAtom(true);
   };
 
-  console.log(sentenceAtom);
   return (
     <S.ContainerDiv
       className='modal'

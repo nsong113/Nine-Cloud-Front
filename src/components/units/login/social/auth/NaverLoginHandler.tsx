@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axiosInstance from 'src/apis/loginapi';
-import Loading from 'src/components/units/loading/Loading';
 
 const NaverLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
@@ -40,7 +39,7 @@ const NaverLoginHandler = () => {
     return () => clearInterval(intervalId);
   }, [code, navigate]);
 
-  return <>{/* <Loading /> */}</>;
+  return <></>;
 };
 
 export default NaverLoginHandler;

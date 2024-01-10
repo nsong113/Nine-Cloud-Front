@@ -48,8 +48,8 @@ export const SendButton = styled.button`
   color: white;
   &:active {
     background-color: #926fff;
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1); /* 버튼 안으로 그림자 효과 추가 */
-    transform: translateY(1px); /* 버튼을 아래로 1px 이동시킴 */
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
   }
   &:hover {
     cursor: pointer;

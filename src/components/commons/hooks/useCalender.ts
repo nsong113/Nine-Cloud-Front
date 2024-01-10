@@ -49,8 +49,6 @@ const useCalendar = () => {
     []
   );
 
-  console.log(weekCalendarList);
-
   return {
     weekCalendarList: weekCalendarList,
     currentDate: currentDate,
@@ -59,7 +57,6 @@ const useCalendar = () => {
     setCurrentMonth: setCurrentMonth,
     currentYear: currentYear,
     setCurrentYear: setCurrentYear,
-
     DAY_LIST: DAY_LIST,
     DATE_MONTH_FIXER: DATE_MONTH_FIXER,
   };

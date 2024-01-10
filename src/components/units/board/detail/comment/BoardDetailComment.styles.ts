@@ -53,12 +53,13 @@ export const ProfileImg = styled.img`
 export const CommentFooterWrapDiv = styled.div`
   display: flex;
   margin-bottom: 10px;
-  width: 350px;
+  width: 380px;
   height: 49px;
   flex-shrink: 0;
   border-radius: 4px 15px;
   background: #fff;
-  margin-left: 15px;
+  margin-left: 5px;
+  border: 3px solid rgba(245, 242, 255, 1);
 `;
 
 export const BlankDiv = styled.div`
@@ -68,7 +69,7 @@ export const BlankDiv = styled.div`
 export const InputBoxDiv = styled.input`
   background-color: white;
   width: 290px;
-  height: 47px;
+  height: 40px;
   margin-left: 10px;
   border: 0px;
   padding-left: 10px;
@@ -82,7 +83,6 @@ export const BlankInput = styled.input`
   width: 380px;
   height: 47px;
   border-radius: 28px;
-  border: 1px solid gray;
   & :active {
     border: 1px solid #391d93;
   }
@@ -95,7 +95,7 @@ export const SubmitButton = styled.button`
   width: 73px;
   height: 40px;
   flex-shrink: 0;
-  margin-top: 6px;
+  margin-top: 3px;
   border: 0;
   cursor: pointer;
   &:hover {

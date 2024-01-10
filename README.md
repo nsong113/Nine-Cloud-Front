@@ -44,38 +44,6 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
 
 </br>
 
-## **🎈 주요기능 소개**
-
-<table>
-  <tr align="center">
-    <td><strong>소셜 로그인</strong></td>
-    <td><strong>달력 페이지</strong></td>
-    <td><strong>그림 그리기</strong></td>
-  </tr>
-   <tr align="center">
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_loginpage.gif" alt="소셜 로그인" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_mainpage.gif" alt="메인" style="height:500px"/></td>
-    <td><img src="https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/post.gif" alt="일기 추가하기" style="height:500px"/></td>
-  </tr>
-</table>
-
-</br>
-
-<table>
-  <tr align="center">
-    <td><strong>AI open api</strong></td>
-    <td><strong>무한스크롤</strong></td>
-    <td><strong>채팅방</strong></td>
-  </tr>
-   <tr align="center">
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_gptpage.gif" alt="AI" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_communitypage.gif" alt="커뮤니티" style="height:500px"/></td>
-    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_chatting.gif" alt="채팅방" style="height:500px"/></td>
-  </tr>
-</table>
-
-</br>
-
 ## **👩🏻‍💻👨🏻‍💻 FrontEnd 개발**
 
 |                                                   주철민                                                    |                                                   송지우                                                   |                                                   한덕용                                                   |
@@ -111,7 +79,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
       - 개인 글 보기 피드 (infinite-scroll)<br />
       - 모달 (react-portal) <br />
     </td>
-com    <td align="center">nsong113@gmail.com</td>
+    <td align="center">nsong113@gmail.com</td>
   </tr>
   <tr>
     <td align="center">한덕용</td>
@@ -124,6 +92,38 @@ com    <td align="center">nsong113@gmail.com</td>
       - Axios intercepter<br />
     </td>
     <td align="center">qbixroqkfwk@gmail.com</td>
+  </tr>
+</table>
+
+</br>
+
+## **🎈 주요기능 소개**
+
+<table>
+  <tr align="center">
+    <td><strong>소셜 로그인</strong></td>
+    <td><strong>달력 페이지</strong></td>
+    <td><strong>그림 그리기</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_loginpage.gif" alt="소셜 로그인" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_mainpage.gif" alt="메인" style="height:500px"/></td>
+    <td><img src="https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/post.gif" alt="일기 추가하기" style="height:500px"/></td>
+  </tr>
+</table>
+
+</br>
+
+<table>
+  <tr align="center">
+    <td><strong>AI open api</strong></td>
+    <td><strong>무한스크롤</strong></td>
+    <td><strong>채팅방</strong></td>
+  </tr>
+   <tr align="center">
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_gptpage.gif" alt="AI" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_communitypage.gif" alt="커뮤니티" style="height:500px"/></td>
+    <td><img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/gif_chatting.gif" alt="채팅방" style="height:500px"/></td>
   </tr>
 </table>
 
@@ -221,13 +221,6 @@ com    <td align="center">nsong113@gmail.com</td>
       이 API를 사용하면 비동기적으로 작동하며, 뷰포트와 대상 요소 간의 교차 여부를 비동기적으로 감지합니다.</br>
       스크롤 위치와 상관 없이 요소가 화면에 나타나거나 사라질 때 이를 감지할 수 있어 웹 페이지의 부하를 감소시킬 수 있습니다.
     </td>
-  </tr>
-    <tr>
-   <td><strong>Jest</strong></td>
-    <td>     
-      Jest는 스냅샷 테스팅을 지원하여 컴포넌트나 데이터 구조의 변화를 캡처하고 향후 변경 사항을 감지할 수 있습니다.<br/>
-      데이터 가공이 많은 나인 클라우드에 잘 어울릴 것 같아 채택했습니다.
-  </td>
   </tr>
    <tr>
     <td><strong>sweetAlert2</strong></td>
@@ -378,7 +371,6 @@ get 요청이 보내졌습니다.  <br>
   <br>
   <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode.png" width="804" height="255">
   혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
-  그리고 CORS(Cross-Origin Resource Sharing) 설정을 모든 도메인에서 서버로의 요청을 허용시키는 걸로 변경해서 연결에 성공하였습니다.
   <br>
   <br>
 - 결과 -
