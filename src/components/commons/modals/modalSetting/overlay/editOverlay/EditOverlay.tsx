@@ -70,7 +70,6 @@ const EditOverlay: React.FC<IEditPost> = ({
   };
 
   const onChangeContents = (value: string) => {
-    console.log('value', value.length);
     setContents(value === '<p><br></p>' ? '' : value);
     if (value.length <= 200) {
       setContents(value);
