@@ -54,10 +54,8 @@ export default function OnBoard() {
     if (swiperRef.current) {
       const swiperInstance = swiperRef.current.swiper;
 
-      // Add event listener for when the slide changes
       swiperInstance.on('slideChange', handleSlideChange);
 
-      // Manually trigger the initial style update
       handleSlideChange(swiperInstance);
     }
   }, [swiperRef]);
@@ -72,23 +70,20 @@ export default function OnBoard() {
 
     underBalls.forEach((underBall, index) => {
       if (index === swiper.activeIndex) {
-        // 활성 슬라이드인 경우 해당하는 스타일로 업데이트
         underBall.style.width = '7.15%';
         underBall.style.backgroundColor = '#391D93';
         underBall.style.borderRadius = '10px';
         underBall.style.borderTopLeftRadius = '2px';
         underBall.style.borderBottomRightRadius = '2px';
       } else {
-        // 비활성 슬라이드인 경우 기본 스타일로 재설정
-        underBall.style.width = '15px'; // 비활성 슬라이드의 기본 너비
-        underBall.style.backgroundColor = '#F5F2FF'; // 비활성 슬라이드의 기본 배경색
+        underBall.style.width = '15px';
+        underBall.style.backgroundColor = '#F5F2FF';
         underBall.style.borderRadius = '50%';
       }
     });
   };
 
   const handleUnderBallClick = (index) => {
-    // 이 함수에서 각 버튼(또는 UnderBall)을 클릭했을 때 슬라이드 이동 로직을 추가합니다.
     if (swiperRef.current) {
       swiperRef.current.swiper.slideTo(index);
     }
@@ -98,11 +93,10 @@ export default function OnBoard() {
     if (isLastSlide) {
       navigate('/login');
     } else {
-      // Go to the next slide
       swiperRef.current.swiper.slideNext();
     }
   };
-  // 사진 크기 440px X 500px
+
   return (
     <S.Base>
       <S.OnboardTitle>{title}</S.OnboardTitle>
@@ -190,6 +184,3 @@ export default function OnBoard() {
     </S.Base>
   );
 }
-
-// style 중복되는 값 묶기, S.Button 아래나 밖으로 빼기
-// jsx, tsx 혼용

@@ -3,7 +3,6 @@ import { Button } from './KakaoShare.style';
 const { Kakao } = window as any;
 
 const KakaoShare = () => {
-  const realUrl = 'https://nine-cloud9.vercel.app/';
   const resultUrl = window.location.href;
 
   useEffect(() => {

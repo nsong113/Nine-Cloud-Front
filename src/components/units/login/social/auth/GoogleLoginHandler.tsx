@@ -4,7 +4,6 @@ import axiosInstance from 'src/apis/loginapi';
 
 const GoogleLoginHandler = () => {
   const code = new URL(window.location.href).searchParams.get('code');
-  // const code = window.location.href;
   const navigate = useNavigate();
   const [dots, setDots] = useState('.');
 
@@ -39,7 +38,7 @@ const GoogleLoginHandler = () => {
     return () => clearInterval(intervalId);
   }, [code, navigate]);
 
-  return <>{/* <Loading /> */}</>;
+  return <></>;
 };
 
 export default GoogleLoginHandler;

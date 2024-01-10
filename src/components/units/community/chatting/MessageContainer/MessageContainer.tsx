@@ -2,24 +2,27 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from '@mui/system';
 import * as S from './MessageContainer.styles';
+import { MessageContainerProps } from '../Chatting.types';
 
-const MessageContainer = ({ messageList, user }) => {
-  const messageContainerRef = useRef(null);
+const MessageContainer: React.FC<MessageContainerProps> = ({
+  messageList,
+  user,
+}) => {
+  const messageContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const scrollToBottom = (): void => {
+      if (messageContainerRef.current) {
+        messageContainerRef.current.scrollTop =
+          messageContainerRef.current.scrollHeight;
+      }
+    };
     scrollToBottom();
   }, [messageList]);
 
-  const scrollToBottom = () => {
-    if (messageContainerRef.current) {
-      messageContainerRef.current.scrollTop =
-        messageContainerRef.current.scrollHeight;
-    }
-  };
-
   return (
     <S.BaseMessage ref={messageContainerRef}>
-      {messageList.map((message, index) => {
+      {messageList.map((message) => {
         return (
           <Container key={message._id}>
             {message.user.name === 'system' ? (
@@ -60,21 +63,6 @@ const MessageContainer = ({ messageList, user }) => {
       })}
     </S.BaseMessage>
   );
-};
-
-MessageContainer.propTypes = {
-  messageList: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      user: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      }).isRequired,
-      chat: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 export default MessageContainer;
