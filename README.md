@@ -79,7 +79,7 @@ cloud nine (행복의 절정)이라는 속담에서 착안했습니다. 행복�
       - 개인 글 보기 피드 (infinite-scroll)<br />
       - 모달 (react-portal) <br />
     </td>
-com    <td align="center">nsong113@gmail.com</td>
+    <td align="center">nsong113@gmail.com</td>
   </tr>
   <tr>
     <td align="center">한덕용</td>
