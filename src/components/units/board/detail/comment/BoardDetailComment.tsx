@@ -107,7 +107,9 @@ const BoardDetailComment: React.FC<IComment> = ({
     if (e.target.value.length <= 20) {
       setContent(e.target.value);
     } else {
-      alert('댓글은 20자까지만 입력 가능합니다');
+      alertUnit(
+        '<span style="font-size: 24px; font-weight : bolder;">댓글은 20자 까지만 가능합니다.</span>'
+      );
     }
   };
 
@@ -140,13 +142,13 @@ const BoardDetailComment: React.FC<IComment> = ({
                 <S.CommentHeaderDiv></S.CommentHeaderDiv>
                 <S.CommentFooterWrapDiv>
                   <S.InputBoxDiv
-                    placeholder='첫 번째 댓글을 등록해보세요'
+                    placeholder='일기에 댓글을 달아보세요'
                     value={content}
                     onChange={onChangeComment}
                     onKeyDown={handleOnKeyPress}
                   />
                   <S.SubmitButton onClick={onClickSubmitBtn}>
-                    등록
+                    입력
                   </S.SubmitButton>
                 </S.CommentFooterWrapDiv>
               </S.CommentBox>
@@ -209,8 +211,8 @@ const BoardDetailComment: React.FC<IComment> = ({
                 ))}
               </S.CommentHeaderDiv>
             </S.CommentBox>
-            <S.CommentFooterWrapDiv>
-              {detailedContent.isPublic === true && (
+            {detailedContent.isPublic === true && (
+              <S.CommentFooterWrapDiv>
                 <div>
                   <S.BlankDiv>
                     <S.InputBoxDiv
@@ -227,18 +229,18 @@ const BoardDetailComment: React.FC<IComment> = ({
                     <S.CountCheckSpan>{content.length}/200</S.CountCheckSpan>
                   )}
                 </div>
-              )}
-              {detailedContent.isPublic === false && (
-                <div>
-                  <S.BlankInput
-                    placeholder='공개로 전환하면 다른 사용자가 댓글을 달 수 있어요'
-                    value={content}
-                    onChange={onChangeComment}
-                    disabled
-                  />
-                </div>
-              )}
-            </S.CommentFooterWrapDiv>
+              </S.CommentFooterWrapDiv>
+            )}
+            {detailedContent.isPublic === false && (
+              <div>
+                <S.BlankInput
+                  placeholder='공개로 전환하면 다른 사용자가 댓글을 달 수 있어요'
+                  value={content}
+                  onChange={onChangeComment}
+                  disabled
+                />
+              </div>
+            )}
           </S.CommentsWrapperDiv>
         </div>
       )}

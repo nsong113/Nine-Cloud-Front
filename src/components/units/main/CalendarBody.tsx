@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import getEmotion from 'src/components/commons/utills/emotionImage';
 import { arrowNavigate } from 'src/states/navigate';
 import { IGetId, IGetPostsData } from './Main.types';
+import alertUnit from 'src/components/commons/utills/Alert/alertUnit';
 
 const CalendarBody = (props: IGetPostsData) => {
   const [isGoingToMain, setIsGoingToMain] = useRecoilState(arrowNavigate);
@@ -13,8 +14,7 @@ const CalendarBody = (props: IGetPostsData) => {
   const { weekCalendarList } = useCalendar();
   const allDate = weekCalendarList.flat().filter((value) => value !== 0);
 
-  const allData = props?.data?.data;
-
+  const allData = props?.data.data;
   const getId = (date: string) => {
     const matchingDay = allData.find(
       (el: IGetId) =>
@@ -30,7 +30,9 @@ const CalendarBody = (props: IGetPostsData) => {
       setIsGoingToMain(true);
       navigate(`/post/${id}`);
     } else {
-      alert('작성하신 글이 없습니다.');
+      alertUnit(
+        '<span style="font-size: 24px; font-weight: bolder;">작성하신 글이 없습니다.</span>'
+      );
     }
   };
 
@@ -91,9 +93,7 @@ const CalendarBody = (props: IGetPostsData) => {
             const weatherStatus = getWeatherData(String(cellDate));
             const id = getId(String(cellDate));
 
-            const isToday =
-              cellDate === new Date().getDate() &&
-              props.currentMonth.getMonth() === new Date().getMonth();
+            const isToday = cellDate === new Date().getDate() && isCurrentMonth;
 
             return (
               <S.TableCell

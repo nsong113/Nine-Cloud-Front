@@ -100,11 +100,11 @@ const BoardDetailContents: React.FC<IBoardDetailContents> = ({
           )}
           {profile?.data?.userId === data?.data?.UserId && (
             <S.DotWrapperDiv
-              whileHover={{ scale: 1.3 }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={onClickPencilImg}
             >
-              <S.PencilImg src='/dotdotdot.png' alt='수정버튼' />
+              <S.PencilImg src='/dotdotdotdot.png' alt='수정버튼' />
             </S.DotWrapperDiv>
           )}
         </S.PencilsBoxDiv>

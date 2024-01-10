@@ -61,18 +61,14 @@ const Calender = () => {
       }),
     {
       cacheTime: getYear(new Date()) !== getYear(currentYear) ? 0 : undefined,
-      // cacheTime이 0이면 캐시를 비활성화하고, undefined면 기본 동작(캐시 사용)을 따릅니다.
     }
   );
 
   useEffect(() => {
     if (isAcriveFireWork) {
-      // Fireworks가 끝난 후에 isFireWork를 false로 변경
       const timeoutId = setTimeout(() => {
         setIsActiveFireWork(false);
-      }, 1000); // duration 값에 맞춰서 설정 (여기서는 4초로 설정)
-
-      // 컴포넌트가 언마운트되거나 다시 렌더링될 때 clearTimeout
+      }, 1000);
       return () => clearTimeout(timeoutId);
     }
   }, [isAcriveFireWork]);
@@ -118,13 +114,13 @@ const Calender = () => {
   const decorateOptions = (originalOptions: any) => {
     return {
       ...originalOptions,
-      particleCount: 100, // 조각 개수 설정
-      spread: 80, // 퍼짐 정도 설정
-      startVelocity: 50, // 초기 속도 설정
-      ticks: 100, // 애니메이션 지속 시간 설정
-      origin: { x: 0.5, y: 0.8 }, // 발사 위치 설정
-      shapes: ['circle', 'circle', 'square'], // 이미지 배열을 shapes로 설정
-      gravity: 2, // 중력 설정
+      particleCount: 100,
+      spread: 80,
+      startVelocity: 50,
+      ticks: 100,
+      origin: { x: 0.5, y: 0.8 },
+      shapes: ['circle', 'circle', 'square'],
+      gravity: 2,
     };
   };
 
@@ -133,24 +129,19 @@ const Calender = () => {
       <S.CalendarContainerDiv>
         <S.HeaderWrapperDiv>
           <S.DateBoxDiv>
-            {/* <S.ExcludeImg
-              src='https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/exclude.png'
-              rel='preload'
-              alt='이미지'
-            /> */}
             <S.YearMonthChangeBoxDiv>
               <S.StyledHoverTapButton
-                whileHover={{ scale: 1.3 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 1 }}
               >
-                <S.PrevMonth onClick={onClickPrevMonth} size={30} />
+                <S.PrevMonth onClick={onClickPrevMonth} size={28} />
               </S.StyledHoverTapButton>
               <S.MonthNumberSpan>{month}</S.MonthNumberSpan>
               <S.StyledHoverTapButton
-                whileHover={{ scale: 1.3 }}
+                whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 1 }}
               >
-                <S.NextMonth onClick={onClickNextMonth} size={30} />
+                <S.NextMonth onClick={onClickNextMonth} size={28} />
               </S.StyledHoverTapButton>
             </S.YearMonthChangeBoxDiv>
             <S.PrevNextMonthBoxDiv>
@@ -160,7 +151,6 @@ const Calender = () => {
           </S.DateBoxDiv>
           <S.RightProfile>
             <S.ButtonWrapperDiv>
-              {/* <Tooltip message='리스트'> */}
               <S.List
                 src='https://hanghaelv4.s3.ap-northeast-2.amazonaws.com/list.png'
                 alt='리스트'
@@ -173,49 +163,45 @@ const Calender = () => {
                 <Fireworks
                   autorun={{ speed: 0.5, duration: 3 }}
                   style={canvasStyles}
-                  decorateOptions={decorateOptions} // 함수 실행을 위해 괄호를 추가
+                  decorateOptions={decorateOptions}
                 />
               )}
-
-              {/* </Tooltip> */}
             </S.ButtonWrapperDiv>
           </S.RightProfile>
         </S.HeaderWrapperDiv>
 
         <S.Test>
-          <Animation>
-            <S.LeftRightAnimeButton
-              key={currentMonth.toString()}
-              initial={{
-                opacity: 0,
-                x: animationDirection === 'leftToRight' ? '-75%' : '75%',
-              }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{
-                opacity: 0,
-                x: animationDirection === 'leftToRight' ? '75%' : '-75%',
-              }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-            >
-              <S.CalendarTable>
-                <S.TableHead>
-                  <S.TableRow>
-                    {DAY_LIST.map((day, index) => (
-                      <S.ThCell key={index}>{day}</S.ThCell>
-                    ))}
-                  </S.TableRow>
-                </S.TableHead>
-                {/* 캘린더 바디 컴포넌트 */}
-                <CalendarBody
-                  weekCalendarList={weekCalendarList}
-                  currentYear={currentYear}
-                  currentMonth={currentMonth}
-                  currentDate={currentDate}
-                  data={data}
-                />
-              </S.CalendarTable>
-            </S.LeftRightAnimeButton>
-          </Animation>
+          <S.LeftRightAnimeButton
+            key={currentMonth.toString()}
+            initial={{
+              opacity: 0,
+              x: animationDirection === 'leftToRight' ? '-75%' : '75%',
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{
+              opacity: 0,
+              x: animationDirection === 'leftToRight' ? '75%' : '-75%',
+            }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+          >
+            <S.CalendarTable>
+              <S.TableHead>
+                <S.TableRow>
+                  {DAY_LIST.map((day, index) => (
+                    <S.ThCell key={index}>{day}</S.ThCell>
+                  ))}
+                </S.TableRow>
+              </S.TableHead>
+              {/* 캘린더 바디 컴포넌트 */}
+              <CalendarBody
+                weekCalendarList={weekCalendarList}
+                currentYear={currentYear}
+                currentMonth={currentMonth}
+                currentDate={currentDate}
+                data={data}
+              />
+            </S.CalendarTable>
+          </S.LeftRightAnimeButton>
           {isGPTModal && (
             <GPTOverlay
               onOk={onClickConfirm}

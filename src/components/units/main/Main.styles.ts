@@ -140,23 +140,6 @@ export const DayRoow = styled.tr`
   height: 100px;
 `;
 
-export const TableCell = styled.td<ITableCellProps>`
-  width: 56px;
-  height: 53px;
-
-  cursor: pointer;
-  &:hover {
-    background-color: #926fff;
-  }
-
-  background: rgba(255, 255, 255, 0.5);
-
-  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
-    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
-    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
-  backdrop-filter: blur(15px);
-`;
-
 export const DateSpan = styled.span<IDateSpanProps>`
   color: ${({ istoday }) => (istoday ? '#391D93' : 'var(--Gray2, #929292);')};
   background-color: ${({ istoday }) => (istoday ? '#CFC0FF' : 'inherit')};
@@ -173,12 +156,29 @@ export const DateSpan = styled.span<IDateSpanProps>`
   }
 `;
 
+export const TableCell = styled.td<IDateSpanProps>`
+  width: 56px;
+  height: 53px;
+
+  cursor: pointer;
+  &:hover {
+    &:hover ${DateSpan} {
+      color: ${({ istoday }) => (istoday ? '#391D93' : 'white')};
+    }
+    background-color: #926fff;
+  }
+
+  background: rgba(255, 255, 255, 0.5);
+
+  box-shadow: 0px 4px 2px 0px rgba(80, 53, 166, 0.2),
+    0px 4px 10px 0px rgba(255, 255, 255, 0.5) inset,
+    0px 4px 20px 0px rgba(80, 53, 166, 0.2);
+  backdrop-filter: blur(15px);
+`;
+
 export const DayWrapperDiv = styled.div<IDateSpanProps>`
   display: flex;
   flex-direction: column;
-  &:hover ${DateSpan} {
-    color: ${({ istoday }) => (istoday ? '#391D93' : 'white')};
-  }
 `;
 
 export const ThCell = styled.th`
@@ -280,6 +280,7 @@ export const MonthNumberSpan = styled.span`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin: 0 5px;
 `;
 
 export const YearTextSpan = styled.span`
@@ -434,8 +435,8 @@ export const Calendar = styled(FaRegCalendarAlt)`
 
 export const List = styled(motion.img)`
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   flex-shrink: 0;
   color: #391d93;
   &:hover {
@@ -454,7 +455,8 @@ export const PrevMonth = styled(IoIosArrowBack)`
   margin-top: 7px;
   cursor: pointer;
   color: #a294cd;
-  margin-left: 30px;
+  margin-left: 10px;
+  box-shadow: 0px 2px 2px 0px rgba(255, 255, 255, 0.5) inset;
 `;
 
 export const ExcludeImg = styled.img`

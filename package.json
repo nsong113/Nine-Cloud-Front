@@ -78,7 +78,6 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
     "@types/browser-image-compression": "^1.0.9",
-    "@types/jest": "^29.5.11",
     "@types/jquery": "^3.5.29",
     "@types/react-infinite-scroller": "^1.2.5",
     "@types/uuid": "^9.0.7",

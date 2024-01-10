@@ -1,4 +1,4 @@
-import { getDaysInMonth, subMonths } from 'date-fns';
+import { getDaysInMonth } from 'date-fns';
 import { useState } from 'react';
 
 const DATE_MONTH_FIXER = 1;
@@ -57,7 +57,6 @@ const useCalendar = () => {
     setCurrentMonth: setCurrentMonth,
     currentYear: currentYear,
     setCurrentYear: setCurrentYear,
-
     DAY_LIST: DAY_LIST,
     DATE_MONTH_FIXER: DATE_MONTH_FIXER,
   };
