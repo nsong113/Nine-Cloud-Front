@@ -369,7 +369,7 @@ get 요청이 보내졌습니다.  <br>
 - 해결을 위한 노력 -
   <br>
   <br>
-  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/readme/socketCode.png" width="804" height="255">
+  <img src="https://lv4lv4task.s3.ap-northeast-2.amazonaws.com/image+(2).png" width="804" height="255">
   <br>
   혹시 path 설정을 따로 해준다면 접근할 수 있을까 해서 기존에 하던 방식과 다르게 path 설정을 집어넣었습니다.
   <br>
