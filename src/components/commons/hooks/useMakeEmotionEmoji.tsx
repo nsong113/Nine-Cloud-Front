@@ -51,8 +51,8 @@ const useMakeEmotionEmoji = () => {
     case weatherAtom === '3' &&
       countAverageAtom > 1.6 &&
       countAverageAtom <= 3.3:
-      if (emotionPicture !== '/sun_soso.png.webp') {
-        setEmotionPicture('/sun_soso.png.webp');
+      if (emotionPicture !== '/sun_soso.webp') {
+        setEmotionPicture('/sun_soso.webp');
       }
       break;
     case weatherAtom === '3' && countAverageAtom > 3.3 && countAverageAtom <= 5:
