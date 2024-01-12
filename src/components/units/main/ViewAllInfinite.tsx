@@ -72,8 +72,8 @@ const ViewAllInfinite = (props: any) => {
       }
       break;
     case weather === '3' && countAverage > 1.6 && countAverage <= 3.3:
-      if (emotionPicture !== '/sun_soso.png.webp') {
-        setEmotionPicture('/sun_soso.png.webp');
+      if (emotionPicture !== '/sun_soso.webp') {
+        setEmotionPicture('/sun_soso.webp');
       }
       break;
     case weather === '3' && countAverage > 3.3 && countAverage <= 5:

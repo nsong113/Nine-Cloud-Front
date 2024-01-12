@@ -25,7 +25,7 @@ const useSetEmotionIcon = (weather: string, countAverage: number) => {
     if (countAverage <= 1.6) {
       emotionPath = '/sun_sad.webp';
     } else if (countAverage <= 3.3) {
-      emotionPath = '/sun_soso.png.webp';
+      emotionPath = '/sun_soso.webp';
     } else if (countAverage <= 5) {
       emotionPath = '/sun_happy.webp';
     }
