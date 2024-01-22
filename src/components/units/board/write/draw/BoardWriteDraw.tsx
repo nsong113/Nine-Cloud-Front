@@ -85,9 +85,7 @@ const BoardWriteDraw = () => {
   };
 
   const getCoordinates = (event: MouseEvent): ICoordinate | undefined => {
-    if (!canvasRef.current) {
-      return;
-    }
+    if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current;
     return {
       x: event.clientX - canvas.getBoundingClientRect().left,
@@ -122,9 +120,7 @@ const BoardWriteDraw = () => {
   };
 
   const onClickInitToggleHandler = () => {
-    if (!canvasRef.current) {
-      return;
-    }
+    if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current;
     const context = canvas.getContext('2d');
     if (!context) return;
@@ -147,9 +143,7 @@ const BoardWriteDraw = () => {
   };
 
   const startTouch = useCallback((event: TouchEvent) => {
-    if (!canvasRef.current) {
-      return;
-    }
+    if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current;
 
     let touch = event.touches[0];
@@ -165,9 +159,7 @@ const BoardWriteDraw = () => {
     event.preventDefault();
     event.stopPropagation();
 
-    if (!canvasRef.current) {
-      return;
-    }
+    if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current;
 
     let touch = event.touches[0];
@@ -180,9 +172,7 @@ const BoardWriteDraw = () => {
   }, []);
 
   const endTouch = useCallback((event: TouchEvent) => {
-    if (!canvasRef.current) {
-      return;
-    }
+    if (!canvasRef.current) return;
     const canvas: HTMLCanvasElement = canvasRef.current;
 
     let touch = event.touches[0];
