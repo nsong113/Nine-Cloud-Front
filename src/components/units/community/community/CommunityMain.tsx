@@ -69,6 +69,10 @@ const CommunityMain = () => {
     navigate('/main');
   };
 
+  const onClickAlertHandler = () => {
+    alert('서버 이전 문제로 현재 채팅방 사용 불가입니다.');
+  };
+
   return (
     <S.MainContainer>
       <S.MainSectionContainer>
@@ -89,16 +93,16 @@ const CommunityMain = () => {
             </S.MainTitleFlex>
             <S.MainProfileDiv>
               <S.MainHeaderOn>
-                <Link to='/community/chat'>
-                  <S.MainChattingRoomFlex>
-                    <img
-                      src='/chatting_emoji.png'
-                      alt='채팅방 가기'
-                      style={chatting_emoji}
-                    />
-                    <S.MainChattingContent>참여하기</S.MainChattingContent>
-                  </S.MainChattingRoomFlex>
-                </Link>
+                {/* <Link to='/community/chat'> */}
+                <S.MainChattingRoomFlex onClick={onClickAlertHandler}>
+                  <img
+                    src='/chatting_emoji.png'
+                    alt='채팅방 가기'
+                    style={chatting_emoji}
+                  />
+                  <S.MainChattingContent>참여하기</S.MainChattingContent>
+                </S.MainChattingRoomFlex>
+                {/* </Link> */}
               </S.MainHeaderOn>
             </S.MainProfileDiv>
           </S.MainFlexBox>
