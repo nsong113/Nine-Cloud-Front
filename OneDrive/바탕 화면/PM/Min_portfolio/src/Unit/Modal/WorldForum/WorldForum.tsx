@@ -41,7 +41,8 @@ const WorldForum: React.FC<CloseModal> = ({ onCloseModal }) => {
                   </S.Contents>
                   <S.SubContents>
                     1. 포럼 홈페이지 제작 업무 <br /> 2. 전문가 초청 특별강연
-                    홍보 컨텐츠 기획 및 제작
+                    홍보 컨텐츠 기획 및 제작 <br /> 3. 온라인 서포터즈 운영
+                    <br /> 4. 포럼 프로그램 기획 및 운영 (ZEP) <br />
                   </S.SubContents>
                 </div>
                 <S.ForumBtn onClick={onClickChrome}>

@@ -25,7 +25,7 @@ const Challenge: React.FC<CloseModal> = ({ onCloseModal }) => {
                   <S.TitleAndCancel onClick={onCloseModal}>X</S.TitleAndCancel>
                 </S.TitleBoxDiv>
                 <div>
-                  <S.ContentsText> 경험 한 기술</S.ContentsText>
+                  <S.ContentsText> 경험한 기술</S.ContentsText>
                   <S.Contents>
                     {' '}
                     • 프레임워크 : Next.js, React <br /> • CSS :
@@ -33,6 +33,9 @@ const Challenge: React.FC<CloseModal> = ({ onCloseModal }) => {
                     상태관리 : Redux, Recoil <br /> • 클라이언트 : React-Query,
                     Axios <br /> • CI/CD : Github Actions, Vercel <br /> • 언어
                     : TypeScript
+                    <br />
+                    • 프레임워크 : Next.js, React <br />
+                    • 기타 : Figma, Notion, MS-OFFICE 
                   </S.Contents>
                   <S.ContentsText> 팀 프로젝트</S.ContentsText>
                   <S.TeamProjectDiv>

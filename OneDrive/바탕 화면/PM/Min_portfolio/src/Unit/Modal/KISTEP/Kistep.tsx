@@ -43,7 +43,7 @@ const Kistep: React.FC<CloseModal> = ({ onCloseModal }) => {
                   <S.ContentsText>내용</S.ContentsText>
                   <S.Contents>
                     {' '}
-                    1. 홍보 컨텐츠 기획 및 제작 (동영상, 브로셔 등)
+                    1. 홍보 컨텐츠 기획 및 제작 (동영상, 팸플릿 등)
                     <br /> 2. 사회문제해결플랫폼(NTIS) 운영 및 관리 <br /> 3.
                     자료조사 및 문서화
                   </S.Contents>

@@ -48,9 +48,14 @@ const Epis: React.FC<CloseModal> = ({ onCloseModal }) => {
                   <S.ContentsText>ο 역할</S.ContentsText>
                   <S.Contents>
                     사회적 기업 조사 및 컨텐츠 기획과 제작
-                    <S.SubContents>1. 브이로그 형식의 동영상 </S.SubContents>
-                    <S.SubContents>2. 브로셔 </S.SubContents>
-                    <S.SubContents>3. PPT (사회적 농업 홍보) </S.SubContents>
+                    <S.SubContents>
+                      1. 동영상 컨텐츠 기획 및 제작{' '}
+                    </S.SubContents>
+                    <S.SubContents>2. 브로셔 기획 및 제작 </S.SubContents>
+                    <S.SubContents>3. PPT 제작 </S.SubContents>
+                    <S.SubContents>
+                      4. 사회적 프로그램 기획 및 운영{' '}
+                    </S.SubContents>
                   </S.Contents>
                 </div>
                 <div>

@@ -85,7 +85,9 @@ const Cheolmin = () => {
             <S.TitleAndNumber>
               <S.Numbering>01 </S.Numbering>
               <S.TitleSpan color='#A1248D'>"꾸준히"</S.TitleSpan>
-              <S.SubTitleSpan>평균 주 5회 TIL을 작성 </S.SubTitleSpan>
+              <S.SubTitleSpan>
+                주 5회 TIL , 93번의 런닝{' '}
+              </S.SubTitleSpan>
             </S.TitleAndNumber>
           </S.TitleAndNumberBox>
           <div>
@@ -104,7 +106,7 @@ const Cheolmin = () => {
           <S.TitleAndNumberBox>
             <S.TitleAndNumber>
               <S.Numbering>02 </S.Numbering>
-              <S.TitleSpan color='#4B37C4'>"UX 관점에서 개발"</S.TitleSpan>
+              <S.TitleSpan color='#4B37C4'>"UX 관점에서 접근"</S.TitleSpan>
               <S.SubTitleSpan>구글폼을 통해 사용자 테스트 진행</S.SubTitleSpan>
             </S.TitleAndNumber>
           </S.TitleAndNumberBox>

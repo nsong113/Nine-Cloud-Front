@@ -44,7 +44,7 @@ const Thinkness: React.FC<ITrain> = ({ isClicked }) => {
                   </S.TrainContainer>
                   <S.TrainContainer>
                     <S.Roof>
-                      <S.TitleSpan>개발자가 된 이유</S.TitleSpan>
+                      <S.TitleSpan>진로를 변경한 이유</S.TitleSpan>
                     </S.Roof>
                     <S.RoofConnectionBox>
                       <S.RoofConnectionDiv></S.RoofConnectionDiv>

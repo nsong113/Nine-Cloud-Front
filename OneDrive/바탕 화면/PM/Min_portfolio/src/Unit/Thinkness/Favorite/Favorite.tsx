@@ -10,20 +10,20 @@ const Favorite = () => {
           <S.Title> 2020 </S.Title>
           - 충북대학교 국제경영학과 편입
           <br />
-          - 대학생 청소년교육지원 프로그램
+          - 청소년 교육 지원 프로그램
           <br />
           <S.Title> 2021 </S.Title>
-          - NMHC 홍보 서포터즈 <br />
+          - NMHC 서포터즈 <br />
           - 광주세광학교 하계 국가근로
           <br />
-          - EPIS 인턴
+          - EPIS Internship
           <br />
           <S.Title> 2022 </S.Title>
-          - 한국문화재재단 산업인턴
+          - ICHCAP Internship
           <br />
           <S.Title> 2023 </S.Title>
           - KISTEP 계약직
-          <br />- 항해99 부트캠프
+          <br />- 항해99 부트캠프 (React 과정)
         </div>
         <S.DurationDiv>
           <span>16.04 ~ 18.04</span>

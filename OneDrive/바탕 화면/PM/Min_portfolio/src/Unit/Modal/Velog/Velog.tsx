@@ -12,6 +12,13 @@ const Velog: React.FC<CloseModal> = ({ onCloseModal }) => {
     window.open('https://velog.io/@uiop3996/posts', '_blank');
   };
 
+  const onClickRunning = () => {
+    window.open(
+      'https://drive.google.com/file/d/1XzfuUC5u85oDp0rg6qYFrCMl0ikMm3ID/view',
+      '_blank'
+    );
+  };
+
   const onClickModalDiv = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
@@ -23,20 +30,23 @@ const Velog: React.FC<CloseModal> = ({ onCloseModal }) => {
           <S.ModalContentDiv onClick={onClickModalDiv}>
             <S.TitleBoxDiv>
               <S.TitleAndSub>
-                <S.TitleSpan>Engineering Blog</S.TitleSpan>
+                <S.TitleSpan>TIL, RUNNING</S.TitleSpan>
               </S.TitleAndSub>
               <S.TitleAndCancel onClick={onCloseModal}>X</S.TitleAndCancel>
             </S.TitleBoxDiv>
 
             <div>
-              <S.ContentsTexts>기간</S.ContentsTexts>
+              <S.ContentsTexts>1. TIL</S.ContentsTexts>
               <S.Contents> - 2023.07.24 ~ ing</S.Contents>
-              <S.ContentsTexts>총 게시글 수</S.ContentsTexts>
               <S.Contents> - 138개 ( 평균 주 5회 이상 작성)</S.Contents>
-              <S.ContentsTexts>기타</S.ContentsTexts>
-              <S.Contents> - 2024년 1월 23일 기준</S.Contents>
+              <S.ContentsTexts>2. RUNNING</S.ContentsTexts>
+              <S.Contents> - 2023년 한 해, 93번의 런닝</S.Contents>
+              <S.Contents> - 자기관리를 꾸준히 하려고 노력</S.Contents>
             </div>
-            <S.ForumBtn onClick={onClickVelog}> VELOG </S.ForumBtn>
+            <div style={{ display: 'flex' }}>
+              <S.ForumBtn onClick={onClickVelog}> VELOG </S.ForumBtn>
+              <S.ForumBtn onClick={onClickRunning}> RUNNING </S.ForumBtn>
+            </div>
           </S.ModalContentDiv>
         </Animation1>
       </S.ContainerDiv>

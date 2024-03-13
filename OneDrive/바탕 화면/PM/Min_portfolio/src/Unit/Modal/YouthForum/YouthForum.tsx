@@ -37,6 +37,9 @@ const YouthForum: React.FC<CloseModal> = ({ onCloseModal }) => {
                     2022 YOUTH FORUM 프로젝트 기획 및 운영
                     <S.SubContents>1. ZEP 맵 기획 및 제작</S.SubContents>
                     <S.SubContents>2. 서포터즈 운영 및 관리</S.SubContents>
+                    <S.SubContents>
+                      3. 사용자 테스트 통해, 컨텐츠 개선{' '}
+                    </S.SubContents>
                   </S.Contents>
                 </div>
                 <S.ForumBtn onClick={onClickSecondChrome}> ZEP 이동</S.ForumBtn>
